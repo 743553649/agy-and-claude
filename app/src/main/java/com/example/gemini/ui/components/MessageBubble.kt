@@ -623,8 +623,7 @@ fun AssistantMessageFooter(
                     onDismissRequest = { confirmRetry = false },
                     title = { Text(stringResource(R.string.component_regenerate_response), fontWeight = FontWeight.Bold) },
                     text = {
-                        Text(
-                            "The same message is sent again and this reply is replaced by a new one.",
+                        Text(stringResource(R.string.component_the_same_message_is_sent_again_and_this),
                             fontSize = 14.sp
                         )
                     },

@@ -6444,8 +6444,7 @@ private fun DataProtectionSubScreen(
             icon = { Icon(Icons.Default.Warning, contentDescription = null, tint = MaterialTheme.colorScheme.error) },
             title = { Text(stringResource(R.string.settings_disable_uninstall_protection)) },
             text = {
-                Text(
-                    "This will remove AntiGem's Device Admin status. The app will become vulnerable to accidental home-screen uninstallation.",
+                Text(stringResource(R.string.settings_this_will_remove_antigem_s_device_admin),
                     fontSize = 13.sp
                 )
             },

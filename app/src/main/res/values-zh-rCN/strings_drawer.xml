@@ -25,6 +25,8 @@
     <string name="drawer_copy_conversation_id">复制会话 ID</string>
     <!-- 原文: Delete Conversation? -->
     <string name="drawer_delete_conversation">删除对话？</string>
+    <!-- 原文: Delete Conversation -->
+    <string name="drawer_delete_conversation_2">删除对话</string>
     <!-- 原文: Do you want to exit the app? This will stop all active background services, servers, and terminals. -->
     <string name="drawer_do_you_want_to_exit_the_app_this_will_st">要退出 App 吗？这会停止所有正在运行的后台服务、服务器和终端。</string>
     <!-- 原文: Download to Downloads/AntiGem -->

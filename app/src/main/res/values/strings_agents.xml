@@ -6,15 +6,20 @@
 <resources>
 
     <string name="agents_accounts">Accounts</string>
+    <string name="agents_agents">AGENTS</string>
+    <string name="agents_agents_you_turn_off_do_not_run_at_all_th">Agents you turn off do not run at all: the local server starts without them and their settings and chats are hidden (chats stay on disk).</string>
     <string name="agents_always">Always…</string>
     <string name="agents_applying_agents">Applying agents</string>
     <string name="agents_approval">approval</string>
     <string name="agents_choose_your_agent">Choose your agent</string>
     <string name="agents_continue">Continue</string>
+    <string name="agents_each_agent_signs_in_on_its_own">Each agent signs in on its own.</string>
     <string name="agents_restart_app">Restart app</string>
     <string name="agents_restart_to_apply">Restart to apply?</string>
     <string name="agents_restarting">Restarting…</string>
     <string name="agents_server_logs">Server logs</string>
     <string name="agents_stopping_the_local_server_then_restartin">Stopping the local server, then restarting the app…</string>
+    <string name="agents_the_app_runs_only_the_agents_you_pick_yo">The app runs only the agents you pick. You can change this later in Settings → Agents.</string>
+    <string name="agents_the_local_server_stops_and_the_app_resta">The local server stops and the app restarts with the new agents, so nothing of a turned-off agent keeps running. </string>
     <string name="agents_your_answer">Your answer</string>
 </resources>

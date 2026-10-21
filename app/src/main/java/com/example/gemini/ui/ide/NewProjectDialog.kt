@@ -90,8 +90,7 @@ fun NewProjectDialog(
                     )
                 }
 
-                Text(
-                    "Choose Template",
+                Text(stringResource(R.string.ide_choose_template),
                     style = MaterialTheme.typography.labelLarge,
                     color = MaterialTheme.colorScheme.primary
                 )

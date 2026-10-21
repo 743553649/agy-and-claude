@@ -85,8 +85,7 @@ fun ClaudeLoginDialog(account: ClaudeAccountManager, onDismiss: () -> Unit) {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 val l = login
                 if (l == null) {
-                    Text(
-                        "Choose how you pay for Claude. You'll finish signing in on claude.com.",
+                    Text(stringResource(R.string.claude_choose_how_you_pay_for_claude_you_ll_fin),
                         fontSize = 13.5.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f)
                     )
@@ -128,8 +127,7 @@ fun ClaudeLoginDialog(account: ClaudeAccountManager, onDismiss: () -> Unit) {
                             open(l.manual_url)
                         }) { Text(stringResource(R.string.claude_browser_can_t_return_to_the_app_sign_in), fontSize = 12.5.sp) }
                     } else {
-                        Text(
-                            "After approving, Claude shows a code. Paste it here:",
+                        Text(stringResource(R.string.claude_after_approving_claude_shows_a_code_past),
                             fontSize = 12.5.sp,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f)
                         )

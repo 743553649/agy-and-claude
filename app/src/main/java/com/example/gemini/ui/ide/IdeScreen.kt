@@ -828,8 +828,7 @@ fun IdeScreen(
                                 } else {
                                     DropdownMenuItem(
                                         text = {
-                                            Text(
-                                                "No custom profiles configured",
+                                            Text(stringResource(R.string.ide_no_custom_profiles_configured),
                                                 fontSize = 12.sp,
                                                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                                             )
@@ -1492,8 +1491,7 @@ fun IdeScreen(
                         Column {
                             Text("The file '${conflictingTarget.name}' has been modified on disk or by AI.")
                             Spacer(modifier = Modifier.height(8.dp))
-                            Text(
-                                "Choose whether to overwrite the disk version with your editor changes or reload the version from disk.",
+                            Text(stringResource(R.string.ide_choose_whether_to_overwrite_the_disk_ver),
                                 fontSize = 12.sp,
                                 color = Color.Gray
                             )

@@ -1787,8 +1787,7 @@ private fun ChatHistoryItemRow(
                 )
                 DropdownMenuItem(
                     text = {
-                        Text(
-                            "Delete Conversation",
+                        Text(stringResource(R.string.drawer_delete_conversation_2),
                             fontSize = 13.5.sp,
                             color = MaterialTheme.colorScheme.error
                         )

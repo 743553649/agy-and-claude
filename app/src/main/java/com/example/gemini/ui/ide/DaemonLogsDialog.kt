@@ -153,8 +153,7 @@ fun DaemonLogsDialog(
                 ) {
                     if (logs.isEmpty()) {
                         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                            Text(
-                                "No log entries yet",
+                            Text(stringResource(R.string.ide_no_log_entries_yet),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = Color.Gray
                             )

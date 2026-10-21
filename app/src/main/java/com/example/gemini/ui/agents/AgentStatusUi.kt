@@ -299,8 +299,7 @@ fun AgentStatusIndicator(
             shadowElevation = 8.dp,
             modifier = Modifier.width(300.dp)
         ) {
-            Text(
-                "AGENTS",
+            Text(stringResource(R.string.agents_agents),
                 fontSize = 10.5.sp,
                 fontWeight = FontWeight.Bold,
                 letterSpacing = 1.sp,

@@ -35,6 +35,10 @@
     <string name="ide_browse_file_manager">浏览 / 文件管理器……</string>
     <!-- 原文: CHANGES -->
     <string name="ide_changes">更改</string>
+    <!-- 原文: Choose Template -->
+    <string name="ide_choose_template">选择模板</string>
+    <!-- 原文: Choose whether to overwrite the disk version with your editor changes or reload the version from disk. -->
+    <string name="ide_choose_whether_to_overwrite_the_disk_ver">选择用编辑器中的改动覆盖磁盘版本，还是从磁盘重新加载版本。</string>
     <!-- 原文: Close Diff -->
     <string name="ide_close_diff">关闭差异</string>
     <!-- 原文: Close Find -->
@@ -125,6 +129,10 @@
     <string name="ide_no_changed_files_in_this_commit">此提交中没有更改的文件</string>
     <!-- 原文: No changes detected or binary file. -->
     <string name="ide_no_changes_detected_or_binary_file">未检测到更改，或为二进制文件。</string>
+    <!-- 原文: No custom profiles configured -->
+    <string name="ide_no_custom_profiles_configured">没有配置任何自定义项</string>
+    <!-- 原文: No log entries yet -->
+    <string name="ide_no_log_entries_yet">还没有日志记录</string>
     <!-- 原文: No projects found in Termux -->
     <string name="ide_no_projects_found_in_termux">Termux 中没有找到项目</string>
     <!-- 原文: Non-Text File Warning -->

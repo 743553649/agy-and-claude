@@ -191,8 +191,7 @@ fun AccountsDialog(
                         Icon(Icons.Outlined.Close, "Close", tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                     }
                 }
-                Text(
-                    "Each agent signs in on its own.",
+                Text(stringResource(R.string.agents_each_agent_signs_in_on_its_own),
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f)
                 )

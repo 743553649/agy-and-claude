@@ -20,6 +20,8 @@
     <string name="ide_branch_name_e_g_feature_login">Branch name (e.g. feature/login)</string>
     <string name="ide_browse_file_manager">Browse / File Manager...</string>
     <string name="ide_changes">CHANGES</string>
+    <string name="ide_choose_template">Choose Template</string>
+    <string name="ide_choose_whether_to_overwrite_the_disk_ver">Choose whether to overwrite the disk version with your editor changes or reload the version from disk.</string>
     <string name="ide_close_diff">Close Diff</string>
     <string name="ide_close_find">Close Find</string>
     <string name="ide_command_to_execute">Command to Execute</string>
@@ -65,6 +67,8 @@
     <string name="ide_next_match">Next Match</string>
     <string name="ide_no_changed_files_in_this_commit">No changed files in this commit</string>
     <string name="ide_no_changes_detected_or_binary_file">No changes detected or binary file.</string>
+    <string name="ide_no_custom_profiles_configured">No custom profiles configured</string>
+    <string name="ide_no_log_entries_yet">No log entries yet</string>
     <string name="ide_no_projects_found_in_termux">No projects found in Termux</string>
     <string name="ide_non_text_file_warning">Non-Text File Warning</string>
     <string name="ide_not_a_git_repository">Not a Git Repository</string>

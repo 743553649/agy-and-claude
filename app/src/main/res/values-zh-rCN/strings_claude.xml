@@ -7,6 +7,8 @@
 
     <!-- 原文: Account -->
     <string name="claude_account">账号</string>
+    <!-- 原文: After approving, Claude shows a code. Paste it here: -->
+    <string name="claude_after_approving_claude_shows_a_code_past">批准之后，Claude 会显示一个验证码。粘贴到这里：</string>
     <!-- 原文: Anthropic Console (API billing) -->
     <string name="claude_anthropic_console_api_billing">Anthropic Console（API 计费）</string>
     <!-- 原文: Available in -->
@@ -21,6 +23,8 @@
     <string name="claude_checking">检查中……</string>
     <!-- 原文: Checking MCP servers… -->
     <string name="claude_checking_mcp_servers">正在检查 MCP 服务器……</string>
+    <!-- 原文: Choose how you pay for Claude. You'll finish signing in on claude.com. -->
+    <string name="claude_choose_how_you_pay_for_claude_you_ll_fin">选择 Claude 的付费方式。你将在 claude.com 上完成登录。</string>
     <!-- 原文: Claude Code CLI -->
     <string name="claude_claude_code_cli">Claude Code CLI</string>
     <!-- 原文: Claude Code is starting to list them; this can take a moment. -->
@@ -39,6 +43,8 @@
     <string name="claude_context_usage_shows_once_this_chat_has_s">本次对话开始后（先发一条消息）才会显示上下文用量。</string>
     <!-- 原文: Context window -->
     <string name="claude_context_window">上下文窗口</string>
+    <!-- 原文: Cost is what this chat would cost at API prices; on a subscription it counts toward the limits above. -->
+    <string name="claude_cost_is_what_this_chat_would_cost_at_api">费用是指本次对话按 API 价格计算的成本；在订阅方案下，它会计入上方的限额。</string>
     <!-- 原文: + Custom server -->
     <string name="claude_custom_server">+ 自定义服务器</string>
     <!-- 原文: Environment (KEY=value per line) -->
@@ -59,6 +65,8 @@
     <string name="claude_no_models_loaded">未加载任何模型</string>
     <!-- 原文: npx -y @modelcontextprotocol/server-filesystem /sdcard -->
     <string name="claude_npx_y_modelcontextprotocol_server_filesy">npx -y @modelcontextprotocol/server-filesystem /sdcard</string>
+    <!-- 原文: OK -->
+    <string name="claude_ok">确定</string>
     <!-- 原文: Open code page -->
     <string name="claude_open_code_page">打开代码页</string>
     <!-- 原文: Open the sign-in page again -->
@@ -79,6 +87,8 @@
     <string name="claude_reason_before_answering_shown_as_a_summa">回答前先推理（以摘要形式显示）</string>
     <!-- 原文: Review the plan -->
     <string name="claude_review_the_plan">审阅计划</string>
+    <!-- 原文: Send /compact to summarize the conversation and free space. -->
+    <string name="claude_send_compact_to_summarize_the_conversati">发送 /compact 以摘要对话并释放空间。</string>
     <!-- 原文: Send /fast in the chat to toggle -->
     <string name="claude_send_fast_in_the_chat_to_toggle">在对话中发送 /fast 以切换</string>
     <!-- 原文: Sign in to Claude Code -->
@@ -89,6 +99,8 @@
     <string name="claude_starting">正在启动……</string>
     <!-- 原文: Submit code -->
     <string name="claude_submit_code">提交代码</string>
+    <!-- 原文: The first message of a chat starts Claude Code, which can take a little while on a phone. -->
+    <string name="claude_the_first_message_of_a_chat_starts_claud">对话的第一条消息会启动 Claude Code，在手机上可能需要等一会儿。</string>
     <!-- 原文: This chat -->
     <string name="claude_this_chat">本次对话</string>
     <!-- 原文: Tools Claude can call -->

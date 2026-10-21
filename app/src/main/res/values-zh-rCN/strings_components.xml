@@ -389,6 +389,8 @@
     <string name="component_the_background_ai_engine_is_starting_up">后台 AI 引擎正在启动。你的对话和工作区马上就好。</string>
     <!-- 原文: The local AI engine is currently stopped. Tap the status dot in the top header to start, restart, or stop the server and inspect live logs. -->
     <string name="component_the_local_ai_engine_is_currently_stopped">本地 AI 引擎当前已停止。点击顶部标题栏的状态圆点即可启动、重启或停止服务，并查看实时日志。</string>
+    <!-- 原文: The same message is sent again and this reply is replaced by a new one. -->
+    <string name="component_the_same_message_is_sent_again_and_this">同一条消息会再次发送，这条回复将被新回复替换。</string>
     <!-- 原文: Thinking... -->
     <string name="component_thinking">思考中……</string>
     <!-- 原文: Toggle Wrap -->

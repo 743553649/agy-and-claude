@@ -136,8 +136,7 @@ fun AgentChoiceDialog(onConfirm: (Set<AgentKind>) -> Unit) {
                 Spacer(Modifier.height(14.dp))
                 Text(stringResource(R.string.agents_choose_your_agent), fontSize = 20.sp, fontWeight = FontWeight.Bold)
                 Spacer(Modifier.height(6.dp))
-                Text(
-                    "The app runs only the agents you pick. You can change this later in Settings → Agents.",
+                Text(stringResource(R.string.agents_the_app_runs_only_the_agents_you_pick_yo),
                     fontSize = 13.sp,
                     lineHeight = 18.sp,
                     textAlign = TextAlign.Center,
@@ -168,8 +167,7 @@ fun AgentsSettingsPage(
     var selected by remember(enabled) { mutableStateOf(enabled) }
     var confirm by remember { mutableStateOf(false) }
     Column(modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp)) {
-        Text(
-            "Agents you turn off do not run at all: the local server starts without them and their settings and chats are hidden (chats stay on disk).",
+        Text(stringResource(R.string.agents_agents_you_turn_off_do_not_run_at_all_th),
             fontSize = 12.5.sp,
             lineHeight = 17.sp,
             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f)

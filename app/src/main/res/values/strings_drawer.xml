@@ -15,6 +15,7 @@
     <string name="drawer_check_status">Check Status</string>
     <string name="drawer_copy_conversation_id">Copy Conversation ID</string>
     <string name="drawer_delete_conversation">Delete Conversation?</string>
+    <string name="drawer_delete_conversation_2">Delete Conversation</string>
     <string name="drawer_do_you_want_to_exit_the_app_this_will_st">Do you want to exit the app? This will stop all active background services, servers, and terminals.</string>
     <string name="drawer_download_to_downloads_antigem">Download to Downloads/AntiGem</string>
     <string name="drawer_email">Email</string>

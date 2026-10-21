@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.res.stringResource
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,6 +20,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.data.agent.claude.ClaudeStatus
+import com.example.gemini.R
 import com.example.gemini.domain.model.AgentKind
 import com.example.gemini.ui.agents.AgentActionPill
 import com.example.gemini.ui.agents.AgentSetupPrompt
@@ -158,8 +160,7 @@ fun ClaudeStartupNotice(text: String, modifier: Modifier = Modifier) {
             )
             androidx.compose.foundation.layout.Column(Modifier.weight(1f)) {
                 Text(text, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
-                Text(
-                    "The first message of a chat starts Claude Code, which can take a little while on a phone.",
+                Text(stringResource(R.string.claude_the_first_message_of_a_chat_starts_claud),
                     fontSize = 11.5.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                 )

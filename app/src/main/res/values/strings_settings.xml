@@ -347,6 +347,7 @@
     <string name="settings_the_daemon_is_actively_accessing_databas">The daemon is actively accessing databases and processes. Please stop the server before performing backups or restores to prevent corrupted archives.</string>
     <string name="settings_this_includes_your_termux_linux_packages">This includes your Termux Linux packages, AI configuration, and local SQLite data.</string>
     <string name="settings_this_switch_controls_the_legacy_google_f">This switch controls the legacy Google Flow endpoint only. Install, enable or disable the current extension in Settings → WebView Extensions, then choose it in MCP settings. Tool lists come from the installed extension.</string>
+    <string name="settings_this_will_remove_antigem_s_device_admin">This will remove AntiGem\'s Device Admin status. The app will become vulnerable to accidental home-screen uninstallation.</string>
     <string name="settings_thread_breakdown">Thread Breakdown:</string>
     <string name="settings_to_confirm_and_permanently_wipe_all_app">To confirm and permanently wipe all app data and local Linux storage, type the confirmation phrase exactly as shown below:</string>
     <string name="settings_to_confirm_and_permanently_wipe_all_app_2">To confirm and permanently wipe all app data and local rootfs, type the confirmation phrase exactly as shown below:</string>

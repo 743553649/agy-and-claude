@@ -228,7 +228,7 @@ fun ClaudeControlsStrip(
                     fontSize = 13.5.sp
                 )
             },
-            confirmButton = { TextButton(onClick = { showCache = false }) { Text("OK") } }
+            confirmButton = { TextButton(onClick = { showCache = false }) { Text(stringResource(R.string.claude_ok)) } }
         )
     }
 }
@@ -434,8 +434,7 @@ fun ClaudeContextDialog(backend: ClaudeChatBackend, onDismiss: () -> Unit) {
                             Text(compactTokens(cat.tokens), fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                         }
                     }
-                    Text(
-                        "Send /compact to summarize the conversation and free space.",
+                    Text(stringResource(R.string.claude_send_compact_to_summarize_the_conversati),
                         fontSize = 11.5.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
                         modifier = Modifier.padding(top = 6.dp)
@@ -503,8 +502,7 @@ fun ClaudeUsageDialog(account: ClaudeAccountManager, backend: ClaudeChatBackend,
                     Text(stringResource(R.string.claude_this_chat), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f))
                     Text(if (cost > 0) String.format(java.util.Locale.US, "$%.2f", cost) else "–", fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                 }
-                Text(
-                    "Cost is what this chat would cost at API prices; on a subscription it counts toward the limits above.",
+                Text(stringResource(R.string.claude_cost_is_what_this_chat_would_cost_at_api),
                     fontSize = 11.5.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f)
                 )

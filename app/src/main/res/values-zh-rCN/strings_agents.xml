@@ -7,6 +7,10 @@
 
     <!-- 原文: Accounts -->
     <string name="agents_accounts">账号</string>
+    <!-- 原文: AGENTS -->
+    <string name="agents_agents">智能体</string>
+    <!-- 原文: Agents you turn off do not run at all: the local server starts without them and their settings and chats are hidden (chats stay on disk). -->
+    <string name="agents_agents_you_turn_off_do_not_run_at_all_th">被关闭的智能体完全不会运行：本地服务器启动时不加载它们，其设置和对话也会被隐藏（对话仍保存在磁盘上）。</string>
     <!-- 原文: Always… -->
     <string name="agents_always">始终……</string>
     <!-- 原文: Applying agents -->
@@ -17,6 +21,8 @@
     <string name="agents_choose_your_agent">选择你的智能体</string>
     <!-- 原文: Continue -->
     <string name="agents_continue">继续</string>
+    <!-- 原文: Each agent signs in on its own. -->
+    <string name="agents_each_agent_signs_in_on_its_own">每个智能体各自独立登录。</string>
     <!-- 原文: Restart app -->
     <string name="agents_restart_app">重启应用</string>
     <!-- 原文: Restart to apply? -->
@@ -27,6 +33,10 @@
     <string name="agents_server_logs">服务器日志</string>
     <!-- 原文: Stopping the local server, then restarting the app… -->
     <string name="agents_stopping_the_local_server_then_restartin">正在停止本地服务器，然后重启应用……</string>
+    <!-- 原文: The app runs only the agents you pick. You can change this later in Settings → Agents. -->
+    <string name="agents_the_app_runs_only_the_agents_you_pick_yo">应用只运行你选中的智能体。之后可以在 设置 → 智能体 中更改。</string>
+    <!-- 原文: The local server stops and the app restarts with the new agents, so nothing of a turned-off agent keeps running.  -->
+    <string name="agents_the_local_server_stops_and_the_app_resta">本地服务器会停止，应用将用新的智能体配置重启，因此被关闭的智能体不会有任何残留进程在运行。</string>
     <!-- 原文: Your answer -->
     <string name="agents_your_answer">你的回答</string>
 </resources>

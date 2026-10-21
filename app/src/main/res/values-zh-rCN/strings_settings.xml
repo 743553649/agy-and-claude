@@ -689,6 +689,8 @@
     <string name="settings_this_includes_your_termux_linux_packages">这包括你的 Termux Linux 软件包、AI 配置和本地 SQLite 数据。</string>
     <!-- 原文: This switch controls the legacy Google Flow endpoint only. Install, enable or disable the current extension in Settings → WebView Extensions, then choose it in MCP settings. Tool lists come from the installed extension. -->
     <string name="settings_this_switch_controls_the_legacy_google_f">此开关只控制旧版 Google Flow 接口。请在 设置 → WebView 扩展 中安装、启用或停用当前扩展，然后在 MCP 设置中选择它。工具列表来自已安装的扩展。</string>
+    <!-- 原文: This will remove AntiGem's Device Admin status. The app will become vulnerable to accidental home-screen uninstallation. -->
+    <string name="settings_this_will_remove_antigem_s_device_admin">这会移除 AntiGem 的设备管理器状态。应用将重新暴露在桌面误卸载的风险之下。</string>
     <!-- 原文: Thread Breakdown: -->
     <string name="settings_thread_breakdown">线程明细：</string>
     <!-- 原文: To confirm and permanently wipe all app data and local Linux storage, type the confirmation phrase exactly as shown below: -->

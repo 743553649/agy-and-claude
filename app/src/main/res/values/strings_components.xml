@@ -197,6 +197,7 @@
     <string name="component_termux_ssh_terminal">Termux SSH Terminal</string>
     <string name="component_the_background_ai_engine_is_starting_up">The background AI engine is starting up. Your chats and workspace will be ready in a moment.</string>
     <string name="component_the_local_ai_engine_is_currently_stopped">The local AI engine is currently stopped. Tap the status dot in the top header to start, restart, or stop the server and inspect live logs.</string>
+    <string name="component_the_same_message_is_sent_again_and_this">The same message is sent again and this reply is replaced by a new one.</string>
     <string name="component_thinking">Thinking...</string>
     <string name="component_toggle_wrap">Toggle Wrap</string>
     <string name="component_tools_executed">Tools Executed</string>
