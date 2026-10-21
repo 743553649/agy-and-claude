@@ -5,7 +5,7 @@
 -->
 <resources>
 
-    <string name="claude_5h_w_utilization_100_toint">5h ${(w.utilization * 100).toInt()}%</string>
+    <string name="claude_5h_w_utilization_100_toint">5h %1$s%%</string>
     <string name="claude_account">Account</string>
     <string name="claude_after_approving_claude_shows_a_code_past">After approving, Claude shows a code. Paste it here:</string>
     <string name="claude_anthropic_console_api_billing">Anthropic Console (API billing)</string>
@@ -23,21 +23,21 @@
     <string name="claude_claude_subscription_pro_max">Claude subscription (Pro / Max)</string>
     <string name="claude_claude_will_no_longer_be_able_to_use_its">Claude will no longer be able to use its tools.</string>
     <string name="claude_command_and_arguments">Command and arguments</string>
-    <string name="claude_compacttokens_c_totaltokens_of_compactto">${compactTokens(c.totalTokens)} of ${compactTokens(c.maxTokens)} tokens used (${c.percentage.toInt()}%)</string>
-    <string name="claude_context_pct_toint">Context ${pct.toInt()}%</string>
+    <string name="claude_compacttokens_c_totaltokens_of_compactto">%1$s of %2$s tokens used (%3$s%%)</string>
+    <string name="claude_context_pct_toint">Context %1$s%%</string>
     <string name="claude_context_usage_shows_once_this_chat_has_s">Context usage shows once this chat has started (send a message first).</string>
     <string name="claude_context_window">Context window</string>
     <string name="claude_cost_is_what_this_chat_would_cost_at_api">Cost is what this chat would cost at API prices; on a subscription it counts toward the limits above.</string>
-    <string name="claude_could_not_update_it">Could not update: $it</string>
+    <string name="claude_could_not_update_it">Could not update: %1$s</string>
     <string name="claude_custom_server">+ Custom server</string>
-    <string name="claude_delete_name">Delete $name?</string>
-    <string name="claude_effort_effortlabel_effort">Effort · ${effortLabel(effort)}</string>
+    <string name="claude_delete_name">Delete %1$s?</string>
+    <string name="claude_effort_effortlabel_effort">Effort · %1$s</string>
     <string name="claude_environment_key_value_per_line">Environment (KEY=value per line)</string>
-    <string name="claude_fast_mode_fast_replacefirstchar_it_upper">Fast mode · ${fast.replaceFirstChar { it.uppercase() }}</string>
+    <string name="claude_fast_mode_fast_replacefirstchar_it_upper">Fast mode · %1$s</string>
     <string name="claude_headers_name_value_per_line">Headers (Name: value per line)</string>
     <string name="claude_install_claude_code">Install Claude Code</string>
     <string name="claude_instructions_claude_follows_in_every_cha"># Instructions Claude follows in every chat\n- Prefer Kotlin coroutines\n- Run ./gradlew test before committing</string>
-    <string name="claude_j_kind">${j.kind}: </string>
+    <string name="claude_j_kind">%1$s: </string>
     <string name="claude_loading_claude_s_models">Loading Claude\'s models…</string>
     <string name="claude_loading_plan_usage">Loading plan usage…</string>
     <string name="claude_no_mcp_servers_yet">No MCP servers yet</string>
@@ -62,13 +62,13 @@
     <string name="claude_submit_code">Submit code</string>
     <string name="claude_the_first_message_of_a_chat_starts_claud">The first message of a chat starts Claude Code, which can take a little while on a phone.</string>
     <string name="claude_this_chat">This chat</string>
-    <string name="claude_this_chat_is_running_it">This chat is running $it</string>
+    <string name="claude_this_chat_is_running_it">This chat is running %1$s</string>
     <string name="claude_tools_claude_can_call">Tools Claude can call</string>
     <string name="claude_transport">Transport</string>
     <string name="claude_try_again">Try again</string>
     <string name="claude_uninstall">Uninstall</string>
     <string name="claude_usage">Usage</string>
-    <string name="claude_usedfraction_100_toint_used">${(usedFraction * 100).toInt()}% used</string>
+    <string name="claude_usedfraction_100_toint_used">%1$s%% used</string>
     <string name="claude_validate_save">Validate &amp; save</string>
     <string name="claude_waiting_for_you_to_approve_in_the_browse">Waiting for you to approve in the browser…</string>
 </resources>

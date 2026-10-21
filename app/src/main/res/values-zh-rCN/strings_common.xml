@@ -67,7 +67,7 @@
     <string name="common_new_tab">新建标签页</string>
     <!-- 原文: Options -->
     <string name="common_options">选项</string>
-    <!-- 原文: PID: ${inst.pid} -->
+    <!-- 原文: PID: %1$s -->
     <string name="common_pid_inst_pid">PID：%1$s</string>
     <!-- 原文: progress -->
     <string name="common_progress">进度</string>

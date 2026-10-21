@@ -39,7 +39,7 @@
     <string name="browser_insert">插入</string>
     <!-- 原文: Inspect DevTools -->
     <string name="browser_inspect_devtools">检查 DevTools</string>
-    <!-- 原文: [${log.level}] ${log.message} -->
+    <!-- 原文: [%1$s] %2$s -->
     <string name="browser_log_level_log_message">[%1$s] %2$s</string>
     <!-- 原文: More Options -->
     <string name="browser_more_options">更多选项</string>
@@ -47,21 +47,21 @@
     <string name="browser_new_tab">新建标签页</string>
     <!-- 原文: No recent search history -->
     <string name="browser_no_recent_search_history">没有最近的搜索记录</string>
-    <!-- 原文: Remove '${sc.title}' from your home shortcuts? -->
+    <!-- 原文: Remove '%1$s' from your home shortcuts? -->
     <string name="browser_remove_sc_title_from_your_home_shortcuts">要把「%1$s」从首页快捷方式中移除吗？</string>
     <!-- 原文: Remove Shortcut -->
     <string name="browser_remove_shortcut">移除快捷方式</string>
-    <!-- 原文: Search Google for \"$trimmed\" -->
+    <!-- 原文: Search Google for \"%1$s\" -->
     <string name="browser_search_google_for_trimmed">在 Google 中搜索「%1$s」</string>
     <!-- 原文: Search or type URL -->
     <string name="browser_search_or_type_url">搜索或输入网址</string>
     <!-- 原文: Tab closed -->
     <string name="browser_tab_closed">标签页已关闭</string>
-    <!-- 原文: ${tabs.size} -->
+    <!-- 原文: %1$s -->
     <string name="browser_tabs_size">%1$s</string>
-    <!-- 原文: ${tabs.size.coerceAtLeast(1)} -->
+    <!-- 原文: %1$s -->
     <string name="browser_tabs_size_coerceatleast_1">%1$s</string>
-    <!-- 原文: Tabs (${tabs.size}) -->
+    <!-- 原文: Tabs (%1$s) -->
     <string name="browser_tabs_tabs_size">标签页（%1$s）</string>
     <!-- 原文: Unlock -->
     <string name="browser_unlock">解锁</string>

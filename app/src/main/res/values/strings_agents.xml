@@ -5,21 +5,21 @@
 -->
 <resources>
 
-    <string name="agents_1_of_count">1 of $count</string>
+    <string name="agents_1_of_count">1 of %1$s</string>
     <string name="agents_accounts">Accounts</string>
     <string name="agents_agents">AGENTS</string>
     <string name="agents_agents_you_turn_off_do_not_run_at_all_th">Agents you turn off do not run at all: the local server starts without them and their settings and chats are hidden (chats stay on disk).</string>
-    <string name="agents_allow_all_count">Allow all $count</string>
+    <string name="agents_allow_all_count">Allow all %1$s</string>
     <string name="agents_always">Always…</string>
     <string name="agents_applying_agents">Applying agents</string>
     <string name="agents_approval">approval</string>
     <string name="agents_choose_your_agent">Choose your agent</string>
     <string name="agents_continue">Continue</string>
-    <string name="agents_deny_all_count">Deny all $count</string>
+    <string name="agents_deny_all_count">Deny all %1$s</string>
     <string name="agents_each_agent_signs_in_on_its_own">Each agent signs in on its own.</string>
-    <string name="agents_item_denylabel">${item.denyLabel}…</string>
-    <string name="agents_page_1_of_questions_size">${page + 1} of ${questions.size}</string>
-    <string name="agents_question_agent_label_has_if_questions_si_2">${question.agent.label()} has ${if (questions.size &gt; 1) \"${questions.size} questions\" else \"a question\"}</string>
+    <string name="agents_item_denylabel">%1$s…</string>
+    <string name="agents_page_1_of_questions_size">%1$s of %2$s</string>
+    <string name="agents_question_agent_label_has_if_questions_si_2">%1$s has %2$s</string>
     <string name="agents_restart_app">Restart app</string>
     <string name="agents_restart_to_apply">Restart to apply?</string>
     <string name="agents_restarting">Restarting…</string>

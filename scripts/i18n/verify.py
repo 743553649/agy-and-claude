@@ -61,6 +61,38 @@ for key, files in sorted(used.items()):
     if key not in en_keys:
         errors.append(f"R.string.{key} 未在 values/ 中定义（{sorted(files)[0]}）")
 
+# 英文资源里不允许残留 Kotlin 插值语法（\$var / \${expr}），否则英文界面会显示原始代码
+for path in en_files:
+    try:
+        tree = ET.parse(path)
+    except ET.ParseError:
+        continue
+    for el in tree.getroot():
+        if el.tag != "string":
+            continue
+        body = el.text or ""
+        # 先剔除合法的位置化占位符 %1$s，再检查是否残留 Kotlin 插值
+        probe = re.sub(r"%\d+\$[sd]", "", body)
+        if "${" in probe or re.search(r"(?<!\\)\$[A-Za-z_]", probe):
+            errors.append(f"英文资源残留 Kotlin 插值: {os.path.basename(path)} / {el.get('name')}")
+
+# 含位置化占位符的字符串里不允许出现裸 %（必须写成 %%，否则 String.format 抛异常）
+for folder, files in (("values", en_files), ("values-zh-rCN", zh_files)):
+    for path in files:
+        try:
+            tree = ET.parse(path)
+        except ET.ParseError:
+            continue
+        for el in tree.getroot():
+            if el.tag != "string":
+                continue
+            body = el.text or ""
+            if not re.search(r"%\d+\$[sd]", body):
+                continue
+            probe = re.sub(r"%\d+\$[sd]", "", body).replace("%%", "")
+            if "%" in probe:
+                errors.append(f"占位符字符串里有裸 %: {folder}/{os.path.basename(path)} / {el.get('name')}")
+
 extra = zh_keys - en_keys
 if extra:
     errors.append(f"values-zh-rCN 存在 values/ 中没有的 key: {sorted(extra)[:5]}")

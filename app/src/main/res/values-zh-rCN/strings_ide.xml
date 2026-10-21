@@ -11,7 +11,7 @@
     <string name="ide_add_run_configuration">添加运行配置……</string>
     <!-- 原文: Add Run Configuration -->
     <string name="ide_add_run_configuration_2">添加运行配置</string>
-    <!-- 原文: +$additionsCount -->
+    <!-- 原文: +%1$s -->
     <string name="ide_additionscount">+%1$s</string>
     <!-- 原文: Applies across all repositories in Termux -->
     <string name="ide_applies_across_all_repositories_in_termu">对 Termux 中的所有仓库生效</string>
@@ -19,11 +19,11 @@
     <string name="ide_are_you_sure_you_want_to_commit_staged_c">确定要用以下说明提交已暂存的更改吗？</string>
     <!-- 原文: Are you sure you want to delete all untracked files? This action cannot be undone. -->
     <string name="ide_are_you_sure_you_want_to_delete_all_untr">确定要删除所有未跟踪的文件吗？此操作无法撤销。</string>
-    <!-- 原文: Are you sure you want to discard all changes in '$fileName'? This action cannot be undone. -->
+    <!-- 原文: Are you sure you want to discard all changes in '%1$s'? This action cannot be undone. -->
     <string name="ide_are_you_sure_you_want_to_discard_all_cha">确定要放弃「%1$s」中的所有更改吗？此操作无法撤销。</string>
     <!-- 原文: Are you sure you want to discard all unstaged changes? All uncommitted edits will be lost permanently. -->
     <string name="ide_are_you_sure_you_want_to_discard_all_uns">确定要放弃所有未暂存的更改吗？所有未提交的编辑都会永久丢失。</string>
-    <!-- 原文: Are you sure you want to permanently delete \"${node.name}\"? This action cannot be undone. -->
+    <!-- 原文: Are you sure you want to permanently delete \"%1$s\"? This action cannot be undone. -->
     <string name="ide_are_you_sure_you_want_to_permanently_del">确定要永久删除「%1$s」吗？此操作无法撤销。</string>
     <!-- 原文: Are you sure you want to unstage all files from the staging area? -->
     <string name="ide_are_you_sure_you_want_to_unstage_all_fil">确定要把所有文件移出暂存区吗？</string>
@@ -39,11 +39,11 @@
     <string name="ide_branch_name_e_g_feature_login">分支名称（例如 feature/login）</string>
     <!-- 原文: Browse / File Manager... -->
     <string name="ide_browse_file_manager">浏览 / 文件管理器……</string>
-    <!-- 原文: CHANGED FILES (${details.changedFiles.size}) -->
+    <!-- 原文: CHANGED FILES (%1$s) -->
     <string name="ide_changed_files_details_changedfiles_size">已更改的文件（%1$s）</string>
     <!-- 原文: CHANGES -->
     <string name="ide_changes">更改</string>
-    <!-- 原文: Checking $ep (auto-retrying) -->
+    <!-- 原文: Checking %1$s (auto-retrying) -->
     <string name="ide_checking_ep_auto_retrying">正在检查 %1$s（自动重试中）</string>
     <!-- 原文: Choose Template -->
     <string name="ide_choose_template">选择模板</string>
@@ -71,11 +71,11 @@
     <string name="ide_create_new_branch">+ 创建新分支</string>
     <!-- 原文: Create New Project -->
     <string name="ide_create_new_project">创建新项目</string>
-    <!-- 原文: Delete ${if (node.isDir) "Folder" else "File"}? -->
+    <!-- 原文: Delete %1$s? -->
     <string name="ide_delete_if_node_isdir_folder_else_file">删除%1$s？</string>
-    <!-- 原文: -$deletionsCount -->
+    <!-- 原文: -%1$s -->
     <string name="ide_deletionscount">-%1$s</string>
-    <!-- 原文: $dimText$sizeText$zoomText -->
+    <!-- 原文: %1$s%2$s%3$s -->
     <string name="ide_dimtext_sizetext_zoomtext">%1$s%2$s%3$s</string>
     <!-- 原文: Discard -->
     <string name="ide_discard">放弃</string>
@@ -89,7 +89,7 @@
     <string name="ide_discard_untracked">放弃未跟踪文件</string>
     <!-- 原文: Discard Untracked Files -->
     <string name="ide_discard_untracked_files">放弃未跟踪文件</string>
-    <!-- 原文: Do you want to save the changes made to '${closingTarget.name}' before closing? -->
+    <!-- 原文: Do you want to save the changes made to '%1$s' before closing? -->
     <string name="ide_do_you_want_to_save_the_changes_made_to">关闭前要保存对「%1$s」的更改吗？</string>
     <!-- 原文: Don't Save -->
     <string name="ide_don_t_save">不保存</string>
@@ -189,9 +189,9 @@
     <string name="ide_pull_rebase_strategy_pull_rebase">拉取变基策略（pull.rebase）</string>
     <!-- 原文: Push -->
     <string name="ide_push">推送</string>
-    <!-- 原文: Push committed changes on branch '${status?.branch ?: "HEAD"}' to the remote repository? -->
+    <!-- 原文: Push committed changes on branch '%1$s' to the remote repository? -->
     <string name="ide_push_committed_changes_on_branch_status_2">要把分支「%1$s」上已提交的改动推送到远程仓库吗？</string>
-    <!-- 原文: Push $unpushedCount unpushed commit${if (unpushedCount > 1) "s" else ""} on branch '${status?.branch ?: "HEAD"}' to the remote repository? -->
+    <!-- 原文: Push %1$s unpushed commit%2$s on branch '%3$s' to the remote repository? -->
     <string name="ide_push_unpushedcount_unpushed_commit_if_un_2">要把分支「%3$s」上 %1$s 个未推送的提交推送到远程仓库吗？</string>
     <!-- 原文: Quick Presets: -->
     <string name="ide_quick_presets">快捷预设：</string>
@@ -205,7 +205,7 @@
     <string name="ide_remote_origin_url">远程源地址</string>
     <!-- 原文: Remove project -->
     <string name="ide_remove_project">移除项目</string>
-    <!-- 原文: Rename ${if (node.isDir) "Folder" else "File"} -->
+    <!-- 原文: Rename %1$s -->
     <string name="ide_rename_if_node_isdir_folder_else_file">重命名%1$s</string>
     <!-- 原文: Resolve -->
     <string name="ide_resolve">解决</string>
@@ -247,9 +247,9 @@
     <string name="ide_supported_variables">支持的变量：</string>
     <!-- 原文: TAB -->
     <string name="ide_tab">TAB</string>
-    <!-- 原文: \"${tabInfo.name}\" appears to be a non-text / binary file (${tabInfo.mimeType}). -->
+    <!-- 原文: \"%1$s\" appears to be a non-text / binary file (%2$s). -->
     <string name="ide_tabinfo_name_appears_to_be_a_non_text_bi">「%1$s」看起来是二进制文件而不是文本文件（%2$s）。</string>
-    <!-- 原文: The file '${conflictingTarget.name}' has been modified on disk or by AI. -->
+    <!-- 原文: The file '%1$s' has been modified on disk or by AI. -->
     <string name="ide_the_file_conflictingtarget_name_has_been">文件「%1$s」已在磁盘上被修改，或被 AI 修改。</string>
     <!-- 原文: Toggle Background -->
     <string name="ide_toggle_background">切换背景</string>

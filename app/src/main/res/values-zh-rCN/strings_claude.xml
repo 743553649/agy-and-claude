@@ -5,7 +5,7 @@
 -->
 <resources>
 
-    <!-- 原文: 5h ${(w.utilization * 100).toInt()}% -->
+    <!-- 原文: 5h %1$s% -->
     <string name="claude_5h_w_utilization_100_toint">5 小时 %1$s%%</string>
     <!-- 原文: Account -->
     <string name="claude_account">账号</string>
@@ -41,9 +41,9 @@
     <string name="claude_claude_will_no_longer_be_able_to_use_its">Claude 将无法再使用它的工具。</string>
     <!-- 原文: Command and arguments -->
     <string name="claude_command_and_arguments">命令与参数</string>
-    <!-- 原文: ${compactTokens(c.totalTokens)} of ${compactTokens(c.maxTokens)} tokens used (${c.percentage.toInt()}%) -->
+    <!-- 原文: %1$s of %2$s tokens used (%3$s%) -->
     <string name="claude_compacttokens_c_totaltokens_of_compactto">已用 %1$s / %2$s Token（%3$s%%）</string>
-    <!-- 原文: Context ${pct.toInt()}% -->
+    <!-- 原文: Context %1$s% -->
     <string name="claude_context_pct_toint">上下文 %1$s%%</string>
     <!-- 原文: Context usage shows once this chat has started (send a message first). -->
     <string name="claude_context_usage_shows_once_this_chat_has_s">本次对话开始后（先发一条消息）才会显示上下文用量。</string>
@@ -51,17 +51,17 @@
     <string name="claude_context_window">上下文窗口</string>
     <!-- 原文: Cost is what this chat would cost at API prices; on a subscription it counts toward the limits above. -->
     <string name="claude_cost_is_what_this_chat_would_cost_at_api">费用是指本次对话按 API 价格计算的成本；在订阅方案下，它会计入上方的限额。</string>
-    <!-- 原文: Could not update: $it -->
+    <!-- 原文: Could not update: %1$s -->
     <string name="claude_could_not_update_it">无法更新：%1$s</string>
     <!-- 原文: + Custom server -->
     <string name="claude_custom_server">+ 自定义服务器</string>
-    <!-- 原文: Delete $name? -->
+    <!-- 原文: Delete %1$s? -->
     <string name="claude_delete_name">删除 %1$s？</string>
-    <!-- 原文: Effort · ${effortLabel(effort)} -->
+    <!-- 原文: Effort · %1$s -->
     <string name="claude_effort_effortlabel_effort">强度 · %1$s</string>
     <!-- 原文: Environment (KEY=value per line) -->
     <string name="claude_environment_key_value_per_line">环境变量（每行 KEY=value）</string>
-    <!-- 原文: Fast mode · ${fast.replaceFirstChar { it.uppercase() }} -->
+    <!-- 原文: Fast mode · %1$s -->
     <string name="claude_fast_mode_fast_replacefirstchar_it_upper">快速模式 · %1$s</string>
     <!-- 原文: Headers (Name: value per line) -->
     <string name="claude_headers_name_value_per_line">请求头（每行 Name: value）</string>
@@ -69,7 +69,7 @@
     <string name="claude_install_claude_code">安装 Claude Code</string>
     <!-- 原文: # Instructions Claude follows in every chat\n- Prefer Kotlin coroutines\n- Run ./gradlew test before committing -->
     <string name="claude_instructions_claude_follows_in_every_cha"># Claude 在每次对话中都遵循的指令\n- 优先使用 Kotlin 协程\n- 提交前运行 ./gradlew test</string>
-    <!-- 原文: ${j.kind}:  -->
+    <!-- 原文: %1$s:  -->
     <string name="claude_j_kind">%1$s：</string>
     <!-- 原文: Loading Claude's models… -->
     <string name="claude_loading_claude_s_models">正在加载 Claude 的模型……</string>
@@ -119,7 +119,7 @@
     <string name="claude_the_first_message_of_a_chat_starts_claud">对话的第一条消息会启动 Claude Code，在手机上可能需要等一会儿。</string>
     <!-- 原文: This chat -->
     <string name="claude_this_chat">本次对话</string>
-    <!-- 原文: This chat is running $it -->
+    <!-- 原文: This chat is running %1$s -->
     <string name="claude_this_chat_is_running_it">本次对话正在运行 %1$s</string>
     <!-- 原文: Tools Claude can call -->
     <string name="claude_tools_claude_can_call">Claude 可调用的工具</string>
@@ -131,7 +131,7 @@
     <string name="claude_uninstall">卸载</string>
     <!-- 原文: Usage -->
     <string name="claude_usage">用量</string>
-    <!-- 原文: ${(usedFraction * 100).toInt()}% used -->
+    <!-- 原文: %1$s% used -->
     <string name="claude_usedfraction_100_toint_used">已用 %1$s%%</string>
     <!-- 原文: Validate & save -->
     <string name="claude_validate_save">验证并保存</string>

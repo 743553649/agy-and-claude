@@ -22,17 +22,17 @@
     <string name="browser_home">Home</string>
     <string name="browser_insert">Insert</string>
     <string name="browser_inspect_devtools">Inspect DevTools</string>
-    <string name="browser_log_level_log_message">[${log.level}] ${log.message}</string>
+    <string name="browser_log_level_log_message">[%1$s] %2$s</string>
     <string name="browser_more_options">More Options</string>
     <string name="browser_new_tab">New tab</string>
     <string name="browser_no_recent_search_history">No recent search history</string>
-    <string name="browser_remove_sc_title_from_your_home_shortcuts">Remove \'${sc.title}\' from your home shortcuts?</string>
+    <string name="browser_remove_sc_title_from_your_home_shortcuts">Remove \'%1$s\' from your home shortcuts?</string>
     <string name="browser_remove_shortcut">Remove Shortcut</string>
-    <string name="browser_search_google_for_trimmed">Search Google for \\"$trimmed\\"</string>
+    <string name="browser_search_google_for_trimmed">Search Google for \\"%1$s\\"</string>
     <string name="browser_search_or_type_url">Search or type URL</string>
     <string name="browser_tab_closed">Tab closed</string>
-    <string name="browser_tabs_size">${tabs.size}</string>
-    <string name="browser_tabs_size_coerceatleast_1">${tabs.size.coerceAtLeast(1)}</string>
-    <string name="browser_tabs_tabs_size">Tabs (${tabs.size})</string>
+    <string name="browser_tabs_size">%1$s</string>
+    <string name="browser_tabs_size_coerceatleast_1">%1$s</string>
+    <string name="browser_tabs_tabs_size">Tabs (%1$s)</string>
     <string name="browser_unlock">Unlock</string>
 </resources>

@@ -25,7 +25,7 @@
     <string name="chat_explain_why_or_give_new_instructions_to">说明原因，或给 AI 新的指令（可选）：</string>
     <!-- 原文: How can I help you today? -->
     <string name="chat_how_can_i_help_you_today">今天我能帮你做什么？</string>
-    <!-- 原文: ${list.size} -->
+    <!-- 原文: %1$s -->
     <string name="chat_list_size">%1$s</string>
     <!-- 原文: Minimize to Bubble -->
     <string name="chat_minimize_to_bubble">最小化为气泡</string>
@@ -45,7 +45,7 @@
     <string name="chat_stop_output">停止输出</string>
     <!-- 原文: Stop Turn Here -->
     <string name="chat_stop_turn_here">在此停止本轮</string>
-    <!-- 原文: $ ${toolCall.command} -->
+    <!-- 原文: $ %1$s -->
     <string name="chat_toolcall_command">$ %1$s</string>
     <!-- 原文: Unable to Load Chat -->
     <string name="chat_unable_to_load_chat">无法加载对话</string>

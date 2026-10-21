@@ -11,17 +11,17 @@
     <string name="drawer_active_cli_process">Active CLI Process</string>
     <string name="drawer_advanced_search">Advanced Search ›</string>
     <string name="drawer_advanced_search_2">Advanced Search</string>
-    <string name="drawer_are_you_sure_you_want_to_delete_targetco_2">Are you sure you want to delete \\"${targetConv.title.ifBlank { \"this conversation\" }}\\"? This will permanently remove all messages and trajectory data.</string>
+    <string name="drawer_are_you_sure_you_want_to_delete_targetco_2">Are you sure you want to delete \\"%1$s\\"? This will permanently remove all messages and trajectory data.</string>
     <string name="drawer_artifacts">Artifacts</string>
-    <string name="drawer_artifacts_size">${artifacts.size}</string>
-    <string name="drawer_authinfo_availableflowcredits_available">${authInfo.availableFlowCredits} Available</string>
-    <string name="drawer_authinfo_availablepromptcredits_availabl">${authInfo.availablePromptCredits} Available</string>
-    <string name="drawer_authinfo_planname">•  ${authInfo.planName}</string>
-    <string name="drawer_chat_title">Chat: $title</string>
-    <string name="drawer_chats_size">${chats.size}</string>
+    <string name="drawer_artifacts_size">%1$s</string>
+    <string name="drawer_authinfo_availableflowcredits_available">%1$s Available</string>
+    <string name="drawer_authinfo_availablepromptcredits_availabl">%1$s Available</string>
+    <string name="drawer_authinfo_planname">•  %1$s</string>
+    <string name="drawer_chat_title">Chat: %1$s</string>
+    <string name="drawer_chats_size">%1$s</string>
     <string name="drawer_check_status">Check Status</string>
-    <string name="drawer_conv_stepcount_turns">${conv.stepCount} turns</string>
-    <string name="drawer_conversations_size_total_chats_indexed">${conversations.size} total chats indexed</string>
+    <string name="drawer_conv_stepcount_turns">%1$s turns</string>
+    <string name="drawer_conversations_size_total_chats_indexed">%1$s total chats indexed</string>
     <string name="drawer_copy_conversation_id">Copy Conversation ID</string>
     <string name="drawer_delete_conversation">Delete Conversation?</string>
     <string name="drawer_delete_conversation_2">Delete Conversation</string>
@@ -32,19 +32,19 @@
     <string name="drawer_exit_app">Exit App</string>
     <string name="drawer_export_markdown_md">Export Markdown (.md)</string>
     <string name="drawer_export_standalone_html">Export Standalone HTML</string>
-    <string name="drawer_filtered_size_chat_if_filtered_size_1_s">${filtered.size} chat${if (filtered.size != 1) \"s\" else \"\"} found</string>
+    <string name="drawer_filtered_size_chat_if_filtered_size_1_s">%1$s chat%2$s found</string>
     <string name="drawer_flow_credits">Flow Credits</string>
     <string name="drawer_fork_conversation">Fork Conversation</string>
     <string name="drawer_generated_files_plans_media">Generated files, plans &amp; media</string>
     <string name="drawer_keep_running">Keep Running</string>
-    <string name="drawer_model_inst_model">Model: ${inst.model}</string>
+    <string name="drawer_model_inst_model">Model: %1$s</string>
     <string name="drawer_no_artifacts_generated_yet">No artifacts generated yet</string>
     <string name="drawer_no_conversations_found">No conversations found</string>
     <string name="drawer_plans_walkthroughs_and_generated_images">Plans, walkthroughs, and generated images will appear here.</string>
     <string name="drawer_profile_picture">Profile Picture</string>
     <string name="drawer_prompt_credits">Prompt Credits</string>
     <string name="drawer_rename_chat">Rename chat</string>
-    <string name="drawer_results_size_match_if_results_size_1_es">${results.size} match${if (results.size != 1) \"es\" else \"\"}</string>
+    <string name="drawer_results_size_match_if_results_size_1_es">%1$s match%2$s</string>
     <string name="drawer_running">RUNNING</string>
     <string name="drawer_search_by_title_topic_or_model">Search by title, topic, or model...</string>
     <string name="drawer_search_chat_titles">Search chat titles...</string>
@@ -56,11 +56,11 @@
     <string name="drawer_signing_in">Signing In...</string>
     <string name="drawer_status">Status</string>
     <string name="drawer_subagent">Subagent</string>
-    <string name="drawer_subagents_size">${subagents.size}</string>
+    <string name="drawer_subagents_size">%1$s</string>
     <string name="drawer_subscription">Subscription</string>
     <string name="drawer_terminate_free_ram">Terminate &amp; Free RAM</string>
     <string name="drawer_terminate_this_instance_to_immediately_f">Terminate this instance to immediately free RAM?</string>
     <string name="drawer_unable_to_load_chats">Unable to load chats</string>
     <string name="drawer_upgrade">Upgrade</string>
-    <string name="drawer_uptime_inst_uptimeseconds_s">Uptime: ${inst.uptimeSeconds}s</string>
+    <string name="drawer_uptime_inst_uptimeseconds_s">Uptime: %1$ss</string>
 </resources>

@@ -36,7 +36,7 @@
     <string name="common_new_name">New Name</string>
     <string name="common_new_tab">New Tab</string>
     <string name="common_options">Options</string>
-    <string name="common_pid_inst_pid">PID: ${inst.pid}</string>
+    <string name="common_pid_inst_pid">PID: %1$s</string>
     <string name="common_progress">progress</string>
     <string name="common_reconnect">Reconnect</string>
     <string name="common_refresh">Refresh</string>

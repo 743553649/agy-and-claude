@@ -29,7 +29,7 @@ fun MainScreen(
       MainScreen(data = (state as MainScreenUiState.Success).data, modifier = modifier)
     }
     is MainScreenUiState.Error -> {
-      Text(stringResource(R.string.ui_error_loading_data_state_as_mainscreenui, (state as MainScreenUiState.Error).throwable.message))
+      Text(stringResource(R.string.ui_error_loading_data_state_as_mainscreenui, (state as MainScreenUiState.Error).throwable.message.orEmpty()))
     }
   }
 }

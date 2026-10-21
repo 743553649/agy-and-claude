@@ -17,27 +17,27 @@
     <string name="drawer_advanced_search">高级搜索 ›</string>
     <!-- 原文: Advanced Search -->
     <string name="drawer_advanced_search_2">高级搜索</string>
-    <!-- 原文: Are you sure you want to delete \"${targetConv.title.ifBlank { "this conversation" }}\"? This will permanently remove all messages and trajectory data. -->
+    <!-- 原文: Are you sure you want to delete \"%1$s\"? This will permanently remove all messages and trajectory data. -->
     <string name="drawer_are_you_sure_you_want_to_delete_targetco_2">确定要删除「%1$s」吗？这会永久移除所有消息和执行轨迹数据。</string>
     <!-- 原文: Artifacts -->
     <string name="drawer_artifacts">产物</string>
-    <!-- 原文: ${artifacts.size} -->
+    <!-- 原文: %1$s -->
     <string name="drawer_artifacts_size">%1$s</string>
-    <!-- 原文: ${authInfo.availableFlowCredits} Available -->
+    <!-- 原文: %1$s Available -->
     <string name="drawer_authinfo_availableflowcredits_available">可用 %1$s</string>
-    <!-- 原文: ${authInfo.availablePromptCredits} Available -->
+    <!-- 原文: %1$s Available -->
     <string name="drawer_authinfo_availablepromptcredits_availabl">可用 %1$s</string>
-    <!-- 原文: •  ${authInfo.planName} -->
+    <!-- 原文: •  %1$s -->
     <string name="drawer_authinfo_planname">•  %1$s</string>
-    <!-- 原文: Chat: $title -->
+    <!-- 原文: Chat: %1$s -->
     <string name="drawer_chat_title">对话：%1$s</string>
-    <!-- 原文: ${chats.size} -->
+    <!-- 原文: %1$s -->
     <string name="drawer_chats_size">%1$s</string>
     <!-- 原文: Check Status -->
     <string name="drawer_check_status">检查状态</string>
-    <!-- 原文: ${conv.stepCount} turns -->
+    <!-- 原文: %1$s turns -->
     <string name="drawer_conv_stepcount_turns">%1$s 轮</string>
-    <!-- 原文: ${conversations.size} total chats indexed -->
+    <!-- 原文: %1$s total chats indexed -->
     <string name="drawer_conversations_size_total_chats_indexed">已索引 %1$s 个对话</string>
     <!-- 原文: Copy Conversation ID -->
     <string name="drawer_copy_conversation_id">复制会话 ID</string>
@@ -59,7 +59,7 @@
     <string name="drawer_export_markdown_md">导出 Markdown（.md）</string>
     <!-- 原文: Export Standalone HTML -->
     <string name="drawer_export_standalone_html">导出独立 HTML</string>
-    <!-- 原文: ${filtered.size} chat${if (filtered.size != 1) "s" else ""} found -->
+    <!-- 原文: %1$s chat%2$s found -->
     <string name="drawer_filtered_size_chat_if_filtered_size_1_s">找到 %1$s 个对话</string>
     <!-- 原文: Flow Credits -->
     <string name="drawer_flow_credits">Flow 额度</string>
@@ -69,7 +69,7 @@
     <string name="drawer_generated_files_plans_media">生成的文件、计划与媒体</string>
     <!-- 原文: Keep Running -->
     <string name="drawer_keep_running">保持运行</string>
-    <!-- 原文: Model: ${inst.model} -->
+    <!-- 原文: Model: %1$s -->
     <string name="drawer_model_inst_model">模型：%1$s</string>
     <!-- 原文: No artifacts generated yet -->
     <string name="drawer_no_artifacts_generated_yet">还没有生成任何产物</string>
@@ -83,7 +83,7 @@
     <string name="drawer_prompt_credits">提示词额度</string>
     <!-- 原文: Rename chat -->
     <string name="drawer_rename_chat">重命名对话</string>
-    <!-- 原文: ${results.size} match${if (results.size != 1) "es" else ""} -->
+    <!-- 原文: %1$s match%2$s -->
     <string name="drawer_results_size_match_if_results_size_1_es">找到 %1$s 个匹配</string>
     <!-- 原文: RUNNING -->
     <string name="drawer_running">运行中</string>
@@ -107,7 +107,7 @@
     <string name="drawer_status">状态</string>
     <!-- 原文: Subagent -->
     <string name="drawer_subagent">子智能体</string>
-    <!-- 原文: ${subagents.size} -->
+    <!-- 原文: %1$s -->
     <string name="drawer_subagents_size">%1$s</string>
     <!-- 原文: Subscription -->
     <string name="drawer_subscription">订阅</string>
@@ -119,6 +119,6 @@
     <string name="drawer_unable_to_load_chats">无法加载对话</string>
     <!-- 原文: Upgrade -->
     <string name="drawer_upgrade">升级</string>
-    <!-- 原文: Uptime: ${inst.uptimeSeconds}s -->
+    <!-- 原文: Uptime: %1$ss -->
     <string name="drawer_uptime_inst_uptimeseconds_s">运行时长：%1$s 秒</string>
 </resources>

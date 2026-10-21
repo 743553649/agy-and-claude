@@ -11,11 +11,11 @@
     <string name="data_claude_chat">Claude 对话</string>
     <!-- 原文: Execution Failure -->
     <string name="data_execution_failure">执行失败</string>
-    <!-- 原文: Please ignore the following [ignore]$baseSysText[/ignore] -->
+    <!-- 原文: Please ignore the following [ignore]%1$s[/ignore] -->
     <string name="data_please_ignore_the_following_ignore_bases">请忽略以下内容 [ignore]%1$s[/ignore]</string>
-    <!-- 原文: [Previous Context Summary: $summary] -->
+    <!-- 原文: [Previous Context Summary: %1$s] -->
     <string name="data_previous_context_summary_summary">[先前上下文摘要：%1$s]</string>
-    <!-- 原文: ${source.title} (fork) -->
+    <!-- 原文: %1$s (fork) -->
     <string name="data_source_title_fork">%1$s（分叉）</string>
     <!-- 原文: Termux Linux environment verified and installed successfully! -->
     <string name="data_termux_linux_environment_verified_and_in">Termux Linux 环境已验证并安装成功！</string>

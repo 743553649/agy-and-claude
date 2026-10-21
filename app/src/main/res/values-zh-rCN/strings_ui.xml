@@ -7,7 +7,7 @@
 
     <!-- 原文: AI Assistant Bubble -->
     <string name="ui_ai_assistant_bubble">AI 助手气泡</string>
-    <!-- 原文: Allocates ~$chars characters of reasoning capacity -->
+    <!-- 原文: Allocates ~%1$s characters of reasoning capacity -->
     <string name="ui_allocates_chars_characters_of_reasoning">分配约 %1$s 个字符的推理容量</string>
     <!-- 原文: Anthropic Claude -->
     <string name="ui_anthropic_claude">Anthropic Claude</string>
@@ -25,27 +25,27 @@
     <string name="ui_configure_reasoning_depth_and_token_budg">配置推理深度与 Token 预算</string>
     <!-- 原文: Connect your Google account in Settings or tap refresh to load your active models. -->
     <string name="ui_connect_your_google_account_in_settings">请在设置中关联你的 Google 账号，或点击刷新以加载可用模型。</string>
-    <!-- 原文: $count -->
+    <!-- 原文: %1$s -->
     <string name="ui_count">%1$s</string>
     <!-- 原文: DEFAULT -->
     <string name="ui_default">默认</string>
-    <!-- 原文: Download failed: ${state.message} -->
+    <!-- 原文: Download failed: %1$s -->
     <string name="ui_download_failed_state_message">下载失败：%1$s</string>
     <!-- 原文: Downloaded! Launching installer... -->
     <string name="ui_downloaded_launching_installer">已下载！正在启动安装程序……</string>
     <!-- 原文: Downloading... -->
     <string name="ui_downloading">正在下载……</string>
-    <!-- 原文: Error loading data: ${(state as MainScreenUiState.Error).throwable.message} -->
+    <!-- 原文: Error loading data: %1$s -->
     <string name="ui_error_loading_data_state_as_mainscreenui">加载数据出错：%1$s</string>
-    <!-- 原文: ${formatSize(state.downloadedBytes)} / ${formatSize(state.totalBytes)} -->
+    <!-- 原文: %1$s / %2$s -->
     <string name="ui_formatsize_state_downloadedbytes_formats">%1$s / %2$s</string>
     <!-- 原文: GitHub -->
     <string name="ui_github">GitHub</string>
     <!-- 原文: Google Gemini -->
     <string name="ui_google_gemini">Google Gemini</string>
-    <!-- 原文: ${groupedModels.size} base models • ${models.size} variants -->
+    <!-- 原文: %1$s base models • %2$s variants -->
     <string name="ui_groupedmodels_size_base_models_models_si">%1$s 个基础模型 • %2$s 个变体</string>
-    <!-- 原文: Hello $name! -->
+    <!-- 原文: Hello %1$s! -->
     <string name="ui_hello_name">你好 %1$s！</string>
     <!-- 原文: HOME SCREEN PREVIEW -->
     <string name="ui_home_screen_preview">桌面预览</string>
@@ -55,7 +55,7 @@
     <string name="ui_new_update_available">有新版本可用</string>
     <!-- 原文: No Models Loaded -->
     <string name="ui_no_models_loaded">未加载任何模型</string>
-    <!-- 原文: Open $title -->
+    <!-- 原文: Open %1$s -->
     <string name="ui_open_title">打开 %1$s</string>
     <!-- 原文: Places a dedicated icon in your app launcher for 1-tap terminal access -->
     <string name="ui_places_a_dedicated_icon_in_your_app_laun">在应用抽屉中放置独立图标，一键直达终端</string>
@@ -67,7 +67,7 @@
     <string name="ui_select_model">选择模型</string>
     <!-- 原文: Standalone Terminal App Icon -->
     <string name="ui_standalone_terminal_app_icon">独立终端应用图标</string>
-    <!-- 原文: ${(state.progress * 100).toInt()}% -->
+    <!-- 原文: %1$s% -->
     <string name="ui_state_progress_100_toint">%1$s%%</string>
     <!-- 原文: Tap to choose model -->
     <string name="ui_tap_to_choose_model">点击选择模型</string>
@@ -77,9 +77,9 @@
     <string name="ui_thinking_reasoning_level">思考与推理强度</string>
     <!-- 原文: Token Budget (1 - 32,768) -->
     <string name="ui_token_budget_1_32_768">Token 预算（1 - 32,768）</string>
-    <!-- 原文: v${updateInfo.currentVersionName} -->
+    <!-- 原文: v%1$s -->
     <string name="ui_v_updateinfo_currentversionname">v%1$s</string>
-    <!-- 原文: v${updateInfo.versionName} -->
+    <!-- 原文: v%1$s -->
     <string name="ui_v_updateinfo_versionname">v%1$s</string>
     <!-- 原文: WHAT'S NEW -->
     <string name="ui_what_s_new">新功能</string>

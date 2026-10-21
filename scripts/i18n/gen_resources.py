@@ -11,6 +11,9 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from dynamic import find_exprs, PLURAL  # noqa: E402
+
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 RES = os.path.join(ROOT, "app/src/main/res")
 CAT = "/tmp/i18n_catalog.json"
@@ -36,6 +39,65 @@ HEADER = """<?xml version="1.0" encoding="utf-8"?>
 -->
 <resources>
 """
+
+
+def en_with_placeholders(text):
+    """把 Kotlin 插值语法转成 Android 占位符：$x / ${expr} -> %n$s，复数后缀直接丢掉。"""
+    out = []
+    i = 0
+    n = len(text)
+    k = 0
+    while i < n:
+        ch = text[i]
+        if ch == "\\" and i + 1 < n:
+            out.append(text[i:i + 2])
+            i += 2
+            continue
+        if ch == "$":
+            if i + 1 < n and text[i + 1] == "{":
+                depth = 1
+                j = i + 2
+                while j < n and depth:
+                    if text[j] == "{":
+                        depth += 1
+                    elif text[j] == "}":
+                        depth -= 1
+                    j += 1
+                expr = text[i + 2:j - 1]
+                i = j
+                if PLURAL.match(expr):
+                    continue
+                k += 1
+                out.append(f"%{k}$s")
+                continue
+            m = re.match(r"[A-Za-z_][A-Za-z0-9_]*", text[i + 1:])
+            if m:
+                k += 1
+                out.append(f"%{k}$s")
+                i += 1 + len(m.group(0))
+                continue
+        out.append(ch)
+        i += 1
+    return "".join(out)
+
+
+def normalize_percent(s):
+    """含占位符的字符串里，孤立的 % 必须写成 %%，否则 String.format 会抛异常。"""
+    if not re.search(r"%\d+\$[sd]", s):
+        return s
+    guard = "\u0000"
+    s = s.replace("%%", guard)
+    out = []
+    i = 0
+    while i < len(s):
+        m = re.match(r"%\d+\$[sd]", s[i:])
+        if m:
+            out.append(m.group(0))
+            i += len(m.group(0))
+            continue
+        out.append("%%" if s[i] == "%" else s[i])
+        i += 1
+    return "".join(out).replace(guard, "%%")
 
 
 def xml_comment(s):
@@ -65,7 +127,7 @@ if os.path.exists(DYN):
             continue
         by_module[info["module"]].append({
             "key": key,
-            "en": info["en"],
+            "en": en_with_placeholders(info["en"]),
             "zh": info["zh"],
             "module": info["module"],
         })
@@ -79,9 +141,9 @@ for module, items in sorted(by_module.items()):
     en_lines = [HEADER]
     zh_lines = [HEADER]
     for c in items:
-        en_lines.append(f'    <string name="{c["key"]}">{xml_escape(c["en"])}</string>')
+        en_lines.append(f'    <string name="{c["key"]}">{xml_escape(normalize_percent(c["en"]))}</string>')
         zh_lines.append(f'    <!-- 原文: {xml_comment(c["en"])} -->')
-        zh_lines.append(f'    <string name="{c["key"]}">{xml_escape(c["zh"])}</string>')
+        zh_lines.append(f'    <string name="{c["key"]}">{xml_escape(normalize_percent(c["zh"]))}</string>')
     en_lines.append("</resources>\n")
     zh_lines.append("</resources>\n")
     for sub, lines in (("values", en_lines), ("values-zh-rCN", zh_lines)):
