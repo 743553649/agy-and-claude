@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  简体中文资源。
+  约定：app_name / product 名 / 技术标识符按 docs/i18n/GLOSSARY.md 白名单保持英文原文，不在此文件重复定义。
+-->
+<resources>
+
+    <!-- 原文: Enables AntiGem AI Assistant to inspect the screen, tap buttons, scroll, input text, and automate tasks natively on your device. -->
+    <string name="accessibility_service_description">让 AntiGem AI 助手能够查看屏幕、点击按钮、滚动页面、输入文字，并在你的设备上原生地自动执行任务。</string>
+
+    <!-- 原文: Copy -->
+    <string name="copy_text">复制</string>
+
+    <!-- 原文: Paste -->
+    <string name="paste_text">粘贴</string>
+
+    <!-- 原文: More -->
+    <string name="text_selection_more">更多</string>
+
+    <!-- 原文: Select All -->
+    <string name="select_all">全选</string>
+
+    <!-- 原文: Share -->
+    <string name="share_text">分享</string>
+
+    <!-- 原文: Select URL -->
+    <string name="select_url">选择链接</string>
+
+    <!-- 原文: Share Transcript -->
+    <string name="share_transcript">分享对话记录</string>
+
+    <!-- 原文: Reset Terminal -->
+    <string name="reset_terminal">重置终端</string>
+
+    <!-- 原文: No URLs found in transcript -->
+    <string name="no_urls_found">对话记录中没有找到链接</string>
+
+</resources>
