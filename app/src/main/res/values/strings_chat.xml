@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  由 scripts/i18n 生成，请勿手工调整条目顺序。
+  译法基准见 docs/i18n/GLOSSARY.md
+-->
+<resources>
+
+    <string name="chat_also_restore_files_claude_changed_after">Also restore files Claude changed after this message</string>
+    <string name="chat_antigravity_requires_google_authenticati">Antigravity requires Google authentication to access Gemini models.</string>
+    <string name="chat_ask_a_question_brainstorm_ideas_or_start">Ask a question, brainstorm ideas, or start coding</string>
+    <string name="chat_code_editor_ide">Code Editor IDE</string>
+    <string name="chat_command_terminated">Command Terminated</string>
+    <string name="chat_do_you_want_to_open_your_browser_to_log">Do you want to open your browser to log in now?</string>
+    <string name="chat_do_you_want_to_stop_the_model_from_outpu">Do you want to stop the model from outputting? The current generation will be stopped immediately.</string>
+    <string name="chat_e_g_it_was_taking_too_long_please_use_gr">e.g. It was taking too long, please use grep or find a faster way...</string>
+    <string name="chat_explain_why_or_give_new_instructions_to">Explain why or give new instructions to AI (optional):</string>
+    <string name="chat_how_can_i_help_you_today">How can I help you today?</string>
+    <string name="chat_minimize_to_bubble">Minimize to Bubble</string>
+    <string name="chat_open_browser">Open Browser</string>
+    <string name="chat_open_drawer">Open Drawer</string>
+    <string name="chat_open_full_screen">Open Full Screen</string>
+    <string name="chat_send_to_ai_proceed">Send to AI &amp; Proceed</string>
+    <string name="chat_sign_in_with_browser">Sign In with Browser</string>
+    <string name="chat_stop_generation">Stop Generation?</string>
+    <string name="chat_stop_output">Stop Output</string>
+    <string name="chat_stop_turn_here">Stop Turn Here</string>
+    <string name="chat_unable_to_load_chat">Unable to Load Chat</string>
+    <string name="chat_web_browser_preview">Web Browser Preview</string>
+    <string name="chat_you_stopped_the_running_command">You stopped the running command:</string>
+</resources>

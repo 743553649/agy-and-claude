@@ -183,7 +183,7 @@ fun GitSourceControlView(
                             onDismissRequest = { showBranchMenu = false }
                         ) {
                             DropdownMenuItem(
-                                text = { Text("+ Create New Branch", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary) },
+                                text = { Text(stringResource(R.string.ide_create_new_branch), fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary) },
                                 onClick = {
                                     showBranchMenu = false
                                     newBranchName = ""
@@ -297,7 +297,7 @@ fun GitSourceControlView(
                             onDismissRequest = { showStashMenu = false }
                         ) {
                             DropdownMenuItem(
-                                text = { Text("📦 Stash Changes...") },
+                                text = { Text(stringResource(R.string.ide_stash_changes)) },
                                 onClick = {
                                     showStashMenu = false
                                     stashMessage = ""
@@ -306,7 +306,7 @@ fun GitSourceControlView(
                             )
                             if (status?.hasStash == true) {
                                 DropdownMenuItem(
-                                    text = { Text("📤 Pop Stash (Apply & Drop)") },
+                                    text = { Text(stringResource(R.string.ide_pop_stash_apply_drop)) },
                                     onClick = {
                                         showStashMenu = false
                                         val projPath = activeProject?.path ?: return@DropdownMenuItem
@@ -424,7 +424,7 @@ fun GitSourceControlView(
                                 Icon(imageVector = Icons.Default.Add, contentDescription = null, modifier = Modifier.size(16.dp))
                                 Spacer(modifier = Modifier.width(8.dp))
                             }
-                            Text("Initialize Git Repository", fontWeight = FontWeight.Bold)
+                            Text(stringResource(R.string.ide_initialize_git_repository), fontWeight = FontWeight.Bold)
                         }
                     }
                 }
@@ -515,7 +515,7 @@ fun GitSourceControlView(
                     Icon(imageVector = Icons.Default.Check, contentDescription = null, modifier = Modifier.size(14.dp))
                     Spacer(modifier = Modifier.width(6.dp))
                 }
-                Text("Commit", fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.ide_commit), fontSize = 13.sp, fontWeight = FontWeight.Bold)
             }
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -689,7 +689,7 @@ fun GitSourceControlView(
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                                 Icon(imageVector = Icons.Default.CheckCircle, contentDescription = null, tint = Color(0xFF4CAF50), modifier = Modifier.size(28.dp))
                                 Spacer(modifier = Modifier.height(6.dp))
-                                Text("Working tree is clean", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Text(stringResource(R.string.ide_working_tree_is_clean), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                             }
                         }
                     }
@@ -805,12 +805,12 @@ fun GitSourceControlView(
 
                     // user.name
                     Column {
-                        Text("Author Name (user.name)", fontSize = 11.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.ide_author_name_user_name), fontSize = 11.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         Spacer(modifier = Modifier.height(3.dp))
                         OutlinedTextField(
                             value = configUserName,
                             onValueChange = { configUserName = it },
-                            placeholder = { Text("e.g. John Doe", fontSize = 12.5.sp) },
+                            placeholder = { Text(stringResource(R.string.ide_e_g_john_doe), fontSize = 12.5.sp) },
                             singleLine = true,
                             textStyle = androidx.compose.ui.text.TextStyle(fontSize = 13.sp),
                             modifier = Modifier.fillMaxWidth()
@@ -819,12 +819,12 @@ fun GitSourceControlView(
 
                     // user.email
                     Column {
-                        Text("Author Email (user.email)", fontSize = 11.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.ide_author_email_user_email), fontSize = 11.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         Spacer(modifier = Modifier.height(3.dp))
                         OutlinedTextField(
                             value = configUserEmail,
                             onValueChange = { configUserEmail = it },
-                            placeholder = { Text("e.g. john@example.com", fontSize = 12.5.sp) },
+                            placeholder = { Text(stringResource(R.string.ide_e_g_john_example_com), fontSize = 12.5.sp) },
                             singleLine = true,
                             textStyle = androidx.compose.ui.text.TextStyle(fontSize = 13.sp),
                             modifier = Modifier.fillMaxWidth()
@@ -833,7 +833,7 @@ fun GitSourceControlView(
 
                     // pull.rebase strategy
                     Column {
-                        Text("Pull Rebase Strategy (pull.rebase)", fontSize = 11.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.ide_pull_rebase_strategy_pull_rebase), fontSize = 11.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         Spacer(modifier = Modifier.height(3.dp))
                         Box {
                             OutlinedCard(
@@ -864,21 +864,21 @@ fun GitSourceControlView(
                                 onDismissRequest = { pullRebaseMenuOpen = false }
                             ) {
                                 DropdownMenuItem(
-                                    text = { Text("Merge / Default (false)") },
+                                    text = { Text(stringResource(R.string.ide_merge_default_false)) },
                                     onClick = {
                                         configPullRebase = "false"
                                         pullRebaseMenuOpen = false
                                     }
                                 )
                                 DropdownMenuItem(
-                                    text = { Text("Rebase (true)") },
+                                    text = { Text(stringResource(R.string.ide_rebase_true)) },
                                     onClick = {
                                         configPullRebase = "true"
                                         pullRebaseMenuOpen = false
                                     }
                                 )
                                 DropdownMenuItem(
-                                    text = { Text("Preserve merges (merges)") },
+                                    text = { Text(stringResource(R.string.ide_preserve_merges_merges)) },
                                     onClick = {
                                         configPullRebase = "merges"
                                         pullRebaseMenuOpen = false
@@ -890,7 +890,7 @@ fun GitSourceControlView(
 
                     // Remote Origin URL
                     Column {
-                        Text("Remote Origin URL", fontSize = 11.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.ide_remote_origin_url), fontSize = 11.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         Spacer(modifier = Modifier.height(3.dp))
                         OutlinedTextField(
                             value = configRemoteUrl,
@@ -917,8 +917,8 @@ fun GitSourceControlView(
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Column {
-                            Text("Save as Global Config (--global)", fontSize = 12.5.sp, fontWeight = FontWeight.Medium)
-                            Text("Applies across all repositories in Termux", fontSize = 10.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            Text(stringResource(R.string.ide_save_as_global_config_global), fontSize = 12.5.sp, fontWeight = FontWeight.Medium)
+                            Text(stringResource(R.string.ide_applies_across_all_repositories_in_termu), fontSize = 10.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         }
                     }
                 }
@@ -1010,7 +1010,7 @@ fun GitSourceControlView(
     if (showNewBranchDialog) {
         AlertDialog(
             onDismissRequest = { showNewBranchDialog = false },
-            title = { Text("Create & Checkout Branch", fontWeight = FontWeight.Bold, fontSize = 16.sp) },
+            title = { Text(stringResource(R.string.ide_create_checkout_branch), fontWeight = FontWeight.Bold, fontSize = 16.sp) },
             text = {
                 Surface(
                     shape = RoundedCornerShape(10.dp),
@@ -1083,7 +1083,7 @@ fun GitSourceControlView(
     if (showStashDialog) {
         AlertDialog(
             onDismissRequest = { showStashDialog = false },
-            title = { Text("Stash Changes", fontWeight = FontWeight.Bold, fontSize = 16.sp) },
+            title = { Text(stringResource(R.string.ide_stash_changes_2), fontWeight = FontWeight.Bold, fontSize = 16.sp) },
             text = {
                 Surface(
                     shape = RoundedCornerShape(10.dp),
@@ -1138,7 +1138,7 @@ fun GitSourceControlView(
                         showStashDialog = false
                     }
                 ) {
-                    Text("Stash", fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
+                    Text(stringResource(R.string.ide_stash), fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
                 }
             },
             dismissButton = {
@@ -1173,7 +1173,7 @@ fun GitSourceControlView(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD32F2F))
                 ) {
-                    Text("Discard")
+                    Text(stringResource(R.string.ide_discard))
                 }
             },
             dismissButton = {
@@ -1189,8 +1189,8 @@ fun GitSourceControlView(
         AlertDialog(
             onDismissRequest = { showDiscardAllDialog = false },
             icon = { Icon(Icons.Default.Warning, contentDescription = null, tint = Color(0xFFE57373)) },
-            title = { Text("Discard All Changes", fontWeight = FontWeight.Bold) },
-            text = { Text("Are you sure you want to discard all unstaged changes? All uncommitted edits will be lost permanently.") },
+            title = { Text(stringResource(R.string.ide_discard_all_changes), fontWeight = FontWeight.Bold) },
+            text = { Text(stringResource(R.string.ide_are_you_sure_you_want_to_discard_all_uns)) },
             confirmButton = {
                 Button(
                     onClick = {
@@ -1205,7 +1205,7 @@ fun GitSourceControlView(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD32F2F))
                 ) {
-                    Text("Discard All")
+                    Text(stringResource(R.string.ide_discard_all))
                 }
             },
             dismissButton = {
@@ -1221,8 +1221,8 @@ fun GitSourceControlView(
         AlertDialog(
             onDismissRequest = { showDiscardAllUntrackedDialog = false },
             icon = { Icon(Icons.Default.Warning, contentDescription = null, tint = Color(0xFFE57373)) },
-            title = { Text("Discard Untracked Files", fontWeight = FontWeight.Bold) },
-            text = { Text("Are you sure you want to delete all untracked files? This action cannot be undone.") },
+            title = { Text(stringResource(R.string.ide_discard_untracked_files), fontWeight = FontWeight.Bold) },
+            text = { Text(stringResource(R.string.ide_are_you_sure_you_want_to_delete_all_untr)) },
             confirmButton = {
                 Button(
                     onClick = {
@@ -1238,7 +1238,7 @@ fun GitSourceControlView(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD32F2F))
                 ) {
-                    Text("Discard Untracked")
+                    Text(stringResource(R.string.ide_discard_untracked))
                 }
             },
             dismissButton = {
@@ -1255,8 +1255,8 @@ fun GitSourceControlView(
         AlertDialog(
             onDismissRequest = { showUnstageAllDialog = false },
             icon = { Icon(Icons.Default.RemoveCircleOutline, contentDescription = null, tint = Color(0xFFE57373)) },
-            title = { Text("Unstage All Changes", fontWeight = FontWeight.Bold) },
-            text = { Text("Are you sure you want to unstage all files from the staging area?") },
+            title = { Text(stringResource(R.string.ide_unstage_all_changes), fontWeight = FontWeight.Bold) },
+            text = { Text(stringResource(R.string.ide_are_you_sure_you_want_to_unstage_all_fil)) },
             confirmButton = {
                 Button(
                     onClick = {
@@ -1272,7 +1272,7 @@ fun GitSourceControlView(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta)
                 ) {
-                    Text("Unstage All")
+                    Text(stringResource(R.string.ide_unstage_all))
                 }
             },
             dismissButton = {
@@ -1288,8 +1288,8 @@ fun GitSourceControlView(
         AlertDialog(
             onDismissRequest = { showPullDialog = false },
             icon = { Icon(Icons.Default.CloudDownload, contentDescription = null, tint = ClaudeTerracotta) },
-            title = { Text("Git Pull", fontWeight = FontWeight.Bold) },
-            text = { Text("Pull latest changes from the remote repository?") },
+            title = { Text(stringResource(R.string.ide_git_pull), fontWeight = FontWeight.Bold) },
+            text = { Text(stringResource(R.string.ide_pull_latest_changes_from_the_remote_repo)) },
             confirmButton = {
                 Button(
                     onClick = {
@@ -1309,7 +1309,7 @@ fun GitSourceControlView(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta)
                 ) {
-                    Text("Pull")
+                    Text(stringResource(R.string.ide_pull))
                 }
             },
             dismissButton = {
@@ -1326,7 +1326,7 @@ fun GitSourceControlView(
         AlertDialog(
             onDismissRequest = { showPushDialog = false },
             icon = { Icon(Icons.Default.CloudUpload, contentDescription = null, tint = ClaudeTerracotta) },
-            title = { Text("Git Push", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.ide_git_push), fontWeight = FontWeight.Bold) },
             text = {
                 Column {
                     if (unpushedCount > 0) {
@@ -1371,10 +1371,10 @@ fun GitSourceControlView(
         AlertDialog(
             onDismissRequest = { showCommitDialog = false },
             icon = { Icon(Icons.Default.CheckCircle, contentDescription = null, tint = ClaudeTerracotta) },
-            title = { Text("Confirm Commit", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.ide_confirm_commit), fontWeight = FontWeight.Bold) },
             text = {
                 Column {
-                    Text("Are you sure you want to commit staged changes with the following message?")
+                    Text(stringResource(R.string.ide_are_you_sure_you_want_to_commit_staged_c))
                     Spacer(modifier = Modifier.height(8.dp))
                     Surface(
                         shape = RoundedCornerShape(6.dp),
@@ -1414,7 +1414,7 @@ fun GitSourceControlView(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta)
                 ) {
-                    Text("Commit")
+                    Text(stringResource(R.string.ide_commit))
                 }
             },
             dismissButton = {

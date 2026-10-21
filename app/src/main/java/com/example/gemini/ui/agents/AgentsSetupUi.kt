@@ -134,7 +134,7 @@ fun AgentChoiceDialog(onConfirm: (Set<AgentKind>) -> Unit) {
                     AgentMark(AgentKind.CLAUDE, size = 48.dp, modifier = Modifier.offset(x = 28.dp, y = 8.dp))
                 }
                 Spacer(Modifier.height(14.dp))
-                Text("Choose your agent", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.agents_choose_your_agent), fontSize = 20.sp, fontWeight = FontWeight.Bold)
                 Spacer(Modifier.height(6.dp))
                 Text(
                     "The app runs only the agents you pick. You can change this later in Settings → Agents.",
@@ -151,7 +151,7 @@ fun AgentChoiceDialog(onConfirm: (Set<AgentKind>) -> Unit) {
                     shape = RoundedCornerShape(14.dp),
                     contentPadding = PaddingValues(vertical = 12.dp),
                     modifier = Modifier.fillMaxWidth()
-                ) { Text("Continue", fontSize = 15.sp, fontWeight = FontWeight.SemiBold) }
+                ) { Text(stringResource(R.string.agents_continue), fontSize = 15.sp, fontWeight = FontWeight.SemiBold) }
             }
         }
     }
@@ -187,7 +187,7 @@ fun AgentsSettingsPage(
             if (isApplying) {
                 CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp, color = Color.White)
                 Spacer(Modifier.width(10.dp))
-                Text("Restarting…")
+                Text(stringResource(R.string.agents_restarting))
             } else {
                 Text(if (selected == enabled) "No changes" else "Apply and restart app", fontWeight = FontWeight.SemiBold)
             }
@@ -196,7 +196,7 @@ fun AgentsSettingsPage(
     if (confirm) {
         AlertDialog(
             onDismissRequest = { confirm = false },
-            title = { Text("Restart to apply?", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.agents_restart_to_apply), fontWeight = FontWeight.Bold) },
             text = {
                 Text(
                     "The local server stops and the app restarts with the new agents, so nothing of a turned-off agent keeps running. " +
@@ -208,7 +208,7 @@ fun AgentsSettingsPage(
                 Button(onClick = {
                     confirm = false
                     onApply(selected)
-                }) { Text("Restart app") }
+                }) { Text(stringResource(R.string.agents_restart_app)) }
             },
             dismissButton = { TextButton(onClick = { confirm = false }) { Text(stringResource(R.string.common_cancel)) } }
         )
@@ -224,8 +224,8 @@ fun AgentsApplyingDialog() {
                 CircularProgressIndicator(Modifier.size(22.dp), strokeWidth = 2.5.dp)
                 Spacer(Modifier.width(14.dp))
                 Column {
-                    Text("Applying agents", fontWeight = FontWeight.SemiBold, fontSize = 15.sp)
-                    Text("Stopping the local server, then restarting the app…", fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                    Text(stringResource(R.string.agents_applying_agents), fontWeight = FontWeight.SemiBold, fontSize = 15.sp)
+                    Text(stringResource(R.string.agents_stopping_the_local_server_then_restartin), fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                 }
             }
         }

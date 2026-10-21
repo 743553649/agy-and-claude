@@ -287,7 +287,7 @@ private fun ApprovalBody(item: ApprovalItem, count: Int, onAllowAll: (() -> Unit
                             shape = RoundedCornerShape(12.dp),
                             contentPadding = PaddingValues(start = 12.dp, end = 6.dp)
                         ) {
-                            Text("Always…", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface)
+                            Text(stringResource(R.string.agents_always), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface)
                             Icon(Icons.Outlined.ExpandMore, null, modifier = Modifier.size(18.dp), tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                         }
                         DropdownMenu(expanded = alwaysMenu, onDismissRequest = { alwaysMenu = false }) {

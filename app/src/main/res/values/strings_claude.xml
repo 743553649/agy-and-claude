@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  由 scripts/i18n 生成，请勿手工调整条目顺序。
+  译法基准见 docs/i18n/GLOSSARY.md
+-->
+<resources>
+
+    <string name="claude_account">Account</string>
+    <string name="claude_anthropic_console_api_billing">Anthropic Console (API billing)</string>
+    <string name="claude_available_in">Available in</string>
+    <string name="claude_bash_npm_run_test">Bash(npm run test *)</string>
+    <string name="claude_browser_can_t_return_to_the_app_sign_in">Browser can\'t return to the app? Sign in with a code</string>
+    <string name="claude_check_for_updates">Check for updates</string>
+    <string name="claude_checking">Checking…</string>
+    <string name="claude_checking_mcp_servers">Checking MCP servers…</string>
+    <string name="claude_claude_code_cli">Claude Code CLI</string>
+    <string name="claude_claude_code_is_starting_to_list_them_thi">Claude Code is starting to list them; this can take a moment.</string>
+    <string name="claude_claude_code_not_found_on_this_device">Claude Code not found on this device.</string>
+    <string name="claude_claude_forgets_what_this_note_says">Claude forgets what this note says.</string>
+    <string name="claude_claude_subscription_pro_max">Claude subscription (Pro / Max)</string>
+    <string name="claude_claude_will_no_longer_be_able_to_use_its">Claude will no longer be able to use its tools.</string>
+    <string name="claude_command_and_arguments">Command and arguments</string>
+    <string name="claude_context_usage_shows_once_this_chat_has_s">Context usage shows once this chat has started (send a message first).</string>
+    <string name="claude_context_window">Context window</string>
+    <string name="claude_custom_server">+ Custom server</string>
+    <string name="claude_environment_key_value_per_line">Environment (KEY=value per line)</string>
+    <string name="claude_headers_name_value_per_line">Headers (Name: value per line)</string>
+    <string name="claude_install_claude_code">Install Claude Code</string>
+    <string name="claude_instructions_claude_follows_in_every_cha"># Instructions Claude follows in every chat\n- Prefer Kotlin coroutines\n- Run ./gradlew test before committing</string>
+    <string name="claude_loading_claude_s_models">Loading Claude\'s models…</string>
+    <string name="claude_loading_plan_usage">Loading plan usage…</string>
+    <string name="claude_no_mcp_servers_yet">No MCP servers yet</string>
+    <string name="claude_no_models_loaded">No models loaded</string>
+    <string name="claude_npx_y_modelcontextprotocol_server_filesy">npx -y @modelcontextprotocol/server-filesystem /sdcard</string>
+    <string name="claude_open_code_page">Open code page</string>
+    <string name="claude_open_the_sign_in_page_again">Open the sign-in page again</string>
+    <string name="claude_owner_repo">owner/repo</string>
+    <string name="claude_plan_limits_do_not_apply_to_this_account">Plan limits do not apply to this account (API billing has no 5-hour or weekly limits).</string>
+    <string name="claude_plan_usage">Plan usage</string>
+    <string name="claude_plan_usage_is_not_available_right_now">Plan usage is not available right now.</string>
+    <string name="claude_prompt_cache">Prompt cache</string>
+    <string name="claude_quick_presets">Quick presets</string>
+    <string name="claude_reason_before_answering_shown_as_a_summa">Reason before answering (shown as a summary)</string>
+    <string name="claude_review_the_plan">Review the plan</string>
+    <string name="claude_send_fast_in_the_chat_to_toggle">Send /fast in the chat to toggle</string>
+    <string name="claude_sign_in_to_claude_code">Sign in to Claude Code</string>
+    <string name="claude_sign_out">Sign out</string>
+    <string name="claude_starting">Starting…</string>
+    <string name="claude_submit_code">Submit code</string>
+    <string name="claude_this_chat">This chat</string>
+    <string name="claude_tools_claude_can_call">Tools Claude can call</string>
+    <string name="claude_transport">Transport</string>
+    <string name="claude_try_again">Try again</string>
+    <string name="claude_uninstall">Uninstall</string>
+    <string name="claude_usage">Usage</string>
+    <string name="claude_validate_save">Validate &amp; save</string>
+    <string name="claude_waiting_for_you_to_approve_in_the_browse">Waiting for you to approve in the browser…</string>
+</resources>

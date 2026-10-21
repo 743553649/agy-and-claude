@@ -12,6 +12,7 @@ import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material.icons.outlined.Psychology
 import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,6 +22,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.theme.isAppInDarkTheme
+import com.example.gemini.R
 import androidx.compose.ui.graphics.Color
 import com.example.gemini.domain.model.ThinkingLevel
 import com.example.gemini.domain.model.ThinkingPreference
@@ -162,7 +164,7 @@ fun ThinkingSelectorBottomSheet(
                             OutlinedTextField(
                                 value = customTokensText,
                                 onValueChange = { customTokensText = it.filter { char -> char.isDigit() } },
-                                label = { Text("Token Budget (1 - 32,768)") },
+                                label = { Text(stringResource(R.string.ui_token_budget_1_32_768)) },
                                 placeholder = { Text("e.g. 2048") },
                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                                 singleLine = true,
@@ -186,7 +188,7 @@ fun ThinkingSelectorBottomSheet(
                                 colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta),
                                 shape = RoundedCornerShape(10.dp)
                             ) {
-                                Text("Apply Custom Budget", fontWeight = FontWeight.Bold)
+                                Text(stringResource(R.string.ui_apply_custom_budget), fontWeight = FontWeight.Bold)
                             }
                         }
                     }

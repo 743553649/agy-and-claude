@@ -8,6 +8,7 @@
     <string name="common_active">Active</string>
     <string name="common_add">Add</string>
     <string name="common_ai_chat">AI Chat</string>
+    <string name="common_alt">ALT</string>
     <string name="common_back">Back</string>
     <string name="common_cancel">Cancel</string>
     <string name="common_chat_telemetry_tokens">Chat Telemetry &amp; Tokens</string>
@@ -16,12 +17,14 @@
     <string name="common_close">Close</string>
     <string name="common_close_tab">Close Tab</string>
     <string name="common_create">Create</string>
+    <string name="common_ctrl">CTRL</string>
     <string name="common_delete">Delete</string>
     <string name="common_details">Details</string>
     <string name="common_discard_changes">Discard Changes</string>
     <string name="common_dismiss">Dismiss</string>
     <string name="common_done">Done</string>
     <string name="common_edit">Edit</string>
+    <string name="common_esc">ESC</string>
     <string name="common_failed_to_load_image">Failed to load image</string>
     <string name="common_install">Install</string>
     <string name="common_installed">Installed</string>
@@ -53,7 +56,9 @@
     <string name="common_thinking">Thinking</string>
     <string name="common_undo">Undo</string>
     <string name="common_update">Update</string>
+    <string name="common_url">URL</string>
     <string name="common_webview_extension_mcp">+ WebView Extension MCP</string>
+    <string name="common_youtube">YouTube</string>
     <string name="common_zoom_in">Zoom In</string>
     <string name="common_zoom_out">Zoom Out</string>
 </resources>

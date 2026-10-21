@@ -482,7 +482,7 @@ fun IdeScreen(
                                 ) {
                                     // Word Wrap with Checkbox
                                     DropdownMenuItem(
-                                        text = { Text("Word Wrap", fontSize = 13.sp) },
+                                        text = { Text(stringResource(R.string.ide_word_wrap), fontSize = 13.sp) },
                                         leadingIcon = {
                                             Icon(
                                                 imageVector = Icons.AutoMirrored.Filled.WrapText,
@@ -504,7 +504,7 @@ fun IdeScreen(
 
                                     // Find / Search in File
                                     DropdownMenuItem(
-                                        text = { Text("Find in File", fontSize = 13.sp) },
+                                        text = { Text(stringResource(R.string.ide_find_in_file_2), fontSize = 13.sp) },
                                         leadingIcon = {
                                             Icon(
                                                 imageVector = Icons.Default.Search,
@@ -842,7 +842,7 @@ fun IdeScreen(
                                 HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
 
                                 DropdownMenuItem(
-                                    text = { Text("Add Run Configuration...", fontSize = 13.sp) },
+                                    text = { Text(stringResource(R.string.ide_add_run_configuration), fontSize = 13.sp) },
                                     leadingIcon = {
                                         Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(18.dp))
                                     },
@@ -858,7 +858,7 @@ fun IdeScreen(
                                 )
 
                                 DropdownMenuItem(
-                                    text = { Text("Edit launch.json in Editor", fontSize = 13.sp) },
+                                    text = { Text(stringResource(R.string.ide_edit_launch_json_in_editor), fontSize = 13.sp) },
                                     leadingIcon = {
                                         Icon(Icons.Default.Code, contentDescription = null, modifier = Modifier.size(18.dp))
                                     },
@@ -1252,7 +1252,7 @@ fun IdeScreen(
                                 onClick = { conflictDialogTab = activeTab },
                                 contentPadding = PaddingValues(horizontal = 8.dp, vertical = 0.dp)
                             ) {
-                                Text("Resolve", color = Color(0xFFF59E0B), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                                Text(stringResource(R.string.ide_resolve), color = Color(0xFFF59E0B), fontSize = 12.sp, fontWeight = FontWeight.Bold)
                             }
                         }
                     }
@@ -1438,7 +1438,7 @@ fun IdeScreen(
                 AlertDialog(
                     onDismissRequest = { tabToClose = null },
                     icon = { Icon(Icons.Default.Warning, contentDescription = null, tint = ClaudeTerracotta) },
-                    title = { Text("Unsaved Changes", fontWeight = FontWeight.Bold) },
+                    title = { Text(stringResource(R.string.ide_unsaved_changes), fontWeight = FontWeight.Bold) },
                     text = { Text("Do you want to save the changes made to '${closingTarget.name}' before closing?") },
                     confirmButton = {
                         Button(
@@ -1464,7 +1464,7 @@ fun IdeScreen(
                             },
                             colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta)
                         ) {
-                            Text("Save & Close")
+                            Text(stringResource(R.string.ide_save_close))
                         }
                     },
                     dismissButton = {
@@ -1475,7 +1475,7 @@ fun IdeScreen(
                                 TermuxDaemonManager.closeTab(target.path)
                             }
                         ) {
-                            Text("Don't Save", color = Color(0xFFE57373))
+                            Text(stringResource(R.string.ide_don_t_save), color = Color(0xFFE57373))
                         }
                     }
                 )
@@ -1487,7 +1487,7 @@ fun IdeScreen(
                 AlertDialog(
                     onDismissRequest = { conflictDialogTab = null },
                     icon = { Icon(Icons.Default.Warning, contentDescription = null, tint = Color(0xFFFFA726)) },
-                    title = { Text("File Conflict Detected", fontWeight = FontWeight.Bold) },
+                    title = { Text(stringResource(R.string.ide_file_conflict_detected), fontWeight = FontWeight.Bold) },
                     text = {
                         Column {
                             Text("The file '${conflictingTarget.name}' has been modified on disk or by AI.")
@@ -1520,7 +1520,7 @@ fun IdeScreen(
                             },
                             colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta)
                         ) {
-                            Text("Overwrite Disk (Keep Mine)")
+                            Text(stringResource(R.string.ide_overwrite_disk_keep_mine))
                         }
                     },
                     dismissButton = {
@@ -1532,7 +1532,7 @@ fun IdeScreen(
                                 Toast.makeText(context, "Reverted to disk version", Toast.LENGTH_SHORT).show()
                             }
                         ) {
-                            Text("Revert to Disk", color = Color(0xFFE57373))
+                            Text(stringResource(R.string.ide_revert_to_disk), color = Color(0xFFE57373))
                         }
                     }
                 )
@@ -1641,7 +1641,7 @@ fun IdeScreen(
                         )
                     },
                     title = {
-                        Text("Non-Text File Warning", fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.ide_non_text_file_warning), fontWeight = FontWeight.Bold)
                     },
                     text = {
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -1666,7 +1666,7 @@ fun IdeScreen(
                             },
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF59E0B))
                         ) {
-                            Text("Open Anyway", color = Color.Black, fontWeight = FontWeight.Bold)
+                            Text(stringResource(R.string.ide_open_anyway), color = Color.Black, fontWeight = FontWeight.Bold)
                         }
                     },
                     dismissButton = {
@@ -1794,7 +1794,7 @@ private fun AddRunProfileDialog(
             Icon(Icons.Default.Tune, contentDescription = null, tint = Color(0xFF4CAF50), modifier = Modifier.size(28.dp))
         },
         title = {
-            Text("Add Run Configuration", fontWeight = FontWeight.Bold, fontSize = 17.sp)
+            Text(stringResource(R.string.ide_add_run_configuration_2), fontWeight = FontWeight.Bold, fontSize = 17.sp)
         },
         text = {
             Column(
@@ -1810,7 +1810,7 @@ private fun AddRunProfileDialog(
                 )
 
                 // Presets row
-                Text("Quick Presets:", fontSize = 11.sp, fontWeight = FontWeight.SemiBold)
+                Text(stringResource(R.string.ide_quick_presets), fontSize = 11.sp, fontWeight = FontWeight.SemiBold)
                 LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(6.dp),
                     modifier = Modifier.fillMaxWidth()
@@ -1830,7 +1830,7 @@ private fun AddRunProfileDialog(
                 OutlinedTextField(
                     value = profileName,
                     onValueChange = { profileName = it },
-                    label = { Text("Profile Name") },
+                    label = { Text(stringResource(R.string.ide_profile_name)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -1838,7 +1838,7 @@ private fun AddRunProfileDialog(
                 OutlinedTextField(
                     value = commandInput,
                     onValueChange = { commandInput = it },
-                    label = { Text("Command to Execute") },
+                    label = { Text(stringResource(R.string.ide_command_to_execute)) },
                     placeholder = { Text("python3 \"\${file}\"") },
                     minLines = 2,
                     maxLines = 4,
@@ -1848,7 +1848,7 @@ private fun AddRunProfileDialog(
                 OutlinedTextField(
                     value = cwdInput,
                     onValueChange = { cwdInput = it },
-                    label = { Text("Working Directory (CWD)") },
+                    label = { Text(stringResource(R.string.ide_working_directory_cwd)) },
                     placeholder = { Text("\${workspaceFolder}") },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
@@ -1860,7 +1860,7 @@ private fun AddRunProfileDialog(
                 ) {
                     Checkbox(checked = isDefault, onCheckedChange = { isDefault = it })
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text("Set as default run profile", fontSize = 12.5.sp)
+                    Text(stringResource(R.string.ide_set_as_default_run_profile), fontSize = 12.5.sp)
                 }
 
                 Surface(
@@ -1869,7 +1869,7 @@ private fun AddRunProfileDialog(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Column(modifier = Modifier.padding(8.dp)) {
-                        Text("Supported Variables:", fontSize = 10.5.sp, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.ide_supported_variables), fontSize = 10.5.sp, fontWeight = FontWeight.Bold)
                         Text("\${file} • \${fileBasename} • \${fileBasenameNoExtension} • \${fileDirname} • \${workspaceFolder}", fontSize = 9.5.sp, fontFamily = FontFamily.Monospace)
                     }
                 }
@@ -1889,7 +1889,7 @@ private fun AddRunProfileDialog(
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50))
             ) {
-                Text("Save Profile", fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.ide_save_profile), fontWeight = FontWeight.Bold)
             }
         },
         dismissButton = {

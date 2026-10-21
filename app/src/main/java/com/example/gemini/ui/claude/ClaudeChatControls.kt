@@ -214,7 +214,7 @@ fun ClaudeControlsStrip(
         val c = cache
         AlertDialog(
             onDismissRequest = { showCache = false },
-            title = { Text("Prompt cache", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.claude_prompt_cache), fontWeight = FontWeight.Bold) },
             text = {
                 val left = c?.let { it.anchorMs + it.ttlMs - now } ?: 0
                 Text(
@@ -322,17 +322,17 @@ fun ClaudeModelSheet(
                         if (refreshing) {
                             androidx.compose.material3.CircularProgressIndicator(Modifier.size(22.dp), strokeWidth = 2.dp, color = ClaudeAccent)
                             Spacer(Modifier.height(10.dp))
-                            Text("Loading Claude's models…", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
-                            Text("Claude Code is starting to list them; this can take a moment.", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                            Text(stringResource(R.string.claude_loading_claude_s_models), fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
+                            Text(stringResource(R.string.claude_claude_code_is_starting_to_list_them_thi), fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                         } else {
-                            Text("No models loaded", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
+                            Text(stringResource(R.string.claude_no_models_loaded), fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
                             Text(
                                 modelsError ?: "Claude Code has not listed its models yet.",
                                 fontSize = 12.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                             )
                             Spacer(Modifier.height(10.dp))
-                            TextButton(onClick = { backend.refreshInfo(force = true) }) { Text("Try again", color = ClaudeAccent) }
+                            TextButton(onClick = { backend.refreshInfo(force = true) }) { Text(stringResource(R.string.claude_try_again), color = ClaudeAccent) }
                         }
                     }
                 }
@@ -390,7 +390,7 @@ fun ClaudeModelSheet(
                         Spacer(Modifier.width(10.dp))
                         Column(Modifier.weight(1f).padding(vertical = 6.dp)) {
                             Text(stringResource(R.string.common_thinking), fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
-                            Text("Reason before answering (shown as a summary)", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f))
+                            Text(stringResource(R.string.claude_reason_before_answering_shown_as_a_summa), fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f))
                         }
                         Switch(checked = thinking, onCheckedChange = { backend.setThinking(it) }, colors = SwitchDefaults.colors(checkedTrackColor = ClaudeAccent))
                     }
@@ -401,7 +401,7 @@ fun ClaudeModelSheet(
                             Spacer(Modifier.width(10.dp))
                             Column(Modifier.weight(1f)) {
                                 Text("Fast mode · ${fast.replaceFirstChar { it.uppercase() }}", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
-                                Text("Send /fast in the chat to toggle", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f))
+                                Text(stringResource(R.string.claude_send_fast_in_the_chat_to_toggle), fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f))
                             }
                         }
                     }
@@ -418,12 +418,12 @@ fun ClaudeContextDialog(backend: ClaudeChatBackend, onDismiss: () -> Unit) {
     LaunchedEffect(Unit) { backend.refreshContextUsage() }
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Context window", fontWeight = FontWeight.Bold) },
+        title = { Text(stringResource(R.string.claude_context_window), fontWeight = FontWeight.Bold) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 val c = ctx
                 if (c == null) {
-                    Text("Context usage shows once this chat has started (send a message first).", fontSize = 13.sp)
+                    Text(stringResource(R.string.claude_context_usage_shows_once_this_chat_has_s), fontSize = 13.sp)
                 } else {
                     Text("${compactTokens(c.totalTokens)} of ${compactTokens(c.maxTokens)} tokens used (${c.percentage.toInt()}%)", fontSize = 13.sp)
                     UsageBar("Used", c.percentage / 100.0, null)
@@ -465,7 +465,7 @@ fun ClaudeUsageDialog(account: ClaudeAccountManager, backend: ClaudeChatBackend,
         onDismissRequest = onDismiss,
         title = {
             Column {
-                Text("Usage", fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.claude_usage), fontWeight = FontWeight.Bold)
                 val plan = (usage?.subscription_type ?: status?.auth?.subscriptionType)?.let { com.example.gemini.ui.agents.claudePlanLabel(it) }
                 Text(
                     listOfNotNull("Claude Code", plan?.let { "$it plan" }).joinToString(" · "),
@@ -492,15 +492,15 @@ fun ClaudeUsageDialog(account: ClaudeAccountManager, backend: ClaudeChatBackend,
                     loading -> Row(verticalAlignment = Alignment.CenterVertically) {
                         androidx.compose.material3.CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp, color = ClaudeAccent)
                         Spacer(Modifier.width(10.dp))
-                        Text("Loading plan usage…", fontSize = 13.sp)
+                        Text(stringResource(R.string.claude_loading_plan_usage), fontSize = 13.sp)
                     }
                     usage != null && !usage!!.rate_limits_available ->
-                        Text("Plan limits do not apply to this account (API billing has no 5-hour or weekly limits).", fontSize = 13.sp)
-                    else -> Text("Plan usage is not available right now.", fontSize = 13.sp)
+                        Text(stringResource(R.string.claude_plan_limits_do_not_apply_to_this_account), fontSize = 13.sp)
+                    else -> Text(stringResource(R.string.claude_plan_usage_is_not_available_right_now), fontSize = 13.sp)
                 }
                 HorizontalDivider()
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                    Text("This chat", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f))
+                    Text(stringResource(R.string.claude_this_chat), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f))
                     Text(if (cost > 0) String.format(java.util.Locale.US, "$%.2f", cost) else "–", fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                 }
                 Text(

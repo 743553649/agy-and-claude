@@ -59,7 +59,7 @@ fun DaemonLogsDialog(
                         tint = MaterialTheme.colorScheme.primary
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("Go Daemon Status & Logs", style = MaterialTheme.typography.titleMedium)
+                    Text(stringResource(R.string.ide_go_daemon_status_logs), style = MaterialTheme.typography.titleMedium)
                 }
 
                 IconButton(onClick = onDismiss) {

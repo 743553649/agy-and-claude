@@ -223,7 +223,7 @@ fun AgentQuestionPanel(
                                 OutlinedTextField(
                                     value = otherText[q.id].orEmpty(),
                                     onValueChange = { otherText[q.id] = it },
-                                    placeholder = { Text("Your answer", fontSize = 13.sp) },
+                                    placeholder = { Text(stringResource(R.string.agents_your_answer), fontSize = 13.sp) },
                                     shape = RoundedCornerShape(12.dp),
                                     textStyle = MaterialTheme.typography.bodyMedium,
                                     modifier = Modifier.fillMaxWidth(),

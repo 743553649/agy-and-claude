@@ -17,6 +17,7 @@ import androidx.compose.material.icons.outlined.Key
 import androidx.compose.material.icons.outlined.OpenInBrowser
 import androidx.compose.material.icons.outlined.WorkspacePremium
 import androidx.compose.material3.AlertDialog
+import androidx.compose.ui.res.stringResource
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -39,6 +40,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.data.agent.claude.ClaudeAccountManager
+import com.example.gemini.R
 import com.example.gemini.ui.components.ClaudeAccent
 
 /**
@@ -78,7 +80,7 @@ fun ClaudeLoginDialog(account: ClaudeAccountManager, onDismiss: () -> Unit) {
             onDismiss()
         },
         shape = RoundedCornerShape(18.dp),
-        title = { Text("Sign in to Claude Code", fontWeight = FontWeight.Bold) },
+        title = { Text(stringResource(R.string.claude_sign_in_to_claude_code), fontWeight = FontWeight.Bold) },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 val l = login
@@ -96,35 +98,35 @@ fun ClaudeLoginDialog(account: ClaudeAccountManager, onDismiss: () -> Unit) {
                     ) {
                         androidx.compose.material3.Icon(Icons.Outlined.WorkspacePremium, null, modifier = Modifier.size(18.dp))
                         Spacer(Modifier.width(8.dp))
-                        Text("Claude subscription (Pro / Max)")
+                        Text(stringResource(R.string.claude_claude_subscription_pro_max))
                     }
                     OutlinedButton(onClick = { account.startLogin("console") }, enabled = !busy, modifier = Modifier.fillMaxWidth()) {
                         androidx.compose.material3.Icon(Icons.Outlined.Key, null, modifier = Modifier.size(18.dp))
                         Spacer(Modifier.width(8.dp))
-                        Text("Anthropic Console (API billing)")
+                        Text(stringResource(R.string.claude_anthropic_console_api_billing))
                     }
                     if (busy) Row(verticalAlignment = Alignment.CenterVertically) {
                         CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp)
                         Spacer(Modifier.width(8.dp))
-                        Text("Starting…", fontSize = 12.5.sp)
+                        Text(stringResource(R.string.claude_starting), fontSize = 12.5.sp)
                     }
                 } else {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp, color = ClaudeAccent)
                         Spacer(Modifier.width(10.dp))
-                        Text("Waiting for you to approve in the browser…", fontSize = 13.sp)
+                        Text(stringResource(R.string.claude_waiting_for_you_to_approve_in_the_browse), fontSize = 13.sp)
                     }
                     OutlinedButton(onClick = { open(l.automatic_url) }, modifier = Modifier.fillMaxWidth()) {
                         androidx.compose.material3.Icon(Icons.Outlined.OpenInBrowser, null, modifier = Modifier.size(18.dp))
                         Spacer(Modifier.width(8.dp))
-                        Text("Open the sign-in page again")
+                        Text(stringResource(R.string.claude_open_the_sign_in_page_again))
                     }
                     Spacer(Modifier.height(2.dp))
                     if (!useCode) {
                         TextButton(onClick = {
                             useCode = true
                             open(l.manual_url)
-                        }) { Text("Browser can't return to the app? Sign in with a code", fontSize = 12.5.sp) }
+                        }) { Text(stringResource(R.string.claude_browser_can_t_return_to_the_app_sign_in), fontSize = 12.5.sp) }
                     } else {
                         Text(
                             "After approving, Claude shows a code. Paste it here:",
@@ -139,12 +141,12 @@ fun ClaudeLoginDialog(account: ClaudeAccountManager, onDismiss: () -> Unit) {
                             modifier = Modifier.fillMaxWidth()
                         )
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            OutlinedButton(onClick = { open(l.manual_url) }) { Text("Open code page", fontSize = 12.sp) }
+                            OutlinedButton(onClick = { open(l.manual_url) }) { Text(stringResource(R.string.claude_open_code_page), fontSize = 12.sp) }
                             Button(
                                 onClick = { account.submitCode(code.trim()) },
                                 enabled = code.isNotBlank(),
                                 colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)
-                            ) { Text("Submit code", fontSize = 12.sp) }
+                            ) { Text(stringResource(R.string.claude_submit_code), fontSize = 12.sp) }
                         }
                     }
                 }

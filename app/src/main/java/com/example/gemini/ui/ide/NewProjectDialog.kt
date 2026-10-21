@@ -42,7 +42,7 @@ fun NewProjectDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            Text("Create New Project", style = MaterialTheme.typography.titleLarge)
+            Text(stringResource(R.string.ide_create_new_project), style = MaterialTheme.typography.titleLarge)
         },
         text = {
             Column(

@@ -1055,7 +1055,7 @@ fun ChatScreen(
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta)
                     ) {
-                        Text("Open Browser", fontWeight = FontWeight.SemiBold)
+                        Text(stringResource(R.string.chat_open_browser), fontWeight = FontWeight.SemiBold)
                     }
                 },
                 dismissButton = {
@@ -2323,7 +2323,7 @@ fun ChatScreen(
                                 .clickable { restoreCodeOnEdit = !restoreCodeOnEdit }
                         ) {
                             androidx.compose.material3.Checkbox(checked = restoreCodeOnEdit, onCheckedChange = { restoreCodeOnEdit = it })
-                            Text("Also restore files Claude changed after this message", fontSize = 13.5.sp)
+                            Text(stringResource(R.string.chat_also_restore_files_claude_changed_after), fontSize = 13.5.sp)
                         }
                     }
                 }
@@ -2481,7 +2481,7 @@ fun ChatScreen(
                     OutlinedTextField(
                         value = userFeedback,
                         onValueChange = { userFeedback = it },
-                        placeholder = { Text("e.g. It was taking too long, please use grep or find a faster way...", fontSize = 12.5.sp) },
+                        placeholder = { Text(stringResource(R.string.chat_e_g_it_was_taking_too_long_please_use_gr), fontSize = 12.5.sp) },
                         textStyle = androidx.compose.ui.text.TextStyle(fontSize = 13.sp),
                         modifier = Modifier.fillMaxWidth(),
                         maxLines = 3,

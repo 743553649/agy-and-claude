@@ -135,7 +135,7 @@ fun ProjectSidebar(
                     onDismissRequest = { projectsDropdownExpanded = false }
                 ) {
                     DropdownMenuItem(
-                        text = { Text("Available Projects", fontWeight = FontWeight.Bold) },
+                        text = { Text(stringResource(R.string.ide_available_projects), fontWeight = FontWeight.Bold) },
                         onClick = {},
                         enabled = false
                     )
@@ -143,7 +143,7 @@ fun ProjectSidebar(
 
                     if (projects.isEmpty()) {
                         DropdownMenuItem(
-                            text = { Text("No projects found in Termux") },
+                            text = { Text(stringResource(R.string.ide_no_projects_found_in_termux)) },
                             onClick = { projectsDropdownExpanded = false }
                         )
                     } else {
@@ -199,7 +199,7 @@ fun ProjectSidebar(
 
                     HorizontalDivider()
                     DropdownMenuItem(
-                        text = { Text("Browse / File Manager...", color = MaterialTheme.colorScheme.primary) },
+                        text = { Text(stringResource(R.string.ide_browse_file_manager), color = MaterialTheme.colorScheme.primary) },
                         leadingIcon = {
                             Icon(Icons.Default.FolderOpen, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
                         },
@@ -209,7 +209,7 @@ fun ProjectSidebar(
                         }
                     )
                     DropdownMenuItem(
-                        text = { Text("+ New Project", color = MaterialTheme.colorScheme.primary) },
+                        text = { Text(stringResource(R.string.ide_new_project), color = MaterialTheme.colorScheme.primary) },
                         leadingIcon = {
                             Icon(Icons.Default.Add, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
                         },
@@ -434,7 +434,7 @@ fun ProjectSidebar(
                                     modifier = Modifier.size(16.dp)
                                 )
                                 Spacer(modifier = Modifier.width(6.dp))
-                                Text("Retry Now", fontSize = 13.sp)
+                                Text(stringResource(R.string.ide_retry_now), fontSize = 13.sp)
                             }
                         }
                     } else {

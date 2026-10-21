@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  由 scripts/i18n 生成，请勿手工调整条目顺序。
+  译法基准见 docs/i18n/GLOSSARY.md
+-->
+<resources>
+
+    <!-- 原文: Add Shortcut -->
+    <string name="browser_add_shortcut">添加快捷方式</string>
+    <!-- 原文: Add shortcut -->
+    <string name="browser_add_shortcut_2">添加快捷方式</string>
+    <!-- 原文: Are you sure you want to close all open tabs and return to chat? -->
+    <string name="browser_are_you_sure_you_want_to_close_all_open">确定要关闭所有已打开的标签页并返回对话吗？</string>
+    <!-- 原文: Clear Tab Cache -->
+    <string name="browser_clear_tab_cache">清除标签页缓存</string>
+    <!-- 原文: Close All -->
+    <string name="browser_close_all">全部关闭</string>
+    <!-- 原文: Close All Tabs -->
+    <string name="browser_close_all_tabs">关闭所有标签页</string>
+    <!-- 原文: Close Browser -->
+    <string name="browser_close_browser">关闭浏览器</string>
+    <!-- 原文: Close tab -->
+    <string name="browser_close_tab">关闭标签页</string>
+    <!-- 原文: Delete all -->
+    <string name="browser_delete_all">全部删除</string>
+    <!-- 原文: DevTools Inspector -->
+    <string name="browser_devtools_inspector">DevTools 检查器</string>
+    <!-- 原文: e.g. GitHub -->
+    <string name="browser_e_g_github">例如 GitHub</string>
+    <!-- 原文: Forward -->
+    <string name="browser_forward">前进</string>
+    <!-- 原文: Go -->
+    <string name="browser_go">前往</string>
+    <!-- 原文: Google -->
+    <string name="browser_google">Google</string>
+    <!-- 原文: Home -->
+    <string name="browser_home">主页</string>
+    <!-- 原文: Insert -->
+    <string name="browser_insert">插入</string>
+    <!-- 原文: Inspect DevTools -->
+    <string name="browser_inspect_devtools">检查 DevTools</string>
+    <!-- 原文: More Options -->
+    <string name="browser_more_options">更多选项</string>
+    <!-- 原文: New tab -->
+    <string name="browser_new_tab">新建标签页</string>
+    <!-- 原文: No recent search history -->
+    <string name="browser_no_recent_search_history">没有最近的搜索记录</string>
+    <!-- 原文: Remove Shortcut -->
+    <string name="browser_remove_shortcut">移除快捷方式</string>
+    <!-- 原文: Search or type URL -->
+    <string name="browser_search_or_type_url">搜索或输入网址</string>
+    <!-- 原文: Tab closed -->
+    <string name="browser_tab_closed">标签页已关闭</string>
+    <!-- 原文: Unlock -->
+    <string name="browser_unlock">解锁</string>
+</resources>

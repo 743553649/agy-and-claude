@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  由 scripts/i18n 生成，请勿手工调整条目顺序。
+  译法基准见 docs/i18n/GLOSSARY.md
+-->
+<resources>
+
+    <!-- 原文: AI Assistant Bubble -->
+    <string name="ui_ai_assistant_bubble">AI 助手气泡</string>
+    <!-- 原文: Anthropic Claude -->
+    <string name="ui_anthropic_claude">Anthropic Claude</string>
+    <!-- 原文: Apply Custom Budget -->
+    <string name="ui_apply_custom_budget">应用自定义预算</string>
+    <!-- 原文: Back to categories -->
+    <string name="ui_back_to_categories">返回分类</string>
+    <!-- 原文: Chat & IDE -->
+    <string name="ui_chat_ide">对话与 IDE</string>
+    <!-- 原文: Choose how you want to access the Linux command line on your device. -->
+    <string name="ui_choose_how_you_want_to_access_the_linux">选择你在设备上访问 Linux 命令行的方式。</string>
+    <!-- 原文: Classic terminal >_ prompt icon & familiar name -->
+    <string name="ui_classic_terminal_prompt_icon_familiar_na">经典终端 &gt;_ 提示符图标与熟悉的名称</string>
+    <!-- 原文: Configure reasoning depth and token budget -->
+    <string name="ui_configure_reasoning_depth_and_token_budg">配置推理深度与 Token 预算</string>
+    <!-- 原文: Connect your Google account in Settings or tap refresh to load your active models. -->
+    <string name="ui_connect_your_google_account_in_settings">请在设置中关联你的 Google 账号，或点击刷新以加载可用模型。</string>
+    <!-- 原文: DEFAULT -->
+    <string name="ui_default">默认</string>
+    <!-- 原文: Downloaded! Launching installer... -->
+    <string name="ui_downloaded_launching_installer">已下载！正在启动安装程序……</string>
+    <!-- 原文: Downloading... -->
+    <string name="ui_downloading">正在下载……</string>
+    <!-- 原文: GitHub -->
+    <string name="ui_github">GitHub</string>
+    <!-- 原文: Google Gemini -->
+    <string name="ui_google_gemini">Google Gemini</string>
+    <!-- 原文: HOME SCREEN PREVIEW -->
+    <string name="ui_home_screen_preview">桌面预览</string>
+    <!-- 原文: Modern unified icon matching AntiGem -->
+    <string name="ui_modern_unified_icon_matching_antigem">与 AntiGem 匹配的现代统一图标</string>
+    <!-- 原文: New Update Available -->
+    <string name="ui_new_update_available">有新版本可用</string>
+    <!-- 原文: No Models Loaded -->
+    <string name="ui_no_models_loaded">未加载任何模型</string>
+    <!-- 原文: Places a dedicated icon in your app launcher for 1-tap terminal access -->
+    <string name="ui_places_a_dedicated_icon_in_your_app_laun">在应用抽屉中放置独立图标，一键直达终端</string>
+    <!-- 原文: Save & Continue -->
+    <string name="ui_save_continue">保存并继续</string>
+    <!-- 原文: Select Icon & App Name: -->
+    <string name="ui_select_icon_app_name">选择图标与应用名称：</string>
+    <!-- 原文: Select model -->
+    <string name="ui_select_model">选择模型</string>
+    <!-- 原文: Standalone Terminal App Icon -->
+    <string name="ui_standalone_terminal_app_icon">独立终端应用图标</string>
+    <!-- 原文: Tap to choose model -->
+    <string name="ui_tap_to_choose_model">点击选择模型</string>
+    <!-- 原文: Terminal App Setup -->
+    <string name="ui_terminal_app_setup">终端应用设置</string>
+    <!-- 原文: Thinking & Reasoning Level -->
+    <string name="ui_thinking_reasoning_level">思考与推理强度</string>
+    <!-- 原文: Token Budget (1 - 32,768) -->
+    <string name="ui_token_budget_1_32_768">Token 预算（1 - 32,768）</string>
+    <!-- 原文: WHAT'S NEW -->
+    <string name="ui_what_s_new">新功能</string>
+    <!-- 原文: You can always change or toggle this anytime in Settings. -->
+    <string name="ui_you_can_always_change_or_toggle_this_any">你随时可以在设置中更改或开关它。</string>
+</resources>

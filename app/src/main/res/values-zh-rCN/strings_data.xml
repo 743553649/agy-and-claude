@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  由 scripts/i18n 生成，请勿手工调整条目顺序。
+  译法基准见 docs/i18n/GLOSSARY.md
+-->
+<resources>
+
+    <!-- 原文: Antigravity Chat -->
+    <string name="data_antigravity_chat">Antigravity 对话</string>
+    <!-- 原文: Claude Chat -->
+    <string name="data_claude_chat">Claude 对话</string>
+    <!-- 原文: Execution Failure -->
+    <string name="data_execution_failure">执行失败</string>
+    <!-- 原文: Termux Linux environment verified and installed successfully! -->
+    <string name="data_termux_linux_environment_verified_and_in">Termux Linux 环境已验证并安装成功！</string>
+    <!-- 原文: The user cancelled the question. -->
+    <string name="data_the_user_cancelled_the_question">用户取消了该问题。</string>
+    <!-- 原文: The user skipped the question. Continue with your best judgement. -->
+    <string name="data_the_user_skipped_the_question_continue_w">用户跳过了该问题。请按你的最佳判断继续。</string>
+    <!-- 原文: Understood. I will use this context for our conversation. -->
+    <string name="data_understood_i_will_use_this_context_for_o">明白了。我会把这段上下文用于我们的对话。</string>
+</resources>

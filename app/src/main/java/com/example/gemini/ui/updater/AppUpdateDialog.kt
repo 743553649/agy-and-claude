@@ -329,7 +329,7 @@ fun AppUpdateDialog(
                             modifier = Modifier.size(14.dp)
                         )
                         Spacer(modifier = Modifier.width(4.dp))
-                        Text("GitHub", fontSize = 12.5.sp, fontWeight = FontWeight.Medium)
+                        Text(stringResource(R.string.ui_github), fontSize = 12.5.sp, fontWeight = FontWeight.Medium)
                     }
 
                     Row(

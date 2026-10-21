@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  由 scripts/i18n 生成，请勿手工调整条目顺序。
+  译法基准见 docs/i18n/GLOSSARY.md
+-->
+<resources>
+
+    <!-- 原文: Also restore files Claude changed after this message -->
+    <string name="chat_also_restore_files_claude_changed_after">同时恢复 Claude 在此消息之后修改过的文件</string>
+    <!-- 原文: Antigravity requires Google authentication to access Gemini models. -->
+    <string name="chat_antigravity_requires_google_authenticati">Antigravity 需要 Google 身份验证才能访问 Gemini 模型。</string>
+    <!-- 原文: Ask a question, brainstorm ideas, or start coding -->
+    <string name="chat_ask_a_question_brainstorm_ideas_or_start">提问、头脑风暴，或直接开始写代码</string>
+    <!-- 原文: Code Editor IDE -->
+    <string name="chat_code_editor_ide">代码编辑器 IDE</string>
+    <!-- 原文: Command Terminated -->
+    <string name="chat_command_terminated">命令已终止</string>
+    <!-- 原文: Do you want to open your browser to log in now? -->
+    <string name="chat_do_you_want_to_open_your_browser_to_log">要现在打开浏览器登录吗？</string>
+    <!-- 原文: Do you want to stop the model from outputting? The current generation will be stopped immediately. -->
+    <string name="chat_do_you_want_to_stop_the_model_from_outpu">要停止模型继续输出吗？当前生成会立即中断。</string>
+    <!-- 原文: e.g. It was taking too long, please use grep or find a faster way... -->
+    <string name="chat_e_g_it_was_taking_too_long_please_use_gr">例如：它跑得太久了，请改用 grep 或找更快的办法……</string>
+    <!-- 原文: Explain why or give new instructions to AI (optional): -->
+    <string name="chat_explain_why_or_give_new_instructions_to">说明原因，或给 AI 新的指令（可选）：</string>
+    <!-- 原文: How can I help you today? -->
+    <string name="chat_how_can_i_help_you_today">今天我能帮你做什么？</string>
+    <!-- 原文: Minimize to Bubble -->
+    <string name="chat_minimize_to_bubble">最小化为气泡</string>
+    <!-- 原文: Open Browser -->
+    <string name="chat_open_browser">打开浏览器</string>
+    <!-- 原文: Open Drawer -->
+    <string name="chat_open_drawer">打开抽屉</string>
+    <!-- 原文: Open Full Screen -->
+    <string name="chat_open_full_screen">打开全屏</string>
+    <!-- 原文: Send to AI & Proceed -->
+    <string name="chat_send_to_ai_proceed">发送给 AI 并继续</string>
+    <!-- 原文: Sign In with Browser -->
+    <string name="chat_sign_in_with_browser">用浏览器登录</string>
+    <!-- 原文: Stop Generation? -->
+    <string name="chat_stop_generation">停止生成？</string>
+    <!-- 原文: Stop Output -->
+    <string name="chat_stop_output">停止输出</string>
+    <!-- 原文: Stop Turn Here -->
+    <string name="chat_stop_turn_here">在此停止本轮</string>
+    <!-- 原文: Unable to Load Chat -->
+    <string name="chat_unable_to_load_chat">无法加载对话</string>
+    <!-- 原文: Web Browser Preview -->
+    <string name="chat_web_browser_preview">网页浏览器预览</string>
+    <!-- 原文: You stopped the running command: -->
+    <string name="chat_you_stopped_the_running_command">你停止了正在运行的命令：</string>
+</resources>

@@ -296,7 +296,7 @@ fun ChatHistoryDrawer(
         val (inst, title) = instanceToTerminate!!
         AlertDialog(
             onDismissRequest = { instanceToTerminate = null },
-            title = { Text("Active CLI Process", fontWeight = FontWeight.Bold, fontSize = 16.sp) },
+            title = { Text(stringResource(R.string.drawer_active_cli_process), fontWeight = FontWeight.Bold, fontSize = 16.sp) },
             text = {
                 Column {
                     Text(
@@ -336,12 +336,12 @@ fun ChatHistoryDrawer(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
                 ) {
-                    Text("Terminate & Free RAM", fontSize = 13.sp)
+                    Text(stringResource(R.string.drawer_terminate_free_ram), fontSize = 13.sp)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { instanceToTerminate = null }) {
-                    Text("Keep Running", fontSize = 13.sp)
+                    Text(stringResource(R.string.drawer_keep_running), fontSize = 13.sp)
                 }
             }
         )
@@ -374,7 +374,7 @@ fun ChatHistoryDrawer(
                             onCheckAuth()
                         }
                     ) {
-                        Text("Check Status")
+                        Text(stringResource(R.string.drawer_check_status))
                     }
                     Button(
                         onClick = {
@@ -382,7 +382,7 @@ fun ChatHistoryDrawer(
                             onLogin()
                         }
                     ) {
-                        Text("Sign In Again")
+                        Text(stringResource(R.string.drawer_sign_in_again))
                     }
                 }
             },
@@ -479,7 +479,7 @@ fun ChatHistoryDrawer(
                         modifier = Modifier.size(16.dp)
                     )
                     Spacer(modifier = Modifier.width(6.dp))
-                    Text("Exit App", fontWeight = FontWeight.SemiBold, fontSize = 13.5.sp)
+                    Text(stringResource(R.string.drawer_exit_app), fontWeight = FontWeight.SemiBold, fontSize = 13.5.sp)
                 }
             },
             dismissButton = {
@@ -1620,7 +1620,7 @@ private fun ChatHistoryItemRow(
             var newTitle by remember { mutableStateOf(conv.title) }
             AlertDialog(
                 onDismissRequest = { showRename = false },
-                title = { Text("Rename chat", fontWeight = FontWeight.Bold) },
+                title = { Text(stringResource(R.string.drawer_rename_chat), fontWeight = FontWeight.Bold) },
                 text = {
                     OutlinedTextField(value = newTitle, onValueChange = { newTitle = it }, singleLine = true, modifier = Modifier.fillMaxWidth())
                 },
@@ -1656,7 +1656,7 @@ private fun ChatHistoryItemRow(
                 modifier = Modifier.widthIn(min = 210.dp)
             ) {
                 DropdownMenuItem(
-                    text = { Text("Copy Conversation ID", fontSize = 13.5.sp) },
+                    text = { Text(stringResource(R.string.drawer_copy_conversation_id), fontSize = 13.5.sp) },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Outlined.ContentCopy,
@@ -1672,7 +1672,7 @@ private fun ChatHistoryItemRow(
                     }
                 )
                 DropdownMenuItem(
-                    text = { Text("Fork Conversation", fontSize = 13.5.sp) },
+                    text = { Text(stringResource(R.string.drawer_fork_conversation), fontSize = 13.5.sp) },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.CallSplit,
@@ -1708,7 +1708,7 @@ private fun ChatHistoryItemRow(
                     modifier = Modifier.padding(vertical = 4.dp)
                 )
                 DropdownMenuItem(
-                    text = { Text("Export Markdown (.md)", fontSize = 13.5.sp) },
+                    text = { Text(stringResource(R.string.drawer_export_markdown_md), fontSize = 13.5.sp) },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Outlined.Description,
@@ -1733,7 +1733,7 @@ private fun ChatHistoryItemRow(
                     }
                 )
                 DropdownMenuItem(
-                    text = { Text("Export Standalone HTML", fontSize = 13.5.sp) },
+                    text = { Text(stringResource(R.string.drawer_export_standalone_html), fontSize = 13.5.sp) },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Outlined.Code,

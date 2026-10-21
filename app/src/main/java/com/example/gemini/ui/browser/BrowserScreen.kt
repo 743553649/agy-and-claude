@@ -673,7 +673,7 @@ fun BrowserScreen(
                                 }
                             )
                             DropdownMenuItem(
-                                text = { Text("DevTools Inspector") },
+                                text = { Text(stringResource(R.string.browser_devtools_inspector)) },
                                 leadingIcon = { Icon(Icons.Outlined.Code, contentDescription = null) },
                                 onClick = {
                                     showMoreMenu = false
@@ -689,7 +689,7 @@ fun BrowserScreen(
                                 }
                             )
                             DropdownMenuItem(
-                                text = { Text("Clear Tab Cache") },
+                                text = { Text(stringResource(R.string.browser_clear_tab_cache)) },
                                 leadingIcon = { Icon(Icons.Outlined.DeleteOutline, contentDescription = null) },
                                 onClick = {
                                     showMoreMenu = false
@@ -698,7 +698,7 @@ fun BrowserScreen(
                             )
                             HorizontalDivider()
                             DropdownMenuItem(
-                                text = { Text("Close Browser", color = MaterialTheme.colorScheme.error) },
+                                text = { Text(stringResource(R.string.browser_close_browser), color = MaterialTheme.colorScheme.error) },
                                 leadingIcon = { Icon(Icons.Default.Close, contentDescription = null, tint = MaterialTheme.colorScheme.error) },
                                 onClick = {
                                     showMoreMenu = false
@@ -1148,21 +1148,21 @@ private fun SpeedDialHomeView(
 
         AlertDialog(
             onDismissRequest = { showAddDialog = false },
-            title = { Text("Add Shortcut", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.browser_add_shortcut), fontWeight = FontWeight.Bold) },
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     OutlinedTextField(
                         value = newTitle,
                         onValueChange = { newTitle = it },
                         label = { Text(stringResource(R.string.common_name)) },
-                        placeholder = { Text("e.g. GitHub") },
+                        placeholder = { Text(stringResource(R.string.browser_e_g_github)) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth()
                     )
                     OutlinedTextField(
                         value = newUrl,
                         onValueChange = { newUrl = it },
-                        label = { Text("URL") },
+                        label = { Text(stringResource(R.string.common_url)) },
                         placeholder = { Text("https://github.com") },
                         singleLine = true,
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Uri),
@@ -1195,7 +1195,7 @@ private fun SpeedDialHomeView(
     shortcutToDelete?.let { sc ->
         AlertDialog(
             onDismissRequest = { shortcutToDelete = null },
-            title = { Text("Remove Shortcut") },
+            title = { Text(stringResource(R.string.browser_remove_shortcut)) },
             text = { Text("Remove '${sc.title}' from your home shortcuts?") },
             confirmButton = {
                 Button(
@@ -1464,7 +1464,7 @@ private fun TabOverviewScreen(
                     ) {
                         Icon(Icons.Default.DeleteOutline, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(4.dp))
-                        Text("Delete all", fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+                        Text(stringResource(R.string.browser_delete_all), fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
                     }
 
                     // "+" New Tab on bottom right
@@ -1479,7 +1479,7 @@ private fun TabOverviewScreen(
                     ) {
                         Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("New tab", fontSize = 13.5.sp, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.browser_new_tab), fontSize = 13.5.sp, fontWeight = FontWeight.Bold)
                     }
                 }
             }
@@ -1567,8 +1567,8 @@ private fun TabOverviewScreen(
     if (showDeleteAllConfirm) {
         AlertDialog(
             onDismissRequest = { showDeleteAllConfirm = false },
-            title = { Text("Close All Tabs") },
-            text = { Text("Are you sure you want to close all open tabs and return to chat?") },
+            title = { Text(stringResource(R.string.browser_close_all_tabs)) },
+            text = { Text(stringResource(R.string.browser_are_you_sure_you_want_to_close_all_open)) },
             confirmButton = {
                 Button(
                     onClick = {
@@ -1577,7 +1577,7 @@ private fun TabOverviewScreen(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
                 ) {
-                    Text("Close All")
+                    Text(stringResource(R.string.browser_close_all))
                 }
             },
             dismissButton = {
@@ -2005,7 +2005,7 @@ private fun BrowserAiLockOverlay(busy: Boolean, onUnlock: () -> Unit) {
                         contentPadding = PaddingValues(horizontal = 10.dp, vertical = 0.dp),
                         modifier = Modifier.height(28.dp)
                     ) {
-                        Text("Unlock", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = Color(0xFFFFB38A))
+                        Text(stringResource(R.string.browser_unlock), fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = Color(0xFFFFB38A))
                     }
                 }
             }

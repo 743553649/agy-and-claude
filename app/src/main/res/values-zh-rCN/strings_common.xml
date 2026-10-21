@@ -11,6 +11,8 @@
     <string name="common_add">添加</string>
     <!-- 原文: AI Chat -->
     <string name="common_ai_chat">AI 对话</string>
+    <!-- 原文: ALT -->
+    <string name="common_alt">ALT</string>
     <!-- 原文: Back -->
     <string name="common_back">返回</string>
     <!-- 原文: Cancel -->
@@ -27,6 +29,8 @@
     <string name="common_close_tab">关闭标签页</string>
     <!-- 原文: Create -->
     <string name="common_create">创建</string>
+    <!-- 原文: CTRL -->
+    <string name="common_ctrl">CTRL</string>
     <!-- 原文: Delete -->
     <string name="common_delete">删除</string>
     <!-- 原文: Details -->
@@ -39,6 +43,8 @@
     <string name="common_done">完成</string>
     <!-- 原文: Edit -->
     <string name="common_edit">编辑</string>
+    <!-- 原文: ESC -->
+    <string name="common_esc">ESC</string>
     <!-- 原文: Failed to load image -->
     <string name="common_failed_to_load_image">图片加载失败</string>
     <!-- 原文: Install -->
@@ -101,8 +107,12 @@
     <string name="common_undo">撤销</string>
     <!-- 原文: Update -->
     <string name="common_update">更新</string>
+    <!-- 原文: URL -->
+    <string name="common_url">URL</string>
     <!-- 原文: + WebView Extension MCP -->
     <string name="common_webview_extension_mcp">+ WebView 扩展 MCP</string>
+    <!-- 原文: YouTube -->
+    <string name="common_youtube">YouTube</string>
     <!-- 原文: Zoom In -->
     <string name="common_zoom_in">放大</string>
     <!-- 原文: Zoom Out -->
