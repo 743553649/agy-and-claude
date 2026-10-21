@@ -202,6 +202,25 @@ base64 -w0 release.jks > keystore.b64
 
 **没有这个 secret 时只能产出 debug 签名包，无法覆盖安装官方版本**（签名不匹配，只能卸载重装，数据全丢）。
 
+### 当前产物的实测数据（commit `715f480`，run 39690787215）
+
+```
+$ aapt2 dump badging antiGem-termux-v1.0.13-debug-715f480.apk
+package: name='com.termux' versionCode='113' versionName='1.0.13'
+sdkVersion:'24' targetSdkVersion:'28'
+```
+
+CI 日志：
+```
+##[warning]未配置 RELEASE_KEYSTORE_BASE64，本次只能产出 debug 签名包，无法覆盖安装官方版本
+==> :app:assembleTermuxDebug (debug 签名)
+artifact: antiGem-termux-715f4807eae3a029cadcedc42ab194c452dd56e5  (39 MB)
+```
+
+即：**包名已与上游一致（`com.termux`），但签名仍是 debug**。
+下一轮第一件事就是让用户配置 `RELEASE_KEYSTORE_BASE64`，然后 CI 会自动切到
+`:app:assembleTermuxRelease`，产物文件名里的 `debug` 会变成 `release`。
+
 ## 9. 关键文件索引
 
 | 路径 | 说明 |
