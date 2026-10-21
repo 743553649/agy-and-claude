@@ -22,6 +22,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.theme.ClaudeTerracotta
 import java.io.File
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 sealed class DiffLineType {
     object HunkHeader : DiffLineType()
@@ -145,9 +147,9 @@ fun UnifiedDiffViewer(
                         .background(Color(0xFF1E1E1E), RoundedCornerShape(4.dp))
                         .padding(horizontal = 6.dp, vertical = 2.dp)
                 ) {
-                    Text(text = "+$additionsCount", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = Color(0xFF4CAF50))
+                    Text(text = stringResource(R.string.ide_additionscount, additionsCount), fontSize = 12.sp, fontWeight = FontWeight.Bold, color = Color(0xFF4CAF50))
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text(text = "-$deletionsCount", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = Color(0xFFF44336))
+                    Text(text = stringResource(R.string.ide_deletionscount, deletionsCount), fontSize = 12.sp, fontWeight = FontWeight.Bold, color = Color(0xFFF44336))
                 }
 
                 Spacer(modifier = Modifier.width(6.dp))

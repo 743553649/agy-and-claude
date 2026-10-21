@@ -214,7 +214,7 @@ fun ContextSummarizeAlertBanner(
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "Context Threshold Reached ($messageCount msgs)",
+                    text = stringResource(R.string.component_context_threshold_reached_messagecount_m, messageCount),
                     fontSize = 13.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurface
@@ -223,7 +223,7 @@ fun ContextSummarizeAlertBanner(
 
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = "Summarizing older conversation turns keeps replies fast and saves tokens while keeping the last $windowLimit messages verbatim.",
+                text = stringResource(R.string.component_summarizing_older_conversation_turns_kee, windowLimit),
                 fontSize = 11.5.sp,
                 lineHeight = 16.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -342,7 +342,7 @@ fun LiveSummarizingCard(
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "Summarizing context with $modelName...",
+                    text = stringResource(R.string.component_summarizing_context_with_modelname, modelName),
                     fontSize = 12.5.sp,
                     fontWeight = FontWeight.Medium,
                     color = MaterialTheme.colorScheme.onSurface
@@ -352,7 +352,7 @@ fun LiveSummarizingCard(
             if (!pendingQueuedMessage.isNullOrBlank()) {
                 Spacer(modifier = Modifier.height(6.dp))
                 Text(
-                    text = "⏳ Queued: \"${pendingQueuedMessage.take(80)}\"${if (pendingQueuedMessage.length > 80) "..." else ""} (will send immediately after summary)",
+                    text = stringResource(R.string.component_queued_pendingqueuedmessage_take_80_if_p_2, pendingQueuedMessage.take(80), if (pendingQueuedMessage.length > 80) "..." else ""),
                     fontSize = 11.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

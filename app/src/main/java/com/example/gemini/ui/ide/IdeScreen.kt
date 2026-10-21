@@ -1438,7 +1438,7 @@ fun IdeScreen(
                     onDismissRequest = { tabToClose = null },
                     icon = { Icon(Icons.Default.Warning, contentDescription = null, tint = ClaudeTerracotta) },
                     title = { Text(stringResource(R.string.ide_unsaved_changes), fontWeight = FontWeight.Bold) },
-                    text = { Text("Do you want to save the changes made to '${closingTarget.name}' before closing?") },
+                    text = { Text(stringResource(R.string.ide_do_you_want_to_save_the_changes_made_to, closingTarget.name)) },
                     confirmButton = {
                         Button(
                             onClick = {
@@ -1489,7 +1489,7 @@ fun IdeScreen(
                     title = { Text(stringResource(R.string.ide_file_conflict_detected), fontWeight = FontWeight.Bold) },
                     text = {
                         Column {
-                            Text("The file '${conflictingTarget.name}' has been modified on disk or by AI.")
+                            Text(stringResource(R.string.ide_the_file_conflictingtarget_name_has_been, conflictingTarget.name))
                             Spacer(modifier = Modifier.height(8.dp))
                             Text(stringResource(R.string.ide_choose_whether_to_overwrite_the_disk_ver),
                                 fontSize = 12.sp,
@@ -1644,7 +1644,7 @@ fun IdeScreen(
                     text = {
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                             Text(
-                                text = "\"${tabInfo.name}\" appears to be a non-text / binary file (${tabInfo.mimeType}).",
+                                text = stringResource(R.string.ide_tabinfo_name_appears_to_be_a_non_text_bi, tabInfo.name, tabInfo.mimeType),
                                 style = MaterialTheme.typography.bodyMedium,
                                 fontWeight = FontWeight.SemiBold
                             )

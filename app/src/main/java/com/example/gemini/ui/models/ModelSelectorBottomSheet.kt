@@ -39,6 +39,8 @@ import com.example.gemini.domain.model.ModelQuota
 import com.example.gemini.theme.*
 import kotlin.math.roundToInt
 import kotlinx.coroutines.launch
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 enum class CategoryType {
     GEMINI,
@@ -506,7 +508,7 @@ private fun CategoryModelsSubView(
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
-                    text = "${groupedModels.size} base models • ${models.size} variants",
+                    text = stringResource(R.string.ui_groupedmodels_size_base_models_models_si, groupedModels.size, models.size),
                     fontSize = 11.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
                 )
@@ -696,7 +698,7 @@ private fun CategoryNavigationTile(
                             .padding(horizontal = 6.dp, vertical = 1.5.dp)
                     ) {
                         Text(
-                            text = "$count",
+                            text = stringResource(R.string.ui_count, count),
                             fontSize = 10.5.sp,
                             fontWeight = FontWeight.Bold,
                             color = brandColor

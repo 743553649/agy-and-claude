@@ -299,7 +299,7 @@ fun WorkspaceFolderBrowserDialog(
             text = {
                 Column {
                     Text(
-                        text = "Create folder inside: $currentPath",
+                        text = stringResource(R.string.component_create_folder_inside_currentpath, currentPath),
                         fontSize = 11.5.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                     )

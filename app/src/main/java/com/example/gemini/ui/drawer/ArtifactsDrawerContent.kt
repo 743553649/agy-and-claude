@@ -39,6 +39,8 @@ import com.example.gemini.ui.components.LocalFileLinkHandler
 import com.example.gemini.ui.components.LocalSnackbarHostState
 import kotlinx.coroutines.launch
 import java.io.File
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 @Composable
 fun ArtifactsDrawerContent(
@@ -99,7 +101,7 @@ fun ArtifactsDrawerContent(
                         border = BorderStroke(0.8.dp, ClaudeTerracotta.copy(alpha = 0.35f))
                     ) {
                         Text(
-                            text = "${artifacts.size}",
+                            text = stringResource(R.string.drawer_artifacts_size, artifacts.size),
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
                             color = ClaudeTerracotta,

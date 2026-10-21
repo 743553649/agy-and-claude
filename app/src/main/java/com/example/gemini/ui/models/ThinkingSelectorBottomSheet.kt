@@ -172,7 +172,7 @@ fun ThinkingSelectorBottomSheet(
                                 supportingText = {
                                     val tokens = customTokensText.toIntOrNull() ?: 0
                                     val chars = tokens * 4
-                                    Text("Allocates ~$chars characters of reasoning capacity")
+                                    Text(stringResource(R.string.ui_allocates_chars_characters_of_reasoning, chars))
                                 }
                             )
 

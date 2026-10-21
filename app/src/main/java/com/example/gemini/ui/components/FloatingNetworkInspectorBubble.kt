@@ -35,6 +35,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import com.example.gemini.data.remote.inspector.NetworkInspectorManager
 import kotlin.math.roundToInt
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 @Composable
 fun FloatingNetworkInspectorBubble(
@@ -102,7 +104,7 @@ fun FloatingNetworkInspectorBubble(
 
                     // Call count
                     Text(
-                        text = "${logs.size}",
+                        text = stringResource(R.string.component_logs_size, logs.size),
                         fontSize = 11.5.sp,
                         fontWeight = FontWeight.Bold,
                         fontFamily = FontFamily.Monospace,
@@ -127,7 +129,7 @@ fun FloatingNetworkInspectorBubble(
                                         .background(Color(0xFF10B981))
                                 )
                                 Text(
-                                    text = "$activeStreams stream",
+                                    text = stringResource(R.string.component_activestreams_stream, activeStreams),
                                     fontSize = 9.5.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = Color(0xFF10B981)
@@ -143,7 +145,7 @@ fun FloatingNetworkInspectorBubble(
                             color = Color(0xFFEF4444).copy(alpha = 0.18f)
                         ) {
                             Text(
-                                text = "$errorCount err",
+                                text = stringResource(R.string.component_errorcount_err, errorCount),
                                 fontSize = 9.5.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color(0xFFEF4444),

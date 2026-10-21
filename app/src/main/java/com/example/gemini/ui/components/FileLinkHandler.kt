@@ -189,7 +189,7 @@ fun FileDetailsDialog(
                         Column {
                             Text(stringResource(R.string.component_lines), fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                             Text(
-                                text = "${details.lineCount} lines",
+                                text = stringResource(R.string.component_details_linecount_lines, details.lineCount),
                                 fontSize = 13.sp,
                                 fontWeight = FontWeight.Medium
                             )

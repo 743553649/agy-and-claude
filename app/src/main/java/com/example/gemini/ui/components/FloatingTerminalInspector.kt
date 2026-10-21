@@ -550,7 +550,7 @@ private fun TerminalCommandCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "$ ${command.command}",
+                    text = stringResource(R.string.component_command_command, command.command),
                     fontFamily = FontFamily.Monospace,
                     fontWeight = FontWeight.Bold,
                     fontSize = 12.sp,
@@ -560,7 +560,7 @@ private fun TerminalCommandCard(
 
                 if (command.durationMs > 0) {
                     Text(
-                        text = "${command.durationMs}ms",
+                        text = stringResource(R.string.component_command_durationms_ms, command.durationMs),
                         fontSize = 10.sp,
                         color = Color.Gray,
                         modifier = Modifier.padding(horizontal = 4.dp)
@@ -575,7 +575,7 @@ private fun TerminalCommandCard(
                             .padding(horizontal = 5.dp, vertical = 1.dp)
                     ) {
                         Text(
-                            text = "exit ${command.exitCode}",
+                            text = stringResource(R.string.component_exit_command_exitcode, command.exitCode),
                             fontSize = 9.sp,
                             fontWeight = FontWeight.Bold,
                             color = if (isSuccess) QuotaGreen else Color.Red

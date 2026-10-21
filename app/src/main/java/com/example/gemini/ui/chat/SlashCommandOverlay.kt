@@ -44,6 +44,8 @@ import com.example.gemini.data.remote.SlashCommandItem
 import com.example.gemini.theme.QuotaGreen
 import com.example.gemini.ui.components.AgyAccent
 import com.example.gemini.theme.ClaudeTerracotta
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 private data class SlashGroup(val title: String, val icon: ImageVector, val color: Color)
 
@@ -97,7 +99,7 @@ fun SlashCommandOverlay(
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                             modifier = Modifier.weight(1f)
                         )
-                        Text("${list.size}", fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f))
+                        Text(stringResource(R.string.chat_list_size, list.size), fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f))
                     }
                 }
                 items(list, key = { "${it.type}_${it.command}" }) { item ->

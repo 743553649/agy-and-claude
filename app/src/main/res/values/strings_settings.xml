@@ -41,6 +41,7 @@
     <string name="settings_always_ask">✋ Always Ask</string>
     <string name="settings_antigem_connects_via_grpc_web_to_stream">AntiGem connects via gRPC-Web to stream live agent steps and tool executions.</string>
     <string name="settings_antigem_environment">AntiGem Environment</string>
+    <string name="settings_antigem_is_wiping_all_local_app_data_roo">AntiGem is wiping all local app data, rootfs, and settings.\n\nThe app will automatically close in $countdownSeconds seconds. Simply re-open AntiGem to start fresh.</string>
     <string name="settings_antigem_runs_a_full_ubuntu_linux_environ">AntiGem runs a full Ubuntu Linux environment inside a user-space PRoot container on 64-bit ARM. No device root required.</string>
     <string name="settings_antigem_space_manager">AntiGem Space Manager</string>
     <string name="settings_antigravity_mobile_hub_ai_pair_programme">Antigravity Mobile Hub &amp; AI Pair Programmer</string>
@@ -54,6 +55,8 @@
     <string name="settings_archive_password_if_encrypted">Archive Password (if encrypted)</string>
     <string name="settings_archive_selected_projects_workspaces_res">Archive selected projects, workspaces &amp; restore from zip</string>
     <string name="settings_archive_size">Archive Size:</string>
+    <string name="settings_are_you_sure_you_want_to_delete_plugin_d">Are you sure you want to delete \'${plugin.displayName.ifBlank { plugin.name }}\' (${plugin.name})? This will remove its bundled skills from ~/.gemini/config/plugins/.</string>
+    <string name="settings_are_you_sure_you_want_to_remove_targetna">Are you sure you want to remove \\"$targetName\\" from global mcp_config.json? The server and its tools will be disconnected.</string>
     <string name="settings_are_you_sure_you_want_to_wipe_all_antige">Are you sure you want to wipe all AntiGem data? This will permanently delete all Linux packages, workspaces, accounts, and chats.</string>
     <string name="settings_arguments_space_separated">Arguments (space separated)</string>
     <string name="settings_artifact_review_policy">Artifact Review Policy</string>
@@ -75,15 +78,18 @@
     <string name="settings_base_minimum_termux">Base Minimum Termux</string>
     <string name="settings_binary_executable_paths">Binary Executable Paths</string>
     <string name="settings_bootstrap_rootfs_successfully_configured">Bootstrap rootfs successfully configured. The interactive terminal, Go IDE backend, and AGY AI language server are now ready to run.</string>
+    <string name="settings_bridge_http_sharedhost_trim_bridgeport_t">Bridge: http://${sharedHost.trim()}:${bridgePort.trim()}</string>
     <string name="settings_browse_mcp_catalog_marketplace_1_click">Browse MCP Catalog / Marketplace (1-Click)</string>
     <string name="settings_browser_automation">Browser Automation</string>
     <string name="settings_build_package_information">Build &amp; Package Information</string>
     <string name="settings_build_type">Build Type</string>
+    <string name="settings_bundled_skills_plugin_skills_size">Bundled Skills (${plugin.skills.size}):</string>
     <string name="settings_cancel_search">Cancel Search</string>
     <string name="settings_cascade_mcp_catalog">Cascade MCP Catalog</string>
     <string name="settings_categorize_chat_history_in_drawer_under">Categorize chat history in drawer under workspace folders matching repository paths</string>
     <string name="settings_change">Change</string>
     <string name="settings_change_source">Change Source</string>
+    <string name="settings_chat_text_scaling_chatfontscale_100_toin">Chat Text Scaling (${(chatFontScale * 100).toInt()}%)</string>
     <string name="settings_check_for_updates">Check for Updates</string>
     <string name="settings_checking_github">Checking GitHub...</string>
     <string name="settings_checks_github_releases_for_new_versions">Checks GitHub releases for new versions and downloads the matching APK directly.</string>
@@ -97,6 +103,7 @@
     <string name="settings_command">Command *</string>
     <string name="settings_commands_permissions">Commands &amp; Permissions</string>
     <string name="settings_configure_local_process_stdio_or_remote">Configure local process (Stdio) or remote (SSE) MCP servers. Discovered tools are dynamically available to all models during chat turns.</string>
+    <string name="settings_configured_servers_mcpservers_size">Configured Servers (${mcpServers.size})</string>
     <string name="settings_configuring_shell_symlinks">Configuring Shell &amp; Symlinks</string>
     <string name="settings_confirm_destruction">Confirm Destruction</string>
     <string name="settings_confirm_download">Confirm &amp; Download</string>
@@ -109,7 +116,9 @@
     <string name="settings_controls_terminal_command_execution_and">Controls terminal command execution and file access outside working directory.</string>
     <string name="settings_controls_whether_the_assistant_asks_you">Controls whether the assistant asks you to review and approve documents it creates.</string>
     <string name="settings_copy_header">Copy Header</string>
+    <string name="settings_could_not_retrieve_daemon_permissions_an_2">Could not retrieve daemon permissions and security state:\n${globalSettingsError ?: \"RPC connection failed\"}\n\nMake sure AGY is running (e.g. agy --hub) and check your Server settings.</string>
     <string name="settings_could_not_retrieve_mcp_server_states_ens">Could not retrieve MCP server states. Ensure the Antigravity daemon is running on this device or accessible at the configured Hub URL.</string>
+    <string name="settings_countdownseconds_s">${countdownSeconds}s</string>
     <string name="settings_cpu_arch">CPU Arch</string>
     <string name="settings_creates_a_full_portable_backup_of_all_in">Creates a full, portable backup of all installed packages, libraries, binaries, shell configurations, and user home dotfiles. Excludes active sockets, volatile caches, and auth tokens.</string>
     <string name="settings_current_telemetry_snapshot">Current Telemetry Snapshot</string>
@@ -117,6 +126,7 @@
     <string name="settings_custom_paths_used_when_auto_starting_ide">Custom paths used when auto-starting IDE Bridge, AGY Hub and Claude Code</string>
     <string name="settings_custom_restore_directory">Custom Restore Directory</string>
     <string name="settings_customize_icons_order">Customize Icons &amp; Order</string>
+    <string name="settings_cwd_server_spec_cwd">cwd: ${server.spec!!.cwd}</string>
     <string name="settings_danger_zone_factory_reset">Danger Zone: Factory Reset</string>
     <string name="settings_data_loss_prevention">Data Loss Prevention</string>
     <string name="settings_data_loss_protection">Data Loss Protection</string>
@@ -160,6 +170,7 @@
     <string name="settings_export_to_downloads">Export to Downloads</string>
     <string name="settings_exposed_mcp_tools_6">Exposed MCP Tools (6):</string>
     <string name="settings_exposed_mcp_tools_9">Exposed MCP Tools (9):</string>
+    <string name="settings_extension_name_extension_toolcount_tools">${extension.name} · ${extension.toolCount} tools</string>
     <string name="settings_factory_reset_in_progress">Factory Reset in Progress</string>
     <string name="settings_files_outside_workspace">Files Outside Workspace:</string>
     <string name="settings_floating_app_switcher">Floating App Switcher</string>
@@ -168,7 +179,9 @@
     <string name="settings_flow_automation">Flow Automation</string>
     <string name="settings_folder_name">Folder name</string>
     <string name="settings_font_size">Font Size</string>
+    <string name="settings_fontsizestate_pt">${fontSizeState}pt</string>
     <string name="settings_format">Format</string>
+    <string name="settings_from_skill_pluginname">from ${skill.pluginName}</string>
     <string name="settings_full_raw_archive">Full Raw Archive</string>
     <string name="settings_get_started">Get Started</string>
     <string name="settings_git_aware_clean">Git-Aware (Clean)</string>
@@ -181,9 +194,13 @@
     <string name="settings_google_flow_image_video_generation">Google Flow image &amp; video generation</string>
     <string name="settings_granular_permission_grants">Granular Permission Grants</string>
     <string name="settings_group_chats_by_workspace">Group Chats by Workspace</string>
+    <string name="settings_headers_server_spec_headers_keys_jointos_2">Headers: ${server.spec!!.headers.keys.joinToString(\", \")}</string>
     <string name="settings_horizontal">Horizontal</string>
     <string name="settings_how_does_antigem_connect_to_agy_hub">How does AntiGem connect to AGY Hub?</string>
+    <string name="settings_http_framed_header_framedheader">HTTP Framed Header: $framedHeader</string>
     <string name="settings_http_headers_header_value_per_line">HTTP Headers (Header: Value per line)</string>
+    <string name="settings_hub_http_sharedhost_trim_hubport_trim">Hub: http://${sharedHost.trim()}:${hubPort.trim()}</string>
+    <string name="settings_id_plugin_id">ID: ${plugin.id}</string>
     <string name="settings_ide_agy_projects_backup_restore">IDE &amp; AGY Projects Backup &amp; Restore</string>
     <string name="settings_ide_bridge_binary_path">IDE Bridge Binary Path</string>
     <string name="settings_ide_bridge_port">IDE Bridge Port</string>
@@ -216,6 +233,7 @@
     <string name="settings_mcp_server_required">MCP Server Required</string>
     <string name="settings_mcp_servers_tools">MCP Servers &amp; Tools</string>
     <string name="settings_minimal_33mb">Minimal (~33MB)</string>
+    <string name="settings_mode_mode">Mode: $mode</string>
     <string name="settings_model_context_protocol_mcp">Model Context Protocol (MCP)</string>
     <string name="settings_modern_antigem_styled_icon_name">Modern AntiGem styled icon &amp; name</string>
     <string name="settings_move_down">Move Down</string>
@@ -226,6 +244,7 @@
     <string name="settings_network_inspector_live_logs">Network Inspector (Live Logs)</string>
     <string name="settings_no_extensions_installed_choose_a_zip_con">No extensions installed. Choose a ZIP containing manifest.json and a background worker.</string>
     <string name="settings_no_markdown_content_found_in_skill_md">No markdown content found in SKILL.md</string>
+    <string name="settings_no_mcp_packages_found_matching_searchque">No MCP packages found matching \'$searchQuery\'</string>
     <string name="settings_no_mcp_servers_configured">No MCP Servers Configured</string>
     <string name="settings_no_official_google_plugins_catalog_avail">No official Google plugins catalog available.</string>
     <string name="settings_no_open_projects_or_workspaces_detected">No open projects or workspaces detected in the IDE.</string>
@@ -242,6 +261,8 @@
     <string name="settings_passed_to_the_bridge_on_launch_bin_for_a">• Passed to the bridge on launch (--bin for AGY, --claude-bin for Claude Code) so auto-start executes the designated binary directly without interactive prompts.</string>
     <string name="settings_password">Password</string>
     <string name="settings_performs_a_complete_wipe_of_all_app_data">Performs a complete wipe of all app data, removing Linux packages, accounts, and chats.</string>
+    <string name="settings_plugins_installedplugins_size">Plugins (${installedPlugins.size})</string>
+    <string name="settings_pname">+ $pName</string>
     <string name="settings_port">Port</string>
     <string name="settings_preserves_existing_code_in_a_backup_fold">Preserves existing code in a backup folder before extracting</string>
     <string name="settings_proceed_to_confirmation">Proceed to Confirmation</string>
@@ -252,6 +273,8 @@
     <string name="settings_projects_backup_packager">Projects Backup Packager</string>
     <string name="settings_projects_backup_restore">Projects Backup &amp; Restore</string>
     <string name="settings_projects_can_inherit_the_global_policy_a">Projects can inherit the global policy above or maintain specific overrides.</string>
+    <string name="settings_projects_in_archive_manifestprojects_siz">Projects in Archive (${manifestProjects.size}):</string>
+    <string name="settings_projectslist_count_it_isinheritingglobal">${projectsList.count { it.isInheritingGlobal }}/${projectsList.size} Inheriting</string>
     <string name="settings_prompt_for_confirmation_before_assistant">Prompt for confirmation before assistant applies file edits or writes code to disk.</string>
     <string name="settings_protect_your_local_linux_environment_cli">Protect your local Linux environment, CLI tools, databases, and AI coding workspaces from accidental wipe or uninstall.</string>
     <string name="settings_quick_presets_templates">Quick Presets &amp; Templates</string>
@@ -259,6 +282,7 @@
     <string name="settings_readme">README</string>
     <string name="settings_release_changelogs">Release Changelogs</string>
     <string name="settings_release_tag">Release Tag:</string>
+    <string name="settings_remote_plugin_remote_template_serverurl">🌐 Remote: ${plugin.remote.template.serverUrl}</string>
     <string name="settings_remove_mcp_server">Remove MCP Server?</string>
     <string name="settings_rename_extension_folder">Rename extension folder</string>
     <string name="settings_rename_folder">Rename folder</string>
@@ -281,10 +305,12 @@
     <string name="settings_review_file_edits_writes">Review File Edits &amp; Writes</string>
     <string name="settings_rootfs_environment_backup">Rootfs Environment Backup</string>
     <string name="settings_rootfs_system_packager">Rootfs System Packager</string>
+    <string name="settings_rule_actionicon_rule_actionlabel">${rule.actionIcon} ${rule.actionLabel}</string>
     <string name="settings_run_in_background">Run in Background</string>
     <string name="settings_run_in_background_open_antigem">Run in Background &amp; Open AntiGem</string>
     <string name="settings_run_in_background_open_chat">Run in Background &amp; Open Chat</string>
     <string name="settings_run_rootfs_backup_backup_bootstrap">Run Rootfs Backup (backup_bootstrap)</string>
+    <string name="settings_s_name">/${s.name}</string>
     <string name="settings_safe_storage_and_data_loss_protection">Safe storage and data loss protection</string>
     <string name="settings_safe_to_clear_removes_temporary_logs_and">Safe to clear. Removes temporary logs and cached assets without touching your code or database.</string>
     <string name="settings_safely_packages_your_entire_gemini_folde">Safely packages your entire ~/.gemini folder (SQLite chat history databases, brain transcripts, summaries index, custom skills, and authentication token). Supports optional zip encryption.</string>
@@ -299,6 +325,7 @@
     <string name="settings_security_presets">Security Presets</string>
     <string name="settings_security_token_header_obfuscation">Security Token (Header Obfuscation)</string>
     <string name="settings_security_warning_this_backup_includes_yo">⚠️ Security Warning: This backup includes your authentication credentials and login tokens. Never share this archive with anyone, as anyone with this file can log in to your account.</string>
+    <string name="settings_securitytoken_length_12">${securityToken.length}/12</string>
     <string name="settings_select_a_projects_backup_archive_zip_to">Select a projects backup archive (.zip) to restore projects to their workspace locations.</string>
     <string name="settings_select_all">Select All</string>
     <string name="settings_select_your_backup_zip_archive_to_restor">Select your backup zip archive to restore. Note: your existing ~/.gemini directory will be safely renamed to ~/.gemini.bak first.</string>
@@ -309,6 +336,7 @@
     <string name="settings_server_must_be_stopped">Server Must Be Stopped</string>
     <string name="settings_server_name">Server Name *</string>
     <string name="settings_server_settings_and_security_configurati">Server settings and security configuration have been saved. Reopening the app restarts local bridge and daemon processes so all connections cleanly synchronize with the new parameters.</string>
+    <string name="settings_server_tools_size_discovered_tool_if_ser_2">${server.tools.size} Discovered Tool${if (server.tools.size &gt; 1) \"s\" else \"\"}</string>
     <string name="settings_servers_connectivity">Servers &amp; Connectivity</string>
     <string name="settings_set_custom_headers_like_api_keys_or_toke">Set custom headers like API keys or tokens required by the remote endpoint.</string>
     <string name="settings_set_project_override">Set Project Override:</string>
@@ -317,7 +345,12 @@
     <string name="settings_show_a_dedicated_terminal_icon_on_your_a">Show a dedicated terminal icon on your Android home screen and app drawer</string>
     <string name="settings_show_on_screen_draggable_pill_with_live">Show on-screen draggable pill with live call count &amp; streams</string>
     <string name="settings_sideloaded_app_tip_android_13_if_your_ph">💡 Sideloaded App Tip (Android 13+): If your phone shows \'Restricted setting\', open App Info &gt; tap the 3 dots in the top right &gt; select \'Allow restricted settings\'.</string>
+    <string name="settings_size_formatter_formatfilesize_context_ca">Size: ${Formatter.formatFileSize(context, cacheBytes)}</string>
+    <string name="settings_skill_displayname">(${skill.displayName})</string>
+    <string name="settings_skill_displayname_2">• ${skill.displayName}</string>
+    <string name="settings_skill_name">/${skill.name}</string>
     <string name="settings_skills_plugins">Skills &amp; Plugins</string>
+    <string name="settings_skills_skills_size">Skills (${skills.size})</string>
     <string name="settings_skip_for_now">Skip for Now</string>
     <string name="settings_skip_setup_open_antigem_chat">Skip Setup &amp; Open AntiGem Chat</string>
     <string name="settings_software_updates">Software Updates</string>
@@ -326,6 +359,7 @@
     <string name="settings_start_backup">Start Backup</string>
     <string name="settings_start_restore">Start Restore</string>
     <string name="settings_start_restore_restore_projects">Start Restore (restore_projects)</string>
+    <string name="settings_stdio_cmd_command_cli_cmd_args_emptylist">⚡ Stdio: ${cmd?.command ?: \"CLI\"} ${(cmd?.args ?: emptyList()).take(2).joinToString(\" \")}...</string>
     <string name="settings_step_1_downloading_importing">Step 1: Downloading / Importing</string>
     <string name="settings_step_2_unzipping_extracting">Step 2: Unzipping &amp; Extracting</string>
     <string name="settings_step_3_configuring_shell_permissions">Step 3: Configuring Shell &amp; Permissions</string>
@@ -334,6 +368,7 @@
     <string name="settings_stop_server_now">Stop Server Now</string>
     <string name="settings_store">Store</string>
     <string name="settings_suspends_and_requests_your_approval_befo">Suspends and requests your approval before saving document edits.</string>
+    <string name="settings_target_item_originalpath">Target: ${item.originalPath}</string>
     <string name="settings_target_sandbox">Target Sandbox:</string>
     <string name="settings_temporary_cache">Temporary Cache</string>
     <string name="settings_terminal_automation">Terminal Automation</string>
@@ -344,17 +379,20 @@
     <string name="settings_test_bridge">Test Bridge</string>
     <string name="settings_test_hub">Test Hub</string>
     <string name="settings_test_ssh_connection">Test SSH Connection</string>
+    <string name="settings_the_agy_ide_bridge_and_hub_server_must_b">The AGY IDE Bridge and Hub server must be offline before running \'$actionName\'. Would you like to stop the server now?</string>
     <string name="settings_the_daemon_is_actively_accessing_databas">The daemon is actively accessing databases and processes. Please stop the server before performing backups or restores to prevent corrupted archives.</string>
     <string name="settings_this_includes_your_termux_linux_packages">This includes your Termux Linux packages, AI configuration, and local SQLite data.</string>
     <string name="settings_this_switch_controls_the_legacy_google_f">This switch controls the legacy Google Flow endpoint only. Install, enable or disable the current extension in Settings → WebView Extensions, then choose it in MCP settings. Tool lists come from the installed extension.</string>
     <string name="settings_this_will_remove_antigem_s_device_admin">This will remove AntiGem\'s Device Admin status. The app will become vulnerable to accidental home-screen uninstallation.</string>
     <string name="settings_thread_breakdown">Thread Breakdown:</string>
+    <string name="settings_title_documentation">$title Documentation</string>
     <string name="settings_to_confirm_and_permanently_wipe_all_app">To confirm and permanently wipe all app data and local Linux storage, type the confirmation phrase exactly as shown below:</string>
     <string name="settings_to_confirm_and_permanently_wipe_all_app_2">To confirm and permanently wipe all app data and local rootfs, type the confirmation phrase exactly as shown below:</string>
     <string name="settings_to_create_an_extension_with_your_model_a">To create an extension with your model, add WebView Extension Developer in MCP settings. It supplies the SDK, draft editing, installation, updates, tests and worker logs.</string>
     <string name="settings_to_use_these_automation_tools_the_respec">To use these automation tools, the respective automation server (browser_mcp, terminal_mcp, or google_flow_mcp) must be added in MCP Server Settings. Once added, the switches below control which specific tool permissions are granted to the AI.</string>
     <string name="settings_tools_and_file_accesses_will_use_your_gl">Tools and file accesses will use your global presets above. Click \\"Add Rule\\" to whitelist, blacklist, or prompt for specific commands, MCP tools, or file paths.</string>
     <string name="settings_total_app_footprint">Total App Footprint</string>
+    <string name="settings_totaltools_tools_available">$totalTools tools available</string>
     <string name="settings_turbo">⚡ Turbo</string>
     <string name="settings_ubuntu_linux_container_proot_arm64">Ubuntu Linux Container (PRoot ARM64)</string>
     <string name="settings_unable_to_load_mcp_servers">Unable to Load MCP Servers</string>
@@ -364,6 +402,7 @@
     <string name="settings_update_zip">Update ZIP</string>
     <string name="settings_use_terminal_via_ssh">Use Terminal via SSH</string>
     <string name="settings_user">User</string>
+    <string name="settings_v_plugin_version">v${plugin.version}</string>
     <string name="settings_verifying_installation">Verifying Installation</string>
     <string name="settings_versions">Versions:</string>
     <string name="settings_vertical">Vertical</string>

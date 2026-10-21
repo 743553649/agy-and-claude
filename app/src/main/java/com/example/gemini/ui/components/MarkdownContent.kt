@@ -282,7 +282,7 @@ fun MarkdownBlockView(
                 verticalAlignment = Alignment.Top
             ) {
                 Text(
-                    text = "${block.number} ",
+                    text = stringResource(R.string.component_block_number, block.number),
                     fontWeight = FontWeight.Bold,
                     color = ClaudeTerracotta,
                     fontSize = 13.5.sp,
@@ -1382,7 +1382,7 @@ fun AgentErrorCard(
                         color = errorColor.copy(alpha = 0.15f)
                     ) {
                         Text(
-                            text = "Code: ${error.errorCode}",
+                            text = stringResource(R.string.component_code_error_errorcode, error.errorCode),
                             fontSize = 10.5.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = errorColor,
@@ -1485,7 +1485,7 @@ fun AgentErrorCard(
                     ) {
                         if (error.errorId.isNotBlank()) {
                             Text(
-                                text = "Error ID: ${error.errorId}",
+                                text = stringResource(R.string.component_error_id_error_errorid, error.errorId),
                                 fontSize = 11.sp,
                                 fontFamily = FontFamily.Monospace,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
@@ -1859,7 +1859,7 @@ fun MarkdownVideoView(
                     modifier = Modifier.weight(1f)
                 )
                 Text(
-                    text = "${formatVideoTime(positionMs)} / ${formatVideoTime(durationMs)}",
+                    text = stringResource(R.string.component_formatvideotime_positionms_formatvideoti, formatVideoTime(positionMs), formatVideoTime(durationMs)),
                     fontSize = 10.5.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                     modifier = Modifier.padding(start = 6.dp)

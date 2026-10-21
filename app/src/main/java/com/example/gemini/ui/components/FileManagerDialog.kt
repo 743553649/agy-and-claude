@@ -604,7 +604,7 @@ fun FileManagerDialog(
                                     )
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Text(
-                                        text = "${if (FileManagerStateHolder.clipboardIsCut) "Moving" else "Copied"}: $clipName",
+                                        text = stringResource(R.string.component_if_filemanagerstateholder_clipboardiscut_2, if (FileManagerStateHolder.clipboardIsCut) "Moving" else "Copied", clipName),
                                         fontSize = 12.sp,
                                         fontWeight = FontWeight.Medium,
                                         modifier = Modifier.weight(1f),
@@ -661,7 +661,7 @@ fun FileManagerDialog(
                                     )
                                     Spacer(modifier = Modifier.width(6.dp))
                                     Text(
-                                        text = "Folder: ${currentPath.ifBlank { "~" }}",
+                                        text = stringResource(R.string.component_folder_currentpath_ifblank_2, currentPath.ifBlank { "~" }),
                                         fontSize = 11.5.sp,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         maxLines = 1,
@@ -908,7 +908,7 @@ fun FileManagerDialog(
     showRenameDialog?.let { item ->
         AlertDialog(
             onDismissRequest = { showRenameDialog = null },
-            title = { Text("Rename ${if (item.isDir) "Folder" else "File"}", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.component_rename_if_item_isdir_folder_else_file, if (item.isDir) "Folder" else "File"), fontWeight = FontWeight.Bold) },
             text = {
                 OutlinedTextField(
                     value = inputName,
@@ -952,9 +952,9 @@ fun FileManagerDialog(
     showDeleteConfirmDialog?.let { item ->
         AlertDialog(
             onDismissRequest = { showDeleteConfirmDialog = null },
-            title = { Text("Delete ${if (item.isDir) "Folder" else "File"}?") },
+            title = { Text(stringResource(R.string.component_delete_if_item_isdir_folder_else_file, if (item.isDir) "Folder" else "File")) },
             text = {
-                Text("Are you sure you want to permanently delete \"${item.name}\"? This action cannot be undone.")
+                Text(stringResource(R.string.component_are_you_sure_you_want_to_permanently_del, item.name))
             },
             confirmButton = {
                 Button(

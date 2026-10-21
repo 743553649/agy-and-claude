@@ -417,7 +417,7 @@ fun ProjectSidebar(
                             Spacer(modifier = Modifier.height(4.dp))
                             val ep = AuthPreferences.currentBridgeHttpUrl.removePrefix("http://").removePrefix("https://")
                             Text(
-                                text = "Checking $ep (auto-retrying)",
+                                text = stringResource(R.string.ide_checking_ep_auto_retrying, ep),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 textAlign = androidx.compose.ui.text.style.TextAlign.Center
@@ -547,7 +547,7 @@ fun ProjectSidebar(
             },
             title = {
                 Text(
-                    text = "Rename ${if (node.isDir) "Folder" else "File"}",
+                    text = stringResource(R.string.ide_rename_if_node_isdir_folder_else_file, if (node.isDir) "Folder" else "File"),
                     fontWeight = FontWeight.Bold
                 )
             },
@@ -599,13 +599,13 @@ fun ProjectSidebar(
             },
             title = {
                 Text(
-                    text = "Delete ${if (node.isDir) "Folder" else "File"}?",
+                    text = stringResource(R.string.ide_delete_if_node_isdir_folder_else_file, if (node.isDir) "Folder" else "File"),
                     fontWeight = FontWeight.Bold
                 )
             },
             text = {
                 Text(
-                    text = "Are you sure you want to permanently delete \"${node.name}\"? This action cannot be undone.",
+                    text = stringResource(R.string.ide_are_you_sure_you_want_to_permanently_del, node.name),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

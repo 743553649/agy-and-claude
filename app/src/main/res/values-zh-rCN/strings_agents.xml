@@ -5,12 +5,16 @@
 -->
 <resources>
 
+    <!-- 原文: 1 of $count -->
+    <string name="agents_1_of_count">1 / %1$s</string>
     <!-- 原文: Accounts -->
     <string name="agents_accounts">账号</string>
     <!-- 原文: AGENTS -->
     <string name="agents_agents">智能体</string>
     <!-- 原文: Agents you turn off do not run at all: the local server starts without them and their settings and chats are hidden (chats stay on disk). -->
     <string name="agents_agents_you_turn_off_do_not_run_at_all_th">被关闭的智能体完全不会运行：本地服务器启动时不加载它们，其设置和对话也会被隐藏（对话仍保存在磁盘上）。</string>
+    <!-- 原文: Allow all $count -->
+    <string name="agents_allow_all_count">全部允许 %1$s</string>
     <!-- 原文: Always… -->
     <string name="agents_always">始终……</string>
     <!-- 原文: Applying agents -->
@@ -21,8 +25,16 @@
     <string name="agents_choose_your_agent">选择你的智能体</string>
     <!-- 原文: Continue -->
     <string name="agents_continue">继续</string>
+    <!-- 原文: Deny all $count -->
+    <string name="agents_deny_all_count">全部拒绝 %1$s</string>
     <!-- 原文: Each agent signs in on its own. -->
     <string name="agents_each_agent_signs_in_on_its_own">每个智能体各自独立登录。</string>
+    <!-- 原文: ${item.denyLabel}… -->
+    <string name="agents_item_denylabel">%1$s…</string>
+    <!-- 原文: ${page + 1} of ${questions.size} -->
+    <string name="agents_page_1_of_questions_size">第 %1$s / %2$s 页</string>
+    <!-- 原文: ${question.agent.label()} has ${if (questions.size > 1) "${questions.size} questions" else "a question"} -->
+    <string name="agents_question_agent_label_has_if_questions_si_2">%1$s，共 %2$s</string>
     <!-- 原文: Restart app -->
     <string name="agents_restart_app">重启应用</string>
     <!-- 原文: Restart to apply? -->

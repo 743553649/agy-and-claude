@@ -34,6 +34,8 @@ import com.example.gemini.data.media.YouTubeMediaSessionManager
 import com.example.gemini.theme.ClaudeTerracotta
 import com.example.gemini.theme.isAppInDarkTheme
 import kotlin.math.roundToInt
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 /**
  * Floating in-app controller for active YouTube playback across Chat, IDE, Browser, and Terminal.
@@ -199,7 +201,7 @@ fun FloatingVideoPlayerOverlay(
                                 val posFormatted = formatMs(activeState.positionMs)
                                 val durFormatted = formatMs(activeState.durationMs)
                                 Text(
-                                    text = "$posFormatted / $durFormatted",
+                                    text = stringResource(R.string.component_posformatted_durformatted, posFormatted, durFormatted),
                                     fontSize = 11.sp,
                                     color = contentColor.copy(alpha = 0.65f)
                                 )

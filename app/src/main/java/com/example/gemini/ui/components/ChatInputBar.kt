@@ -76,6 +76,8 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import java.io.File
 import java.util.UUID
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 /**
  * Elegant 4-bar audio waveform icon matching Claude's signature voice mode button.
@@ -882,7 +884,7 @@ fun ChatInputBar(
                         onValueChange = onTextFieldValueChange,
                         placeholder = {
                             Text(
-                                text = "Reply to ${selectedModel.displayName.split(" ").firstOrNull() ?: "Gemini"}...",
+                                text = stringResource(R.string.component_reply_to_selectedmodel_displayname_split_2, selectedModel.displayName.split(" ").firstOrNull() ?: "Gemini"),
                                 fontSize = 15.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.42f)
                             )

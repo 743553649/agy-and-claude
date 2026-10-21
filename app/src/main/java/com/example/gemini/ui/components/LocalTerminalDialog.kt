@@ -960,7 +960,7 @@ fun LocalTerminalContent(
                 },
                 text = {
                     Text(
-                        text = "Are you sure you want to close \"$sessTitle\"?\nAny process running in this session will be terminated.",
+                        text = stringResource(R.string.component_are_you_sure_you_want_to_close_sesstitle, sessTitle),
                         fontSize = 13.sp,
                         color = Color(0xFFCCCCCC),
                         lineHeight = 18.sp

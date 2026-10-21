@@ -65,6 +65,70 @@ extra = zh_keys - en_keys
 if extra:
     errors.append(f"values-zh-rCN 存在 values/ 中没有的 key: {sorted(extra)[:5]}")
 
+
+# 占位符校验：中文资源里用了 %2$s 就必须在调用点至少传 2 个参数
+MAXN = re.compile(r"%(\d+)\$")
+call_args = {}
+
+
+def count_args(text, start):
+    """从 R.string.<key> 之后开始，数这一层调用一共传了几个参数。"""
+    depth = 0
+    commas = 0
+    i = start
+    n = len(text)
+    while i < n:
+        ch = text[i]
+        if ch == '"':
+            j = i + 1
+            while j < n and text[j] != '"':
+                j += 2 if text[j] == "\\" else 1
+            i = j + 1
+            continue
+        if ch in "([{":
+            depth += 1
+        elif ch in ")]}":
+            if depth == 0:
+                break
+            depth -= 1
+        elif ch == "," and depth == 0:
+            commas += 1
+        elif ch == "\n":
+            break
+        i += 1
+    return commas
+
+
+for dirpath, _dirs, files in os.walk(SRC):
+    for fn in files:
+        if not fn.endswith(".kt"):
+            continue
+        path = os.path.join(dirpath, fn)
+        rel = os.path.relpath(path, ROOT)
+        text = open(path, encoding="utf-8").read()
+        for m in re.finditer(r"R\.string\.([A-Za-z0-9_]+)", text):
+            key = m.group(1)
+            call_args.setdefault(key, set()).add(count_args(text, m.end()))
+
+zh_map = {}
+for path in zh_files:
+    try:
+        tree = ET.parse(path)
+    except ET.ParseError:
+        continue
+    for el in tree.getroot():
+        if el.tag == "string" and el.get("name") is not None:
+            zh_map[el.get("name")] = el.text or ""
+
+for key, counts in sorted(call_args.items()):
+    zh = zh_map.get(key, "")
+    found = [int(x) for x in MAXN.findall(zh)]
+    if not found:
+        continue
+    need = max(found)
+    if min(counts) < need:
+        errors.append(f"R.string.{key} 需要 {need} 个参数，但存在只传 {min(counts)} 个的调用点")
+
 print(f"values: {len(en_keys)} 条 / values-zh-rCN: {len(zh_keys)} 条 / 源码引用: {len(used)} 个 key")
 if errors:
     print(f"\n发现 {len(errors)} 个问题：")

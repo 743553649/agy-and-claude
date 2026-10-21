@@ -629,7 +629,7 @@ fun BrowserScreen(
                         ) {
                             Box(contentAlignment = Alignment.Center) {
                                 Text(
-                                    text = "${tabs.size.coerceAtLeast(1)}",
+                                    text = stringResource(R.string.browser_tabs_size_coerceatleast_1, tabs.size.coerceAtLeast(1)),
                                     fontSize = 11.5.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -941,7 +941,7 @@ private fun SearchHistoryOverlay(
                         Spacer(modifier = Modifier.width(12.dp))
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = "Search Google for \"$trimmed\"",
+                                text = stringResource(R.string.browser_search_google_for_trimmed, trimmed),
                                 style = MaterialTheme.typography.bodyMedium,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onSurface,
@@ -1196,7 +1196,7 @@ private fun SpeedDialHomeView(
         AlertDialog(
             onDismissRequest = { shortcutToDelete = null },
             title = { Text(stringResource(R.string.browser_remove_shortcut)) },
-            text = { Text("Remove '${sc.title}' from your home shortcuts?") },
+            text = { Text(stringResource(R.string.browser_remove_sc_title_from_your_home_shortcuts, sc.title)) },
             confirmButton = {
                 Button(
                     onClick = {
@@ -1417,7 +1417,7 @@ private fun TabOverviewScreen(
                         ) {
                             Box(contentAlignment = Alignment.Center) {
                                 Text(
-                                    text = "${tabs.size}",
+                                    text = stringResource(R.string.browser_tabs_size, tabs.size),
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -1426,7 +1426,7 @@ private fun TabOverviewScreen(
                         }
 
                         Text(
-                            text = "Tabs (${tabs.size})",
+                            text = stringResource(R.string.browser_tabs_tabs_size, tabs.size),
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
@@ -1887,7 +1887,7 @@ fun BrowserDiagnosticOverlay(
                                 for (log in recentLogs) {
                                     val errColor = MaterialTheme.colorScheme.onSurfaceVariant
                                     Text(
-                                        text = "[${log.level}] ${log.message}",
+                                        text = stringResource(R.string.browser_log_level_log_message, log.level, log.message),
                                         style = TextStyle(
                                             fontFamily = FontFamily.Monospace,
                                             fontSize = 11.sp,

@@ -2463,7 +2463,7 @@ fun ChatScreen(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            text = "$ ${toolCall.command}",
+                            text = stringResource(R.string.chat_toolcall_command, toolCall.command),
                             fontFamily = FontFamily.Monospace,
                             fontSize = 12.sp,
                             fontWeight = FontWeight.SemiBold,

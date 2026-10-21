@@ -77,14 +77,14 @@ fun ConnectionStatusBadge(
             text = {
                 Column(modifier = Modifier.fillMaxWidth()) {
                     Text(
-                        text = "Status: $labelText",
+                        text = stringResource(R.string.component_status_labeltext, labelText),
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 14.sp
                     )
                     Spacer(modifier = Modifier.height(6.dp))
                     Text(
-                        text = "Endpoint: $bridgeUrl",
+                        text = stringResource(R.string.component_endpoint_bridgeurl, bridgeUrl),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -93,7 +93,7 @@ fun ConnectionStatusBadge(
                     Spacer(modifier = Modifier.height(10.dp))
 
                     Text(
-                        text = "Active Worker Instances (${activeInstances.size}):",
+                        text = stringResource(R.string.component_active_worker_instances_activeinstances, activeInstances.size),
                         style = MaterialTheme.typography.labelMedium,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface
@@ -127,14 +127,14 @@ fun ConnectionStatusBadge(
                                             color = ClaudeTerracotta
                                         )
                                         Text(
-                                            text = "PID: ${inst.pid}",
+                                            text = stringResource(R.string.common_pid_inst_pid, inst.pid),
                                             fontSize = 11.sp,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant
                                         )
                                     }
                                     Spacer(modifier = Modifier.height(2.dp))
                                     Text(
-                                        text = "Chat: ${inst.conversationId.take(12)}... | Uptime: ${inst.uptimeSeconds}s",
+                                        text = stringResource(R.string.component_chat_inst_conversationid_take_12_uptime, inst.conversationId.take(12), inst.uptimeSeconds),
                                         fontSize = 11.sp,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant
                                     )

@@ -155,7 +155,7 @@ fun CascadeMcpCatalogDialog(
                     }
                 } else if (availablePlugins.isEmpty()) {
                     Box(modifier = Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
-                        Text("No MCP packages found matching '$searchQuery'", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                        Text(stringResource(R.string.settings_no_mcp_packages_found_matching_searchque, searchQuery), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                     }
                 } else {
                     LazyColumn(
@@ -254,7 +254,7 @@ private fun CascadePluginCard(
                         }
                     }
                     Text(
-                        text = "ID: ${plugin.id}",
+                        text = stringResource(R.string.settings_id_plugin_id, plugin.id),
                         fontSize = 11.sp,
                         fontFamily = FontFamily.Monospace,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
@@ -315,7 +315,7 @@ private fun CascadePluginCard(
                 if (plugin.local != null && plugin.local.commands.isNotEmpty()) {
                     val cmd = plugin.local.commands.values.firstOrNull()?.template
                     Text(
-                        text = "⚡ Stdio: ${cmd?.command ?: "CLI"} ${(cmd?.args ?: emptyList()).take(2).joinToString(" ")}...",
+                        text = stringResource(R.string.settings_stdio_cmd_command_cli_cmd_args_emptylist, cmd?.command ?: "CLI", (cmd?.args ?: emptyList()).take(2).joinToString(" ")),
                         fontSize = 11.sp,
                         fontFamily = FontFamily.Monospace,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
@@ -325,7 +325,7 @@ private fun CascadePluginCard(
                     )
                 } else if (plugin.remote != null && plugin.remote.template != null) {
                     Text(
-                        text = "🌐 Remote: ${plugin.remote.template.serverUrl}",
+                        text = stringResource(R.string.settings_remote_plugin_remote_template_serverurl, plugin.remote.template.serverUrl),
                         fontSize = 11.sp,
                         fontFamily = FontFamily.Monospace,
                         color = GeminiBlue,

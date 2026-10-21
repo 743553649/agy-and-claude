@@ -88,7 +88,7 @@ fun ChatTelemetryDialog(
 
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Aggregated usage telemetry for \"${conversation?.title ?: "Current Chat"}\":",
+                    text = stringResource(R.string.component_aggregated_usage_telemetry_for_conversat_2, conversation?.title ?: "Current Chat"),
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

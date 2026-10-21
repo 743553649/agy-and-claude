@@ -326,7 +326,7 @@ private fun ManageSpaceScreen(
                         Column(modifier = Modifier.weight(1f)) {
                             Text(stringResource(R.string.settings_temporary_cache), fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
                             Text(
-                                text = "Size: ${Formatter.formatFileSize(context, cacheBytes)}",
+                                text = stringResource(R.string.settings_size_formatter_formatfilesize_context_ca, Formatter.formatFileSize(context, cacheBytes)),
                                 fontSize = 12.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                             )

@@ -37,6 +37,8 @@ import androidx.annotation.RequiresApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 @RequiresApi(Build.VERSION_CODES.M)
 private class InMemoryMediaDataSource(private val data: ByteArray) : android.media.MediaDataSource() {
@@ -284,7 +286,7 @@ fun ChatAudioPlayer(
                     }
 
                     Text(
-                        text = "${formatAudioMs(currentPositionMs)} / ${formatAudioMs(durationMs)}",
+                        text = stringResource(R.string.component_formataudioms_currentpositionms_formatau, formatAudioMs(currentPositionMs), formatAudioMs(durationMs)),
                         fontSize = 10.5.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                         fontWeight = FontWeight.Medium

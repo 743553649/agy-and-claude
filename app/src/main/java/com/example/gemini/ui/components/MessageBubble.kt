@@ -727,7 +727,7 @@ private fun WaitingDotsText(phrase: String) {
     }
 
     Text(
-        text = "$phrase$dots",
+        text = stringResource(R.string.component_phrase_dots, phrase, dots),
         fontSize = 12.5.sp,
         fontWeight = FontWeight.SemiBold,
         color = ClaudeTerracotta,
@@ -785,14 +785,14 @@ fun TokenUsageTelemetryPill(
             horizontalArrangement = Arrangement.spacedBy(6.dp)
         ) {
             Text(
-                text = "📥 ${formatCompactTokens(usage.promptTokens)}",
+                text = stringResource(R.string.component_formatcompacttokens_usage_prompttokens, formatCompactTokens(usage.promptTokens)),
                 fontSize = 10.5.sp,
                 fontFamily = FontFamily.Monospace,
                 fontWeight = FontWeight.SemiBold,
                 color = inputColor
             )
             Text(
-                text = "📤 ${formatCompactTokens(usage.outputTokens)}",
+                text = stringResource(R.string.component_formatcompacttokens_usage_outputtokens, formatCompactTokens(usage.outputTokens)),
                 fontSize = 10.5.sp,
                 fontFamily = FontFamily.Monospace,
                 fontWeight = FontWeight.SemiBold,
@@ -800,7 +800,7 @@ fun TokenUsageTelemetryPill(
             )
             if (usage.cachedTokens > 0) {
                 Text(
-                    text = "⚡ ${formatCompactTokens(usage.cachedTokens)} ($cachePct%)",
+                    text = stringResource(R.string.component_formatcompacttokens_usage_cachedtokens_c, formatCompactTokens(usage.cachedTokens), cachePct),
                     fontSize = 10.5.sp,
                     fontFamily = FontFamily.Monospace,
                     fontWeight = FontWeight.Bold,
@@ -809,7 +809,7 @@ fun TokenUsageTelemetryPill(
             }
             if (usage.durationMs > 0) {
                 Text(
-                    text = "⏱️ ${formatDuration(usage.durationMs)}",
+                    text = stringResource(R.string.component_formatduration_usage_durationms, formatDuration(usage.durationMs)),
                     fontSize = 10.5.sp,
                     fontFamily = FontFamily.Monospace,
                     color = MaterialTheme.colorScheme.onSurfaceVariant

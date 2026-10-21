@@ -1012,7 +1012,7 @@ private fun AppearanceSubScreen(
         ) {
             Column {
                 Text(
-                    text = "Chat Text Scaling (${(chatFontScale * 100).toInt()}%)",
+                    text = stringResource(R.string.settings_chat_text_scaling_chatfontscale_100_toin, (chatFontScale * 100).toInt()),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
@@ -2052,7 +2052,7 @@ private fun ServersSubScreen(
                     )
                     Spacer(modifier = Modifier.width(6.dp))
                     Text(
-                        text = "Hub: http://${sharedHost.trim()}:${hubPort.trim()}",
+                        text = stringResource(R.string.settings_hub_http_sharedhost_trim_hubport_trim, sharedHost.trim(), hubPort.trim()),
                         fontSize = 11.sp,
                         fontFamily = FontFamily.Monospace,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
@@ -2080,7 +2080,7 @@ private fun ServersSubScreen(
                     )
                     Spacer(modifier = Modifier.width(6.dp))
                     Text(
-                        text = "Bridge: http://${sharedHost.trim()}:${bridgePort.trim()}",
+                        text = stringResource(R.string.settings_bridge_http_sharedhost_trim_bridgeport_t, sharedHost.trim(), bridgePort.trim()),
                         fontSize = 11.sp,
                         fontFamily = FontFamily.Monospace,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
@@ -2280,7 +2280,7 @@ private fun ServersSubScreen(
                     shape = RoundedCornerShape(10.dp),
                     trailingIcon = {
                         Text(
-                            text = "${securityToken.length}/12",
+                            text = stringResource(R.string.settings_securitytoken_length_12, securityToken.length),
                             fontSize = 11.sp,
                             color = if (securityToken.length == AuthPreferences.TOKEN_LENGTH) QuotaGreen else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                             modifier = Modifier.padding(end = 12.dp)
@@ -2292,7 +2292,7 @@ private fun ServersSubScreen(
 
                 val framedHeader = AuthPreferences.buildFramedHeader(securityToken)
                 Text(
-                    text = "HTTP Framed Header: $framedHeader",
+                    text = stringResource(R.string.settings_http_framed_header_framedheader, framedHeader),
                     fontSize = 11.sp,
                     fontFamily = FontFamily.Monospace,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
@@ -2677,7 +2677,7 @@ private fun McpSubScreen(
                         horizontalArrangement = Arrangement.spacedBy(6.dp)
                     ) {
                         Text(
-                            text = "+ $pName",
+                            text = stringResource(R.string.settings_pname, pName),
                             fontSize = 11.5.sp,
                             fontWeight = FontWeight.Medium,
                             color = MaterialTheme.colorScheme.onSurface
@@ -2706,7 +2706,7 @@ private fun McpSubScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Configured Servers (${mcpServers.size})",
+                text = stringResource(R.string.settings_configured_servers_mcpservers_size, mcpServers.size),
                 fontSize = 13.5.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface
@@ -2714,7 +2714,7 @@ private fun McpSubScreen(
             if (mcpServers.isNotEmpty()) {
                 val totalTools = mcpServers.sumOf { it.tools.size }
                 Text(
-                    text = "$totalTools tools available",
+                    text = stringResource(R.string.settings_totaltools_tools_available, totalTools),
                     fontSize = 11.5.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                 )
@@ -2989,7 +2989,7 @@ private fun McpSubScreen(
                                     tint = Color(0xFF1976D2)
                                 )
                                 Text(
-                                    text = "Headers: ${server.spec!!.headers.keys.joinToString(", ")}",
+                                    text = stringResource(R.string.settings_headers_server_spec_headers_keys_jointos_2, server.spec!!.headers.keys.joinToString(", ")),
                                     fontSize = 11.sp,
                                     fontFamily = FontFamily.Monospace,
                                     color = Color(0xFF1976D2)
@@ -3014,7 +3014,7 @@ private fun McpSubScreen(
                                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                                 )
                                 Text(
-                                    text = "cwd: ${server.spec!!.cwd}",
+                                    text = stringResource(R.string.settings_cwd_server_spec_cwd, server.spec!!.cwd),
                                     fontSize = 11.sp,
                                     fontFamily = FontFamily.Monospace,
                                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f)
@@ -3088,7 +3088,7 @@ private fun McpSubScreen(
                                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                                         Icon(imageVector = Icons.Default.Build, contentDescription = null, tint = ClaudeTerracotta, modifier = Modifier.size(14.dp))
                                         Text(
-                                            text = "${server.tools.size} Discovered Tool${if (server.tools.size > 1) "s" else ""}",
+                                            text = stringResource(R.string.settings_server_tools_size_discovered_tool_if_ser_2, server.tools.size, if (server.tools.size > 1) "s" else ""),
                                             fontSize = 12.sp,
                                             fontWeight = FontWeight.SemiBold,
                                             color = MaterialTheme.colorScheme.onSurface
@@ -3244,7 +3244,7 @@ private fun McpSubScreen(
             onDismissRequest = { serverToDelete = null },
             title = { Text(stringResource(R.string.settings_remove_mcp_server)) },
             text = {
-                Text("Are you sure you want to remove \"$targetName\" from global mcp_config.json? The server and its tools will be disconnected.")
+                Text(stringResource(R.string.settings_are_you_sure_you_want_to_remove_targetna, targetName))
             },
             confirmButton = {
                 Button(
@@ -4105,7 +4105,7 @@ private fun TerminalSubScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(stringResource(R.string.settings_font_size), fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurface)
-                    Text("${fontSizeState}pt", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
+                    Text(stringResource(R.string.settings_fontsizestate_pt, fontSizeState), fontSize = 12.sp, fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
                 }
                 Slider(
                     value = fontSizeState.toFloat(),
@@ -4363,7 +4363,7 @@ private fun TerminalSubScreen(
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "${countdownSeconds}s",
+                            text = stringResource(R.string.settings_countdownseconds_s, countdownSeconds),
                             fontSize = 24.sp,
                             fontWeight = FontWeight.ExtraBold,
                             color = Color.Red,
@@ -4379,7 +4379,7 @@ private fun TerminalSubScreen(
                     )
 
                     Text(
-                        text = "AntiGem is wiping all local app data, rootfs, and settings.\n\nThe app will automatically close in $countdownSeconds seconds. Simply re-open AntiGem to start fresh.",
+                        text = stringResource(R.string.settings_antigem_is_wiping_all_local_app_data_roo, countdownSeconds),
                         fontSize = 13.5.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         textAlign = androidx.compose.ui.text.style.TextAlign.Center,
@@ -5785,13 +5785,13 @@ private fun ProjectsBackupRestoreDialog(
                                         verticalAlignment = Alignment.CenterVertically
                                     ) {
                                         Text(
-                                            text = "Projects in Archive (${manifestProjects.size}):",
+                                            text = stringResource(R.string.settings_projects_in_archive_manifestprojects_siz, manifestProjects.size),
                                             fontSize = 12.sp,
                                             fontWeight = FontWeight.Bold,
                                             color = MaterialTheme.colorScheme.onSurface
                                         )
                                         manifestBackupMode?.let { mode ->
-                                            Text("Mode: $mode", fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                            Text(stringResource(R.string.settings_mode_mode, mode), fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                         }
                                     }
 
@@ -6601,7 +6601,7 @@ private fun CommandsSubScreen(
                             textAlign = androidx.compose.ui.text.style.TextAlign.Center
                         )
                         Text(
-                            text = "Could not retrieve daemon permissions and security state:\n${globalSettingsError ?: "RPC connection failed"}\n\nMake sure AGY is running (e.g. agy --hub) and check your Server settings.",
+                            text = stringResource(R.string.settings_could_not_retrieve_daemon_permissions_an_2, globalSettingsError ?: "RPC connection failed"),
                             fontSize = 12.sp,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             textAlign = androidx.compose.ui.text.style.TextAlign.Center,
@@ -7235,7 +7235,7 @@ private fun CommandsSubScreen(
                                         color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
                                     ) {
                                         Text(
-                                            text = "${rule.actionIcon} ${rule.actionLabel}",
+                                            text = stringResource(R.string.settings_rule_actionicon_rule_actionlabel, rule.actionIcon, rule.actionLabel),
                                             fontSize = 11.sp,
                                             fontWeight = FontWeight.SemiBold,
                                             color = MaterialTheme.colorScheme.onSurface,
@@ -7348,7 +7348,7 @@ private fun CommandsSubScreen(
                 )
                 if (projectsList.isNotEmpty()) {
                     Text(
-                        text = "${projectsList.count { it.isInheritingGlobal }}/${projectsList.size} Inheriting",
+                        text = stringResource(R.string.settings_projectslist_count_it_isinheritingglobal, projectsList.count { it.isInheritingGlobal }, projectsList.size),
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Medium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant

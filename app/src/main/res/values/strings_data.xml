@@ -8,6 +8,9 @@
     <string name="data_antigravity_chat">Antigravity Chat</string>
     <string name="data_claude_chat">Claude Chat</string>
     <string name="data_execution_failure">Execution Failure</string>
+    <string name="data_please_ignore_the_following_ignore_bases">Please ignore the following [ignore]$baseSysText[/ignore]</string>
+    <string name="data_previous_context_summary_summary">[Previous Context Summary: $summary]</string>
+    <string name="data_source_title_fork">${source.title} (fork)</string>
     <string name="data_termux_linux_environment_verified_and_in">Termux Linux environment verified and installed successfully!</string>
     <string name="data_the_user_cancelled_the_question">The user cancelled the question.</string>
     <string name="data_the_user_skipped_the_question_continue_w">The user skipped the question. Continue with your best judgement.</string>

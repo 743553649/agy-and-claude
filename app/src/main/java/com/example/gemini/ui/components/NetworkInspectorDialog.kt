@@ -130,7 +130,7 @@ fun NetworkInspectorDialog(
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
-                                text = "${logs.size} calls recorded · ${activeStreams} active stream${if (activeStreams == 1) "" else "s"}",
+                                text = stringResource(R.string.component_logs_size_calls_recorded_activestreams_a_2, logs.size, activeStreams),
                                 fontSize = 11.5.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -573,7 +573,7 @@ private fun HeadersTab(
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Text("Request Headers (${entry.requestHeaders.size})", fontWeight = FontWeight.Bold, fontSize = 13.sp)
+        Text(stringResource(R.string.component_request_headers_entry_requestheaders_siz, entry.requestHeaders.size), fontWeight = FontWeight.Bold, fontSize = 13.sp)
         if (entry.requestHeaders.isEmpty()) {
             Text(stringResource(R.string.component_no_request_headers_recorded), fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
         } else {
@@ -584,7 +584,7 @@ private fun HeadersTab(
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        Text("Response Headers (${entry.responseHeaders.size})", fontWeight = FontWeight.Bold, fontSize = 13.sp)
+        Text(stringResource(R.string.component_response_headers_entry_responseheaders_s, entry.responseHeaders.size), fontWeight = FontWeight.Bold, fontSize = 13.sp)
         if (entry.responseHeaders.isEmpty()) {
             Text(stringResource(R.string.component_no_response_headers_recorded), fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
         } else {

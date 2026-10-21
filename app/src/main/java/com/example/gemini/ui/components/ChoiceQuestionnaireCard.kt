@@ -424,7 +424,7 @@ private fun QuestionBlockView(
                     modifier = Modifier.padding(start = 4.dp)
                 ) {
                     Text(
-                        text = "$questionNumber of $totalQuestions",
+                        text = stringResource(R.string.component_questionnumber_of_totalquestions, questionNumber, totalQuestions),
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Medium,
                         color = Color(0xFF9CA3AF),
@@ -551,7 +551,7 @@ private fun OptionRow(
             ) {
                 Box(contentAlignment = Alignment.Center) {
                     Text(
-                        text = "$index",
+                        text = stringResource(R.string.component_index, index),
                         fontFamily = FontFamily.Monospace,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold,
@@ -738,7 +738,7 @@ private fun QuestionPanelStatusRow(toolCall: ToolCall, questionnaire: ChoiceQues
                     )
                 }
                 if (questionnaire.questions.size > 3) {
-                    Text("+${questionnaire.questions.size - 3} more", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
+                    Text(stringResource(R.string.component_questionnaire_questions_size_3_more, questionnaire.questions.size - 3), fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
                 }
                 if (waiting) {
                     Text(stringResource(R.string.component_answer_in_the_panel_above_the_message_bo), fontSize = 11.5.sp, color = tint, modifier = Modifier.padding(top = 4.dp))

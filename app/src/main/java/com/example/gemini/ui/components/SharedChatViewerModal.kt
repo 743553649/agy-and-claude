@@ -24,6 +24,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.gemini.theme.ClaudeTerracotta
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 @Composable
 fun SharedChatViewerModal(
@@ -88,7 +90,7 @@ fun SharedChatViewerModal(
                             }
 
                             Text(
-                                text = "${data.messages.size} messages · AntiGem Shared Trajectory",
+                                text = stringResource(R.string.component_data_messages_size_messages_antigem_shar, data.messages.size),
                                 fontSize = 11.5.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )

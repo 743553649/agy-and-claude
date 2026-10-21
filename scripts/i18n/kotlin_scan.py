@@ -51,29 +51,28 @@ def read_literal(src, i):
 
 
 def scan_file(path):
+    """逐字符扫描，行号按记录位置现算，避免跨行字符串/注释导致的偏移。"""
     src = open(path, encoding="utf-8").read()
     rows = []
     i = 0
     n = len(src)
-    line = 1
+
+    def line_of(pos):
+        return src.count("\n", 0, pos) + 1
+
     while i < n:
         ch = src[i]
-        if ch == "\n":
-            line += 1
-            i += 1
-            continue
-        # 跳过行注释与块注释，避免把注释里的示例当成文案
+        # 跳过行注释
         if ch == "/" and i + 1 < n and src[i + 1] == "/":
             j = src.find("\n", i)
             i = n if j < 0 else j
             continue
+        # 跳过块注释
         if ch == "/" and i + 1 < n and src[i + 1] == "*":
             j = src.find("*/", i)
-            seg = src[i:j] if j > 0 else src[i:]
-            line += seg.count("\n")
             i = n if j < 0 else j + 2
             continue
-        # Text( 调用（要求左侧不是标识符字符，排除 newPlainText( 之类）
+        # Text( 调用（左侧不能是标识符字符，排除 newPlainText( 之类）
         if src.startswith("Text(", i) and (i == 0 or src[i - 1] not in IDENT):
             j = i + 5
             while j < n and src[j] in " \t\n":
@@ -81,10 +80,13 @@ def scan_file(path):
             if j < n and src[j] == '"':
                 content, end = read_literal(src, j)
                 if content is not None:
-                    rows.append((line, "Text", content))
-                i = end if content is not None else j
-                continue
+                    rows.append((line_of(i), "Text", content))
+                    i = end
+                    continue
+            i += 1
+            continue
         # 属性名 = "字面量"
+        matched = False
         for attr in ATTRS:
             if src.startswith(attr, i) and (i == 0 or src[i - 1] not in IDENT):
                 j = i + len(attr)
@@ -98,10 +100,13 @@ def scan_file(path):
                     if k < n and src[k] == '"':
                         content, end = read_literal(src, k)
                         if content is not None:
-                            rows.append((line, attr, content))
+                            rows.append((line_of(i), attr, content))
                             i = end
-                            continue
+                            matched = True
+                            break
                 break
+        if matched:
+            continue
         i += 1
     return rows
 

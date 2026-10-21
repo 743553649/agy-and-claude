@@ -304,7 +304,7 @@ private fun AccountPage(deps: ClaudeSettingsDeps) {
                 if (usageRefreshing) CircularProgressIndicator(Modifier.padding(12.dp).size(20.dp), strokeWidth = 2.dp, color = ClaudeAccent)
                 else IconButton(onClick = { deps.account.refreshUsage(force = true) }) { Icon(Icons.Outlined.Refresh, "Refresh usage") }
             }
-            usageError?.let { Text("Could not update: $it", fontSize = 12.sp, color = QuotaRed) }
+            usageError?.let { Text(stringResource(R.string.claude_could_not_update_it, it), fontSize = 12.sp, color = QuotaRed) }
             val u = usage ?: return@ClaudeCard
             val rl = u.rate_limits
             if (rl == null || !u.rate_limits_available) {
@@ -1105,7 +1105,7 @@ private fun MemoryPage(deps: ClaudeSettingsDeps) {
     noteToDelete?.let { name ->
         AlertDialog(
             onDismissRequest = { noteToDelete = null },
-            title = { Text("Delete $name?", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.claude_delete_name, name), fontWeight = FontWeight.Bold) },
             text = { Text(stringResource(R.string.claude_claude_forgets_what_this_note_says), fontSize = 13.5.sp) },
             confirmButton = {
                 TextButton(onClick = {

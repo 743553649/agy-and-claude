@@ -35,6 +35,8 @@ import coil.request.ImageRequest
 import com.example.gemini.data.remote.AgyHubClient
 import com.example.gemini.theme.ClaudeTerracotta
 import com.example.gemini.theme.QuotaGreen
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 /**
  * Safely parses base64 data URIs ("data:image/jpeg;base64,...") into ByteArray for Coil,
@@ -194,7 +196,7 @@ fun ProfileDetailDialog(
                             if (authInfo.planName.isNotBlank() && authInfo.planName != tierName) {
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Text(
-                                    text = "•  ${authInfo.planName}",
+                                    text = stringResource(R.string.drawer_authinfo_planname, authInfo.planName),
                                     fontSize = 11.sp,
                                     fontWeight = FontWeight.Medium,
                                     color = ClaudeTerracotta.copy(alpha = 0.8f)
@@ -238,7 +240,7 @@ fun ProfileDetailDialog(
                                     }
                                     Spacer(modifier = Modifier.height(2.dp))
                                     Text(
-                                        text = "${authInfo.availablePromptCredits} Available",
+                                        text = stringResource(R.string.drawer_authinfo_availablepromptcredits_availabl, authInfo.availablePromptCredits),
                                         fontSize = 13.sp,
                                         fontWeight = FontWeight.Bold,
                                         color = MaterialTheme.colorScheme.onSurface
@@ -273,7 +275,7 @@ fun ProfileDetailDialog(
                                     }
                                     Spacer(modifier = Modifier.height(2.dp))
                                     Text(
-                                        text = "${authInfo.availableFlowCredits} Available",
+                                        text = stringResource(R.string.drawer_authinfo_availableflowcredits_available, authInfo.availableFlowCredits),
                                         fontSize = 13.sp,
                                         fontWeight = FontWeight.Bold,
                                         color = MaterialTheme.colorScheme.onSurface

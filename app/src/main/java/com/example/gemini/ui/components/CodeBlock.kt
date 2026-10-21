@@ -57,6 +57,8 @@ import androidx.compose.ui.window.DialogProperties
 import com.example.gemini.theme.*
 import kotlinx.coroutines.delay
 import java.util.regex.Pattern
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 // Syntax theme colors (One Dark / VS Code inspired)
 private val SynKeyword = Color(0xFFC678DD)      // Magenta / Purple
@@ -227,7 +229,7 @@ fun CodeBlock(
                 )
                 if (lineCount > 1) {
                     Text(
-                        text = "•  $lineCount lines",
+                        text = stringResource(R.string.component_linecount_lines, lineCount),
                         fontSize = 10.5.sp,
                         color = TextPrimaryDark.copy(alpha = 0.5f)
                     )

@@ -57,6 +57,19 @@ for c in catalog:
         continue
     by_module[c["module"]].append(c)
 
+# 含插值的条目：中文里带 %1$s 占位符，参数由调用点按位置传入
+DYN = "/tmp/i18n_dynamic.json"
+if os.path.exists(DYN):
+    for key, info in json.load(open(DYN, encoding="utf-8")).items():
+        if not info.get("zh") or info["zh"] == "-" or not info.get("args"):
+            continue
+        by_module[info["module"]].append({
+            "key": key,
+            "en": info["en"],
+            "zh": info["zh"],
+            "module": info["module"],
+        })
+
 written = []
 for module, items in sorted(by_module.items()):
     fn = MODULE_FILE.get(module)

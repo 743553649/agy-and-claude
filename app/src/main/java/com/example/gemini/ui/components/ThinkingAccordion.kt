@@ -25,6 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.style.TextOverflow
 import com.example.gemini.theme.ClaudeTerracotta
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 @Composable
 fun ThinkingAccordion(
@@ -171,7 +173,7 @@ fun ThinkingAccordion(
                     if (!isStreaming && durationMs != null && durationMs > 0) {
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "⏱️ Thought for ${formatDuration(durationMs)}",
+                            text = stringResource(R.string.component_thought_for_formatduration_durationms, formatDuration(durationMs)),
                             fontSize = 11.5.sp,
                             fontFamily = FontFamily.Monospace,
                             fontWeight = FontWeight.Medium,

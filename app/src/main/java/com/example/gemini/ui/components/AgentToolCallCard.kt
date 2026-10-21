@@ -47,6 +47,8 @@ import com.example.gemini.data.remote.dto.AskQuestionResponseItemDto
 import com.example.gemini.domain.model.ToolCall
 import com.example.gemini.domain.model.ToolType
 import com.example.gemini.theme.*
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 private val IMAGE_FILE_REGEX = Regex(".*\\.(png|jpe?g|webp|gif)(\\?.*)?$", RegexOption.IGNORE_CASE)
 
@@ -342,7 +344,7 @@ fun AgentToolCallCard(
                         .padding(horizontal = 4.dp, vertical = 1.dp)
                 ) {
                     Text(
-                        text = "exit ${toolCall.exitCode}",
+                        text = stringResource(R.string.component_exit_toolcall_exitcode, toolCall.exitCode),
                         fontSize = 9.sp,
                         fontWeight = FontWeight.Bold,
                         color = if (isSuccess) QuotaGreen else Color.Red
@@ -530,7 +532,7 @@ fun AgentToolCallCard(
 
                         if (toolCall.durationMs != null && toolCall.durationMs > 0) {
                             Text(
-                                text = "⏱️ ${formatDuration(toolCall.durationMs)}",
+                                text = stringResource(R.string.component_formatduration_toolcall_durationms, formatDuration(toolCall.durationMs)),
                                 fontSize = 11.sp,
                                 fontFamily = FontFamily.Monospace,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),

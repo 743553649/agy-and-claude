@@ -311,11 +311,11 @@ fun ChatHistoryDrawer(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Column(modifier = Modifier.padding(10.dp)) {
-                            Text("Chat: $title", fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
-                            Text("Model: ${inst.model}", fontSize = 12.sp)
-                            Text("Uptime: ${inst.uptimeSeconds}s", fontSize = 12.sp)
+                            Text(stringResource(R.string.drawer_chat_title, title), fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+                            Text(stringResource(R.string.drawer_model_inst_model, inst.model), fontSize = 12.sp)
+                            Text(stringResource(R.string.drawer_uptime_inst_uptimeseconds_s, inst.uptimeSeconds), fontSize = 12.sp)
                             if (inst.pid > 0) {
-                                Text("PID: ${inst.pid}", fontSize = 12.sp)
+                                Text(stringResource(R.string.common_pid_inst_pid, inst.pid), fontSize = 12.sp)
                             }
                         }
                     }
@@ -525,7 +525,7 @@ fun ChatHistoryDrawer(
             },
             text = {
                 Text(
-                    text = "Are you sure you want to delete \"${targetConv.title.ifBlank { "this conversation" }}\"? This will permanently remove all messages and trajectory data.",
+                    text = stringResource(R.string.drawer_are_you_sure_you_want_to_delete_targetco_2, targetConv.title.ifBlank { "this conversation" }),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     lineHeight = 20.sp
@@ -803,7 +803,7 @@ fun ChatHistoryDrawer(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "${filtered.size} chat${if (filtered.size != 1) "s" else ""} found",
+                                text = stringResource(R.string.drawer_filtered_size_chat_if_filtered_size_1_s, filtered.size, if (filtered.size != 1) "s" else ""),
                                 fontSize = 11.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                             )
@@ -1023,7 +1023,7 @@ fun ChatHistoryDrawer(
                                                 color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
                                             ) {
                                                 Text(
-                                                    text = "${chats.size}",
+                                                    text = stringResource(R.string.drawer_chats_size, chats.size),
                                                     fontSize = 10.5.sp,
                                                     fontWeight = FontWeight.Medium,
                                                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
@@ -1538,7 +1538,7 @@ private fun ChatHistoryItemRow(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "${subagents.size}",
+                                text = stringResource(R.string.drawer_subagents_size, subagents.size),
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = if (isSubagentsExpanded) ClaudeTerracotta else MaterialTheme.colorScheme.onSurfaceVariant
@@ -1914,7 +1914,7 @@ fun SearchChatsDialog(
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
-                                text = "${conversations.size} total chats indexed",
+                                text = stringResource(R.string.drawer_conversations_size_total_chats_indexed, conversations.size),
                                 fontSize = 11.5.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                             )
@@ -2099,7 +2099,7 @@ fun SearchChatsDialog(
 
                 // Results count
                 Text(
-                    text = "${results.size} match${if (results.size != 1) "es" else ""}",
+                    text = stringResource(R.string.drawer_results_size_match_if_results_size_1_es, results.size, if (results.size != 1) "es" else ""),
                     fontSize = 12.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
@@ -2257,7 +2257,7 @@ fun SearchChatsDialog(
 
                                         if (conv.stepCount > 0) {
                                             Text(
-                                                text = "${conv.stepCount} turns",
+                                                text = stringResource(R.string.drawer_conv_stepcount_turns, conv.stepCount),
                                                 fontSize = 10.5.sp,
                                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f)
                                             )

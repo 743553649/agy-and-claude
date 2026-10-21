@@ -1157,7 +1157,7 @@ fun GitSourceControlView(
             onDismissRequest = { pendingDiscardFile = null },
             icon = { Icon(Icons.Default.Warning, contentDescription = null, tint = Color(0xFFE57373)) },
             title = { Text(stringResource(R.string.common_discard_changes), fontWeight = FontWeight.Bold) },
-            text = { Text("Are you sure you want to discard all changes in '$fileName'? This action cannot be undone.") },
+            text = { Text(stringResource(R.string.ide_are_you_sure_you_want_to_discard_all_cha, fileName)) },
             confirmButton = {
                 Button(
                     onClick = {
@@ -1330,9 +1330,9 @@ fun GitSourceControlView(
             text = {
                 Column {
                     if (unpushedCount > 0) {
-                        Text("Push $unpushedCount unpushed commit${if (unpushedCount > 1) "s" else ""} on branch '${status?.branch ?: "HEAD"}' to the remote repository?")
+                        Text(stringResource(R.string.ide_push_unpushedcount_unpushed_commit_if_un_2, unpushedCount, if (unpushedCount > 1) "s" else "", status?.branch ?: "HEAD"))
                     } else {
-                        Text("Push committed changes on branch '${status?.branch ?: "HEAD"}' to the remote repository?")
+                        Text(stringResource(R.string.ide_push_committed_changes_on_branch_status_2, status?.branch ?: "HEAD"))
                     }
                 }
             },
@@ -1685,7 +1685,7 @@ private fun CommitLogRow(
 
                     if (details.changedFiles.isNotEmpty()) {
                         Text(
-                            text = "CHANGED FILES (${details.changedFiles.size})",
+                            text = stringResource(R.string.ide_changed_files_details_changedfiles_size, details.changedFiles.size),
                             fontSize = 10.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.primary,

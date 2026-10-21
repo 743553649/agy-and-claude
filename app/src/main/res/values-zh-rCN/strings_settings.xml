@@ -77,6 +77,8 @@
     <string name="settings_antigem_connects_via_grpc_web_to_stream">AntiGem 通过 gRPC-Web 连接，实时流式接收智能体步骤和工具执行。</string>
     <!-- 原文: AntiGem Environment -->
     <string name="settings_antigem_environment">AntiGem 环境</string>
+    <!-- 原文: AntiGem is wiping all local app data, rootfs, and settings.\n\nThe app will automatically close in $countdownSeconds seconds. Simply re-open AntiGem to start fresh. -->
+    <string name="settings_antigem_is_wiping_all_local_app_data_roo">AntiGem 正在清空所有本地应用数据、rootfs 和设置。\n\n应用将在 %1$s 秒后自动关闭。重新打开 AntiGem 即可全新开始。</string>
     <!-- 原文: AntiGem runs a full Ubuntu Linux environment inside a user-space PRoot container on 64-bit ARM. No device root required. -->
     <string name="settings_antigem_runs_a_full_ubuntu_linux_environ">AntiGem 在 64 位 ARM 上以用户态 PRoot 容器运行完整的 Ubuntu Linux 环境，无需设备 root。</string>
     <!-- 原文: AntiGem Space Manager -->
@@ -103,6 +105,10 @@
     <string name="settings_archive_selected_projects_workspaces_res">归档选中的项目、工作区，并从 zip 恢复</string>
     <!-- 原文: Archive Size: -->
     <string name="settings_archive_size">归档大小：</string>
+    <!-- 原文: Are you sure you want to delete '${plugin.displayName.ifBlank { plugin.name }}' (${plugin.name})? This will remove its bundled skills from ~/.gemini/config/plugins/. -->
+    <string name="settings_are_you_sure_you_want_to_delete_plugin_d">确定要删除「%1$s」（%2$s）吗？这会同时移除它在 ~/.gemini/config/plugins/ 中的内置技能。</string>
+    <!-- 原文: Are you sure you want to remove \"$targetName\" from global mcp_config.json? The server and its tools will be disconnected. -->
+    <string name="settings_are_you_sure_you_want_to_remove_targetna">确定要从全局 mcp_config.json 中移除「%1$s」吗？该服务器及其工具将被断开。</string>
     <!-- 原文: Are you sure you want to wipe all AntiGem data? This will permanently delete all Linux packages, workspaces, accounts, and chats. -->
     <string name="settings_are_you_sure_you_want_to_wipe_all_antige">确定要清空所有 AntiGem 数据吗？这将永久删除所有 Linux 软件包、工作区、账号和对话。</string>
     <!-- 原文: Arguments (space separated) -->
@@ -145,6 +151,8 @@
     <string name="settings_binary_executable_paths">二进制可执行文件路径</string>
     <!-- 原文: Bootstrap rootfs successfully configured. The interactive terminal, Go IDE backend, and AGY AI language server are now ready to run. -->
     <string name="settings_bootstrap_rootfs_successfully_configured">Bootstrap rootfs 配置成功。交互式终端、Go IDE 后端和 AGY AI 语言服务器现在都可以运行了。</string>
+    <!-- 原文: Bridge: http://${sharedHost.trim()}:${bridgePort.trim()} -->
+    <string name="settings_bridge_http_sharedhost_trim_bridgeport_t">桥接：http://%1$s:%2$s</string>
     <!-- 原文: Browse MCP Catalog / Marketplace (1-Click) -->
     <string name="settings_browse_mcp_catalog_marketplace_1_click">浏览 MCP 目录 / 市场（一键）</string>
     <!-- 原文: Browser Automation -->
@@ -153,6 +161,8 @@
     <string name="settings_build_package_information">构建与打包信息</string>
     <!-- 原文: Build Type -->
     <string name="settings_build_type">构建类型</string>
+    <!-- 原文: Bundled Skills (${plugin.skills.size}): -->
+    <string name="settings_bundled_skills_plugin_skills_size">内置技能（%1$s）：</string>
     <!-- 原文: Cancel Search -->
     <string name="settings_cancel_search">取消搜索</string>
     <!-- 原文: Cascade MCP Catalog -->
@@ -163,6 +173,8 @@
     <string name="settings_change">更改</string>
     <!-- 原文: Change Source -->
     <string name="settings_change_source">更换来源</string>
+    <!-- 原文: Chat Text Scaling (${(chatFontScale * 100).toInt()}%) -->
+    <string name="settings_chat_text_scaling_chatfontscale_100_toin">对话字号缩放（%1$s%%）</string>
     <!-- 原文: Check for Updates -->
     <string name="settings_check_for_updates">检查更新</string>
     <!-- 原文: Checking GitHub... -->
@@ -189,6 +201,8 @@
     <string name="settings_commands_permissions">命令与权限</string>
     <!-- 原文: Configure local process (Stdio) or remote (SSE) MCP servers. Discovered tools are dynamically available to all models during chat turns. -->
     <string name="settings_configure_local_process_stdio_or_remote">配置本地进程（Stdio）或远程（SSE）MCP 服务器。发现的工具会在对话中动态提供给所有模型。</string>
+    <!-- 原文: Configured Servers (${mcpServers.size}) -->
+    <string name="settings_configured_servers_mcpservers_size">已配置服务器（%1$s）</string>
     <!-- 原文: Configuring Shell & Symlinks -->
     <string name="settings_configuring_shell_symlinks">正在配置 Shell 与符号链接</string>
     <!-- 原文: Confirm Destruction -->
@@ -213,8 +227,12 @@
     <string name="settings_controls_whether_the_assistant_asks_you">控制助手在创建文档时是否请你审阅并批准。</string>
     <!-- 原文: Copy Header -->
     <string name="settings_copy_header">复制请求头</string>
+    <!-- 原文: Could not retrieve daemon permissions and security state:\n${globalSettingsError ?: "RPC connection failed"}\n\nMake sure AGY is running (e.g. agy - -hub) and check your Server settings. -->
+    <string name="settings_could_not_retrieve_daemon_permissions_an_2">无法获取守护进程权限与安全状态：\n%1$s\n\n请确认 AGY 正在运行（例如 agy --hub），并检查服务器设置。</string>
     <!-- 原文: Could not retrieve MCP server states. Ensure the Antigravity daemon is running on this device or accessible at the configured Hub URL. -->
     <string name="settings_could_not_retrieve_mcp_server_states_ens">无法获取 MCP 服务器状态。请确认 Antigravity 守护进程正在本机运行，或在配置的 Hub 地址可访问。</string>
+    <!-- 原文: ${countdownSeconds}s -->
+    <string name="settings_countdownseconds_s">%1$s 秒</string>
     <!-- 原文: CPU Arch -->
     <string name="settings_cpu_arch">CPU 架构</string>
     <!-- 原文: Creates a full, portable backup of all installed packages, libraries, binaries, shell configurations, and user home dotfiles. Excludes active sockets, volatile caches, and auth tokens. -->
@@ -229,6 +247,8 @@
     <string name="settings_custom_restore_directory">自定义恢复目录</string>
     <!-- 原文: Customize Icons & Order -->
     <string name="settings_customize_icons_order">自定义图标与顺序</string>
+    <!-- 原文: cwd: ${server.spec!!.cwd} -->
+    <string name="settings_cwd_server_spec_cwd">工作目录：%1$s</string>
     <!-- 原文: Danger Zone: Factory Reset -->
     <string name="settings_danger_zone_factory_reset">危险区域：恢复出厂设置</string>
     <!-- 原文: Data Loss Prevention -->
@@ -315,6 +335,8 @@
     <string name="settings_exposed_mcp_tools_6">已暴露的 MCP 工具（6 个）：</string>
     <!-- 原文: Exposed MCP Tools (9): -->
     <string name="settings_exposed_mcp_tools_9">已暴露的 MCP 工具（9 个）：</string>
+    <!-- 原文: ${extension.name} · ${extension.toolCount} tools -->
+    <string name="settings_extension_name_extension_toolcount_tools">%1$s · %2$s 个工具</string>
     <!-- 原文: Factory Reset in Progress -->
     <string name="settings_factory_reset_in_progress">正在恢复出厂设置</string>
     <!-- 原文: Files Outside Workspace: -->
@@ -331,8 +353,12 @@
     <string name="settings_folder_name">文件夹名称</string>
     <!-- 原文: Font Size -->
     <string name="settings_font_size">字号</string>
+    <!-- 原文: ${fontSizeState}pt -->
+    <string name="settings_fontsizestate_pt">%1$spt</string>
     <!-- 原文: Format -->
     <string name="settings_format">格式</string>
+    <!-- 原文: from ${skill.pluginName} -->
+    <string name="settings_from_skill_pluginname">来自 %1$s</string>
     <!-- 原文: Full Raw Archive -->
     <string name="settings_full_raw_archive">完整原始归档</string>
     <!-- 原文: Get Started -->
@@ -357,12 +383,20 @@
     <string name="settings_granular_permission_grants">细粒度权限授予</string>
     <!-- 原文: Group Chats by Workspace -->
     <string name="settings_group_chats_by_workspace">按工作区分组对话</string>
+    <!-- 原文: Headers: ${server.spec!!.headers.keys.joinToString(", ")} -->
+    <string name="settings_headers_server_spec_headers_keys_jointos_2">请求头：%1$s</string>
     <!-- 原文: Horizontal -->
     <string name="settings_horizontal">水平</string>
     <!-- 原文: How does AntiGem connect to AGY Hub? -->
     <string name="settings_how_does_antigem_connect_to_agy_hub">AntiGem 如何连接 AGY 中枢？</string>
+    <!-- 原文: HTTP Framed Header: $framedHeader -->
+    <string name="settings_http_framed_header_framedheader">HTTP 框架请求头：%1$s</string>
     <!-- 原文: HTTP Headers (Header: Value per line) -->
     <string name="settings_http_headers_header_value_per_line">HTTP 请求头（每行 Header: Value）</string>
+    <!-- 原文: Hub: http://${sharedHost.trim()}:${hubPort.trim()} -->
+    <string name="settings_hub_http_sharedhost_trim_hubport_trim">中枢：http://%1$s:%2$s</string>
+    <!-- 原文: ID: ${plugin.id} -->
+    <string name="settings_id_plugin_id">ID：%1$s</string>
     <!-- 原文: IDE & AGY Projects Backup & Restore -->
     <string name="settings_ide_agy_projects_backup_restore">IDE 与 AGY 项目备份还原</string>
     <!-- 原文: IDE Bridge Binary Path -->
@@ -427,6 +461,8 @@
     <string name="settings_mcp_servers_tools">MCP 服务器与工具</string>
     <!-- 原文: Minimal (~33MB) -->
     <string name="settings_minimal_33mb">最小（约 33MB）</string>
+    <!-- 原文: Mode: $mode -->
+    <string name="settings_mode_mode">模式：%1$s</string>
     <!-- 原文: Model Context Protocol (MCP) -->
     <string name="settings_model_context_protocol_mcp">模型上下文协议（MCP）</string>
     <!-- 原文: Modern AntiGem styled icon & name -->
@@ -447,6 +483,8 @@
     <string name="settings_no_extensions_installed_choose_a_zip_con">尚未安装任何扩展。请选择包含 manifest.json 和后台工作者的 ZIP。</string>
     <!-- 原文: No markdown content found in SKILL.md -->
     <string name="settings_no_markdown_content_found_in_skill_md">SKILL.md 中没有找到 Markdown 内容</string>
+    <!-- 原文: No MCP packages found matching '$searchQuery' -->
+    <string name="settings_no_mcp_packages_found_matching_searchque">没有找到匹配「%1$s」的 MCP 软件包</string>
     <!-- 原文: No MCP Servers Configured -->
     <string name="settings_no_mcp_servers_configured">尚未配置 MCP 服务器</string>
     <!-- 原文: No official Google plugins catalog available. -->
@@ -479,6 +517,10 @@
     <string name="settings_password">密码</string>
     <!-- 原文: Performs a complete wipe of all app data, removing Linux packages, accounts, and chats. -->
     <string name="settings_performs_a_complete_wipe_of_all_app_data">彻底清空所有 App 数据，移除 Linux 软件包、账号和对话。</string>
+    <!-- 原文: Plugins (${installedPlugins.size}) -->
+    <string name="settings_plugins_installedplugins_size">插件（%1$s）</string>
+    <!-- 原文: + $pName -->
+    <string name="settings_pname">+ %1$s</string>
     <!-- 原文: Port -->
     <string name="settings_port">端口</string>
     <!-- 原文: Preserves existing code in a backup folder before extracting -->
@@ -499,6 +541,10 @@
     <string name="settings_projects_backup_restore">项目备份与还原</string>
     <!-- 原文: Projects can inherit the global policy above or maintain specific overrides. -->
     <string name="settings_projects_can_inherit_the_global_policy_a">项目可以继承上方的全局策略，也可以单独覆盖。</string>
+    <!-- 原文: Projects in Archive (${manifestProjects.size}): -->
+    <string name="settings_projects_in_archive_manifestprojects_siz">压缩包中的项目（%1$s）：</string>
+    <!-- 原文: ${projectsList.count { it.isInheritingGlobal }}/${projectsList.size} Inheriting -->
+    <string name="settings_projectslist_count_it_isinheritingglobal">%1$s/%2$s 继承全局</string>
     <!-- 原文: Prompt for confirmation before assistant applies file edits or writes code to disk. -->
     <string name="settings_prompt_for_confirmation_before_assistant">在助手应用文件修改或写代码到磁盘前请求确认。</string>
     <!-- 原文: Protect your local Linux environment, CLI tools, databases, and AI coding workspaces from accidental wipe or uninstall. -->
@@ -513,6 +559,8 @@
     <string name="settings_release_changelogs">版本更新日志</string>
     <!-- 原文: Release Tag: -->
     <string name="settings_release_tag">发布标签：</string>
+    <!-- 原文: 🌐 Remote: ${plugin.remote.template.serverUrl} -->
+    <string name="settings_remote_plugin_remote_template_serverurl">🌐 远程：%1$s</string>
     <!-- 原文: Remove MCP Server? -->
     <string name="settings_remove_mcp_server">移除 MCP 服务器？</string>
     <!-- 原文: Rename extension folder -->
@@ -557,6 +605,8 @@
     <string name="settings_rootfs_environment_backup">Rootfs 环境备份</string>
     <!-- 原文: Rootfs System Packager -->
     <string name="settings_rootfs_system_packager">Rootfs 系统打包器</string>
+    <!-- 原文: ${rule.actionIcon} ${rule.actionLabel} -->
+    <string name="settings_rule_actionicon_rule_actionlabel">%1$s %2$s</string>
     <!-- 原文: Run in Background -->
     <string name="settings_run_in_background">后台运行</string>
     <!-- 原文: Run in Background & Open AntiGem -->
@@ -565,6 +615,8 @@
     <string name="settings_run_in_background_open_chat">后台运行并打开对话</string>
     <!-- 原文: Run Rootfs Backup (backup_bootstrap) -->
     <string name="settings_run_rootfs_backup_backup_bootstrap">运行 Rootfs 备份（backup_bootstrap）</string>
+    <!-- 原文: /${s.name} -->
+    <string name="settings_s_name">/%1$s</string>
     <!-- 原文: Safe storage and data loss protection -->
     <string name="settings_safe_storage_and_data_loss_protection">安全存储与数据丢失保护</string>
     <!-- 原文: Safe to clear. Removes temporary logs and cached assets without touching your code or database. -->
@@ -593,6 +645,8 @@
     <string name="settings_security_token_header_obfuscation">安全令牌（请求头混淆）</string>
     <!-- 原文: ⚠️ Security Warning: This backup includes your authentication credentials and login tokens. Never share this archive with anyone, as anyone with this file can log in to your account. -->
     <string name="settings_security_warning_this_backup_includes_yo">⚠️ 安全警告：此备份包含你的登录凭据和登录令牌。请勿把此压缩包分享给任何人，任何拿到它的人都能登录你的账号。</string>
+    <!-- 原文: ${securityToken.length}/12 -->
+    <string name="settings_securitytoken_length_12">%1$s/12</string>
     <!-- 原文: Select a projects backup archive (.zip) to restore projects to their workspace locations. -->
     <string name="settings_select_a_projects_backup_archive_zip_to">选择项目备份包（.zip），把项目恢复到其工作区位置。</string>
     <!-- 原文: Select All -->
@@ -613,6 +667,8 @@
     <string name="settings_server_name">服务器名称 *</string>
     <!-- 原文: Server settings and security configuration have been saved. Reopening the app restarts local bridge and daemon processes so all connections cleanly synchronize with the new parameters. -->
     <string name="settings_server_settings_and_security_configurati">服务器设置和安全配置已保存。重新打开 App 会重启本地桥接和守护进程，使所有连接按新参数重新同步。</string>
+    <!-- 原文: ${server.tools.size} Discovered Tool${if (server.tools.size > 1) "s" else ""} -->
+    <string name="settings_server_tools_size_discovered_tool_if_ser_2">发现 %1$s 个工具</string>
     <!-- 原文: Servers & Connectivity -->
     <string name="settings_servers_connectivity">服务器与连接</string>
     <!-- 原文: Set custom headers like API keys or tokens required by the remote endpoint. -->
@@ -629,8 +685,18 @@
     <string name="settings_show_on_screen_draggable_pill_with_live">在屏幕上显示可拖动的胶囊，含实时调用次数与流数量</string>
     <!-- 原文: 💡 Sideloaded App Tip (Android 13+): If your phone shows 'Restricted setting', open App Info > tap the 3 dots in the top right > select 'Allow restricted settings'. -->
     <string name="settings_sideloaded_app_tip_android_13_if_your_ph">💡 侧载应用提示（Android 13+）：如果手机显示「受到限制的设置」，请打开应用信息 &gt; 点右上角三个点 &gt; 选择「允许受限设置」。</string>
+    <!-- 原文: Size: ${Formatter.formatFileSize(context, cacheBytes)} -->
+    <string name="settings_size_formatter_formatfilesize_context_ca">大小：%1$s</string>
+    <!-- 原文: (${skill.displayName}) -->
+    <string name="settings_skill_displayname">（%1$s）</string>
+    <!-- 原文: • ${skill.displayName} -->
+    <string name="settings_skill_displayname_2">• %1$s</string>
+    <!-- 原文: /${skill.name} -->
+    <string name="settings_skill_name">/%1$s</string>
     <!-- 原文: Skills & Plugins -->
     <string name="settings_skills_plugins">技能与插件</string>
+    <!-- 原文: Skills (${skills.size}) -->
+    <string name="settings_skills_skills_size">技能（%1$s）</string>
     <!-- 原文: Skip for Now -->
     <string name="settings_skip_for_now">暂时跳过</string>
     <!-- 原文: Skip Setup & Open AntiGem Chat -->
@@ -647,6 +713,8 @@
     <string name="settings_start_restore">开始还原</string>
     <!-- 原文: Start Restore (restore_projects) -->
     <string name="settings_start_restore_restore_projects">开始恢复（restore_projects）</string>
+    <!-- 原文: ⚡ Stdio: ${cmd?.command ?: "CLI"} ${(cmd?.args ?: emptyList()).take(2).joinToString(" ")}... -->
+    <string name="settings_stdio_cmd_command_cli_cmd_args_emptylist">⚡ Stdio：%1$s %2$s...</string>
     <!-- 原文: Step 1: Downloading / Importing -->
     <string name="settings_step_1_downloading_importing">第 1 步：下载 / 导入</string>
     <!-- 原文: Step 2: Unzipping & Extracting -->
@@ -663,6 +731,8 @@
     <string name="settings_store">商店</string>
     <!-- 原文: Suspends and requests your approval before saving document edits. -->
     <string name="settings_suspends_and_requests_your_approval_befo">在保存文档修改前暂停并请求你的批准。</string>
+    <!-- 原文: Target: ${item.originalPath} -->
+    <string name="settings_target_item_originalpath">目标：%1$s</string>
     <!-- 原文: Target Sandbox: -->
     <string name="settings_target_sandbox">目标沙箱：</string>
     <!-- 原文: Temporary Cache -->
@@ -683,6 +753,8 @@
     <string name="settings_test_hub">测试中枢</string>
     <!-- 原文: Test SSH Connection -->
     <string name="settings_test_ssh_connection">测试 SSH 连接</string>
+    <!-- 原文: The AGY IDE Bridge and Hub server must be offline before running '$actionName'. Would you like to stop the server now? -->
+    <string name="settings_the_agy_ide_bridge_and_hub_server_must_b">执行「%1$s」前必须先停掉 AGY IDE 桥接与中枢服务器。要现在停止吗？</string>
     <!-- 原文: The daemon is actively accessing databases and processes. Please stop the server before performing backups or restores to prevent corrupted archives. -->
     <string name="settings_the_daemon_is_actively_accessing_databas">守护进程正在访问数据库和进程。请先停止服务再进行备份或恢复，以免产生损坏的压缩包。</string>
     <!-- 原文: This includes your Termux Linux packages, AI configuration, and local SQLite data. -->
@@ -693,6 +765,8 @@
     <string name="settings_this_will_remove_antigem_s_device_admin">这会移除 AntiGem 的设备管理器状态。应用将重新暴露在桌面误卸载的风险之下。</string>
     <!-- 原文: Thread Breakdown: -->
     <string name="settings_thread_breakdown">线程明细：</string>
+    <!-- 原文: $title Documentation -->
+    <string name="settings_title_documentation">%1$s 文档</string>
     <!-- 原文: To confirm and permanently wipe all app data and local Linux storage, type the confirmation phrase exactly as shown below: -->
     <string name="settings_to_confirm_and_permanently_wipe_all_app">要确认并永久清空所有 App 数据和本地 Linux 存储，请在下方原样输入确认短语：</string>
     <!-- 原文: To confirm and permanently wipe all app data and local rootfs, type the confirmation phrase exactly as shown below: -->
@@ -705,6 +779,8 @@
     <string name="settings_tools_and_file_accesses_will_use_your_gl">工具和文件访问会使用上方的全局预设。点击「添加规则」可对特定命令、MCP 工具或文件路径设置白名单、黑名单或询问。</string>
     <!-- 原文: Total App Footprint -->
     <string name="settings_total_app_footprint">应用总体积</string>
+    <!-- 原文: $totalTools tools available -->
+    <string name="settings_totaltools_tools_available">可用 %1$s 个工具</string>
     <!-- 原文: ⚡ Turbo -->
     <string name="settings_turbo">⚡ 加速</string>
     <!-- 原文: Ubuntu Linux Container (PRoot ARM64) -->
@@ -723,6 +799,8 @@
     <string name="settings_use_terminal_via_ssh">通过 SSH 使用终端</string>
     <!-- 原文: User -->
     <string name="settings_user">用户</string>
+    <!-- 原文: v${plugin.version} -->
+    <string name="settings_v_plugin_version">v%1$s</string>
     <!-- 原文: Verifying Installation -->
     <string name="settings_verifying_installation">正在验证安装</string>
     <!-- 原文: Versions: -->

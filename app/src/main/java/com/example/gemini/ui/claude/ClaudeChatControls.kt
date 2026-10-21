@@ -400,7 +400,7 @@ fun ClaudeModelSheet(
                             Icon(Icons.Outlined.Bolt, null, tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f), modifier = Modifier.size(18.dp))
                             Spacer(Modifier.width(10.dp))
                             Column(Modifier.weight(1f)) {
-                                Text("Fast mode · ${fast.replaceFirstChar { it.uppercase() }}", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
+                                Text(stringResource(R.string.claude_fast_mode_fast_replacefirstchar_it_upper, fast.replaceFirstChar { it.uppercase() }), fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
                                 Text(stringResource(R.string.claude_send_fast_in_the_chat_to_toggle), fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f))
                             }
                         }
@@ -425,7 +425,7 @@ fun ClaudeContextDialog(backend: ClaudeChatBackend, onDismiss: () -> Unit) {
                 if (c == null) {
                     Text(stringResource(R.string.claude_context_usage_shows_once_this_chat_has_s), fontSize = 13.sp)
                 } else {
-                    Text("${compactTokens(c.totalTokens)} of ${compactTokens(c.maxTokens)} tokens used (${c.percentage.toInt()}%)", fontSize = 13.sp)
+                    Text(stringResource(R.string.claude_compacttokens_c_totaltokens_of_compactto, compactTokens(c.totalTokens), compactTokens(c.maxTokens), c.percentage.toInt()), fontSize = 13.sp)
                     UsageBar("Used", c.percentage / 100.0, null)
                     HorizontalDivider(Modifier.padding(vertical = 4.dp))
                     c.categories.forEach { cat ->

@@ -38,6 +38,8 @@ import androidx.compose.ui.window.DialogProperties
 import com.example.gemini.data.daemon.ProjectItem
 import com.example.gemini.theme.ClaudeTerracotta
 import java.io.File
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 @Composable
 fun ProjectPickerDialog(
@@ -121,7 +123,7 @@ fun ProjectPickerDialog(
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
-                                text = "${projects.size} available workspace${if (projects.size == 1) "" else "s"}",
+                                text = stringResource(R.string.component_projects_size_available_workspace_if_pro_2, projects.size),
                                 fontSize = 12.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                             )

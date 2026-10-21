@@ -138,7 +138,7 @@ fun AgentQuestionPanel(
                 ) { Icon(Icons.AutoMirrored.Outlined.HelpOutline, null, tint = accent, modifier = Modifier.size(19.dp)) }
                 Spacer(Modifier.width(10.dp))
                 Column(Modifier.weight(1f)) {
-                    Text("${question.agent.label()} has ${if (questions.size > 1) "${questions.size} questions" else "a question"}", fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+                    Text(stringResource(R.string.agents_question_agent_label_has_if_questions_si_2, question.agent.label(), if (questions.size > 1) "${questions.size} questions" else "a question"), fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
                     if (questions.size > 1) {
                         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 3.dp)) {
                             questions.forEachIndexed { i, q ->
@@ -157,7 +157,7 @@ fun AgentQuestionPanel(
                                 )
                             }
                             Spacer(Modifier.width(4.dp))
-                            Text("${page + 1} of ${questions.size}", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f))
+                            Text(stringResource(R.string.agents_page_1_of_questions_size, page + 1, questions.size), fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f))
                         }
                     }
                 }

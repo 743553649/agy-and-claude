@@ -106,7 +106,7 @@ fun WebViewExtensionMcpPicker(onDismiss: () -> Unit, onSelect: (BrowserExtension
                 OutlinedButton(onClick = { onSelect(extension) }, modifier = Modifier.fillMaxWidth()) {
                     Column(Modifier.fillMaxWidth()) {
                         Text(extension.folderName)
-                        Text("${extension.name} · ${extension.toolCount} tools", style = MaterialTheme.typography.bodySmall)
+                        Text(stringResource(R.string.settings_extension_name_extension_toolcount_tools, extension.name, extension.toolCount), style = MaterialTheme.typography.bodySmall)
                     }
                 }
             }

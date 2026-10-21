@@ -167,13 +167,13 @@ private fun ApprovalBody(item: ApprovalItem, count: Int, onAllowAll: (() -> Unit
                     }
                     DropdownMenu(expanded = overflow, onDismissRequest = { overflow = false }) {
                         onAllowAll?.let {
-                            DropdownMenuItem(text = { Text("Allow all $count") }, onClick = {
+                            DropdownMenuItem(text = { Text(stringResource(R.string.agents_allow_all_count, count)) }, onClick = {
                                 overflow = false
                                 it()
                             })
                         }
                         onDenyAll?.let {
-                            DropdownMenuItem(text = { Text("Deny all $count", color = DenyRed) }, onClick = {
+                            DropdownMenuItem(text = { Text(stringResource(R.string.agents_deny_all_count, count), color = DenyRed) }, onClick = {
                                 overflow = false
                                 it()
                             })
@@ -270,7 +270,7 @@ private fun ApprovalBody(item: ApprovalItem, count: Int, onAllowAll: (() -> Unit
                     }
                 }
                 TextButton(onClick = { denying = true }, modifier = Modifier.fillMaxWidth()) {
-                    Text("${item.denyLabel}…", color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f))
+                    Text(stringResource(R.string.agents_item_denylabel, item.denyLabel), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f))
                 }
                 return@Column
             }

@@ -134,7 +134,7 @@ fun AppUpdateDialog(
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
-                            text = "v${updateInfo.currentVersionName}",
+                            text = stringResource(R.string.ui_v_updateinfo_currentversionname, updateInfo.currentVersionName),
                             color = onSurfaceVariantColor,
                             fontSize = 12.5.sp,
                             fontFamily = FontFamily.Monospace
@@ -148,7 +148,7 @@ fun AppUpdateDialog(
                                 .size(13.dp)
                         )
                         Text(
-                            text = "v${updateInfo.versionName}",
+                            text = stringResource(R.string.ui_v_updateinfo_versionname, updateInfo.versionName),
                             color = primaryColor,
                             fontSize = 12.5.sp,
                             fontWeight = FontWeight.Bold,
@@ -223,7 +223,7 @@ fun AppUpdateDialog(
                                     fontSize = 12.sp
                                 )
                                 Text(
-                                    text = "${(state.progress * 100).toInt()}%",
+                                    text = stringResource(R.string.ui_state_progress_100_toint, (state.progress * 100).toInt()),
                                     color = primaryColor,
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Bold
@@ -241,7 +241,7 @@ fun AppUpdateDialog(
                             )
                             Spacer(modifier = Modifier.height(4.dp))
                             Text(
-                                text = "${formatSize(state.downloadedBytes)} / ${formatSize(state.totalBytes)}",
+                                text = stringResource(R.string.ui_formatsize_state_downloadedbytes_formats, formatSize(state.downloadedBytes), formatSize(state.totalBytes)),
                                 color = onSurfaceVariantColor,
                                 fontSize = 10.5.sp,
                                 modifier = Modifier.align(Alignment.End)
@@ -292,7 +292,7 @@ fun AppUpdateDialog(
                             )
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(
-                                text = "Download failed: ${state.message}",
+                                text = stringResource(R.string.ui_download_failed_state_message, state.message),
                                 color = QuotaRed,
                                 fontSize = 11.5.sp,
                                 maxLines = 2

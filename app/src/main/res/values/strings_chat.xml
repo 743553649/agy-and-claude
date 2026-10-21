@@ -15,6 +15,7 @@
     <string name="chat_e_g_it_was_taking_too_long_please_use_gr">e.g. It was taking too long, please use grep or find a faster way...</string>
     <string name="chat_explain_why_or_give_new_instructions_to">Explain why or give new instructions to AI (optional):</string>
     <string name="chat_how_can_i_help_you_today">How can I help you today?</string>
+    <string name="chat_list_size">${list.size}</string>
     <string name="chat_minimize_to_bubble">Minimize to Bubble</string>
     <string name="chat_open_browser">Open Browser</string>
     <string name="chat_open_drawer">Open Drawer</string>
@@ -24,6 +25,7 @@
     <string name="chat_stop_generation">Stop Generation?</string>
     <string name="chat_stop_output">Stop Output</string>
     <string name="chat_stop_turn_here">Stop Turn Here</string>
+    <string name="chat_toolcall_command">$ ${toolCall.command}</string>
     <string name="chat_unable_to_load_chat">Unable to Load Chat</string>
     <string name="chat_web_browser_preview">Web Browser Preview</string>
     <string name="chat_you_stopped_the_running_command">You stopped the running command:</string>

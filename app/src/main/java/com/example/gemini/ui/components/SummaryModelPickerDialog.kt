@@ -101,7 +101,7 @@ fun SummaryModelPickerDialog(
                             )
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(
-                                text = "Failed: $errorMessage",
+                                text = stringResource(R.string.component_failed_errormessage, errorMessage),
                                 fontSize = 11.5.sp,
                                 color = MaterialTheme.colorScheme.onErrorContainer
                             )

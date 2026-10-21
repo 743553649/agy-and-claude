@@ -58,6 +58,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.net.URLEncoder
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 @Composable
 fun ImageAssetViewer(
@@ -240,7 +242,7 @@ fun ImageAssetViewer(
                         val sizeText = fileSizeText?.let { " • $it" } ?: ""
                         val zoomText = " • ${(scale * 100).toInt()}%"
                         Text(
-                            text = "$dimText$sizeText$zoomText",
+                            text = stringResource(R.string.ide_dimtext_sizetext_zoomtext, dimText, sizeText, zoomText),
                             style = MaterialTheme.typography.labelSmall,
                             color = Color.LightGray,
                             fontSize = 11.sp

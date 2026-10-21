@@ -137,7 +137,7 @@ fun SkillsAndPluginsSubScreen(
                     text = {
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                             Icon(Icons.Outlined.Psychology, contentDescription = null, modifier = Modifier.size(16.dp))
-                            Text("Skills (${skills.size})", fontSize = 13.sp, fontWeight = if (selectedTab == 0) FontWeight.Bold else FontWeight.Normal)
+                            Text(stringResource(R.string.settings_skills_skills_size, skills.size), fontSize = 13.sp, fontWeight = if (selectedTab == 0) FontWeight.Bold else FontWeight.Normal)
                         }
                     }
                 )
@@ -147,7 +147,7 @@ fun SkillsAndPluginsSubScreen(
                     text = {
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                             Icon(Icons.Outlined.Extension, contentDescription = null, modifier = Modifier.size(16.dp))
-                            Text("Plugins (${installedPlugins.size})", fontSize = 13.sp, fontWeight = if (selectedTab == 1) FontWeight.Bold else FontWeight.Normal)
+                            Text(stringResource(R.string.settings_plugins_installedplugins_size, installedPlugins.size), fontSize = 13.sp, fontWeight = if (selectedTab == 1) FontWeight.Bold else FontWeight.Normal)
                         }
                     }
                 )
@@ -349,7 +349,7 @@ private fun SkillItemCard(
                             horizontalArrangement = Arrangement.spacedBy(6.dp)
                         ) {
                             Text(
-                                text = "/${skill.name}",
+                                text = stringResource(R.string.settings_skill_name, skill.name),
                                 fontSize = 14.5.sp,
                                 fontWeight = FontWeight.Bold,
                                 fontFamily = FontFamily.Monospace,
@@ -360,7 +360,7 @@ private fun SkillItemCard(
                             )
                             if (!skill.displayName.isNullOrBlank() && skill.displayName != skill.name) {
                                 Text(
-                                    text = "(${skill.displayName})",
+                                    text = stringResource(R.string.settings_skill_displayname, skill.displayName),
                                     fontSize = 12.sp,
                                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
                                     maxLines = 1,
@@ -370,7 +370,7 @@ private fun SkillItemCard(
                         }
                         if (!skill.pluginName.isNullOrBlank()) {
                             Text(
-                                text = "from ${skill.pluginName}",
+                                text = stringResource(R.string.settings_from_skill_pluginname, skill.pluginName),
                                 fontSize = 11.sp,
                                 color = GeminiBlue,
                                 maxLines = 1,
@@ -502,7 +502,7 @@ private fun InstalledPluginCard(
             onDismissRequest = { showDeleteConfirmDialog = false },
             title = { Text(stringResource(R.string.settings_delete_plugin)) },
             text = {
-                Text("Are you sure you want to delete '${plugin.displayName.ifBlank { plugin.name }}' (${plugin.name})? This will remove its bundled skills from ~/.gemini/config/plugins/.")
+                Text(stringResource(R.string.settings_are_you_sure_you_want_to_delete_plugin_d, plugin.displayName.ifBlank { plugin.name }, plugin.name))
             },
             confirmButton = {
                 TextButton(
@@ -578,7 +578,7 @@ private fun InstalledPluginCard(
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f)
                             ) {
                                 Text(
-                                    text = "v${plugin.version}",
+                                    text = stringResource(R.string.settings_v_plugin_version, plugin.version),
                                     fontSize = 10.sp,
                                     fontFamily = FontFamily.Monospace,
                                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
@@ -645,7 +645,7 @@ private fun InstalledPluginCard(
             if (plugin.skills.isNotEmpty()) {
                 Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     Text(
-                        text = "Bundled Skills (${plugin.skills.size}):",
+                        text = stringResource(R.string.settings_bundled_skills_plugin_skills_size, plugin.skills.size),
                         fontSize = 11.5.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
@@ -654,7 +654,7 @@ private fun InstalledPluginCard(
                         items(plugin.skills) { s ->
                             AssistChip(
                                 onClick = { onSkillClick(s.name) },
-                                label = { Text("/${s.name}", fontSize = 11.sp, fontFamily = FontFamily.Monospace) },
+                                label = { Text(stringResource(R.string.settings_s_name, s.name), fontSize = 11.sp, fontFamily = FontFamily.Monospace) },
                                 leadingIcon = { Icon(Icons.Outlined.AutoAwesome, contentDescription = null, modifier = Modifier.size(12.dp)) },
                                 shape = RoundedCornerShape(6.dp)
                             )
@@ -894,7 +894,7 @@ fun SkillDetailMarkdownDialog(
                     Column(modifier = Modifier.weight(1f)) {
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                             Text(
-                                text = "/${skill.name}",
+                                text = stringResource(R.string.settings_skill_name, skill.name),
                                 fontSize = 17.sp,
                                 fontWeight = FontWeight.Bold,
                                 fontFamily = FontFamily.Monospace,
@@ -902,7 +902,7 @@ fun SkillDetailMarkdownDialog(
                             )
                             if (!skill.displayName.isNullOrBlank()) {
                                 Text(
-                                    text = "• ${skill.displayName}",
+                                    text = stringResource(R.string.settings_skill_displayname_2, skill.displayName),
                                     fontSize = 14.sp,
                                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                                 )
