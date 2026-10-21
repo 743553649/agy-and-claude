@@ -84,7 +84,7 @@ fun ActiveContextSummaryCard(
                 Column(modifier = Modifier.weight(1f)) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
-                            text = "Context Memory",
+                            text = stringResource(R.string.component_context_memory),
                             fontSize = 13.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onSurface
@@ -97,7 +97,7 @@ fun ActiveContextSummaryCard(
                                 .padding(horizontal = 5.dp, vertical = 1.dp)
                         ) {
                             Text(
-                                text = "Active Summary",
+                                text = stringResource(R.string.component_active_summary),
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = QuotaGreen
@@ -118,7 +118,7 @@ fun ActiveContextSummaryCard(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.Edit,
-                        contentDescription = "Edit Summary",
+                        contentDescription = stringResource(R.string.component_edit_summary),
                         tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                         modifier = Modifier.size(15.dp)
                     )
@@ -131,7 +131,7 @@ fun ActiveContextSummaryCard(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.DeleteOutline,
-                        contentDescription = "Delete Summary",
+                        contentDescription = stringResource(R.string.component_delete_summary),
                         tint = MaterialTheme.colorScheme.error.copy(alpha = 0.7f),
                         modifier = Modifier.size(16.dp)
                     )
@@ -395,7 +395,7 @@ fun EditSummaryDialog(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Edit Context Memory",
+                        text = stringResource(R.string.component_edit_context_memory),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
@@ -404,7 +404,7 @@ fun EditSummaryDialog(
 
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
-                    text = "Modify or add custom notes to this executive summary. The AI will use this as its permanent context.",
+                    text = stringResource(R.string.component_modify_or_add_custom_notes_to_this_execu),
                     fontSize = 11.5.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

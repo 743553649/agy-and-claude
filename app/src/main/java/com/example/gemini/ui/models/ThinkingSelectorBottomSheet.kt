@@ -66,13 +66,13 @@ fun ThinkingSelectorBottomSheet(
                 Spacer(modifier = Modifier.width(10.dp))
                 Column {
                     Text(
-                        text = "Thinking & Reasoning Level",
+                        text = stringResource(R.string.ui_thinking_reasoning_level),
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Text(
-                        text = "Configure reasoning depth and token budget",
+                        text = stringResource(R.string.ui_configure_reasoning_depth_and_token_budg),
                         fontSize = 13.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                     )
@@ -130,7 +130,7 @@ fun ThinkingSelectorBottomSheet(
                                         .padding(horizontal = 6.dp, vertical = 2.dp)
                                 ) {
                                     Text(
-                                        text = "DEFAULT",
+                                        text = stringResource(R.string.ui_default),
                                         fontSize = 10.sp,
                                         fontWeight = FontWeight.Bold,
                                         color = ClaudeTerracotta
@@ -143,7 +143,7 @@ fun ThinkingSelectorBottomSheet(
                             if (isSelected) {
                                 Icon(
                                     imageVector = Icons.Outlined.Check,
-                                    contentDescription = "Selected",
+                                    contentDescription = stringResource(R.string.common_selected),
                                     tint = ClaudeTerracotta,
                                     modifier = Modifier.size(20.dp)
                                 )

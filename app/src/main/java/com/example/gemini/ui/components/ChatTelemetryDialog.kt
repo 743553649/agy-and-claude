@@ -79,7 +79,7 @@ fun ChatTelemetryDialog(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Chat Telemetry & Tokens",
+                        text = stringResource(R.string.common_chat_telemetry_tokens),
                         fontSize = 17.sp,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
@@ -113,14 +113,14 @@ fun ChatTelemetryDialog(
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         TelemetryMetricCard(
-                            title = "Input Tokens",
+                            title = stringResource(R.string.component_input_tokens),
                             value = numberFormat.format(totalPromptTokens),
                             icon = Icons.Outlined.ArrowDownward,
                             iconColor = inputColor,
                             modifier = Modifier.weight(1f)
                         )
                         TelemetryMetricCard(
-                            title = "Output Tokens",
+                            title = stringResource(R.string.component_output_tokens),
                             value = numberFormat.format(totalOutputTokens),
                             icon = Icons.Outlined.ArrowUpward,
                             iconColor = outputColor,
@@ -133,14 +133,14 @@ fun ChatTelemetryDialog(
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         TelemetryMetricCard(
-                            title = "Cache Read Hits",
+                            title = stringResource(R.string.component_cache_read_hits),
                             value = if (totalCachedTokens > 0) "${numberFormat.format(totalCachedTokens)} ($cacheEfficiencyPct%)" else "0",
                             icon = Icons.Outlined.FlashOn,
                             iconColor = cacheColor,
                             modifier = Modifier.weight(1f)
                         )
                         TelemetryMetricCard(
-                            title = "Total Consumption",
+                            title = stringResource(R.string.component_total_consumption),
                             value = numberFormat.format(totalCombinedTokens),
                             icon = Icons.Outlined.Functions,
                             iconColor = ClaudeTerracotta,
@@ -158,19 +158,19 @@ fun ChatTelemetryDialog(
                     ) {
                         Column(modifier = Modifier.padding(12.dp)) {
                             Text(
-                                text = "Conversation Stats",
+                                text = stringResource(R.string.component_conversation_stats),
                                 fontSize = 13.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Spacer(modifier = Modifier.height(8.dp))
 
-                            TelemetryRow(label = "Active Model", value = conversation?.modelId ?: "Default")
-                            TelemetryRow(label = "User Turns", value = "$userMessagesCount turns")
-                            TelemetryRow(label = "Model Responses", value = "$assistantMessagesCount responses")
-                            TelemetryRow(label = "Tools Executed", value = "$toolsExecutedCount tools")
-                            TelemetryRow(label = "Active Context Summary", value = if (!conversation?.summary.isNullOrBlank()) "Active" else "None")
-                            TelemetryRow(label = "Custom System Prompt", value = if (!conversation?.customSystemPrompt.isNullOrBlank()) "Configured" else "Default")
+                            TelemetryRow(label = stringResource(R.string.component_active_model), value = conversation?.modelId ?: "Default")
+                            TelemetryRow(label = stringResource(R.string.component_user_turns), value = "$userMessagesCount turns")
+                            TelemetryRow(label = stringResource(R.string.component_model_responses), value = "$assistantMessagesCount responses")
+                            TelemetryRow(label = stringResource(R.string.component_tools_executed), value = "$toolsExecutedCount tools")
+                            TelemetryRow(label = stringResource(R.string.component_active_context_summary), value = if (!conversation?.summary.isNullOrBlank()) "Active" else "None")
+                            TelemetryRow(label = stringResource(R.string.component_custom_system_prompt), value = if (!conversation?.customSystemPrompt.isNullOrBlank()) "Configured" else "Default")
                         }
                     }
 
@@ -197,7 +197,7 @@ fun ChatTelemetryDialog(
                             Spacer(modifier = Modifier.width(8.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
-                                    text = "Chat System Prompt",
+                                    text = stringResource(R.string.component_chat_system_prompt),
                                     fontSize = 13.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     color = MaterialTheme.colorScheme.onSurface

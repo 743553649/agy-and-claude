@@ -89,7 +89,7 @@ fun ArtifactsDrawerContent(
             Column(modifier = Modifier.weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = "Artifacts",
+                        text = stringResource(R.string.drawer_artifacts),
                         fontSize = 17.sp,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
@@ -110,7 +110,7 @@ fun ArtifactsDrawerContent(
                     }
                 }
                 Text(
-                    text = "Generated files, plans & media",
+                    text = stringResource(R.string.drawer_generated_files_plans_media),
                     fontSize = 11.5.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                 )
@@ -122,7 +122,7 @@ fun ArtifactsDrawerContent(
             ) {
                 Icon(
                     imageVector = Icons.Default.Close,
-                    contentDescription = "Close",
+                    contentDescription = stringResource(R.string.common_close),
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.size(20.dp)
                 )
@@ -155,14 +155,14 @@ fun ArtifactsDrawerContent(
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
-                        text = "No artifacts generated yet",
+                        text = stringResource(R.string.drawer_no_artifacts_generated_yet),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "Plans, walkthroughs, and generated images will appear here.",
+                        text = stringResource(R.string.drawer_plans_walkthroughs_and_generated_images),
                         fontSize = 12.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
                         textAlign = androidx.compose.ui.text.style.TextAlign.Center
@@ -335,7 +335,7 @@ private fun ArtifactCardItem(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.Download,
-                        contentDescription = "Download to Downloads/AntiGem",
+                        contentDescription = stringResource(R.string.drawer_download_to_downloads_antigem),
                         tint = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.size(17.dp)
                     )

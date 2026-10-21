@@ -37,6 +37,8 @@ import com.example.gemini.AppViewMode
 import com.example.gemini.theme.ClaudeTerracotta
 import kotlinx.coroutines.delay
 import kotlin.math.roundToInt
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 @Composable
 fun FloatingSwitcherWidget(
@@ -214,7 +216,7 @@ fun FloatingSwitcherWidget(
                     ) {
                         Icon(
                             imageVector = expandArrowIcon,
-                            contentDescription = "Expand Switcher",
+                            contentDescription = stringResource(R.string.component_expand_switcher),
                             tint = ClaudeTerracotta,
                             modifier = Modifier.size(20.dp)
                         )
@@ -237,7 +239,7 @@ fun FloatingSwitcherWidget(
                             ) {
                                 Icon(
                                     imageVector = collapseArrowIcon,
-                                    contentDescription = "Collapse Switcher",
+                                    contentDescription = stringResource(R.string.component_collapse_switcher),
                                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f),
                                     modifier = Modifier.size(18.dp)
                                 )
@@ -358,7 +360,7 @@ fun FloatingSwitcherWidget(
                             ) {
                                 Icon(
                                     imageVector = collapseArrowIcon,
-                                    contentDescription = "Collapse Switcher",
+                                    contentDescription = stringResource(R.string.component_collapse_switcher),
                                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f),
                                     modifier = Modifier.size(18.dp)
                                 )

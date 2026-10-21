@@ -264,7 +264,7 @@ fun CodeBlock(
                             )
                             Spacer(modifier = Modifier.width(3.dp))
                             Text(
-                                text = "Code",
+                                text = stringResource(R.string.component_code),
                                 fontSize = 11.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = if (selectedTab == 0) Color.White else TextPrimaryDark.copy(alpha = 0.6f)
@@ -289,7 +289,7 @@ fun CodeBlock(
                             )
                             Spacer(modifier = Modifier.width(3.dp))
                             Text(
-                                text = "Preview",
+                                text = stringResource(R.string.component_preview),
                                 fontSize = 11.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = if (selectedTab == 1) Color.White else TextPrimaryDark.copy(alpha = 0.6f)
@@ -308,7 +308,7 @@ fun CodeBlock(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Refresh,
-                            contentDescription = "Reload preview",
+                            contentDescription = stringResource(R.string.component_reload_preview),
                             tint = TextPrimaryDark.copy(alpha = 0.7f),
                             modifier = Modifier.size(15.dp)
                         )
@@ -323,7 +323,7 @@ fun CodeBlock(
             ) {
                 Icon(
                     imageVector = Icons.Outlined.OpenInFull,
-                    contentDescription = "Fullscreen",
+                    contentDescription = stringResource(R.string.component_fullscreen),
                     tint = TextPrimaryDark.copy(alpha = 0.7f),
                     modifier = Modifier.size(14.dp)
                 )
@@ -358,14 +358,14 @@ fun CodeBlock(
                 if (isCopied) {
                     Icon(
                         imageVector = Icons.Default.Check,
-                        contentDescription = "Copied",
+                        contentDescription = stringResource(R.string.component_copied),
                         tint = QuotaGreen,
                         modifier = Modifier.size(16.dp)
                     )
                 } else {
                     Icon(
                         imageVector = Icons.Outlined.ContentCopy,
-                        contentDescription = "Copy code",
+                        contentDescription = stringResource(R.string.component_copy_code),
                         tint = TextPrimaryDark.copy(alpha = 0.7f),
                         modifier = Modifier.size(15.dp)
                     )
@@ -498,7 +498,7 @@ fun CodeBlock(
                         },
                         navigationIcon = {
                             IconButton(onClick = { isFullscreen = false }) {
-                                Icon(Icons.Default.Close, contentDescription = "Close")
+                                Icon(Icons.Default.Close, contentDescription = stringResource(R.string.common_close))
                             }
                         },
                         actions = {
@@ -518,7 +518,7 @@ fun CodeBlock(
                                             .padding(horizontal = 8.dp, vertical = 3.dp)
                                     ) {
                                         Text(
-                                            text = "Code",
+                                            text = stringResource(R.string.component_code),
                                             fontSize = 11.sp,
                                             fontWeight = FontWeight.SemiBold,
                                             color = if (selectedTab == 0) Color.White else MaterialTheme.colorScheme.onSurfaceVariant
@@ -532,7 +532,7 @@ fun CodeBlock(
                                             .padding(horizontal = 8.dp, vertical = 3.dp)
                                     ) {
                                         Text(
-                                            text = "Preview",
+                                            text = stringResource(R.string.component_preview),
                                             fontSize = 11.sp,
                                             fontWeight = FontWeight.SemiBold,
                                             color = if (selectedTab == 1) Color.White else MaterialTheme.colorScheme.onSurfaceVariant
@@ -542,7 +542,7 @@ fun CodeBlock(
 
                                 if (selectedTab == 1) {
                                     IconButton(onClick = { reloadKey++ }) {
-                                        Icon(Icons.Default.Refresh, contentDescription = "Reload")
+                                        Icon(Icons.Default.Refresh, contentDescription = stringResource(R.string.common_reload))
                                     }
                                 }
                             }
@@ -566,7 +566,7 @@ fun CodeBlock(
                             ) {
                                 Icon(
                                     imageVector = if (modalCopied) Icons.Default.Check else Icons.Outlined.ContentCopy,
-                                    contentDescription = "Copy code",
+                                    contentDescription = stringResource(R.string.component_copy_code),
                                     tint = if (modalCopied) QuotaGreen else MaterialTheme.colorScheme.onSurface
                                 )
                             }

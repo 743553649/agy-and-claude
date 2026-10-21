@@ -114,7 +114,7 @@ fun AgentApprovalPanel(
         border = BorderStroke(1.dp, accent.copy(alpha = 0.38f)),
         shadowElevation = 6.dp
     ) {
-        AnimatedContent(targetState = item, contentKey = { it.key }, transitionSpec = { fadeIn() togetherWith fadeOut() }, label = "approval") { current ->
+        AnimatedContent(targetState = item, contentKey = { it.key }, transitionSpec = { fadeIn() togetherWith fadeOut() }, label = stringResource(R.string.agents_approval)) { current ->
             key(current.key) {
                 ApprovalBody(current, count = items.size, onAllowAll = onAllowAll, onDenyAll = onDenyAll)
             }

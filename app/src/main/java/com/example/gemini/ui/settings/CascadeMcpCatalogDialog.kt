@@ -98,20 +98,20 @@ fun CascadeMcpCatalogDialog(
                         }
                         Column {
                             Text(
-                                text = "Cascade MCP Catalog",
+                                text = stringResource(R.string.settings_cascade_mcp_catalog),
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
-                                text = "1-Click Model Context Protocol integrations",
+                                text = stringResource(R.string.settings_1_click_model_context_protocol_integrati),
                                 fontSize = 12.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                             )
                         }
                     }
                     IconButton(onClick = onDismiss) {
-                        Icon(Icons.Default.Close, contentDescription = "Close")
+                        Icon(Icons.Default.Close, contentDescription = stringResource(R.string.common_close))
                     }
                 }
 
@@ -135,7 +135,7 @@ fun CascadeMcpCatalogDialog(
                                 searchQuery = ""
                                 onSearch("")
                             }) {
-                                Icon(Icons.Default.Clear, contentDescription = "Clear", modifier = Modifier.size(16.dp))
+                                Icon(Icons.Default.Clear, contentDescription = stringResource(R.string.common_clear), modifier = Modifier.size(16.dp))
                             }
                         }
                     },
@@ -414,7 +414,7 @@ fun ReadmePreviewDialog(
                         modifier = Modifier.weight(1f)
                     )
                     IconButton(onClick = onDismiss) {
-                        Icon(Icons.Default.Close, contentDescription = "Close")
+                        Icon(Icons.Default.Close, contentDescription = stringResource(R.string.common_close))
                     }
                 }
 

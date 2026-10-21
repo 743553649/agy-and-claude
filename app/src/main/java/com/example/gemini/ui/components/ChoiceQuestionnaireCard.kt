@@ -66,7 +66,7 @@ fun ChoiceQuestionnaireCard(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Questionnaire",
+                        text = stringResource(R.string.component_questionnaire),
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFFE5E7EB)
@@ -128,7 +128,7 @@ fun ChoiceQuestionnaireCard(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Preferences Submitted",
+                        text = stringResource(R.string.component_preferences_submitted),
                         fontSize = 13.5.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFFE5E7EB)
@@ -269,7 +269,7 @@ fun ChoiceQuestionnaireCard(
                         modifier = Modifier.height(32.dp)
                     ) {
                         Text(
-                            text = "Cancel",
+                            text = stringResource(R.string.common_cancel),
                             fontSize = 12.5.sp,
                             color = Color(0xFF9CA3AF)
                         )
@@ -293,7 +293,7 @@ fun ChoiceQuestionnaireCard(
                             modifier = Modifier.height(32.dp)
                         ) {
                             Text(
-                                text = "Skip",
+                                text = stringResource(R.string.common_skip),
                                 fontSize = 12.5.sp,
                                 color = Color(0xFF9CA3AF)
                             )
@@ -409,7 +409,7 @@ private fun QuestionBlockView(
                     modifier = Modifier.padding(start = 4.dp)
                 ) {
                     Text(
-                        text = "Multi-select",
+                        text = stringResource(R.string.component_multi_select),
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Medium,
                         color = Color(0xFF9CA3AF),
@@ -468,7 +468,7 @@ private fun QuestionBlockView(
             val otherIndex = question.options.size + 1
             OptionRow(
                 index = otherIndex,
-                label = "Other (write your answer)",
+                label = stringResource(R.string.component_other_write_your_answer),
                 description = null,
                 isSelected = isOtherChecked,
                 isMultiSelect = question.isMultiSelect,
@@ -491,7 +491,7 @@ private fun QuestionBlockView(
                         onValueChange = onCustomTextChanged,
                         placeholder = {
                             Text(
-                                text = "Type your custom answer here...",
+                                text = stringResource(R.string.component_type_your_custom_answer_here),
                                 fontSize = 12.sp,
                                 color = Color(0xFF6B7280)
                             )

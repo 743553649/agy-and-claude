@@ -176,7 +176,7 @@ fun MessageBubble(
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.ContentCopy,
-                                contentDescription = "Copy",
+                                contentDescription = stringResource(R.string.component_copy),
                                 tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                                 modifier = Modifier.size(15.dp)
                             )
@@ -194,7 +194,7 @@ fun MessageBubble(
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.Edit,
-                                contentDescription = "Edit prompt",
+                                contentDescription = stringResource(R.string.component_edit_prompt),
                                 tint = ClaudeTerracotta,
                                 modifier = Modifier.size(15.dp)
                             )
@@ -212,7 +212,7 @@ fun MessageBubble(
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.Refresh,
-                                contentDescription = "Retry prompt",
+                                contentDescription = stringResource(R.string.component_retry_prompt),
                                 tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                                 modifier = Modifier.size(16.dp)
                             )
@@ -230,7 +230,7 @@ fun MessageBubble(
                             ) {
                                 Icon(
                                     imageVector = Icons.Outlined.DataObject,
-                                    contentDescription = "View Raw Request Payload",
+                                    contentDescription = stringResource(R.string.component_view_raw_request_payload),
                                     tint = Color(0xFF8BE9FD),
                                     modifier = Modifier.size(16.dp)
                                 )
@@ -294,7 +294,7 @@ fun MessageBubble(
                             ) {
                                 Icon(
                                     imageVector = Icons.Outlined.ContentCopy,
-                                    contentDescription = "Copy message",
+                                    contentDescription = stringResource(R.string.component_copy_message),
                                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
                                     modifier = Modifier.size(15.dp)
                                 )
@@ -308,7 +308,7 @@ fun MessageBubble(
                             ) {
                                 Icon(
                                     imageVector = Icons.Outlined.Refresh,
-                                    contentDescription = "Regenerate response",
+                                    contentDescription = stringResource(R.string.component_regenerate_response_2),
                                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
                                     modifier = Modifier.size(16.dp)
                                 )
@@ -323,7 +323,7 @@ fun MessageBubble(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Outlined.DataObject,
-                                        contentDescription = "View Raw Request Payload",
+                                        contentDescription = stringResource(R.string.component_view_raw_request_payload),
                                         tint = Color(0xFF8BE9FD),
                                         modifier = Modifier.size(16.dp)
                                     )
@@ -369,7 +369,7 @@ fun UserMessageBubble(
     if (previewImageUrl != null) {
         FullScreenImageDialog(
             imageUrl = previewImageUrl!!,
-            title = "Image Preview",
+            title = stringResource(R.string.component_image_preview),
             onDismiss = { previewImageUrl = null }
         )
     }
@@ -488,7 +488,7 @@ fun UserMessageBubble(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.ContentCopy,
-                        contentDescription = "Copy",
+                        contentDescription = stringResource(R.string.component_copy),
                         tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                         modifier = Modifier.size(15.dp)
                     )
@@ -505,7 +505,7 @@ fun UserMessageBubble(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.Edit,
-                        contentDescription = "Undo and edit prompt",
+                        contentDescription = stringResource(R.string.component_undo_and_edit_prompt),
                         tint = ClaudeTerracotta,
                         modifier = Modifier.size(15.dp)
                     )
@@ -523,7 +523,7 @@ fun UserMessageBubble(
                     ) {
                         Icon(
                             imageVector = Icons.Outlined.DataObject,
-                            contentDescription = "View Raw Request Payload",
+                            contentDescription = stringResource(R.string.component_view_raw_request_payload),
                             tint = Color(0xFF8BE9FD),
                             modifier = Modifier.size(16.dp)
                         )
@@ -578,7 +578,7 @@ fun AssistantMessageFooter(
             ) {
                 Icon(
                     imageVector = Icons.Outlined.ContentCopy,
-                    contentDescription = "Copy message",
+                    contentDescription = stringResource(R.string.component_copy_message),
                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
                     modifier = Modifier.size(15.dp)
                 )
@@ -594,7 +594,7 @@ fun AssistantMessageFooter(
             ) {
                 Icon(
                     imageVector = Icons.Outlined.SelectAll,
-                    contentDescription = "Select text",
+                    contentDescription = stringResource(R.string.component_select_text),
                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
                     modifier = Modifier.size(16.dp)
                 )
@@ -613,7 +613,7 @@ fun AssistantMessageFooter(
             ) {
                 Icon(
                     imageVector = Icons.Outlined.Refresh,
-                    contentDescription = "Regenerate response",
+                    contentDescription = stringResource(R.string.component_regenerate_response_2),
                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
                     modifier = Modifier.size(16.dp)
                 )
@@ -646,7 +646,7 @@ fun AssistantMessageFooter(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.DataObject,
-                        contentDescription = "View Raw Request Payload",
+                        contentDescription = stringResource(R.string.component_view_raw_request_payload),
                         tint = Color(0xFF8BE9FD),
                         modifier = Modifier.size(16.dp)
                     )
@@ -825,7 +825,7 @@ fun TokenUsageTelemetryPill(
             }
             if (usage.isEstimated) {
                 Text(
-                    text = "(est.)",
+                    text = stringResource(R.string.component_est),
                     fontSize = 9.5.sp,
                     fontFamily = FontFamily.Monospace,
                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
@@ -858,7 +858,7 @@ fun ContextSummaryCheckpointBanner(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "🧠 Context Compacted (History Summarized)",
+                    text = stringResource(R.string.component_context_compacted_history_summarized),
                     fontSize = 12.5.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = ClaudeTerracotta,

@@ -34,6 +34,8 @@ import com.termux.terminal.TerminalSession
 import com.termux.view.TerminalView
 import com.termux.view.TerminalViewClient
 import java.util.UUID
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 data class IdeExecutionRequest(
     val id: String = UUID.randomUUID().toString(),
@@ -165,7 +167,7 @@ fun IdeExecutionRunnerSheet(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Refresh,
-                            contentDescription = "Restart",
+                            contentDescription = stringResource(R.string.ide_restart),
                             tint = Color.LightGray,
                             modifier = Modifier.size(18.dp)
                         )
@@ -184,7 +186,7 @@ fun IdeExecutionRunnerSheet(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Stop,
-                            contentDescription = "Stop",
+                            contentDescription = stringResource(R.string.common_stop),
                             tint = if (!isExited) Color(0xFFEF4444) else Color.DarkGray,
                             modifier = Modifier.size(18.dp)
                         )
@@ -202,7 +204,7 @@ fun IdeExecutionRunnerSheet(
                     ) {
                         Icon(
                             imageVector = Icons.Default.ClearAll,
-                            contentDescription = "Clear",
+                            contentDescription = stringResource(R.string.common_clear),
                             tint = Color.LightGray,
                             modifier = Modifier.size(18.dp)
                         )
@@ -215,7 +217,7 @@ fun IdeExecutionRunnerSheet(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Close,
-                            contentDescription = "Close",
+                            contentDescription = stringResource(R.string.common_close),
                             tint = Color.LightGray,
                             modifier = Modifier.size(19.dp)
                         )
@@ -364,14 +366,14 @@ fun IdeExecutionRunnerSheet(
                         .padding(horizontal = 4.dp, vertical = 3.dp),
                     horizontalArrangement = Arrangement.spacedBy(3.dp)
                 ) {
-                    IdeTermKey(label = "ESC", modifier = Modifier.weight(1f)) {
+                    IdeTermKey(label = stringResource(R.string.common_esc), modifier = Modifier.weight(1f)) {
                         sendKeyToTerminal(KeyEvent.KEYCODE_ESCAPE, "\u001B")
                     }
-                    IdeTermKey(label = "TAB", modifier = Modifier.weight(1f)) {
+                    IdeTermKey(label = stringResource(R.string.ide_tab), modifier = Modifier.weight(1f)) {
                         sendKeyToTerminal(KeyEvent.KEYCODE_TAB, "\t")
                     }
                     IdeTermKey(
-                        label = "CTRL",
+                        label = stringResource(R.string.common_ctrl),
                         isActive = ctrlState != IdeKeyModifierState.OFF,
                         isLocked = ctrlState == IdeKeyModifierState.LOCKED,
                         modifier = Modifier.weight(1f),
@@ -383,7 +385,7 @@ fun IdeExecutionRunnerSheet(
                         }
                     )
                     IdeTermKey(
-                        label = "ALT",
+                        label = stringResource(R.string.common_alt),
                         isActive = altState != IdeKeyModifierState.OFF,
                         isLocked = altState == IdeKeyModifierState.LOCKED,
                         modifier = Modifier.weight(1f),

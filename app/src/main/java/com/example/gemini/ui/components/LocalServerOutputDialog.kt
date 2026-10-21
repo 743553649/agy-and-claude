@@ -36,6 +36,8 @@ import com.termux.terminal.TerminalSession
 import com.termux.view.TerminalView
 import com.termux.view.TerminalViewClient
 import kotlin.math.roundToInt
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 @Composable
 fun LocalServerOutputDialog(
@@ -137,7 +139,7 @@ fun LocalServerOutputDialog(
 
                         Column {
                             Text(
-                                text = "Local Server Logs",
+                                text = stringResource(R.string.component_local_server_logs),
                                 fontSize = 15.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = textPrimary
@@ -173,7 +175,7 @@ fun LocalServerOutputDialog(
                         ) {
                             Icon(
                                 imageVector = if (status is LocalServerStatus.Running) Icons.Default.Refresh else Icons.Default.PlayArrow,
-                                contentDescription = "Restart Server",
+                                contentDescription = stringResource(R.string.component_restart_server),
                                 tint = if (status is LocalServerStatus.Stopping) Color.Gray else ClaudeTerracotta,
                                 modifier = Modifier.size(18.dp)
                             )
@@ -187,7 +189,7 @@ fun LocalServerOutputDialog(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Stop,
-                                    contentDescription = "Stop Server",
+                                    contentDescription = stringResource(R.string.common_stop_server),
                                     tint = Color(0xFFEF4444),
                                     modifier = Modifier.size(20.dp)
                                 )
@@ -201,7 +203,7 @@ fun LocalServerOutputDialog(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Close,
-                                contentDescription = "Close",
+                                contentDescription = stringResource(R.string.common_close),
                                 tint = textPrimary,
                                 modifier = Modifier.size(20.dp)
                             )
@@ -309,7 +311,7 @@ fun LocalServerOutputDialog(
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
-                                text = "No bridge process running.\nTap 'Restart' above to run agy_ide_bridge",
+                                text = stringResource(R.string.component_no_bridge_process_running_ntap_restart_a),
                                 fontFamily = FontFamily.Monospace,
                                 fontSize = 12.sp,
                                 color = Color(0xFF71717A),

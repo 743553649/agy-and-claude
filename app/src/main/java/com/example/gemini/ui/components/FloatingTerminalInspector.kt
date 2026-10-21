@@ -125,7 +125,7 @@ fun FloatingTerminalInspector(
 
                 Icon(
                     imageVector = Icons.Default.Terminal,
-                    contentDescription = "Terminal",
+                    contentDescription = stringResource(R.string.common_terminal),
                     tint = ClaudeTerracotta,
                     modifier = Modifier.size(14.dp)
                 )
@@ -225,7 +225,7 @@ private fun TerminalInspectorDialogContent(
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
-                    text = "Termux SSH Terminal",
+                    text = stringResource(R.string.component_termux_ssh_terminal),
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
@@ -239,7 +239,7 @@ private fun TerminalInspectorDialogContent(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = "Close",
+                        contentDescription = stringResource(R.string.common_close),
                         tint = Color.Gray,
                         modifier = Modifier.size(18.dp)
                     )
@@ -303,7 +303,7 @@ private fun TerminalInspectorDialogContent(
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Icon(
                                     imageVector = Icons.Default.Close,
-                                    contentDescription = "Close Tab",
+                                    contentDescription = stringResource(R.string.common_close_tab),
                                     tint = Color.Gray,
                                     modifier = Modifier
                                         .size(13.dp)
@@ -329,7 +329,7 @@ private fun TerminalInspectorDialogContent(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Add,
-                            contentDescription = "New Session",
+                            contentDescription = stringResource(R.string.component_new_session),
                             tint = ClaudeTerracotta,
                             modifier = Modifier.size(15.dp)
                         )
@@ -370,7 +370,7 @@ private fun TerminalInspectorDialogContent(
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.DeleteSweep,
-                                contentDescription = "Clear Tab History",
+                                contentDescription = stringResource(R.string.component_clear_tab_history),
                                 tint = Color.Gray,
                                 modifier = Modifier.size(15.dp)
                             )
@@ -401,12 +401,12 @@ private fun TerminalInspectorDialogContent(
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Session ready.",
+                            text = stringResource(R.string.component_session_ready),
                             fontSize = 13.sp,
                             color = Color.Gray
                         )
                         Text(
-                            text = "AI tool commands and manual commands will output here.",
+                            text = stringResource(R.string.component_ai_tool_commands_and_manual_commands_wil),
                             fontSize = 11.5.sp,
                             color = Color.DarkGray
                         )
@@ -499,14 +499,14 @@ private fun TerminalInspectorDialogContent(
                         if (isExecutingManual) {
                             Icon(
                                 imageVector = Icons.Default.HourglassTop,
-                                contentDescription = "Running",
+                                contentDescription = stringResource(R.string.component_running),
                                 tint = Color.White,
                                 modifier = Modifier.size(16.dp)
                             )
                         } else {
                             Icon(
                                 imageVector = Icons.Default.PlayArrow,
-                                contentDescription = "Run",
+                                contentDescription = stringResource(R.string.component_run),
                                 tint = Color.White,
                                 modifier = Modifier.size(18.dp)
                             )
@@ -590,7 +590,7 @@ private fun TerminalCommandCard(
                     ) {
                         Icon(
                             imageVector = Icons.Default.StopCircle,
-                            contentDescription = "Kill Process",
+                            contentDescription = stringResource(R.string.component_kill_process),
                             tint = Color.Red,
                             modifier = Modifier.size(16.dp)
                         )
@@ -608,7 +608,7 @@ private fun TerminalCommandCard(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.ContentCopy,
-                        contentDescription = "Copy",
+                        contentDescription = stringResource(R.string.component_copy),
                         tint = Color.Gray,
                         modifier = Modifier.size(13.dp)
                     )

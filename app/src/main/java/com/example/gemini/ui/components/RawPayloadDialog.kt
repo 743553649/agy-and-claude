@@ -90,7 +90,7 @@ fun RawPayloadDialog(
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
-                            text = "Raw Request Payload",
+                            text = stringResource(R.string.component_raw_request_payload),
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color.White
@@ -105,7 +105,7 @@ fun RawPayloadDialog(
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Outlined.WrapText,
-                                contentDescription = "Toggle Wrap",
+                                contentDescription = stringResource(R.string.component_toggle_wrap),
                                 modifier = Modifier.size(14.dp)
                             )
                         },
@@ -122,7 +122,7 @@ fun RawPayloadDialog(
 
                 Spacer(modifier = Modifier.height(6.dp))
                 Text(
-                    text = "Formatted JSON payload transmitted to Google CloudCode API:",
+                    text = stringResource(R.string.component_formatted_json_payload_transmitted_to_go),
                     fontSize = 11.5.sp,
                     color = Color.White.copy(alpha = 0.6f)
                 )
@@ -182,7 +182,7 @@ fun RawPayloadDialog(
                     ) {
                         Icon(
                             imageVector = Icons.Outlined.ContentCopy,
-                            contentDescription = "Copy",
+                            contentDescription = stringResource(R.string.component_copy),
                             tint = Color.White,
                             modifier = Modifier.size(16.dp)
                         )

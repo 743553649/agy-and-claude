@@ -96,7 +96,7 @@ fun AppUpdateDialog(
                     ) {
                         Icon(
                             imageVector = Icons.Rounded.RocketLaunch,
-                            contentDescription = "Update",
+                            contentDescription = stringResource(R.string.common_update),
                             tint = primaryColor,
                             modifier = Modifier.size(22.dp)
                         )
@@ -106,7 +106,7 @@ fun AppUpdateDialog(
 
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "New Update Available",
+                            text = stringResource(R.string.ui_new_update_available),
                             color = onSurfaceColor,
                             fontSize = 17.sp,
                             fontWeight = FontWeight.Bold
@@ -175,7 +175,7 @@ fun AppUpdateDialog(
 
                 // Changelog Card
                 Text(
-                    text = "WHAT'S NEW",
+                    text = stringResource(R.string.ui_what_s_new),
                     color = onSurfaceVariantColor,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Bold,
@@ -218,7 +218,7 @@ fun AppUpdateDialog(
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Text(
-                                    text = "Downloading...",
+                                    text = stringResource(R.string.ui_downloading),
                                     color = onSurfaceVariantColor,
                                     fontSize = 12.sp
                                 )
@@ -267,7 +267,7 @@ fun AppUpdateDialog(
                             )
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(
-                                text = "Downloaded! Launching installer...",
+                                text = stringResource(R.string.ui_downloaded_launching_installer),
                                 color = QuotaGreen,
                                 fontSize = 12.sp
                             )
@@ -325,7 +325,7 @@ fun AppUpdateDialog(
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Rounded.OpenInNew,
-                            contentDescription = "GitHub",
+                            contentDescription = stringResource(R.string.ui_github),
                             modifier = Modifier.size(14.dp)
                         )
                         Spacer(modifier = Modifier.width(4.dp))

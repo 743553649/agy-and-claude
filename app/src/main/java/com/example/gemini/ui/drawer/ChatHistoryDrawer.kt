@@ -300,7 +300,7 @@ fun ChatHistoryDrawer(
             text = {
                 Column {
                     Text(
-                        text = "A live Antigravity CLI process is running in the background for this chat:",
+                        text = stringResource(R.string.drawer_a_live_antigravity_cli_process_is_runnin),
                         fontSize = 13.5.sp,
                         color = MaterialTheme.colorScheme.onSurface
                     )
@@ -321,7 +321,7 @@ fun ChatHistoryDrawer(
                     }
                     Spacer(modifier = Modifier.height(10.dp))
                     Text(
-                        text = "Terminate this instance to immediately free RAM?",
+                        text = stringResource(R.string.drawer_terminate_this_instance_to_immediately_f),
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Medium,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
@@ -352,14 +352,14 @@ fun ChatHistoryDrawer(
             onDismissRequest = { showSigningInProgressDialog = false },
             title = {
                 Text(
-                    text = "Sign-In in Progress",
+                    text = stringResource(R.string.drawer_sign_in_in_progress),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold
                 )
             },
             text = {
                 Text(
-                    text = "A sign-in request is currently pending. If you already completed authentication in your browser, tap 'Check Status'. You can also restart sign-in if needed.",
+                    text = stringResource(R.string.drawer_a_sign_in_request_is_currently_pending_i),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -427,7 +427,7 @@ fun ChatHistoryDrawer(
             },
             title = {
                 Text(
-                    text = "Exit AntiGem?",
+                    text = stringResource(R.string.drawer_exit_antigem),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
@@ -435,7 +435,7 @@ fun ChatHistoryDrawer(
             },
             text = {
                 Text(
-                    text = "Do you want to exit the app? This will stop all active background services, servers, and terminals.",
+                    text = stringResource(R.string.drawer_do_you_want_to_exit_the_app_this_will_st),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     lineHeight = 20.sp
@@ -517,7 +517,7 @@ fun ChatHistoryDrawer(
             },
             title = {
                 Text(
-                    text = "Delete Conversation?",
+                    text = stringResource(R.string.drawer_delete_conversation),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
@@ -608,13 +608,13 @@ fun ChatHistoryDrawer(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Add,
-                        contentDescription = "New Chat",
+                        contentDescription = stringResource(R.string.common_new_chat),
                         tint = Color.White,
                         modifier = Modifier.size(16.dp)
                     )
                     Spacer(modifier = Modifier.width(5.dp))
                     Text(
-                        text = "New Chat",
+                        text = stringResource(R.string.common_new_chat),
                         fontWeight = FontWeight.SemiBold,
                         color = Color.White,
                         fontSize = 13.5.sp
@@ -635,7 +635,7 @@ fun ChatHistoryDrawer(
                     Box(contentAlignment = Alignment.Center) {
                         Icon(
                             imageVector = Icons.Default.PowerSettingsNew,
-                            contentDescription = "Exit App",
+                            contentDescription = stringResource(R.string.drawer_exit_app),
                             tint = MaterialTheme.colorScheme.error.copy(alpha = 0.85f),
                             modifier = Modifier.size(17.dp)
                         )
@@ -691,7 +691,7 @@ fun ChatHistoryDrawer(
                     Box(contentAlignment = Alignment.Center) {
                         Icon(
                             imageVector = Icons.Default.Search,
-                            contentDescription = "Search",
+                            contentDescription = stringResource(R.string.common_search),
                             tint = if (isSearchActive || searchQuery.isNotBlank()) ClaudeTerracotta else MaterialTheme.colorScheme.onSurfaceVariant.copy(
                                 alpha = 0.8f
                             ),
@@ -755,7 +755,7 @@ fun ChatHistoryDrawer(
                                 decorationBox = { innerTextField ->
                                     if (searchQuery.isEmpty()) {
                                         Text(
-                                            text = "Search chat titles...",
+                                            text = stringResource(R.string.drawer_search_chat_titles),
                                             fontSize = 13.sp,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
                                         )
@@ -773,7 +773,7 @@ fun ChatHistoryDrawer(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.Close,
-                                        contentDescription = "Clear",
+                                        contentDescription = stringResource(R.string.common_clear),
                                         tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
                                         modifier = Modifier.size(14.dp)
                                     )
@@ -786,7 +786,7 @@ fun ChatHistoryDrawer(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Tune,
-                                    contentDescription = "Advanced Search",
+                                    contentDescription = stringResource(R.string.drawer_advanced_search_2),
                                     tint = ClaudeTerracotta,
                                     modifier = Modifier.size(16.dp)
                                 )
@@ -808,7 +808,7 @@ fun ChatHistoryDrawer(
                                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                             )
                             Text(
-                                text = "Advanced Search ›",
+                                text = stringResource(R.string.drawer_advanced_search),
                                 fontSize = 11.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = ClaudeTerracotta,
@@ -888,7 +888,7 @@ fun ChatHistoryDrawer(
                             verticalArrangement = Arrangement.Center
                         ) {
                             Text(
-                                text = "Unable to load chats",
+                                text = stringResource(R.string.drawer_unable_to_load_chats),
                                 style = MaterialTheme.typography.titleSmall,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -1150,13 +1150,13 @@ fun ChatHistoryDrawer(
                     ) {
                         Icon(
                             imageVector = Icons.Outlined.Settings,
-                            contentDescription = "Settings",
+                            contentDescription = stringResource(R.string.drawer_settings),
                             tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
                             modifier = Modifier.size(20.dp)
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
-                            text = "Settings",
+                            text = stringResource(R.string.drawer_settings),
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Medium,
                             color = MaterialTheme.colorScheme.onSurface
@@ -1185,7 +1185,7 @@ fun ChatHistoryDrawer(
                             )
                             Spacer(modifier = Modifier.width(5.dp))
                             Text(
-                                text = "Signing In...",
+                                text = stringResource(R.string.drawer_signing_in),
                                 fontSize = 11.5.sp,
                                 fontWeight = FontWeight.Medium,
                                 color = ClaudeTerracotta
@@ -1214,7 +1214,7 @@ fun ChatHistoryDrawer(
                                             .data(parseProfileAvatarModel(authInfo.profilePictureUrl))
                                             .crossfade(true)
                                             .build(),
-                                        contentDescription = "Profile Picture",
+                                        contentDescription = stringResource(R.string.drawer_profile_picture),
                                         modifier = Modifier
                                             .size(24.dp)
                                             .clip(CircleShape),
@@ -1285,12 +1285,12 @@ fun ChatHistoryDrawer(
                             ) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Outlined.Login,
-                                    contentDescription = "Sign In",
+                                    contentDescription = stringResource(R.string.common_sign_in),
                                     modifier = Modifier.size(15.dp)
                                 )
                                 Spacer(modifier = Modifier.width(4.dp))
                                 Text(
-                                    text = "Sign In",
+                                    text = stringResource(R.string.common_sign_in),
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.SemiBold
                                 )
@@ -1461,7 +1461,7 @@ private fun ChatHistoryItemRow(
             Box(contentAlignment = Alignment.Center) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.CallSplit,
-                    contentDescription = "Subagent",
+                    contentDescription = stringResource(R.string.drawer_subagent),
                     tint = if (isSelected) ClaudeTerracotta else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
                     modifier = Modifier.size(15.dp)
                 )
@@ -1589,7 +1589,7 @@ private fun ChatHistoryItemRow(
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
-                        text = "RUNNING",
+                        text = stringResource(R.string.drawer_running),
                         fontSize = 9.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFF2E7D32)
@@ -1641,7 +1641,7 @@ private fun ChatHistoryItemRow(
             ) {
                 Icon(
                     imageVector = Icons.Default.MoreVert,
-                    contentDescription = "Options",
+                    contentDescription = stringResource(R.string.common_options),
                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                     modifier = Modifier.size(17.dp)
                 )
@@ -1908,7 +1908,7 @@ fun SearchChatsDialog(
                         }
                         Column {
                             Text(
-                                text = "Search Conversations",
+                                text = stringResource(R.string.drawer_search_conversations),
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -1927,7 +1927,7 @@ fun SearchChatsDialog(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Close,
-                            contentDescription = "Close",
+                            contentDescription = stringResource(R.string.common_close),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
                             modifier = Modifier.size(18.dp)
                         )
@@ -1977,7 +1977,7 @@ fun SearchChatsDialog(
                             decorationBox = { innerTextField ->
                                 if (query.isEmpty()) {
                                     Text(
-                                        text = "Search by title, topic, or model...",
+                                        text = stringResource(R.string.drawer_search_by_title_topic_or_model),
                                         fontSize = 13.5.sp,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
                                     )
@@ -1992,7 +1992,7 @@ fun SearchChatsDialog(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Close,
-                                    contentDescription = "Clear",
+                                    contentDescription = stringResource(R.string.common_clear),
                                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                     modifier = Modifier.size(15.dp)
                                 )
@@ -2126,7 +2126,7 @@ fun SearchChatsDialog(
                                 modifier = Modifier.size(40.dp)
                             )
                             Text(
-                                text = "No conversations found",
+                                text = stringResource(R.string.drawer_no_conversations_found),
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onSurface

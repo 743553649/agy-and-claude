@@ -222,14 +222,14 @@ fun AgentToolCallCard(
             if (isPendingApproval) {
                 Icon(
                     imageVector = Icons.Default.HourglassEmpty,
-                    contentDescription = "Pending Approval",
+                    contentDescription = stringResource(R.string.component_pending_approval),
                     tint = Color(0xFFF59E0B),
                     modifier = Modifier.size(14.dp)
                 )
             } else if (isRunning) {
                 Icon(
                     imageVector = toolIcon,
-                    contentDescription = "Running",
+                    contentDescription = stringResource(R.string.component_running),
                     tint = ClaudeTerracotta,
                     modifier = Modifier.size(14.dp)
                 )
@@ -243,21 +243,21 @@ fun AgentToolCallCard(
             } else if (isTerminated) {
                 Icon(
                     imageVector = Icons.Default.Cancel,
-                    contentDescription = "Terminated",
+                    contentDescription = stringResource(R.string.component_terminated),
                     tint = Color(0xFFEF4444),
                     modifier = Modifier.size(14.dp)
                 )
             } else if (isRejected) {
                 Icon(
                     imageVector = Icons.Default.Close,
-                    contentDescription = "Rejected",
+                    contentDescription = stringResource(R.string.component_rejected),
                     tint = Color.Gray,
                     modifier = Modifier.size(14.dp)
                 )
             } else if (isFailed) {
                 Icon(
                     imageVector = Icons.Default.Warning,
-                    contentDescription = "Failed",
+                    contentDescription = stringResource(R.string.component_failed),
                     tint = Color.Red,
                     modifier = Modifier.size(14.dp)
                 )
@@ -302,7 +302,7 @@ fun AgentToolCallCard(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Stop,
-                        contentDescription = "Stop command",
+                        contentDescription = stringResource(R.string.component_stop_command),
                         tint = Color(0xFFEF4444),
                         modifier = Modifier.size(12.dp)
                     )
@@ -330,7 +330,7 @@ fun AgentToolCallCard(
                         .padding(horizontal = 4.dp, vertical = 1.dp)
                 ) {
                     Text(
-                        text = "stopped",
+                        text = stringResource(R.string.component_stopped),
                         fontSize = 9.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Red
@@ -411,7 +411,7 @@ fun AgentToolCallCard(
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Text(
-                                        text = "Loading image...",
+                                        text = stringResource(R.string.component_loading_image),
                                         fontSize = 12.sp,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
@@ -439,7 +439,7 @@ fun AgentToolCallCard(
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Text(
-                                text = "Tap image to enlarge • Double-tap zoom",
+                                text = stringResource(R.string.component_tap_image_to_enlarge_double_tap_zoom),
                                 fontSize = 11.sp,
                                 color = Color.Gray,
                                 modifier = Modifier.weight(1f)
@@ -451,7 +451,7 @@ fun AgentToolCallCard(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Fullscreen,
-                                    contentDescription = "Full view",
+                                    contentDescription = stringResource(R.string.component_full_view),
                                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                     modifier = Modifier.size(16.dp)
                                 )
@@ -473,7 +473,7 @@ fun AgentToolCallCard(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Download,
-                                    contentDescription = "Download Image",
+                                    contentDescription = stringResource(R.string.component_download_image),
                                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                     modifier = Modifier.size(16.dp)
                                 )
@@ -551,7 +551,7 @@ fun AgentToolCallCard(
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.ContentCopy,
-                                contentDescription = "Copy Output",
+                                contentDescription = stringResource(R.string.component_copy_output),
                                 tint = Color.Gray,
                                 modifier = Modifier.size(13.dp)
                             )

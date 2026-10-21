@@ -63,7 +63,7 @@ fun DaemonLogsDialog(
                 }
 
                 IconButton(onClick = onDismiss) {
-                    Icon(imageVector = Icons.Default.Close, contentDescription = "Close")
+                    Icon(imageVector = Icons.Default.Close, contentDescription = stringResource(R.string.common_close))
                 }
             }
         },
@@ -127,7 +127,7 @@ fun DaemonLogsDialog(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Refresh,
-                                contentDescription = "Retry",
+                                contentDescription = stringResource(R.string.common_retry),
                                 modifier = Modifier.size(16.dp)
                             )
                             Spacer(modifier = Modifier.width(4.dp))
@@ -137,7 +137,7 @@ fun DaemonLogsDialog(
                 }
 
                 Text(
-                    text = "Live Log Output:",
+                    text = stringResource(R.string.ide_live_log_output),
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(bottom = 4.dp)

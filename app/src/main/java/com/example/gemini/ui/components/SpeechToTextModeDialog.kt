@@ -23,6 +23,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.gemini.theme.ClaudeTerracotta
 import com.example.gemini.theme.GeminiBlue
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 @Composable
 fun SpeechToTextModeDialog(
@@ -50,14 +52,14 @@ fun SpeechToTextModeDialog(
                 ) {
                     Column {
                         Text(
-                            text = "Speech to Text",
+                            text = stringResource(R.string.component_speech_to_text),
                             fontSize = 17.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Spacer(modifier = Modifier.height(2.dp))
                         Text(
-                            text = "Select speech recognition method",
+                            text = stringResource(R.string.component_select_speech_recognition_method),
                             fontSize = 12.sp,
                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                         )
@@ -69,7 +71,7 @@ fun SpeechToTextModeDialog(
                     ) {
                         Icon(
                             imageVector = Icons.Outlined.Close,
-                            contentDescription = "Close",
+                            contentDescription = stringResource(R.string.common_close),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
                             modifier = Modifier.size(16.dp)
                         )
@@ -80,7 +82,7 @@ fun SpeechToTextModeDialog(
 
                 // Option 1: Auto Transcribe (Record & Transcribe via AGY Hub)
                 SpeechModeOptionCard(
-                    title = "Auto Transcribe",
+                    title = stringResource(R.string.component_auto_transcribe),
                     subtitle = "Record a voice clip and convert it into text using AGY transcription",
                     icon = Icons.Rounded.GraphicEq,
                     accentColor = ClaudeTerracotta,
@@ -91,7 +93,7 @@ fun SpeechToTextModeDialog(
 
                 // Option 2: Live Dictation (Real-Time Speech-to-Text)
                 SpeechModeOptionCard(
-                    title = "Live Dictation",
+                    title = stringResource(R.string.component_live_dictation),
                     subtitle = "Stream words in real-time as you speak directly into the chat prompt",
                     icon = Icons.Rounded.Mic,
                     accentColor = GeminiBlue,
@@ -106,7 +108,7 @@ fun SpeechToTextModeDialog(
                     modifier = Modifier.align(Alignment.End)
                 ) {
                     Text(
-                        text = "Cancel",
+                        text = stringResource(R.string.common_cancel),
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
                         fontSize = 13.sp
                     )

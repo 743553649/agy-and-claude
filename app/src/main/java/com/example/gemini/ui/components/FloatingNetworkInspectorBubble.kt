@@ -96,7 +96,7 @@ fun FloatingNetworkInspectorBubble(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Language,
-                            contentDescription = "Network Inspector",
+                            contentDescription = stringResource(R.string.component_network_inspector),
                             tint = Color(0xFF0284C7),
                             modifier = Modifier.size(14.dp)
                         )

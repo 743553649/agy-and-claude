@@ -277,7 +277,7 @@ private fun MainCategoryListView(
         // Agent header (same as the Claude Code picker)
         com.example.gemini.ui.agents.AgentSheetHeader(
             agent = com.example.gemini.domain.model.AgentKind.AGY,
-            title = "Select model",
+            title = stringResource(R.string.ui_select_model),
             detail = if (availableModelsCount > 0) "$availableModelsCount models" else "no models loaded",
             refreshing = isRefreshing,
             onRefresh = onRefresh
@@ -293,14 +293,14 @@ private fun MainCategoryListView(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "No Models Loaded",
+                    text = stringResource(R.string.ui_no_models_loaded),
                     fontWeight = FontWeight.Bold,
                     fontSize = 15.sp,
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Connect your Google account in Settings or tap refresh to load your active models.",
+                    text = stringResource(R.string.ui_connect_your_google_account_in_settings),
                     fontSize = 12.5.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                     textAlign = TextAlign.Center
@@ -347,7 +347,7 @@ private fun MainCategoryListView(
                 )
 
                 CategoryNavigationTile(
-                    title = "Google Gemini",
+                    title = stringResource(R.string.ui_google_gemini),
                     activeModelName = if (isGeminiActive) cleanActiveModelName else null,
                     line1 = line1,
                     fraction1 = fiveHourFraction,
@@ -381,7 +381,7 @@ private fun MainCategoryListView(
                 )
 
                 CategoryNavigationTile(
-                    title = "Anthropic Claude",
+                    title = stringResource(R.string.ui_anthropic_claude),
                     activeModelName = if (isClaudeActive) cleanActiveModelName else null,
                     line1 = line1,
                     fraction1 = fiveHourFraction,
@@ -494,7 +494,7 @@ private fun CategoryModelsSubView(
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Back to categories",
+                    contentDescription = stringResource(R.string.ui_back_to_categories),
                     tint = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier.size(18.dp)
                 )
@@ -598,7 +598,7 @@ private fun TieredModelGroupCard(
                             .padding(horizontal = 6.dp, vertical = 2.dp)
                     ) {
                         Text(
-                            text = "Active",
+                            text = stringResource(R.string.common_active),
                             fontSize = 10.sp,
                             fontWeight = FontWeight.Bold,
                             color = brandColor
@@ -714,7 +714,7 @@ private fun CategoryNavigationTile(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Check,
-                            contentDescription = "Active",
+                            contentDescription = stringResource(R.string.common_active),
                             tint = brandColor,
                             modifier = Modifier.size(13.dp)
                         )
@@ -730,7 +730,7 @@ private fun CategoryNavigationTile(
                     }
                 } else {
                     Text(
-                        text = "Tap to choose model",
+                        text = stringResource(R.string.ui_tap_to_choose_model),
                         fontSize = 12.5.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f)
                     )
@@ -816,13 +816,13 @@ private fun ModelRowItem(
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(
                             imageVector = Icons.Default.Check,
-                            contentDescription = "Selected",
+                            contentDescription = stringResource(R.string.common_selected),
                             tint = brandColor,
                             modifier = Modifier.size(12.dp)
                         )
                         Spacer(modifier = Modifier.width(3.dp))
                         Text(
-                            text = "Active",
+                            text = stringResource(R.string.common_active),
                             fontSize = 10.5.sp,
                             fontWeight = FontWeight.Bold,
                             color = brandColor

@@ -78,7 +78,7 @@ fun NewProjectDialog(
                             Box(contentAlignment = Alignment.CenterStart) {
                                 if (projectName.isEmpty()) {
                                     Text(
-                                        text = "Project Name (e.g. my-awesome-app)",
+                                        text = stringResource(R.string.ide_project_name_e_g_my_awesome_app),
                                         fontSize = 13.5.sp,
                                         lineHeight = 18.sp,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)

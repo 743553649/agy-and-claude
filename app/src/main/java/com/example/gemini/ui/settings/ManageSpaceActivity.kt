@@ -250,18 +250,18 @@ private fun ManageSpaceScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(onClick = onBack) {
-                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Column {
                     Text(
-                        text = "AntiGem Space Manager",
+                        text = stringResource(R.string.settings_antigem_space_manager),
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
-                        text = "Safe storage and data loss protection",
+                        text = stringResource(R.string.settings_safe_storage_and_data_loss_protection),
                         fontSize = 12.sp,
                         color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f)
                     )
@@ -302,7 +302,7 @@ private fun ManageSpaceScreen(
 
                     Spacer(modifier = Modifier.height(14.dp))
                     Text(
-                        text = "This includes your Termux Linux packages, AI configuration, and local SQLite data.",
+                        text = stringResource(R.string.settings_this_includes_your_termux_linux_packages),
                         fontSize = 11.5.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f),
                         lineHeight = 16.sp
@@ -334,7 +334,7 @@ private fun ManageSpaceScreen(
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "Safe to clear. Removes temporary logs and cached assets without touching your code or database.",
+                        text = stringResource(R.string.settings_safe_to_clear_removes_temporary_logs_and),
                         fontSize = 11.5.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                     )
@@ -371,7 +371,7 @@ private fun ManageSpaceScreen(
                         Icon(Icons.Default.Warning, contentDescription = null, tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(22.dp))
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
-                            text = "Danger Zone: Factory Reset",
+                            text = stringResource(R.string.settings_danger_zone_factory_reset),
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.error
@@ -379,7 +379,7 @@ private fun ManageSpaceScreen(
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "Performs a complete wipe of all app data, removing Linux packages, accounts, and chats.",
+                        text = stringResource(R.string.settings_performs_a_complete_wipe_of_all_app_data),
                         fontSize = 11.5.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                     )
@@ -442,7 +442,7 @@ private fun ManageSpaceScreen(
             },
             title = {
                 Text(
-                    text = "Confirm Destruction",
+                    text = stringResource(R.string.settings_confirm_destruction),
                     fontSize = 17.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
@@ -451,7 +451,7 @@ private fun ManageSpaceScreen(
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text(
-                        text = "To confirm and permanently wipe all app data and local Linux storage, type the confirmation phrase exactly as shown below:",
+                        text = stringResource(R.string.settings_to_confirm_and_permanently_wipe_all_app),
                         fontSize = 13.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -460,7 +460,7 @@ private fun ManageSpaceScreen(
                         shape = RoundedCornerShape(6.dp)
                     ) {
                         Text(
-                            text = "iknowwhatiamdoing",
+                            text = stringResource(R.string.settings_iknowwhatiamdoing),
                             fontFamily = FontFamily.Monospace,
                             fontWeight = FontWeight.Bold,
                             color = ClaudeTerracotta,

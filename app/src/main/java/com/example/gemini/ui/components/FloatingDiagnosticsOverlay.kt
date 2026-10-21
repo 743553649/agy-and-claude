@@ -159,7 +159,7 @@ fun FloatingDiagnosticsOverlay(
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Text(
-                                    text = "AgyGrpc Hub:",
+                                    text = stringResource(R.string.component_agygrpc_hub),
                                     fontSize = 10.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = Color(0xFF90CAF9),
@@ -179,7 +179,7 @@ fun FloatingDiagnosticsOverlay(
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Text(
-                                    text = "IDE Bridge:",
+                                    text = stringResource(R.string.component_ide_bridge),
                                     fontSize = 10.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = Color(0xFFA5D6A7),
@@ -196,7 +196,7 @@ fun FloatingDiagnosticsOverlay(
                             // Blocked Threads breakdown
                             if (snapshot.topBlockedThreads.isNotEmpty()) {
                                 Text(
-                                    text = "Blocked Socket Reads:",
+                                    text = stringResource(R.string.component_blocked_socket_reads),
                                     fontSize = 10.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = Color(0xFFFFB74D),

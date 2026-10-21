@@ -585,7 +585,7 @@ fun ChatInputBar(
     if (previewImageUrl != null) {
         FullScreenImageDialog(
             imageUrl = previewImageUrl!!,
-            title = "Attachment Preview",
+            title = stringResource(R.string.component_attachment_preview),
             onDismiss = { previewImageUrl = null }
         )
     }
@@ -667,7 +667,7 @@ fun ChatInputBar(
                                     )
                                     Spacer(modifier = Modifier.width(2.dp))
                                     Text(
-                                        text = "Transcribe",
+                                        text = stringResource(R.string.component_transcribe),
                                         fontSize = 9.5.sp,
                                         fontWeight = FontWeight.Bold,
                                         color = ClaudeTerracotta
@@ -718,7 +718,7 @@ fun ChatInputBar(
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.Close,
-                                contentDescription = "Cancel recording",
+                                contentDescription = stringResource(R.string.component_cancel_recording),
                                 tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                                 modifier = Modifier.size(18.dp)
                             )
@@ -737,7 +737,7 @@ fun ChatInputBar(
                             Box(contentAlignment = Alignment.Center) {
                                 Icon(
                                     imageVector = Icons.Default.Stop,
-                                    contentDescription = "Stop & Attach",
+                                    contentDescription = stringResource(R.string.component_stop_attach),
                                     tint = MaterialTheme.colorScheme.onSurface,
                                     modifier = Modifier.size(17.dp)
                                 )
@@ -756,7 +756,7 @@ fun ChatInputBar(
                             Box(contentAlignment = Alignment.Center) {
                                 Icon(
                                     imageVector = Icons.Default.ArrowUpward,
-                                    contentDescription = "Send voice note",
+                                    contentDescription = stringResource(R.string.component_send_voice_note),
                                     tint = Color.White,
                                     modifier = Modifier.size(18.dp)
                                 )
@@ -838,7 +838,7 @@ fun ChatInputBar(
                                         Box(contentAlignment = Alignment.Center) {
                                             Icon(
                                                 imageVector = Icons.Default.Stop,
-                                                contentDescription = "Stop",
+                                                contentDescription = stringResource(R.string.common_stop),
                                                 tint = Color(0xFFE53935),
                                                 modifier = Modifier.size(15.dp)
                                             )
@@ -869,7 +869,7 @@ fun ChatInputBar(
                                     )
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Text(
-                                        text = "Transcribing audio via AGY Hub...",
+                                        text = stringResource(R.string.component_transcribing_audio_via_agy_hub),
                                         fontSize = 12.sp,
                                         color = ClaudeTerracotta,
                                         fontWeight = FontWeight.Medium
@@ -938,7 +938,7 @@ fun ChatInputBar(
                                         )
                                         Spacer(modifier = Modifier.width(6.dp))
                                         Text(
-                                            text = "Uploading attachment...",
+                                            text = stringResource(R.string.component_uploading_attachment),
                                             fontSize = 11.5.sp,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant
                                         )
@@ -1068,7 +1068,7 @@ fun ChatInputBar(
                                         ) {
                                             Icon(
                                                 imageVector = Icons.Outlined.Close,
-                                                contentDescription = "Remove",
+                                                contentDescription = stringResource(R.string.common_remove),
                                                 tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                                                 modifier = Modifier.size(13.dp)
                                             )
@@ -1097,7 +1097,7 @@ fun ChatInputBar(
                             Box(contentAlignment = Alignment.Center) {
                                 Icon(
                                     imageVector = Icons.Outlined.Add,
-                                    contentDescription = "Add attachments",
+                                    contentDescription = stringResource(R.string.component_add_attachments),
                                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
                                     modifier = Modifier.size(19.dp)
                                 )
@@ -1167,7 +1167,7 @@ fun ChatInputBar(
                                     Spacer(modifier = Modifier.width(2.dp))
                                     Icon(
                                         imageVector = Icons.Default.KeyboardArrowDown,
-                                        contentDescription = "Switch Model",
+                                        contentDescription = stringResource(R.string.component_switch_model),
                                         tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                                         modifier = Modifier.size(14.dp)
                                     )
@@ -1216,7 +1216,7 @@ fun ChatInputBar(
                                 Box(contentAlignment = Alignment.Center) {
                                     Icon(
                                         imageVector = Icons.Default.Stop,
-                                        contentDescription = "Stop",
+                                        contentDescription = stringResource(R.string.common_stop),
                                         tint = Color.White,
                                         modifier = Modifier.size(18.dp)
                                     )
@@ -1248,7 +1248,7 @@ fun ChatInputBar(
                                 Box(contentAlignment = Alignment.Center) {
                                     Icon(
                                         imageVector = Icons.Default.ArrowUpward,
-                                        contentDescription = "Send",
+                                        contentDescription = stringResource(R.string.component_send),
                                         tint = if (isAuth && isOnline) (if (isBackgroundActive) Color(0xFF1E1E1E) else Color.White) else Color(0xFFD1D5DB),
                                         modifier = Modifier.size(19.dp)
                                     )

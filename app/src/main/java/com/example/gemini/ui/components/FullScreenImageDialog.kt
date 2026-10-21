@@ -38,6 +38,8 @@ import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import java.io.File
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 /**
  * Fullscreen modal image viewer with smooth pinch-to-zoom, panning, double-tap zoom reset,
@@ -174,7 +176,7 @@ fun FullScreenImageDialog(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = "Close",
+                        contentDescription = stringResource(R.string.common_close),
                         tint = Color.White
                     )
                 }
@@ -204,7 +206,7 @@ fun FullScreenImageDialog(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Refresh,
-                            contentDescription = "Reset Zoom",
+                            contentDescription = stringResource(R.string.component_reset_zoom),
                             tint = Color.White,
                             modifier = Modifier.size(18.dp)
                         )
@@ -229,7 +231,7 @@ fun FullScreenImageDialog(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Download,
-                        contentDescription = "Download",
+                        contentDescription = stringResource(R.string.component_download),
                         tint = Color.White,
                         modifier = Modifier.size(18.dp)
                     )

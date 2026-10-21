@@ -71,7 +71,7 @@ fun ConnectionStatusBadge(
                             .background(dotColor, CircleShape)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = "Bridge Status", style = MaterialTheme.typography.titleMedium)
+                    Text(text = stringResource(R.string.component_bridge_status), style = MaterialTheme.typography.titleMedium)
                 }
             },
             text = {
@@ -102,7 +102,7 @@ fun ConnectionStatusBadge(
 
                     if (activeInstances.isEmpty()) {
                         Text(
-                            text = "No active warm processes in RAM.",
+                            text = stringResource(R.string.component_no_active_warm_processes_in_ram),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )

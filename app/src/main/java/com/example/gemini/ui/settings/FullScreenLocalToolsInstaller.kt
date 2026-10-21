@@ -105,13 +105,13 @@ fun FullScreenLocalToolsInstaller(
                 title = {
                     Column {
                         Text(
-                            text = "AntiGem Environment",
+                            text = stringResource(R.string.settings_antigem_environment),
                             fontSize = 17.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = "Local Linux & Terminal Setup",
+                            text = stringResource(R.string.settings_local_linux_terminal_setup),
                             fontSize = 12.sp,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -241,7 +241,7 @@ fun FullScreenLocalToolsInstaller(
                         )
                         Spacer(modifier = Modifier.width(6.dp))
                         Text(
-                            text = "Device Hardware Capabilities",
+                            text = stringResource(R.string.settings_device_hardware_capabilities),
                             fontSize = 12.5.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
@@ -499,7 +499,7 @@ fun FullScreenLocalToolsInstaller(
                                     Column(modifier = Modifier.weight(1f)) {
                                         Row(verticalAlignment = Alignment.CenterVertically) {
                                             Text(
-                                                text = "Base Minimum Termux",
+                                                text = stringResource(R.string.settings_base_minimum_termux),
                                                 fontSize = 14.sp,
                                                 fontWeight = FontWeight.Bold,
                                                 color = MaterialTheme.colorScheme.onSurface
@@ -617,7 +617,7 @@ fun FullScreenLocalToolsInstaller(
                             val animatedProgress by animateFloatAsState(
                                 targetValue = state.progressFraction,
                                 animationSpec = tween(300, easing = LinearEasing),
-                                label = "progress"
+                                label = stringResource(R.string.common_progress)
                             )
                             LinearProgressIndicator(
                                 progress = { animatedProgress },
@@ -753,13 +753,13 @@ fun FullScreenLocalToolsInstaller(
                             verticalArrangement = Arrangement.spacedBy(6.dp)
                         ) {
                             Text(
-                                text = "✓ Installation Complete",
+                                text = stringResource(R.string.settings_installation_complete),
                                 fontSize = 14.5.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = QuotaGreen
                             )
                             Text(
-                                text = "Bootstrap rootfs successfully configured. The interactive terminal, Go IDE backend, and AGY AI language server are now ready to run.",
+                                text = stringResource(R.string.settings_bootstrap_rootfs_successfully_configured),
                                 fontSize = 12.5.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 lineHeight = 17.sp
@@ -780,7 +780,7 @@ fun FullScreenLocalToolsInstaller(
                             verticalArrangement = Arrangement.spacedBy(6.dp)
                         ) {
                             Text(
-                                text = "⚠ Error Occurred",
+                                text = stringResource(R.string.settings_error_occurred),
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.error

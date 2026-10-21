@@ -310,7 +310,7 @@ fun SettingsDialog(
                     }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back",
+                            contentDescription = stringResource(R.string.common_back),
                             tint = MaterialTheme.colorScheme.onSurface
                         )
                     }
@@ -318,7 +318,7 @@ fun SettingsDialog(
                 actions = {
                     TextButton(onClick = onDismiss) {
                         Text(
-                            text = "Done",
+                            text = stringResource(R.string.common_done),
                             color = ClaudeTerracotta,
                             fontWeight = FontWeight.Bold,
                             fontSize = 14.sp
@@ -607,7 +607,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.SmartToy,
             iconTint = MaterialTheme.colorScheme.primary,
-            title = "Agents",
+            title = stringResource(R.string.settings_agents),
             subtitle = when {
                 agyOn && claudeOn -> "Antigravity and Claude Code"
                 claudeOn -> "Claude Code only"
@@ -628,7 +628,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Dns,
             iconTint = serverColor,
-            title = "Servers & Connectivity",
+            title = stringResource(R.string.settings_servers_connectivity),
             subtitle = "AGY Hub & IDE Bridge endpoints",
             badgeText = serverBadge,
             badgeColor = serverColor,
@@ -640,7 +640,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Extension,
             iconTint = MaterialTheme.colorScheme.primary,
-            title = "WebView Extensions",
+            title = stringResource(R.string.settings_webview_extensions),
             subtitle = "Install ZIP, update, rename, enable or disable MCP extensions",
             cardBg = cardBg,
             cardBorder = cardBorder,
@@ -665,7 +665,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Extension,
             iconTint = mcpColor,
-            title = "MCP Servers & Tools",
+            title = stringResource(R.string.settings_mcp_servers_tools),
             subtitle = if (totalMcpCount > 0) "$totalMcpCount server(s) • global mcp_config.json" else "Model Context Protocol tools & integrations",
             badgeText = mcpBadge,
             badgeColor = mcpColor,
@@ -681,7 +681,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.AutoAwesome,
             iconTint = GeminiBlue,
-            title = "Skills & Plugins",
+            title = stringResource(R.string.settings_skills_plugins),
             subtitle = "Installed skills, Google plugins catalog, and markdown guides",
             badgeText = skillsBadge,
             badgeColor = GeminiBlue,
@@ -700,7 +700,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Security,
             iconTint = policyColor,
-            title = "Commands & Permissions",
+            title = stringResource(R.string.settings_commands_permissions),
             subtitle = "Policy: $policyBadge • $sandboxSummary",
             badgeText = policyBadge,
             badgeColor = policyColor,
@@ -726,7 +726,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Palette,
             iconTint = ClaudeTerracotta,
-            title = "Appearance & Theme",
+            title = stringResource(R.string.settings_appearance_theme),
             subtitle = "$themeLabel • ${(chatFontScale * 100).toInt()}% text scale",
             badgeText = themeLabel,
             cardBg = cardBg,
@@ -749,7 +749,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.SmartToy,
             iconTint = autoColor,
-            title = "Automation & Device Tools",
+            title = stringResource(R.string.settings_automation_device_tools),
             subtitle = autoSummary,
             badgeText = autoBadge,
             badgeColor = autoColor,
@@ -762,7 +762,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Terminal,
             iconTint = Color(0xFF00ACC1),
-            title = "Terminal & Shell Execution",
+            title = stringResource(R.string.settings_terminal_shell_execution),
             subtitle = if (useSshTerminal) "SSH Mode (Termux sshd)" else "Local Linux Environment",
             badgeText = if (useSshTerminal) "SSH" else "Local",
             cardBg = cardBg,
@@ -775,7 +775,7 @@ private fun MainSettingsMenu(
             SettingsCategoryCard(
                 icon = Icons.Outlined.Backup,
                 iconTint = GeminiBlue,
-                title = "Backups & Restore",
+                title = stringResource(R.string.settings_backups_restore),
                 subtitle = "Backup rootfs environment and AGY chat histories",
                 badgeText = "Rootfs Active",
                 badgeColor = GeminiBlue,
@@ -789,7 +789,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Security,
             iconTint = Color(0xFF10B981),
-            title = "Data Loss Protection",
+            title = stringResource(R.string.settings_data_loss_protection),
             subtitle = "Accidental uninstall shield & App Info clear data protection",
             badgeText = "Shield",
             badgeColor = Color(0xFF10B981),
@@ -804,7 +804,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Speed,
             iconTint = if (isFloatingDiagnosticsEnabled) QuotaGreen else Color(0xFF00ACC1),
-            title = "Diagnostics & Performance",
+            title = stringResource(R.string.settings_diagnostics_performance),
             subtitle = if (isFloatingDiagnosticsEnabled) "Floating live metrics HUD enabled" else "Live network connections, active streams & thread HUD",
             badgeText = diagBadge,
             badgeColor = diagColor,
@@ -817,7 +817,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Info,
             iconTint = Color(0xFF8B5CF6),
-            title = "About & Info",
+            title = stringResource(R.string.settings_about_info),
             subtitle = "v${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE}) • ${BuildConfig.APPLICATION_ID}",
             badgeText = "v${BuildConfig.VERSION_NAME}",
             badgeColor = Color(0xFF8B5CF6),
@@ -948,7 +948,7 @@ private fun AppearanceSubScreen(
     ) {
         // Theme Selector Header
         Text(
-            text = "Color Theme",
+            text = stringResource(R.string.settings_color_theme),
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onSurface
@@ -1018,7 +1018,7 @@ private fun AppearanceSubScreen(
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
-                    text = "Scales messages, markdown, and code blocks",
+                    text = stringResource(R.string.settings_scales_messages_markdown_and_code_blocks),
                     fontSize = 11.5.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                 )
@@ -1098,7 +1098,7 @@ private fun AppearanceSubScreen(
 
         // Live Chat Message Preview Box (Directly under Chat Text Scaling)
         Text(
-            text = "Live Preview",
+            text = stringResource(R.string.settings_live_preview),
             fontSize = 13.sp,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
@@ -1126,7 +1126,7 @@ private fun AppearanceSubScreen(
                         color = ClaudeTerracotta.copy(alpha = 0.15f)
                     ) {
                         Text(
-                            text = "How does AntiGem connect to AGY Hub?",
+                            text = stringResource(R.string.settings_how_does_antigem_connect_to_agy_hub),
                             fontSize = (13 * chatFontScale).sp,
                             color = MaterialTheme.colorScheme.onSurface,
                             modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
@@ -1146,7 +1146,7 @@ private fun AppearanceSubScreen(
                     ) {
                         Column(modifier = Modifier.padding(12.dp)) {
                             Text(
-                                text = "AntiGem connects via gRPC-Web to stream live agent steps and tool executions.",
+                                text = stringResource(R.string.settings_antigem_connects_via_grpc_web_to_stream),
                                 fontSize = (13 * chatFontScale).sp,
                                 lineHeight = (18 * chatFontScale).sp,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -1173,14 +1173,14 @@ private fun AppearanceSubScreen(
             ) {
                 Column(modifier = Modifier.weight(1f).padding(end = 12.dp)) {
                     Text(
-                        text = "Group Chats by Workspace",
+                        text = stringResource(R.string.settings_group_chats_by_workspace),
                         fontSize = 13.5.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
-                        text = "Categorize chat history in drawer under workspace folders matching repository paths",
+                        text = stringResource(R.string.settings_categorize_chat_history_in_drawer_under),
                         fontSize = 11.5.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                     )
@@ -1216,14 +1216,14 @@ private fun AppearanceSubScreen(
             ) {
                 Column(modifier = Modifier.weight(1f).padding(end = 12.dp)) {
                     Text(
-                        text = "Working Animation",
+                        text = stringResource(R.string.settings_working_animation),
                         fontSize = 13.5.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
-                        text = "Claude Code-style animated star and status word under the reply for as long as the agent works. Off: only the \"…\" indicator before the first output.",
+                        text = stringResource(R.string.settings_claude_code_style_animated_star_and_stat),
                         fontSize = 11.5.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                     )
@@ -1256,14 +1256,14 @@ private fun AppearanceSubScreen(
             ) {
                 Column(modifier = Modifier.weight(1f).padding(end = 12.dp)) {
                     Text(
-                        text = "Date & Model Dividers",
+                        text = stringResource(R.string.settings_date_model_dividers),
                         fontSize = 13.5.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
-                        text = "A wavy-line divider in chats when a new day starts (e.g. \"Sat, Oct 10\") and when the model changes (\"Switched to …\").",
+                        text = stringResource(R.string.settings_a_wavy_line_divider_in_chats_when_a_new),
                         fontSize = 11.5.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                     )
@@ -1294,14 +1294,14 @@ private fun AppearanceSubScreen(
                 ) {
                     Column(modifier = Modifier.weight(1f).padding(end = 12.dp)) {
                         Text(
-                            text = "Floating App Switcher",
+                            text = stringResource(R.string.settings_floating_app_switcher),
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Spacer(modifier = Modifier.height(2.dp))
                         Text(
-                            text = "A glassy floating pill across the whole app for instant switching between Chat, IDE, Terminal, and Browser",
+                            text = stringResource(R.string.settings_a_glassy_floating_pill_across_the_whole),
                             fontSize = 11.5.sp,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                         )
@@ -1323,7 +1323,7 @@ private fun AppearanceSubScreen(
 
                     // Layout Orientation Selector
                     Text(
-                        text = "Layout Orientation",
+                        text = stringResource(R.string.settings_layout_orientation),
                         fontSize = 12.5.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface
@@ -1379,14 +1379,14 @@ private fun AppearanceSubScreen(
 
                     // Auto-Collapse Timeout Selector
                     Text(
-                        text = "Auto-Collapse Timeout",
+                        text = stringResource(R.string.settings_auto_collapse_timeout),
                         fontSize = 12.5.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
-                        text = "Automatically collapses into a small arrow handle after inactivity",
+                        text = stringResource(R.string.settings_automatically_collapses_into_a_small_arr),
                         fontSize = 11.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f)
                     )
@@ -1426,7 +1426,7 @@ private fun AppearanceSubScreen(
 
                     // Customize Items Order & Visibility
                     Text(
-                        text = "Customize Icons & Order",
+                        text = stringResource(R.string.settings_customize_icons_order),
                         fontSize = 12.5.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface
@@ -1509,7 +1509,7 @@ private fun AppearanceSubScreen(
                                             enabled = itemOrderIndex > 0,
                                             modifier = Modifier.size(26.dp)
                                         ) {
-                                            Icon(Icons.Outlined.ExpandLess, contentDescription = "Move Up", modifier = Modifier.size(16.dp))
+                                            Icon(Icons.Outlined.ExpandLess, contentDescription = stringResource(R.string.settings_move_up), modifier = Modifier.size(16.dp))
                                         }
                                         IconButton(
                                             onClick = {
@@ -1524,7 +1524,7 @@ private fun AppearanceSubScreen(
                                             enabled = itemOrderIndex < currentItems.size - 1,
                                             modifier = Modifier.size(26.dp)
                                         ) {
-                                            Icon(Icons.Outlined.ExpandMore, contentDescription = "Move Down", modifier = Modifier.size(16.dp))
+                                            Icon(Icons.Outlined.ExpandMore, contentDescription = stringResource(R.string.settings_move_down), modifier = Modifier.size(16.dp))
                                         }
                                     }
                                 }
@@ -1578,14 +1578,14 @@ private fun AppearanceSubScreen(
                 ) {
                     Column(modifier = Modifier.weight(1f).padding(end = 12.dp)) {
                         Text(
-                            text = "Separate Terminal App Icon",
+                            text = stringResource(R.string.settings_separate_terminal_app_icon),
                             fontSize = 13.5.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Spacer(modifier = Modifier.height(2.dp))
                         Text(
-                            text = "Show a dedicated terminal icon on your Android home screen and app drawer",
+                            text = stringResource(R.string.settings_show_a_dedicated_terminal_icon_on_your_a),
                             fontSize = 11.5.sp,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                         )
@@ -1626,7 +1626,7 @@ private fun AppearanceSubScreen(
                         )
 
                         Text(
-                            text = "Launcher Icon & Name Style",
+                            text = stringResource(R.string.settings_launcher_icon_name_style),
                             fontSize = 12.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
@@ -1687,7 +1687,7 @@ private fun AppearanceSubScreen(
                                         color = MaterialTheme.colorScheme.onSurface
                                     )
                                     Text(
-                                        text = "Modern AntiGem styled icon & name",
+                                        text = stringResource(R.string.settings_modern_antigem_styled_icon_name),
                                         fontSize = 10.5.sp,
                                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                                     )
@@ -1767,7 +1767,7 @@ private fun AppearanceSubScreen(
                                         color = MaterialTheme.colorScheme.onSurface
                                     )
                                     Text(
-                                        text = "Classic >_ prompt icon & name",
+                                        text = stringResource(R.string.settings_classic_prompt_icon_name),
                                         fontSize = 10.5.sp,
                                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                                     )
@@ -1880,14 +1880,14 @@ private fun ServersSubScreen(
             },
             title = {
                 Text(
-                    text = "Unsaved Server Settings",
+                    text = stringResource(R.string.settings_unsaved_server_settings),
                     fontWeight = FontWeight.Bold,
                     fontSize = 17.sp
                 )
             },
             text = {
                 Text(
-                    text = "You have unsaved changes in Server & Connectivity settings. Please save them manually using 'Save Server & Security Settings' below or discard your modifications.",
+                    text = stringResource(R.string.settings_you_have_unsaved_changes_in_server_conne),
                     fontSize = 13.5.sp,
                     lineHeight = 19.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f)
@@ -1937,14 +1937,14 @@ private fun ServersSubScreen(
             },
             title = {
                 Text(
-                    text = "Reopen AntiGem?",
+                    text = stringResource(R.string.settings_reopen_antigem),
                     fontWeight = FontWeight.Bold,
                     fontSize = 17.sp
                 )
             },
             text = {
                 Text(
-                    text = "Server settings and security configuration have been saved. Reopening the app restarts local bridge and daemon processes so all connections cleanly synchronize with the new parameters.",
+                    text = stringResource(R.string.settings_server_settings_and_security_configurati),
                     fontSize = 13.5.sp,
                     lineHeight = 19.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f)
@@ -2000,8 +2000,8 @@ private fun ServersSubScreen(
                     Icon(imageVector = Icons.Outlined.Dns, contentDescription = null, tint = QuotaGreen, modifier = Modifier.size(22.dp))
                     Spacer(modifier = Modifier.width(10.dp))
                     Column(modifier = Modifier.weight(1f)) {
-                        Text(text = "Server & Connectivity Endpoints", fontSize = 14.5.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
-                        Text(text = "Shared server host address with dedicated daemon & bridge ports", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                        Text(text = stringResource(R.string.settings_server_connectivity_endpoints), fontSize = 14.5.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+                        Text(text = stringResource(R.string.settings_shared_server_host_address_with_dedicate), fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                     }
                 }
 
@@ -2170,8 +2170,8 @@ private fun ServersSubScreen(
                     Icon(imageVector = Icons.Outlined.Terminal, contentDescription = null, tint = ClaudeTerracotta, modifier = Modifier.size(22.dp))
                     Spacer(modifier = Modifier.width(10.dp))
                     Column(modifier = Modifier.weight(1f)) {
-                        Text(text = "Binary Executable Paths", fontSize = 14.5.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
-                        Text(text = "Custom paths used when auto-starting IDE Bridge, AGY Hub and Claude Code", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                        Text(text = stringResource(R.string.settings_binary_executable_paths), fontSize = 14.5.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+                        Text(text = stringResource(R.string.settings_custom_paths_used_when_auto_starting_ide), fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                     }
                 }
 
@@ -2214,13 +2214,13 @@ private fun ServersSubScreen(
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = "• Passed to the bridge on launch (--bin for AGY, --claude-bin for Claude Code) so auto-start executes the designated binary directly without interactive prompts.",
+                    text = stringResource(R.string.settings_passed_to_the_bridge_on_launch_bin_for_a),
                     fontSize = 11.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                 )
                 if (com.example.gemini.data.local.LocalEnvironmentManager.isTermuxPackage(LocalContext.current)) {
                     Text(
-                        text = "• Claude Code: the default is AntiGem's launcher, which runs the newest official Claude version through the bundled glibc. Claude updates never replace it.",
+                        text = stringResource(R.string.settings_claude_code_the_default_is_antigem_s_lau),
                         fontSize = 11.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                     )
@@ -2260,8 +2260,8 @@ private fun ServersSubScreen(
                     Icon(imageVector = Icons.Outlined.Security, contentDescription = null, tint = ClaudeTerracotta, modifier = Modifier.size(22.dp))
                     Spacer(modifier = Modifier.width(10.dp))
                     Column(modifier = Modifier.weight(1f)) {
-                        Text(text = "Security Token (Header Obfuscation)", fontSize = 14.5.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
-                        Text(text = "12-char token framing localhost requests to prevent unauthorized app access", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                        Text(text = stringResource(R.string.settings_security_token_header_obfuscation), fontSize = 14.5.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+                        Text(text = stringResource(R.string.settings_12_char_token_framing_localhost_requests), fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                     }
                 }
 
@@ -2466,7 +2466,7 @@ private fun McpSubScreen(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Close,
-                                contentDescription = "Dismiss",
+                                contentDescription = stringResource(R.string.common_dismiss),
                                 tint = MaterialTheme.colorScheme.error.copy(alpha = 0.6f),
                                 modifier = Modifier.size(16.dp)
                             )
@@ -2508,13 +2508,13 @@ private fun McpSubScreen(
                     }
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "Model Context Protocol (MCP)",
+                            text = stringResource(R.string.settings_model_context_protocol_mcp),
                             fontSize = 15.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = "Global config: ~/.gemini/config/mcp_config.json",
+                            text = stringResource(R.string.settings_global_config_gemini_config_mcp_config_j),
                             fontSize = 11.sp,
                             fontFamily = FontFamily.Monospace,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
@@ -2525,7 +2525,7 @@ private fun McpSubScreen(
                 }
 
                 Text(
-                    text = "Configure local process (Stdio) or remote (SSE) MCP servers. Discovered tools are dynamically available to all models during chat turns.",
+                    text = stringResource(R.string.settings_configure_local_process_stdio_or_remote),
                     fontSize = 12.5.sp,
                     lineHeight = 17.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f)
@@ -2604,7 +2604,7 @@ private fun McpSubScreen(
 
         // Quick template chips
         Text(
-            text = "Quick Presets & Templates",
+            text = stringResource(R.string.settings_quick_presets_templates),
             fontSize = 12.5.sp,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
@@ -2743,7 +2743,7 @@ private fun McpSubScreen(
                             color = ClaudeTerracotta
                         )
                         Text(
-                            text = "Loading MCP Servers...",
+                            text = stringResource(R.string.settings_loading_mcp_servers),
                             fontSize = 13.5.sp,
                             fontWeight = FontWeight.Medium,
                             color = MaterialTheme.colorScheme.onSurface
@@ -2771,7 +2771,7 @@ private fun McpSubScreen(
                             modifier = Modifier.size(42.dp)
                         )
                         Text(
-                            text = "Unable to Load MCP Servers",
+                            text = stringResource(R.string.settings_unable_to_load_mcp_servers),
                             fontSize = 15.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.error
@@ -2784,7 +2784,7 @@ private fun McpSubScreen(
                             textAlign = TextAlign.Center
                         )
                         Text(
-                            text = "Could not retrieve MCP server states. Ensure the Antigravity daemon is running on this device or accessible at the configured Hub URL.",
+                            text = stringResource(R.string.settings_could_not_retrieve_mcp_server_states_ens),
                             fontSize = 11.5.sp,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                             textAlign = TextAlign.Center
@@ -2827,13 +2827,13 @@ private fun McpSubScreen(
                             modifier = Modifier.size(44.dp)
                         )
                         Text(
-                            text = "No MCP Servers Configured",
+                            text = stringResource(R.string.settings_no_mcp_servers_configured),
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = "Add an MCP server to connect SQLite, filesystem, browser automation, or custom local tools to the assistant.",
+                            text = stringResource(R.string.settings_add_an_mcp_server_to_connect_sqlite_file),
                             fontSize = 12.sp,
                             lineHeight = 16.sp,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
@@ -3227,7 +3227,7 @@ private fun McpSubScreen(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = "Dismiss",
+                        contentDescription = stringResource(R.string.common_dismiss),
                         tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                         modifier = Modifier.size(14.dp)
                     )
@@ -3556,7 +3556,7 @@ private fun AddEditMcpServerDialog(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "Server Configuration JSON",
+                                text = stringResource(R.string.settings_server_configuration_json),
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
@@ -3665,7 +3665,7 @@ private fun AddEditMcpServerDialog(
                         maxLines = 6,
                         supportingText = {
                             Text(
-                                text = "Set custom headers like API keys or tokens required by the remote endpoint.",
+                                text = stringResource(R.string.settings_set_custom_headers_like_api_keys_or_toke),
                                 fontSize = 11.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                             )
@@ -3865,7 +3865,7 @@ private fun TerminalSubScreen(
                     Spacer(modifier = Modifier.width(10.dp))
                     Column(modifier = Modifier.weight(1f)) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            Text(text = "Use Terminal via SSH", fontWeight = FontWeight.Bold, fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurface)
+                            Text(text = stringResource(R.string.settings_use_terminal_via_ssh), fontWeight = FontWeight.Bold, fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurface)
                             Spacer(modifier = Modifier.width(6.dp))
                             Surface(
                                 shape = RoundedCornerShape(4.dp),
@@ -4085,7 +4085,7 @@ private fun TerminalSubScreen(
 
         // Terminal Appearance Customization Card
         Text(
-            text = "Terminal Customization",
+            text = stringResource(R.string.settings_terminal_customization),
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onSurface
@@ -4207,7 +4207,7 @@ private fun TerminalSubScreen(
             },
             title = {
                 Text(
-                    text = "Delete All & Factory Reset?",
+                    text = stringResource(R.string.settings_delete_all_factory_reset),
                     fontSize = 17.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
@@ -4215,7 +4215,7 @@ private fun TerminalSubScreen(
             },
             text = {
                 Text(
-                    text = "Warning: This will perform an Android OS-level data wipe. All installed packages, rootfs, dotfiles, app settings, and history will be completely cleared.\n\nThe app will close and start completely fresh on next launch. Are you sure you want to proceed?",
+                    text = stringResource(R.string.settings_warning_this_will_perform_an_android_os),
                     fontSize = 13.5.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -4260,7 +4260,7 @@ private fun TerminalSubScreen(
             },
             title = {
                 Text(
-                    text = "Confirm Full App Wipe",
+                    text = stringResource(R.string.settings_confirm_full_app_wipe),
                     fontSize = 17.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
@@ -4269,7 +4269,7 @@ private fun TerminalSubScreen(
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text(
-                        text = "To confirm and permanently wipe all app data and local rootfs, type the confirmation phrase exactly as shown below:",
+                        text = stringResource(R.string.settings_to_confirm_and_permanently_wipe_all_app_2),
                         fontSize = 13.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -4278,7 +4278,7 @@ private fun TerminalSubScreen(
                         shape = RoundedCornerShape(6.dp)
                     ) {
                         Text(
-                            text = "iknowwhatiamdoing",
+                            text = stringResource(R.string.settings_iknowwhatiamdoing),
                             fontFamily = FontFamily.Monospace,
                             fontWeight = FontWeight.Bold,
                             color = ClaudeTerracotta,
@@ -4372,7 +4372,7 @@ private fun TerminalSubScreen(
                     }
 
                     Text(
-                        text = "Factory Reset in Progress",
+                        text = stringResource(R.string.settings_factory_reset_in_progress),
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
@@ -4509,14 +4509,14 @@ private fun BackupsSubScreen(
                     )
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "AGY Server Is Running",
+                            text = stringResource(R.string.settings_agy_server_is_running),
                             fontSize = 13.5.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Spacer(modifier = Modifier.height(2.dp))
                         Text(
-                            text = "The daemon is actively accessing databases and processes. Please stop the server before performing backups or restores to prevent corrupted archives.",
+                            text = stringResource(R.string.settings_the_daemon_is_actively_accessing_databas),
                             fontSize = 11.5.sp,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
                             lineHeight = 16.sp
@@ -4566,7 +4566,7 @@ private fun BackupsSubScreen(
                     }
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "Rootfs Environment Backup",
+                            text = stringResource(R.string.settings_rootfs_environment_backup),
                             fontSize = 14.5.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
@@ -4581,7 +4581,7 @@ private fun BackupsSubScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    text = "Creates a full, portable backup of all installed packages, libraries, binaries, shell configurations, and user home dotfiles. Excludes active sockets, volatile caches, and auth tokens.",
+                    text = stringResource(R.string.settings_creates_a_full_portable_backup_of_all_in),
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
                     lineHeight = 17.sp
@@ -4601,7 +4601,7 @@ private fun BackupsSubScreen(
                         Icon(Icons.Outlined.Folder, contentDescription = null, modifier = Modifier.size(14.dp), tint = MaterialTheme.colorScheme.onSurfaceVariant)
                         Spacer(modifier = Modifier.width(6.dp))
                         Text(
-                            text = "Saves to: /sdcard/Download/Antigem/backups/bootrapz_<timestamp>.zip",
+                            text = stringResource(R.string.settings_saves_to_sdcard_download_antigem_backups_2),
                             fontSize = 11.sp,
                             fontFamily = FontFamily.Monospace,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
@@ -4617,7 +4617,7 @@ private fun BackupsSubScreen(
                         } else {
                             requestStoragePermission {
                                 activeScriptExecution = ScriptExecutionInfo(
-                                    title = "Rootfs System Packager",
+                                    title = stringResource(R.string.settings_rootfs_system_packager),
                                     scriptName = "backup_bootstrap",
                                     args = emptyList()
                                 )
@@ -4663,13 +4663,13 @@ private fun BackupsSubScreen(
                     }
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "AGY Chats & Credentials Backup",
+                            text = stringResource(R.string.settings_agy_chats_credentials_backup),
                             fontSize = 14.5.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = "Archive conversations, transcripts, auth tokens & configs",
+                            text = stringResource(R.string.settings_archive_conversations_transcripts_auth_t),
                             fontSize = 11.5.sp,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                         )
@@ -4678,7 +4678,7 @@ private fun BackupsSubScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    text = "Safely packages your entire ~/.gemini folder (SQLite chat history databases, brain transcripts, summaries index, custom skills, and authentication token). Supports optional zip encryption.",
+                    text = stringResource(R.string.settings_safely_packages_your_entire_gemini_folde),
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
                     lineHeight = 17.sp
@@ -4698,7 +4698,7 @@ private fun BackupsSubScreen(
                     ) {
                         Icon(Icons.Default.Security, contentDescription = null, tint = Color(0xFFEF4444), modifier = Modifier.size(18.dp))
                         Text(
-                            text = "⚠️ Security Warning: This backup includes your authentication credentials and login tokens. Never share this archive with anyone, as anyone with this file can log in to your account.",
+                            text = stringResource(R.string.settings_security_warning_this_backup_includes_yo),
                             fontSize = 11.sp,
                             color = MaterialTheme.colorScheme.onSurface,
                             lineHeight = 15.sp
@@ -4720,7 +4720,7 @@ private fun BackupsSubScreen(
                         Icon(Icons.Outlined.Folder, contentDescription = null, modifier = Modifier.size(14.dp), tint = MaterialTheme.colorScheme.onSurfaceVariant)
                         Spacer(modifier = Modifier.width(6.dp))
                         Text(
-                            text = "Saves to: /sdcard/Download/Antigem/backups/agy_chats_backup_<timestamp>.zip",
+                            text = stringResource(R.string.settings_saves_to_sdcard_download_antigem_backups),
                             fontSize = 11.sp,
                             fontFamily = FontFamily.Monospace,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
@@ -4776,13 +4776,13 @@ private fun BackupsSubScreen(
                     }
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "Restore AGY Chats & Credentials",
+                            text = stringResource(R.string.settings_restore_agy_chats_credentials),
                             fontSize = 14.5.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = "Restore previous chats and login from a backup zip archive",
+                            text = stringResource(R.string.settings_restore_previous_chats_and_login_from_a),
                             fontSize = 11.5.sp,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                         )
@@ -4791,7 +4791,7 @@ private fun BackupsSubScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    text = "Restores your chats, conversations index, and credentials. To prevent any accidental data loss, the restore script automatically creates a safety backup of your existing ~/.gemini directory to ~/.gemini.bak first.",
+                    text = stringResource(R.string.settings_restores_your_chats_conversations_index),
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
                     lineHeight = 17.sp
@@ -4846,13 +4846,13 @@ private fun BackupsSubScreen(
                     }
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "IDE & AGY Projects Backup & Restore",
+                            text = stringResource(R.string.settings_ide_agy_projects_backup_restore),
                             fontSize = 14.5.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = "Archive selected projects, workspaces & restore from zip",
+                            text = stringResource(R.string.settings_archive_selected_projects_workspaces_res),
                             fontSize = 11.5.sp,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                         )
@@ -4861,7 +4861,7 @@ private fun BackupsSubScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    text = "Export and backup projects open in the IDE and AGY conversation workspaces. Choose clean git-aware packaging (excluding node_modules and build caches) or full raw folder archives. Restore with automatic location mapping and safety backup protection.",
+                    text = stringResource(R.string.settings_export_and_backup_projects_open_in_the_i),
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
                     lineHeight = 17.sp
@@ -4923,7 +4923,7 @@ private fun BackupsSubScreen(
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text(
-                        text = "Optionally enter a password to encrypt your backup zip archive. Leave empty for an unencrypted standard zip.",
+                        text = stringResource(R.string.settings_optionally_enter_a_password_to_encrypt_y),
                         fontSize = 12.5.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f)
                     )
@@ -4940,7 +4940,7 @@ private fun BackupsSubScreen(
                         ) {
                             Icon(Icons.Default.Security, contentDescription = null, tint = Color(0xFFEF4444), modifier = Modifier.size(16.dp))
                             Text(
-                                text = "Do not share this file. Anyone with it can log into your account.",
+                                text = stringResource(R.string.settings_do_not_share_this_file_anyone_with_it_ca),
                                 fontSize = 10.5.sp,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
@@ -4973,7 +4973,7 @@ private fun BackupsSubScreen(
                         backupChatsPassword = ""
                         requestStoragePermission {
                             activeScriptExecution = ScriptExecutionInfo(
-                                title = "AGY Chats & Credentials Backup",
+                                title = stringResource(R.string.settings_agy_chats_credentials_backup),
                                 scriptName = "backup_chats",
                                 args = if (pass.isNotEmpty()) listOf("", pass) else emptyList()
                             )
@@ -5004,7 +5004,7 @@ private fun BackupsSubScreen(
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text(
-                        text = "Select your backup zip archive to restore. Note: your existing ~/.gemini directory will be safely renamed to ~/.gemini.bak first.",
+                        text = stringResource(R.string.settings_select_your_backup_zip_archive_to_restor),
                         fontSize = 12.5.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f)
                     )
@@ -5017,7 +5017,7 @@ private fun BackupsSubScreen(
                         singleLine = true,
                         trailingIcon = {
                             IconButton(onClick = { filePickerLauncher.launch("*/*") }) {
-                                Icon(Icons.Outlined.FolderOpen, contentDescription = "Choose File", tint = QuotaGreen)
+                                Icon(Icons.Outlined.FolderOpen, contentDescription = stringResource(R.string.settings_choose_file), tint = QuotaGreen)
                             }
                         },
                         modifier = Modifier.fillMaxWidth()
@@ -5051,7 +5051,7 @@ private fun BackupsSubScreen(
                         restoreFilePath = ""
                         restorePassword = ""
                         activeScriptExecution = ScriptExecutionInfo(
-                            title = "Restore AGY Chats & Credentials",
+                            title = stringResource(R.string.settings_restore_agy_chats_credentials),
                             scriptName = "restore_chats",
                             args = if (pass.isNotEmpty()) listOf(path, pass) else listOf(path)
                         )
@@ -5356,20 +5356,20 @@ private fun ProjectsBackupRestoreDialog(
                         }
                         Column {
                             Text(
-                                text = "Projects Backup & Restore",
+                                text = stringResource(R.string.settings_projects_backup_restore),
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
-                                text = "Backup IDE & AGY workspaces or restore from zip",
+                                text = stringResource(R.string.settings_backup_ide_agy_workspaces_or_restore_fro),
                                 fontSize = 11.5.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                             )
                         }
                     }
                     IconButton(onClick = onDismiss) {
-                        Icon(Icons.Default.Close, contentDescription = "Close", tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Icon(Icons.Default.Close, contentDescription = stringResource(R.string.common_close), tint = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                 }
 
@@ -5419,7 +5419,7 @@ private fun ProjectsBackupRestoreDialog(
                         ) {
                             Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                                 Text(
-                                    text = "Backup Format & Packaging Mode:",
+                                    text = stringResource(R.string.settings_backup_format_packaging_mode),
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -5525,7 +5525,7 @@ private fun ProjectsBackupRestoreDialog(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Text(
-                                    text = "No open projects or workspaces detected in the IDE.",
+                                    text = stringResource(R.string.settings_no_open_projects_or_workspaces_detected),
                                     fontSize = 12.5.sp,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
@@ -5698,7 +5698,7 @@ private fun ProjectsBackupRestoreDialog(
                                     onDismiss()
                                     onExecuteScript(
                                         ScriptExecutionInfo(
-                                            title = "Projects Backup Packager",
+                                            title = stringResource(R.string.settings_projects_backup_packager),
                                             scriptName = "backup_projects",
                                             args = listOf("", backupMode, "--paths-file", targetsFile.absolutePath)
                                         )
@@ -5732,7 +5732,7 @@ private fun ProjectsBackupRestoreDialog(
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         Text(
-                            text = "Select a projects backup archive (.zip) to restore projects to their workspace locations.",
+                            text = stringResource(R.string.settings_select_a_projects_backup_archive_zip_to),
                             fontSize = 12.sp,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f)
                         )
@@ -5749,7 +5749,7 @@ private fun ProjectsBackupRestoreDialog(
                             singleLine = true,
                             trailingIcon = {
                                 IconButton(onClick = { filePickerLauncher.launch("*/*") }) {
-                                    Icon(Icons.Outlined.FolderOpen, contentDescription = "Choose File", tint = Color(0xFF6366F1))
+                                    Icon(Icons.Outlined.FolderOpen, contentDescription = stringResource(R.string.settings_choose_file), tint = Color(0xFF6366F1))
                                 }
                             },
                             modifier = Modifier.fillMaxWidth()
@@ -5828,7 +5828,7 @@ private fun ProjectsBackupRestoreDialog(
                         ) {
                             Column(modifier = Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                                 Text(
-                                    text = "If Target Project Folder Already Exists:",
+                                    text = stringResource(R.string.settings_if_target_project_folder_already_exists),
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -5918,7 +5918,7 @@ private fun ProjectsBackupRestoreDialog(
                                 onDismiss()
                                 onExecuteScript(
                                     ScriptExecutionInfo(
-                                        title = "Projects Archive Restorer",
+                                        title = stringResource(R.string.settings_projects_archive_restorer),
                                         scriptName = "restore_projects",
                                         args = listOf(zipPath, conflictStrategy, if (useCustomRestoreDir) customRestoreDir.trim() else "")
                                     )
@@ -6066,7 +6066,7 @@ private fun ScriptExecutionDialog(
 
                     if (!isRunning) {
                         IconButton(onClick = onDismiss, modifier = Modifier.size(28.dp)) {
-                            Icon(Icons.Default.Close, contentDescription = "Close", modifier = Modifier.size(18.dp))
+                            Icon(Icons.Default.Close, contentDescription = stringResource(R.string.common_close), modifier = Modifier.size(18.dp))
                         }
                     }
                 }
@@ -6208,13 +6208,13 @@ private fun DataProtectionSubScreen(
                 )
                 Column {
                     Text(
-                        text = "Data Loss Prevention",
+                        text = stringResource(R.string.settings_data_loss_prevention),
                         fontWeight = FontWeight.Bold,
                         fontSize = 14.sp,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Text(
-                        text = "Protect your local Linux environment, CLI tools, databases, and AI coding workspaces from accidental wipe or uninstall.",
+                        text = stringResource(R.string.settings_protect_your_local_linux_environment_cli),
                         fontSize = 12.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
                         lineHeight = 16.sp
@@ -6251,7 +6251,7 @@ private fun DataProtectionSubScreen(
                     }
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "Accidental Uninstall Protection",
+                            text = stringResource(R.string.settings_accidental_uninstall_protection),
                             fontWeight = FontWeight.Bold,
                             fontSize = 15.sp,
                             color = MaterialTheme.colorScheme.onSurface
@@ -6267,7 +6267,7 @@ private fun DataProtectionSubScreen(
 
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
-                    text = "Why enable this? AntiGem hosts a full local Linux environment with your Node/Python packages, Git repos, and active coding projects. An accidental drag-to-uninstall from the home screen wipes all of it permanently.\n\nActivating Android Device Administrator greys out the 'Uninstall' button at the OS level across phone launchers. You can safely disable this anytime if you wish to uninstall.",
+                    text = stringResource(R.string.settings_why_enable_this_antigem_hosts_a_full_loc),
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
                     lineHeight = 16.sp
@@ -6335,7 +6335,7 @@ private fun DataProtectionSubScreen(
                         ) {
                             Column(modifier = Modifier.padding(10.dp)) {
                                 Text(
-                                    text = "💡 Sideloaded App Tip (Android 13+): If your phone shows 'Restricted setting', open App Info > tap the 3 dots in the top right > select 'Allow restricted settings'.",
+                                    text = stringResource(R.string.settings_sideloaded_app_tip_android_13_if_your_ph),
                                     fontSize = 11.sp,
                                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
                                     lineHeight = 15.sp
@@ -6390,7 +6390,7 @@ private fun DataProtectionSubScreen(
                     }
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "App Info Clear Data Shield",
+                            text = stringResource(R.string.settings_app_info_clear_data_shield),
                             fontWeight = FontWeight.Bold,
                             fontSize = 15.sp,
                             color = MaterialTheme.colorScheme.onSurface
@@ -6412,7 +6412,7 @@ private fun DataProtectionSubScreen(
 
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
-                    text = "When enabled (default), tapping 'Clear Data' in Android's phone Settings > App Info opens AntiGem's Safe Space Manager instead of wiping everything instantly with one click. This prevents accidental wipes and allows safe cache-only cleanup.\n\nYou can toggle this off anytime if you prefer the standard raw Android 'Clear Data' button.",
+                    text = stringResource(R.string.settings_when_enabled_default_tapping_clear_data),
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
                     lineHeight = 16.sp
@@ -6519,14 +6519,14 @@ private fun CommandsSubScreen(
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Global Security & Policies",
+                        text = stringResource(R.string.settings_global_security_policies),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
-                        text = "Live daemon settings applied across all workspaces via Jetbox",
+                        text = stringResource(R.string.settings_live_daemon_settings_applied_across_all),
                         fontSize = 11.5.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -6544,7 +6544,7 @@ private fun CommandsSubScreen(
                     } else {
                         Icon(
                             imageVector = Icons.Default.Refresh,
-                            contentDescription = "Refresh",
+                            contentDescription = stringResource(R.string.common_refresh),
                             tint = ClaudeTerracotta,
                             modifier = Modifier.size(20.dp)
                         )
@@ -6569,7 +6569,7 @@ private fun CommandsSubScreen(
                             color = ClaudeTerracotta
                         )
                         Text(
-                            text = "Connecting to AGY Hub & loading permissions...",
+                            text = stringResource(R.string.settings_connecting_to_agy_hub_loading_permission),
                             fontSize = 13.sp,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -6594,7 +6594,7 @@ private fun CommandsSubScreen(
                             modifier = Modifier.size(48.dp)
                         )
                         Text(
-                            text = "Unable to Load Permissions from AGY Hub",
+                            text = stringResource(R.string.settings_unable_to_load_permissions_from_agy_hub),
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface,
@@ -6649,14 +6649,14 @@ private fun CommandsSubScreen(
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "Global Security & Policies",
+                    text = stringResource(R.string.settings_global_security_policies),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
-                    text = "Live daemon settings applied across all workspaces via Jetbox",
+                    text = stringResource(R.string.settings_live_daemon_settings_applied_across_all),
                     fontSize = 11.5.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -6674,7 +6674,7 @@ private fun CommandsSubScreen(
                 } else {
                     Icon(
                         imageVector = Icons.Default.Refresh,
-                        contentDescription = "Refresh",
+                        contentDescription = stringResource(R.string.common_refresh),
                         tint = ClaudeTerracotta,
                         modifier = Modifier.size(20.dp)
                     )
@@ -6687,14 +6687,14 @@ private fun CommandsSubScreen(
         // ==========================================
         Column {
             Text(
-                text = "Artifact Review Policy",
+                text = stringResource(R.string.settings_artifact_review_policy),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colorScheme.onSurface
             )
             Spacer(modifier = Modifier.height(2.dp))
             Text(
-                text = "Controls whether the assistant asks you to review and approve documents it creates.",
+                text = stringResource(R.string.settings_controls_whether_the_assistant_asks_you),
                 fontSize = 11.5.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -6729,7 +6729,7 @@ private fun CommandsSubScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = "⚡ Auto (Turbo)",
+                            text = stringResource(R.string.settings_auto_turbo),
                             fontSize = 13.sp,
                             fontWeight = FontWeight.Bold,
                             color = if (isAutoReview) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface
@@ -6743,7 +6743,7 @@ private fun CommandsSubScreen(
                     }
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "Edits and creates documents immediately without asking.",
+                        text = stringResource(R.string.settings_edits_and_creates_documents_immediately),
                         fontSize = 11.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         lineHeight = 15.sp
@@ -6773,7 +6773,7 @@ private fun CommandsSubScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = "✋ Always Ask",
+                            text = stringResource(R.string.settings_always_ask),
                             fontSize = 13.sp,
                             fontWeight = FontWeight.Bold,
                             color = if (isAlwaysReview) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface
@@ -6787,7 +6787,7 @@ private fun CommandsSubScreen(
                     }
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "Suspends and requests your approval before saving document edits.",
+                        text = stringResource(R.string.settings_suspends_and_requests_your_approval_befo),
                         fontSize = 11.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         lineHeight = 15.sp
@@ -6803,14 +6803,14 @@ private fun CommandsSubScreen(
         // ==========================================
         Column {
             Text(
-                text = "Security Presets",
+                text = stringResource(R.string.settings_security_presets),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colorScheme.onSurface
             )
             Spacer(modifier = Modifier.height(2.dp))
             Text(
-                text = "Controls terminal command execution and file access outside working directory.",
+                text = stringResource(R.string.settings_controls_terminal_command_execution_and),
                 fontSize = 11.5.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -6950,7 +6950,7 @@ private fun CommandsSubScreen(
 
                         // Granular: Terminal Execution
                         Text(
-                            text = "Terminal Command Execution:",
+                            text = stringResource(R.string.settings_terminal_command_execution),
                             fontSize = 12.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onSurface
@@ -6981,7 +6981,7 @@ private fun CommandsSubScreen(
 
                         // Granular: Files Outside Workspace
                         Text(
-                            text = "Files Outside Workspace:",
+                            text = stringResource(R.string.settings_files_outside_workspace),
                             fontSize = 12.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onSurface
@@ -7043,7 +7043,7 @@ private fun CommandsSubScreen(
                 ) {
                     Column(modifier = Modifier.weight(1f).padding(end = 12.dp)) {
                         Text(
-                            text = "Terminal Sandbox Isolation",
+                            text = stringResource(R.string.settings_terminal_sandbox_isolation),
                             fontSize = 13.5.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onSurface
@@ -7076,14 +7076,14 @@ private fun CommandsSubScreen(
                 ) {
                     Column(modifier = Modifier.weight(1f).padding(end = 12.dp)) {
                         Text(
-                            text = "Review File Edits & Writes",
+                            text = stringResource(R.string.settings_review_file_edits_writes),
                             fontSize = 13.5.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Spacer(modifier = Modifier.height(2.dp))
                         Text(
-                            text = "Prompt for confirmation before assistant applies file edits or writes code to disk.",
+                            text = stringResource(R.string.settings_prompt_for_confirmation_before_assistant),
                             fontSize = 11.5.sp,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             lineHeight = 15.sp
@@ -7131,14 +7131,14 @@ private fun CommandsSubScreen(
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Granular Permission Grants",
+                        text = stringResource(R.string.settings_granular_permission_grants),
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
-                        text = "Explicit Allow, Deny, and Ask rules for commands, MCP tools, and file paths (globalPermissionGrants).",
+                        text = stringResource(R.string.settings_explicit_allow_deny_and_ask_rules_for_co),
                         fontSize = 11.5.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -7203,7 +7203,7 @@ private fun CommandsSubScreen(
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Text(
-                        text = "Tools and file accesses will use your global presets above. Click \"Add Rule\" to whitelist, blacklist, or prompt for specific commands, MCP tools, or file paths.",
+                        text = stringResource(R.string.settings_tools_and_file_accesses_will_use_your_gl),
                         fontSize = 11.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         textAlign = androidx.compose.ui.text.style.TextAlign.Center,
@@ -7261,7 +7261,7 @@ private fun CommandsSubScreen(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.DeleteOutline,
-                                        contentDescription = "Delete Rule",
+                                        contentDescription = stringResource(R.string.settings_delete_rule),
                                         tint = MaterialTheme.colorScheme.error.copy(alpha = 0.7f),
                                         modifier = Modifier.size(18.dp)
                                     )
@@ -7341,7 +7341,7 @@ private fun CommandsSubScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Project Overrides & Inheritance",
+                    text = stringResource(R.string.settings_project_overrides_inheritance),
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
@@ -7357,7 +7357,7 @@ private fun CommandsSubScreen(
             }
             Spacer(modifier = Modifier.height(2.dp))
             Text(
-                text = "Projects can inherit the global policy above or maintain specific overrides.",
+                text = stringResource(R.string.settings_projects_can_inherit_the_global_policy_a),
                 fontSize = 11.5.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -7379,7 +7379,7 @@ private fun CommandsSubScreen(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    text = "No workspace projects registered yet on AGY Hub.",
+                    text = stringResource(R.string.settings_no_workspace_projects_registered_yet_on),
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(14.dp)
@@ -7455,7 +7455,7 @@ private fun CommandsSubScreen(
                                 }
 
                                 Text(
-                                    text = "Set Project Override:",
+                                    text = stringResource(R.string.settings_set_project_override),
                                     fontSize = 11.5.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -7514,14 +7514,14 @@ private fun CommandsSubScreen(
         // ==========================================
         Column {
             Text(
-                text = "Default Approval Scope",
+                text = stringResource(R.string.settings_default_approval_scope),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colorScheme.onSurface
             )
             Spacer(modifier = Modifier.height(2.dp))
             Text(
-                text = "When you click approve on a tool prompt, how long should permission remain granted?",
+                text = stringResource(R.string.settings_when_you_click_approve_on_a_tool_prompt),
                 fontSize = 11.5.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -7590,7 +7590,7 @@ private fun CommandsSubScreen(
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(
-                    text = "Live synced with AGY Hub via Jetbox & Project APIs with zero local-storage desync.",
+                    text = stringResource(R.string.settings_live_synced_with_agy_hub_via_jetbox_proj),
                     fontSize = 11.5.sp,
                     color = MaterialTheme.colorScheme.onSurface,
                     lineHeight = 16.sp
@@ -7668,7 +7668,7 @@ private fun AddPermissionRuleDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            Text(text = "Add Permission Grant Rule", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+            Text(text = stringResource(R.string.settings_add_permission_grant_rule), fontWeight = FontWeight.Bold, fontSize = 16.sp)
         },
         text = {
             Column(
@@ -7863,14 +7863,14 @@ private fun AutomationSubScreen(
                 )
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "AI Device Automation Controls",
+                        text = stringResource(R.string.settings_ai_device_automation_controls),
                         fontSize = 13.5.sp,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
-                        text = "Control which device capabilities the AI model can access via the embedded MCP bridge. Toggling off any category immediately hides those tools from the AI.",
+                        text = stringResource(R.string.settings_control_which_device_capabilities_the_ai),
                         fontSize = 11.5.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
                         lineHeight = 16.sp
@@ -7899,14 +7899,14 @@ private fun AutomationSubScreen(
                 )
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "MCP Server Required",
+                        text = stringResource(R.string.settings_mcp_server_required),
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFFF59E0B)
                     )
                     Spacer(modifier = Modifier.height(3.dp))
                     Text(
-                        text = "To use these automation tools, the respective automation server (browser_mcp, terminal_mcp, or google_flow_mcp) must be added in MCP Server Settings. Once added, the switches below control which specific tool permissions are granted to the AI.",
+                        text = stringResource(R.string.settings_to_use_these_automation_tools_the_respec),
                         fontSize = 12.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f),
                         lineHeight = 17.sp
@@ -7950,7 +7950,7 @@ private fun AutomationSubScreen(
                         Column {
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                                 Text(
-                                    text = "Browser Automation",
+                                    text = stringResource(R.string.settings_browser_automation),
                                     fontSize = 14.5.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -7969,7 +7969,7 @@ private fun AutomationSubScreen(
                                 }
                             }
                             Text(
-                                text = "WebView UI, DOM inspection & screenshots",
+                                text = stringResource(R.string.settings_webview_ui_dom_inspection_screenshots),
                                 fontSize = 11.5.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                             )
@@ -7987,7 +7987,7 @@ private fun AutomationSubScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    text = "Allows the AI to open web URLs in background tabs, capture high-res viewport or full-page screenshots, inspect the live DOM tree with bounding rects, click elements, fill forms, and read console/network error logs.",
+                    text = stringResource(R.string.settings_allows_the_ai_to_open_web_urls_in_backgr),
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
                     lineHeight = 17.sp
@@ -7995,7 +7995,7 @@ private fun AutomationSubScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    text = "Exposed MCP Tools (9):",
+                    text = stringResource(R.string.settings_exposed_mcp_tools_9),
                     fontSize = 11.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
@@ -8066,7 +8066,7 @@ private fun AutomationSubScreen(
                         Column {
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                                 Text(
-                                    text = "Terminal Automation",
+                                    text = stringResource(R.string.settings_terminal_automation),
                                     fontSize = 14.5.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -8085,7 +8085,7 @@ private fun AutomationSubScreen(
                                 }
                             }
                             Text(
-                                text = "Live shell execution, output buffer & signals",
+                                text = stringResource(R.string.settings_live_shell_execution_output_buffer_signa),
                                 fontSize = 11.5.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                             )
@@ -8103,7 +8103,7 @@ private fun AutomationSubScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    text = "Allows the AI to inspect active in-app terminal sessions, run background commands (e.g. dev servers, package managers), read terminal transcripts in real time, send kill/interrupt signals (Ctrl+C, SIGTERM, SIGKILL), and manage terminal tabs.",
+                    text = stringResource(R.string.settings_allows_the_ai_to_inspect_active_in_app_t),
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
                     lineHeight = 17.sp
@@ -8111,7 +8111,7 @@ private fun AutomationSubScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    text = "Exposed MCP Tools (6):",
+                    text = stringResource(R.string.settings_exposed_mcp_tools_6),
                     fontSize = 11.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
@@ -8181,7 +8181,7 @@ private fun AutomationSubScreen(
                         Column {
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                                 Text(
-                                    text = "Flow Automation",
+                                    text = stringResource(R.string.settings_flow_automation),
                                     fontSize = 14.5.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -8200,7 +8200,7 @@ private fun AutomationSubScreen(
                                 }
                             }
                             Text(
-                                text = "Google Flow image & video generation",
+                                text = stringResource(R.string.settings_google_flow_image_video_generation),
                                 fontSize = 11.5.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                             )
@@ -8218,7 +8218,7 @@ private fun AutomationSubScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    text = "Allows the AI to generate images and videos on Google Flow (flow.google.com) through your own signed-in session in the in-app browser, and to read your Flow projects, media and credits. Open Flow in the AntiGem browser and sign in first, and keep AntiGem open while generating. Files are kept once in ~/flow-media (never copied to your gallery) and fetched only when the AI needs them.",
+                    text = stringResource(R.string.settings_allows_the_ai_to_generate_images_and_vid),
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
                     lineHeight = 17.sp
@@ -8226,7 +8226,7 @@ private fun AutomationSubScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    text = "This switch controls the legacy Google Flow endpoint only. Install, enable or disable the current extension in Settings → WebView Extensions, then choose it in MCP settings. Tool lists come from the installed extension.",
+                    text = stringResource(R.string.settings_this_switch_controls_the_legacy_google_f),
                     fontSize = 11.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                 )
@@ -8271,7 +8271,7 @@ private fun DiagnosticsSubScreen(
             onDismissRequest = { pendingInspectorRestart = null },
             title = {
                 Text(
-                    text = "Restart Required",
+                    text = stringResource(R.string.settings_restart_required),
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
                 )
@@ -8361,7 +8361,7 @@ private fun DiagnosticsSubScreen(
                         Column {
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                                 Text(
-                                    text = "Network Inspector (Live Logs)",
+                                    text = stringResource(R.string.settings_network_inspector_live_logs),
                                     fontSize = 14.5.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -8380,7 +8380,7 @@ private fun DiagnosticsSubScreen(
                                 }
                             }
                             Text(
-                                text = "Inspect IDE Bridge HTTP & AGY Daemon gRPC calls in real-time",
+                                text = stringResource(R.string.settings_inspect_ide_bridge_http_agy_daemon_grpc),
                                 fontSize = 11.5.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                             )
@@ -8400,7 +8400,7 @@ private fun DiagnosticsSubScreen(
 
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
-                    text = "Zero-overhead architecture: When disabled, OkHttp calls execute at 100% native speed with zero allocations or buffering.",
+                    text = stringResource(R.string.settings_zero_overhead_architecture_when_disabled),
                     fontSize = 11.5.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f),
                     lineHeight = 16.sp
@@ -8419,13 +8419,13 @@ private fun DiagnosticsSubScreen(
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = "Floating Network Bubble",
+                                text = stringResource(R.string.settings_floating_network_bubble),
                                 fontSize = 13.5.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
-                                text = "Show on-screen draggable pill with live call count & streams",
+                                text = stringResource(R.string.settings_show_on_screen_draggable_pill_with_live),
                                 fontSize = 11.5.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                             )
@@ -8503,7 +8503,7 @@ private fun DiagnosticsSubScreen(
                         Column {
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                                 Text(
-                                    text = "Floating Diagnostics HUD",
+                                    text = stringResource(R.string.settings_floating_diagnostics_hud),
                                     fontSize = 14.5.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -8522,7 +8522,7 @@ private fun DiagnosticsSubScreen(
                                 }
                             }
                             Text(
-                                text = "Live on-screen thread, queue & connection monitor",
+                                text = stringResource(R.string.settings_live_on_screen_thread_queue_connection_m),
                                 fontSize = 11.5.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                             )
@@ -8540,7 +8540,7 @@ private fun DiagnosticsSubScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    text = "Displays a draggable, real-time floating status pill showing active JVM threads, running and queued gRPC/HTTP calls, connection pool socket counts, and main-thread IO latency. Tap the floating pill anytime to expand detailed metrics.",
+                    text = stringResource(R.string.settings_displays_a_draggable_real_time_floating),
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
                     lineHeight = 17.sp
@@ -8560,7 +8560,7 @@ private fun DiagnosticsSubScreen(
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 Text(
-                    text = "Current Telemetry Snapshot",
+                    text = stringResource(R.string.settings_current_telemetry_snapshot),
                     fontSize = 13.5.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
@@ -8573,7 +8573,7 @@ private fun DiagnosticsSubScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "Active JVM Threads:",
+                        text = stringResource(R.string.settings_active_jvm_threads),
                         fontSize = 12.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                     )
@@ -8591,7 +8591,7 @@ private fun DiagnosticsSubScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "AgyHub Stream / RPCs:",
+                        text = stringResource(R.string.settings_agyhub_stream_rpcs),
                         fontSize = 12.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                     )
@@ -8609,7 +8609,7 @@ private fun DiagnosticsSubScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "AgyHub Connection Pool:",
+                        text = stringResource(R.string.settings_agyhub_connection_pool),
                         fontSize = 12.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                     )
@@ -8627,7 +8627,7 @@ private fun DiagnosticsSubScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "IDE Bridge Sockets:",
+                        text = stringResource(R.string.settings_ide_bridge_sockets),
                         fontSize = 12.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                     )
@@ -8645,7 +8645,7 @@ private fun DiagnosticsSubScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "Event Loop IO Latency:",
+                        text = stringResource(R.string.settings_event_loop_io_latency),
                         fontSize = 12.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                     )
@@ -8661,7 +8661,7 @@ private fun DiagnosticsSubScreen(
                 if (snapshot.threadGroupSummary.isNotBlank()) {
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "Thread Breakdown:",
+                        text = stringResource(R.string.settings_thread_breakdown),
                         fontSize = 11.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
@@ -8762,7 +8762,7 @@ private fun AboutSubScreen(
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
-                    text = "Antigravity Mobile Hub & AI Pair Programmer",
+                    text = stringResource(R.string.settings_antigravity_mobile_hub_ai_pair_programme),
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center
@@ -8794,7 +8794,7 @@ private fun AboutSubScreen(
         ) {
             Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 Text(
-                    text = "Build & Package Information",
+                    text = stringResource(R.string.settings_build_package_information),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurface
@@ -8806,7 +8806,7 @@ private fun AboutSubScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Application ID",
+                        text = stringResource(R.string.settings_application_id),
                         fontSize = 12.5.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -8827,7 +8827,7 @@ private fun AboutSubScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Build Type",
+                        text = stringResource(R.string.settings_build_type),
                         fontSize = 12.5.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -8848,7 +8848,7 @@ private fun AboutSubScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Native Architecture",
+                        text = stringResource(R.string.settings_native_architecture),
                         fontSize = 12.5.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -8887,7 +8887,7 @@ private fun AboutSubScreen(
                             modifier = Modifier.size(20.dp)
                         )
                         Text(
-                            text = "Software Updates",
+                            text = stringResource(R.string.settings_software_updates),
                             fontSize = 14.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onSurface
@@ -8896,7 +8896,7 @@ private fun AboutSubScreen(
                 }
 
                 Text(
-                    text = "Checks GitHub releases for new versions and downloads the matching APK directly.",
+                    text = stringResource(R.string.settings_checks_github_releases_for_new_versions),
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     lineHeight = 16.sp
@@ -9007,7 +9007,7 @@ private fun AboutSubScreen(
                             modifier = Modifier.size(20.dp)
                         )
                         Text(
-                            text = "AGY IDE Bridge Binary",
+                            text = stringResource(R.string.settings_agy_ide_bridge_binary),
                             fontSize = 14.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onSurface
@@ -9028,7 +9028,7 @@ private fun AboutSubScreen(
                 }
 
                 Text(
-                    text = "Export the compiled agy_ide_bridge daemon binary to your device's public Download folder to execute in custom chroots, Termux environments, or external terminals.",
+                    text = stringResource(R.string.settings_export_the_compiled_agy_ide_bridge_daemo),
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     lineHeight = 16.sp
@@ -9140,7 +9140,7 @@ private fun AboutSubScreen(
         ) {
             Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text(
-                    text = "Resources & Repository",
+                    text = stringResource(R.string.settings_resources_repository),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurface
@@ -9173,13 +9173,13 @@ private fun AboutSubScreen(
                             )
                             Column {
                                 Text(
-                                    text = "GitHub Repository",
+                                    text = stringResource(R.string.settings_github_repository),
                                     fontSize = 13.sp,
                                     fontWeight = FontWeight.Medium,
                                     color = MaterialTheme.colorScheme.onSurface
                                 )
                                 Text(
-                                    text = "github.com/santoshkurmi/antigem",
+                                    text = stringResource(R.string.settings_github_com_santoshkurmi_antigem),
                                     fontSize = 11.sp,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
@@ -9221,13 +9221,13 @@ private fun AboutSubScreen(
                             )
                             Column {
                                 Text(
-                                    text = "Release Changelogs",
+                                    text = stringResource(R.string.settings_release_changelogs),
                                     fontSize = 13.sp,
                                     fontWeight = FontWeight.Medium,
                                     color = MaterialTheme.colorScheme.onSurface
                                 )
                                 Text(
-                                    text = "View tag notes & APK downloads",
+                                    text = stringResource(R.string.settings_view_tag_notes_apk_downloads),
                                     fontSize = 11.sp,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )

@@ -219,7 +219,7 @@ fun FloatingVideoPlayerOverlay(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Filled.ExpandLess,
-                                        contentDescription = "Collapse",
+                                        contentDescription = stringResource(R.string.component_collapse),
                                         tint = contentColor.copy(alpha = 0.6f),
                                         modifier = Modifier.size(16.dp)
                                     )
@@ -235,7 +235,7 @@ fun FloatingVideoPlayerOverlay(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Filled.Close,
-                                        contentDescription = "Stop & Close",
+                                        contentDescription = stringResource(R.string.component_stop_close),
                                         tint = MaterialTheme.colorScheme.error.copy(alpha = 0.75f),
                                         modifier = Modifier.size(14.dp)
                                     )

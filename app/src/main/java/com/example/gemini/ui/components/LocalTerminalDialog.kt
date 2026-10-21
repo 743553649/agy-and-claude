@@ -142,7 +142,7 @@ fun LocalTerminalContent(
                     modifier = Modifier.size(28.dp)
                 )
                 Text(
-                    text = "Restoring active terminal sessions...",
+                    text = stringResource(R.string.component_restoring_active_terminal_sessions),
                     color = Color.LightGray,
                     fontSize = 13.sp
                 )
@@ -384,7 +384,7 @@ fun LocalTerminalContent(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.Refresh,
-                                        contentDescription = "Retry",
+                                        contentDescription = stringResource(R.string.common_retry),
                                         tint = Color(0xFF4CAF50),
                                         modifier = Modifier.size(18.dp)
                                     )
@@ -398,7 +398,7 @@ fun LocalTerminalContent(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Close,
-                                    contentDescription = "Close",
+                                    contentDescription = stringResource(R.string.common_close),
                                     tint = Color.White,
                                     modifier = Modifier.size(18.dp)
                                 )
@@ -657,7 +657,7 @@ fun LocalTerminalContent(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(2.dp)
                 ) {
-                    TermuxKey(label = "ESC", modifier = Modifier.weight(1f)) {
+                    TermuxKey(label = stringResource(R.string.common_esc), modifier = Modifier.weight(1f)) {
                         sendKeyToTerminal(KeyEvent.KEYCODE_ESCAPE, "\u001B")
                     }
                     TermuxKey(label = "/", enableRepeat = true, modifier = Modifier.weight(1f)) {
@@ -666,16 +666,16 @@ fun LocalTerminalContent(
                     TermuxKey(label = "-", enableRepeat = true, modifier = Modifier.weight(1f)) {
                         sendKeyToTerminal(KeyEvent.KEYCODE_MINUS, "-")
                     }
-                    TermuxKey(label = "HOME", modifier = Modifier.weight(1f)) {
+                    TermuxKey(label = stringResource(R.string.component_home), modifier = Modifier.weight(1f)) {
                         sendKeyToTerminal(KeyEvent.KEYCODE_MOVE_HOME, "\u0001")
                     }
                     TermuxKey(label = "↑", enableRepeat = true, modifier = Modifier.weight(1f)) {
                         sendKeyToTerminal(KeyEvent.KEYCODE_DPAD_UP, "\u001B[A")
                     }
-                    TermuxKey(label = "END", modifier = Modifier.weight(1f)) {
+                    TermuxKey(label = stringResource(R.string.component_end), modifier = Modifier.weight(1f)) {
                         sendKeyToTerminal(KeyEvent.KEYCODE_MOVE_END, "\u0005")
                     }
-                    TermuxKey(label = "PGUP", enableRepeat = true, modifier = Modifier.weight(1f)) {
+                    TermuxKey(label = stringResource(R.string.component_pgup), enableRepeat = true, modifier = Modifier.weight(1f)) {
                         sendKeyToTerminal(KeyEvent.KEYCODE_PAGE_UP, "\u001B[5~")
                     }
                 }
@@ -689,7 +689,7 @@ fun LocalTerminalContent(
                         sendKeyToTerminal(KeyEvent.KEYCODE_TAB, "\t")
                     }
                     TermuxKey(
-                        label = "CTRL",
+                        label = stringResource(R.string.common_ctrl),
                         isActive = ctrlState != ModifierState.OFF,
                         isLocked = ctrlState == ModifierState.LOCKED,
                         modifier = Modifier.weight(1f),
@@ -701,7 +701,7 @@ fun LocalTerminalContent(
                         }
                     )
                     TermuxKey(
-                        label = "ALT",
+                        label = stringResource(R.string.common_alt),
                         isActive = altState != ModifierState.OFF,
                         isLocked = altState == ModifierState.LOCKED,
                         modifier = Modifier.weight(1f),
@@ -721,7 +721,7 @@ fun LocalTerminalContent(
                     TermuxKey(label = "→", enableRepeat = true, modifier = Modifier.weight(1f)) {
                         sendKeyToTerminal(KeyEvent.KEYCODE_DPAD_RIGHT, "\u001B[C")
                     }
-                    TermuxKey(label = "PGDN", enableRepeat = true, modifier = Modifier.weight(1f)) {
+                    TermuxKey(label = stringResource(R.string.component_pgdn), enableRepeat = true, modifier = Modifier.weight(1f)) {
                         sendKeyToTerminal(KeyEvent.KEYCODE_PAGE_DOWN, "\u001B[6~")
                     }
                 }
@@ -787,7 +787,7 @@ fun LocalTerminalContent(
                         )
                         Icon(
                             imageVector = Icons.Default.ArrowDropDown,
-                            contentDescription = "Switch Tab",
+                            contentDescription = stringResource(R.string.component_switch_tab),
                             tint = Color.LightGray,
                             modifier = Modifier.size(16.dp)
                         )
@@ -837,7 +837,7 @@ fun LocalTerminalContent(
                                         ) {
                                             Icon(
                                                 imageVector = Icons.Default.Close,
-                                                contentDescription = "Close Tab",
+                                                contentDescription = stringResource(R.string.common_close_tab),
                                                 tint = Color.Gray,
                                                 modifier = Modifier.size(12.dp)
                                             )
@@ -874,20 +874,20 @@ fun LocalTerminalContent(
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Icon(
                                     imageVector = Icons.Default.Add,
-                                    contentDescription = "New Tab",
+                                    contentDescription = stringResource(R.string.common_new_tab),
                                     tint = if (!isSyncingTmux) ClaudeTerracotta else Color.Gray,
                                     modifier = Modifier.size(16.dp)
                                 )
                                 Spacer(modifier = Modifier.width(8.dp))
                                 Column {
                                     Text(
-                                        text = "New Session",
+                                        text = stringResource(R.string.component_new_session),
                                         color = if (!isSyncingTmux) ClaudeTerracotta else Color.Gray,
                                         fontSize = 13.sp,
                                         fontWeight = FontWeight.SemiBold
                                     )
                                     Text(
-                                        text = "Long-press to force Bash shell",
+                                        text = stringResource(R.string.component_long_press_to_force_bash_shell),
                                         color = Color(0x88FFFFFF),
                                         fontSize = 10.sp
                                     )
@@ -916,7 +916,7 @@ fun LocalTerminalContent(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = "Close",
+                        contentDescription = stringResource(R.string.common_close),
                         tint = Color.White,
                         modifier = Modifier.size(14.dp)
                     )
@@ -951,7 +951,7 @@ fun LocalTerminalContent(
                         }
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
-                            text = "Close Tab?",
+                            text = stringResource(R.string.component_close_tab),
                             fontSize = 17.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = Color.White

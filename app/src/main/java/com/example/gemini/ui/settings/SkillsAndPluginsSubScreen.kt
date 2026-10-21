@@ -95,7 +95,7 @@ fun SkillsAndPluginsSubScreen(
                         Icon(Icons.Default.Warning, contentDescription = null, tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(18.dp))
                         Text(text = errorMessage, fontSize = 12.5.sp, color = MaterialTheme.colorScheme.error, modifier = Modifier.weight(1f))
                         IconButton(onClick = onClearStatus, modifier = Modifier.size(24.dp)) {
-                            Icon(Icons.Default.Close, contentDescription = "Dismiss", modifier = Modifier.size(16.dp))
+                            Icon(Icons.Default.Close, contentDescription = stringResource(R.string.common_dismiss), modifier = Modifier.size(16.dp))
                         }
                     }
                 }
@@ -118,7 +118,7 @@ fun SkillsAndPluginsSubScreen(
                         Icon(Icons.Default.CheckCircle, contentDescription = null, tint = QuotaGreen, modifier = Modifier.size(18.dp))
                         Text(text = statusMessage, fontSize = 12.5.sp, color = QuotaGreen, modifier = Modifier.weight(1f))
                         IconButton(onClick = onClearStatus, modifier = Modifier.size(24.dp)) {
-                            Icon(Icons.Default.Close, contentDescription = "Dismiss", modifier = Modifier.size(16.dp))
+                            Icon(Icons.Default.Close, contentDescription = stringResource(R.string.common_dismiss), modifier = Modifier.size(16.dp))
                         }
                     }
                 }
@@ -260,7 +260,7 @@ private fun SkillsTabView(
                 if (isLoading) {
                     CircularProgressIndicator(modifier = Modifier.size(16.dp), strokeWidth = 2.dp, color = GeminiBlue)
                 } else {
-                    Icon(Icons.Default.Refresh, contentDescription = "Refresh", modifier = Modifier.size(18.dp))
+                    Icon(Icons.Default.Refresh, contentDescription = stringResource(R.string.common_refresh), modifier = Modifier.size(18.dp))
                 }
             }
         }
@@ -448,7 +448,7 @@ private fun InstalledPluginsTabView(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = "Installed Bundles & Extensions",
+                text = stringResource(R.string.settings_installed_bundles_extensions),
                 fontSize = 13.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
@@ -457,7 +457,7 @@ private fun InstalledPluginsTabView(
                 if (isLoading) {
                     CircularProgressIndicator(modifier = Modifier.size(16.dp), strokeWidth = 2.dp, color = GeminiBlue)
                 } else {
-                    Icon(Icons.Default.Refresh, contentDescription = "Refresh", modifier = Modifier.size(18.dp))
+                    Icon(Icons.Default.Refresh, contentDescription = stringResource(R.string.common_refresh), modifier = Modifier.size(18.dp))
                 }
             }
         }
@@ -603,7 +603,7 @@ private fun InstalledPluginCard(
                         color = GeminiBlue.copy(alpha = 0.12f)
                     ) {
                         Text(
-                            text = "Global",
+                            text = stringResource(R.string.settings_global),
                             fontSize = 10.sp,
                             fontWeight = FontWeight.Bold,
                             color = GeminiBlue,
@@ -626,7 +626,7 @@ private fun InstalledPluginCard(
                     } else {
                         Icon(
                             Icons.Outlined.Delete,
-                            contentDescription = "Delete Plugin",
+                            contentDescription = stringResource(R.string.settings_delete_plugin_2),
                             tint = MaterialTheme.colorScheme.error.copy(alpha = 0.8f),
                             modifier = Modifier.size(18.dp)
                         )
@@ -687,7 +687,7 @@ private fun GooglePluginsStoreTabView(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = "Official 'Build with Google' Plugins",
+                text = stringResource(R.string.settings_official_build_with_google_plugins),
                 fontSize = 13.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
@@ -696,7 +696,7 @@ private fun GooglePluginsStoreTabView(
                 if (isLoading) {
                     CircularProgressIndicator(modifier = Modifier.size(16.dp), strokeWidth = 2.dp, color = GeminiBlue)
                 } else {
-                    Icon(Icons.Default.Refresh, contentDescription = "Refresh", modifier = Modifier.size(18.dp))
+                    Icon(Icons.Default.Refresh, contentDescription = stringResource(R.string.common_refresh), modifier = Modifier.size(18.dp))
                 }
             }
         }
@@ -845,7 +845,7 @@ private fun GoogleCatalogPluginCard(
                     horizontalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     Text(
-                        text = "Versions:",
+                        text = stringResource(R.string.settings_versions),
                         fontSize = 11.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
                     )
@@ -918,7 +918,7 @@ fun SkillDetailMarkdownDialog(
                         )
                     }
                     IconButton(onClick = onDismiss) {
-                        Icon(Icons.Default.Close, contentDescription = "Close")
+                        Icon(Icons.Default.Close, contentDescription = stringResource(R.string.common_close))
                     }
                 }
 

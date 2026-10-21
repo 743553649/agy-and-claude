@@ -190,7 +190,7 @@ fun LocalToolsInstallDialog(
                             )
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(
-                                text = "Device Hardware Capabilities",
+                                text = stringResource(R.string.settings_device_hardware_capabilities),
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -312,14 +312,14 @@ fun LocalToolsInstallDialog(
                                 ) {
                                     Column(modifier = Modifier.padding(12.dp)) {
                                         Text(
-                                            text = "Ubuntu Linux Container (PRoot ARM64)",
+                                            text = stringResource(R.string.settings_ubuntu_linux_container_proot_arm64),
                                             fontSize = 12.5.sp,
                                             fontWeight = FontWeight.Bold,
                                             color = MaterialTheme.colorScheme.primary
                                         )
                                         Spacer(modifier = Modifier.height(3.dp))
                                         Text(
-                                            text = "AntiGem runs a full Ubuntu Linux environment inside a user-space PRoot container on 64-bit ARM. No device root required.",
+                                            text = stringResource(R.string.settings_antigem_runs_a_full_ubuntu_linux_environ),
                                             fontSize = 11.5.sp,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant
                                         )
@@ -473,7 +473,7 @@ fun LocalToolsInstallDialog(
                                         Column(modifier = Modifier.weight(1f)) {
                                             Row(verticalAlignment = Alignment.CenterVertically) {
                                                 Text(
-                                                    text = "Base Minimum Termux",
+                                                    text = stringResource(R.string.settings_base_minimum_termux),
                                                     fontSize = 13.5.sp,
                                                     fontWeight = FontWeight.Bold,
                                                     color = MaterialTheme.colorScheme.onSurface
@@ -598,7 +598,7 @@ fun LocalToolsInstallDialog(
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Text(
-                                    text = "Step 1: Downloading / Importing",
+                                    text = stringResource(R.string.settings_step_1_downloading_importing),
                                     fontSize = 13.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -616,7 +616,7 @@ fun LocalToolsInstallDialog(
                             val animatedProgress by animateFloatAsState(
                                 targetValue = state.progressFraction,
                                 animationSpec = tween(300, easing = LinearEasing),
-                                label = "progress"
+                                label = stringResource(R.string.common_progress)
                             )
 
                             LinearProgressIndicator(
@@ -659,7 +659,7 @@ fun LocalToolsInstallDialog(
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Text(
-                                    text = "Step 2: Unzipping & Extracting",
+                                    text = stringResource(R.string.settings_step_2_unzipping_extracting),
                                     fontSize = 13.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -709,7 +709,7 @@ fun LocalToolsInstallDialog(
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Text(
-                                    text = "Step 3: Configuring Shell & Permissions",
+                                    text = stringResource(R.string.settings_step_3_configuring_shell_permissions),
                                     fontSize = 13.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -741,7 +741,7 @@ fun LocalToolsInstallDialog(
                     is LocalInstallerState.Verifying -> {
                         Column(modifier = Modifier.fillMaxWidth()) {
                             Text(
-                                text = "Step 4: Verifying Local Environment...",
+                                text = stringResource(R.string.settings_step_4_verifying_local_environment),
                                 fontSize = 13.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -878,7 +878,7 @@ fun LocalToolsInstallDialog(
                                     if (installerLogs.isEmpty()) {
                                         item {
                                             Text(
-                                                text = "Logs will appear here once installation begins...",
+                                                text = stringResource(R.string.settings_logs_will_appear_here_once_installation),
                                                 fontSize = 10.sp,
                                                 fontFamily = FontFamily.Monospace,
                                                 color = Color.Gray

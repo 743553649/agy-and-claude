@@ -131,7 +131,7 @@ fun TerminalLauncherOnboardingDialog(
 
                 // Title & Subtitle
                 Text(
-                    text = "Terminal App Setup",
+                    text = stringResource(R.string.ui_terminal_app_setup),
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface,
@@ -141,7 +141,7 @@ fun TerminalLauncherOnboardingDialog(
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    text = "Choose how you want to access the Linux command line on your device.",
+                    text = stringResource(R.string.ui_choose_how_you_want_to_access_the_linux),
                     fontSize = 12.5.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f),
                     textAlign = TextAlign.Center,
@@ -164,7 +164,7 @@ fun TerminalLauncherOnboardingDialog(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = "HOME SCREEN PREVIEW",
+                            text = stringResource(R.string.ui_home_screen_preview),
                             fontSize = 10.5.sp,
                             fontWeight = FontWeight.Bold,
                             color = ClaudeTerracotta,
@@ -206,7 +206,7 @@ fun TerminalLauncherOnboardingDialog(
                                     color = MaterialTheme.colorScheme.onSurface
                                 )
                                 Text(
-                                    text = "Chat & IDE",
+                                    text = stringResource(R.string.ui_chat_ide),
                                     fontSize = 9.5.sp,
                                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
                                 )
@@ -292,14 +292,14 @@ fun TerminalLauncherOnboardingDialog(
                     ) {
                         Column(modifier = Modifier.weight(1f).padding(end = 8.dp)) {
                             Text(
-                                text = "Standalone Terminal App Icon",
+                                text = stringResource(R.string.ui_standalone_terminal_app_icon),
                                 fontSize = 13.5.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Spacer(modifier = Modifier.height(2.dp))
                             Text(
-                                text = "Places a dedicated icon in your app launcher for 1-tap terminal access",
+                                text = stringResource(R.string.ui_places_a_dedicated_icon_in_your_app_laun),
                                 fontSize = 11.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                             )
@@ -329,7 +329,7 @@ fun TerminalLauncherOnboardingDialog(
                             .animateContentSize()
                     ) {
                         Text(
-                            text = "Select Icon & App Name:",
+                            text = stringResource(R.string.ui_select_icon_app_name),
                             fontSize = 12.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
@@ -380,7 +380,7 @@ fun TerminalLauncherOnboardingDialog(
                                         color = MaterialTheme.colorScheme.onSurface
                                     )
                                     Text(
-                                        text = "Modern unified icon matching AntiGem",
+                                        text = stringResource(R.string.ui_modern_unified_icon_matching_antigem),
                                         fontSize = 11.sp,
                                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                                     )
@@ -440,7 +440,7 @@ fun TerminalLauncherOnboardingDialog(
                                         color = MaterialTheme.colorScheme.onSurface
                                     )
                                     Text(
-                                        text = "Classic terminal >_ prompt icon & familiar name",
+                                        text = stringResource(R.string.ui_classic_terminal_prompt_icon_familiar_na),
                                         fontSize = 11.sp,
                                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                                     )
@@ -474,7 +474,7 @@ fun TerminalLauncherOnboardingDialog(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Save & Continue",
+                        text = stringResource(R.string.ui_save_continue),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = Color.White
@@ -484,7 +484,7 @@ fun TerminalLauncherOnboardingDialog(
                 Spacer(modifier = Modifier.height(6.dp))
 
                 Text(
-                    text = "You can always change or toggle this anytime in Settings.",
+                    text = stringResource(R.string.ui_you_can_always_change_or_toggle_this_any),
                     fontSize = 10.5.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f),
                     textAlign = TextAlign.Center

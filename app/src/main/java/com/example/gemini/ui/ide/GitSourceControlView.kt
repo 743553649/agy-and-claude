@@ -232,7 +232,7 @@ fun GitSourceControlView(
                     }
                 } else {
                     Text(
-                        text = "Git Control",
+                        text = stringResource(R.string.ide_git_control),
                         fontWeight = FontWeight.Bold,
                         fontSize = 13.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -247,7 +247,7 @@ fun GitSourceControlView(
                         onClick = { showPullDialog = true },
                         modifier = Modifier.size(28.dp)
                     ) {
-                        Icon(imageVector = Icons.Default.CloudDownload, contentDescription = "Pull", modifier = Modifier.size(16.dp))
+                        Icon(imageVector = Icons.Default.CloudDownload, contentDescription = stringResource(R.string.ide_pull), modifier = Modifier.size(16.dp))
                     }
 
                     // Push Button with Unpushed Commit Count Badge
@@ -259,7 +259,7 @@ fun GitSourceControlView(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.CloudUpload,
-                                contentDescription = "Push",
+                                contentDescription = stringResource(R.string.ide_push),
                                 tint = if (unpushedCount > 0) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface,
                                 modifier = Modifier.size(16.dp)
                             )
@@ -289,7 +289,7 @@ fun GitSourceControlView(
                             onClick = { showStashMenu = true },
                             modifier = Modifier.size(28.dp)
                         ) {
-                            Icon(imageVector = Icons.Default.Archive, contentDescription = "Stash", modifier = Modifier.size(16.dp))
+                            Icon(imageVector = Icons.Default.Archive, contentDescription = stringResource(R.string.ide_stash), modifier = Modifier.size(16.dp))
                         }
 
                         DropdownMenu(
@@ -343,7 +343,7 @@ fun GitSourceControlView(
                     },
                     modifier = Modifier.size(28.dp)
                 ) {
-                    Icon(imageVector = Icons.Outlined.Settings, contentDescription = "Git Config", modifier = Modifier.size(16.dp))
+                    Icon(imageVector = Icons.Outlined.Settings, contentDescription = stringResource(R.string.ide_git_config), modifier = Modifier.size(16.dp))
                 }
 
                 // Refresh Button
@@ -351,7 +351,7 @@ fun GitSourceControlView(
                     onClick = { refreshGitData() },
                     modifier = Modifier.size(28.dp)
                 ) {
-                    Icon(imageVector = Icons.Default.Refresh, contentDescription = "Refresh", modifier = Modifier.size(16.dp))
+                    Icon(imageVector = Icons.Default.Refresh, contentDescription = stringResource(R.string.common_refresh), modifier = Modifier.size(16.dp))
                 }
             }
         }
@@ -386,14 +386,14 @@ fun GitSourceControlView(
                         )
                         Spacer(modifier = Modifier.height(10.dp))
                         Text(
-                            text = "Not a Git Repository",
+                            text = stringResource(R.string.ide_not_a_git_repository),
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Spacer(modifier = Modifier.height(6.dp))
                         Text(
-                            text = "Initialize this workspace to track changes, create commits, and sync with remote repositories.",
+                            text = stringResource(R.string.ide_initialize_this_workspace_to_track_chang),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             textAlign = androidx.compose.ui.text.style.TextAlign.Center
@@ -458,7 +458,7 @@ fun GitSourceControlView(
                         Box(contentAlignment = Alignment.TopStart) {
                             if (commitMessage.isEmpty()) {
                                 Text(
-                                    text = "Commit message...",
+                                    text = stringResource(R.string.ide_commit_message),
                                     fontSize = 13.sp,
                                     lineHeight = 18.sp,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
@@ -531,7 +531,7 @@ fun GitSourceControlView(
                 if (staged.isNotEmpty()) {
                     item {
                         SectionHeader(
-                            title = "STAGED CHANGES",
+                            title = stringResource(R.string.ide_staged_changes),
                             count = staged.size,
                             isExpanded = stagedExpanded,
                             onToggle = { stagedExpanded = !stagedExpanded },
@@ -540,7 +540,7 @@ fun GitSourceControlView(
                                     onClick = { showUnstageAllDialog = true },
                                     modifier = Modifier.size(24.dp)
                                 ) {
-                                    Icon(imageVector = Icons.Default.Remove, contentDescription = "Unstage All", modifier = Modifier.size(14.dp))
+                                    Icon(imageVector = Icons.Default.Remove, contentDescription = stringResource(R.string.ide_unstage_all), modifier = Modifier.size(14.dp))
                                 }
                             }
                         )
@@ -570,7 +570,7 @@ fun GitSourceControlView(
                 if (unstaged.isNotEmpty()) {
                     item {
                         SectionHeader(
-                            title = "CHANGES",
+                            title = stringResource(R.string.ide_changes),
                             count = unstaged.size,
                             isExpanded = changesExpanded,
                             onToggle = { changesExpanded = !changesExpanded },
@@ -580,7 +580,7 @@ fun GitSourceControlView(
                                         onClick = { showDiscardAllDialog = true },
                                         modifier = Modifier.size(24.dp)
                                     ) {
-                                        Icon(imageVector = Icons.Default.Undo, contentDescription = "Discard All", modifier = Modifier.size(13.dp), tint = Color(0xFFE57373))
+                                        Icon(imageVector = Icons.Default.Undo, contentDescription = stringResource(R.string.ide_discard_all), modifier = Modifier.size(13.dp), tint = Color(0xFFE57373))
                                     }
                                     IconButton(
                                         onClick = {
@@ -592,7 +592,7 @@ fun GitSourceControlView(
                                         },
                                         modifier = Modifier.size(24.dp)
                                     ) {
-                                        Icon(imageVector = Icons.Default.Add, contentDescription = "Stage All", modifier = Modifier.size(14.dp), tint = Color(0xFF81C784))
+                                        Icon(imageVector = Icons.Default.Add, contentDescription = stringResource(R.string.ide_stage_all), modifier = Modifier.size(14.dp), tint = Color(0xFF81C784))
                                     }
                                 }
                             }
@@ -626,7 +626,7 @@ fun GitSourceControlView(
                 if (untracked.isNotEmpty()) {
                     item {
                         SectionHeader(
-                            title = "UNTRACKED",
+                            title = stringResource(R.string.ide_untracked),
                             count = untracked.size,
                             isExpanded = untrackedExpanded,
                             onToggle = { untrackedExpanded = !untrackedExpanded },
@@ -636,7 +636,7 @@ fun GitSourceControlView(
                                         onClick = { showDiscardAllUntrackedDialog = true },
                                         modifier = Modifier.size(24.dp)
                                     ) {
-                                        Icon(imageVector = Icons.Default.Undo, contentDescription = "Discard All Untracked", modifier = Modifier.size(13.dp), tint = Color(0xFFE57373))
+                                        Icon(imageVector = Icons.Default.Undo, contentDescription = stringResource(R.string.ide_discard_all_untracked), modifier = Modifier.size(13.dp), tint = Color(0xFFE57373))
                                     }
                                     IconButton(
                                         onClick = {
@@ -648,7 +648,7 @@ fun GitSourceControlView(
                                         },
                                         modifier = Modifier.size(24.dp)
                                     ) {
-                                        Icon(imageVector = Icons.Default.Add, contentDescription = "Stage All Untracked", modifier = Modifier.size(14.dp), tint = Color(0xFF81C784))
+                                        Icon(imageVector = Icons.Default.Add, contentDescription = stringResource(R.string.ide_stage_all_untracked), modifier = Modifier.size(14.dp), tint = Color(0xFF81C784))
                                     }
                                 }
                             }
@@ -699,7 +699,7 @@ fun GitSourceControlView(
                 item {
                     Spacer(modifier = Modifier.height(12.dp))
                     SectionHeader(
-                        title = "COMMIT HISTORY",
+                        title = stringResource(R.string.ide_commit_history),
                         count = commitLogs.size,
                         isExpanded = historyExpanded,
                         onToggle = {
@@ -1035,7 +1035,7 @@ fun GitSourceControlView(
                             Box(contentAlignment = Alignment.CenterStart) {
                                 if (newBranchName.isEmpty()) {
                                     Text(
-                                        text = "Branch name (e.g. feature/login)",
+                                        text = stringResource(R.string.ide_branch_name_e_g_feature_login),
                                         fontSize = 13.5.sp,
                                         lineHeight = 18.sp,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
@@ -1108,7 +1108,7 @@ fun GitSourceControlView(
                             Box(contentAlignment = Alignment.CenterStart) {
                                 if (stashMessage.isEmpty()) {
                                     Text(
-                                        text = "Stash message (optional)",
+                                        text = stringResource(R.string.ide_stash_message_optional),
                                         fontSize = 13.5.sp,
                                         lineHeight = 18.sp,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
@@ -1544,7 +1544,7 @@ private fun GitFileRow(
             ) {
                 Icon(
                     imageVector = Icons.Default.Undo,
-                    contentDescription = "Discard",
+                    contentDescription = stringResource(R.string.ide_discard),
                     tint = Color(0xFFE57373),
                     modifier = Modifier.size(13.dp)
                 )
@@ -1622,7 +1622,7 @@ private fun CommitLogRow(
                             )
                             Spacer(modifier = Modifier.width(2.dp))
                             Text(
-                                text = "Not pushed",
+                                text = stringResource(R.string.ide_not_pushed),
                                 fontSize = 9.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color(0xFFE65100)
@@ -1729,7 +1729,7 @@ private fun CommitLogRow(
                         }
                     } else {
                         Text(
-                            text = "No changed files in this commit",
+                            text = stringResource(R.string.ide_no_changed_files_in_this_commit),
                             fontSize = 11.sp,
                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                         )

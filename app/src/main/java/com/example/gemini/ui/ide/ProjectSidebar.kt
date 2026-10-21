@@ -181,7 +181,7 @@ fun ProjectSidebar(
                                             ) {
                                                 Icon(
                                                     imageVector = Icons.Outlined.Close,
-                                                    contentDescription = "Remove project",
+                                                    contentDescription = stringResource(R.string.ide_remove_project),
                                                     tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
                                                     modifier = Modifier.size(14.dp)
                                                 )
@@ -249,7 +249,7 @@ fun ProjectSidebar(
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
-                        text = "Explorer",
+                        text = stringResource(R.string.ide_explorer),
                         fontSize = 11.5.sp,
                         fontWeight = if (selectedTab == SidebarTab.EXPLORER) FontWeight.Bold else FontWeight.Medium,
                         color = if (selectedTab == SidebarTab.EXPLORER) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
@@ -277,7 +277,7 @@ fun ProjectSidebar(
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
-                        text = "Git",
+                        text = stringResource(R.string.ide_git),
                         fontSize = 11.5.sp,
                         fontWeight = if (selectedTab == SidebarTab.SOURCE_CONTROL) FontWeight.Bold else FontWeight.Medium,
                         color = if (selectedTab == SidebarTab.SOURCE_CONTROL) ClaudeTerracotta else MaterialTheme.colorScheme.onSurfaceVariant
@@ -304,7 +304,7 @@ fun ProjectSidebar(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "FILES",
+                    text = stringResource(R.string.ide_files),
                     style = MaterialTheme.typography.labelMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary,
@@ -324,7 +324,7 @@ fun ProjectSidebar(
                     ) {
                         Icon(
                             imageVector = Icons.Default.NoteAdd,
-                            contentDescription = "New File",
+                            contentDescription = stringResource(R.string.common_new_file),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.size(15.dp)
                         )
@@ -341,7 +341,7 @@ fun ProjectSidebar(
                     ) {
                         Icon(
                             imageVector = Icons.Default.CreateNewFolder,
-                            contentDescription = "New Folder",
+                            contentDescription = stringResource(R.string.common_new_folder),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.size(15.dp)
                         )
@@ -355,7 +355,7 @@ fun ProjectSidebar(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Terminal,
-                            contentDescription = "Terminal",
+                            contentDescription = stringResource(R.string.common_terminal),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.size(15.dp)
                         )
@@ -366,7 +366,7 @@ fun ProjectSidebar(
                     ) {
                         Icon(
                             imageVector = Icons.Default.FolderOpen,
-                            contentDescription = "File Manager",
+                            contentDescription = stringResource(R.string.ide_file_manager),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.size(15.dp)
                         )
@@ -377,7 +377,7 @@ fun ProjectSidebar(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Refresh,
-                            contentDescription = "Refresh",
+                            contentDescription = stringResource(R.string.common_refresh),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.size(15.dp)
                         )
@@ -409,7 +409,7 @@ fun ProjectSidebar(
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             Text(
-                                text = "IDE Server Offline",
+                                text = stringResource(R.string.ide_ide_server_offline),
                                 style = MaterialTheme.typography.titleSmall,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -729,7 +729,7 @@ fun FileTreeNodeItem(
                 ) {
                     Icon(
                         imageVector = Icons.Default.MoreVert,
-                        contentDescription = "Options",
+                        contentDescription = stringResource(R.string.common_options),
                         tint = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.size(14.dp)
                     )

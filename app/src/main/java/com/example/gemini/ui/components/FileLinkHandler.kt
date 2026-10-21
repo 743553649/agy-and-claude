@@ -156,7 +156,7 @@ fun FileDetailsDialog(
                 ) {
                     Column(modifier = Modifier.padding(10.dp)) {
                         Text(
-                            text = "Full Path:",
+                            text = stringResource(R.string.component_full_path),
                             fontSize = 11.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -296,7 +296,7 @@ fun MarkdownDocViewerModal(
                     },
                     navigationIcon = {
                         IconButton(onClick = onDismiss) {
-                            Icon(Icons.Default.Close, contentDescription = "Close")
+                            Icon(Icons.Default.Close, contentDescription = stringResource(R.string.common_close))
                         }
                     },
                     actions = {
@@ -307,7 +307,7 @@ fun MarkdownDocViewerModal(
                                 Toast.makeText(context, "Markdown content copied", Toast.LENGTH_SHORT).show()
                             }
                         ) {
-                            Icon(Icons.Outlined.ContentCopy, contentDescription = "Copy Content")
+                            Icon(Icons.Outlined.ContentCopy, contentDescription = stringResource(R.string.component_copy_content))
                         }
                         IconButton(
                             onClick = {
@@ -317,7 +317,7 @@ fun MarkdownDocViewerModal(
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.Edit,
-                                contentDescription = "Edit in IDE",
+                                contentDescription = stringResource(R.string.component_edit_in_ide),
                                 tint = ClaudeTerracotta
                             )
                         }

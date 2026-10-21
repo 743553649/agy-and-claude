@@ -443,7 +443,7 @@ fun IdeScreen(
                         }) {
                             Icon(
                                 imageVector = Icons.Default.Menu,
-                                contentDescription = "Toggle Sidebar"
+                                contentDescription = stringResource(R.string.ide_toggle_sidebar)
                             )
                         }
                     },
@@ -471,7 +471,7 @@ fun IdeScreen(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.MoreVert,
-                                        contentDescription = "More editor options",
+                                        contentDescription = stringResource(R.string.ide_more_editor_options),
                                         modifier = Modifier.size(20.dp)
                                     )
                                 }
@@ -553,7 +553,7 @@ fun IdeScreen(
                             ) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.Undo,
-                                    contentDescription = "Undo",
+                                    contentDescription = stringResource(R.string.common_undo),
                                     tint = if (canUndo && isTextEditable) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
                                     modifier = Modifier.size(20.dp)
                                 )
@@ -566,7 +566,7 @@ fun IdeScreen(
                             ) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.Redo,
-                                    contentDescription = "Redo",
+                                    contentDescription = stringResource(R.string.ide_redo),
                                     tint = if (canRedo && isTextEditable) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
                                     modifier = Modifier.size(20.dp)
                                 )
@@ -692,7 +692,7 @@ fun IdeScreen(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.ArrowDropDown,
-                                        contentDescription = "Run Configurations",
+                                        contentDescription = stringResource(R.string.ide_run_configurations),
                                         tint = if (isCustomMode) GeminiBlue else Color(0xFF4CAF50),
                                         modifier = Modifier.size(18.dp)
                                     )
@@ -713,7 +713,7 @@ fun IdeScreen(
                                     text = {
                                         Column {
                                             Text(
-                                                text = "Auto: Run Active File",
+                                                text = stringResource(R.string.ide_auto_run_active_file),
                                                 fontWeight = if (isAutoMode) FontWeight.Bold else FontWeight.Normal,
                                                 fontSize = 13.sp
                                             )
@@ -736,7 +736,7 @@ fun IdeScreen(
                                         if (isAutoMode) {
                                             Icon(
                                                 Icons.Default.Check,
-                                                contentDescription = "Selected",
+                                                contentDescription = stringResource(R.string.common_selected),
                                                 tint = Color(0xFF4CAF50),
                                                 modifier = Modifier.size(16.dp)
                                             )
@@ -764,7 +764,7 @@ fun IdeScreen(
 
                                 // Mode 2: Project Configurations (Custom Mode)
                                 Text(
-                                    text = "PROJECT PROFILES (CUSTOM MODE)",
+                                    text = stringResource(R.string.ide_project_profiles_custom_mode),
                                     fontSize = 10.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = MaterialTheme.colorScheme.primary,
@@ -812,7 +812,7 @@ fun IdeScreen(
                                                 if (isSelected) {
                                                     Icon(
                                                         Icons.Default.Check,
-                                                        contentDescription = "Selected",
+                                                        contentDescription = stringResource(R.string.common_selected),
                                                         tint = GeminiBlue,
                                                         modifier = Modifier.size(16.dp)
                                                     )
@@ -883,7 +883,7 @@ fun IdeScreen(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.AutoAwesome,
-                                contentDescription = "AI Chat",
+                                contentDescription = stringResource(R.string.common_ai_chat),
                                 tint = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.size(20.dp)
                             )
@@ -939,7 +939,7 @@ fun IdeScreen(
                                 } else if (tab.isReadOnly) {
                                     Icon(
                                         imageVector = Icons.Default.Lock,
-                                        contentDescription = "Read-Only",
+                                        contentDescription = stringResource(R.string.ide_read_only),
                                         tint = Color(0xFFFBBF24).copy(alpha = 0.85f),
                                         modifier = Modifier.size(12.dp)
                                     )
@@ -954,7 +954,7 @@ fun IdeScreen(
                                 Spacer(modifier = Modifier.width(8.dp))
                                 Icon(
                                     imageVector = Icons.Default.Close,
-                                    contentDescription = "Close Tab",
+                                    contentDescription = stringResource(R.string.common_close_tab),
                                     tint = Color.Gray,
                                     modifier = Modifier
                                         .size(14.dp)
@@ -1049,7 +1049,7 @@ fun IdeScreen(
                                         decorationBox = { innerTextField ->
                                             if (findQuery.isEmpty()) {
                                                 Text(
-                                                    text = "Find in file...",
+                                                    text = stringResource(R.string.ide_find_in_file),
                                                     color = Color(0xFF888888),
                                                     fontSize = 13.sp,
                                                     fontFamily = FontFamily.Monospace
@@ -1070,7 +1070,7 @@ fun IdeScreen(
                                         ) {
                                             Icon(
                                                 imageVector = Icons.Default.Close,
-                                                contentDescription = "Clear",
+                                                contentDescription = stringResource(R.string.common_clear),
                                                 tint = Color.LightGray,
                                                 modifier = Modifier.size(14.dp)
                                             )
@@ -1103,7 +1103,7 @@ fun IdeScreen(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.KeyboardArrowUp,
-                                    contentDescription = "Previous Match",
+                                    contentDescription = stringResource(R.string.ide_previous_match),
                                     tint = if (searchMatchCount > 0) Color.White else Color.DarkGray,
                                     modifier = Modifier.size(18.dp)
                                 )
@@ -1117,7 +1117,7 @@ fun IdeScreen(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.KeyboardArrowDown,
-                                    contentDescription = "Next Match",
+                                    contentDescription = stringResource(R.string.ide_next_match),
                                     tint = if (searchMatchCount > 0) Color.White else Color.DarkGray,
                                     modifier = Modifier.size(18.dp)
                                 )
@@ -1133,7 +1133,7 @@ fun IdeScreen(
                                 modifier = Modifier.size(32.dp)
                             ) {
                                 Text(
-                                    text = "Aa",
+                                    text = stringResource(R.string.ide_aa),
                                     color = if (isCaseSensitive) Color(0xFF007ACC) else Color.Gray,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 13.sp
@@ -1154,7 +1154,7 @@ fun IdeScreen(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Close,
-                                    contentDescription = "Close Find",
+                                    contentDescription = stringResource(R.string.ide_close_find),
                                     tint = Color.Gray,
                                     modifier = Modifier.size(16.dp)
                                 )
@@ -1212,7 +1212,7 @@ fun IdeScreen(
                             )
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(
-                                text = "Historical Revision • Read-Only",
+                                text = stringResource(R.string.ide_historical_revision_read_only),
                                 style = MaterialTheme.typography.labelSmall,
                                 fontSize = 11.5.sp,
                                 color = Color(0xFFCBD5E1),
@@ -1242,7 +1242,7 @@ fun IdeScreen(
                             )
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(
-                                text = "File modified on disk externally",
+                                text = stringResource(R.string.ide_file_modified_on_disk_externally),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = Color(0xFFFDE68A),
                                 modifier = Modifier.weight(1f)
@@ -1422,7 +1422,7 @@ fun IdeScreen(
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             Text(
-                                text = "Select a file from the sidebar to start editing",
+                                text = stringResource(R.string.ide_select_a_file_from_the_sidebar_to_start),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = Color.Gray
                             )
@@ -1649,7 +1649,7 @@ fun IdeScreen(
                                 fontWeight = FontWeight.SemiBold
                             )
                             Text(
-                                text = "Opening it in the text editor may display garbled characters, cause lag, or corrupt the file if saved.",
+                                text = stringResource(R.string.ide_opening_it_in_the_text_editor_may_displa),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -1802,7 +1802,7 @@ private fun AddRunProfileDialog(
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 Text(
-                    text = "Saved into .ide/launch.json in your workspace root.",
+                    text = stringResource(R.string.ide_saved_into_ide_launch_json_in_your_works),
                     fontSize = 11.5.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

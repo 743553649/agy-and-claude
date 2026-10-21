@@ -1019,7 +1019,7 @@ fun ChatScreen(
                 onDismissRequest = { viewModel.clearPendingLoginUrl() },
                 title = {
                     Text(
-                        text = "Sign In with Browser",
+                        text = stringResource(R.string.chat_sign_in_with_browser),
                         fontWeight = FontWeight.Bold,
                         fontSize = 17.sp
                     )
@@ -1027,13 +1027,13 @@ fun ChatScreen(
                 text = {
                     Column {
                         Text(
-                            text = "Antigravity requires Google authentication to access Gemini models.",
+                            text = stringResource(R.string.chat_antigravity_requires_google_authenticati),
                             fontSize = 13.5.sp,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Spacer(modifier = Modifier.height(10.dp))
                         Text(
-                            text = "Do you want to open your browser to log in now?",
+                            text = stringResource(R.string.chat_do_you_want_to_open_your_browser_to_log),
                             fontSize = 13.5.sp,
                             fontWeight = FontWeight.Medium,
                             color = MaterialTheme.colorScheme.onSurface
@@ -1145,7 +1145,7 @@ fun ChatScreen(
                             IconButton(onClick = navigateBackConversation) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                    contentDescription = "Back",
+                                    contentDescription = stringResource(R.string.common_back),
                                     tint = MaterialTheme.colorScheme.onSurface
                                 )
                             }
@@ -1153,7 +1153,7 @@ fun ChatScreen(
                             IconButton(onClick = { scope.launch { drawerState.open() } }) {
                                 Icon(
                                     imageVector = Icons.Default.Menu,
-                                    contentDescription = "Open Drawer",
+                                    contentDescription = stringResource(R.string.chat_open_drawer),
                                     tint = MaterialTheme.colorScheme.onSurface
                                 )
                             }
@@ -1164,14 +1164,14 @@ fun ChatScreen(
                             IconButton(onClick = onMinimizeWindow) {
                                 Icon(
                                     imageVector = Icons.Default.Remove,
-                                    contentDescription = "Minimize to Bubble",
+                                    contentDescription = stringResource(R.string.chat_minimize_to_bubble),
                                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f)
                                 )
                             }
                             IconButton(onClick = onOpenFullScreen) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Outlined.OpenInNew,
-                                    contentDescription = "Open Full Screen",
+                                    contentDescription = stringResource(R.string.chat_open_full_screen),
                                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f)
                                 )
                             }
@@ -1186,7 +1186,7 @@ fun ChatScreen(
                         IconButton(onClick = onNavigateToBrowser) {
                             Icon(
                                 imageVector = Icons.Outlined.Language,
-                                contentDescription = "Web Browser Preview",
+                                contentDescription = stringResource(R.string.chat_web_browser_preview),
                                 tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f)
                             )
                         }
@@ -1202,14 +1202,14 @@ fun ChatScreen(
                         }) {
                             Icon(
                                 imageVector = Icons.Outlined.Terminal,
-                                contentDescription = "Terminal",
+                                contentDescription = stringResource(R.string.common_terminal),
                                 tint = if (useSshTerminal || (isLocalToolsInstalled && isLocalToolsEnabled)) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f)
                             )
                         }
                         IconButton(onClick = onNavigateToIde) {
                             Icon(
                                 imageVector = Icons.Default.Code,
-                                contentDescription = "Code Editor IDE",
+                                contentDescription = stringResource(R.string.chat_code_editor_ide),
                                 tint = MaterialTheme.colorScheme.primary
                             )
                         }
@@ -1217,7 +1217,7 @@ fun ChatScreen(
                             IconButton(onClick = { showChatTelemetryDialog = true }) {
                                 Icon(
                                     imageVector = Icons.Outlined.Analytics,
-                                    contentDescription = "Chat Telemetry & Tokens",
+                                    contentDescription = stringResource(R.string.common_chat_telemetry_tokens),
                                     tint = ClaudeTerracotta
                                 )
                             }
@@ -1295,7 +1295,7 @@ fun ChatScreen(
                             )
                             Spacer(modifier = Modifier.height(12.dp))
                             Text(
-                                text = "Unable to Load Chat",
+                                text = stringResource(R.string.chat_unable_to_load_chat),
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -1387,7 +1387,7 @@ fun ChatScreen(
                                     }
                                     else -> {
                                         Text(
-                                            text = "How can I help you today?",
+                                            text = stringResource(R.string.chat_how_can_i_help_you_today),
                                             fontSize = 22.sp,
                                             fontWeight = FontWeight.SemiBold,
                                             color = MaterialTheme.colorScheme.onSurface,
@@ -1395,7 +1395,7 @@ fun ChatScreen(
                                         )
                                         Spacer(modifier = Modifier.height(8.dp))
                                         Text(
-                                            text = "Ask a question, brainstorm ideas, or start coding",
+                                            text = stringResource(R.string.chat_ask_a_question_brainstorm_ideas_or_start),
                                             fontSize = 14.sp,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.55f),
                                             textAlign = TextAlign.Center
@@ -1884,7 +1884,7 @@ fun ChatScreen(
                                     )
                                     Spacer(modifier = Modifier.width(4.dp))
                                     Text(
-                                        text = "Reconnect",
+                                        text = stringResource(R.string.common_reconnect),
                                         style = MaterialTheme.typography.labelSmall,
                                         fontWeight = FontWeight.Bold,
                                         color = MaterialTheme.colorScheme.error
@@ -2365,7 +2365,7 @@ fun ChatScreen(
             },
             dismissButton = {
                 TextButton(onClick = { pendingMessageAction = null }) {
-                    Text(text = "Cancel", color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                    Text(text = stringResource(R.string.common_cancel), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                 }
             }
         )
@@ -2387,7 +2387,7 @@ fun ChatScreen(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Stop Generation?",
+                        text = stringResource(R.string.chat_stop_generation),
                         fontWeight = FontWeight.Bold,
                         fontSize = 17.5.sp
                     )
@@ -2395,7 +2395,7 @@ fun ChatScreen(
             },
             text = {
                 Text(
-                    text = "Do you want to stop the model from outputting? The current generation will be stopped immediately.",
+                    text = stringResource(R.string.chat_do_you_want_to_stop_the_model_from_outpu),
                     fontSize = 14.sp,
                     lineHeight = 20.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
@@ -2411,7 +2411,7 @@ fun ChatScreen(
                     shape = RoundedCornerShape(8.dp)
                 ) {
                     Text(
-                        text = "Stop Output",
+                        text = stringResource(R.string.chat_stop_output),
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onError
                     )
@@ -2419,7 +2419,7 @@ fun ChatScreen(
             },
             dismissButton = {
                 TextButton(onClick = { showStopConfirmDialog = false }) {
-                    Text(text = "Cancel", color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                    Text(text = stringResource(R.string.common_cancel), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                 }
             }
         )
@@ -2443,7 +2443,7 @@ fun ChatScreen(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Command Terminated",
+                        text = stringResource(R.string.chat_command_terminated),
                         fontWeight = FontWeight.Bold,
                         fontSize = 17.sp
                     )
@@ -2452,7 +2452,7 @@ fun ChatScreen(
             text = {
                 Column(modifier = Modifier.fillMaxWidth()) {
                     Text(
-                        text = "You stopped the running command:",
+                        text = stringResource(R.string.chat_you_stopped_the_running_command),
                         fontSize = 13.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -2473,7 +2473,7 @@ fun ChatScreen(
                     }
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
-                        text = "Explain why or give new instructions to AI (optional):",
+                        text = stringResource(R.string.chat_explain_why_or_give_new_instructions_to),
                         fontSize = 12.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -2497,14 +2497,14 @@ fun ChatScreen(
                     colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta),
                     shape = RoundedCornerShape(8.dp)
                 ) {
-                    Text(text = "Send to AI & Proceed", fontWeight = FontWeight.Bold, fontSize = 12.5.sp)
+                    Text(text = stringResource(R.string.chat_send_to_ai_proceed), fontWeight = FontWeight.Bold, fontSize = 12.5.sp)
                 }
             },
             dismissButton = {
                 TextButton(
                     onClick = { viewModel.dismissTerminatedToolDialog() }
                 ) {
-                    Text(text = "Stop Turn Here", color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f), fontSize = 12.5.sp)
+                    Text(text = stringResource(R.string.chat_stop_turn_here), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f), fontSize = 12.5.sp)
                 }
             }
         )
@@ -2891,7 +2891,7 @@ fun ChatToastBanner(
             ) {
                 Icon(
                     imageVector = Icons.Outlined.Close,
-                    contentDescription = "Dismiss",
+                    contentDescription = stringResource(R.string.common_dismiss),
                     tint = textColor.copy(alpha = 0.6f),
                     modifier = Modifier.size(16.dp)
                 )

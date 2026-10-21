@@ -225,7 +225,7 @@ fun FileManagerDialog(
                         ) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                contentDescription = "Back",
+                                contentDescription = stringResource(R.string.common_back),
                                 tint = MaterialTheme.colorScheme.onSurface,
                                 modifier = Modifier.size(22.dp)
                             )
@@ -295,7 +295,7 @@ fun FileManagerDialog(
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.Refresh,
-                                contentDescription = "Refresh",
+                                contentDescription = stringResource(R.string.common_refresh),
                                 tint = MaterialTheme.colorScheme.onSurface,
                                 modifier = Modifier.size(20.dp)
                             )
@@ -308,7 +308,7 @@ fun FileManagerDialog(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Close,
-                                contentDescription = "Close",
+                                contentDescription = stringResource(R.string.common_close),
                                 tint = MaterialTheme.colorScheme.onSurface,
                                 modifier = Modifier.size(20.dp)
                             )
@@ -416,7 +416,7 @@ fun FileManagerDialog(
                             Icon(Icons.Default.FolderOff, contentDescription = null, tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(52.dp))
                             Spacer(modifier = Modifier.height(12.dp))
                             Text(
-                                text = "Directory Not Accessible",
+                                text = stringResource(R.string.component_directory_not_accessible),
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -458,7 +458,7 @@ fun FileManagerDialog(
                             Icon(Icons.Default.FolderOpen, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f), modifier = Modifier.size(56.dp))
                             Spacer(modifier = Modifier.height(12.dp))
                             Text(
-                                text = "Folder is empty",
+                                text = stringResource(R.string.component_folder_is_empty),
                                 fontSize = 15.sp,
                                 fontWeight = FontWeight.Medium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -479,7 +479,7 @@ fun FileManagerDialog(
                                         Spacer(modifier = Modifier.width(8.dp))
                                         Text(text = errorMessage ?: "", fontSize = 12.sp, color = MaterialTheme.colorScheme.onErrorContainer, modifier = Modifier.weight(1f))
                                         IconButton(onClick = { errorMessage = null }, modifier = Modifier.size(20.dp)) {
-                                            Icon(Icons.Default.Close, contentDescription = "Dismiss", modifier = Modifier.size(12.dp))
+                                            Icon(Icons.Default.Close, contentDescription = stringResource(R.string.common_dismiss), modifier = Modifier.size(12.dp))
                                         }
                                     }
                                 }
@@ -556,7 +556,7 @@ fun FileManagerDialog(
                                             },
                                             modifier = Modifier.size(28.dp)
                                         ) {
-                                            Icon(Icons.Default.MoreVert, contentDescription = "Options", modifier = Modifier.size(16.dp))
+                                            Icon(Icons.Default.MoreVert, contentDescription = stringResource(R.string.common_options), modifier = Modifier.size(16.dp))
                                         }
                                     }
                                 }
@@ -637,7 +637,7 @@ fun FileManagerDialog(
                                         onClick = { FileManagerStateHolder.clipboardPath = null },
                                         modifier = Modifier.size(24.dp)
                                     ) {
-                                        Icon(Icons.Default.Close, contentDescription = "Cancel", modifier = Modifier.size(14.dp))
+                                        Icon(Icons.Default.Close, contentDescription = stringResource(R.string.common_cancel), modifier = Modifier.size(14.dp))
                                     }
                                 }
                             }

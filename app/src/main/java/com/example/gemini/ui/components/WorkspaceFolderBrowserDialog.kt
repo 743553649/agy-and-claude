@@ -96,7 +96,7 @@ fun WorkspaceFolderBrowserDialog(
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                            contentDescription = "Parent Directory",
+                            contentDescription = stringResource(R.string.component_parent_directory),
                             tint = if (parentPath.isNotBlank()) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
                         )
                     }
@@ -107,7 +107,7 @@ fun WorkspaceFolderBrowserDialog(
                             .padding(horizontal = 4.dp)
                     ) {
                         Text(
-                            text = "Browse Folders",
+                            text = stringResource(R.string.component_browse_folders),
                             fontSize = 15.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
@@ -127,7 +127,7 @@ fun WorkspaceFolderBrowserDialog(
                     ) {
                         Icon(
                             imageVector = Icons.Outlined.Refresh,
-                            contentDescription = "Refresh",
+                            contentDescription = stringResource(R.string.common_refresh),
                             tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                         )
                     }
@@ -141,7 +141,7 @@ fun WorkspaceFolderBrowserDialog(
                     ) {
                         Icon(
                             imageVector = Icons.Default.CreateNewFolder,
-                            contentDescription = "New Folder",
+                            contentDescription = stringResource(R.string.common_new_folder),
                             tint = ClaudeTerracotta
                         )
                     }
@@ -197,7 +197,7 @@ fun WorkspaceFolderBrowserDialog(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Text(
-                                    text = "No subfolders found\n(You can select this folder)",
+                                    text = stringResource(R.string.component_no_subfolders_found_n_you_can_select_thi),
                                     fontSize = 13.sp,
                                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                                     textAlign = androidx.compose.ui.text.style.TextAlign.Center
@@ -279,7 +279,7 @@ fun WorkspaceFolderBrowserDialog(
                         )
                         Spacer(modifier = Modifier.width(6.dp))
                         Text(
-                            text = "Choose This Folder",
+                            text = stringResource(R.string.component_choose_this_folder),
                             color = Color.White,
                             fontSize = 13.sp,
                             fontWeight = FontWeight.SemiBold
