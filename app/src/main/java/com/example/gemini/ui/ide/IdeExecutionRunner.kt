@@ -366,14 +366,14 @@ fun IdeExecutionRunnerSheet(
                         .padding(horizontal = 4.dp, vertical = 3.dp),
                     horizontalArrangement = Arrangement.spacedBy(3.dp)
                 ) {
-                    IdeTermKey(label = stringResource(R.string.common_esc), modifier = Modifier.weight(1f)) {
+                    IdeTermKey(label = "ESC", modifier = Modifier.weight(1f)) {
                         sendKeyToTerminal(KeyEvent.KEYCODE_ESCAPE, "\u001B")
                     }
-                    IdeTermKey(label = stringResource(R.string.ide_tab), modifier = Modifier.weight(1f)) {
+                    IdeTermKey(label = "TAB", modifier = Modifier.weight(1f)) {
                         sendKeyToTerminal(KeyEvent.KEYCODE_TAB, "\t")
                     }
                     IdeTermKey(
-                        label = stringResource(R.string.common_ctrl),
+                        label = "CTRL",
                         isActive = ctrlState != IdeKeyModifierState.OFF,
                         isLocked = ctrlState == IdeKeyModifierState.LOCKED,
                         modifier = Modifier.weight(1f),
@@ -385,7 +385,7 @@ fun IdeExecutionRunnerSheet(
                         }
                     )
                     IdeTermKey(
-                        label = stringResource(R.string.common_alt),
+                        label = "ALT",
                         isActive = altState != IdeKeyModifierState.OFF,
                         isLocked = altState == IdeKeyModifierState.LOCKED,
                         modifier = Modifier.weight(1f),

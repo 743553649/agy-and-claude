@@ -245,7 +245,7 @@ fun AppPermissionsDialog(
                 PermissionCard(
                     isDark = isDark,
                     icon = Icons.Outlined.NotificationsActive,
-                    title = stringResource(R.string.component_notifications_service),
+                    title = "Notifications & Service",
                     badgeText = "Required",
                     badgeColor = ClaudeTerracotta,
                     accentColor = ClaudeTerracotta,
@@ -264,7 +264,7 @@ fun AppPermissionsDialog(
                 PermissionCard(
                     isDark = isDark,
                     icon = Icons.Outlined.Folder,
-                    title = stringResource(R.string.component_storage_sdcard),
+                    title = "Storage & /sdcard",
                     badgeText = "Optional",
                     badgeColor = GeminiBlue,
                     accentColor = GeminiBlue,
@@ -277,7 +277,7 @@ fun AppPermissionsDialog(
                 PermissionCard(
                     isDark = isDark,
                     icon = Icons.Outlined.Mic,
-                    title = stringResource(R.string.component_microphone_voice),
+                    title = "Microphone & Voice",
                     badgeText = "Optional",
                     badgeColor = GeminiPurple,
                     accentColor = GeminiPurple,

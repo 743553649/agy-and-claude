@@ -150,7 +150,7 @@ fun BrowserScreen(
     // Ensure at least one tab exists when opening browser
     LaunchedEffect(isVisible) {
         if (isVisible && sessionManager.tabs.isEmpty()) {
-            val newTab = sessionManager.addNewTab(url = "", title = stringResource(R.string.common_new_tab), activate = true)
+            val newTab = sessionManager.addNewTab(url = "", title = "New Tab", activate = true)
             activeTabId = newTab.id
         }
     }
@@ -801,7 +801,7 @@ fun BrowserScreen(
             // Progress Bar (Pinned right below header)
             val animatedProgress by animateFloatAsState(
                 targetValue = if (activeTab?.isLoading == true) (activeTab.progress / 100f).coerceIn(0.06f, 1f) else 0f,
-                label = stringResource(R.string.common_progress)
+                label = "progress"
             )
 
             if (activeTab?.isLoading == true && animatedProgress > 0f) {

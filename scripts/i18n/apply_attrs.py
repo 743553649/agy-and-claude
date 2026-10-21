@@ -16,7 +16,9 @@ from kotlin_scan import read_literal  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 CAT = "/tmp/i18n_catalog.json"
-KINDS = ("text", "contentDescription", "title", "label")
+KINDS = ("text", "contentDescription")
+# title / label 不做：它们常是 data class 构造参数（如 ScriptExecutionInfo(title = ...)），
+# 不是 Compose 参数，放 stringResource 会编译失败
 dry = "--dry-run" in sys.argv
 
 cat = json.load(open(CAT, encoding="utf-8"))

@@ -277,7 +277,7 @@ private fun MainCategoryListView(
         // Agent header (same as the Claude Code picker)
         com.example.gemini.ui.agents.AgentSheetHeader(
             agent = com.example.gemini.domain.model.AgentKind.AGY,
-            title = stringResource(R.string.ui_select_model),
+            title = "Select model",
             detail = if (availableModelsCount > 0) "$availableModelsCount models" else "no models loaded",
             refreshing = isRefreshing,
             onRefresh = onRefresh
@@ -347,7 +347,7 @@ private fun MainCategoryListView(
                 )
 
                 CategoryNavigationTile(
-                    title = stringResource(R.string.ui_google_gemini),
+                    title = "Google Gemini",
                     activeModelName = if (isGeminiActive) cleanActiveModelName else null,
                     line1 = line1,
                     fraction1 = fiveHourFraction,
@@ -381,7 +381,7 @@ private fun MainCategoryListView(
                 )
 
                 CategoryNavigationTile(
-                    title = stringResource(R.string.ui_anthropic_claude),
+                    title = "Anthropic Claude",
                     activeModelName = if (isClaudeActive) cleanActiveModelName else null,
                     line1 = line1,
                     fraction1 = fiveHourFraction,

@@ -531,7 +531,7 @@ fun GitSourceControlView(
                 if (staged.isNotEmpty()) {
                     item {
                         SectionHeader(
-                            title = stringResource(R.string.ide_staged_changes),
+                            title = "STAGED CHANGES",
                             count = staged.size,
                             isExpanded = stagedExpanded,
                             onToggle = { stagedExpanded = !stagedExpanded },
@@ -570,7 +570,7 @@ fun GitSourceControlView(
                 if (unstaged.isNotEmpty()) {
                     item {
                         SectionHeader(
-                            title = stringResource(R.string.ide_changes),
+                            title = "CHANGES",
                             count = unstaged.size,
                             isExpanded = changesExpanded,
                             onToggle = { changesExpanded = !changesExpanded },
@@ -626,7 +626,7 @@ fun GitSourceControlView(
                 if (untracked.isNotEmpty()) {
                     item {
                         SectionHeader(
-                            title = stringResource(R.string.ide_untracked),
+                            title = "UNTRACKED",
                             count = untracked.size,
                             isExpanded = untrackedExpanded,
                             onToggle = { untrackedExpanded = !untrackedExpanded },
@@ -699,7 +699,7 @@ fun GitSourceControlView(
                 item {
                     Spacer(modifier = Modifier.height(12.dp))
                     SectionHeader(
-                        title = stringResource(R.string.ide_commit_history),
+                        title = "COMMIT HISTORY",
                         count = commitLogs.size,
                         isExpanded = historyExpanded,
                         onToggle = {

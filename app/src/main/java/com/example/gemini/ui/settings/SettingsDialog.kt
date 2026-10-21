@@ -607,7 +607,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.SmartToy,
             iconTint = MaterialTheme.colorScheme.primary,
-            title = stringResource(R.string.settings_agents),
+            title = "Agents",
             subtitle = when {
                 agyOn && claudeOn -> "Antigravity and Claude Code"
                 claudeOn -> "Claude Code only"
@@ -628,7 +628,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Dns,
             iconTint = serverColor,
-            title = stringResource(R.string.settings_servers_connectivity),
+            title = "Servers & Connectivity",
             subtitle = "AGY Hub & IDE Bridge endpoints",
             badgeText = serverBadge,
             badgeColor = serverColor,
@@ -640,7 +640,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Extension,
             iconTint = MaterialTheme.colorScheme.primary,
-            title = stringResource(R.string.settings_webview_extensions),
+            title = "WebView Extensions",
             subtitle = "Install ZIP, update, rename, enable or disable MCP extensions",
             cardBg = cardBg,
             cardBorder = cardBorder,
@@ -665,7 +665,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Extension,
             iconTint = mcpColor,
-            title = stringResource(R.string.settings_mcp_servers_tools),
+            title = "MCP Servers & Tools",
             subtitle = if (totalMcpCount > 0) "$totalMcpCount server(s) • global mcp_config.json" else "Model Context Protocol tools & integrations",
             badgeText = mcpBadge,
             badgeColor = mcpColor,
@@ -681,7 +681,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.AutoAwesome,
             iconTint = GeminiBlue,
-            title = stringResource(R.string.settings_skills_plugins),
+            title = "Skills & Plugins",
             subtitle = "Installed skills, Google plugins catalog, and markdown guides",
             badgeText = skillsBadge,
             badgeColor = GeminiBlue,
@@ -700,7 +700,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Security,
             iconTint = policyColor,
-            title = stringResource(R.string.settings_commands_permissions),
+            title = "Commands & Permissions",
             subtitle = "Policy: $policyBadge • $sandboxSummary",
             badgeText = policyBadge,
             badgeColor = policyColor,
@@ -726,7 +726,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Palette,
             iconTint = ClaudeTerracotta,
-            title = stringResource(R.string.settings_appearance_theme),
+            title = "Appearance & Theme",
             subtitle = "$themeLabel • ${(chatFontScale * 100).toInt()}% text scale",
             badgeText = themeLabel,
             cardBg = cardBg,
@@ -749,7 +749,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.SmartToy,
             iconTint = autoColor,
-            title = stringResource(R.string.settings_automation_device_tools),
+            title = "Automation & Device Tools",
             subtitle = autoSummary,
             badgeText = autoBadge,
             badgeColor = autoColor,
@@ -762,7 +762,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Terminal,
             iconTint = Color(0xFF00ACC1),
-            title = stringResource(R.string.settings_terminal_shell_execution),
+            title = "Terminal & Shell Execution",
             subtitle = if (useSshTerminal) "SSH Mode (Termux sshd)" else "Local Linux Environment",
             badgeText = if (useSshTerminal) "SSH" else "Local",
             cardBg = cardBg,
@@ -775,7 +775,7 @@ private fun MainSettingsMenu(
             SettingsCategoryCard(
                 icon = Icons.Outlined.Backup,
                 iconTint = GeminiBlue,
-                title = stringResource(R.string.settings_backups_restore),
+                title = "Backups & Restore",
                 subtitle = "Backup rootfs environment and AGY chat histories",
                 badgeText = "Rootfs Active",
                 badgeColor = GeminiBlue,
@@ -789,7 +789,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Security,
             iconTint = Color(0xFF10B981),
-            title = stringResource(R.string.settings_data_loss_protection),
+            title = "Data Loss Protection",
             subtitle = "Accidental uninstall shield & App Info clear data protection",
             badgeText = "Shield",
             badgeColor = Color(0xFF10B981),
@@ -804,7 +804,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Speed,
             iconTint = if (isFloatingDiagnosticsEnabled) QuotaGreen else Color(0xFF00ACC1),
-            title = stringResource(R.string.settings_diagnostics_performance),
+            title = "Diagnostics & Performance",
             subtitle = if (isFloatingDiagnosticsEnabled) "Floating live metrics HUD enabled" else "Live network connections, active streams & thread HUD",
             badgeText = diagBadge,
             badgeColor = diagColor,
@@ -817,7 +817,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Info,
             iconTint = Color(0xFF8B5CF6),
-            title = stringResource(R.string.settings_about_info),
+            title = "About & Info",
             subtitle = "v${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE}) • ${BuildConfig.APPLICATION_ID}",
             badgeText = "v${BuildConfig.VERSION_NAME}",
             badgeColor = Color(0xFF8B5CF6),
@@ -4617,7 +4617,7 @@ private fun BackupsSubScreen(
                         } else {
                             requestStoragePermission {
                                 activeScriptExecution = ScriptExecutionInfo(
-                                    title = stringResource(R.string.settings_rootfs_system_packager),
+                                    title = "Rootfs System Packager",
                                     scriptName = "backup_bootstrap",
                                     args = emptyList()
                                 )
@@ -4973,7 +4973,7 @@ private fun BackupsSubScreen(
                         backupChatsPassword = ""
                         requestStoragePermission {
                             activeScriptExecution = ScriptExecutionInfo(
-                                title = stringResource(R.string.settings_agy_chats_credentials_backup),
+                                title = "AGY Chats & Credentials Backup",
                                 scriptName = "backup_chats",
                                 args = if (pass.isNotEmpty()) listOf("", pass) else emptyList()
                             )
@@ -5051,7 +5051,7 @@ private fun BackupsSubScreen(
                         restoreFilePath = ""
                         restorePassword = ""
                         activeScriptExecution = ScriptExecutionInfo(
-                            title = stringResource(R.string.settings_restore_agy_chats_credentials),
+                            title = "Restore AGY Chats & Credentials",
                             scriptName = "restore_chats",
                             args = if (pass.isNotEmpty()) listOf(path, pass) else listOf(path)
                         )
@@ -5698,7 +5698,7 @@ private fun ProjectsBackupRestoreDialog(
                                     onDismiss()
                                     onExecuteScript(
                                         ScriptExecutionInfo(
-                                            title = stringResource(R.string.settings_projects_backup_packager),
+                                            title = "Projects Backup Packager",
                                             scriptName = "backup_projects",
                                             args = listOf("", backupMode, "--paths-file", targetsFile.absolutePath)
                                         )
@@ -5918,7 +5918,7 @@ private fun ProjectsBackupRestoreDialog(
                                 onDismiss()
                                 onExecuteScript(
                                     ScriptExecutionInfo(
-                                        title = stringResource(R.string.settings_projects_archive_restorer),
+                                        title = "Projects Archive Restorer",
                                         scriptName = "restore_projects",
                                         args = listOf(zipPath, conflictStrategy, if (useCustomRestoreDir) customRestoreDir.trim() else "")
                                     )

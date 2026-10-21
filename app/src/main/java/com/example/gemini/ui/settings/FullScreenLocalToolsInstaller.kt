@@ -617,7 +617,7 @@ fun FullScreenLocalToolsInstaller(
                             val animatedProgress by animateFloatAsState(
                                 targetValue = state.progressFraction,
                                 animationSpec = tween(300, easing = LinearEasing),
-                                label = stringResource(R.string.common_progress)
+                                label = "progress"
                             )
                             LinearProgressIndicator(
                                 progress = { animatedProgress },
