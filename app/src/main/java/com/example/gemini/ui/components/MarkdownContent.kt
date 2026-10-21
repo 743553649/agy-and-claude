@@ -775,7 +775,7 @@ fun MermaidDiagramView(
                 IconButton(
                     onClick = {
                         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                        val clip = ClipData.newPlainText(stringResource(R.string.component_mermaid_diagram_2), code)
+                        val clip = ClipData.newPlainText(context.getString(R.string.component_mermaid_diagram_2), code)
                         clipboard.setPrimaryClip(clip)
                         isCopied = true
                         Toast.makeText(context, "Diagram code copied", Toast.LENGTH_SHORT).show()
@@ -1022,7 +1022,7 @@ fun MermaidFullscreenDialog(
                     IconButton(
                         onClick = {
                             val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                            val clip = ClipData.newPlainText(stringResource(R.string.component_mermaid_diagram_2), code)
+                            val clip = ClipData.newPlainText(context.getString(R.string.component_mermaid_diagram_2), code)
                             clipboard.setPrimaryClip(clip)
                             isCopied = true
                             Toast.makeText(context, "Diagram code copied", Toast.LENGTH_SHORT).show()

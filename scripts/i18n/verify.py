@@ -1,0 +1,74 @@
+#!/usr/bin/env python3
+"""汉化改动的静态校验，供 CI 在编译前快速失败。
+
+1. 资源文件必须是合法 XML
+2. 每个 R.string.<key> 都必须在 values/ 中定义
+3. values-zh-rCN 中的 key 不得超出 values/ 的范围
+4. 不得把 stringResource 放进非 Composable 上下文（形如 xxxText(stringResource(...))）
+"""
+import os
+import re
+import sys
+import xml.etree.ElementTree as ET
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+RES = os.path.join(ROOT, "app/src/main/res")
+SRC = os.path.join(ROOT, "app/src/main/java")
+
+errors = []
+
+
+def load_keys(folder):
+    keys = set()
+    files = []
+    d = os.path.join(RES, folder)
+    if not os.path.isdir(d):
+        return keys, files
+    for fn in sorted(os.listdir(d)):
+        if not fn.endswith(".xml"):
+            continue
+        path = os.path.join(d, fn)
+        files.append(path)
+        try:
+            tree = ET.parse(path)
+        except ET.ParseError as e:
+            errors.append(f"XML 解析失败 {folder}/{fn}: {e}")
+            continue
+        for el in tree.getroot():
+            if el.tag == "string" and el.get("name"):
+                keys.add(el.get("name"))
+    return keys, files
+
+
+en_keys, en_files = load_keys("values")
+zh_keys, zh_files = load_keys("values-zh-rCN")
+
+used = {}
+for dirpath, _dirs, files in os.walk(SRC):
+    for fn in files:
+        if not fn.endswith(".kt"):
+            continue
+        path = os.path.join(dirpath, fn)
+        rel = os.path.relpath(path, ROOT)
+        text = open(path, encoding="utf-8").read()
+        for m in re.finditer(r"R\.string\.([A-Za-z0-9_]+)", text):
+            used.setdefault(m.group(1), set()).add(rel)
+        for m in re.finditer(r"[A-Za-z0-9_$]Text\(\s*stringResource\(", text):
+            line = text[:m.start()].count("\n") + 1
+            errors.append(f"非 Composable 上下文误用 stringResource: {rel}:{line}")
+
+for key, files in sorted(used.items()):
+    if key not in en_keys:
+        errors.append(f"R.string.{key} 未在 values/ 中定义（{sorted(files)[0]}）")
+
+extra = zh_keys - en_keys
+if extra:
+    errors.append(f"values-zh-rCN 存在 values/ 中没有的 key: {sorted(extra)[:5]}")
+
+print(f"values: {len(en_keys)} 条 / values-zh-rCN: {len(zh_keys)} 条 / 源码引用: {len(used)} 个 key")
+if errors:
+    print(f"\n发现 {len(errors)} 个问题：")
+    for e in errors[:60]:
+        print("  - " + e)
+    sys.exit(1)
+print("校验通过")

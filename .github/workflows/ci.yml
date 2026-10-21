@@ -53,6 +53,11 @@ jobs:
           echo "${KEYSTORE_B64}" | base64 -d > app/release.jks
           echo "keystore restored"
 
+      # 编译前的快速校验：资源 XML 合法性、R.string 引用完整性、非 Composable 误用。
+      # 放在编译前，失败 10 秒内就能看到，不用等一轮 5 分钟的 Gradle。
+      - name: Verify i18n resources
+        run: python3 scripts/i18n/verify.py
+
       - name: Build standard APK
         run: |
           set -o pipefail
