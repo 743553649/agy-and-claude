@@ -1,8 +1,12 @@
 name: CI Build
 
-# 每次 push / PR 都编译一次 standard flavor，产出可安装的 APK artifact。
-# 本工作流只做「校验 + 出包」，绝不发布 Release、绝不碰 version.json。
+# 每次 push / PR 都编译一次 **termux flavor**（applicationId = com.termux，与上游发版一致），
+# 产出可安装的 APK artifact。只做「校验 + 出包」，绝不发布 Release、绝不碰 version.json。
 # 发版仍然走 release.yml（仅在 version.json 变更时触发）。
+#
+# 签名：release.jks 不入库，由仓库 secret RELEASE_KEYSTORE_BASE64 还原。
+#   有 secret -> :app:assembleTermuxRelease（release 签名，可覆盖安装官方版本）
+#   无 secret -> :app:assembleTermuxDebug（debug 签名，仅用于看界面，不能覆盖官方版本）
 on:
   push:
     branches:
@@ -18,8 +22,8 @@ permissions:
   contents: read
 
 jobs:
-  build-standard:
-    name: Build standard APK
+  build-termux:
+    name: Build termux APK
     runs-on: ubuntu-latest
 
     steps:
@@ -40,34 +44,32 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      # release 变体用 release.jks 签名（该文件不入库，由 secret 还原）。
-      # secret 缺失时自动退回 debug 变体，保证 CI 不因签名材料缺失而红。
       - name: Restore Keystore
         env:
           KEYSTORE_B64: ${{ secrets.RELEASE_KEYSTORE_BASE64 }}
         run: |
           if [ -z "${KEYSTORE_B64}" ]; then
-            echo "keystore secret absent -> debug variant"
+            echo "::warning::未配置 RELEASE_KEYSTORE_BASE64，本次只能产出 debug 签名包，无法覆盖安装官方版本"
             exit 0
           fi
           echo "${KEYSTORE_B64}" | base64 -d > app/release.jks
           echo "keystore restored"
 
-      # 编译前的快速校验：资源 XML 合法性、R.string 引用完整性、非 Composable 误用。
-      # 放在编译前，失败 10 秒内就能看到，不用等一轮 5 分钟的 Gradle。
+      # 编译前的快速校验：资源 XML 合法性、R.string 引用完整性、占位符与参数一致性、
+      # 非 Composable 误用、英文资源残留 Kotlin 插值。失败 10 秒内暴露，不用等一轮 Gradle。
       - name: Verify i18n resources
         run: python3 scripts/i18n/verify.py
 
-      - name: Build standard APK
+      - name: Build termux APK
         run: |
           set -o pipefail
           chmod +x gradlew
           if [ -f app/release.jks ]; then
-            echo "==> :app:assembleStandardRelease"
-            ./gradlew :app:assembleStandardRelease --stacktrace --no-daemon
+            echo "==> :app:assembleTermuxRelease (release 签名)"
+            ./gradlew :app:assembleTermuxRelease --stacktrace --no-daemon
           else
-            echo "==> :app:assembleStandardDebug"
-            ./gradlew :app:assembleStandardDebug --stacktrace --no-daemon
+            echo "==> :app:assembleTermuxDebug (debug 签名)"
+            ./gradlew :app:assembleTermuxDebug --stacktrace --no-daemon
           fi
 
       - name: Stage APK
@@ -80,14 +82,18 @@ jobs:
           if [ ! -f app/release.jks ]; then MODE="debug"; fi
           APK=$(find app/build/outputs/apk -name "*.apk" | head -n 1)
           if [ -z "${APK}" ]; then echo "no APK produced"; exit 1; fi
-          OUT="artifact/antiGem-standard-v${VERSION_NAME}-${MODE}-${SHORT_SHA}.apk"
+          OUT="artifact/antiGem-termux-v${VERSION_NAME}-${MODE}-${SHORT_SHA}.apk"
           cp "${APK}" "${OUT}"
           ls -lh artifact
+          echo "### 产物" >> $GITHUB_STEP_SUMMARY
+          echo "- 文件：\`$(basename "$OUT")\`" >> $GITHUB_STEP_SUMMARY
+          echo "- 包名：\`com.termux\`（termux flavor）" >> $GITHUB_STEP_SUMMARY
+          echo "- 签名：\`${MODE}\`" >> $GITHUB_STEP_SUMMARY
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: antiGem-standard-${{ github.sha }}
+          name: antiGem-termux-${{ github.sha }}
           path: artifact/*.apk
           retention-days: 14
           if-no-files-found: error
