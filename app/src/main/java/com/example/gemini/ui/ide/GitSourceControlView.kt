@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,6 +27,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.data.daemon.*
+import com.example.gemini.R
 import com.example.gemini.theme.ClaudeTerracotta
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -963,7 +965,7 @@ fun GitSourceControlView(
                     showConfigDialog = false
                     configPromptReason = null
                 }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -1071,7 +1073,7 @@ fun GitSourceControlView(
             },
             dismissButton = {
                 TextButton(onClick = { showNewBranchDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -1141,7 +1143,7 @@ fun GitSourceControlView(
             },
             dismissButton = {
                 TextButton(onClick = { showStashDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -1176,7 +1178,7 @@ fun GitSourceControlView(
             },
             dismissButton = {
                 TextButton(onClick = { pendingDiscardFile = null }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -1208,7 +1210,7 @@ fun GitSourceControlView(
             },
             dismissButton = {
                 TextButton(onClick = { showDiscardAllDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -1241,7 +1243,7 @@ fun GitSourceControlView(
             },
             dismissButton = {
                 TextButton(onClick = { showDiscardAllUntrackedDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -1275,7 +1277,7 @@ fun GitSourceControlView(
             },
             dismissButton = {
                 TextButton(onClick = { showUnstageAllDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -1312,7 +1314,7 @@ fun GitSourceControlView(
             },
             dismissButton = {
                 TextButton(onClick = { showPullDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -1358,7 +1360,7 @@ fun GitSourceControlView(
             },
             dismissButton = {
                 TextButton(onClick = { showPushDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -1417,7 +1419,7 @@ fun GitSourceControlView(
             },
             dismissButton = {
                 TextButton(onClick = { showCommitDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )

@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.gemini.data.daemon.IdeApiClient
+import com.example.gemini.R
 import com.example.gemini.data.daemon.ProjectItem
 import com.example.gemini.theme.ClaudeTerracotta
 import kotlinx.coroutines.launch
@@ -184,7 +186,7 @@ fun WorkspaceFolderBrowserDialog(
                                     )
                                     Spacer(modifier = Modifier.height(10.dp))
                                     Button(onClick = { loadDir(currentPath) }) {
-                                        Text("Retry")
+                                        Text(stringResource(R.string.common_retry))
                                     }
                                 }
                             }

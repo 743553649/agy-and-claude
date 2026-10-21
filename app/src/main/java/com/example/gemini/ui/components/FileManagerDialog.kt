@@ -19,6 +19,7 @@ import androidx.compose.material.icons.automirrored.filled.NoteAdd
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,6 +34,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.gemini.data.daemon.FsItemNode
+import com.example.gemini.R
 import com.example.gemini.data.daemon.IdeApiClient
 import com.example.gemini.data.daemon.ProjectItem
 import com.example.gemini.theme.ClaudeTerracotta
@@ -441,7 +443,7 @@ fun FileManagerDialog(
                                     onClick = { refreshDir() },
                                     shape = RoundedCornerShape(8.dp)
                                 ) {
-                                    Text("Retry")
+                                    Text(stringResource(R.string.common_retry))
                                 }
                             }
                         }
@@ -761,12 +763,12 @@ fun FileManagerDialog(
                     enabled = inputName.isNotBlank() && !isOperating,
                     colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta)
                 ) {
-                    Text("Create")
+                    Text(stringResource(R.string.common_create))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showNewFolderDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -806,12 +808,12 @@ fun FileManagerDialog(
                     enabled = inputName.isNotBlank() && !isOperating,
                     colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta)
                 ) {
-                    Text("Create")
+                    Text(stringResource(R.string.common_create))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showNewFileDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -896,7 +898,7 @@ fun FileManagerDialog(
             },
             dismissButton = {
                 TextButton(onClick = { showNewProjectDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -911,7 +913,7 @@ fun FileManagerDialog(
                 OutlinedTextField(
                     value = inputName,
                     onValueChange = { inputName = it },
-                    label = { Text("New Name") },
+                    label = { Text(stringResource(R.string.common_new_name)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -935,12 +937,12 @@ fun FileManagerDialog(
                     },
                     enabled = inputName.isNotBlank() && inputName.trim() != item.name && !isOperating
                 ) {
-                    Text("Rename")
+                    Text(stringResource(R.string.common_rename))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showRenameDialog = null }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -969,12 +971,12 @@ fun FileManagerDialog(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
                 ) {
-                    Text("Delete")
+                    Text(stringResource(R.string.common_delete))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showDeleteConfirmDialog = null }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -1047,7 +1049,7 @@ fun FileManagerDialog(
                 )
 
                 ListItem(
-                    headlineContent = { Text("Rename") },
+                    headlineContent = { Text(stringResource(R.string.common_rename)) },
                     leadingContent = { Icon(Icons.Default.DriveFileRenameOutline, contentDescription = null) },
                     modifier = Modifier.clickable {
                         inputName = item.name
@@ -1057,7 +1059,7 @@ fun FileManagerDialog(
                 )
 
                 ListItem(
-                    headlineContent = { Text("Details") },
+                    headlineContent = { Text(stringResource(R.string.common_details)) },
                     leadingContent = { Icon(Icons.Default.Info, contentDescription = null) },
                     modifier = Modifier.clickable {
                         showDetailsDialog = item

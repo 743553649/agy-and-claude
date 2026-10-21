@@ -1,6 +1,7 @@
 package com.example.gemini.ui.settings
 
 import com.example.gemini.ui.claude.SettingsGroupHeader
+import com.example.gemini.R
 import com.example.gemini.ui.components.ClaudeAccent
 import android.Manifest
 import android.content.ComponentName
@@ -31,6 +32,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -3257,7 +3259,7 @@ private fun McpSubScreen(
             },
             dismissButton = {
                 TextButton(onClick = { serverToDelete = null }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -3782,7 +3784,7 @@ private fun AddEditMcpServerDialog(
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text(stringResource(R.string.common_cancel))
             }
         }
     )
@@ -4236,7 +4238,7 @@ private fun TerminalSubScreen(
                     onClick = { showResetWarningDialog = false },
                     shape = RoundedCornerShape(8.dp)
                 ) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             },
             shape = RoundedCornerShape(16.dp),
@@ -4318,7 +4320,7 @@ private fun TerminalSubScreen(
                     onClick = { showResetPasswordDialog = false },
                     shape = RoundedCornerShape(8.dp)
                 ) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             },
             shape = RoundedCornerShape(16.dp),
@@ -4906,7 +4908,7 @@ private fun BackupsSubScreen(
             },
             dismissButton = {
                 TextButton(onClick = { showServerRunningAlert = null }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -4987,7 +4989,7 @@ private fun BackupsSubScreen(
                     showBackupChatsPasswordDialog = false
                     backupChatsPassword = ""
                 }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -5066,7 +5068,7 @@ private fun BackupsSubScreen(
                     restoreFilePath = ""
                     restorePassword = ""
                 }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -6465,7 +6467,7 @@ private fun DataProtectionSubScreen(
             },
             dismissButton = {
                 TextButton(onClick = { showDeactivateAdminDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -7818,7 +7820,7 @@ private fun AddPermissionRuleDialog(
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text(stringResource(R.string.common_cancel))
             }
         }
     )
@@ -8310,7 +8312,7 @@ private fun DiagnosticsSubScreen(
                 TextButton(
                     onClick = { pendingInspectorRestart = null }
                 ) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             },
             containerColor = MaterialTheme.colorScheme.surface,

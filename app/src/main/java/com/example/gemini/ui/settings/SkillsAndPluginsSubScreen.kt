@@ -15,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,6 +31,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import coil.compose.AsyncImage
 import com.example.gemini.data.remote.dto.BuildWithGooglePluginItemDto
+import com.example.gemini.R
 import com.example.gemini.data.remote.dto.InstalledPluginDto
 import com.example.gemini.data.remote.dto.SkillDefinitionDto
 import com.example.gemini.theme.*
@@ -515,7 +517,7 @@ private fun InstalledPluginCard(
             },
             dismissButton = {
                 TextButton(onClick = { showDeleteConfirmDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )

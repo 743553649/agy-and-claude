@@ -28,6 +28,7 @@ import androidx.compose.material.icons.automirrored.filled.Undo
 import androidx.compose.material.icons.automirrored.filled.WrapText
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,6 +43,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.data.daemon.DaemonStatus
+import com.example.gemini.R
 import com.example.gemini.data.daemon.FileNode
 import com.example.gemini.data.daemon.GitApiClient
 import com.example.gemini.data.daemon.IdeApiClient
@@ -1669,7 +1671,7 @@ fun IdeScreen(
                     },
                     dismissButton = {
                         TextButton(onClick = { binaryWarningDialog = null }) {
-                            Text("Cancel")
+                            Text(stringResource(R.string.common_cancel))
                         }
                     }
                 )
@@ -1892,7 +1894,7 @@ private fun AddRunProfileDialog(
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text(stringResource(R.string.common_cancel))
             }
         }
     )

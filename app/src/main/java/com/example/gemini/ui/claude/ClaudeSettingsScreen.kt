@@ -37,6 +37,7 @@ import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.outlined.Security
 import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.material3.AlertDialog
+import androidx.compose.ui.res.stringResource
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -75,6 +76,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.data.agent.claude.ClaudeAccountManager
+import com.example.gemini.R
 import com.example.gemini.data.agent.claude.ClaudeStatus
 import com.example.gemini.data.agent.claude.ClaudeChatBackend
 import com.example.gemini.data.agent.claude.ClaudeConfigManager
@@ -425,7 +427,7 @@ private fun DefaultsPage(deps: ClaudeSettingsDeps) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             OutlinedTextField(lang, { lang = it.trim() }, singleLine = true, modifier = Modifier.weight(1f))
             Spacer(Modifier.width(8.dp))
-            Button(onClick = { deps.prefs.setVoiceLanguage(lang.ifBlank { "en" }) }, colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text("Save") }
+            Button(onClick = { deps.prefs.setVoiceLanguage(lang.ifBlank { "en" }) }, colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text(stringResource(R.string.common_save)) }
         }
     }
 }
@@ -478,7 +480,7 @@ private fun PermissionsPage(deps: ClaudeSettingsDeps) {
             Button(onClick = {
                 deps.config.addRule(behavior, newRule)
                 newRule = ""
-            }, enabled = newRule.isNotBlank(), colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text("Add") }
+            }, enabled = newRule.isNotBlank(), colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text(stringResource(R.string.common_add)) }
         }
     }
     listOf("allow" to "Allowed without asking", "ask" to "Always ask", "deny" to "Never allowed").forEach { (b, title) ->
@@ -557,7 +559,7 @@ private fun McpPage(deps: ClaudeSettingsDeps) {
     }
     Text("Quick presets", fontSize = 12.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f))
     Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        OutlinedButton(onClick = { chooseWebViewExtension = true }) { Text("+ WebView Extension MCP") }
+        OutlinedButton(onClick = { chooseWebViewExtension = true }) { Text(stringResource(R.string.common_webview_extension_mcp)) }
         presets.forEach { (label, req) ->
             val added = servers.any { it.name == req.name }
             Surface(
@@ -723,7 +725,7 @@ private fun McpPage(deps: ClaudeSettingsDeps) {
                     toDelete = null
                 }) { Text("Remove", color = QuotaRed) }
             },
-            dismissButton = { TextButton(onClick = { toDelete = null }) { Text("Cancel") } }
+            dismissButton = { TextButton(onClick = { toDelete = null }) { Text(stringResource(R.string.common_cancel)) } }
         )
     }
 }
@@ -777,7 +779,7 @@ private fun AddMcpDialog(
                         Text(it, fontSize = 12.sp, color = QuotaRed, modifier = Modifier.padding(8.dp))
                     }
                 }
-                OutlinedTextField(name, { name = it.trim() }, label = { Text("Name") }, singleLine = true, modifier = Modifier.fillMaxWidth())
+                OutlinedTextField(name, { name = it.trim() }, label = { Text(stringResource(R.string.common_name)) }, singleLine = true, modifier = Modifier.fillMaxWidth())
                 Text("Transport", fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
                 Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                     listOf("stdio", "http", "sse").forEach { t ->
@@ -820,9 +822,9 @@ private fun AddMcpDialog(
                     )
                 )
             }, enabled = name.isNotBlank() && (if (transport == "stdio") command.isNotBlank() else url.isNotBlank()),
-                colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text("Add") }
+                colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text(stringResource(R.string.common_add)) }
         },
-        dismissButton = { TextButton(onClick = onDismiss) { Text("Cancel") } }
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.common_cancel)) } }
     )
 }
 
@@ -956,7 +958,7 @@ private fun PluginsPage(deps: ClaudeSettingsDeps) {
                                     addingMarket = marketSource
                                     deps.config.pluginAction("marketplace-add", ClaudePluginAction(source = marketSource))
                                 }, enabled = marketSource.isNotBlank() && !adding, colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) {
-                                    if (adding) CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp, color = Color.White) else Text("Add")
+                                    if (adding) CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp, color = Color.White) else Text(stringResource(R.string.common_add))
                                 }
                             }
                         }
@@ -1057,7 +1059,7 @@ private fun MemoryPage(deps: ClaudeSettingsDeps) {
                 onClick = { deps.config.saveMemory(scope, if (scope == "project") cwd else null, text) },
                 enabled = text != m.content,
                 colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)
-            ) { Text("Save") }
+            ) { Text(stringResource(R.string.common_save)) }
         }
     }
 
@@ -1111,7 +1113,7 @@ private fun MemoryPage(deps: ClaudeSettingsDeps) {
                     noteToDelete = null
                 }) { Text("Delete", color = QuotaRed) }
             },
-            dismissButton = { TextButton(onClick = { noteToDelete = null }) { Text("Cancel") } }
+            dismissButton = { TextButton(onClick = { noteToDelete = null }) { Text(stringResource(R.string.common_cancel)) } }
         )
     }
 }
@@ -1143,7 +1145,7 @@ private fun AdvancedPage(deps: ClaudeSettingsDeps) {
     )
     parseError?.let { Text(it, color = QuotaRed, fontSize = 12.sp) }
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        OutlinedButton(onClick = { deps.config.loadSettings() }) { Text("Reload") }
+        OutlinedButton(onClick = { deps.config.loadSettings() }) { Text(stringResource(R.string.common_reload)) }
         Button(onClick = {
             val parsed: JsonElement? = runCatching { Json.parseToJsonElement(text) }.getOrElse {
                 parseError = "Invalid JSON: ${it.message}"

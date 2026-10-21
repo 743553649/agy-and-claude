@@ -1,6 +1,7 @@
 package com.example.gemini.ui.chat
 
 import com.example.gemini.ui.components.ChatToast
+import com.example.gemini.R
 import com.example.gemini.ui.components.ChatToastType
 import com.example.gemini.ui.components.AppToastHelper
 import android.content.Intent
@@ -35,6 +36,7 @@ import androidx.compose.material.icons.automirrored.outlined.OpenInNew
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import com.example.gemini.data.preferences.AuthPreferences
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -1058,7 +1060,7 @@ fun ChatScreen(
                 },
                 dismissButton = {
                     TextButton(onClick = { viewModel.clearPendingLoginUrl() }) {
-                        Text("Cancel")
+                        Text(stringResource(R.string.common_cancel))
                     }
                 }
             )

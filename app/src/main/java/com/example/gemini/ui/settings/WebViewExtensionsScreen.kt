@@ -8,12 +8,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.example.gemini.ui.browser.BrowserExtension
+import com.example.gemini.R
 import com.example.gemini.ui.browser.BrowserExtensionManager
 import kotlinx.coroutines.launch
 
@@ -48,7 +50,7 @@ fun WebViewExtensionsScreen(onChanged: () -> Unit) {
         Text("To create an extension with your model, add WebView Extension Developer in MCP settings. It supplies the SDK, draft editing, installation, updates, tests and worker logs.", style = MaterialTheme.typography.bodySmall)
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Button(enabled = !busy, onClick = { update = null; picker.launch(arrayOf("*/*")) }) { Text("Install ZIP") }
-            OutlinedButton(enabled = !busy, onClick = { runOperation { manager.refreshExtensions() } }) { Text("Refresh") }
+            OutlinedButton(enabled = !busy, onClick = { runOperation { manager.refreshExtensions() } }) { Text(stringResource(R.string.common_refresh)) }
             if (busy) CircularProgressIndicator(Modifier.size(24.dp))
         }
         error?.let { Text(it, color = MaterialTheme.colorScheme.error) }
@@ -68,7 +70,7 @@ fun WebViewExtensionsScreen(onChanged: () -> Unit) {
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                         TextButton(enabled = !busy, onClick = { update = extension; picker.launch(arrayOf("*/*")) }) { Text("Update ZIP") }
                         TextButton(enabled = !busy, onClick = { rename = extension; folder = extension.folderName }) { Text("Rename folder") }
-                        TextButton(enabled = !busy && extension.isEnabled, onClick = { runOperation { manager.reload(extension.id) } }) { Text("Reload") }
+                        TextButton(enabled = !busy && extension.isEnabled, onClick = { runOperation { manager.reload(extension.id) } }) { Text(stringResource(R.string.common_reload)) }
                     }
                 }
             }
@@ -82,13 +84,13 @@ fun WebViewExtensionsScreen(onChanged: () -> Unit) {
             Text(if (update == null) "The ZIP may contain manifest.json directly or inside one enclosing folder." else "The extension's ID and stored data are preserved. The previous package is restored if loading fails.")
         } },
         confirmButton = { TextButton(enabled = folder.isNotBlank(), onClick = { val uri = zip!!; val id = update?.id; val name = folder; zip = null; runOperation { manager.installArchive(uri, name, id) } }) { Text(if (update == null) "Install" else "Update") } },
-        dismissButton = { TextButton(onClick = { zip = null }) { Text("Cancel") } }
+        dismissButton = { TextButton(onClick = { zip = null }) { Text(stringResource(R.string.common_cancel)) } }
     )
     rename?.let { extension -> AlertDialog(
         onDismissRequest = { rename = null }, title = { Text("Rename extension folder") },
         text = { OutlinedTextField(value = folder, onValueChange = { folder = it }, label = { Text("Folder name") }, singleLine = true) },
-        confirmButton = { TextButton(enabled = folder.isNotBlank(), onClick = { val name = folder; rename = null; runOperation { manager.renameFolder(extension.id, name) } }) { Text("Rename") } },
-        dismissButton = { TextButton(onClick = { rename = null }) { Text("Cancel") } }
+        confirmButton = { TextButton(enabled = folder.isNotBlank(), onClick = { val name = folder; rename = null; runOperation { manager.renameFolder(extension.id, name) } }) { Text(stringResource(R.string.common_rename)) } },
+        dismissButton = { TextButton(onClick = { rename = null }) { Text(stringResource(R.string.common_cancel)) } }
     ) }
 }
 
@@ -108,5 +110,5 @@ fun WebViewExtensionMcpPicker(onDismiss: () -> Unit, onSelect: (BrowserExtension
                     }
                 }
             }
-        } }, confirmButton = { TextButton(onClick = onDismiss) { Text("Close") } })
+        } }, confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.common_close)) } })
 }

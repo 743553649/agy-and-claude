@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  由 scripts/i18n 生成，请勿手工调整条目顺序。
+  译法基准见 docs/i18n/GLOSSARY.md
+-->
+<resources>
+
+    <string name="common_active">Active</string>
+    <string name="common_add">Add</string>
+    <string name="common_ai_chat">AI Chat</string>
+    <string name="common_back">Back</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_chat_telemetry_tokens">Chat Telemetry &amp; Tokens</string>
+    <string name="common_clear">Clear</string>
+    <string name="common_clear_all">Clear All</string>
+    <string name="common_close">Close</string>
+    <string name="common_close_tab">Close Tab</string>
+    <string name="common_create">Create</string>
+    <string name="common_delete">Delete</string>
+    <string name="common_details">Details</string>
+    <string name="common_discard_changes">Discard Changes</string>
+    <string name="common_dismiss">Dismiss</string>
+    <string name="common_done">Done</string>
+    <string name="common_edit">Edit</string>
+    <string name="common_failed_to_load_image">Failed to load image</string>
+    <string name="common_install">Install</string>
+    <string name="common_installed">Installed</string>
+    <string name="common_later">Later</string>
+    <string name="common_name">Name</string>
+    <string name="common_new_chat">New Chat</string>
+    <string name="common_new_file">New File</string>
+    <string name="common_new_folder">New Folder</string>
+    <string name="common_new_name">New Name</string>
+    <string name="common_new_tab">New Tab</string>
+    <string name="common_options">Options</string>
+    <string name="common_progress">progress</string>
+    <string name="common_reconnect">Reconnect</string>
+    <string name="common_refresh">Refresh</string>
+    <string name="common_reload">Reload</string>
+    <string name="common_remove">Remove</string>
+    <string name="common_rename">Rename</string>
+    <string name="common_restart_app">Restart App</string>
+    <string name="common_retry">Retry</string>
+    <string name="common_save">Save</string>
+    <string name="common_search">Search</string>
+    <string name="common_selected">Selected</string>
+    <string name="common_share">Share</string>
+    <string name="common_sign_in">Sign In</string>
+    <string name="common_skip">Skip</string>
+    <string name="common_stop">Stop</string>
+    <string name="common_stop_server">Stop Server</string>
+    <string name="common_terminal">Terminal</string>
+    <string name="common_thinking">Thinking</string>
+    <string name="common_undo">Undo</string>
+    <string name="common_update">Update</string>
+    <string name="common_webview_extension_mcp">+ WebView Extension MCP</string>
+    <string name="common_zoom_in">Zoom In</string>
+    <string name="common_zoom_out">Zoom Out</string>
+</resources>

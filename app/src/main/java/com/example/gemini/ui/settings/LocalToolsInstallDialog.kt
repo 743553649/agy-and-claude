@@ -18,6 +18,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,6 +32,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.gemini.data.local.BootstrapSource
+import com.example.gemini.R
 import com.example.gemini.data.local.LocalEnvironmentManager
 import com.example.gemini.data.local.LocalInstallerState
 import com.example.gemini.data.preferences.AuthPreferences
@@ -958,7 +960,7 @@ fun LocalToolsInstallDialog(
                                 onClick = onDismiss,
                                 shape = RoundedCornerShape(10.dp)
                             ) {
-                                Text("Cancel")
+                                Text(stringResource(R.string.common_cancel))
                             }
                         }
                     }
@@ -1085,7 +1087,7 @@ fun LocalToolsInstallDialog(
                                     modifier = Modifier.weight(0.7f),
                                     shape = RoundedCornerShape(10.dp)
                                 ) {
-                                    Text("Close")
+                                    Text(stringResource(R.string.common_close))
                                 }
                             }
                         }

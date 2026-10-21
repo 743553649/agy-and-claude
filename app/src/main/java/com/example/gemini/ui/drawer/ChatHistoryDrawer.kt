@@ -1,6 +1,7 @@
 package com.example.gemini.ui.drawer
 
 import com.example.gemini.ui.components.accent
+import com.example.gemini.R
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import androidx.compose.animation.AnimatedVisibility
@@ -43,6 +44,7 @@ import android.widget.Toast
 import androidx.compose.material.icons.outlined.ContentCopy
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -394,10 +396,10 @@ fun ChatHistoryDrawer(
                             onCancelLogin()
                         }
                     ) {
-                        Text("Later")
+                        Text(stringResource(R.string.common_later))
                     }
                     TextButton(onClick = { showSigningInProgressDialog = false }) {
-                        Text("Cancel")
+                        Text(stringResource(R.string.common_cancel))
                     }
                 }
             }
@@ -1626,9 +1628,9 @@ private fun ChatHistoryItemRow(
                     TextButton(onClick = {
                         claudeActions.rename(conv.id, newTitle)
                         showRename = false
-                    }, enabled = newTitle.isNotBlank()) { Text("Save") }
+                    }, enabled = newTitle.isNotBlank()) { Text(stringResource(R.string.common_save)) }
                 },
-                dismissButton = { TextButton(onClick = { showRename = false }) { Text("Cancel") } }
+                dismissButton = { TextButton(onClick = { showRename = false }) { Text(stringResource(R.string.common_cancel)) } }
             )
         }
 

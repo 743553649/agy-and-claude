@@ -25,6 +25,7 @@ import androidx.compose.material.icons.outlined.Layers
 import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.outlined.SelectAll
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,6 +46,7 @@ import android.net.Uri
 import android.content.Intent
 import java.io.File
 import com.example.gemini.data.remote.HubMediaResolver
+import com.example.gemini.R
 import kotlinx.coroutines.launch
 import com.example.gemini.domain.model.ChatMessage
 import com.example.gemini.domain.model.MessageRole
@@ -632,7 +634,7 @@ fun AssistantMessageFooter(
                             onRetry(message)
                         }) { Text("Regenerate", color = ClaudeTerracotta, fontWeight = FontWeight.Bold) }
                     },
-                    dismissButton = { TextButton(onClick = { confirmRetry = false }) { Text("Cancel") } }
+                    dismissButton = { TextButton(onClick = { confirmRetry = false }) { Text(stringResource(R.string.common_cancel)) } }
                 )
             }
 

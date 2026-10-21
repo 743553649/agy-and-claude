@@ -22,6 +22,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,6 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.TermuxActivity
+import com.example.gemini.R
 import com.example.gemini.data.local.BootstrapSource
 import com.example.gemini.data.local.LocalEnvironmentManager
 import com.example.gemini.data.local.LocalInstallerState
@@ -1035,7 +1037,7 @@ fun FullScreenLocalToolsInstaller(
                                     .height(44.dp),
                                 shape = RoundedCornerShape(12.dp)
                             ) {
-                                Text("Skip")
+                                Text(stringResource(R.string.common_skip))
                             }
                         }
                     }
