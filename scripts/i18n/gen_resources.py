@@ -38,6 +38,11 @@ HEADER = """<?xml version="1.0" encoding="utf-8"?>
 """
 
 
+def xml_comment(s):
+    """XML 注释里不允许出现 --，需要打断，否则资源文件解析失败。"""
+    return s.replace("--", "- -")
+
+
 def xml_escape(s):
     return (s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
              .replace("'", "\\'").replace('"', '\\"'))
@@ -62,7 +67,7 @@ for module, items in sorted(by_module.items()):
     zh_lines = [HEADER]
     for c in items:
         en_lines.append(f'    <string name="{c["key"]}">{xml_escape(c["en"])}</string>')
-        zh_lines.append(f'    <!-- 原文: {c["en"]} -->')
+        zh_lines.append(f'    <!-- 原文: {xml_comment(c["en"])} -->')
         zh_lines.append(f'    <string name="{c["key"]}">{xml_escape(c["zh"])}</string>')
     en_lines.append("</resources>\n")
     zh_lines.append("</resources>\n")

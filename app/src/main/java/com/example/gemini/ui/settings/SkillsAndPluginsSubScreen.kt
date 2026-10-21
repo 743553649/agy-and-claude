@@ -157,7 +157,7 @@ fun SkillsAndPluginsSubScreen(
                     text = {
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                             Icon(Icons.Outlined.Storefront, contentDescription = null, modifier = Modifier.size(16.dp))
-                            Text("Store", fontSize = 13.sp, fontWeight = if (selectedTab == 2) FontWeight.Bold else FontWeight.Normal)
+                            Text(stringResource(R.string.settings_store), fontSize = 13.sp, fontWeight = if (selectedTab == 2) FontWeight.Bold else FontWeight.Normal)
                         }
                     }
                 )
@@ -233,7 +233,7 @@ private fun SkillsTabView(
                 FilterChip(
                     selected = filterScope == "GLOBAL",
                     onClick = { onSetScope("GLOBAL") },
-                    label = { Text("Global (Default)", fontSize = 11.5.sp) },
+                    label = { Text(stringResource(R.string.settings_global_default), fontSize = 11.5.sp) },
                     leadingIcon = if (filterScope == "GLOBAL") {
                         { Icon(Icons.Default.Check, contentDescription = null, modifier = Modifier.size(14.dp)) }
                     } else null,
@@ -242,7 +242,7 @@ private fun SkillsTabView(
                 FilterChip(
                     selected = filterScope == "WORKSPACE",
                     onClick = { onSetScope("WORKSPACE") },
-                    label = { Text("Project / Workspace", fontSize = 11.5.sp) },
+                    label = { Text(stringResource(R.string.settings_project_workspace), fontSize = 11.5.sp) },
                     leadingIcon = if (filterScope == "WORKSPACE") {
                         { Icon(Icons.Default.Check, contentDescription = null, modifier = Modifier.size(14.dp)) }
                     } else null,
@@ -251,7 +251,7 @@ private fun SkillsTabView(
                 FilterChip(
                     selected = filterScope == "ALL",
                     onClick = { onSetScope("ALL") },
-                    label = { Text("All", fontSize = 11.5.sp) },
+                    label = { Text(stringResource(R.string.settings_all), fontSize = 11.5.sp) },
                     shape = RoundedCornerShape(8.dp)
                 )
             }
@@ -419,7 +419,7 @@ private fun SkillItemCard(
                     modifier = Modifier.weight(1f)
                 )
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("View SKILL.md", fontSize = 11.sp, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Medium)
+                    Text(stringResource(R.string.settings_view_skill_md), fontSize = 11.sp, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Medium)
                     Icon(Icons.Default.ChevronRight, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(16.dp))
                 }
             }
@@ -468,7 +468,7 @@ private fun InstalledPluginsTabView(
             }
         } else if (plugins.isEmpty()) {
             Box(modifier = Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
-                Text("No plugin bundles installed in ~/.gemini/config/plugins/.", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                Text(stringResource(R.string.settings_no_plugin_bundles_installed_in_gemini_co), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
             }
         } else {
             LazyColumn(
@@ -500,7 +500,7 @@ private fun InstalledPluginCard(
     if (showDeleteConfirmDialog) {
         AlertDialog(
             onDismissRequest = { showDeleteConfirmDialog = false },
-            title = { Text("Delete Plugin?") },
+            title = { Text(stringResource(R.string.settings_delete_plugin)) },
             text = {
                 Text("Are you sure you want to delete '${plugin.displayName.ifBlank { plugin.name }}' (${plugin.name})? This will remove its bundled skills from ~/.gemini/config/plugins/.")
             },
@@ -707,7 +707,7 @@ private fun GooglePluginsStoreTabView(
             }
         } else if (catalog.isEmpty()) {
             Box(modifier = Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
-                Text("No official Google plugins catalog available.", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                Text(stringResource(R.string.settings_no_official_google_plugins_catalog_avail), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
             }
         } else {
             LazyColumn(
@@ -940,7 +940,7 @@ fun SkillDetailMarkdownDialog(
                         }
                     } else {
                         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                            Text("No markdown content found in SKILL.md", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
+                            Text(stringResource(R.string.settings_no_markdown_content_found_in_skill_md), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
                         }
                     }
                 }

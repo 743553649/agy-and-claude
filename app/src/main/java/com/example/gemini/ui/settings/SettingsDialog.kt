@@ -1028,7 +1028,7 @@ private fun AppearanceSubScreen(
                     onClick = { onSetChatFontScale(1.0f) },
                     contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp)
                 ) {
-                    Text("Reset (1.0x)", fontSize = 12.sp, color = ClaudeTerracotta)
+                    Text(stringResource(R.string.settings_reset_1_0x), fontSize = 12.sp, color = ClaudeTerracotta)
                 }
             }
         }
@@ -1350,7 +1350,7 @@ private fun AppearanceSubScreen(
                             ) {
                                 Icon(Icons.Outlined.ExpandLess, contentDescription = null, tint = if (isVert) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f), modifier = Modifier.size(16.dp))
                                 Spacer(modifier = Modifier.width(6.dp))
-                                Text("Vertical", fontSize = 12.sp, fontWeight = if (isVert) FontWeight.Bold else FontWeight.Normal, color = if (isVert) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface)
+                                Text(stringResource(R.string.settings_vertical), fontSize = 12.sp, fontWeight = if (isVert) FontWeight.Bold else FontWeight.Normal, color = if (isVert) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface)
                             }
                         }
 
@@ -1370,7 +1370,7 @@ private fun AppearanceSubScreen(
                             ) {
                                 Icon(Icons.Outlined.ChevronRight, contentDescription = null, tint = if (!isVert) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f), modifier = Modifier.size(16.dp))
                                 Spacer(modifier = Modifier.width(6.dp))
-                                Text("Horizontal", fontSize = 12.sp, fontWeight = if (!isVert) FontWeight.Bold else FontWeight.Normal, color = if (!isVert) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface)
+                                Text(stringResource(R.string.settings_horizontal), fontSize = 12.sp, fontWeight = if (!isVert) FontWeight.Bold else FontWeight.Normal, color = if (!isVert) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface)
                             }
                         }
                     }
@@ -1543,7 +1543,7 @@ private fun AppearanceSubScreen(
                     ) {
                         Icon(Icons.Outlined.Refresh, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Reset Screen Position to Right-Center", fontSize = 12.sp)
+                        Text(stringResource(R.string.settings_reset_screen_position_to_right_center), fontSize = 12.sp)
                     }
                 }
             }
@@ -1899,7 +1899,7 @@ private fun ServersSubScreen(
                     colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta),
                     shape = RoundedCornerShape(8.dp)
                 ) {
-                    Text("Keep Editing", fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.settings_keep_editing), fontWeight = FontWeight.Bold)
                 }
             },
             dismissButton = {
@@ -1965,7 +1965,7 @@ private fun ServersSubScreen(
                     colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta),
                     shape = RoundedCornerShape(8.dp)
                 ) {
-                    Text("Reopen Now", fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.settings_reopen_now), fontWeight = FontWeight.Bold)
                 }
             },
             dismissButton = {
@@ -2010,7 +2010,7 @@ private fun ServersSubScreen(
                 OutlinedTextField(
                     value = sharedHost,
                     onValueChange = { sharedHost = it; saveFeedback = null },
-                    label = { Text("Server Host / IP Address (Shared)") },
+                    label = { Text(stringResource(R.string.settings_server_host_ip_address_shared)) },
                     placeholder = { Text("127.0.0.1") },
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
@@ -2023,7 +2023,7 @@ private fun ServersSubScreen(
                     OutlinedTextField(
                         value = hubPort,
                         onValueChange = { hubPort = it; saveFeedback = null },
-                        label = { Text("AGY Hub Port") },
+                        label = { Text(stringResource(R.string.settings_agy_hub_port)) },
                         placeholder = { Text(com.example.gemini.BuildConfig.HUB_PORT.toString()) },
                         modifier = Modifier.weight(1f),
                         singleLine = true,
@@ -2032,7 +2032,7 @@ private fun ServersSubScreen(
                     OutlinedTextField(
                         value = bridgePort,
                         onValueChange = { bridgePort = it; saveFeedback = null },
-                        label = { Text("IDE Bridge Port") },
+                        label = { Text(stringResource(R.string.settings_ide_bridge_port)) },
                         placeholder = { Text(com.example.gemini.BuildConfig.BRIDGE_PORT.toString()) },
                         modifier = Modifier.weight(1f),
                         singleLine = true,
@@ -2130,7 +2130,7 @@ private fun ServersSubScreen(
                             CircularProgressIndicator(modifier = Modifier.size(13.dp), strokeWidth = 2.dp)
                             Spacer(modifier = Modifier.width(6.dp))
                         }
-                        Text("Test Hub", fontSize = 12.sp)
+                        Text(stringResource(R.string.settings_test_hub), fontSize = 12.sp)
                     }
 
                     OutlinedButton(
@@ -2152,7 +2152,7 @@ private fun ServersSubScreen(
                             CircularProgressIndicator(modifier = Modifier.size(13.dp), strokeWidth = 2.dp)
                             Spacer(modifier = Modifier.width(6.dp))
                         }
-                        Text("Test Bridge", fontSize = 12.sp)
+                        Text(stringResource(R.string.settings_test_bridge), fontSize = 12.sp)
                     }
                 }
             }
@@ -2180,7 +2180,7 @@ private fun ServersSubScreen(
                 OutlinedTextField(
                     value = bridgeBinPath,
                     onValueChange = { bridgeBinPath = it; saveFeedback = null },
-                    label = { Text("IDE Bridge Binary Path") },
+                    label = { Text(stringResource(R.string.settings_ide_bridge_binary_path)) },
                     placeholder = { Text(authPrefs.getDefaultBridgeBinaryPath()) },
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
@@ -2192,7 +2192,7 @@ private fun ServersSubScreen(
                 OutlinedTextField(
                     value = agyBinPath,
                     onValueChange = { agyBinPath = it; saveFeedback = null },
-                    label = { Text("AGY Hub Binary Path") },
+                    label = { Text(stringResource(R.string.settings_agy_hub_binary_path)) },
                     placeholder = { Text(authPrefs.getDefaultAgyBinaryPath()) },
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
@@ -2204,7 +2204,7 @@ private fun ServersSubScreen(
                 OutlinedTextField(
                     value = claudeBinPath,
                     onValueChange = { claudeBinPath = it; saveFeedback = null },
-                    label = { Text("Claude Code Binary Path") },
+                    label = { Text(stringResource(R.string.settings_claude_code_binary_path)) },
                     placeholder = { Text(authPrefs.getDefaultClaudeBinaryPath()) },
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
@@ -2243,7 +2243,7 @@ private fun ServersSubScreen(
                 ) {
                     Icon(imageVector = Icons.Outlined.RestartAlt, contentDescription = null, modifier = Modifier.size(15.dp))
                     Spacer(modifier = Modifier.width(6.dp))
-                    Text("Reset All to Defaults", fontSize = 12.sp)
+                    Text(stringResource(R.string.settings_reset_all_to_defaults), fontSize = 12.sp)
                 }
             }
         }
@@ -2274,7 +2274,7 @@ private fun ServersSubScreen(
                         securityToken = filtered
                         saveFeedback = null
                     },
-                    label = { Text("12-Character Secret Token") },
+                    label = { Text(stringResource(R.string.settings_12_character_secret_token)) },
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
                     shape = RoundedCornerShape(10.dp),
@@ -2311,7 +2311,7 @@ private fun ServersSubScreen(
                     ) {
                         Icon(imageVector = Icons.Outlined.Shuffle, contentDescription = null, modifier = Modifier.size(15.dp))
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Randomize", fontSize = 12.sp)
+                        Text(stringResource(R.string.settings_randomize), fontSize = 12.sp)
                     }
 
                     OutlinedButton(
@@ -2326,7 +2326,7 @@ private fun ServersSubScreen(
                     ) {
                         Icon(imageVector = Icons.Outlined.ContentCopy, contentDescription = null, modifier = Modifier.size(15.dp))
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Copy Header", fontSize = 12.sp)
+                        Text(stringResource(R.string.settings_copy_header), fontSize = 12.sp)
                     }
                 }
             }
@@ -2372,7 +2372,7 @@ private fun ServersSubScreen(
         ) {
             Icon(imageVector = Icons.Default.Save, contentDescription = null, modifier = Modifier.size(16.dp))
             Spacer(modifier = Modifier.width(8.dp))
-            Text("Save Server & Security Settings", fontWeight = FontWeight.Bold)
+            Text(stringResource(R.string.settings_save_server_security_settings), fontWeight = FontWeight.Bold)
         }
     }
 }
@@ -2577,7 +2577,7 @@ private fun McpSubScreen(
                             modifier = Modifier.size(16.dp)
                         )
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Add Server", fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.settings_add_server), fontSize = 13.sp, fontWeight = FontWeight.Bold)
                     }
                 }
 
@@ -2597,7 +2597,7 @@ private fun McpSubScreen(
                         tint = ClaudeTerracotta
                     )
                     Spacer(modifier = Modifier.width(6.dp))
-                    Text("Browse MCP Catalog / Marketplace (1-Click)", fontSize = 13.sp, fontWeight = FontWeight.SemiBold, color = ClaudeTerracotta)
+                    Text(stringResource(R.string.settings_browse_mcp_catalog_marketplace_1_click), fontSize = 13.sp, fontWeight = FontWeight.SemiBold, color = ClaudeTerracotta)
                 }
             }
         }
@@ -2802,7 +2802,7 @@ private fun McpSubScreen(
                                 modifier = Modifier.size(16.dp)
                             )
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text("Retry Connection", fontSize = 12.5.sp, fontWeight = FontWeight.Bold)
+                            Text(stringResource(R.string.settings_retry_connection), fontSize = 12.5.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }
@@ -3044,7 +3044,7 @@ private fun McpSubScreen(
                                 ) {
                                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                                         Icon(imageVector = Icons.Default.Warning, contentDescription = null, tint = Color.Red, modifier = Modifier.size(14.dp))
-                                        Text("Connection Issue", fontSize = 11.sp, fontWeight = FontWeight.Bold, color = Color.Red)
+                                        Text(stringResource(R.string.settings_connection_issue), fontSize = 11.sp, fontWeight = FontWeight.Bold, color = Color.Red)
                                     }
                                     Icon(
                                         imageVector = if (isErrorExpanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
@@ -3242,7 +3242,7 @@ private fun McpSubScreen(
         val targetName = serverToDelete ?: ""
         AlertDialog(
             onDismissRequest = { serverToDelete = null },
-            title = { Text("Remove MCP Server?") },
+            title = { Text(stringResource(R.string.settings_remove_mcp_server)) },
             text = {
                 Text("Are you sure you want to remove \"$targetName\" from global mcp_config.json? The server and its tools will be disconnected.")
             },
@@ -3542,8 +3542,8 @@ private fun AddEditMcpServerDialog(
                         name = it
                         validationError = null
                     },
-                    label = { Text("Server Name *") },
-                    placeholder = { Text("e.g. stitch, filesystem, github") },
+                    label = { Text(stringResource(R.string.settings_server_name)) },
+                    placeholder = { Text(stringResource(R.string.settings_e_g_stitch_filesystem_github)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -3573,7 +3573,7 @@ private fun AddEditMcpServerDialog(
                                 },
                                 contentPadding = PaddingValues(horizontal = 6.dp, vertical = 2.dp)
                             ) {
-                                Text("Format", fontSize = 11.sp, color = ClaudeTerracotta)
+                                Text(stringResource(R.string.settings_format), fontSize = 11.sp, color = ClaudeTerracotta)
                             }
                         }
 
@@ -3584,7 +3584,7 @@ private fun AddEditMcpServerDialog(
                                 validationError = null
                             },
                             placeholder = {
-                                Text("{\n  \"command\": \"npx\",\n  \"args\": [...]\n}")
+                                Text(stringResource(R.string.settings_n_command_npx_n_args_n))
                             },
                             textStyle = androidx.compose.ui.text.TextStyle(
                                 fontFamily = FontFamily.Monospace,
@@ -3604,8 +3604,8 @@ private fun AddEditMcpServerDialog(
                             command = it
                             validationError = null
                         },
-                        label = { Text("Command *") },
-                        placeholder = { Text("e.g. npx, python3, node, uvx") },
+                        label = { Text(stringResource(R.string.settings_command)) },
+                        placeholder = { Text(stringResource(R.string.settings_e_g_npx_python3_node_uvx)) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -3614,8 +3614,8 @@ private fun AddEditMcpServerDialog(
                     OutlinedTextField(
                         value = argsText,
                         onValueChange = { argsText = it },
-                        label = { Text("Arguments (space separated)") },
-                        placeholder = { Text("e.g. -y @modelcontextprotocol/server-filesystem .") },
+                        label = { Text(stringResource(R.string.settings_arguments_space_separated)) },
+                        placeholder = { Text(stringResource(R.string.settings_e_g_y_modelcontextprotocol_server_filesy)) },
                         minLines = 2,
                         maxLines = 4,
                         modifier = Modifier.fillMaxWidth()
@@ -3625,8 +3625,8 @@ private fun AddEditMcpServerDialog(
                     OutlinedTextField(
                         value = cwdText,
                         onValueChange = { cwdText = it },
-                        label = { Text("Working Directory (optional)") },
-                        placeholder = { Text("e.g. ~/projects/my-app") },
+                        label = { Text(stringResource(R.string.settings_working_directory_optional)) },
+                        placeholder = { Text(stringResource(R.string.settings_e_g_projects_my_app)) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -3635,8 +3635,8 @@ private fun AddEditMcpServerDialog(
                     OutlinedTextField(
                         value = envText,
                         onValueChange = { envText = it },
-                        label = { Text("Environment Variables (KEY=VALUE per line)") },
-                        placeholder = { Text("API_KEY=xyz\nDEBUG=true") },
+                        label = { Text(stringResource(R.string.settings_environment_variables_key_value_per_line)) },
+                        placeholder = { Text(stringResource(R.string.settings_api_key_xyz_ndebug_true)) },
                         minLines = 2,
                         maxLines = 4,
                         modifier = Modifier.fillMaxWidth()
@@ -3649,8 +3649,8 @@ private fun AddEditMcpServerDialog(
                             serverUrl = it
                             validationError = null
                         },
-                        label = { Text("SSE Endpoint URL *") },
-                        placeholder = { Text("e.g. https://stitch.googleapis.com/mcp or http://127.0.0.1:8000/sse") },
+                        label = { Text(stringResource(R.string.settings_sse_endpoint_url)) },
+                        placeholder = { Text(stringResource(R.string.settings_e_g_https_stitch_googleapis_com_mcp_or_h)) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -3659,8 +3659,8 @@ private fun AddEditMcpServerDialog(
                     OutlinedTextField(
                         value = headersText,
                         onValueChange = { headersText = it },
-                        label = { Text("HTTP Headers (Header: Value per line)") },
-                        placeholder = { Text("X-Goog-Api-Key: AQ.Ab8RN6...\nAuthorization: Bearer token") },
+                        label = { Text(stringResource(R.string.settings_http_headers_header_value_per_line)) },
+                        placeholder = { Text(stringResource(R.string.settings_x_goog_api_key_aq_ab8rn6_nauthorization)) },
                         minLines = 3,
                         maxLines = 6,
                         supportingText = {
@@ -3909,7 +3909,7 @@ private fun TerminalSubScreen(
                                 sshTestStatus = null
                                 sshSaveFeedback = null
                             },
-                            label = { Text("SSH Host") },
+                            label = { Text(stringResource(R.string.settings_ssh_host)) },
                             modifier = Modifier.weight(2f),
                             singleLine = true,
                             shape = RoundedCornerShape(8.dp)
@@ -3921,7 +3921,7 @@ private fun TerminalSubScreen(
                                 sshTestStatus = null
                                 sshSaveFeedback = null
                             },
-                            label = { Text("Port") },
+                            label = { Text(stringResource(R.string.settings_port)) },
                             modifier = Modifier.weight(1f),
                             singleLine = true,
                             shape = RoundedCornerShape(8.dp)
@@ -3938,7 +3938,7 @@ private fun TerminalSubScreen(
                                 sshTestStatus = null
                                 sshSaveFeedback = null
                             },
-                            label = { Text("User") },
+                            label = { Text(stringResource(R.string.settings_user)) },
                             modifier = Modifier.weight(1f),
                             singleLine = true,
                             shape = RoundedCornerShape(8.dp)
@@ -3950,7 +3950,7 @@ private fun TerminalSubScreen(
                                 sshTestStatus = null
                                 sshSaveFeedback = null
                             },
-                            label = { Text("Password") },
+                            label = { Text(stringResource(R.string.settings_password)) },
                             modifier = Modifier.weight(1f),
                             singleLine = true,
                             shape = RoundedCornerShape(8.dp)
@@ -3992,7 +3992,7 @@ private fun TerminalSubScreen(
                             CircularProgressIndicator(modifier = Modifier.size(14.dp), strokeWidth = 2.dp)
                             Spacer(modifier = Modifier.width(8.dp))
                         }
-                        Text("Test SSH Connection", fontSize = 12.sp)
+                        Text(stringResource(R.string.settings_test_ssh_connection), fontSize = 12.sp)
                     }
 
                     if (sshSaveFeedback != null) {
@@ -4026,7 +4026,7 @@ private fun TerminalSubScreen(
                     ) {
                         Icon(imageVector = Icons.Default.Save, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Save SSH Settings", fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                        Text(stringResource(R.string.settings_save_ssh_settings), fontWeight = FontWeight.Bold, fontSize = 12.sp)
                     }
                 } else {
                     // Local tools mode details
@@ -4036,7 +4036,7 @@ private fun TerminalSubScreen(
 
                     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                         Column {
-                            Text("Embedded Linux Rootfs", fontSize = 13.5.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+                            Text(stringResource(R.string.settings_embedded_linux_rootfs), fontSize = 13.5.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
                             Text(text = if (isLocalToolsInstalled) "Installed and ready" else "Not installed (>30MB download)", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                         }
                         Surface(
@@ -4066,7 +4066,7 @@ private fun TerminalSubScreen(
                             ) {
                                 Icon(imageVector = Icons.Outlined.Delete, contentDescription = null, modifier = Modifier.size(15.dp), tint = Color.Red)
                                 Spacer(modifier = Modifier.width(6.dp))
-                                Text("Delete All & Factory Reset", fontSize = 12.5.sp, color = Color.Red, fontWeight = FontWeight.SemiBold)
+                                Text(stringResource(R.string.settings_delete_all_factory_reset_2), fontSize = 12.5.sp, color = Color.Red, fontWeight = FontWeight.SemiBold)
                             }
                         } else {
                             Button(
@@ -4075,7 +4075,7 @@ private fun TerminalSubScreen(
                                 shape = RoundedCornerShape(8.dp),
                                 colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta)
                             ) {
-                                Text("Download & Install Local Tools", fontSize = 12.5.sp)
+                                Text(stringResource(R.string.settings_download_install_local_tools), fontSize = 12.5.sp)
                             }
                         }
                     }
@@ -4104,7 +4104,7 @@ private fun TerminalSubScreen(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text("Font Size", fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurface)
+                    Text(stringResource(R.string.settings_font_size), fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurface)
                     Text("${fontSizeState}pt", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
                 }
                 Slider(
@@ -4119,7 +4119,7 @@ private fun TerminalSubScreen(
                 )
 
                 // Cursor Style
-                Text("Cursor Style", fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurface)
+                Text(stringResource(R.string.settings_cursor_style), fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurface)
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                     val cursorOptions = listOf("BLOCK" to "Block █", "UNDERLINE" to "Underline  ", "BAR" to "Bar |")
                     cursorOptions.forEach { (style, label) ->
@@ -4144,7 +4144,7 @@ private fun TerminalSubScreen(
                 }
 
                 // Buffer Size
-                Text("Scrollback Buffer", fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurface)
+                Text(stringResource(R.string.settings_scrollback_buffer), fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurface)
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -4190,7 +4190,7 @@ private fun TerminalSubScreen(
         ) {
             Icon(imageVector = Icons.Default.Terminal, contentDescription = null, modifier = Modifier.size(16.dp))
             Spacer(modifier = Modifier.width(8.dp))
-            Text("Launch Terminal Now", fontWeight = FontWeight.Bold)
+            Text(stringResource(R.string.settings_launch_terminal_now), fontWeight = FontWeight.Bold)
         }
     }
 
@@ -4230,7 +4230,7 @@ private fun TerminalSubScreen(
                     colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
                     shape = RoundedCornerShape(8.dp)
                 ) {
-                    Text("Yes, Continue", fontWeight = FontWeight.Bold, color = Color.White)
+                    Text(stringResource(R.string.settings_yes_continue), fontWeight = FontWeight.Bold, color = Color.White)
                 }
             },
             dismissButton = {
@@ -4312,7 +4312,7 @@ private fun TerminalSubScreen(
                     ),
                     shape = RoundedCornerShape(8.dp)
                 ) {
-                    Text("Delete All Data", fontWeight = FontWeight.Bold, color = Color.White)
+                    Text(stringResource(R.string.settings_delete_all_data), fontWeight = FontWeight.Bold, color = Color.White)
                 }
             },
             dismissButton = {
@@ -4531,7 +4531,7 @@ private fun BackupsSubScreen(
                         ) {
                             Icon(Icons.Default.Stop, contentDescription = null, modifier = Modifier.size(16.dp))
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text("Stop Server Now", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                            Text(stringResource(R.string.settings_stop_server_now), fontSize = 12.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }
@@ -4630,7 +4630,7 @@ private fun BackupsSubScreen(
                 ) {
                     Icon(Icons.Outlined.Archive, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("Run Rootfs Backup (backup_bootstrap)", fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                    Text(stringResource(R.string.settings_run_rootfs_backup_backup_bootstrap), fontWeight = FontWeight.Bold, fontSize = 13.sp)
                 }
             }
         }
@@ -4743,7 +4743,7 @@ private fun BackupsSubScreen(
                 ) {
                     Icon(Icons.Outlined.CloudUpload, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("Backup AGY Chats (backup_chats)", fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                    Text(stringResource(R.string.settings_backup_agy_chats_backup_chats), fontWeight = FontWeight.Bold, fontSize = 13.sp)
                 }
             }
         }
@@ -4813,7 +4813,7 @@ private fun BackupsSubScreen(
                 ) {
                     Icon(Icons.Outlined.SettingsBackupRestore, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("Restore AGY Chats (restore_chats)", fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                    Text(stringResource(R.string.settings_restore_agy_chats_restore_chats), fontWeight = FontWeight.Bold, fontSize = 13.sp)
                 }
             }
         }
@@ -4876,7 +4876,7 @@ private fun BackupsSubScreen(
                 ) {
                     Icon(Icons.Outlined.FolderZip, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("Manage Projects Backup & Restore", fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                    Text(stringResource(R.string.settings_manage_projects_backup_restore), fontWeight = FontWeight.Bold, fontSize = 13.sp)
                 }
             }
         }
@@ -4887,7 +4887,7 @@ private fun BackupsSubScreen(
         AlertDialog(
             onDismissRequest = { showServerRunningAlert = null },
             icon = { Icon(Icons.Default.WarningAmber, contentDescription = null, tint = Color(0xFFF59E0B)) },
-            title = { Text("Server Must Be Stopped", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.settings_server_must_be_stopped), fontWeight = FontWeight.Bold) },
             text = {
                 Text(
                     "The AGY IDE Bridge and Hub server must be offline before running '$actionName'. Would you like to stop the server now?",
@@ -4919,7 +4919,7 @@ private fun BackupsSubScreen(
         AlertDialog(
             onDismissRequest = { showBackupChatsPasswordDialog = false },
             icon = { Icon(Icons.Outlined.CloudUpload, contentDescription = null, tint = ClaudeTerracotta) },
-            title = { Text("Backup AGY Chats", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.settings_backup_agy_chats), fontWeight = FontWeight.Bold) },
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text(
@@ -4949,7 +4949,7 @@ private fun BackupsSubScreen(
                     OutlinedTextField(
                         value = backupChatsPassword,
                         onValueChange = { backupChatsPassword = it },
-                        label = { Text("Encryption Password (Optional)") },
+                        label = { Text(stringResource(R.string.settings_encryption_password_optional)) },
                         singleLine = true,
                         visualTransformation = if (showBackupPasswordText) VisualTransformation.None else PasswordVisualTransformation(),
                         trailingIcon = {
@@ -4981,7 +4981,7 @@ private fun BackupsSubScreen(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta)
                 ) {
-                    Text("Start Backup", fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.settings_start_backup), fontWeight = FontWeight.Bold)
                 }
             },
             dismissButton = {
@@ -5000,7 +5000,7 @@ private fun BackupsSubScreen(
         AlertDialog(
             onDismissRequest = { showRestoreChatsDialog = false },
             icon = { Icon(Icons.Outlined.SettingsBackupRestore, contentDescription = null, tint = QuotaGreen) },
-            title = { Text("Restore AGY Chats", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.settings_restore_agy_chats), fontWeight = FontWeight.Bold) },
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text(
@@ -5012,7 +5012,7 @@ private fun BackupsSubScreen(
                     OutlinedTextField(
                         value = restoreFilePath,
                         onValueChange = { restoreFilePath = it },
-                        label = { Text("Backup Archive Path") },
+                        label = { Text(stringResource(R.string.settings_backup_archive_path)) },
                         placeholder = { Text("/sdcard/Download/agy_chats_backup_....zip") },
                         singleLine = true,
                         trailingIcon = {
@@ -5026,7 +5026,7 @@ private fun BackupsSubScreen(
                     OutlinedTextField(
                         value = restorePassword,
                         onValueChange = { restorePassword = it },
-                        label = { Text("Archive Password (if encrypted)") },
+                        label = { Text(stringResource(R.string.settings_archive_password_if_encrypted)) },
                         singleLine = true,
                         visualTransformation = if (showRestorePasswordText) VisualTransformation.None else PasswordVisualTransformation(),
                         trailingIcon = {
@@ -5059,7 +5059,7 @@ private fun BackupsSubScreen(
                     enabled = restoreFilePath.isNotBlank(),
                     colors = ButtonDefaults.buttonColors(containerColor = QuotaGreen)
                 ) {
-                    Text("Start Restore", fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.settings_start_restore), fontWeight = FontWeight.Bold)
                 }
             },
             dismissButton = {
@@ -5387,13 +5387,13 @@ private fun ProjectsBackupRestoreDialog(
                     Tab(
                         selected = selectedTab == 0,
                         onClick = { selectedTab = 0 },
-                        text = { Text("Backup Projects", fontWeight = if (selectedTab == 0) FontWeight.Bold else FontWeight.Normal) },
+                        text = { Text(stringResource(R.string.settings_backup_projects), fontWeight = if (selectedTab == 0) FontWeight.Bold else FontWeight.Normal) },
                         icon = { Icon(Icons.Outlined.Archive, contentDescription = null, modifier = Modifier.size(16.dp)) }
                     )
                     Tab(
                         selected = selectedTab == 1,
                         onClick = { selectedTab = 1 },
-                        text = { Text("Restore Projects", fontWeight = if (selectedTab == 1) FontWeight.Bold else FontWeight.Normal) },
+                        text = { Text(stringResource(R.string.settings_restore_projects), fontWeight = if (selectedTab == 1) FontWeight.Bold else FontWeight.Normal) },
                         icon = { Icon(Icons.Outlined.SettingsBackupRestore, contentDescription = null, modifier = Modifier.size(16.dp)) }
                     )
                 }
@@ -5449,8 +5449,8 @@ private fun ProjectsBackupRestoreDialog(
                                                 modifier = Modifier.size(16.dp)
                                             )
                                             Column {
-                                                Text("Git-Aware (Clean)", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = if (backupMode == "git") Color(0xFF6366F1) else MaterialTheme.colorScheme.onSurface)
-                                                Text("Excludes node_modules & build caches", fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                                Text(stringResource(R.string.settings_git_aware_clean), fontSize = 12.sp, fontWeight = FontWeight.Bold, color = if (backupMode == "git") Color(0xFF6366F1) else MaterialTheme.colorScheme.onSurface)
+                                                Text(stringResource(R.string.settings_excludes_node_modules_build_caches), fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                             }
                                         }
                                     }
@@ -5476,8 +5476,8 @@ private fun ProjectsBackupRestoreDialog(
                                                 modifier = Modifier.size(16.dp)
                                             )
                                             Column {
-                                                Text("Full Raw Archive", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = if (backupMode == "full") Color(0xFF6366F1) else MaterialTheme.colorScheme.onSurface)
-                                                Text("All files, symlinks & permissions as-is", fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                                Text(stringResource(R.string.settings_full_raw_archive), fontSize = 12.sp, fontWeight = FontWeight.Bold, color = if (backupMode == "full") Color(0xFF6366F1) else MaterialTheme.colorScheme.onSurface)
+                                                Text(stringResource(R.string.settings_all_files_symlinks_permissions_as_is), fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                             }
                                         }
                                     }
@@ -5505,13 +5505,13 @@ private fun ProjectsBackupRestoreDialog(
                                     },
                                     contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp)
                                 ) {
-                                    Text("Select All", fontSize = 11.5.sp, color = Color(0xFF6366F1))
+                                    Text(stringResource(R.string.settings_select_all), fontSize = 11.5.sp, color = Color(0xFF6366F1))
                                 }
                                 TextButton(
                                     onClick = { selectedProjectPaths.clear() },
                                     contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp)
                                 ) {
-                                    Text("Deselect All", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                    Text(stringResource(R.string.settings_deselect_all), fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 }
                             }
                         }
@@ -5744,7 +5744,7 @@ private fun ProjectsBackupRestoreDialog(
                                 restoreZipPath = it
                                 inspectArchive(it.trim())
                             },
-                            label = { Text("Projects Archive File Path") },
+                            label = { Text(stringResource(R.string.settings_projects_archive_file_path)) },
                             placeholder = { Text("/sdcard/Download/Antigem/backups/projects_backup_....zip") },
                             singleLine = true,
                             trailingIcon = {
@@ -5763,7 +5763,7 @@ private fun ProjectsBackupRestoreDialog(
                                 modifier = Modifier.padding(vertical = 4.dp)
                             ) {
                                 CircularProgressIndicator(modifier = Modifier.size(16.dp), strokeWidth = 2.dp, color = Color(0xFF6366F1))
-                                Text("Inspecting archive contents & manifest...", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Text(stringResource(R.string.settings_inspecting_archive_contents_manifest), fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                             }
                         }
 
@@ -5851,8 +5851,8 @@ private fun ProjectsBackupRestoreDialog(
                                         modifier = Modifier.size(16.dp)
                                     )
                                     Column {
-                                        Text("Move existing to .bak.<timestamp> (Safe & Recommended)", fontSize = 11.5.sp, fontWeight = FontWeight.SemiBold)
-                                        Text("Preserves existing code in a backup folder before extracting", fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                        Text(stringResource(R.string.settings_move_existing_to_bak_timestamp_safe_reco), fontSize = 11.5.sp, fontWeight = FontWeight.SemiBold)
+                                        Text(stringResource(R.string.settings_preserves_existing_code_in_a_backup_fold), fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                     }
                                 }
 
@@ -5873,8 +5873,8 @@ private fun ProjectsBackupRestoreDialog(
                                         modifier = Modifier.size(16.dp)
                                     )
                                     Column {
-                                        Text("Overwrite files in-place", fontSize = 11.5.sp, fontWeight = FontWeight.SemiBold)
-                                        Text("Overwrites matching files directly inside target directory", fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                        Text(stringResource(R.string.settings_overwrite_files_in_place), fontSize = 11.5.sp, fontWeight = FontWeight.SemiBold)
+                                        Text(stringResource(R.string.settings_overwrites_matching_files_directly_insid), fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                     }
                                 }
                             }
@@ -5891,14 +5891,14 @@ private fun ProjectsBackupRestoreDialog(
                                 colors = CheckboxDefaults.colors(checkedColor = Color(0xFF6366F1)),
                                 modifier = Modifier.size(20.dp)
                             )
-                            Text("Restore to custom parent directory", fontSize = 12.sp)
+                            Text(stringResource(R.string.settings_restore_to_custom_parent_directory), fontSize = 12.sp)
                         }
 
                         if (useCustomRestoreDir) {
                             OutlinedTextField(
                                 value = customRestoreDir,
                                 onValueChange = { customRestoreDir = it },
-                                label = { Text("Custom Restore Directory") },
+                                label = { Text(stringResource(R.string.settings_custom_restore_directory)) },
                                 placeholder = { Text("/data/data/com.termux/files/home/restored_projects") },
                                 singleLine = true,
                                 modifier = Modifier.fillMaxWidth()
@@ -5935,7 +5935,7 @@ private fun ProjectsBackupRestoreDialog(
                         ) {
                             Icon(Icons.Outlined.SettingsBackupRestore, contentDescription = null, modifier = Modifier.size(18.dp))
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text("Start Restore (restore_projects)", fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                            Text(stringResource(R.string.settings_start_restore_restore_projects), fontWeight = FontWeight.Bold, fontSize = 13.sp)
                         }
                     }
                 }
@@ -6128,7 +6128,7 @@ private fun ScriptExecutionDialog(
                         ) {
                             Icon(Icons.Default.Stop, contentDescription = null, modifier = Modifier.size(16.dp))
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text("Stop Execution", fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                            Text(stringResource(R.string.settings_stop_execution), fontWeight = FontWeight.Bold, fontSize = 13.sp)
                         }
                     } else {
                         Button(
@@ -6283,7 +6283,7 @@ private fun DataProtectionSubScreen(
                     ) {
                         Icon(Icons.Outlined.LockOpen, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Deactivate Uninstall Protection", fontSize = 13.sp)
+                        Text(stringResource(R.string.settings_deactivate_uninstall_protection), fontSize = 13.sp)
                     }
                 } else {
                     Button(
@@ -6306,7 +6306,7 @@ private fun DataProtectionSubScreen(
                     ) {
                         Icon(Icons.Outlined.Security, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Activate Uninstall Protection", fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                        Text(stringResource(R.string.settings_activate_uninstall_protection), fontWeight = FontWeight.Bold, fontSize = 13.sp)
                     }
 
                     Spacer(modifier = Modifier.height(8.dp))
@@ -6323,7 +6323,7 @@ private fun DataProtectionSubScreen(
                     ) {
                         Icon(Icons.Outlined.Settings, contentDescription = null, modifier = Modifier.size(15.dp))
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Open System Device Admin Apps List", fontSize = 12.5.sp)
+                        Text(stringResource(R.string.settings_open_system_device_admin_apps_list), fontSize = 12.5.sp)
                     }
 
                     if (Build.VERSION.SDK_INT >= 33) {
@@ -6353,7 +6353,7 @@ private fun DataProtectionSubScreen(
                                     },
                                     modifier = Modifier.align(Alignment.End)
                                 ) {
-                                    Text("Open App Info", fontSize = 11.5.sp)
+                                    Text(stringResource(R.string.settings_open_app_info), fontSize = 11.5.sp)
                                 }
                             }
                         }
@@ -6432,7 +6432,7 @@ private fun DataProtectionSubScreen(
                 ) {
                     Icon(Icons.Outlined.Storage, contentDescription = null, modifier = Modifier.size(16.dp))
                     Spacer(modifier = Modifier.width(6.dp))
-                    Text("Open Space Manager Preview", fontSize = 13.sp)
+                    Text(stringResource(R.string.settings_open_space_manager_preview), fontSize = 13.sp)
                 }
             }
         }
@@ -6442,7 +6442,7 @@ private fun DataProtectionSubScreen(
         AlertDialog(
             onDismissRequest = { showDeactivateAdminDialog = false },
             icon = { Icon(Icons.Default.Warning, contentDescription = null, tint = MaterialTheme.colorScheme.error) },
-            title = { Text("Disable Uninstall Protection?") },
+            title = { Text(stringResource(R.string.settings_disable_uninstall_protection)) },
             text = {
                 Text(
                     "This will remove AntiGem's Device Admin status. The app will become vulnerable to accidental home-screen uninstallation.",
@@ -6462,7 +6462,7 @@ private fun DataProtectionSubScreen(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
                 ) {
-                    Text("Deactivate")
+                    Text(stringResource(R.string.settings_deactivate))
                 }
             },
             dismissButton = {
@@ -6616,7 +6616,7 @@ private fun CommandsSubScreen(
                         ) {
                             Icon(Icons.Default.Refresh, contentDescription = null, modifier = Modifier.size(16.dp))
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text("Retry Connection", fontWeight = FontWeight.Bold)
+                            Text(stringResource(R.string.settings_retry_connection), fontWeight = FontWeight.Bold)
                         }
                     }
                 }
@@ -6967,13 +6967,13 @@ private fun CommandsSubScreen(
                             FilterChip(
                                 selected = isTermOff,
                                 onClick = { onSetGlobalCustomTerminalPolicy("CASCADE_COMMANDS_AUTO_EXECUTION_OFF") },
-                                label = { Text("✋ Ask Every Time", fontSize = 11.sp) },
+                                label = { Text(stringResource(R.string.settings_ask_every_time), fontSize = 11.sp) },
                                 modifier = Modifier.weight(1f)
                             )
                             FilterChip(
                                 selected = isTermEager,
                                 onClick = { onSetGlobalCustomTerminalPolicy("CASCADE_COMMANDS_AUTO_EXECUTION_EAGER") },
-                                label = { Text("⚡ Auto-Run (Eager)", fontSize = 11.sp) },
+                                label = { Text(stringResource(R.string.settings_auto_run_eager), fontSize = 11.sp) },
                                 modifier = Modifier.weight(1f)
                             )
                         }
@@ -6999,19 +6999,19 @@ private fun CommandsSubScreen(
                             FilterChip(
                                 selected = isFileAsk,
                                 onClick = { onSetGlobalCustomFileAccessPolicy("AGENT_SETTING_POLICY_ASK") },
-                                label = { Text("✋ Ask", fontSize = 11.sp) },
+                                label = { Text(stringResource(R.string.settings_ask), fontSize = 11.sp) },
                                 modifier = Modifier.weight(1f)
                             )
                             FilterChip(
                                 selected = isFileAllow,
                                 onClick = { onSetGlobalCustomFileAccessPolicy("AGENT_SETTING_POLICY_ALLOW") },
-                                label = { Text("✅ Allow", fontSize = 11.sp) },
+                                label = { Text(stringResource(R.string.settings_allow), fontSize = 11.sp) },
                                 modifier = Modifier.weight(1f)
                             )
                             FilterChip(
                                 selected = isFileDeny,
                                 onClick = { onSetGlobalCustomFileAccessPolicy("AGENT_SETTING_POLICY_DENY") },
-                                label = { Text("🚫 Deny", fontSize = 11.sp) },
+                                label = { Text(stringResource(R.string.settings_deny), fontSize = 11.sp) },
                                 modifier = Modifier.weight(1f)
                             )
                         }
@@ -7153,7 +7153,7 @@ private fun CommandsSubScreen(
                 ) {
                     Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(16.dp))
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text("Add Rule", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.settings_add_rule), fontSize = 12.sp, fontWeight = FontWeight.Bold)
                 }
             }
 
@@ -7450,7 +7450,7 @@ private fun CommandsSubScreen(
                                         shape = RoundedCornerShape(8.dp),
                                         colors = ButtonDefaults.buttonColors(containerColor = QuotaGreen)
                                     ) {
-                                        Text("🌐 Set to Inherit Global Settings", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                                        Text(stringResource(R.string.settings_set_to_inherit_global_settings), fontSize = 12.sp, fontWeight = FontWeight.Bold)
                                     }
                                     Spacer(modifier = Modifier.height(8.dp))
                                 }
@@ -7476,7 +7476,7 @@ private fun CommandsSubScreen(
                                         shape = RoundedCornerShape(8.dp),
                                         contentPadding = PaddingValues(horizontal = 4.dp, vertical = 6.dp)
                                     ) {
-                                        Text("🛡️ Default", fontSize = 10.5.sp)
+                                        Text(stringResource(R.string.settings_default), fontSize = 10.5.sp)
                                     }
                                     OutlinedButton(
                                         onClick = {
@@ -7487,7 +7487,7 @@ private fun CommandsSubScreen(
                                         shape = RoundedCornerShape(8.dp),
                                         contentPadding = PaddingValues(horizontal = 4.dp, vertical = 6.dp)
                                     ) {
-                                        Text("💻 Machine", fontSize = 10.5.sp)
+                                        Text(stringResource(R.string.settings_machine), fontSize = 10.5.sp)
                                     }
                                     OutlinedButton(
                                         onClick = {
@@ -7498,7 +7498,7 @@ private fun CommandsSubScreen(
                                         shape = RoundedCornerShape(8.dp),
                                         contentPadding = PaddingValues(horizontal = 4.dp, vertical = 6.dp)
                                     ) {
-                                        Text("⚡ Turbo", fontSize = 10.5.sp)
+                                        Text(stringResource(R.string.settings_turbo), fontSize = 10.5.sp)
                                     }
                                 }
                             }
@@ -7679,7 +7679,7 @@ private fun AddPermissionRuleDialog(
                 verticalArrangement = Arrangement.spacedBy(14.dp)
             ) {
                 // Step 1: Select Action
-                Text("1. Operation Type", fontWeight = FontWeight.SemiBold, fontSize = 12.5.sp)
+                Text(stringResource(R.string.settings_1_operation_type), fontWeight = FontWeight.SemiBold, fontSize = 12.5.sp)
                 Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     actionOptions.forEach { (key, label, desc) ->
                         val isSel = selectedAction == key
@@ -7721,7 +7721,7 @@ private fun AddPermissionRuleDialog(
                 }
 
                 // Step 2: Target Pattern
-                Text("2. Target Pattern", fontWeight = FontWeight.SemiBold, fontSize = 12.5.sp)
+                Text(stringResource(R.string.settings_2_target_pattern), fontWeight = FontWeight.SemiBold, fontSize = 12.5.sp)
                 OutlinedTextField(
                     value = patternText,
                     onValueChange = { patternText = it },
@@ -7759,7 +7759,7 @@ private fun AddPermissionRuleDialog(
                 }
 
                 // Step 3: Decision
-                Text("3. Policy Decision", fontWeight = FontWeight.SemiBold, fontSize = 12.5.sp)
+                Text(stringResource(R.string.settings_3_policy_decision), fontWeight = FontWeight.SemiBold, fontSize = 12.5.sp)
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(6.dp)
@@ -7815,7 +7815,7 @@ private fun AddPermissionRuleDialog(
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta)
             ) {
-                Text("Save Rule", fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.settings_save_rule), fontWeight = FontWeight.Bold)
             }
         },
         dismissButton = {
@@ -8970,7 +8970,7 @@ private fun AboutSubScreen(
                             strokeWidth = 2.dp
                         )
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Checking GitHub...")
+                        Text(stringResource(R.string.settings_checking_github))
                     } else {
                         Icon(
                             imageVector = Icons.Default.Refresh,
@@ -8978,7 +8978,7 @@ private fun AboutSubScreen(
                             modifier = Modifier.size(16.dp)
                         )
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Check for Updates")
+                        Text(stringResource(R.string.settings_check_for_updates))
                     }
                 }
             }
@@ -9098,7 +9098,7 @@ private fun AboutSubScreen(
                                 modifier = Modifier.size(16.dp)
                             )
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text("Export to Downloads", fontSize = 12.5.sp)
+                            Text(stringResource(R.string.settings_export_to_downloads), fontSize = 12.5.sp)
                         }
                     }
 
@@ -9125,7 +9125,7 @@ private fun AboutSubScreen(
                                 modifier = Modifier.size(16.dp)
                             )
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("View File", fontSize = 12.5.sp, color = Color(0xFF00ACC1))
+                            Text(stringResource(R.string.settings_view_file), fontSize = 12.5.sp, color = Color(0xFF00ACC1))
                         }
                     }
                 }

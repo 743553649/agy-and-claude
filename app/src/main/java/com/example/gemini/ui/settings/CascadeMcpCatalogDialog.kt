@@ -125,7 +125,7 @@ fun CascadeMcpCatalogDialog(
                         onSearch(it)
                     },
                     modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text("Search MCP packages (e.g. Firebase, BigQuery, Firestore)...", fontSize = 13.sp) },
+                    placeholder = { Text(stringResource(R.string.settings_search_mcp_packages_e_g_firebase_bigquer), fontSize = 13.sp) },
                     leadingIcon = {
                         Icon(Icons.Default.Search, contentDescription = null, modifier = Modifier.size(18.dp))
                     },
@@ -150,7 +150,7 @@ fun CascadeMcpCatalogDialog(
                     Box(modifier = Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(10.dp)) {
                             CircularProgressIndicator(color = ClaudeTerracotta, modifier = Modifier.size(32.dp))
-                            Text("Loading available MCP catalog...", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                            Text(stringResource(R.string.settings_loading_available_mcp_catalog), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                         }
                     }
                 } else if (availablePlugins.isEmpty()) {
@@ -342,7 +342,7 @@ private fun CascadePluginCard(
                     ) {
                         Icon(Icons.Outlined.Description, contentDescription = null, modifier = Modifier.size(14.dp))
                         Spacer(modifier = Modifier.width(4.dp))
-                        Text("README", fontSize = 11.5.sp)
+                        Text(stringResource(R.string.settings_readme), fontSize = 11.5.sp)
                     }
                 }
             }

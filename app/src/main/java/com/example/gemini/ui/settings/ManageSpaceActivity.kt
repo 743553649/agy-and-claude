@@ -290,7 +290,7 @@ private fun ManageSpaceScreen(
                         }
                         Spacer(modifier = Modifier.width(12.dp))
                         Column {
-                            Text("Total App Footprint", fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+                            Text(stringResource(R.string.settings_total_app_footprint), fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
                             Text(
                                 if (isCalculating) "Calculating storage..." else Formatter.formatFileSize(context, totalDataBytes),
                                 fontSize = 18.sp,
@@ -324,7 +324,7 @@ private fun ManageSpaceScreen(
                         Icon(Icons.Default.CleaningServices, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(22.dp))
                         Spacer(modifier = Modifier.width(10.dp))
                         Column(modifier = Modifier.weight(1f)) {
-                            Text("Temporary Cache", fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+                            Text(stringResource(R.string.settings_temporary_cache), fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
                             Text(
                                 text = "Size: ${Formatter.formatFileSize(context, cacheBytes)}",
                                 fontSize = 12.sp,
@@ -352,7 +352,7 @@ private fun ManageSpaceScreen(
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Text("Clear Temporary Cache")
+                        Text(stringResource(R.string.settings_clear_temporary_cache))
                     }
                 }
             }
@@ -392,7 +392,7 @@ private fun ManageSpaceScreen(
                     ) {
                         Icon(Icons.Default.DeleteForever, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Wipe All App Data")
+                        Text(stringResource(R.string.settings_wipe_all_app_data))
                     }
                 }
             }
@@ -403,8 +403,8 @@ private fun ManageSpaceScreen(
         AlertDialog(
             onDismissRequest = { showResetConfirmation = false },
             icon = { Icon(Icons.Default.Warning, contentDescription = null, tint = MaterialTheme.colorScheme.error) },
-            title = { Text("Confirm Full Reset", fontWeight = FontWeight.Bold) },
-            text = { Text("Are you sure you want to wipe all AntiGem data? This will permanently delete all Linux packages, workspaces, accounts, and chats.") },
+            title = { Text(stringResource(R.string.settings_confirm_full_reset), fontWeight = FontWeight.Bold) },
+            text = { Text(stringResource(R.string.settings_are_you_sure_you_want_to_wipe_all_antige)) },
             confirmButton = {
                 Button(
                     onClick = {
@@ -414,7 +414,7 @@ private fun ManageSpaceScreen(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
                 ) {
-                    Text("Proceed to Confirmation")
+                    Text(stringResource(R.string.settings_proceed_to_confirmation))
                 }
             },
             dismissButton = {
@@ -494,7 +494,7 @@ private fun ManageSpaceScreen(
                     ),
                     shape = RoundedCornerShape(8.dp)
                 ) {
-                    Text("Delete Everything", fontWeight = FontWeight.Bold, color = Color.White)
+                    Text(stringResource(R.string.settings_delete_everything), fontWeight = FontWeight.Bold, color = Color.White)
                 }
             },
             dismissButton = {

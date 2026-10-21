@@ -123,7 +123,7 @@ fun FullScreenLocalToolsInstaller(
                             onClick = onSkip,
                             colors = ButtonDefaults.textButtonColors(contentColor = ClaudeTerracotta)
                         ) {
-                            Text("Skip for Now", fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
+                            Text(stringResource(R.string.settings_skip_for_now), fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
                             Spacer(modifier = Modifier.width(4.dp))
                             Icon(imageVector = Icons.Default.ArrowForward, contentDescription = null, modifier = Modifier.size(16.dp))
                         }
@@ -262,7 +262,7 @@ fun FullScreenLocalToolsInstaller(
                             contentAlignment = Alignment.Center
                         ) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Text("CPU Arch", fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Text(stringResource(R.string.settings_cpu_arch), fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Text(
                                     hardwareInfo.arch,
@@ -290,7 +290,7 @@ fun FullScreenLocalToolsInstaller(
                             contentAlignment = Alignment.Center
                         ) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Text("Address Space", fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Text(stringResource(R.string.settings_address_space), fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Text(
                                     when (hardwareInfo.vaBits) {
@@ -325,7 +325,7 @@ fun FullScreenLocalToolsInstaller(
                             contentAlignment = Alignment.Center
                         ) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Text("LSE Atomics", fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Text(stringResource(R.string.settings_lse_atomics), fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Text(
                                     when (hardwareInfo.hasAtomics) {
@@ -511,7 +511,7 @@ fun FullScreenLocalToolsInstaller(
                                                     .background(Color(0xFF6366F1).copy(alpha = 0.15f))
                                                     .padding(horizontal = 5.dp, vertical = 1.dp)
                                             ) {
-                                                Text("Minimal (~33MB)", fontSize = 9.5.sp, fontWeight = FontWeight.Bold, color = Color(0xFF6366F1))
+                                                Text(stringResource(R.string.settings_minimal_33mb), fontSize = 9.5.sp, fontWeight = FontWeight.Bold, color = Color(0xFF6366F1))
                                             }
                                         }
                                         Spacer(modifier = Modifier.height(2.dp))
@@ -563,21 +563,21 @@ fun FullScreenLocalToolsInstaller(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Text("Release Tag:", fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Text(stringResource(R.string.settings_release_tag), fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 Text(info.releaseTag, fontSize = 12.5.sp, fontFamily = FontFamily.Monospace, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurface)
                             }
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Text("Architecture:", fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Text(stringResource(R.string.settings_architecture), fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 Text(info.arch, fontSize = 12.5.sp, fontFamily = FontFamily.Monospace, fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
                             }
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Text("Archive Size:", fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Text(stringResource(R.string.settings_archive_size), fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 Text(info.sizeFormatted, fontSize = 12.5.sp, fontFamily = FontFamily.Monospace, fontWeight = FontWeight.Bold, color = QuotaGreen)
                             }
                             HorizontalDivider(
@@ -610,7 +610,7 @@ fun FullScreenLocalToolsInstaller(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Text("Downloading Bootstrap", fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
+                                Text(stringResource(R.string.settings_downloading_bootstrap), fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
                                 Text("$pct%", fontSize = 13.5.sp, fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
                             }
                             Spacer(modifier = Modifier.height(10.dp))
@@ -652,7 +652,7 @@ fun FullScreenLocalToolsInstaller(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Text("Unpacking & Extracting", fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
+                                Text(stringResource(R.string.settings_unpacking_extracting), fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
                                 Text("$pct%", fontSize = 13.5.sp, fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
                             }
                             Spacer(modifier = Modifier.height(10.dp))
@@ -693,7 +693,7 @@ fun FullScreenLocalToolsInstaller(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Text("Configuring Shell & Symlinks", fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
+                                Text(stringResource(R.string.settings_configuring_shell_symlinks), fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
                                 CircularProgressIndicator(modifier = Modifier.size(16.dp), color = ClaudeTerracotta, strokeWidth = 2.dp)
                             }
                             Spacer(modifier = Modifier.height(10.dp))
@@ -727,7 +727,7 @@ fun FullScreenLocalToolsInstaller(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Text("Verifying Installation", fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
+                                Text(stringResource(R.string.settings_verifying_installation), fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
                                 CircularProgressIndicator(modifier = Modifier.size(16.dp), color = ClaudeTerracotta, strokeWidth = 2.dp)
                             }
                             Spacer(modifier = Modifier.height(10.dp))
@@ -815,7 +815,7 @@ fun FullScreenLocalToolsInstaller(
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(imageVector = Icons.Default.Terminal, contentDescription = null, modifier = Modifier.size(15.dp), tint = MaterialTheme.colorScheme.onSurfaceVariant)
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text("Installation Log Output", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            Text(stringResource(R.string.settings_installation_log_output), fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         }
                         Icon(
                             imageVector = if (showLogs) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
@@ -907,7 +907,7 @@ fun FullScreenLocalToolsInstaller(
                             .height(46.dp),
                         shape = RoundedCornerShape(12.dp)
                     ) {
-                        Text("Skip Setup & Open AntiGem Chat", fontSize = 14.sp)
+                        Text(stringResource(R.string.settings_skip_setup_open_antigem_chat), fontSize = 14.sp)
                     }
                 }
 
@@ -932,7 +932,7 @@ fun FullScreenLocalToolsInstaller(
                         ) {
                             Icon(imageVector = Icons.Default.Download, contentDescription = null, modifier = Modifier.size(18.dp))
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text("Confirm & Install", fontWeight = FontWeight.Bold, color = Color.White)
+                            Text(stringResource(R.string.settings_confirm_install), fontWeight = FontWeight.Bold, color = Color.White)
                         }
 
                         OutlinedButton(
@@ -942,7 +942,7 @@ fun FullScreenLocalToolsInstaller(
                                 .height(48.dp),
                             shape = RoundedCornerShape(12.dp)
                         ) {
-                            Text("Change")
+                            Text(stringResource(R.string.settings_change))
                         }
                     }
                 }
@@ -955,7 +955,7 @@ fun FullScreenLocalToolsInstaller(
                             .height(48.dp),
                         shape = RoundedCornerShape(12.dp)
                     ) {
-                        Text("Cancel Search")
+                        Text(stringResource(R.string.settings_cancel_search))
                     }
                 }
 
@@ -970,7 +970,7 @@ fun FullScreenLocalToolsInstaller(
                             .height(48.dp),
                         shape = RoundedCornerShape(12.dp)
                     ) {
-                        Text("Run in Background & Open AntiGem")
+                        Text(stringResource(R.string.settings_run_in_background_open_antigem))
                     }
                 }
 
@@ -985,7 +985,7 @@ fun FullScreenLocalToolsInstaller(
                     ) {
                         Icon(imageVector = Icons.Default.Check, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Get Started", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                        Text(stringResource(R.string.settings_get_started), fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Color.White)
                     }
                 }
 
@@ -1013,7 +1013,7 @@ fun FullScreenLocalToolsInstaller(
                         ) {
                             Icon(imageVector = Icons.Default.Refresh, contentDescription = null, modifier = Modifier.size(18.dp))
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text("Retry Installation", fontWeight = FontWeight.Bold, color = Color.White)
+                            Text(stringResource(R.string.settings_retry_installation), fontWeight = FontWeight.Bold, color = Color.White)
                         }
 
                         Row(
@@ -1027,7 +1027,7 @@ fun FullScreenLocalToolsInstaller(
                                     .height(44.dp),
                                 shape = RoundedCornerShape(12.dp)
                             ) {
-                                Text("Change Source")
+                                Text(stringResource(R.string.settings_change_source))
                             }
 
                             OutlinedButton(
@@ -1051,7 +1051,7 @@ fun FullScreenLocalToolsInstaller(
                             .height(46.dp),
                         shape = RoundedCornerShape(12.dp)
                     ) {
-                        Text("Run in Background & Open Chat", color = MaterialTheme.colorScheme.onSurface)
+                        Text(stringResource(R.string.settings_run_in_background_open_chat), color = MaterialTheme.colorScheme.onSurface)
                     }
                 }
             }

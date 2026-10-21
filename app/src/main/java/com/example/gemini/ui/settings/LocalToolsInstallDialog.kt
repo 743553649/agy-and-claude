@@ -211,7 +211,7 @@ fun LocalToolsInstallDialog(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                    Text("Arch", fontSize = 9.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                    Text(stringResource(R.string.settings_arch), fontSize = 9.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                     Spacer(modifier = Modifier.height(1.dp))
                                     Text(
                                         hardwareInfo.arch,
@@ -239,7 +239,7 @@ fun LocalToolsInstallDialog(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                    Text("Address Space", fontSize = 9.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                    Text(stringResource(R.string.settings_address_space), fontSize = 9.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                     Spacer(modifier = Modifier.height(1.dp))
                                     Text(
                                         when (hardwareInfo.vaBits) {
@@ -274,7 +274,7 @@ fun LocalToolsInstallDialog(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                    Text("Atomics", fontSize = 9.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                    Text(stringResource(R.string.settings_atomics), fontSize = 9.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                     Spacer(modifier = Modifier.height(1.dp))
                                     Text(
                                         when (hardwareInfo.hasAtomics) {
@@ -485,7 +485,7 @@ fun LocalToolsInstallDialog(
                                                         .background(Color(0xFF6366F1).copy(alpha = 0.15f))
                                                         .padding(horizontal = 5.dp, vertical = 1.dp)
                                                 ) {
-                                                    Text("Minimal (~33MB)", fontSize = 9.5.sp, fontWeight = FontWeight.Bold, color = Color(0xFF6366F1))
+                                                    Text(stringResource(R.string.settings_minimal_33mb), fontSize = 9.5.sp, fontWeight = FontWeight.Bold, color = Color(0xFF6366F1))
                                                 }
                                             }
                                             Text(
@@ -547,28 +547,28 @@ fun LocalToolsInstallDialog(
                                         modifier = Modifier.fillMaxWidth(),
                                         horizontalArrangement = Arrangement.SpaceBetween
                                     ) {
-                                        Text("Release Tag:", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                        Text(stringResource(R.string.settings_release_tag), fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                         Text(info.releaseTag, fontSize = 11.5.sp, fontFamily = FontFamily.Monospace, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurface)
                                     }
                                     Row(
                                         modifier = Modifier.fillMaxWidth(),
                                         horizontalArrangement = Arrangement.SpaceBetween
                                     ) {
-                                        Text("Architecture:", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                        Text(stringResource(R.string.settings_architecture), fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                         Text(info.arch, fontSize = 11.5.sp, fontFamily = FontFamily.Monospace, fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
                                     }
                                     Row(
                                         modifier = Modifier.fillMaxWidth(),
                                         horizontalArrangement = Arrangement.SpaceBetween
                                     ) {
-                                        Text("Package Size:", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                        Text(stringResource(R.string.settings_package_size), fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                         Text(info.sizeFormatted, fontSize = 11.5.sp, fontFamily = FontFamily.Monospace, fontWeight = FontWeight.Bold, color = QuotaGreen)
                                     }
                                     Row(
                                         modifier = Modifier.fillMaxWidth(),
                                         horizontalArrangement = Arrangement.SpaceBetween
                                     ) {
-                                        Text("Target Sandbox:", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                        Text(stringResource(R.string.settings_target_sandbox), fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                         Text(info.packageName, fontSize = 11.5.sp, fontFamily = FontFamily.Monospace, color = MaterialTheme.colorScheme.onSurface)
                                     }
                                     HorizontalDivider(
@@ -984,7 +984,7 @@ fun LocalToolsInstallDialog(
                             ) {
                                 Icon(imageVector = Icons.Default.Download, contentDescription = null, modifier = Modifier.size(16.dp))
                                 Spacer(modifier = Modifier.width(6.dp))
-                                Text("Confirm & Download", color = Color.White, fontWeight = FontWeight.Bold)
+                                Text(stringResource(R.string.settings_confirm_download), color = Color.White, fontWeight = FontWeight.Bold)
                             }
 
                             OutlinedButton(
@@ -994,7 +994,7 @@ fun LocalToolsInstallDialog(
                                 modifier = Modifier.weight(0.6f),
                                 shape = RoundedCornerShape(10.dp)
                             ) {
-                                Text("Change")
+                                Text(stringResource(R.string.settings_change))
                             }
                         }
                     }
@@ -1005,7 +1005,7 @@ fun LocalToolsInstallDialog(
                             modifier = Modifier.fillMaxWidth(),
                             shape = RoundedCornerShape(10.dp)
                         ) {
-                            Text("Cancel Search")
+                            Text(stringResource(R.string.settings_cancel_search))
                         }
                     }
 
@@ -1055,7 +1055,7 @@ fun LocalToolsInstallDialog(
                                     modifier = Modifier.weight(1f),
                                     shape = RoundedCornerShape(10.dp)
                                 ) {
-                                    Text("Change Source", fontSize = 12.sp)
+                                    Text(stringResource(R.string.settings_change_source), fontSize = 12.sp)
                                 }
                             }
 
@@ -1099,7 +1099,7 @@ fun LocalToolsInstallDialog(
                             modifier = Modifier.fillMaxWidth(),
                             shape = RoundedCornerShape(10.dp)
                         ) {
-                            Text("Run in Background", color = MaterialTheme.colorScheme.onSurface)
+                            Text(stringResource(R.string.settings_run_in_background), color = MaterialTheme.colorScheme.onSurface)
                         }
                     }
                 }

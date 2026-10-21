@@ -46,16 +46,16 @@ fun WebViewExtensionsScreen(onChanged: () -> Unit) {
     }
     LaunchedEffect(Unit) { runCatching { manager.refreshExtensions() }.onFailure { error = it.message } }
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        Text("Install MCP extensions from ZIP files. Changes apply to the running browser immediately.", style = MaterialTheme.typography.bodyMedium)
-        Text("To create an extension with your model, add WebView Extension Developer in MCP settings. It supplies the SDK, draft editing, installation, updates, tests and worker logs.", style = MaterialTheme.typography.bodySmall)
+        Text(stringResource(R.string.settings_install_mcp_extensions_from_zip_files_ch), style = MaterialTheme.typography.bodyMedium)
+        Text(stringResource(R.string.settings_to_create_an_extension_with_your_model_a), style = MaterialTheme.typography.bodySmall)
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Button(enabled = !busy, onClick = { update = null; picker.launch(arrayOf("*/*")) }) { Text("Install ZIP") }
+            Button(enabled = !busy, onClick = { update = null; picker.launch(arrayOf("*/*")) }) { Text(stringResource(R.string.settings_install_zip)) }
             OutlinedButton(enabled = !busy, onClick = { runOperation { manager.refreshExtensions() } }) { Text(stringResource(R.string.common_refresh)) }
             if (busy) CircularProgressIndicator(Modifier.size(24.dp))
         }
         error?.let { Text(it, color = MaterialTheme.colorScheme.error) }
         manager.lastError?.let { Text(it, color = MaterialTheme.colorScheme.error) }
-        if (manager.extensions.isEmpty()) Text("No extensions installed. Choose a ZIP containing manifest.json and a background worker.")
+        if (manager.extensions.isEmpty()) Text(stringResource(R.string.settings_no_extensions_installed_choose_a_zip_con))
         manager.extensions.forEach { extension ->
             Card(Modifier.fillMaxWidth()) {
                 Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -68,27 +68,27 @@ fun WebViewExtensionsScreen(onChanged: () -> Unit) {
                     }
                     if (extension.description.isNotBlank()) Text(extension.description, style = MaterialTheme.typography.bodySmall)
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                        TextButton(enabled = !busy, onClick = { update = extension; picker.launch(arrayOf("*/*")) }) { Text("Update ZIP") }
-                        TextButton(enabled = !busy, onClick = { rename = extension; folder = extension.folderName }) { Text("Rename folder") }
+                        TextButton(enabled = !busy, onClick = { update = extension; picker.launch(arrayOf("*/*")) }) { Text(stringResource(R.string.settings_update_zip)) }
+                        TextButton(enabled = !busy, onClick = { rename = extension; folder = extension.folderName }) { Text(stringResource(R.string.settings_rename_folder)) }
                         TextButton(enabled = !busy && extension.isEnabled, onClick = { runOperation { manager.reload(extension.id) } }) { Text(stringResource(R.string.common_reload)) }
                     }
                 }
             }
         }
-        Text("Add an enabled extension to your model in MCP settings → WebView Extension MCP. Renaming a folder preserves its MCP connection. Updating or reloading restarts that extension's worker.", style = MaterialTheme.typography.bodySmall)
+        Text(stringResource(R.string.settings_add_an_enabled_extension_to_your_model_i), style = MaterialTheme.typography.bodySmall)
     }
     if (zip != null) AlertDialog(
         onDismissRequest = { zip = null }, title = { Text(if (update == null) "Install extension" else "Update extension") },
         text = { Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            OutlinedTextField(value = folder, onValueChange = { folder = it }, enabled = update == null, label = { Text("Folder name") }, singleLine = true)
+            OutlinedTextField(value = folder, onValueChange = { folder = it }, enabled = update == null, label = { Text(stringResource(R.string.settings_folder_name)) }, singleLine = true)
             Text(if (update == null) "The ZIP may contain manifest.json directly or inside one enclosing folder." else "The extension's ID and stored data are preserved. The previous package is restored if loading fails.")
         } },
         confirmButton = { TextButton(enabled = folder.isNotBlank(), onClick = { val uri = zip!!; val id = update?.id; val name = folder; zip = null; runOperation { manager.installArchive(uri, name, id) } }) { Text(if (update == null) "Install" else "Update") } },
         dismissButton = { TextButton(onClick = { zip = null }) { Text(stringResource(R.string.common_cancel)) } }
     )
     rename?.let { extension -> AlertDialog(
-        onDismissRequest = { rename = null }, title = { Text("Rename extension folder") },
-        text = { OutlinedTextField(value = folder, onValueChange = { folder = it }, label = { Text("Folder name") }, singleLine = true) },
+        onDismissRequest = { rename = null }, title = { Text(stringResource(R.string.settings_rename_extension_folder)) },
+        text = { OutlinedTextField(value = folder, onValueChange = { folder = it }, label = { Text(stringResource(R.string.settings_folder_name)) }, singleLine = true) },
         confirmButton = { TextButton(enabled = folder.isNotBlank(), onClick = { val name = folder; rename = null; runOperation { manager.renameFolder(extension.id, name) } }) { Text(stringResource(R.string.common_rename)) } },
         dismissButton = { TextButton(onClick = { rename = null }) { Text(stringResource(R.string.common_cancel)) } }
     ) }
@@ -98,10 +98,10 @@ fun WebViewExtensionsScreen(onChanged: () -> Unit) {
 fun WebViewExtensionMcpPicker(onDismiss: () -> Unit, onSelect: (BrowserExtension) -> Unit) {
     val manager = remember { BrowserExtensionManager.instance }
     LaunchedEffect(Unit) { manager.loadExtensions() }
-    AlertDialog(onDismissRequest = onDismiss, title = { Text("WebView Extension MCP") },
+    AlertDialog(onDismissRequest = onDismiss, title = { Text(stringResource(R.string.settings_webview_extension_mcp)) },
         text = { Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             val available = manager.extensions.filter { it.isEnabled && it.toolCount > 0 }
-            if (available.isEmpty()) Text("Enable or install an extension in Settings → WebView Extensions first.")
+            if (available.isEmpty()) Text(stringResource(R.string.settings_enable_or_install_an_extension_in_settin))
             available.forEach { extension ->
                 OutlinedButton(onClick = { onSelect(extension) }, modifier = Modifier.fillMaxWidth()) {
                     Column(Modifier.fillMaxWidth()) {
