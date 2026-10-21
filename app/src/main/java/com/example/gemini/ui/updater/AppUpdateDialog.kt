@@ -13,6 +13,7 @@ import androidx.compose.material.icons.automirrored.rounded.ArrowForward
 import androidx.compose.material.icons.automirrored.rounded.OpenInNew
 import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.gemini.data.updater.AppUpdateInfo
+import com.example.gemini.R
 import com.example.gemini.data.updater.AppUpdateManager
 import com.example.gemini.data.updater.DownloadState
 import com.example.gemini.theme.QuotaGreen
@@ -340,7 +342,7 @@ fun AppUpdateDialog(
                                 contentPadding = PaddingValues(horizontal = 10.dp, vertical = 4.dp),
                                 colors = ButtonDefaults.textButtonColors(contentColor = onSurfaceVariantColor)
                             ) {
-                                Text("Later", fontSize = 13.sp)
+                                Text(stringResource(R.string.common_later), fontSize = 13.sp)
                             }
                         }
 

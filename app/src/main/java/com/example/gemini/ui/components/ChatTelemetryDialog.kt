@@ -9,6 +9,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.gemini.domain.model.ChatMessage
+import com.example.gemini.R
 import com.example.gemini.domain.model.Conversation
 import com.example.gemini.domain.model.MessageRole
 import com.example.gemini.theme.*
@@ -213,7 +215,7 @@ fun ChatTelemetryDialog(
                                         onOpenSystemPrompt()
                                     }
                                 ) {
-                                    Text("Edit", fontSize = 12.5.sp, color = ClaudeTerracotta, fontWeight = FontWeight.SemiBold)
+                                    Text(stringResource(R.string.common_edit), fontSize = 12.5.sp, color = ClaudeTerracotta, fontWeight = FontWeight.SemiBold)
                                 }
                             }
                         }
@@ -228,7 +230,7 @@ fun ChatTelemetryDialog(
                     colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta),
                     shape = RoundedCornerShape(8.dp)
                 ) {
-                    Text("Close", color = Color.White, fontSize = 13.sp)
+                    Text(stringResource(R.string.common_close), color = Color.White, fontSize = 13.sp)
                 }
             }
         }

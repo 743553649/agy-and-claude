@@ -241,7 +241,7 @@ fun ContextSummarizeAlertBanner(
                         contentPadding = PaddingValues(horizontal = 10.dp, vertical = 4.dp),
                         modifier = Modifier.height(32.dp)
                     ) {
-                        Text("Not Now", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.component_not_now), fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
 
                     DropdownMenu(
@@ -249,28 +249,28 @@ fun ContextSummarizeAlertBanner(
                         onDismissRequest = { showPostponeMenu = false }
                     ) {
                         DropdownMenuItem(
-                            text = { Text("Ask after +5 messages") },
+                            text = { Text(stringResource(R.string.component_ask_after_5_messages)) },
                             onClick = {
                                 onPostpone(5)
                                 showPostponeMenu = false
                             }
                         )
                         DropdownMenuItem(
-                            text = { Text("Ask after +10 messages") },
+                            text = { Text(stringResource(R.string.component_ask_after_10_messages)) },
                             onClick = {
                                 onPostpone(10)
                                 showPostponeMenu = false
                             }
                         )
                         DropdownMenuItem(
-                            text = { Text("Ask after +20 messages") },
+                            text = { Text(stringResource(R.string.component_ask_after_20_messages)) },
                             onClick = {
                                 onPostpone(20)
                                 showPostponeMenu = false
                             }
                         )
                         DropdownMenuItem(
-                            text = { Text("Never for this session") },
+                            text = { Text(stringResource(R.string.component_never_for_this_session)) },
                             onClick = {
                                 onPostpone(1000)
                                 showPostponeMenu = false
@@ -294,7 +294,7 @@ fun ContextSummarizeAlertBanner(
                         modifier = Modifier.size(14.dp)
                     )
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text("Summarize", fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+                    Text(stringResource(R.string.component_summarize), fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
                 }
             }
         }
@@ -440,7 +440,7 @@ fun EditSummaryDialog(
                         colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta),
                         shape = RoundedCornerShape(8.dp)
                     ) {
-                        Text("Save Summary")
+                        Text(stringResource(R.string.component_save_summary))
                     }
                 }
             }

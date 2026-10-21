@@ -621,7 +621,7 @@ fun AssistantMessageFooter(
             if (confirmRetry) {
                 AlertDialog(
                     onDismissRequest = { confirmRetry = false },
-                    title = { Text("Regenerate response?", fontWeight = FontWeight.Bold) },
+                    title = { Text(stringResource(R.string.component_regenerate_response), fontWeight = FontWeight.Bold) },
                     text = {
                         Text(
                             "The same message is sent again and this reply is replaced by a new one.",
@@ -632,7 +632,7 @@ fun AssistantMessageFooter(
                         TextButton(onClick = {
                             confirmRetry = false
                             onRetry(message)
-                        }) { Text("Regenerate", color = ClaudeTerracotta, fontWeight = FontWeight.Bold) }
+                        }) { Text(stringResource(R.string.component_regenerate), color = ClaudeTerracotta, fontWeight = FontWeight.Bold) }
                     },
                     dismissButton = { TextButton(onClick = { confirmRetry = false }) { Text(stringResource(R.string.common_cancel)) } }
                 )

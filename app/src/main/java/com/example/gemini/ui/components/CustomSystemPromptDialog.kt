@@ -16,6 +16,7 @@ import androidx.compose.material.icons.outlined.ContentCopy
 import androidx.compose.material.icons.outlined.Psychology
 import androidx.compose.material.icons.outlined.RestartAlt
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.gemini.data.preferences.AuthPreferences
+import com.example.gemini.R
 import com.example.gemini.theme.ClaudeTerracotta
 
 @Composable
@@ -301,7 +303,7 @@ Available slash commands: /goal, /schedule, /browser, /plan, /grill-me, /teamwor
                                 tint = MaterialTheme.colorScheme.error
                             )
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("Reset", fontSize = 12.5.sp, color = MaterialTheme.colorScheme.error)
+                            Text(stringResource(R.string.component_reset), fontSize = 12.5.sp, color = MaterialTheme.colorScheme.error)
                         }
                     } else {
                         Spacer(modifier = Modifier.width(8.dp))
@@ -309,7 +311,7 @@ Available slash commands: /goal, /schedule, /browser, /plan, /grill-me, /teamwor
 
                     Row {
                         TextButton(onClick = onDismiss) {
-                            Text("Close", fontSize = 13.sp)
+                            Text(stringResource(R.string.common_close), fontSize = 13.sp)
                         }
                         if (selectedTab == 1) {
                             Spacer(modifier = Modifier.width(6.dp))
@@ -321,7 +323,7 @@ Available slash commands: /goal, /schedule, /browser, /plan, /grill-me, /teamwor
                                 colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta),
                                 shape = RoundedCornerShape(8.dp)
                             ) {
-                                Text("Save Prompt", fontSize = 13.sp, color = Color.White)
+                                Text(stringResource(R.string.component_save_prompt), fontSize = 13.sp, color = Color.White)
                             }
                         }
                     }

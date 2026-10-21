@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.gemini.data.remote.dto.AvailableCascadePluginDto
+import com.example.gemini.R
 import com.example.gemini.domain.model.McpServerState
 import com.example.gemini.theme.*
 import com.example.gemini.ui.components.MarkdownContent
@@ -274,7 +276,7 @@ private fun CascadePluginCard(
                             horizontalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
                             Icon(Icons.Default.Check, contentDescription = null, tint = QuotaGreen, modifier = Modifier.size(14.dp))
-                            Text("Installed", fontSize = 11.sp, fontWeight = FontWeight.SemiBold, color = QuotaGreen)
+                            Text(stringResource(R.string.common_installed), fontSize = 11.sp, fontWeight = FontWeight.SemiBold, color = QuotaGreen)
                         }
                     }
                 } else {
@@ -291,7 +293,7 @@ private fun CascadePluginCard(
                         } else {
                             Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(14.dp))
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("Install", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                            Text(stringResource(R.string.common_install), fontSize = 12.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }

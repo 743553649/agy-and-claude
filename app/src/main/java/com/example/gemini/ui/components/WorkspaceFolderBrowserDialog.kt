@@ -258,7 +258,7 @@ fun WorkspaceFolderBrowserDialog(
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(10.dp)
                     ) {
-                        Text("Cancel", fontSize = 13.sp)
+                        Text(stringResource(R.string.common_cancel), fontSize = 13.sp)
                     }
 
                     Button(
@@ -294,7 +294,7 @@ fun WorkspaceFolderBrowserDialog(
         AlertDialog(
             onDismissRequest = { showNewFolderDialog = false },
             title = {
-                Text("New Folder", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                Text(stringResource(R.string.common_new_folder), fontWeight = FontWeight.Bold, fontSize = 16.sp)
             },
             text = {
                 Column {
@@ -307,7 +307,7 @@ fun WorkspaceFolderBrowserDialog(
                     OutlinedTextField(
                         value = newFolderName,
                         onValueChange = { newFolderName = it },
-                        placeholder = { Text("folder-name") },
+                        placeholder = { Text(stringResource(R.string.component_folder_name_2)) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(8.dp)
@@ -334,12 +334,12 @@ fun WorkspaceFolderBrowserDialog(
                     colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta),
                     enabled = newFolderName.isNotBlank() && !isCreatingFolder
                 ) {
-                    Text("Create", fontSize = 13.sp)
+                    Text(stringResource(R.string.common_create), fontSize = 13.sp)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showNewFolderDialog = false }) {
-                    Text("Cancel", fontSize = 13.sp)
+                    Text(stringResource(R.string.common_cancel), fontSize = 13.sp)
                 }
             }
         )

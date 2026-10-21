@@ -10,6 +10,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AutoAwesome
 import androidx.compose.material.icons.outlined.ErrorOutline
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.gemini.domain.model.AiModel
+import com.example.gemini.R
 import com.example.gemini.theme.ClaudeTerracotta
 
 @Composable
@@ -160,7 +162,7 @@ fun SummaryModelPickerDialog(
                     horizontalArrangement = Arrangement.End
                 ) {
                     TextButton(onClick = onDismiss) {
-                        Text("Cancel", fontSize = 13.sp)
+                        Text(stringResource(R.string.common_cancel), fontSize = 13.sp)
                     }
                     Spacer(modifier = Modifier.width(8.dp))
                     Button(
@@ -168,7 +170,7 @@ fun SummaryModelPickerDialog(
                         colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta),
                         shape = RoundedCornerShape(8.dp)
                     ) {
-                        Text("Start Summarize", fontSize = 13.sp)
+                        Text(stringResource(R.string.component_start_summarize), fontSize = 13.sp)
                     }
                 }
             }

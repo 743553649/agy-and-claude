@@ -512,7 +512,7 @@ private fun InstalledPluginCard(
                     },
                     colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colorScheme.error)
                 ) {
-                    Text("Delete", fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.common_delete), fontWeight = FontWeight.Bold)
                 }
             },
             dismissButton = {
@@ -808,7 +808,7 @@ private fun GoogleCatalogPluginCard(
                             horizontalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
                             Icon(Icons.Default.Check, contentDescription = null, tint = QuotaGreen, modifier = Modifier.size(14.dp))
-                            Text("Installed", fontSize = 11.sp, fontWeight = FontWeight.SemiBold, color = QuotaGreen)
+                            Text(stringResource(R.string.common_installed), fontSize = 11.sp, fontWeight = FontWeight.SemiBold, color = QuotaGreen)
                         }
                     }
                 } else {
@@ -825,7 +825,7 @@ private fun GoogleCatalogPluginCard(
                         } else {
                             Icon(Icons.Default.Download, contentDescription = null, modifier = Modifier.size(14.dp))
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("Install", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                            Text(stringResource(R.string.common_install), fontSize = 12.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }

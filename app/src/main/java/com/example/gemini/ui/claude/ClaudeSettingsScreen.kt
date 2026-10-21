@@ -723,7 +723,7 @@ private fun McpPage(deps: ClaudeSettingsDeps) {
                 TextButton(onClick = {
                     deps.config.removeMcp(srv.name, srv.scope, cwd)
                     toDelete = null
-                }) { Text("Remove", color = QuotaRed) }
+                }) { Text(stringResource(R.string.common_remove), color = QuotaRed) }
             },
             dismissButton = { TextButton(onClick = { toDelete = null }) { Text(stringResource(R.string.common_cancel)) } }
         )
@@ -902,7 +902,7 @@ private fun PluginsPage(deps: ClaudeSettingsDeps) {
                             if (p.description.isNotBlank()) Text(p.description, fontSize = 11.5.sp, maxLines = 3, overflow = TextOverflow.Ellipsis,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f))
                             Row(horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.padding(top = 6.dp)) {
-                                OutlinedButton(onClick = { deps.config.pluginAction("update", ClaudePluginAction(plugin = p.key)) }, enabled = op == null) { Text("Update", fontSize = 12.sp) }
+                                OutlinedButton(onClick = { deps.config.pluginAction("update", ClaudePluginAction(plugin = p.key)) }, enabled = op == null) { Text(stringResource(R.string.common_update), fontSize = 12.sp) }
                                 OutlinedButton(onClick = { deps.config.pluginAction("uninstall", ClaudePluginAction(plugin = p.key, scope = p.scope)) }, enabled = op == null) {
                                     Text("Uninstall", fontSize = 12.sp, color = QuotaRed)
                                 }
@@ -931,9 +931,9 @@ private fun PluginsPage(deps: ClaudeSettingsDeps) {
                                 }
                                 when {
                                     op != null -> PluginProgress(op)
-                                    p.key in installedIds -> Text("Installed", fontSize = 11.sp, fontWeight = FontWeight.SemiBold, color = QuotaGreen)
+                                    p.key in installedIds -> Text(stringResource(R.string.common_installed), fontSize = 11.sp, fontWeight = FontWeight.SemiBold, color = QuotaGreen)
                                     else -> Button(onClick = { deps.config.pluginAction("install", ClaudePluginAction(plugin = p.key, scope = "user")) },
-                                        colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text("Install", fontSize = 12.sp) }
+                                        colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text(stringResource(R.string.common_install), fontSize = 12.sp) }
                                 }
                             }
                             if (p.description.isNotBlank()) Text(p.description, fontSize = 11.5.sp, maxLines = 3, overflow = TextOverflow.Ellipsis,
@@ -1111,7 +1111,7 @@ private fun MemoryPage(deps: ClaudeSettingsDeps) {
                 TextButton(onClick = {
                     deps.config.deleteAutoMemory(cwd, name)
                     noteToDelete = null
-                }) { Text("Delete", color = QuotaRed) }
+                }) { Text(stringResource(R.string.common_delete), color = QuotaRed) }
             },
             dismissButton = { TextButton(onClick = { noteToDelete = null }) { Text(stringResource(R.string.common_cancel)) } }
         )

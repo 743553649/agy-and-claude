@@ -33,6 +33,7 @@ import androidx.compose.material.icons.automirrored.outlined.HelpOutline
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material3.Button
+import androidx.compose.ui.res.stringResource
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -55,6 +56,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.data.remote.dto.AskQuestionOptionDto
+import com.example.gemini.R
 import com.example.gemini.data.remote.dto.AskQuestionResponseItemDto
 import com.example.gemini.domain.model.AgentKind
 import com.example.gemini.domain.model.ChoiceQuestion
@@ -242,7 +244,7 @@ fun AgentQuestionPanel(
                 }
                 Spacer(Modifier.weight(1f))
                 if (page > 0) {
-                    TextButton(onClick = { page-- }) { Text("Back", fontSize = 13.sp) }
+                    TextButton(onClick = { page-- }) { Text(stringResource(R.string.common_back), fontSize = 13.sp) }
                     Spacer(Modifier.width(4.dp))
                 }
                 val canSubmit = questions.any { answered(it) }

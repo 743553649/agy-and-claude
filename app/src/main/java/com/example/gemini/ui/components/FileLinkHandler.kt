@@ -178,7 +178,7 @@ fun FileDetailsDialog(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Column {
-                        Text("Size", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.component_size), fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         Text(
                             text = formatFileSize(details.sizeBytes),
                             fontSize = 13.sp,
@@ -187,7 +187,7 @@ fun FileDetailsDialog(
                     }
                     if (details.lineCount != null) {
                         Column {
-                            Text("Lines", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            Text(stringResource(R.string.component_lines), fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                             Text(
                                 text = "${details.lineCount} lines",
                                 fontSize = 13.sp,
@@ -196,7 +196,7 @@ fun FileDetailsDialog(
                         }
                     }
                     Column {
-                        Text("Modified", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.component_modified), fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         Text(
                             text = details.lastModified.take(12),
                             fontSize = 13.sp,
@@ -217,7 +217,7 @@ fun FileDetailsDialog(
                 ) {
                     Icon(Icons.Outlined.ContentCopy, contentDescription = null, modifier = Modifier.size(16.dp))
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text("Copy Path")
+                    Text(stringResource(R.string.component_copy_path))
                 }
                 Spacer(modifier = Modifier.width(4.dp))
                 Button(

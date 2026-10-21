@@ -10,6 +10,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -30,6 +31,7 @@ import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import com.example.gemini.R
 
 @Composable
 fun FileDetailsDialog(
@@ -255,7 +257,7 @@ fun FileDetailsDialog(
                     horizontalArrangement = Arrangement.End
                 ) {
                     TextButton(onClick = onDismiss) {
-                        Text("Close", fontWeight = FontWeight.SemiBold)
+                        Text(stringResource(R.string.common_close), fontWeight = FontWeight.SemiBold)
                     }
                 }
             }

@@ -347,7 +347,7 @@ fun FileManagerDialog(
                                 tint = ClaudeTerracotta
                             )
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("+ Folder", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, maxLines = 1)
+                            Text(stringResource(R.string.component_folder), fontSize = 12.sp, fontWeight = FontWeight.SemiBold, maxLines = 1)
                         }
 
                         // + New File
@@ -369,7 +369,7 @@ fun FileManagerDialog(
                                 tint = MaterialTheme.colorScheme.primary
                             )
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("+ File", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, maxLines = 1)
+                            Text(stringResource(R.string.component_file), fontSize = 12.sp, fontWeight = FontWeight.SemiBold, maxLines = 1)
                         }
 
                         // + New Project (Template)
@@ -388,7 +388,7 @@ fun FileManagerDialog(
                         ) {
                             Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(15.dp))
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("+ Project", fontSize = 12.sp, fontWeight = FontWeight.Bold, maxLines = 1)
+                            Text(stringResource(R.string.component_project), fontSize = 12.sp, fontWeight = FontWeight.Bold, maxLines = 1)
                         }
                     }
                 }
@@ -437,7 +437,7 @@ fun FileManagerDialog(
                                 ) {
                                     Icon(Icons.Default.Home, contentDescription = null, modifier = Modifier.size(16.dp))
                                     Spacer(modifier = Modifier.width(6.dp))
-                                    Text("Go to Home (~)")
+                                    Text(stringResource(R.string.component_go_to_home))
                                 }
                                 OutlinedButton(
                                     onClick = { refreshDir() },
@@ -631,7 +631,7 @@ fun FileManagerDialog(
                                         },
                                         contentPadding = PaddingValues(horizontal = 8.dp, vertical = 0.dp)
                                     ) {
-                                        Text("Paste Here", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                                        Text(stringResource(R.string.component_paste_here), fontSize = 12.sp, fontWeight = FontWeight.Bold)
                                     }
                                     IconButton(
                                         onClick = { FileManagerStateHolder.clipboardPath = null },
@@ -671,7 +671,7 @@ fun FileManagerDialog(
                                 OutlinedTextField(
                                     value = saveFileNameInput,
                                     onValueChange = { saveFileNameInput = it },
-                                    label = { Text("File Name to Save", fontSize = 12.sp) },
+                                    label = { Text(stringResource(R.string.component_file_name_to_save), fontSize = 12.sp) },
                                     singleLine = true,
                                     leadingIcon = {
                                         Icon(
@@ -699,7 +699,7 @@ fun FileManagerDialog(
                                 ) {
                                     Icon(Icons.Default.Save, contentDescription = null, modifier = Modifier.size(18.dp))
                                     Spacer(modifier = Modifier.width(6.dp))
-                                    Text("Save to this Folder", fontSize = 13.5.sp, fontWeight = FontWeight.Bold)
+                                    Text(stringResource(R.string.component_save_to_this_folder), fontSize = 13.5.sp, fontWeight = FontWeight.Bold)
                                 }
                             }
                         } else if (onOpenAsProject != null) {
@@ -718,7 +718,7 @@ fun FileManagerDialog(
                             ) {
                                 Icon(Icons.Default.Check, contentDescription = null, modifier = Modifier.size(18.dp))
                                 Spacer(modifier = Modifier.width(6.dp))
-                                Text("Open this folder as Project", fontSize = 13.5.sp, fontWeight = FontWeight.Bold)
+                                Text(stringResource(R.string.component_open_this_folder_as_project), fontSize = 13.5.sp, fontWeight = FontWeight.Bold)
                             }
                         }
                     }
@@ -733,12 +733,12 @@ fun FileManagerDialog(
     if (showNewFolderDialog) {
         AlertDialog(
             onDismissRequest = { showNewFolderDialog = false },
-            title = { Text("New Folder", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.common_new_folder), fontWeight = FontWeight.Bold) },
             text = {
                 OutlinedTextField(
                     value = inputName,
                     onValueChange = { inputName = it },
-                    label = { Text("Folder Name") },
+                    label = { Text(stringResource(R.string.component_folder_name)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -778,12 +778,12 @@ fun FileManagerDialog(
     if (showNewFileDialog) {
         AlertDialog(
             onDismissRequest = { showNewFileDialog = false },
-            title = { Text("New File", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.common_new_file), fontWeight = FontWeight.Bold) },
             text = {
                 OutlinedTextField(
                     value = inputName,
                     onValueChange = { inputName = it },
-                    label = { Text("File Name (e.g. main.kt, script.py)") },
+                    label = { Text(stringResource(R.string.component_file_name_e_g_main_kt_script_py)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -823,18 +823,18 @@ fun FileManagerDialog(
     if (showNewProjectDialog) {
         AlertDialog(
             onDismissRequest = { showNewProjectDialog = false },
-            title = { Text("Create Project", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.component_create_project), fontWeight = FontWeight.Bold) },
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     OutlinedTextField(
                         value = inputName,
                         onValueChange = { inputName = it },
-                        label = { Text("Project Name") },
+                        label = { Text(stringResource(R.string.component_project_name)) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth()
                     )
 
-                    Text("Project Template:", fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+                    Text(stringResource(R.string.component_project_template), fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
                     val templates = listOf(
                         "python" to "Python",
                         "node" to "Node.js",
@@ -893,7 +893,7 @@ fun FileManagerDialog(
                     enabled = inputName.isNotBlank() && !isOperating,
                     colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta)
                 ) {
-                    Text("Create & Open")
+                    Text(stringResource(R.string.component_create_open))
                 }
             },
             dismissButton = {
@@ -1008,7 +1008,7 @@ fun FileManagerDialog(
 
                 if (item.isDir && onOpenAsProject != null) {
                     ListItem(
-                        headlineContent = { Text("Open as Project in IDE", fontWeight = FontWeight.SemiBold) },
+                        headlineContent = { Text(stringResource(R.string.component_open_as_project_in_ide), fontWeight = FontWeight.SemiBold) },
                         leadingContent = { Icon(Icons.Default.FolderSpecial, contentDescription = null, tint = ClaudeTerracotta) },
                         modifier = Modifier.clickable {
                             showItemOptionsSheet = null
@@ -1018,7 +1018,7 @@ fun FileManagerDialog(
                     )
                 } else if (onOpenFileInEditor != null) {
                     ListItem(
-                        headlineContent = { Text("Open in Editor", fontWeight = FontWeight.SemiBold) },
+                        headlineContent = { Text(stringResource(R.string.component_open_in_editor), fontWeight = FontWeight.SemiBold) },
                         leadingContent = { Icon(Icons.Default.Code, contentDescription = null, tint = MaterialTheme.colorScheme.primary) },
                         modifier = Modifier.clickable {
                             showItemOptionsSheet = null
@@ -1029,7 +1029,7 @@ fun FileManagerDialog(
                 }
 
                 ListItem(
-                    headlineContent = { Text("Copy") },
+                    headlineContent = { Text(stringResource(R.string.component_copy)) },
                     leadingContent = { Icon(Icons.Default.ContentCopy, contentDescription = null) },
                     modifier = Modifier.clickable {
                         FileManagerStateHolder.clipboardPath = item.path
@@ -1039,7 +1039,7 @@ fun FileManagerDialog(
                 )
 
                 ListItem(
-                    headlineContent = { Text("Cut / Move") },
+                    headlineContent = { Text(stringResource(R.string.component_cut_move)) },
                     leadingContent = { Icon(Icons.Default.ContentCut, contentDescription = null) },
                     modifier = Modifier.clickable {
                         FileManagerStateHolder.clipboardPath = item.path
@@ -1068,7 +1068,7 @@ fun FileManagerDialog(
                 )
 
                 ListItem(
-                    headlineContent = { Text("Delete", color = MaterialTheme.colorScheme.error) },
+                    headlineContent = { Text(stringResource(R.string.common_delete), color = MaterialTheme.colorScheme.error) },
                     leadingContent = { Icon(Icons.Default.Delete, contentDescription = null, tint = MaterialTheme.colorScheme.error) },
                     modifier = Modifier.clickable {
                         showDeleteConfirmDialog = item

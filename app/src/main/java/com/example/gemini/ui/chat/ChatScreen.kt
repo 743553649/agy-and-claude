@@ -1328,7 +1328,7 @@ fun ChatScreen(
                                     modifier = Modifier.size(16.dp)
                                 )
                                 Spacer(modifier = Modifier.width(6.dp))
-                                Text("Retry", fontSize = 13.5.sp)
+                                Text(stringResource(R.string.common_retry), fontSize = 13.5.sp)
                             }
                         }
                     } else if (isExistingChat) {

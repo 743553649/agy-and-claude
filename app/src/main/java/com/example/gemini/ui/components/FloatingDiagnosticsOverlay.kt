@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import com.example.gemini.data.remote.core.AntiGemLiveDiagnostics
+import com.example.gemini.R
 import kotlin.math.roundToInt
 
 @Composable
@@ -222,7 +224,7 @@ fun FloatingDiagnosticsOverlay(
                                     },
                                     contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp)
                                 ) {
-                                    Text("Hide HUD", fontSize = 10.sp, color = Color(0xFFEF5350))
+                                    Text(stringResource(R.string.component_hide_hud), fontSize = 10.sp, color = Color(0xFFEF5350))
                                 }
                             }
                         }

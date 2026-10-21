@@ -1000,7 +1000,7 @@ fun GitSourceControlView(
             },
             confirmButton = {
                 TextButton(onClick = { executionError = null }) {
-                    Text("Dismiss", fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.common_dismiss), fontWeight = FontWeight.Bold)
                 }
             }
         )
@@ -1068,7 +1068,7 @@ fun GitSourceControlView(
                         showNewBranchDialog = false
                     }
                 ) {
-                    Text("Create", fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
+                    Text(stringResource(R.string.common_create), fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
                 }
             },
             dismissButton = {
@@ -1156,7 +1156,7 @@ fun GitSourceControlView(
         AlertDialog(
             onDismissRequest = { pendingDiscardFile = null },
             icon = { Icon(Icons.Default.Warning, contentDescription = null, tint = Color(0xFFE57373)) },
-            title = { Text("Discard Changes", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.common_discard_changes), fontWeight = FontWeight.Bold) },
             text = { Text("Are you sure you want to discard all changes in '$fileName'? This action cannot be undone.") },
             confirmButton = {
                 Button(

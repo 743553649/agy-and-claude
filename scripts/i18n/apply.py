@@ -43,8 +43,9 @@ for dirpath, _dirs, files in os.walk(SRC):
             continue
         hits = 0
         for text, key in by_text.items():
-            pat = r'Text\(\s*"' + escape(text) + r'"\s*\)'
-            new = f"Text(stringResource(R.string.{key}))"
+            # 匹配 Text("原文") 以及 Text("原文", modifier = ...) 这类带参形式
+            pat = r'Text\(\s*"' + escape(text) + r'"\s*(?=[,)])'
+            new = f"Text(stringResource(R.string.{key})"
             src, n = re.subn(pat, new, src)
             hits += n
         if not hits:

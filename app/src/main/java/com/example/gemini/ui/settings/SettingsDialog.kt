@@ -1916,7 +1916,7 @@ private fun ServersSubScreen(
                     },
                     shape = RoundedCornerShape(8.dp)
                 ) {
-                    Text("Discard Changes", color = MaterialTheme.colorScheme.error)
+                    Text(stringResource(R.string.common_discard_changes), color = MaterialTheme.colorScheme.error)
                 }
             },
             shape = RoundedCornerShape(16.dp),
@@ -1973,7 +1973,7 @@ private fun ServersSubScreen(
                     onClick = { showRestartDialog = false },
                     shape = RoundedCornerShape(8.dp)
                 ) {
-                    Text("Later", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(stringResource(R.string.common_later), color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             },
             shape = RoundedCornerShape(16.dp),
@@ -2658,7 +2658,7 @@ private fun McpSubScreen(
                 shape = RoundedCornerShape(8.dp),
                 color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
                 modifier = Modifier.clip(RoundedCornerShape(8.dp)).clickable { chooseWebViewExtension = true }
-            ) { Text("+ WebView Extension MCP", modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp), fontSize = 11.5.sp, fontWeight = FontWeight.Medium) }
+            ) { Text(stringResource(R.string.common_webview_extension_mcp), modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp), fontSize = 11.5.sp, fontWeight = FontWeight.Medium) }
             presets.forEach { (pName, typeBadge, spec) ->
                 Surface(
                     shape = RoundedCornerShape(8.dp),
@@ -3165,7 +3165,7 @@ private fun McpSubScreen(
                         ) {
                             Icon(imageVector = Icons.Default.Edit, contentDescription = null, modifier = Modifier.size(14.dp))
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("Edit", fontSize = 12.sp)
+                            Text(stringResource(R.string.common_edit), fontSize = 12.sp)
                         }
 
                         Spacer(modifier = Modifier.width(4.dp))
@@ -3177,7 +3177,7 @@ private fun McpSubScreen(
                         ) {
                             Icon(imageVector = Icons.Default.Delete, contentDescription = null, modifier = Modifier.size(14.dp))
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("Remove", fontSize = 12.sp)
+                            Text(stringResource(R.string.common_remove), fontSize = 12.sp)
                         }
                     }
                 }
@@ -3254,7 +3254,7 @@ private fun McpSubScreen(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
                 ) {
-                    Text("Remove", fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.common_remove), fontWeight = FontWeight.Bold)
                 }
             },
             dismissButton = {
@@ -3779,7 +3779,7 @@ private fun AddEditMcpServerDialog(
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta)
             ) {
-                Text("Save", fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.common_save), fontWeight = FontWeight.Bold)
             }
         },
         dismissButton = {
@@ -4903,7 +4903,7 @@ private fun BackupsSubScreen(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE11D48))
                 ) {
-                    Text("Stop Server", fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.common_stop_server), fontWeight = FontWeight.Bold)
                 }
             },
             dismissButton = {
@@ -6138,7 +6138,7 @@ private fun ScriptExecutionDialog(
                                 containerColor = if (exitCode == 0) QuotaGreen else MaterialTheme.colorScheme.primary
                             )
                         ) {
-                            Text("Done", fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                            Text(stringResource(R.string.common_done), fontWeight = FontWeight.Bold, fontSize = 13.sp)
                         }
                     }
                 }
@@ -8305,7 +8305,7 @@ private fun DiagnosticsSubScreen(
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF0284C7)),
                     shape = RoundedCornerShape(8.dp)
                 ) {
-                    Text("Restart App", fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.common_restart_app), fontWeight = FontWeight.Bold)
                 }
             },
             dismissButton = {

@@ -362,7 +362,7 @@ fun ClaudeModelSheet(
                                 ) {
                                     Icon(Icons.Default.Check, null, tint = ClaudeAccent, modifier = Modifier.size(12.dp))
                                     Spacer(Modifier.width(3.dp))
-                                    Text("Active", fontSize = 10.5.sp, fontWeight = FontWeight.Bold, color = ClaudeAccent)
+                                    Text(stringResource(R.string.common_active), fontSize = 10.5.sp, fontWeight = FontWeight.Bold, color = ClaudeAccent)
                                 }
                             }
                         }
@@ -389,7 +389,7 @@ fun ClaudeModelSheet(
                         Icon(Icons.Outlined.Lightbulb, null, tint = if (thinking) ClaudeAccent else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f), modifier = Modifier.size(18.dp))
                         Spacer(Modifier.width(10.dp))
                         Column(Modifier.weight(1f).padding(vertical = 6.dp)) {
-                            Text("Thinking", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
+                            Text(stringResource(R.string.common_thinking), fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
                             Text("Reason before answering (shown as a summary)", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f))
                         }
                         Switch(checked = thinking, onCheckedChange = { backend.setThinking(it) }, colors = SwitchDefaults.colors(checkedTrackColor = ClaudeAccent))

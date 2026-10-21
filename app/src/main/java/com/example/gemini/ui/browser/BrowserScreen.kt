@@ -1434,7 +1434,7 @@ private fun TabOverviewScreen(
                     }
 
                     TextButton(onClick = onCloseOverview) {
-                        Text("Done", fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
+                        Text(stringResource(R.string.common_done), fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
                     }
                 }
             }
@@ -1921,7 +1921,7 @@ fun BrowserDiagnosticOverlay(
                     ) {
                         Icon(Icons.Default.Refresh, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Reload", fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                        Text(stringResource(R.string.common_reload), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                     }
 
                     OutlinedButton(
@@ -1932,7 +1932,7 @@ fun BrowserDiagnosticOverlay(
                     ) {
                         Icon(Icons.Default.Search, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Search", fontSize = 13.sp)
+                        Text(stringResource(R.string.common_search), fontSize = 13.sp)
                     }
                 }
 
@@ -1942,7 +1942,7 @@ fun BrowserDiagnosticOverlay(
                     onClick = onDismiss,
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("Dismiss", fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(stringResource(R.string.common_dismiss), fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
         }

@@ -27,6 +27,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -47,6 +48,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.window.PopupProperties
 import com.example.gemini.data.local.LocalPtySession
+import com.example.gemini.R
 import com.example.gemini.data.local.LocalTerminalManager
 import com.example.gemini.data.preferences.AuthPreferences
 import com.example.gemini.theme.*
@@ -975,7 +977,7 @@ fun LocalTerminalContent(
                         shape = RoundedCornerShape(10.dp),
                         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
                     ) {
-                        Text("Close Tab", color = Color.White, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                        Text(stringResource(R.string.common_close_tab), color = Color.White, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                     }
                 },
                 dismissButton = {
@@ -983,7 +985,7 @@ fun LocalTerminalContent(
                         onClick = { sessionToClose = null },
                         shape = RoundedCornerShape(10.dp)
                     ) {
-                        Text("Cancel", color = Color.Gray, fontSize = 13.sp)
+                        Text(stringResource(R.string.common_cancel), color = Color.Gray, fontSize = 13.sp)
                     }
                 }
             )

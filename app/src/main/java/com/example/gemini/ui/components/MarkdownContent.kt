@@ -20,6 +20,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import com.example.gemini.theme.isAppInDarkTheme
+import com.example.gemini.R
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -52,6 +53,7 @@ import androidx.compose.material.icons.outlined.Warning
 import androidx.compose.material.icons.outlined.ZoomIn
 import androidx.compose.material.icons.outlined.ZoomOut
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
@@ -773,7 +775,7 @@ fun MermaidDiagramView(
                 IconButton(
                     onClick = {
                         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                        val clip = ClipData.newPlainText("Mermaid Diagram", code)
+                        val clip = ClipData.newPlainText(stringResource(R.string.component_mermaid_diagram_2), code)
                         clipboard.setPrimaryClip(clip)
                         isCopied = true
                         Toast.makeText(context, "Diagram code copied", Toast.LENGTH_SHORT).show()
@@ -1020,7 +1022,7 @@ fun MermaidFullscreenDialog(
                     IconButton(
                         onClick = {
                             val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                            val clip = ClipData.newPlainText("Mermaid Diagram", code)
+                            val clip = ClipData.newPlainText(stringResource(R.string.component_mermaid_diagram_2), code)
                             clipboard.setPrimaryClip(clip)
                             isCopied = true
                             Toast.makeText(context, "Diagram code copied", Toast.LENGTH_SHORT).show()

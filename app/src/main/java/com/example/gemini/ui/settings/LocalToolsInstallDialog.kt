@@ -1018,7 +1018,7 @@ fun LocalToolsInstallDialog(
                         ) {
                             Icon(imageVector = Icons.Default.Check, contentDescription = null, modifier = Modifier.size(16.dp))
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text("Done", color = Color.White, fontWeight = FontWeight.Bold)
+                            Text(stringResource(R.string.common_done), color = Color.White, fontWeight = FontWeight.Bold)
                         }
                     }
 
@@ -1045,7 +1045,7 @@ fun LocalToolsInstallDialog(
                                 ) {
                                     Icon(imageVector = Icons.Default.Refresh, contentDescription = null, modifier = Modifier.size(16.dp))
                                     Spacer(modifier = Modifier.width(6.dp))
-                                    Text("Retry", color = Color.White, fontSize = 12.5.sp)
+                                    Text(stringResource(R.string.common_retry), color = Color.White, fontSize = 12.5.sp)
                                 }
 
                                 OutlinedButton(
@@ -1079,7 +1079,7 @@ fun LocalToolsInstallDialog(
                                 ) {
                                     Icon(imageVector = Icons.Outlined.Delete, contentDescription = null, modifier = Modifier.size(15.dp), tint = Color.Red)
                                     Spacer(modifier = Modifier.width(4.dp))
-                                    Text("Clear All", fontSize = 12.sp, color = Color.Red)
+                                    Text(stringResource(R.string.common_clear_all), fontSize = 12.sp, color = Color.Red)
                                 }
 
                                 OutlinedButton(

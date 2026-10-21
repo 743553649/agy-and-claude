@@ -15,6 +15,7 @@ import androidx.compose.material.icons.automirrored.outlined.WrapText
 import androidx.compose.material.icons.outlined.ContentCopy
 import androidx.compose.material.icons.outlined.DataObject
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.gemini.theme.ClaudeTerracotta
+import com.example.gemini.R
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -185,7 +187,7 @@ fun RawPayloadDialog(
                             modifier = Modifier.size(16.dp)
                         )
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Copy JSON", fontSize = 12.5.sp, color = Color.White)
+                        Text(stringResource(R.string.component_copy_json), fontSize = 12.5.sp, color = Color.White)
                     }
 
                     Button(
@@ -193,7 +195,7 @@ fun RawPayloadDialog(
                         colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta),
                         shape = RoundedCornerShape(8.dp)
                     ) {
-                        Text("Close", fontSize = 13.sp, color = Color.White)
+                        Text(stringResource(R.string.common_close), fontSize = 13.sp, color = Color.White)
                     }
                 }
             }

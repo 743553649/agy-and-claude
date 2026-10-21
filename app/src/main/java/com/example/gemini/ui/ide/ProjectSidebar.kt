@@ -745,7 +745,7 @@ fun FileTreeNodeItem(
                 ) {
                     if (node.isDir) {
                         DropdownMenuItem(
-                            text = { Text("New File", fontSize = 13.5.sp) },
+                            text = { Text(stringResource(R.string.common_new_file), fontSize = 13.5.sp) },
                             leadingIcon = {
                                 Icon(
                                     imageVector = Icons.Default.NoteAdd,
@@ -760,7 +760,7 @@ fun FileTreeNodeItem(
                             }
                         )
                         DropdownMenuItem(
-                            text = { Text("New Folder", fontSize = 13.5.sp) },
+                            text = { Text(stringResource(R.string.common_new_folder), fontSize = 13.5.sp) },
                             leadingIcon = {
                                 Icon(
                                     imageVector = Icons.Default.CreateNewFolder,
@@ -775,7 +775,7 @@ fun FileTreeNodeItem(
                             }
                         )
                         DropdownMenuItem(
-                            text = { Text("Terminal", fontSize = 13.5.sp) },
+                            text = { Text(stringResource(R.string.common_terminal), fontSize = 13.5.sp) },
                             leadingIcon = {
                                 Icon(
                                     imageVector = Icons.Default.Terminal,
@@ -792,7 +792,7 @@ fun FileTreeNodeItem(
                         HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
                     }
                     DropdownMenuItem(
-                        text = { Text("Rename", fontSize = 13.5.sp) },
+                        text = { Text(stringResource(R.string.common_rename), fontSize = 13.5.sp) },
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.Default.DriveFileRenameOutline,
@@ -808,7 +808,7 @@ fun FileTreeNodeItem(
                     )
                     if (!node.isDir) {
                         DropdownMenuItem(
-                            text = { Text("Share", fontSize = 13.5.sp) },
+                            text = { Text(stringResource(R.string.common_share), fontSize = 13.5.sp) },
                             leadingIcon = {
                                 Icon(
                                     imageVector = Icons.Outlined.Share,
@@ -831,7 +831,7 @@ fun FileTreeNodeItem(
                         )
                     }
                     DropdownMenuItem(
-                        text = { Text("Details", fontSize = 13.5.sp) },
+                        text = { Text(stringResource(R.string.common_details), fontSize = 13.5.sp) },
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.Default.Info,
@@ -847,7 +847,7 @@ fun FileTreeNodeItem(
                     )
                     HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
                     DropdownMenuItem(
-                        text = { Text("Delete", color = MaterialTheme.colorScheme.error, fontSize = 13.5.sp) },
+                        text = { Text(stringResource(R.string.common_delete), color = MaterialTheme.colorScheme.error, fontSize = 13.5.sp) },
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.Default.DeleteOutline,

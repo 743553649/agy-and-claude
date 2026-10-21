@@ -487,7 +487,7 @@ fun ChatHistoryDrawer(
                     onClick = { showExitConfirmDialog = false },
                     shape = RoundedCornerShape(10.dp)
                 ) {
-                    Text("Cancel", fontSize = 13.5.sp)
+                    Text(stringResource(R.string.common_cancel), fontSize = 13.5.sp)
                 }
             },
             containerColor = MaterialTheme.colorScheme.surface,
@@ -550,7 +550,7 @@ fun ChatHistoryDrawer(
                         modifier = Modifier.size(16.dp)
                     )
                     Spacer(modifier = Modifier.width(6.dp))
-                    Text("Delete", fontWeight = FontWeight.SemiBold, fontSize = 13.5.sp)
+                    Text(stringResource(R.string.common_delete), fontWeight = FontWeight.SemiBold, fontSize = 13.5.sp)
                 }
             },
             dismissButton = {
@@ -558,7 +558,7 @@ fun ChatHistoryDrawer(
                     onClick = { conversationToDelete = null },
                     shape = RoundedCornerShape(10.dp)
                 ) {
-                    Text("Cancel", fontSize = 13.5.sp)
+                    Text(stringResource(R.string.common_cancel), fontSize = 13.5.sp)
                 }
             },
             containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
@@ -907,7 +907,7 @@ fun ChatHistoryDrawer(
                                 shape = RoundedCornerShape(8.dp),
                                 contentPadding = PaddingValues(horizontal = 14.dp, vertical = 6.dp)
                             ) {
-                                Text("Retry", fontSize = 12.5.sp)
+                                Text(stringResource(R.string.common_retry), fontSize = 12.5.sp)
                             }
                         }
                     }
@@ -1688,7 +1688,7 @@ private fun ChatHistoryItemRow(
                 )
                 if (isClaudeConv && claudeActions != null) {
                     DropdownMenuItem(
-                        text = { Text("Rename", fontSize = 13.5.sp) },
+                        text = { Text(stringResource(R.string.common_rename), fontSize = 13.5.sp) },
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.Outlined.Edit,
@@ -1758,7 +1758,7 @@ private fun ChatHistoryItemRow(
                     }
                 )
                 DropdownMenuItem(
-                    text = { Text("Share", fontSize = 13.5.sp) },
+                    text = { Text(stringResource(R.string.common_share), fontSize = 13.5.sp) },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Outlined.Share,

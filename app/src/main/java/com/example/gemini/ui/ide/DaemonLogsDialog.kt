@@ -131,7 +131,7 @@ fun DaemonLogsDialog(
                                 modifier = Modifier.size(16.dp)
                             )
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("Retry", fontSize = 12.sp)
+                            Text(stringResource(R.string.common_retry), fontSize = 12.sp)
                         }
                     }
                 }

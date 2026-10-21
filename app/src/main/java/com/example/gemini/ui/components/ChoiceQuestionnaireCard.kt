@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.ChatBubbleOutline
 import androidx.compose.material.icons.automirrored.outlined.HelpOutline
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.data.remote.dto.AskQuestionOptionDto
+import com.example.gemini.R
 import com.example.gemini.data.remote.dto.AskQuestionResponseItemDto
 import com.example.gemini.domain.model.*
 import com.example.gemini.theme.ClaudeTerracotta
@@ -739,7 +741,7 @@ private fun QuestionPanelStatusRow(toolCall: ToolCall, questionnaire: ChoiceQues
                     Text("+${questionnaire.questions.size - 3} more", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
                 }
                 if (waiting) {
-                    Text("Answer in the panel above the message box.", fontSize = 11.5.sp, color = tint, modifier = Modifier.padding(top = 4.dp))
+                    Text(stringResource(R.string.component_answer_in_the_panel_above_the_message_bo), fontSize = 11.5.sp, color = tint, modifier = Modifier.padding(top = 4.dp))
                 }
             }
         }

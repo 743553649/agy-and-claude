@@ -21,6 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.gemini.data.preferences.AuthPreferences
+import com.example.gemini.R
 import com.example.gemini.data.ssh.*
 import com.example.gemini.theme.*
 import kotlinx.coroutines.flow.firstOrNull
@@ -449,7 +451,7 @@ private fun TerminalInspectorDialogContent(
                     OutlinedTextField(
                         value = commandInput,
                         onValueChange = { commandInput = it },
-                        placeholder = { Text("Run bash command in Termux...", fontSize = 12.5.sp, color = Color.Gray) },
+                        placeholder = { Text(stringResource(R.string.component_run_bash_command_in_termux), fontSize = 12.5.sp, color = Color.Gray) },
                         modifier = Modifier.weight(1f),
                         singleLine = true,
                         colors = OutlinedTextFieldDefaults.colors(

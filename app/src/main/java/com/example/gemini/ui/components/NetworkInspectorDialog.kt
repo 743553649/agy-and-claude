@@ -24,6 +24,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,6 +39,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.gemini.data.remote.inspector.NetworkInspectorManager
+import com.example.gemini.R
 import com.example.gemini.data.remote.inspector.NetworkLogEntry
 
 enum class NetworkFilterType(val label: String) {
@@ -174,7 +176,7 @@ fun NetworkInspectorDialog(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(48.dp),
-                        placeholder = { Text("Filter by endpoint, route, or status...", fontSize = 12.5.sp) },
+                        placeholder = { Text(stringResource(R.string.component_filter_by_endpoint_route_or_status), fontSize = 12.5.sp) },
                         leadingIcon = {
                             Icon(Icons.Default.Search, contentDescription = null, modifier = Modifier.size(18.dp))
                         },
@@ -573,7 +575,7 @@ private fun HeadersTab(
     ) {
         Text("Request Headers (${entry.requestHeaders.size})", fontWeight = FontWeight.Bold, fontSize = 13.sp)
         if (entry.requestHeaders.isEmpty()) {
-            Text("No request headers recorded.", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(stringResource(R.string.component_no_request_headers_recorded), fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
         } else {
             entry.requestHeaders.forEach { (k, v) ->
                 HeaderItem(k, v, onCopy)
@@ -584,7 +586,7 @@ private fun HeadersTab(
 
         Text("Response Headers (${entry.responseHeaders.size})", fontWeight = FontWeight.Bold, fontSize = 13.sp)
         if (entry.responseHeaders.isEmpty()) {
-            Text("No response headers recorded.", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(stringResource(R.string.component_no_response_headers_recorded), fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
         } else {
             entry.responseHeaders.forEach { (k, v) ->
                 HeaderItem(k, v, onCopy)
