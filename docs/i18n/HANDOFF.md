@@ -49,10 +49,9 @@
 
 ### 当前覆盖率（P1 落地后，实测）
 
-- 资源条目：`values/` **1472** 条，`values-zh-rCN/` **1468** 条（差的 4 条是 `app_name`
+- 资源条目：`values/` **1546** 条，`values-zh-rCN/` **1542** 条（差的 4 条是 `app_name`
   / `anti_term_name` / `termux_name` / `accessibility_service_name`，属不翻白名单）
-- 源码引用：**1437 个 key**（`verify.py` 口径；P1-A2 新增 6 条 `settings_language_*`，
-  P2+P3.9 批次新增 13 条 `settings_*` / `data_fork_title`）
+- 源码引用：**1513 个 key**（`verify.py` 口径；P2 收尾批新增 62 条静态 + 12 条插值资源）
 - 源码调用点：`stringResource` **1496 处 / 72 个文件**，`getString(R.string.…)` **228 处**
 - `python3 scripts/i18n/verify.py` 通过
 - `docs/i18n/COVERAGE.md` 由 `gen_coverage.py` 重新生成（旧文档的按界面数字是 P3.5/P3.6
@@ -181,6 +180,32 @@ Git 面板 4 个分区标题、模型选择标题、浏览器新标签页（1 �
 **同族盲区（新发现，见坑 19）**：`subtitle =`（6）、`badgeText =`（4）、`description =`（5）、
 `value =`（11）共 **26 处**仍是英文，例如设置卡副标题、权限卡 `"Required"/"Optional"` 与说明、
 遥测 `"${n} turns"/"Active"/"None"/"Configured"/"Default"`。建议单独一批处理。
+
+### P2 收尾批：坑 19 同族 + 零散残留 + 审批面板（✅ 已落地）
+
+三块一起做，工具是 `apply_p2_final.py`（字面量）+ 一次性结构化脚本（审批面板）：
+
+1. **坑 19 同族 21 处**：设置卡 `subtitle` / `Shield` 徽标、权限卡 `Required`/`Optional` 与三条说明、
+   附件选择与语音模式副标题、两处通知渠道 `description`；另修数据层可见状态 4 处
+   （Claude 启动 3 条、Agy 无消息错误）。`value =` 里的 `primary`/`pro`/`rising-fact-p41fc`/`"."`
+   是技术值，保留英文。
+2. **审批面板整族**：`ApprovalItem.denyLabel/denyPlaceholder` 改 `@StringRes Int`（渲染器改
+   `stringResource`）；`agyApprovalItems` / `claudeApprovalItems` 增加 `Context` 参数——它们是在
+   `ChatScreen` 的 `remember { }` 里构建的，**不能**用 `stringResource`（坑 1 变体）；
+   标题（Run a command? 等 10 条）、选择项（Allow / 三个作用范围）、拒绝占位符、
+   Claude 建议范围（`Always allow $rules $where` 等 5 条插值）全部取资源；
+   `permissionModeLabel/Description` 改成带 `Context` 版本（12 条，Claude 控件/模式表/设置页三处调用）。
+3. **零散残留**：Claude 设置页 4 处插值 `Text`、WebView 扩展摘要、思考预算 `e.g. 2048` 占位符、
+   导出/存图 snackbar 的 `message` 与 `Open` 动作（`common_open`）、`Shared Conversation`
+   （`parseSharedConversation` 增加 `Context` 参数，`ChatViewModel` 传 `getApplication()`）。
+
+**仍未翻，留给下一批**：
+- `AgyMcpManager`（18 条）与 `ClaudeAccountManager`（15 条）的错误/状态文案——两个类都没有
+  `Context`，要把 `Application` 注入构造函数，属于「数据层错误族」整批处理；
+- `ClaudeStatusViews` 的 7 个 `actionLabel`（Sign in / Open sign-in / Set up Claude Code /
+  Restart server / Retry / Check again）；
+- `when`/`if` 分支字面量（约 391 行 `-> "…"`、268 行单行三元，绝大多数是技术值）；
+- 浏览器扩展浮层（P4）。
 
 **CI 证据**（run 39761475073，commit `dbb7c9c`）：`Verify i18n resources` 通过
 （`values: 1472 / values-zh-rCN: 1468 / 引用 1437 key`）、`:app:assembleTermuxRelease` 成功、
@@ -334,6 +359,7 @@ Git 面板 4 个分区标题、模型选择标题、浏览器新标签页（1 �
 | `local_env_zh.tsv` | 数据层文案对照表（55 条） |
 | `apply_showtoast.py` | 改写 `AppToastHelper.showToast` 首参与 `Intent.createChooser` 标题；接收者按文件显式登记（`RECEIVERS`），未登记直接报错 |
 | `showtoast_zh.tsv` | 分享/导出流程文案对照表（32 条） |
+| `apply_p2_final.py` | P2 收尾批：坑 19 同族 + 零散可见残留；同样按「文件 + 表内原文 + 期望次数」三重限定 |
 | `apply_p2_titles.py` | P2 + P3.9：把 `title = / label =` 字面量回写成 `stringResource` / `getString`；按「文件 + 表内原文 + 期望出现次数」三重限定，表外一律不碰 |
 | `fix_imports.py` | 补齐 `import com.example.gemini.R` 与 `stringResource` 导入 |
 | `verify.py` | **CI 编译前必跑**：资源 XML 合法性、`R.string` 引用完整性、占位符/参数一致性、非 Composable 误用、英文资源残留 Kotlin 插值、裸 `%`、**用了裸 `R.string.` 却没有 `import com.example.gemini.R`**（坑 17） |
@@ -498,6 +524,8 @@ P2 批次把 `title =` 与 `label =` 两类回写完了，但同一批组件还�
 所以从 P3 到 P2 全都没进过任何清单——表现为「对话框标题中文、下面每行说明仍英文」。
 2026-10-22 实测：subtitle 6 处、badgeText 4 处、description 5 处、value 11 处，共 26 处。
 → 判据仍然是「字符串最终会不会被渲染」，不是参数名。
+**已修**（P2 收尾批）：21 处 UI 文案 + 4 处数据层可见状态；`value =` 里剩下的是技术值
+（`primary`/`pro`/`rising-fact-p41fc`/`"."`），不翻。
 
 ## 7. 关键决策记录
 

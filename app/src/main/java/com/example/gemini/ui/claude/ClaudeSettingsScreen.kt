@@ -336,6 +336,7 @@ private fun AccountPage(deps: ClaudeSettingsDeps) {
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun DefaultsPage(deps: ClaudeSettingsDeps) {
+    val context = LocalContext.current
     val settings by deps.config.settings.collectAsState()
     val models by deps.backend.modelInfos.collectAsState()
     val styles by deps.backend.outputStyles.collectAsState()

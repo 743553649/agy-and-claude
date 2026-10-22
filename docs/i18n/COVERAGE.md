@@ -6,9 +6,9 @@
 
 | 界面 | 覆盖内容 | 调用点 |
 | --- | --- | --- |
-| 设置（主设置页） | 所有分区的开关、说明段落、危险操作确认 | 410 |
+| 设置（主设置页） | 所有分区的开关、说明段落、危险操作确认 | 412 |
 | 设置 → 技能与插件 | 技能列表、插件安装与删除 | 35 |
-| 设置 → WebView 扩展 | 扩展安装、重命名、更新 | 19 |
+| 设置 → WebView 扩展 | 扩展安装、重命名、更新 | 20 |
 | 设置 → 本地工具安装 | 安装流程 | 65 |
 | 设置 → 本地工具安装（全屏） | 步骤指引与日志 | 76 |
 | 设置 → 空间管理 | 缓存与数据清理 | 21 |
@@ -24,11 +24,11 @@
 | IDE | 编辑器、运行配置、日志面板 | 51 |
 | IDE → Git | 暂存、提交、拉取推送、冲突处理 | 77 |
 | IDE → 项目侧栏 | 新建/重命名/删除文件与文件夹 | 34 |
-| 内置浏览器 | 标签页、地址栏、DevTools | 50 |
-| Claude 设置 | 账号、MCP 服务器、模型、用量 | 60 |
+| 内置浏览器 | 标签页、地址栏、DevTools | 49 |
+| Claude 设置 | 账号、MCP 服务器、模型、用量 | 64 |
 | Claude 对话控件 | 模式、权限、上下文、紧凑化 | 29 |
 | Claude 登录 | 付费方式与验证码 | 11 |
-| 智能体 → 批准面板 | 允许 / 拒绝 / 始终允许 | 6 |
+| 智能体 → 批准面板 | 允许 / 拒绝 / 始终允许 | 10 |
 | 智能体 → 提问 | 问卷与分页 | 4 |
 | 智能体 → 引导 | 选择启用哪些智能体 | 10 |
 | 终端引导 | 首次使用选择访问方式 | 11 |
@@ -43,7 +43,7 @@
 | 项目选择 | 项目列表 | 11 |
 | 共享对话查看 | 只读对话 | 7 |
 | 代码块 | 复制按钮 | 12 |
-| 权限申请 | 权限说明 | 8 |
+| 权限申请 | 权限说明 | 14 |
 | 对话加载骨架 | 占位提示 | 13 |
 
 ## 二、组件与其余已汉化文件
@@ -57,20 +57,20 @@
 | `FloatingDiagnosticsOverlay.kt` | 12 |
 | `FileLinkHandler.kt` | 10 |
 | `ConnectionStatusBadge.kt` | 9 |
+| `SpeechToTextModeDialog.kt` | 8 |
+| `ThinkingSelectorBottomSheet.kt` | 8 |
 | `FileDetailsDialog.kt` | 7 |
 | `DaemonLogsDialog.kt` | 7 |
 | `ImageAssetViewer.kt` | 7 |
-| `ThinkingSelectorBottomSheet.kt` | 7 |
 | `InteractiveUiView.kt` | 6 |
 | `RawPayloadDialog.kt` | 6 |
-| `SpeechToTextModeDialog.kt` | 6 |
 | `UnifiedDiffViewer.kt` | 6 |
+| `AttachmentSelectorBottomSheet.kt` | 5 |
 | `LocalServerOutputDialog.kt` | 5 |
 | `SummaryModelPickerDialog.kt` | 5 |
 | `NewProjectDialog.kt` | 5 |
 | `FloatingNetworkInspectorBubble.kt` | 4 |
 | `IdeExecutionRunner.kt` | 4 |
-| `AttachmentSelectorBottomSheet.kt` | 3 |
 | `FloatingSwitcherWidget.kt` | 3 |
 | `FloatingVideoPlayerOverlay.kt` | 3 |
 | `FullScreenImageDialog.kt` | 3 |
@@ -84,7 +84,7 @@
 | `ChatAudioPlayer.kt` | 1 |
 | `SelectTextSheet.kt` | 1 |
 
-合计：**72 个文件、1549 处 `stringResource` 调用点**（另有 242 处 `getString`，用于非 Composable 上下文：Toast、通知、数据层）。
+合计：**72 个文件、1570 处 `stringResource` 调用点**（另有 304 处 `getString`，用于非 Composable 上下文：Toast、通知、数据层）。
 
 ## 三、有意保留英文的内容
 
@@ -114,9 +114,11 @@
 | 其余 `when`/`if` 分支字面量 | ❌ 未改（实测 70 行 `when` 分支 + 243 行单行三元，需剔技术值白名单） |
 | 设置页语言切换入口 | ✅ 已实现（方案 A：appcompat 1.7.0；A-1 `ef5a244` + A-2 `1519dc6`；API<33 的通知与静态 `Locale.getDefault()` 仍待真机验证） |
 | 外观子页残留标签（Auto (System)/Light/Dark、字号、自动收起、悬浮切换器条目） | ✅ 已改（P3.9，13 个标签；方向 `VERTICAL`/`HORIZONTAL` 的技术值保留英文） |
-| `subtitle =` / `badgeText =` / `description =` / `value =` 字面量 | ❌ 未改（P2 的同族盲区，实测 26 处，见 HANDOFF 坑 19） |
-| 审批面板 `ApprovalItem` 标题族（`ClaudePermissionPanel`） | ❌ 未改（需把模型改成 `@StringRes`，整族一起改） |
-| `ConversationShareHelper` 的 `Shared Conversation` | ❌ 未改（解析函数没有 Context） |
+| `subtitle =` / `badgeText =` / `description =` / `value =` 字面量 | ✅ 已改（P2 收尾批：21 处 UI 文案 + 4 处数据层可见状态 + 2 处通知渠道描述；`value =` 里技术值保留；见 HANDOFF 坑 19） |
+| 审批面板 `ApprovalItem` 整族 | ✅ 已改（`denyLabel`/`denyPlaceholder` 改 `@StringRes`，两个生产者加 `Context`，标题/选择项/建议范围/权限模式标签共 30 余条资源化） |
+| `ConversationShareHelper` 的 `Shared Conversation` | ✅ 已改（`parseSharedConversation` 增加 `Context` 参数） |
+| 数据层错误族（`AgyMcpManager` 18 / `ClaudeAccountManager` 15） | ❌ 未改（两个类没有 Context，需注入 Application，建议整批处理） |
+| `ClaudeStatusViews` 的 7 个 `actionLabel` | ❌ 未改（Sign in / Retry / Restart server 等） |
 | 浏览器扩展浮层文案 | ❌ 未实现（约 40 处） |
 
 ## 五、怎么核对
