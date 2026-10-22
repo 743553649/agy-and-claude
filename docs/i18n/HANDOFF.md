@@ -109,20 +109,6 @@
 实测 **104 处**（文档旧写的「约 7 处」严重低估），已全部改写并新增 88 条 `*_toast_*` 资源；
 含插值的按出现顺序转成 `%n$s` 参数，嵌套引号与多行字面量都能正确处理。
 
-**P3.8（✅ 已完成，本轮提交）**：`AppToastHelper.showToast("...")`——项目自己的 Toast 包装，
-不叫 `Toast.makeText`，所以 `apply_toast.py` 扫不到。实测 **28 处**字面量站点，连同
-`Intent.createChooser(intent, "标题")` 的 **8 处**标题（系统选择器标题也会显示给用户）一起改，
-共 **36 处 / 32 条**资源（`*_apptoast_*` + `*_chooser_*`）。
-
-- 接收者按文件显式登记（`apply_showtoast.py` 的 `RECEIVERS`）：Compose 界面用已有的
-  `val context = LocalContext.current`、`ChatViewModel` 用 `getApplication<Application>()`、
-  组件 object 用方法签名里的 `context: Context`；**未登记的文件直接报错**，不猜。
-- 这些调用点都在 onClick / LaunchedEffect / object 方法里，**不是 @Composable 上下文**，
-  所以不能用 `stringResource`（坑 1 的同类）。
-- 重要耦合：`AppToastHelper` 在调用方不传 `ChatToastType` 时，靠**英文关键词**推断类型
-  （`success`/`fail`/`error`/`copied`…）。本轮 28 处**全都已显式传类型**，所以翻译安全；
-  以后翻这类文案必须显式传类型，否则样式会掉成 INFO（见坑 16）。
-
 ### P3.6：设置首页 + 环境安装页（✅ 已完成，commit `5d55bc3`，CI run 39730503843 通过）
 这两页曾经整页英文，但**不是设计**，是流水线的两处盲区：
 
@@ -188,6 +174,30 @@
 产物 `antiGem-termux-v1.0.13-release-6203d58.apk`、`Verify APK signature` 指纹与标准值一致。
 **验证边界**：CI 只证明编译通过；通知进度文案、渠道名、安装页状态字段的实际显示效果
 （尤其中文标题在通知栏的截断、`%2$s%%` 的百分比渲染）必须真机看。
+
+### P3.8：分享/导出 Toast 与系统选择器标题（✅ 已完成，commit `0bbe075`，CI run 39742625188 通过）
+`AppToastHelper.showToast("...")` 是项目自己的 Toast 包装，不叫 `Toast.makeText`，所以
+`apply_toast.py` 扫不到。实测 **28 处**字面量站点，连同
+`Intent.createChooser(intent, "标题")` 的 **8 处**标题（系统选择器标题也会显示给用户）一起改，
+共 **36 处 / 32 条**资源（`*_apptoast_*` + `*_chooser_*`）。
+
+- 接收者按文件显式登记（`apply_showtoast.py` 的 `RECEIVERS`）：Compose 界面用已有的
+  `val context = LocalContext.current`、`ChatViewModel` 用 `getApplication<Application>()`、
+  组件 object 用方法签名里的 `context: Context`；**未登记的文件直接报错**，不猜。
+- 这些调用点都在 onClick / LaunchedEffect / object 方法里，**不是 @Composable 上下文**，
+  所以不能用 `stringResource`（坑 1 的同类）。
+- 重要耦合：`AppToastHelper` 在调用方不传 `ChatToastType` 时，靠**英文关键词**推断类型
+  （`success`/`fail`/`error`/`copied`…）。本轮 28 处**全都已显式传类型**，所以翻译安全；
+  以后翻这类文案必须显式传类型，否则样式会掉成 INFO（见坑 16）。
+
+**CI 证据**（run 39742625188，commit `0bbe075`）：`Verify i18n resources` 通过
+（`values: 1453 / values-zh-rCN: 1449 / 引用 1383 key`）、`Build termux APK` 成功、
+产物 `antiGem-termux-v1.0.13-release-0bbe075.apk`、`Verify APK signature` 指纹与标准值一致。
+⚠️ 首次推送 `df798c3` 的 run **39742025990 失败**：`ChatViewModel` 缺
+`import com.example.gemini.R`（漏跑 `fix_imports.py`），已在 `0bbe075` 修复，并给 `verify.py`
+加了 import 检查（坑 17）。
+**验证边界**：Toast 与系统选择器标题的实际显示、`ChatToastType` 的成功/失败配色，必须真机看。
+
 
 ### P3.5：含插值但调用点未被回写的文案（✅ 已完成，同一提交）
 16 处译文本已在 `/tmp/i18n_dynamic.json` 里，只是回写没覆盖到：`contentDescription`
