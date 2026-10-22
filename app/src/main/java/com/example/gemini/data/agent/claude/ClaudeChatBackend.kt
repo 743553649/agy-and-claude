@@ -7,6 +7,7 @@ import com.example.gemini.data.agent.AgentChatBackend
 import com.example.gemini.data.agent.ChatSessionStore
 import com.example.gemini.data.remote.SlashCommandItem
 import com.example.gemini.data.remote.dto.AskQuestionResponseItemDto
+import com.example.gemini.domain.i18n.AiLanguage
 import com.example.gemini.domain.model.AgentKind
 import com.example.gemini.domain.model.AiModel
 import com.example.gemini.domain.model.ChatAttachment
@@ -162,6 +163,8 @@ class ClaudeChatBackend(
     private var processLive = false
     private val outbox = ArrayDeque<String>()
     private val replies = HashMap<String, CompletableDeferred<ClaudeControlResponseInner>>()
+    // the chat the UI-language instruction was already sent for (cleared on detach)
+    @Volatile private var languageInstructionSentFor: String? = null
     // the permission mode was changed in this chat; untouched it is left to the user's settings.json default
     @Volatile private var modeTouched = false
     // model / effort / thinking were changed in this chat (a new chat otherwise follows the settings.json defaults)
@@ -286,8 +289,18 @@ class ClaudeChatBackend(
             emitNow()
             val frame = ClaudeJson.encodeToString(ClaudeUserMessage(uuid = uuid, message = ClaudeOutgoingMessage(buildBlocks(conv.id, text, atts))))
             ensureConnected(conv.id)
+            sendLanguageInstruction(conv.id)
             send(frame)
         }
+    }
+
+    /** Tells Claude Code to write prose in the UI language. Fire-and-forget: the CLI's reply is ignored. */
+    private fun sendLanguageInstruction(convId: String) {
+        if (languageInstructionSentFor == convId) return
+        // null means the UI is not Chinese: nothing to inject, and nothing to remember
+        val prompt = AiLanguage.appendSystemPromptOrNull() ?: return
+        languageInstructionSentFor = convId
+        sendControl(ClaudeControlRequestBody(subtype = "initialize", appendSystemPrompt = prompt))
     }
 
     override fun stopStreaming() {
@@ -1151,6 +1164,7 @@ class ClaudeChatBackend(
         replayUntilSeq = null
         replayDeadline?.cancel()
         replayDeadline = null
+        languageInstructionSentFor = null
     }
 
     private fun scheduleEmit() {
