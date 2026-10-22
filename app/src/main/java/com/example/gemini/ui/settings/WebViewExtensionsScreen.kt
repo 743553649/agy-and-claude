@@ -33,7 +33,7 @@ fun WebViewExtensionsScreen(onChanged: () -> Unit) {
     fun runOperation(action: suspend () -> Unit) {
         scope.launch {
             busy = true; error = null
-            runCatching { action() }.onSuccess { onChanged() }.onFailure { error = it.message ?: "Extension operation failed" }
+            runCatching { action() }.onSuccess { onChanged() }.onFailure { error = it.message ?: context.getString(R.string.settings_extension_operation_failed) }
             busy = false
         }
     }
@@ -62,11 +62,12 @@ fun WebViewExtensionsScreen(onChanged: () -> Unit) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Column(Modifier.weight(1f)) {
                             Text(extension.folderName, style = MaterialTheme.typography.titleMedium)
-                            Text(stringResource(R.string.settings_webview_ext_summary, extension.name, extension.version, extension.toolCount), style = MaterialTheme.typography.bodySmall)
+                            Text(stringResource(R.string.settings_webview_ext_summary, extensionDisplayName(extension), extension.version, extension.toolCount), style = MaterialTheme.typography.bodySmall)
                         }
                         Switch(checked = extension.isEnabled, enabled = !busy, onCheckedChange = { enabled -> runOperation { manager.setEnabled(extension.id, enabled) } })
                     }
-                    if (extension.description.isNotBlank()) Text(extension.description, style = MaterialTheme.typography.bodySmall)
+                    val description = extensionDisplayDescription(extension)
+                    if (description.isNotBlank()) Text(description, style = MaterialTheme.typography.bodySmall)
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                         TextButton(enabled = !busy, onClick = { update = extension; picker.launch(arrayOf("*/*")) }) { Text(stringResource(R.string.settings_update_zip)) }
                         TextButton(enabled = !busy, onClick = { rename = extension; folder = extension.folderName }) { Text(stringResource(R.string.settings_rename_folder)) }
@@ -78,12 +79,12 @@ fun WebViewExtensionsScreen(onChanged: () -> Unit) {
         Text(stringResource(R.string.settings_add_an_enabled_extension_to_your_model_i), style = MaterialTheme.typography.bodySmall)
     }
     if (zip != null) AlertDialog(
-        onDismissRequest = { zip = null }, title = { Text(if (update == null) "Install extension" else "Update extension") },
+        onDismissRequest = { zip = null }, title = { Text(if (update == null) stringResource(R.string.settings_extension_install_title) else stringResource(R.string.settings_extension_update_title)) },
         text = { Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             OutlinedTextField(value = folder, onValueChange = { folder = it }, enabled = update == null, label = { Text(stringResource(R.string.settings_folder_name)) }, singleLine = true)
-            Text(if (update == null) "The ZIP may contain manifest.json directly or inside one enclosing folder." else "The extension's ID and stored data are preserved. The previous package is restored if loading fails.")
+            Text(if (update == null) stringResource(R.string.settings_extension_zip_hint) else stringResource(R.string.settings_extension_update_hint))
         } },
-        confirmButton = { TextButton(enabled = folder.isNotBlank(), onClick = { val uri = zip!!; val id = update?.id; val name = folder; zip = null; runOperation { manager.installArchive(uri, name, id) } }) { Text(if (update == null) "Install" else "Update") } },
+        confirmButton = { TextButton(enabled = folder.isNotBlank(), onClick = { val uri = zip!!; val id = update?.id; val name = folder; zip = null; runOperation { manager.installArchive(uri, name, id) } }) { Text(if (update == null) stringResource(R.string.common_install) else stringResource(R.string.common_update)) } },
         dismissButton = { TextButton(onClick = { zip = null }) { Text(stringResource(R.string.common_cancel)) } }
     )
     rename?.let { extension -> AlertDialog(
@@ -106,9 +107,18 @@ fun WebViewExtensionMcpPicker(onDismiss: () -> Unit, onSelect: (BrowserExtension
                 OutlinedButton(onClick = { onSelect(extension) }, modifier = Modifier.fillMaxWidth()) {
                     Column(Modifier.fillMaxWidth()) {
                         Text(extension.folderName)
-                        Text(stringResource(R.string.settings_extension_name_extension_toolcount_tools, extension.name, extension.toolCount), style = MaterialTheme.typography.bodySmall)
+                        Text(stringResource(R.string.settings_extension_name_extension_toolcount_tools, extensionDisplayName(extension), extension.toolCount), style = MaterialTheme.typography.bodySmall)
                     }
                 }
             }
         } }, confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.common_close)) } })
 }
+
+/** 内置扩展的展示名/描述取资源；第三方扩展仍显示 manifest 里的原文。 */
+@Composable
+private fun extensionDisplayName(extension: BrowserExtension): String =
+    if (extension.id == "google-flow") stringResource(R.string.settings_extension_google_flow_name) else extension.name
+
+@Composable
+private fun extensionDisplayDescription(extension: BrowserExtension): String =
+    if (extension.id == "google-flow") stringResource(R.string.settings_extension_google_flow_description) else extension.description

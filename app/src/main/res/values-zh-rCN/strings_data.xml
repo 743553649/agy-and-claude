@@ -9,8 +9,56 @@
     <string name="data_antigravity_chat">Antigravity 对话</string>
     <!-- 原文: Claude Chat -->
     <string name="data_claude_chat">Claude 对话</string>
+    <!-- 原文: Missing or invalid background file: %1$s -->
+    <string name="data_err_background_file_missing">后台文件缺失或无效：%1$s</string>
+    <!-- 原文: Extension background worker is required -->
+    <string name="data_err_background_required">扩展必须提供后台工作脚本</string>
+    <!-- 原文: Cannot create extension directory -->
+    <string name="data_err_create_extension_dir">无法创建扩展目录</string>
+    <!-- 原文: Extension already exists; use Update ZIP -->
+    <string name="data_err_extension_exists">扩展已存在，请改用「更新 ZIP」</string>
+    <!-- 原文: Extension host exited; see BrowserExtensionManager logs -->
+    <string name="data_err_extension_host_exited">扩展宿主进程已退出，详见 BrowserExtensionManager 日志</string>
+    <!-- 原文: Extension host did not start in time -->
+    <string name="data_err_extension_host_timeout">扩展宿主未在规定时间内启动</string>
+    <!-- 原文: Extension name is required -->
+    <string name="data_err_extension_name_required">扩展必须填写名称</string>
+    <!-- 原文: Extension not found -->
+    <string name="data_err_extension_not_found">未找到该扩展</string>
+    <!-- 原文: Extension must declare at least one MCP tool -->
+    <string name="data_err_extension_tools_required">扩展至少要声明一个 MCP 工具</string>
+    <!-- 原文: Folder belongs to another extension -->
+    <string name="data_err_folder_belongs_to_other">该文件夹属于其他扩展</string>
+    <!-- 原文: Folder already exists -->
+    <string name="data_err_folder_exists">文件夹已存在</string>
+    <!-- 原文: The folder name runtime is reserved -->
+    <string name="data_err_folder_name_reserved">runtime 是保留的文件夹名</string>
+    <!-- 原文: Use 1–64 letters, numbers, dots, underscores or hyphens for the folder name -->
+    <string name="data_err_folder_name_rule">文件夹名只能使用 1–64 个字母、数字、点、下划线或连字符</string>
+    <!-- 原文: Invalid extension ID -->
+    <string name="data_err_invalid_extension_id">扩展 ID 无效</string>
+    <!-- 原文: manifest.json must declare mcp_tools -->
+    <string name="data_err_manifest_tools_required">manifest.json 必须声明 mcp_tools</string>
+    <!-- 原文: Only manifest versions 2 and 3 are supported -->
+    <string name="data_err_manifest_version">只支持 manifest 版本 2 和 3</string>
     <!-- 原文: No messages received from Antigravity. Tap Retry. -->
     <string name="data_err_no_messages_from_antigravity">未收到 Antigravity 的消息，点击重试。</string>
+    <!-- 原文: Node.js is required in the local terminal to run browser extensions -->
+    <string name="data_err_node_required">运行浏览器扩展需要本地终端里的 Node.js</string>
+    <!-- 原文: Cannot read ZIP -->
+    <string name="data_err_read_zip">无法读取 ZIP</string>
+    <!-- 原文: Use Rename folder to change the folder before updating -->
+    <string name="data_err_rename_before_update">更新前请先用「重命名文件夹」修改文件夹名</string>
+    <!-- 原文: Cannot rename extension folder -->
+    <string name="data_err_rename_extension_folder">无法重命名扩展文件夹</string>
+    <!-- 原文: Failed to restore previous extension -->
+    <string name="data_err_restore_previous_extension">还原先前的扩展失败</string>
+    <!-- 原文: Cannot save extension settings -->
+    <string name="data_err_save_extension_settings">无法保存扩展设置</string>
+    <!-- 原文: Cannot stage previous extension -->
+    <string name="data_err_stage_previous_extension">无法暂存先前的扩展</string>
+    <!-- 原文: Duplicate or empty MCP tool name -->
+    <string name="data_err_tool_name_duplicate">MCP 工具名重复或为空</string>
     <!-- 原文: Execution Failure -->
     <string name="data_execution_failure">执行失败</string>
     <!-- 原文: %1$s (fork) -->

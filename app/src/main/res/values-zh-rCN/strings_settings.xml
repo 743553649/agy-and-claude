@@ -341,8 +341,22 @@
     <string name="settings_exposed_mcp_tools_6">已暴露的 MCP 工具（6 个）：</string>
     <!-- 原文: Exposed MCP Tools (9): -->
     <string name="settings_exposed_mcp_tools_9">已暴露的 MCP 工具（9 个）：</string>
+    <!-- 原文: Google Flow MCP workflows, fast verified batch generation and Chrome Flow tool compatibility for AntiGem WebView. -->
+    <string name="settings_extension_google_flow_description">面向 AntiGem WebView 的 Google Flow MCP 工作流、可快速验证的批量生成，以及 Chrome Flow 工具兼容。</string>
+    <!-- 原文: Google Flow Extension -->
+    <string name="settings_extension_google_flow_name">Google Flow 扩展</string>
+    <!-- 原文: Install extension -->
+    <string name="settings_extension_install_title">安装扩展</string>
     <!-- 原文: %1$s · %2$s tools -->
     <string name="settings_extension_name_extension_toolcount_tools">%1$s · %2$s 个工具</string>
+    <!-- 原文: Extension operation failed -->
+    <string name="settings_extension_operation_failed">扩展操作失败</string>
+    <!-- 原文: The extension's ID and stored data are preserved. The previous package is restored if loading fails. -->
+    <string name="settings_extension_update_hint">扩展的 ID 与已存数据都会保留；加载失败时会还原为上一个版本。</string>
+    <!-- 原文: Update extension -->
+    <string name="settings_extension_update_title">更新扩展</string>
+    <!-- 原文: The ZIP may contain manifest.json directly or inside one enclosing folder. -->
+    <string name="settings_extension_zip_hint">ZIP 内可以直接放 manifest.json，也可以放在一层文件夹里。</string>
     <!-- 原文: Factory Reset in Progress -->
     <string name="settings_factory_reset_in_progress">正在恢复出厂设置</string>
     <!-- 原文: Files Outside Workspace: -->

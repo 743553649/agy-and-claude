@@ -173,7 +173,14 @@
     <string name="settings_export_to_downloads">Export to Downloads</string>
     <string name="settings_exposed_mcp_tools_6">Exposed MCP Tools (6):</string>
     <string name="settings_exposed_mcp_tools_9">Exposed MCP Tools (9):</string>
+    <string name="settings_extension_google_flow_description">Google Flow MCP workflows, fast verified batch generation and Chrome Flow tool compatibility for AntiGem WebView.</string>
+    <string name="settings_extension_google_flow_name">Google Flow Extension</string>
+    <string name="settings_extension_install_title">Install extension</string>
     <string name="settings_extension_name_extension_toolcount_tools">%1$s · %2$s tools</string>
+    <string name="settings_extension_operation_failed">Extension operation failed</string>
+    <string name="settings_extension_update_hint">The extension\'s ID and stored data are preserved. The previous package is restored if loading fails.</string>
+    <string name="settings_extension_update_title">Update extension</string>
+    <string name="settings_extension_zip_hint">The ZIP may contain manifest.json directly or inside one enclosing folder.</string>
     <string name="settings_factory_reset_in_progress">Factory Reset in Progress</string>
     <string name="settings_files_outside_workspace">Files Outside Workspace:</string>
     <string name="settings_floating_app_switcher">Floating App Switcher</string>
