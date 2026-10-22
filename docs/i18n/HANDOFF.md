@@ -278,6 +278,38 @@ private const val DEFAULT_VERSION_URL =
 - `ui/settings/SettingsDialog.kt:9155 / 9203` 的 GitHub 仓库与 releases 链接——属于「关于」页信息，不是更新检查
 - `data/local/LocalEnvironmentManager.kt:64` 的 `HARDCODED_ROOTFS_URL`——rootfs 是数据文件，从上游下载是正确的
 
+## 8.6 会话收尾时的确切状态（2026-10-22）
+
+分支 `feat/zh-cn-i18n`，最后一次提交 `f3d15f4`，**已全部推送**，工作区干净。
+
+| 项 | 状态 |
+| --- | --- |
+| 汉化覆盖 | 705 条有引用文案已译 676 条（95.9%），1324 处 `stringResource`，71 个文件 |
+| 资源 | `values/` 1143 条，`values-zh-rCN/` 1139 条，22 个模块文件 |
+| CI | 已改 termux flavor；`verify` 通过；release 签名成功；产物 14MB |
+| 签名 | 新生成密钥已入 secret，release 包签名路径打通 |
+| 更新检查 | 已改指 fork 仓库，解除上游耦合 |
+| localeConfig | 已补，Android 13+ 可单列中文 |
+
+### 唯一未完成的验证
+
+**release（R8 压缩）包未做运行时验证**。之前所有编译通过的都是 debug 或"能编译"级别，
+release 版开了 `isMinifyEnabled = true` / `isShrinkResources = true`，
+首装后需人工确认：对话能发消息、终端能起、IDE 能打开、Claude 能连。
+
+另外 `gh run download` 在本机多次超时（网络问题），所以**产物的字节级校验
+（aapt2 包名 / apksigner 指纹）由人工在浏览器下载后确认**。已知信息：
+termux flavor → `com.termux`；用 `RELEASE_KEYSTORE_BASE64` 里的密钥签名，
+证书 SHA256 应为 `6F:F1:E3:FF:A0:C1:5F:2F:64:74:74:FB:04:F4:78:FD:1D:06:C0:88:40:CC:6B:6E:6E:72:ED:6A:94:2A:7B:5C`。
+
+### 网络排障经验（会再遇到）
+
+容器内部访问 GitHub 时，若用户开了 VPN（Clash/Surge 一类），DNS 会把
+`api.github.com` 解析成 `198.18.x.x`（fake-ip 段），但容器流量不走代理数据面，
+表现为 `gh` 报 `EOF`、`curl` 报 `SSL_ERROR_SYSCALL`，而访问国内站点正常。
+**判断方法**：`getent hosts api.github.com` 若返回 `198.18.*` 即是此问题。
+**处理**：让用户临时关闭 VPN，或改用浏览器手动下载 artifact。
+
 ## 9. 关键文件索引
 
 | 路径 | 说明 |
