@@ -369,7 +369,7 @@ fun UserMessageBubble(
     if (previewImageUrl != null) {
         FullScreenImageDialog(
             imageUrl = previewImageUrl!!,
-            title = "Image Preview",
+            title = stringResource(R.string.component_image_preview),
             onDismiss = { previewImageUrl = null }
         )
     }

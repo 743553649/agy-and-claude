@@ -190,7 +190,7 @@ fun CascadeMcpCatalogDialog(
     // Readme viewer dialog
     selectedReadmeUrl?.let { (title, url) ->
         ReadmePreviewDialog(
-            title = "$title Documentation",
+            title = stringResource(R.string.settings_ui_plugin_documentation, title),
             readmeUrl = url,
             onDismiss = { selectedReadmeUrl = null }
         )

@@ -150,7 +150,7 @@ fun BrowserScreen(
     // Ensure at least one tab exists when opening browser
     LaunchedEffect(isVisible) {
         if (isVisible && sessionManager.tabs.isEmpty()) {
-            val newTab = sessionManager.addNewTab(url = "", title = "New Tab", activate = true)
+            val newTab = sessionManager.addNewTab(url = "", title = stringResource(R.string.common_new_tab), activate = true)
             activeTabId = newTab.id
         }
     }

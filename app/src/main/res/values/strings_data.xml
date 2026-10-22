@@ -8,6 +8,7 @@
     <string name="data_antigravity_chat">Antigravity Chat</string>
     <string name="data_claude_chat">Claude Chat</string>
     <string name="data_execution_failure">Execution Failure</string>
+    <string name="data_fork_title">%1$s (fork)</string>
     <string name="data_install_antigem_rootfs">AntiGem Rootfs</string>
     <string name="data_install_bootstrap_archive_is_missing_or_invalid">Bootstrap archive is missing or invalid (&lt; 10 MB). Please check source and retry.</string>
     <string name="data_install_configuring_linux_environment_90">Configuring Linux Environment (90%)</string>

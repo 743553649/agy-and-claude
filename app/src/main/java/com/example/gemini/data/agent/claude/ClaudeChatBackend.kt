@@ -36,6 +36,7 @@ import kotlinx.serialization.json.contentOrNull
 import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.json.jsonPrimitive
 import java.util.UUID
+import com.example.gemini.R
 
 /**
  * Claude Code chat backend. The bridge runs one `claude` process per conversation; this class attaches to the
@@ -220,7 +221,7 @@ class ClaudeChatBackend(
         val id = UUID.randomUUID().toString()
         val conv = Conversation(
             id = id,
-            title = "New Chat",
+            title = application.getString(R.string.common_new_chat),
             modelId = _selectedModelId.value,
             sessionId = id,
             workspaceUri = defaultWorkspaceUri(),
@@ -239,7 +240,7 @@ class ClaudeChatBackend(
 
     override fun selectConversation(id: String) {
         val conv = _conversations.value.find { it.id == id }
-            ?: Conversation(id = id, title = "Claude Chat", sessionId = id, agent = AgentKind.CLAUDE)
+            ?: Conversation(id = id, title = application.getString(R.string.data_claude_chat), sessionId = id, agent = AgentKind.CLAUDE)
         showConversation(conv, loading = true)
         backendScope.launch(worker) {
             detachLocked()
@@ -328,7 +329,7 @@ class ClaudeChatBackend(
     override fun forkConversation(id: String) {
         val source = _conversations.value.find { it.id == id } ?: return
         val newId = UUID.randomUUID().toString()
-        val title = "${source.title} (fork)"
+        val title = application.getString(R.string.data_fork_title, source.title)
         backendScope.launch {
             client.fork(source.id, newId, title)
                 .mapCatching { if (!it.success) error(it.error ?: "the bridge refused") }

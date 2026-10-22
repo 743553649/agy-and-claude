@@ -11,6 +11,8 @@
     <string name="data_claude_chat">Claude 对话</string>
     <!-- 原文: Execution Failure -->
     <string name="data_execution_failure">执行失败</string>
+    <!-- 原文: %1$s (fork) -->
+    <string name="data_fork_title">%1$s（副本）</string>
     <!-- 原文: AntiGem Rootfs -->
     <string name="data_install_antigem_rootfs">AntiGem Rootfs</string>
     <!-- 原文: Bootstrap archive is missing or invalid (< 10 MB). Please check source and retry. -->

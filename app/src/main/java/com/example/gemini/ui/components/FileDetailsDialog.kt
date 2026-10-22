@@ -184,7 +184,7 @@ fun FileDetailsDialog(
                 // Detail Items
                 DetailRow(
                     icon = Icons.Outlined.Category,
-                    label = "Type",
+                    label = stringResource(R.string.component_type),
                     value = typeName
                 )
 
@@ -192,7 +192,7 @@ fun FileDetailsDialog(
 
                 DetailRow(
                     icon = Icons.Outlined.FolderOpen,
-                    label = "Location",
+                    label = stringResource(R.string.component_location),
                     value = path,
                     isMonospace = true,
                     actionIcon = Icons.Default.ContentCopy,
@@ -208,7 +208,7 @@ fun FileDetailsDialog(
                 val parentPath = remember(path) { File(path).parent ?: "/" }
                 DetailRow(
                     icon = Icons.Outlined.DriveFileMove,
-                    label = "Parent Directory",
+                    label = stringResource(R.string.component_parent_directory),
                     value = parentPath,
                     isMonospace = true
                 )
@@ -226,7 +226,7 @@ fun FileDetailsDialog(
                 }
                 DetailRow(
                     icon = Icons.Outlined.DataUsage,
-                    label = "Size",
+                    label = stringResource(R.string.component_size),
                     value = sizeText
                 )
 
@@ -234,7 +234,7 @@ fun FileDetailsDialog(
 
                 DetailRow(
                     icon = Icons.Outlined.Security,
-                    label = "Permissions",
+                    label = stringResource(R.string.component_permissions),
                     value = permissionsInfo,
                     isMonospace = true
                 )
@@ -244,7 +244,7 @@ fun FileDetailsDialog(
                     val dateFormat = remember { SimpleDateFormat("MMM dd, yyyy · hh:mm:ss a", Locale.getDefault()) }
                     DetailRow(
                         icon = Icons.Outlined.Schedule,
-                        label = "Last Modified",
+                        label = stringResource(R.string.component_last_modified),
                         value = dateFormat.format(Date(resolvedModTime))
                     )
                 }

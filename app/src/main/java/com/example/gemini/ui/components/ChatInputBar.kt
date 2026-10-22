@@ -585,7 +585,7 @@ fun ChatInputBar(
     if (previewImageUrl != null) {
         FullScreenImageDialog(
             imageUrl = previewImageUrl!!,
-            title = "Attachment Preview",
+            title = stringResource(R.string.component_attachment_preview),
             onDismiss = { previewImageUrl = null }
         )
     }

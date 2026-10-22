@@ -49,9 +49,10 @@
 
 ### 当前覆盖率（P1 落地后，实测）
 
-- 资源条目：`values/` **1459** 条，`values-zh-rCN/` **1455** 条（差的 4 条是 `app_name`
+- 资源条目：`values/` **1472** 条，`values-zh-rCN/` **1468** 条（差的 4 条是 `app_name`
   / `anti_term_name` / `termux_name` / `accessibility_service_name`，属不翻白名单）
-- 源码引用：**1389 个 key**（`verify.py` 口径；P1-A2 新增 6 条 `settings_language_*`）
+- 源码引用：**1437 个 key**（`verify.py` 口径；P1-A2 新增 6 条 `settings_language_*`，
+  P2+P3.9 批次新增 13 条 `settings_*` / `data_fork_title`）
 - 源码调用点：`stringResource` **1496 处 / 72 个文件**，`getString(R.string.…)` **228 处**
 - `python3 scripts/i18n/verify.py` 通过
 - `docs/i18n/COVERAGE.md` 由 `gen_coverage.py` 重新生成（旧文档的按界面数字是 P3.5/P3.6
@@ -152,13 +153,34 @@
 - 已知行为：API 33+ 上若用户从**系统设置**里单独给本应用选语言，应用内设置页会把它显示为
   已选中（读的是框架值）；此时点「跟随系统」会清掉该选择。
 
-### P2：`title = / label =`（实测 **112 处**字面量，文档旧数字 67 已过期）
-已还原成英文。这些多为 data class 构造参数（如 `ScriptExecutionInfo(title = ...)`、
-`sessionManager.addNewTab(title = ...)`），不能直接放 `stringResource`。正确做法：
-在 Composable 作用域内先 `val t = stringResource(R.string.x)`，再把 `t` 传进构造函数。
-2026-10-22 实测 `title = "` / `label = "` 共 **112 处**，但其中混着工具名、shell 命令、
-模型名（不翻白名单），真正要改的需要**逐条判定**。另有 2 处含插值的
-（`${source.title} (fork)`、`$title Documentation`）仍未处理。
+### P2：`title = / label =`（✅ 已处理 50 处，剩余全是白名单 / 待改造）
+
+本批（`apply_p2_titles.py`）回写了 **50 处**：对话遥测（4 标题 + 6 行标签）、文件详情（6）、
+附件选择（2）、语音模式（2）、图片预览、问卷「其他」、输入栏附件预览、权限卡（3）、
+Git 面板 4 个分区标题、模型选择标题、浏览器新标签页（1 处 Composable + 2 处 WebView 回调）、
+设置首页 3 张卡、`ScriptExecutionInfo` 的 5 个脚本标题（Rootfs / 对话备份 / 对话恢复 /
+项目备份 / 项目还原）、数据层 5 处对话标题（`application.getString`）、
+插件文档标题与 fork 标题（2 处插值，走 `i18n_dynamic.json`）。
+
+关键做法（照坑 7 的判据）：
+- Composable 参数 / Composable 作用域 → 直接 `stringResource(...)`；
+- `ScriptExecutionInfo(title = ...)` 这类 data class 构造在 onClick 里 → 用作用域内的
+  `context.getString(...)`（这些 composable 都已经有 `val context = LocalContext.current`）；
+- 后端（`AgyChatBackend` / `ClaudeChatBackend`）有 `application` → `application.getString(...)`；
+- `BrowserSessionManager` 的 WebView 回调只有 `appContext: Context?` → `appContext?.getString(...) ?: 英文兜底`。
+
+**剩余 61 处未翻，全部有明确理由**（别再当成漏翻）：
+- 动画 / 诊断 label（`rememberInfiniteTransition(label=…)`、`animateFloat(..., label=…)`、
+  `"progress"`、`"extract_progress"`、`"question_page"`、`"drawerChatListFade"` 等）；
+- 终端按键 `TermuxKey/IdeTermKey(label = "ESC"/"CTRL"/"ALT"/TAB/HOME/方向键)`（终端与日志不翻）；
+- 产品名：速度拨号 `"Google"`/`"YouTube"`、模型分组 `"Google Gemini"`/`"Anthropic Claude"`；
+- **待模型改造的 2 处**：`ClaudePermissionPanel` 的 `ApprovalItem(title = "Review the plan")`
+  （模型里还有 `"Approve · auto-accept edits"`、`toolTitle()` 的 `"Run a command?"` 等一整族，
+  要改成 `@StringRes`）、`ConversationShareHelper` 的 `"Shared Conversation"`（解析函数没有 Context）。
+
+**同族盲区（新发现，见坑 19）**：`subtitle =`（6）、`badgeText =`（4）、`description =`（5）、
+`value =`（11）共 **26 处**仍是英文，例如设置卡副标题、权限卡 `"Required"/"Optional"` 与说明、
+遥测 `"${n} turns"/"Active"/"None"/"Configured"/"Default"`。建议单独一批处理。
 
 ### P3：Toast 与包装的提示（✅ 主体已完成，commit `6310f1c`，CI run 39726355921 通过）
 `Toast.makeText(context, "英文", ...)` 必须用 `context.getString(R.string.x)`（非 Composable）。
@@ -260,18 +282,21 @@
 （Composable 内）、`message`（snackbar，非 Composable）和多行字面量。
 新增 `scripts/i18n/apply_dyn_attrs.py` 处理，`title` / `label` 两类仍交给 P2。
 
-### P3.9：外观子页残留英文标签（❌ 未做，建议下一批）
+### P3.9：外观子页残留英文标签（✅ 已做，13 个标签）
 
-`SettingsDialog.kt` 的 `AppearanceSubScreen`（924 行起）里，卡片的**显示标签**仍是英文，
-是 P3.6 漏掉的盲区变体：标签不是 `Text("...")` 也不是 `title =`，而是
-`listOf(Triple("SYSTEM", "Auto (System)", Icons…))` 元组的**第二项**，随后 `Text(label)` 渲染。
-实测位置：
+`SettingsDialog.kt` 的 `AppearanceSubScreen` 里，卡片的**显示标签**原先仍是英文
+（不是 `Text("...")` 也不是 `title =`，而是 `listOf(Triple("SYSTEM", "Auto (System)", Icons…))`
+元组的**第二项**，随后 `Text(label)` 渲染）。已随 P2 批次一起改完：
 
-- 主题卡 `Auto (System)` / `Light` / `Dark`（964-966）
-- 字号卡 `Small` / `Normal` / `Medium` / `Large` / `Huge`（1067）
-- 悬浮切换器方向 `VERTICAL` / `HORIZONTAL`（1337-1362；注意 `VERTICAL` 同时是比较用的取值，需逐条判定）
-- 自动收起 `Never`（1395）
-- 悬浮切换器条目 `Chat` / `IDE (Code Editor)` / `Terminal` / `Web Browser`（1444-1447）
+- 主题卡 `Auto (System)` / `Light` / `Dark` → 复用 `settings_ui_auto_system` + 新增
+  `settings_theme_light`（浅色）/ `settings_theme_dark`（深色）
+- 字号卡 `Small` / `Normal` / `Medium` / `Large` / `Huge` → 新增 `settings_font_size_*`（小/标准/中/大/特大），
+  并把原来一行 5 个 `to "字面量"` 拆成多行 `stringResource`
+- 自动收起 `Never` → `settings_auto_collapse_never`（从不）
+- 悬浮切换器条目 `Chat` / `IDE (Code Editor)` / `Web Browser` → `settings_switcher_item_*`；
+  `Terminal` 复用 `common_terminal`
+- **方向 `VERTICAL` / `HORIZONTAL` 本来就已经用 `settings_vertical` / `settings_horizontal`**，
+  剩下的 `"VERTICAL"` 字样都是比较值与写偏好用的技术值，不能翻
 
 判据：元组第一项是写入偏好的技术值（**不能翻**），第二项是显示标签（**要翻**）。
 
@@ -302,6 +327,7 @@
 | `local_env_zh.tsv` | 数据层文案对照表（55 条） |
 | `apply_showtoast.py` | 改写 `AppToastHelper.showToast` 首参与 `Intent.createChooser` 标题；接收者按文件显式登记（`RECEIVERS`），未登记直接报错 |
 | `showtoast_zh.tsv` | 分享/导出流程文案对照表（32 条） |
+| `apply_p2_titles.py` | P2 + P3.9：把 `title = / label =` 字面量回写成 `stringResource` / `getString`；按「文件 + 表内原文 + 期望出现次数」三重限定，表外一律不碰 |
 | `fix_imports.py` | 补齐 `import com.example.gemini.R` 与 `stringResource` 导入 |
 | `verify.py` | **CI 编译前必跑**：资源 XML 合法性、`R.string` 引用完整性、占位符/参数一致性、非 Composable 误用、英文资源残留 Kotlin 插值、裸 `%`、**用了裸 `R.string.` 却没有 `import com.example.gemini.R`**（坑 17） |
 | `gen_coverage.py` | 生成 `docs/i18n/COVERAGE.md` |
@@ -449,6 +475,15 @@ null，`setApplicationLocales` 直接静默返回**（javap appcompat 1.7.0 已�
 （本项目本来也没有自定义 Application）或任何没有 AppCompat Activity 的时机都会静默失效。
 另：API<33 时 appcompat 只包装 **Activity** 的资源，`applicationContext.getString(...)`
 （P3.7 的通知文案）不会跟随应用内语言——这就是待验证①。
+
+### 19. `title = / label =` 只是同族盲区里的一类：`subtitle = / badgeText = / description = / value =` 仍会漏
+P2 批次把 `title =` 与 `label =` 两类回写完了，但同一批组件还有四种「命名参数传字面量」：
+设置卡副标题 `subtitle = "..."`、徽标 `badgeText = "Shield"/"Required"/"Optional"`、
+权限卡 `description = "..."`、遥测行 `value = "${n} turns"/"Active"/"None"/"Configured"/"Default"`。
+它们既不是 `Text("...")`（`apply.py` 扫不到）、也不是 `text =`（`apply_attrs.py` 扫不到），
+所以从 P3 到 P2 全都没进过任何清单——表现为「对话框标题中文、下面每行说明仍英文」。
+2026-10-22 实测：subtitle 6 处、badgeText 4 处、description 5 处、value 11 处，共 26 处。
+→ 判据仍然是「字符串最终会不会被渲染」，不是参数名。
 
 ## 7. 关键决策记录
 

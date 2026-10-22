@@ -63,6 +63,7 @@
     <string name="settings_ask">✋ Ask</string>
     <string name="settings_ask_every_time">✋ Ask Every Time</string>
     <string name="settings_atomics">Atomics</string>
+    <string name="settings_auto_collapse_never">Never</string>
     <string name="settings_auto_collapse_timeout">Auto-Collapse Timeout</string>
     <string name="settings_auto_run_eager">⚡ Auto-Run (Eager)</string>
     <string name="settings_auto_turbo">⚡ Auto (Turbo)</string>
@@ -179,6 +180,11 @@
     <string name="settings_flow_automation">Flow Automation</string>
     <string name="settings_folder_name">Folder name</string>
     <string name="settings_font_size">Font Size</string>
+    <string name="settings_font_size_huge">Huge</string>
+    <string name="settings_font_size_large">Large</string>
+    <string name="settings_font_size_medium">Medium</string>
+    <string name="settings_font_size_normal">Normal</string>
+    <string name="settings_font_size_small">Small</string>
     <string name="settings_fontsizestate_pt">%1$spt</string>
     <string name="settings_format">Format</string>
     <string name="settings_from_skill_pluginname">from %1$s</string>
@@ -393,6 +399,9 @@
     <string name="settings_stop_server_now">Stop Server Now</string>
     <string name="settings_store">Store</string>
     <string name="settings_suspends_and_requests_your_approval_befo">Suspends and requests your approval before saving document edits.</string>
+    <string name="settings_switcher_item_browser">Web Browser</string>
+    <string name="settings_switcher_item_chat">Chat</string>
+    <string name="settings_switcher_item_ide">IDE (Code Editor)</string>
     <string name="settings_target_item_originalpath">Target: %1$s</string>
     <string name="settings_target_sandbox">Target Sandbox:</string>
     <string name="settings_temporary_cache">Temporary Cache</string>
@@ -406,6 +415,8 @@
     <string name="settings_test_ssh_connection">Test SSH Connection</string>
     <string name="settings_the_agy_ide_bridge_and_hub_server_must_b">The AGY IDE Bridge and Hub server must be offline before running \'%1$s\'. Would you like to stop the server now?</string>
     <string name="settings_the_daemon_is_actively_accessing_databas">The daemon is actively accessing databases and processes. Please stop the server before performing backups or restores to prevent corrupted archives.</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_theme_light">Light</string>
     <string name="settings_this_includes_your_termux_linux_packages">This includes your Termux Linux packages, AI configuration, and local SQLite data.</string>
     <string name="settings_this_switch_controls_the_legacy_google_f">This switch controls the legacy Google Flow endpoint only. Install, enable or disable the current extension in Settings → WebView Extensions, then choose it in MCP settings. Tool lists come from the installed extension.</string>
     <string name="settings_this_will_remove_antigem_s_device_admin">This will remove AntiGem\'s Device Admin status. The app will become vulnerable to accidental home-screen uninstallation.</string>
@@ -509,6 +520,7 @@
     <string name="settings_ui_pick_an_existing_bootstrap_zip_file_from">Pick an existing bootstrap .zip file from device (Offline)</string>
     <string name="settings_ui_pick_an_existing_container_backup_or_cus">Pick an existing container backup or custom rootfs (bootstraps.zip) from phone storage.</string>
     <string name="settings_ui_pick_an_existing_container_backup_or_cus_2">Pick an existing container backup or custom rootfs (bootstraps.zip) from phone storage</string>
+    <string name="settings_ui_plugin_documentation">%1$s Documentation</string>
     <string name="settings_ui_policy_policybadge_sandboxsummary">Policy: %1$s • %2$s</string>
     <string name="settings_ui_recommended">Recommended</string>
     <string name="settings_ui_review_details_below_and_confirm_to_begi">Review details below and confirm to begin installation.</string>

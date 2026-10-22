@@ -121,6 +121,8 @@
     <string name="settings_ask_every_time">✋ 每次询问</string>
     <!-- 原文: Atomics -->
     <string name="settings_atomics">原子指令</string>
+    <!-- 原文: Never -->
+    <string name="settings_auto_collapse_never">从不</string>
     <!-- 原文: Auto-Collapse Timeout -->
     <string name="settings_auto_collapse_timeout">自动收起超时</string>
     <!-- 原文: ⚡ Auto-Run (Eager) -->
@@ -353,6 +355,16 @@
     <string name="settings_folder_name">文件夹名称</string>
     <!-- 原文: Font Size -->
     <string name="settings_font_size">字号</string>
+    <!-- 原文: Huge -->
+    <string name="settings_font_size_huge">特大</string>
+    <!-- 原文: Large -->
+    <string name="settings_font_size_large">大</string>
+    <!-- 原文: Medium -->
+    <string name="settings_font_size_medium">中</string>
+    <!-- 原文: Normal -->
+    <string name="settings_font_size_normal">标准</string>
+    <!-- 原文: Small -->
+    <string name="settings_font_size_small">小</string>
     <!-- 原文: %1$spt -->
     <string name="settings_fontsizestate_pt">%1$spt</string>
     <!-- 原文: Format -->
@@ -781,6 +793,12 @@
     <string name="settings_store">商店</string>
     <!-- 原文: Suspends and requests your approval before saving document edits. -->
     <string name="settings_suspends_and_requests_your_approval_befo">在保存文档修改前暂停并请求你的批准。</string>
+    <!-- 原文: Web Browser -->
+    <string name="settings_switcher_item_browser">网页浏览器</string>
+    <!-- 原文: Chat -->
+    <string name="settings_switcher_item_chat">对话</string>
+    <!-- 原文: IDE (Code Editor) -->
+    <string name="settings_switcher_item_ide">IDE（代码编辑器）</string>
     <!-- 原文: Target: %1$s -->
     <string name="settings_target_item_originalpath">目标：%1$s</string>
     <!-- 原文: Target Sandbox: -->
@@ -807,6 +825,10 @@
     <string name="settings_the_agy_ide_bridge_and_hub_server_must_b">执行「%1$s」前必须先停掉 AGY IDE 桥接与中枢服务器。要现在停止吗？</string>
     <!-- 原文: The daemon is actively accessing databases and processes. Please stop the server before performing backups or restores to prevent corrupted archives. -->
     <string name="settings_the_daemon_is_actively_accessing_databas">守护进程正在访问数据库和进程。请先停止服务再进行备份或恢复，以免产生损坏的压缩包。</string>
+    <!-- 原文: Dark -->
+    <string name="settings_theme_dark">深色</string>
+    <!-- 原文: Light -->
+    <string name="settings_theme_light">浅色</string>
     <!-- 原文: This includes your Termux Linux packages, AI configuration, and local SQLite data. -->
     <string name="settings_this_includes_your_termux_linux_packages">这包括你的 Termux Linux 软件包、AI 配置和本地 SQLite 数据。</string>
     <!-- 原文: This switch controls the legacy Google Flow endpoint only. Install, enable or disable the current extension in Settings → WebView Extensions, then choose it in MCP settings. Tool lists come from the installed extension. -->
@@ -1013,6 +1035,8 @@
     <string name="settings_ui_pick_an_existing_container_backup_or_cus">从手机存储选择已有的容器备份或自定义 rootfs（bootstraps.zip）。</string>
     <!-- 原文: Pick an existing container backup or custom rootfs (bootstraps.zip) from phone storage -->
     <string name="settings_ui_pick_an_existing_container_backup_or_cus_2">从手机存储选择已有的容器备份或自定义 rootfs（bootstraps.zip）</string>
+    <!-- 原文: %1$s Documentation -->
+    <string name="settings_ui_plugin_documentation">%1$s 文档</string>
     <!-- 原文: Policy: %1$s • %2$s -->
     <string name="settings_ui_policy_policybadge_sandboxsummary">策略：%1$s · %2$s</string>
     <!-- 原文: Recommended -->

@@ -468,7 +468,7 @@ private fun QuestionBlockView(
             val otherIndex = question.options.size + 1
             OptionRow(
                 index = otherIndex,
-                label = "Other (write your answer)",
+                label = stringResource(R.string.component_other_write_your_answer),
                 description = null,
                 isSelected = isOtherChecked,
                 isMultiSelect = question.isMultiSelect,

@@ -42,6 +42,7 @@ import java.net.URLEncoder
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentLinkedDeque
 import kotlin.coroutines.resume
+import com.example.gemini.R
 
 /**
  * Diagnostic Console Log entry captured from a live WebView tab.
@@ -886,7 +887,7 @@ class BrowserSessionManager private constructor() {
                     tab.startLoadingWatchdog(mainHandler)
                     if (url.isNullOrBlank() || url == "about:blank") {
                         tab.url = ""
-                        tab.title = "New Tab"
+                        tab.title = appContext?.getString(R.string.common_new_tab) ?: "New Tab"
                     } else if (!url.startsWith("data:")) {
                         tab.url = url
                     }
@@ -903,7 +904,7 @@ class BrowserSessionManager private constructor() {
                     tab.cancelLoadingWatchdog(mainHandler)
                     if (url.isNullOrBlank() || url == "about:blank") {
                         tab.url = ""
-                        tab.title = "New Tab"
+                        tab.title = appContext?.getString(R.string.common_new_tab) ?: "New Tab"
                     } else if (!url.startsWith("data:")) {
                         tab.url = url
                     }

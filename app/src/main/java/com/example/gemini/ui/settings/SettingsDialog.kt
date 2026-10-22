@@ -794,7 +794,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Security,
             iconTint = Color(0xFF10B981),
-            title = "Data Loss Protection",
+            title = stringResource(R.string.settings_data_loss_protection),
             subtitle = "Accidental uninstall shield & App Info clear data protection",
             badgeText = "Shield",
             badgeColor = Color(0xFF10B981),
@@ -809,7 +809,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Speed,
             iconTint = if (isFloatingDiagnosticsEnabled) QuotaGreen else Color(0xFF00ACC1),
-            title = "Diagnostics & Performance",
+            title = stringResource(R.string.settings_diagnostics_performance),
             subtitle = if (isFloatingDiagnosticsEnabled) "Floating live metrics HUD enabled" else "Live network connections, active streams & thread HUD",
             badgeText = diagBadge,
             badgeColor = diagColor,
@@ -822,7 +822,7 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Info,
             iconTint = Color(0xFF8B5CF6),
-            title = "About & Info",
+            title = stringResource(R.string.settings_about_info),
             subtitle = "v${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE}) • ${BuildConfig.APPLICATION_ID}",
             badgeText = "v${BuildConfig.VERSION_NAME}",
             badgeColor = Color(0xFF8B5CF6),
@@ -967,9 +967,9 @@ private fun AppearanceSubScreen(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             val themes = listOf(
-                Triple("SYSTEM", "Auto (System)", Icons.Outlined.BrightnessAuto),
-                Triple("LIGHT", "Light", Icons.Outlined.LightMode),
-                Triple("DARK", "Dark", Icons.Outlined.DarkMode)
+                Triple("SYSTEM", stringResource(R.string.settings_ui_auto_system), Icons.Outlined.BrightnessAuto),
+                Triple("LIGHT", stringResource(R.string.settings_theme_light), Icons.Outlined.LightMode),
+                Triple("DARK", stringResource(R.string.settings_theme_dark), Icons.Outlined.DarkMode)
             )
 
             themes.forEach { (mode, label, icon) ->
@@ -1143,7 +1143,13 @@ private fun AppearanceSubScreen(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                val presets = listOf(0.85f to "Small", 1.00f to "Normal", 1.15f to "Medium", 1.30f to "Large", 1.50f to "Huge")
+                val presets = listOf(
+                    0.85f to stringResource(R.string.settings_font_size_small),
+                    1.00f to stringResource(R.string.settings_font_size_normal),
+                    1.15f to stringResource(R.string.settings_font_size_medium),
+                    1.30f to stringResource(R.string.settings_font_size_large),
+                    1.50f to stringResource(R.string.settings_font_size_huge)
+                )
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(6.dp)
@@ -1471,7 +1477,7 @@ private fun AppearanceSubScreen(
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f)
                     )
                     Spacer(modifier = Modifier.height(6.dp))
-                    val timeouts = listOf(0 to "Never", 3 to "3s", 5 to "5s", 10 to "10s", 15 to "15s")
+                    val timeouts = listOf(0 to stringResource(R.string.settings_auto_collapse_never), 3 to "3s", 5 to "5s", 10 to "10s", 15 to "15s")
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(6.dp)
@@ -1520,10 +1526,10 @@ private fun AppearanceSubScreen(
                     displayedList.forEach { itemId ->
                         val isEnabled = currentItems.contains(itemId)
                         val itemLabel = when (itemId) {
-                            "chat" -> "Chat"
-                            "ide" -> "IDE (Code Editor)"
-                            "terminal" -> "Terminal"
-                            "browser" -> "Web Browser"
+                            "chat" -> stringResource(R.string.settings_switcher_item_chat)
+                            "ide" -> stringResource(R.string.settings_switcher_item_ide)
+                            "terminal" -> stringResource(R.string.common_terminal)
+                            "browser" -> stringResource(R.string.settings_switcher_item_browser)
                             else -> itemId
                         }
                         val itemIcon = when (itemId) {
@@ -4697,7 +4703,7 @@ private fun BackupsSubScreen(
                         } else {
                             requestStoragePermission {
                                 activeScriptExecution = ScriptExecutionInfo(
-                                    title = "Rootfs System Packager",
+                                    title = context.getString(R.string.settings_rootfs_system_packager),
                                     scriptName = "backup_bootstrap",
                                     args = emptyList()
                                 )
@@ -5053,7 +5059,7 @@ private fun BackupsSubScreen(
                         backupChatsPassword = ""
                         requestStoragePermission {
                             activeScriptExecution = ScriptExecutionInfo(
-                                title = "AGY Chats & Credentials Backup",
+                                title = context.getString(R.string.settings_agy_chats_credentials_backup),
                                 scriptName = "backup_chats",
                                 args = if (pass.isNotEmpty()) listOf("", pass) else emptyList()
                             )
@@ -5131,7 +5137,7 @@ private fun BackupsSubScreen(
                         restoreFilePath = ""
                         restorePassword = ""
                         activeScriptExecution = ScriptExecutionInfo(
-                            title = "Restore AGY Chats & Credentials",
+                            title = context.getString(R.string.settings_restore_agy_chats_credentials),
                             scriptName = "restore_chats",
                             args = if (pass.isNotEmpty()) listOf(path, pass) else listOf(path)
                         )
@@ -5778,7 +5784,7 @@ private fun ProjectsBackupRestoreDialog(
                                     onDismiss()
                                     onExecuteScript(
                                         ScriptExecutionInfo(
-                                            title = "Projects Backup Packager",
+                                            title = context.getString(R.string.settings_projects_backup_packager),
                                             scriptName = "backup_projects",
                                             args = listOf("", backupMode, "--paths-file", targetsFile.absolutePath)
                                         )
@@ -5998,7 +6004,7 @@ private fun ProjectsBackupRestoreDialog(
                                 onDismiss()
                                 onExecuteScript(
                                     ScriptExecutionInfo(
-                                        title = "Projects Archive Restorer",
+                                        title = context.getString(R.string.settings_projects_archive_restorer),
                                         scriptName = "restore_projects",
                                         args = listOf(zipPath, conflictStrategy, if (useCustomRestoreDir) customRestoreDir.trim() else "")
                                     )

@@ -277,7 +277,7 @@ private fun MainCategoryListView(
         // Agent header (same as the Claude Code picker)
         com.example.gemini.ui.agents.AgentSheetHeader(
             agent = com.example.gemini.domain.model.AgentKind.AGY,
-            title = "Select model",
+            title = stringResource(R.string.ui_select_model),
             detail = if (availableModelsCount > 0) "$availableModelsCount models" else "no models loaded",
             refreshing = isRefreshing,
             onRefresh = onRefresh

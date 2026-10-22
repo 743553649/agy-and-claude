@@ -818,7 +818,7 @@ class AgyChatBackend(
         } else ""
         val newConv = Conversation(
             id = UUID.randomUUID().toString(),
-            title = "New Chat",
+            title = application.getString(R.string.common_new_chat),
             modelId = modelToUse,
             sessionId = UUID.randomUUID().toString(),
             workspaceUri = defaultWorkspaceUri
@@ -861,7 +861,7 @@ class AgyChatBackend(
             _conversationError.value = null
 
             val conv = _conversations.value.find { it.id == id }
-                ?: Conversation(id = id, title = "Antigravity Chat", sessionId = id)
+                ?: Conversation(id = id, title = application.getString(R.string.data_antigravity_chat), sessionId = id)
             Log.d("CHAT_OPEN_DEBUG", "👉 [ChatViewModel.selectConversation] Launching stream for conv: title='${conv.title}', id=${conv.id}")
             _currentConversation.value = conv
             knownDaemonCascadeIds.add(id)
@@ -1350,7 +1350,7 @@ class AgyChatBackend(
             } else ""
             _currentConversation.value = Conversation(
                 id = UUID.randomUUID().toString(),
-                title = "New Chat",
+                title = application.getString(R.string.common_new_chat),
                 modelId = modelToUse,
                 sessionId = UUID.randomUUID().toString(),
                 workspaceUri = defaultWorkspaceUri
@@ -1574,7 +1574,7 @@ class AgyChatBackend(
             } catch (e: Exception) {
                 Log.e("ChatViewModel", "sendUserPrompt exception: ${e.message}", e)
                 val formattedErr = formatStructuredErrorMessage(
-                    title = "Execution Failure",
+                    title = application.getString(R.string.data_execution_failure),
                     userMessage = e.message ?: "Unknown error",
                     shortError = e.message ?: "",
                     fullError = e.stackTraceToString()
