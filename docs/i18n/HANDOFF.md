@@ -182,6 +182,13 @@ Git 面板 4 个分区标题、模型选择标题、浏览器新标签页（1 �
 `value =`（11）共 **26 处**仍是英文，例如设置卡副标题、权限卡 `"Required"/"Optional"` 与说明、
 遥测 `"${n} turns"/"Active"/"None"/"Configured"/"Default"`。建议单独一批处理。
 
+**CI 证据**（run 39761475073，commit `dbb7c9c`）：`Verify i18n resources` 通过
+（`values: 1472 / values-zh-rCN: 1468 / 引用 1437 key`）、`:app:assembleTermuxRelease` 成功、
+产物 `antiGem-termux-v1.0.13-release-dbb7c9c.apk`（19M）、签名指纹与标准值一致。
+⚠️ 首次推送 `015e540` 的 run 39760852496 **失败**：`BrowserScreen.kt:153` 的 `title =`
+写在 `LaunchedEffect` 里，改成 `stringResource` 触发 `@Composable invocations` 报错
+（坑 1 变体，已在该坑下补记）。`verify.py` 的按文件检查抓不到这种嵌套误用，只能靠 CI。
+
 ### P3：Toast 与包装的提示（✅ 主体已完成，commit `6310f1c`，CI run 39726355921 通过）
 `Toast.makeText(context, "英文", ...)` 必须用 `context.getString(R.string.x)`（非 Composable）。
 实测 **104 处**（文档旧写的「约 7 处」严重低估），已全部改写并新增 88 条 `*_toast_*` 资源；
