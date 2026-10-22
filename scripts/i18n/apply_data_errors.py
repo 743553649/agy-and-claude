@@ -29,7 +29,7 @@ VM = "ui/chat/ChatViewModel.kt"
 
 SITES = [
     # ===== 构造注入 =====
-    (AGY, 'import android.util.Log\n', 'import android.content.Context\nimport android.util.Log\n', 1),
+    # 注意：AgyMcpManager.kt 第 4 行本来就有 `import android.content.Context`，不要再插入（会 Conflicting import）
     (AGY,
      'class AgyMcpManager(\n    private val backendScope: CoroutineScope,\n    private val agyHubClient: AgyHubClient\n) {',
      'class AgyMcpManager(\n    private val backendScope: CoroutineScope,\n    private val agyHubClient: AgyHubClient,\n    private val appContext: Context\n) {', 1),
