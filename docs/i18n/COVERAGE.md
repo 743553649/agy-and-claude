@@ -83,7 +83,7 @@
 | `FileDetailsDialog.kt` | 1 |
 | `SelectTextSheet.kt` | 1 |
 
-合计：**72 个文件、1478 处 `stringResource` 调用点**（另有 113 处 `context.getString`）。
+合计：**72 个文件、1496 处 `stringResource` 调用点**（另有 113 处 `context.getString`）。
 
 ## 三、有意保留英文的内容
 
@@ -110,6 +110,7 @@
 | 环境安装页（全屏 + 对话框） | ✅ 已改（状态标题、硬件取值、下载选项、按钮，同上提交） |
 | 设置顶栏 / 分组枚举 | ✅ 已改（`SettingsSection` 与 `ClaudeSettingsPage` 改 `@StringRes`，commit `4d25d0f`） |
 | 其余 `when`/`if` 分支字面量 | ❌ 未改（实测 70 行 `when` 分支 + 243 行单行三元，需剔技术值白名单） |
+| 安装通知与进度文案（数据层） | ❌ 未改（`LocalEnvironmentManager` 35 处通知 + 5 处 speedText，如 `Connecting...`） |
 | 设置页语言切换入口 | ❌ 未实现（项目无 `appcompat` 依赖，方案待定） |
 | 浏览器扩展浮层文案 | ❌ 未实现（约 40 处） |
 

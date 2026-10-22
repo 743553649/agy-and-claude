@@ -47,7 +47,7 @@
 
 - 资源条目：`values/` **1367** 条，`values-zh-rCN/` **1363** 条（差的 4 条是 `app_name`
   / `anti_term_name` / `termux_name` / `accessibility_service_name`，属不翻白名单）
-- 源码调用点：`stringResource` **1478 处 / 72 个文件**，`context.getString` **113 处**
+- 源码调用点：`stringResource` **1496 处 / 72 个文件**，`context.getString` **113 处**
 - `python3 scripts/i18n/verify.py` 通过
 
 > ⚠️ 旧的「705 条已译 676 条（95.9%）」指标**已失效，别再引用**：绝大多数英文字面量
@@ -136,6 +136,19 @@
 
 **同类盲区还剩**：全仓库 `when`/`else ->` 分支返回字面量 **70 行**、单行
 `if (…) "A" else "B"` **243 行**，需逐条判定白名单后再改（很多是 `"bash"`、`"error"` 这类技术值）。
+
+### P3.7：数据层产出的通知与进度文案（❌ 下一批，未做）
+`data/local/LocalEnvironmentManager.kt` 不在 Composable 里，但它生成的字符串**会显示给用户**：
+
+- `updateInstallNotification(appContext, "标题", "正文", …)` 共 **35 处**（"Downloading Linux Rootfs"、
+  "Installation Failed"、"Connecting…" 等，既是通知标题也进安装页）
+- `speedText = "..."` 共 **5 处**（"Connecting..."、"Finding package..."、"Connecting mirror N..." 等，
+  安装页进度条右侧直接显示——用户实测截图里那条 `Connecting...` 就是它）
+- `errorMessage = "..."` 数处（会显示在安装页错误态）
+- 类里有 `appContext`，所以走 `appContext.getString(R.string.x)`；`Log.d(TAG, …)` 保持英文
+
+做法可直接照 `apply_toast.py`（非 Composable + 逐字符解析 + 对照表），
+新增一张 `local_env_zh.tsv` 即可；注意同一句文案在通知与 UI 两处复用同一资源。
 
 ### P3.5：含插值但调用点未被回写的文案（✅ 已完成，同一提交）
 16 处译文本已在 `/tmp/i18n_dynamic.json` 里，只是回写没覆盖到：`contentDescription`
