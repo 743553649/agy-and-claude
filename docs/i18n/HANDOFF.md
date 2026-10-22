@@ -22,7 +22,7 @@
 
 ### 2.1 仓库 `AGENTS.md` 与本项目做法的冲突（已由用户拍板）
 
-仓库自带 `AGENTS.md` 写着「不要 git push / commit」「只编 termuxBuild，绝不编 Standard」，与用户指示冲突时**以用户指示为准**。当前 CI 已按用户选择的方案改为 **termux flavor（`com.termux`）**，与上游发版包名一致，可覆盖安装。
+仓库自带 `AGENTS.md` 写着「不要 git push / commit」「只编 termuxBuild，绝不编 Standard」，与用户指示冲突时**以用户指示为准**。当前 CI 已按用户选择的方案改为 **termux flavor（`com.termux`）**，与上游发版包名一致；注意**包名一致 ≠ 可覆盖安装**，覆盖还要求签名一致，见第 10 节。
 
 ## 3. 已完成的工作
 
@@ -53,8 +53,8 @@
 
 ## 4. 未完成的工作（按建议优先级）
 
-### P0：AI 中文回复注入（用户已定方案，代码未落地）
-`app/src/main/java/com/example/gemini/domain/i18n/AiLanguage.kt` **已创建但没有任何地方引用**。需要：
+### P0：AI 中文回复注入（✅ 已落地，commit `8fdd016`，CI run 39716135832 通过）
+`app/src/main/java/com/example/gemini/domain/i18n/AiLanguage.kt` 的接入已完成。落地内容：
 
 1. `data/remote/AntigravityApiService.kt`：`buildRequestPayload` 里把
    `"$SYSTEM_INSTRUCTION$customPart"` 改成 `"$sysBase$customPart"`，其中
@@ -68,9 +68,23 @@
    - 新方法用 `sendControl(ClaudeControlRequestBody(subtype = "initialize", appendSystemPrompt = AiLanguage.appendSystemPromptOrNull()))`（**fire-and-forget**，不要用 `request()` 等待）
    - `detachLocked()` 里把它置空
 
-**验证边界**：CI 只能证明编译通过。Claude CLI 是否真的接受 `initialize` + `appendSystemPrompt`
-必须真机实测。若不被接受，最坏情况是"Claude 仍回英文"，不会挂会话——
-依据：`ClaudeChatBackend.deliverReply()` 是 `replies.remove(id)?.complete(...)`，未匹配的响应被忽略。
+**落地时与原计划的两点差异**：
+- 原方案只写了一句「把 `"$SYSTEM_INSTRUCTION$customPart"` 改成 `"$sysBase$customPart"`」，
+  实际该表达式有 **2 处**（`toolInstruction` 非空/为空两条分支），两处都改才不漏注入。
+- 新方法命名 `sendLanguageInstruction`，**不加 `Locked` 后缀**：它不持有 `_Locked` 系列
+  的锁，`sendPrompt` 的协程体也不在 synchronized 块里，沿用邻居的 `@Volatile` 更贴合现有风格。
+  英文界面下**不标记已发送**（`?: return` 在赋值之前），这样会话中途切到中文仍能补发。
+
+**验证边界**：CI 只能证明编译通过。协议层已证实支持——
+`CLAUDE_CLI_PROTOCOL.md:234` 明确列出 `initialize` 的可选参数含 `appendSystemPrompt` 且标记 ✅；
+剩下的是这个 CLI 版本是否真的应用它，必须真机实测。若不被接受，最坏情况是"Claude 仍回英文"，
+不会挂会话——依据：`ClaudeChatBackend.deliverReply()` 是 `replies.remove(id)?.complete(...)`，
+未匹配的响应被忽略。
+
+**另一个待真机确认的点**：`connect()` 的 while 循环在 socket 关闭后会自动重连，
+但**不重置 `attachedId`、不调用 `detachLocked()`**，所以 `languageInstructionSentFor`
+在重连后仍然保留。在「bridge 保持同一 CLI 进程、按 seq 续传」的前提下这是对的（同一进程不必重发）；
+只有 bridge 在重连时换了新 CLI 进程才会漏发，届时表现为 AI 又回英文，需要重开会话。
 
 ### P1：设置页语言切换
 `AppCompatDelegate.setApplicationLocales`（Android 13+ 原生；项目 `targetSdk = 28`，
@@ -174,7 +188,7 @@ git add -A && git commit && git push         # 触发云端 CI
 | 存疑项 | 无法判定用户可见的一律**保留英文**，并在提交信息里列出 |
 | 资源组织 | 按模块拆 `strings_settings/ide/claude/browser/drawer/chat/agents/components/ui/data/common.xml` |
 | 原文留档 | `values-zh-rCN/` 每条译文上方 `<!-- 原文: ... -->` |
-| flavor | **termux**（`com.termux`），与上游发版同包名，可覆盖安装 |
+| flavor | **termux**（`com.termux`），与上游发版同包名；覆盖安装另需签名一致，见第 10 节 |
 | 签名 | 需要仓库 secret `RELEASE_KEYSTORE_BASE64`；缺失时自动退回 debug 签名并出 warning |
 
 术语表见 `docs/i18n/GLOSSARY.md`（Agent=智能体、Session=会话、Workspace=工作区、
@@ -187,6 +201,8 @@ Extension=扩展、Bridge=桥接、Skill=技能、Trajectory=执行轨迹、Prom
 2. 装到手机，**系统语言设为简体中文**
 3. 按 `docs/i18n/COVERAGE.md` 逐项核对
 4. 每次 CI 约 7–9 分钟；`verify i18n resources` 步骤失败会 10 秒内红，比等 Gradle 快
+5. **装之前先确认 `com.termux` 没被别的应用占着**（Termux / Termux Ultra 也用这个包名），
+   以及手上这个包的签名是不是标准指纹，见第 10 节
 
 ### 当前签名密钥的来源与保管（重要）
 
@@ -336,4 +352,65 @@ release 版开了 `isMinifyEnabled = true` / `isShrinkResources = true`
 | `.github/workflows/ci.yml` | 云端构建（termux flavor + verify） |
 | `.github/workflows/release.yml` | 上游发版流程，**不要动** |
 | `app/src/main/res/values*/strings_*.xml` | 资源文件 |
-| `app/src/main/java/com/example/gemini/domain/i18n/AiLanguage.kt` | AI 语言策略（已建，未引用） |
+| `app/src/main/java/com/example/gemini/domain/i18n/AiLanguage.kt` | AI 语言策略（P0 已接入，见第 4 节） |
+
+## 10. 签名标准（唯一版本，不得更换）
+
+一句话：**本项目只能有一把签名密钥**。换了它，任何已装好的旧版都无法被覆盖更新，
+用户只能卸载重装、数据全丢。所以先把它钉死，再让 CI 每次构建自动校验。
+
+### 标准值（2026-10-22 定版）
+
+| 项 | 值 |
+| --- | --- |
+| 证书 SHA-256 | `6F:F1:E3:FF:A0:C1:5F:2F:64:74:74:FB:04:F4:78:FD:1D:06:C0:88:40:CC:6B:6E:6E:72:ED:6A:94:2A:7B:5C` |
+| 密钥库 | `/sdcard/汉化/keystore/antigem-release.jks`（sha256 `cafb0a2a2815d4376974c97e63062eac7ec4c0e2ba16365e8cce4723428e3a55`，`/tmp/antigem-release.jks` 与它逐字节相同） |
+| 别名 / 口令 | `antigem` / `123456` / `123456`（与 `app/build.gradle.kts` 里写死的签名配置一致） |
+| 证书主体 | `CN=Antigem, OU=Antigem, O=Antigem, L=NA, ST=NA, C=CN` |
+| 有效期 | 2026-10-22 ~ 2056-10-14 |
+| 仓库 secret | `RELEASE_KEYSTORE_BASE64`（2026-10-22T01:57:44Z 写入） |
+
+**三方已闭合验证**（2026-10-22）：
+
+1. 本地密钥库：`keytool -list -v` 实测指纹 = 上表
+2. GitHub secret 还原后构建的包：`f3d15f4` 产物实测指纹 = 上表（证书 868 字节，v2 签名）
+3. 因此 CI 产出的 release 包可以覆盖本项目此前用同一密钥签的任何版本
+
+### 为什么不是上游那把
+
+上游 `release.jks` 从未进入 git 历史，磁盘上也没有，**拿不到**。所以这把是新建的。
+后果：我们的包覆盖不了官方版，官方版也覆盖不了我们的包；二者只能装一个，切换必须
+卸载重装（数据用 App 自带备份迁移，见 8.5）。
+
+### 每次构建自动校验
+
+`scripts/verify_apk_signature.py` 解析 APK Signing Block 的 v2 签名结构取证书 DER 算
+SHA-256（`apksigner` 在本机因 JDK `LoggerFinderLoader` 初始化失败不可用，这条路结论等价），
+`ci.yml` 的 `Verify APK signature` 步骤把它打印进构建摘要，指纹不符直接红。
+
+本地手工核对：
+
+```bash
+python3 scripts/verify_apk_signature.py /path/to/antiGem-termux-*.apk
+# 退出码 0 = 与标准指纹一致；1 = 不一致（装不上旧版）；2 = 没有 v2 签名
+```
+
+### 安装前提（踩过一次，2026-10-22）
+
+`com.termux` 这个包名很抢手，装之前必须确认手机上没被别的应用占着：
+
+- 官方 AntiGem（termux flavor）——签名 `CC:F2:C6:81:...`，不同，装不上
+- **Termux / Termux Ultra 等真正的终端应用**——它们也用 `com.termux`，签名更不同。
+  实测手机上一度装着 Termux Ultra 118.3.50（versionCode 1043，Play 商店装的），
+  我们的包是 113，签名与版本号双重不相容
+- 本项目早期的 **debug 签名**包——GitHub runner 每次都是全新环境，`~/.android/debug.keystore`
+  是现生成的，所以**两个 debug 包之间也互不覆盖**
+
+卸载占用包名的应用会**连带删除它的数据**（Termux 的 home 在 `/data/data/com.termux`），
+动手前先备份。
+
+### 不要做的事
+
+- 不要重新生成密钥（`keytool -genkey`），除非接受所有用户卸载重装
+- 不要删改 secret `RELEASE_KEYSTORE_BASE64`
+- 不要把 `app/release.jks` 提交进仓库（`.gitignore` 已屏蔽）；也不要把密钥库只留在手机上

@@ -96,6 +96,17 @@ jobs:
           echo "- 包名：\`com.termux\`（termux flavor）" >> $GITHUB_STEP_SUMMARY
           echo "- 签名：\`${MODE}\`" >> $GITHUB_STEP_SUMMARY
 
+      # 签名指纹校验：本项目只允许一把 release 密钥，一旦漂移（例如 secret 失效回退 debug），
+      # 装出来的包就覆盖不了旧版。详见 docs/i18n/HANDOFF.md「签名标准」。
+      - name: Verify APK signature
+        run: |
+          APK=$(find artifact -name "*.apk" | head -n 1)
+          if [ -f app/release.jks ]; then
+            python3 scripts/verify_apk_signature.py "${APK}" | tee -a $GITHUB_STEP_SUMMARY
+          else
+            echo "::warning::本次是 debug 签名，跳过指纹校验（每次 CI 的 debug keystore 都是新生成的，彼此无法覆盖安装）"
+          fi
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
