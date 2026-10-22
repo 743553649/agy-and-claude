@@ -16,7 +16,11 @@
 1. **不走本地构建**：所有编译一律通过 GitHub Actions 云端完成。除非是"硬性必须"（如读源码、跑静态校验脚本），不讨论本机环境问题。
 2. **全程 push 云端构建**：改完即 push 到 `feat/zh-cn-i18n`，用 CI 的编译结果作验证证据。
 3. **不碰 `version.json`**：它的变更会触发 `release.yml` 自动发布 GitHub Release。
-4. **不改构建配置**：`app/build.gradle.kts`、`AndroidManifest.xml`、`settings.gradle.kts` 一律不动（已确认目前未被改动）。
+4. **不改构建配置**：`AndroidManifest.xml`、`settings.gradle.kts`、`version.json`、`release.yml` 一律不动。
+   **唯一例外（2026-10-22 用户同意，见 P1 计划第 2 节）**：P1 方案 A 引入了 `androidx.appcompat`，
+   因此已改 `app/build.gradle.kts`（加依赖）、`gradle/libs.versions.toml`（版本目录）、
+   `res/values/themes.xml`（两个主题父级换成 AppCompat 后代）。**manifest 仍未改**，
+   所以 appcompat 的 `autoStoreLocales` 用不了，语言偏好是自己用 SharedPreferences 存的。
 5. **保留双语**：用 `values/` + `values-zh-rCN/`，不硬替换成中文。
 6. **AI 回复语言跟随界面**：中文界面注入中文指令，英文界面不注入。
 
@@ -43,10 +47,11 @@
 | `e2514fc` | 还原 `title = / label =` 67 处（data class 参数，不能放 `stringResource`） |
 | `37fffea` | `docs/i18n/COVERAGE.md` 覆盖清单 |
 
-### 当前覆盖率（P3.7 落地后，实测）
+### 当前覆盖率（P1 落地后，实测）
 
-- 资源条目：`values/` **1453** 条，`values-zh-rCN/` **1449** 条（差的 4 条是 `app_name`
+- 资源条目：`values/` **1459** 条，`values-zh-rCN/` **1455** 条（差的 4 条是 `app_name`
   / `anti_term_name` / `termux_name` / `accessibility_service_name`，属不翻白名单）
+- 源码引用：**1389 个 key**（`verify.py` 口径；P1-A2 新增 6 条 `settings_language_*`）
 - 源码调用点：`stringResource` **1496 处 / 72 个文件**，`getString(R.string.…)` **228 处**
 - `python3 scripts/i18n/verify.py` 通过
 - `docs/i18n/COVERAGE.md` 由 `gen_coverage.py` 重新生成（旧文档的按界面数字是 P3.5/P3.6
@@ -91,23 +96,61 @@
 在重连后仍然保留。在「bridge 保持同一 CLI 进程、按 seq 续传」的前提下这是对的（同一进程不必重发）；
 只有 bridge 在重连时换了新 CLI 进程才会漏发，届时表现为 AI 又回英文，需要重开会话。
 
-### P1：设置页语言切换（🟡 方案已定，未开工）
+### P1：设置页语言切换（✅ 已落地：A-1 `ef5a244` / A-2 `1519dc6`）
 
 **用户 2026-10-22 拍板：走方案 A（加 `androidx.appcompat`）。**
-实施计划见 `docs/i18n/p1-language-switch-plan.md`（读完即可开工，含步骤、风险、真机矩阵、回滚）。
-三方案对比（含 B/C 的代价与证据）见 `docs/i18n/language-switch-options.html`。
+实施计划见 `docs/i18n/p1-language-switch-plan.md`，三方案对比见 `docs/i18n/language-switch-options.html`。
 
-⚠️ 本节旧结论有两处**不准确**，已在下文更正，别再按旧说法做：
+落地内容：
 
-1. 旧写「13 以下降级为跟随系统」——**错的**：appcompat 1.6+ 在 API<33 会自己包装 Activity
-   资源，能真正切换；只是 `autoStoreLocales`（自动持久化）需要 manifest 声明
-   `AppLocalesMetadataHolderService`，而 manifest 仍不许改 → 要自己用 SharedPreferences 存。
-2. 旧写「`AiLanguage` 读 `Locale.getDefault()`，切换后自然生效」——**未验证**：API<33 下
-   appcompat 改的是资源 Config，静态 `Locale.getDefault()` 是否同步变化没验证过。
-   已改为**读 `context.resources.configuration.locales[0]`** 的方案写进计划，必须真机确认。
+| 批次 | 提交 | 内容 |
+| --- | --- | --- |
+| A-1 | `ef5a244` | `libs.versions.toml` 加 `androidxAppcompat = "1.7.0"`、`app/build.gradle.kts` 加 `libs.androidx.appcompat`、`themes.xml` 两个父主题换 `Theme.AppCompat.Light.NoActionBar`、4 个 Compose Activity 改 `AppCompatActivity` |
+| A-2 | `1519dc6` | 新增 `AppLanguagePreferences`（system / zh-CN / en，SharedPreferences）、`AppLocaleController`（幂等回设 + 先落盘再应用）、设置 → 外观「界面语言」三选一卡片、6 条双语资源、`AiLanguage` 读 appcompat 的应用语言 |
 
-方案 A 需要解除两条硬约束（用户同意）：允许改 `app/build.gradle.kts`（加依赖）与
-`res/values/themes.xml`（主题换 AppCompat 后代）。`AndroidManifest.xml` 仍然禁止改。
+**appcompat 1.7.0 在 AGP 9.0.1 + Gradle 9.1 + Kotlin 2.3.20 下编译通过**（A-1 的 CI 已证明），
+不需要按计划的风险项退到 1.6.1。
+
+**两处与计划不同的实现（都已核实原因，别再按计划原文改回去）**：
+
+1. **`AiLanguage` 没有改成 `context.resources.configuration.locales[0]`**。
+   两个调用点都拿不到语言正确的 Context：`AntigravityApiService` 根本没有 Context；
+   `ClaudeChatBackend` 只有 `Application`，而 API<33 时 appcompat 只包装 **Activity** 的资源，
+   Application 的资源仍是系统语言——按计划原文写，会在「系统英文 + 应用内选中文」时漏注入。
+   现在改为读 `AppCompatDelegate.getApplicationLocales()`：API 33+ 来自框架 `LocaleManager`，
+   API<33 来自 `setApplicationLocales` 的进程内请求值（本机 javap appcompat 1.7.0 核实：
+   `getApplicationLocales()` 的低版本分支就是 `return sRequestedAppLocales`），
+   两者都为空（跟随系统）时才回落 `Locale.getDefault()`。因此调用点无需改签名。
+2. **`AppLocaleController.apply()` 放在 4 个入口 Activity，不是只放 `MainActivity`**。
+   `TermuxActivity` 有自己的 launcher alias（`TermuxAntiTermAlias` / `TermuxClassicAlias`），
+   `ManageSpaceActivity` 可由系统「应用信息 → 存储」冷启动，`FloatingChatActivity` 可能由通知
+   拉起进程；只放 MainActivity 会让这些入口回到系统语言。调用有 `appliedTag` 幂等保护，
+   重复调用直接返回，不会形成 recreate 循环。
+
+**CI 证据**：
+
+- A-1（run 39748654578，commit `ef5a244`）：`Verify i18n resources` 通过
+  （1453 / 1449 / 1383，与基线一致，本批未动文案）、`:app:assembleTermuxRelease` 成功
+  （7m9s）、产物 `antiGem-termux-v1.0.13-release-ef5a244.apk`（19M）、
+  `Verify APK signature` 指纹 `6F:F1:E3:FF:…:7B:5C` 与标准值一致。
+- A-2（run 39750147539，commit `1519dc6`）：`Verify i18n resources` 通过
+  （`values: 1459 / values-zh-rCN: 1455 / 引用 1389 key`）、`:app:assembleTermuxRelease`
+  成功（9m12s）、产物 `antiGem-termux-v1.0.13-release-1519dc6.apk`（19M）、
+  `Verify APK signature` 指纹与标准值一致。
+
+**验证边界（必须真机，别写成结论）**：
+
+- CI 只证明编译通过；主题从框架 `android:Theme.Material` 换成 AppCompat 后，
+  全应用样式是否有回归**只能真机逐屏对照**（好消息：本仓库**没有任何 XML layout**，
+  界面基本全是 Compose，AndroidView 里只有 WebView / Sora 编辑器 / TerminalView，
+  都是代码构造、不走 AppCompat 的 inflater，理论上受影响面很小）。
+- **待验证①**：API<33 下通知文案（`LocalEnvironmentManager` 走 `applicationContext`）是否跟随
+  界面语言。appcompat 在低版本只包装 Activity，通知很可能仍是系统语言。
+- **待验证②**：API<33 下静态 `Locale.getDefault()` 是否随 appcompat 包装变化。
+  `AiLanguage` 已改为读 appcompat 的应用语言来规避，但这条事实本身仍未在真机确认。
+- 真机矩阵见计划第 7 节（API 33/34 走框架 `LocaleManager`；28/24 走 appcompat 资源包装）。
+- 已知行为：API 33+ 上若用户从**系统设置**里单独给本应用选语言，应用内设置页会把它显示为
+  已选中（读的是框架值）；此时点「跟随系统」会清掉该选择。
 
 ### P2：`title = / label =`（实测 **112 处**字面量，文档旧数字 67 已过期）
 已还原成英文。这些多为 data class 构造参数（如 `ScriptExecutionInfo(title = ...)`、
@@ -395,6 +438,17 @@ XML 是产物但不是译文的可恢复来源。
     → 两个补救：① 改写批次照标准顺序跑 `fix_imports.py`；
     ② `verify.py` 已加检查：任何含**裸** `R.string.` 的文件必须自己 `import com.example.gemini.R`
     （正则排除 `com.example.gemini.R.string.` 这种全限定写法），已用失败提交 `df798c3` 的文件内容回放确认会报错。
+
+### 18. appcompat 的 `setApplicationLocales` 在 API 33+ 必须有「活跃的 AppCompat delegate」
+`AppCompatDelegate.getLocaleManagerForApplication()` 的实现是：遍历 `sActivityDelegates`，
+取第一个 delegate 的 Context，再 `context.getSystemService("locale")`；**没有活跃 delegate 就返回
+null，`setApplicationLocales` 直接静默返回**（javap appcompat 1.7.0 已核实字节码）。
+而 delegate 是在 `AppCompatDelegateImpl.onCreate` 里注册的，也就是 `AppCompatActivity.onCreate`
+的 `super.onCreate(...)` 之后。
+→ 结论：语言回设**只能放在 Activity 的 `onCreate`（super 之后）**；放 `Application.onCreate`
+（本项目本来也没有自定义 Application）或任何没有 AppCompat Activity 的时机都会静默失效。
+另：API<33 时 appcompat 只包装 **Activity** 的资源，`applicationContext.getString(...)`
+（P3.7 的通知文案）不会跟随应用内语言——这就是待验证①。
 
 ## 7. 关键决策记录
 
