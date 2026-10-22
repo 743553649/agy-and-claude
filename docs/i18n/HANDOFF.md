@@ -615,6 +615,54 @@ release 版开了 `isMinifyEnabled = true` / `isShrinkResources = true`
 **判断方法**：`getent hosts api.github.com` 若返回 `198.18.*` 即是此问题。
 **处理**：让用户临时关闭 VPN，或改用浏览器手动下载 artifact。
 
+## 8.7 CI 构建耗时与缓存（2026-10-22 实测）
+
+**为什么以前每次都要 6.5–9 分钟**：`gradle/actions/setup-gradle@v4` 默认**只在默认分支写缓存**，
+其它分支只读；本仓库默认分支是 `master`，而 master 从没跑过这个 workflow，
+所以仓库缓存条目是 **0 条**，每次 push 到 feat 分支都是空 `~/.gradle` 从零开始——
+日志证据：`cache-read-only: true`、`Gradle User Home cache not found. Will initialize empty.`，
+连「只改文档」的提交也是 53 个任务全部 executed（零 UP-TO-DATE）。
+
+**改法（commit `03a24b0`，只动 `ci.yml`）**：
+
+1. `Setup Gradle` 加 `cache-read-only: false` —— 允许在 feat 分支写 Gradle User Home 缓存
+   （含依赖、artifact transform 和**本地 build cache**，见官方文档 "Which content is cached"）；
+2. 新增 `actions/cache@v4` 缓存项目级 `.gradle`（配置缓存），key 含构建脚本 hash；
+3. `setup-go` 加 `cache-dependency-path: agy_ide_bridge/go.sum`（`go.sum` 不在仓库根，
+   原来每次都在报 `Restore cache failed: Dependencies file is not found`）。
+
+**实测（同一 commit `03a24b0`，全部 success）**：
+
+| 场景 | Build 步骤 | 整个 job | 任务分布 |
+| --- | --- | --- | --- |
+| 基线：文档提交 `45399df`（无缓存） | 385s | ~408s | 53 executed |
+| 基线：A-2 提交 `1519dc6`（无缓存） | 552s | ~580s | 53 executed |
+| 冷跑 attempt 1（首次写缓存，多写 ~900MB） | 550s | **597s** | 全量下载 + 写 build cache，比原来更慢 |
+| 热跑 attempt 2（缓存命中） | **30s** | **70s** | `26 executed, 25 from cache, 2 up-to-date` |
+
+热跑里两个大头都是从 build cache 恢复的：
+`> Task :app:compileTermuxReleaseKotlin FROM-CACHE`、
+`> Task :app:minifyTermuxReleaseWithR8 FROM-CACHE`（原来分别 ~96s / ~113s）。
+
+**边界（别夸大）**：
+
+- 30s 只适用于**构建输入没变**的提交（文档/脚本/注释改动、或重跑同一 SHA）。
+  真实改 Kotlin 的提交要重跑 Kotlin(96s) + R8(113s) + Compose mapping(27s)，
+  只省掉依赖下载与配置那 ~70s → **估算 4.5–5.5 分钟**（按分段耗时估算，尚未实测）。
+- 冷跑比原来更慢是正常的：第一次要上传 ~900MB 缓存（当前 10 条 / 906MB；GitHub 上限 10GB，
+  action 自带 `cache-cleanup: on-success`）。
+- 缓存 key 内含 SHA，跨提交靠 `restore-keys` 前缀恢复最近一条，所以**下一个提交也会命中**，
+  不只是重跑同一 SHA。
+
+**已知未生效项（别再重复踩）**：`actions/cache` 缓存 `.gradle` 那步恢复了 2MB
+（日志 `Cache restored from key: cc-Linux-…`），但 Gradle 仍报
+`Calculating task graph as no cached configuration is available` —— 配置缓存没有真正复用，
+**原因未查明**，目前零收益、只多花 1 秒。要么留着等排查，要么删掉这一步。
+
+**怎么复测**：`gh run rerun <run-id>` 重跑同一 SHA（热跑），再用
+`gh run view --job=<job-id> --log` 拉日志，按每行的时间戳拆各步骤耗时；
+缓存是否写出看 `gh api repos/<owner>/<repo>/actions/caches`。
+
 ## 9. 关键文件索引
 
 | 路径 | 说明 |
