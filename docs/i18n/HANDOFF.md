@@ -205,7 +205,7 @@ Git 面板 4 个分区标题、模型选择标题、浏览器新标签页（1 �
 - `ClaudeStatusViews` 的 7 个 `actionLabel`（Sign in / Open sign-in / Set up Claude Code /
   Restart server / Retry / Check again）；
 - `when`/`if` 分支字面量（约 391 行 `-> "…"`、268 行单行三元，绝大多数是技术值）；
-- 浏览器扩展浮层（P4）。
+- 浏览器扩展文案（P4）——**已完成**，但实际范围与原先设想不同，见 4 节 P4 与坑 20。
 
 **CI 证据**（run 39764615030，commit `99e0aac`）：`Verify i18n resources` 通过
 （1546 / 1542 / 1513）、`:app:assembleTermuxRelease` 成功（6m53s）、产物
@@ -339,10 +339,46 @@ run 39764130892 **失败**：`ClaudeSettingsScreen.DefaultsPage` 没有 `context
 
 判据：元组第一项是写入偏好的技术值（**不能翻**），第二项是显示标签（**要翻**）。
 
-### P4：浏览器扩展文案
-`extensions/google-flow/` 7 个 JS 文件、2618 行，无 HTML popup，文案在
-`page-helpers.js` 注入的浮层里。约定方案：JS 字典对象 + `navigator.language` 判断，
-只覆盖约 40 处浮层可见文案，不改模型名/错误信息。
+### P4：浏览器扩展文案（✅ 已落地，范围与最初设想不同）
+
+**先纠正一个错误前提**（原文档写「文案在 `page-helpers.js` 注入的浮层里」，不成立）：
+
+| 核实项 | 证据 |
+| --- | --- |
+| JS 文件数 | 6 个 `.js` 共 2618 行（constants 27 / flow-client 269 / flow-workflows 232 / page-helpers 1301 / service-worker 96 / storyboard-analyzer 693）+ `manifest.json` |
+| `page-helpers.js` 实际用途 | `flow-client.js:17` `chrome.scripting.executeScript({target:{tabId}, world:'MAIN', files:['page-helpers.js']})` 注入的**页面自动化库**，只被 `s.xxx()` 调用并返回数据对象，**不创建任何 UI** |
+| 是否写 DOM 文本 | 全文仅 1 处 `createElement`（`page-helpers.js:190` 的 `<meta name="viewport">`，用于冻结缩放）；无 `textContent=` / `innerHTML=` / UI 容器 |
+| popup / 通知 | `manifest.json` 无 `action` / `options_page` / `notifications`；6 个 JS 里无 `alert` / `chrome.notifications` / `setBadgeText` |
+
+**因此扩展 JS 的界面可见文案是 0 条。** 用 `scripts/i18n/scan_ext_js.py` 逐字符扫描出
+319 条英文句子候选，逐条判定后全是白名单：
+
+| 判定 | 条数 | 说明 |
+| --- | --- | --- |
+| 模型提示词（风格/镜头/主体预设） | 171 | `storyboard-analyzer.js`，会进 API payload，坑 10 禁止翻 |
+| 错误/校验 | 111 | `throw new Error(...)`、守卫消息；GLOSSARY §2.5 留英文便于搜 issue |
+| 模型返回值（`job.stage`） | 14 | `waiting in queue` / `generating image`，只回给模型 |
+| 模型名 | 12 | `Nano Banana 2.1` / `Pro` / `2 Lite` |
+| **选择器**（匹配 Flow 页面英文 UI） | 11 | `Agent instructions` / `Settings trigger` / `Add to prompt` / `Add clip` —— 靠页面英文文字定位元素，**翻了自动化直接失效** |
+
+**真正落地的改动**（`apply_p4_extension.py`，一批，**一行 JS 未动**）：
+
+1. 扩展设置页（`WebViewExtensionsScreen.kt`）6 条：安装/更新对话框标题与说明段落、
+   确认按钮（复用 `common_install` / `common_update`）、`runOperation` 失败兜底
+   （`context.getString`，非 Composable）；
+2. `BrowserExtensionManager.kt` 25 条可显示错误（`require` / `error` / `check` 消息，
+   经设置页 `Text(error)` 与 `Text(lastError)` 显示）：包校验、安装/更新/重命名流程、
+   宿主启动失败；统一 `appContext?.getString(…) ?: 英文兜底`；
+   `Missing or invalid background file: $relative` 走插值资源（`%1$s`）；
+3. **内置扩展的展示名/描述**：`manifest.json` 只有英文，且 `BrowserExtension.name/description`
+   会经 `toJsonObject()` 发给扩展宿主（改了会影响宿主侧标识），所以**不动数据字段**，
+   只在设置页渲染处按 `id == "google-flow"` 取资源
+   （`settings_extension_google_flow_name/description`，两个 `@Composable` 辅助函数）。
+   第三方扩展仍显示 manifest 原文。
+
+**边界（别再当成漏翻）**：`manifest.json` 的 65 条 `mcp_tools[].description` 只给模型读、
+不进界面；`WebViewExtensionDeveloper.kt` 的消息是开发者 MCP 的工具返回值（给模型看），
+均属白名单，保持英文。
 
 ## 5. 工具链（`scripts/i18n/`）
 
@@ -533,6 +569,23 @@ P2 批次把 `title =` 与 `label =` 两类回写完了，但同一批组件还�
 → 判据仍然是「字符串最终会不会被渲染」，不是参数名。
 **已修**（P2 收尾批）：21 处 UI 文案 + 4 处数据层可见状态；`value =` 里剩下的是技术值
 （`primary`/`pro`/`rising-fact-p41fc`/`"."`），不翻。
+
+### 20. 「扩展里有浮层 UI」是没核实的假设——扩展 JS 里一条可见文案都没有
+P4 开工前文档写「文案在 `page-helpers.js` 注入的浮层里，约 40 处浮层可见文案」。
+2026-10-22 逐条核实后**完全不成立**：`page-helpers.js` 是 `chrome.scripting.executeScript`
+注入到 Flow 页面的自动化库，只读取/点击 Google 自己的 DOM 并返回数据对象，**不创建任何 UI**；
+`manifest.json` 没有 `action` / `options_page` / `notifications`；6 个 JS 里没有
+`alert` / `chrome.notifications` / `setBadgeText`。扫描出 319 条英文句子候选，判定后
+**界面可见 0 条**（详见第 4 节 P4）。
+
+→ 教训：**「这段英文会不会被渲染」必须证到渲染路径**（谁 `Text()` 它、在哪个界面），
+不能从「文件名听着像 UI 层」推断。为模型/日志准备的字符串即使翻译了，界面上也不会有任何变化。
+本批次最终只改了真正可见的三块：扩展设置页对话框 6 条、管理器可显示错误 25 条、
+内置扩展展示名/描述 2 条；**JS 一行未动**。
+
+→ 同族提示：`manifest.json` 的 `name`/`description` 是运行时数据、不是 Android 资源，
+且会经 `BrowserExtension.toJsonObject()` 发给扩展宿主，**不要在数据层本地化**——
+只在渲染处按扩展 id 取资源（`extensionDisplayName/Description`），否则宿主侧标识会跟着变。
 
 ## 7. 关键决策记录
 

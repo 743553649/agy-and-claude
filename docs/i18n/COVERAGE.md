@@ -8,7 +8,7 @@
 | --- | --- | --- |
 | 设置（主设置页） | 所有分区的开关、说明段落、危险操作确认 | 412 |
 | 设置 → 技能与插件 | 技能列表、插件安装与删除 | 35 |
-| 设置 → WebView 扩展 | 扩展安装、重命名、更新 | 20 |
+| 设置 → WebView 扩展 | 扩展安装、重命名、更新 | 28 |
 | 设置 → 本地工具安装 | 安装流程 | 65 |
 | 设置 → 本地工具安装（全屏） | 步骤指引与日志 | 76 |
 | 设置 → 空间管理 | 缓存与数据清理 | 21 |
@@ -84,7 +84,7 @@
 | `ChatAudioPlayer.kt` | 1 |
 | `SelectTextSheet.kt` | 1 |
 
-合计：**72 个文件、1570 处 `stringResource` 调用点**（另有 304 处 `getString`，用于非 Composable 上下文：Toast、通知、数据层）。
+合计：**72 个文件、1578 处 `stringResource` 调用点**（另有 334 处 `getString`，用于非 Composable 上下文：Toast、通知、数据层）。
 
 ## 三、有意保留英文的内容
 
@@ -119,7 +119,7 @@
 | `ConversationShareHelper` 的 `Shared Conversation` | ✅ 已改（`parseSharedConversation` 增加 `Context` 参数） |
 | 数据层错误族（`AgyMcpManager` 18 / `ClaudeAccountManager` 15） | ❌ 未改（两个类没有 Context，需注入 Application，建议整批处理） |
 | `ClaudeStatusViews` 的 7 个 `actionLabel` | ❌ 未改（Sign in / Retry / Restart server 等） |
-| 浏览器扩展浮层文案 | ❌ 未实现（约 40 处） |
+| 浏览器扩展文案 | ✅ 已改（核实结论：6 个 JS 文件无浮层 UI、界面可见文案为 0，故一行 JS 未改；实际改的是设置页安装/更新对话框与操作失败兜底 6 条、`BrowserExtensionManager` 可显示错误 25 条、内置扩展展示名/描述 2 条；见 HANDOFF P4 与坑 20） |
 
 ## 五、怎么核对
 
