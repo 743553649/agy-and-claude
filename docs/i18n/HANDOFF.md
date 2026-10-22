@@ -45,7 +45,7 @@
 
 ### 当前覆盖率（2026-10-22 晚，实测）
 
-- 资源条目：`values/` **1337** 条，`values-zh-rCN/` **1333** 条（差的 4 条是 `app_name`
+- 资源条目：`values/` **1367** 条，`values-zh-rCN/` **1363** 条（差的 4 条是 `app_name`
   / `anti_term_name` / `termux_name` / `accessibility_service_name`，属不翻白名单）
 - 源码调用点：`stringResource` **1478 处 / 72 个文件**，`context.getString` **113 处**
 - `python3 scripts/i18n/verify.py` 通过
@@ -125,6 +125,15 @@
 `48-bit (VA48)`/`39-bit (VA39)`/`N/A`/`*/*`/`progress`/`extract_progress`、
 以及日志染色键 `Fail`/`Error`/`Success`/`ready`/`Extracted`（被 `logLine.contains()` 用于选色）。
 
+**第三处盲区：枚举构造参数**（commit `4d25d0f` 已修）
+设置首页顶栏的 "Settings & Preferences" 来自
+`enum class SettingsSection(val title: String, val subtitle: String)` —— 枚举参数既不是
+`Text("...")` 也不是 `title = "..."`。已把 `SettingsSection`（15 条）与
+`ClaudeSettingsPage`（7 条）改成 `@StringRes val titleRes/subtitleRes: Int`，
+在 Composable 里 `stringResource(...)` 取；顶栏 2 处 + Claude 导航卡 14 处调用同步改写。
+注意：`ifBlank { stringResource(...) }` 这种「在 lambda 里调 Composable」的写法不要赌，
+已改为在 Column 之前先取值。
+
 **同类盲区还剩**：全仓库 `when`/`else ->` 分支返回字面量 **70 行**、单行
 `if (…) "A" else "B"` **243 行**，需逐条判定白名单后再改（很多是 `"bash"`、`"error"` 这类技术值）。
 
@@ -155,6 +164,7 @@
 | `apply_dyn_attrs.py` | 改写 `contentDescription`（Composable 内）与 `message`（非 Composable）两类插值站点；**内置两道闸**：非 `@Composable` 文件不做 `stringResource`、提示词内部标记一律跳过 |
 | `apply_settings_ui.py` | 改写设置首页的 `title = "..."` 与安装页 `when`/`if` 分支里的字面量；按「文件 + 行区间 + 表内原文」三重限定，只动 `settings_ui_zh.tsv` 里列出的文案 |
 | `settings_ui_zh.tsv` | 设置首页 / 环境安装页对照表（116 条） |
+| `apply_settings_enums.py` | 把 `SettingsSection` / `ClaudeSettingsPage` 两个枚举改成 `@StringRes` 并改写使用点；配套 `settings_enums_zh.tsv`（44 条） |
 | `fix_imports.py` | 补齐 `import com.example.gemini.R` 与 `stringResource` 导入 |
 | `verify.py` | **CI 编译前必跑**：资源 XML 合法性、`R.string` 引用完整性、擦作符/参数一致性、非 Composable 误用、英文资源残留 Kotlin 插值、裸 `%` |
 | `gen_coverage.py` | 生成 `docs/i18n/COVERAGE.md` |
