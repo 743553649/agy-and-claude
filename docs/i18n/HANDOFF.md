@@ -188,6 +188,39 @@ Extension=扩展、Bridge=桥接、Skill=技能、Trajectory=执行轨迹、Prom
 3. 按 `docs/i18n/COVERAGE.md` 逐项核对
 4. 每次 CI 约 7–9 分钟；`verify i18n resources` 步骤失败会 10 秒内红，比等 Gradle 快
 
+### 当前签名密钥的来源与保管（重要）
+
+仓库原本**一个 secret 都没有**（`gh api .../actions/secrets` 显示 `total_count: 0`），
+上游发版用的 `release.jks` 也**从未进入过 git 历史**（`.gitignore:18` 屏蔽），
+本机磁盘上也没有——所以**拿不到上游那把私钥**。
+
+2026-10-22 已用 keytool **新生成**一把密钥并写入仓库 secret：
+
+```
+Name:   RELEASE_KEYSTORE_BASE64
+来源:   新生成（不是上游那把）
+keystore: /sdcard/汉化/keystore/antigem-release.jks（另有一份 /tmp/antigem-release.jks）
+别名:   antigem   口令: 123456（与 app/build.gradle.kts 里写死的签名配置一致）
+有效期: 2026-10-22 ~ 2056-10-14
+SHA256: 6F:F1:E3:FF:A0:C1:5F:2F:64:74:74:FB:04:F4:78:FD:1D:06:C0:88:40:CC:6B:6E:6E:72:ED:6A:94:2A:7B:5C
+```
+
+**后果**：CI 从此产出 release 签名的包，但签名身份是这把新密钥，
+**仍然覆盖不了手机上官方版本**。要真正覆盖官方版，需要用户提供上游的 `release.jks`，
+然后用 `gh secret set RELEASE_KEYSTORE_BASE64 --body "$(base64 -w0 release.jks)"` 覆盖即可，
+其它都不用改。
+
+**千万保管好这个文件**：一旦丢失，之后所有更新都无法覆盖已安装的版本（只能卸载重装）。
+
+### 没有上游私钥时怎么迁移数据
+
+App 自带备份（设置页：「备份 AGY 对话」「Rootfs 备份」「项目备份」）：
+
+1. 在官方版里导出备份到 `/sdcard/Download/Antigem/backups/`
+2. 卸载官方版
+3. 装汉化版
+4. 用「恢复 AGY 对话」「恢复项目」把数据导回来
+
 ### 配 release 签名（实现"覆盖安装官方版本"）
 
 ```bash
