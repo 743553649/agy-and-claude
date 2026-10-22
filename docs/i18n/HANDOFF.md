@@ -291,16 +291,31 @@ private const val DEFAULT_VERSION_URL =
 | 更新检查 | 已改指 fork 仓库，解除上游耦合 |
 | localeConfig | 已补，Android 13+ 可单列中文 |
 
-### 唯一未完成的验证
+### 产物字节级校验结果（已通过，commit `f3d15f4`）
 
-**release（R8 压缩）包未做运行时验证**。之前所有编译通过的都是 debug 或"能编译"级别，
-release 版开了 `isMinifyEnabled = true` / `isShrinkResources = true`，
-首装后需人工确认：对话能发消息、终端能起、IDE 能打开、Claude 能连。
+```
+$ aapt2 dump badging antiGem-termux-v1.0.13-release-f3d15f4.apk
+package: name='com.termux' versionCode='113' versionName='1.0.13'
+sdkVersion:'24' targetSdkVersion:'28'
 
-另外 `gh run download` 在本机多次超时（网络问题），所以**产物的字节级校验
-（aapt2 包名 / apksigner 指纹）由人工在浏览器下载后确认**。已知信息：
-termux flavor → `com.termux`；用 `RELEASE_KEYSTORE_BASE64` 里的密钥签名，
-证书 SHA256 应为 `6F:F1:E3:FF:A0:C1:5F:2F:64:74:74:FB:04:F4:78:FD:1D:06:C0:88:40:CC:6B:6E:6E:72:ED:6A:94:2A:7B:5C`。
+$ 解析 APK Signing Block（v2，无 v1 签名）
+v2 签名存在，证书长度 868
+证书 SHA-256: 6FF1E3FFA0C15F2F647474FB04F478FD1D06C08840CC6B6E6E72ED6A942A7B5C
+```
+
+与 `app/release.jks` 的证书指纹逐位一致 →
+**包名 `com.termux` ✅、release 签名确实用的是我们配的那把密钥 ✅**。
+
+> 注：本机 `apksigner` 因 JDK 的 `LoggerFinderLoader` 初始化失败无法运行
+> （`ExceptionInInitializerError`），以上签名是通过解析 APK Signing Block 的
+> v2 签名结构、取证书做 SHA-256 得到的，结论等价。
+
+### 唯一未完成的验证：release 包的运行时行为
+
+release 版开了 `isMinifyEnabled = true` / `isShrinkResources = true`
+（debug 44MB → release 19MB）。R8 可能裁剪反射使用的类
+（kotlinx.serialization / wire protobuf / WebView JS 桥）。
+**首装后必须人工确认**：对话能发消息、终端能起、IDE 能打开、Claude 能连。
 
 ### 网络排障经验（会再遇到）
 
