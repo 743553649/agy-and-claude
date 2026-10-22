@@ -9,18 +9,28 @@
     <string name="data_antigravity_chat">Antigravity 对话</string>
     <!-- 原文: Claude Chat -->
     <string name="data_claude_chat">Claude 对话</string>
+    <!-- 原文: Approval failed: %1$s -->
+    <string name="data_err_approval_failed">批准失败：%1$s</string>
     <!-- 原文: Missing or invalid background file: %1$s -->
     <string name="data_err_background_file_missing">后台文件缺失或无效：%1$s</string>
     <!-- 原文: Extension background worker is required -->
     <string name="data_err_background_required">扩展必须提供后台工作脚本</string>
     <!-- 原文: The bridge is not running. -->
     <string name="data_err_bridge_not_running">桥接服务未运行。</string>
+    <!-- 原文: Cannot connect to Antigravity Hub (%1$s). Make sure 'agy - -hub' is running. -->
+    <string name="data_err_cannot_connect_hub">无法连接 Antigravity Hub（%1$s）。请确认 \'agy --hub\' 正在运行。</string>
     <!-- 原文: Cannot reach the bridge -->
     <string name="data_err_cannot_reach_bridge">无法连接桥接服务</string>
+    <!-- 原文: Cannot send message right now. -->
+    <string name="data_err_cannot_send_now">当前无法发送消息。</string>
+    <!-- 原文: Check server logs -->
+    <string name="data_err_check_server_logs">查看服务器日志</string>
     <!-- 原文: Code rejected: %1$s -->
     <string name="data_err_code_rejected">验证码被拒绝：%1$s</string>
     <!-- 原文: Failed to connect to Antigravity Hub -->
     <string name="data_err_connect_antigravity_hub">无法连接 Antigravity Hub</string>
+    <!-- 原文: Connection failed -->
+    <string name="data_err_connection_failed">连接失败</string>
     <!-- 原文: Could not reach the bridge. -->
     <string name="data_err_could_not_reach_bridge">无法连接桥接服务。</string>
     <!-- 原文: Could not reach the bridge (%1$s). -->
@@ -41,6 +51,14 @@
     <string name="data_err_extension_not_found">未找到该扩展</string>
     <!-- 原文: Extension must declare at least one MCP tool -->
     <string name="data_err_extension_tools_required">扩展至少要声明一个 MCP 工具</string>
+    <!-- 原文: Failed to approve tool -->
+    <string name="data_err_failed_to_approve">批准工具失败</string>
+    <!-- 原文: Failed to cancel step -->
+    <string name="data_err_failed_to_cancel_step">取消步骤失败</string>
+    <!-- 原文: Failed to reject tool -->
+    <string name="data_err_failed_to_reject">拒绝工具失败</string>
+    <!-- 原文: Failed to send message -->
+    <string name="data_err_failed_to_send">发送消息失败</string>
     <!-- 原文: Folder belongs to another extension -->
     <string name="data_err_folder_belongs_to_other">该文件夹属于其他扩展</string>
     <!-- 原文: Folder already exists -->
@@ -49,6 +67,14 @@
     <string name="data_err_folder_name_reserved">runtime 是保留的文件夹名</string>
     <!-- 原文: Use 1–64 letters, numbers, dots, underscores or hyphens for the folder name -->
     <string name="data_err_folder_name_rule">文件夹名只能使用 1–64 个字母、数字、点、下划线或连字符</string>
+    <!-- 原文: Fork error: %1$s -->
+    <string name="data_err_fork_error">分叉出错：%1$s</string>
+    <!-- 原文: Fork failed: %1$s -->
+    <string name="data_err_fork_failed">分叉失败：%1$s</string>
+    <!-- 原文: Antigravity Hub failed to start: %1$s -->
+    <string name="data_err_hub_failed_to_start">Antigravity Hub 启动失败：%1$s</string>
+    <!-- 原文: Antigravity Hub unreachable: %1$s -->
+    <string name="data_err_hub_unreachable">Antigravity Hub 不可达：%1$s</string>
     <!-- 原文: Error installing %1$s: %2$s -->
     <string name="data_err_install_plugin_error">安装「%1$s」出错：%2$s</string>
     <!-- 原文: Failed to install %1$s: %2$s -->
@@ -63,6 +89,8 @@
     <string name="data_err_manifest_version">只支持 manifest 版本 2 和 3</string>
     <!-- 原文: No messages received from Antigravity. Tap Retry. -->
     <string name="data_err_no_messages_from_antigravity">未收到 Antigravity 的消息，点击重试。</string>
+    <!-- 原文: No speech recognized in recording -->
+    <string name="data_err_no_speech_recognized">录音里没有识别到语音</string>
     <!-- 原文: Claude Code did not return usage -->
     <string name="data_err_no_usage_returned">Claude Code 未返回用量信息</string>
     <!-- 原文: Node.js is required in the local terminal to run browser extensions -->
@@ -75,6 +103,8 @@
     <string name="data_err_read_zip">无法读取 ZIP</string>
     <!-- 原文: Refresh failed -->
     <string name="data_err_refresh_failed">刷新失败</string>
+    <!-- 原文: Rejection failed: %1$s -->
+    <string name="data_err_rejection_failed">拒绝失败：%1$s</string>
     <!-- 原文: Use Rename folder to change the folder before updating -->
     <string name="data_err_rename_before_update">更新前请先用「重命名文件夹」修改文件夹名</string>
     <!-- 原文: Cannot rename extension folder -->
@@ -87,20 +117,30 @@
     <string name="data_err_save_mcp_config">无法把配置写入 mcp_config.json</string>
     <!-- 原文: Could not send code: %1$s -->
     <string name="data_err_send_code_failed">无法提交验证码：%1$s</string>
+    <!-- 原文: Server error. Please check server logs. -->
+    <string name="data_err_server_error_check_logs">服务器出错，请查看服务器日志。</string>
     <!-- 原文: '%1$s': %2$s -->
     <string name="data_err_server_error_detail">「%1$s」：%2$s</string>
     <!-- 原文: Sign-in could not start: %1$s -->
     <string name="data_err_sign_in_could_not_start">无法开始登录：%1$s</string>
     <!-- 原文: Sign-in failed: %1$s -->
     <string name="data_err_sign_in_failed">登录失败：%1$s</string>
+    <!-- 原文: Please sign in to send messages. -->
+    <string name="data_err_sign_in_to_send">请先登录再发送消息。</string>
     <!-- 原文: Sign-out failed: %1$s -->
     <string name="data_err_sign_out_failed">退出登录失败：%1$s</string>
     <!-- 原文: Cannot stage previous extension -->
     <string name="data_err_stage_previous_extension">无法暂存先前的扩展</string>
+    <!-- 原文: Failed to start conversation on daemon -->
+    <string name="data_err_start_conversation">在守护进程上启动会话失败</string>
     <!-- 原文: Status check failed -->
     <string name="data_err_status_check_failed">状态检查失败</string>
     <!-- 原文: Duplicate or empty MCP tool name -->
     <string name="data_err_tool_name_duplicate">MCP 工具名重复或为空</string>
+    <!-- 原文: Transcription error -->
+    <string name="data_err_transcription_error">转写出错</string>
+    <!-- 原文: Transcription failed -->
+    <string name="data_err_transcription_failed">转写失败</string>
     <!-- 原文: unknown error -->
     <string name="data_err_unknown_error">未知错误</string>
     <!-- 原文: Execution Failure -->
@@ -219,6 +259,8 @@
     <string name="data_media_session_description">在对话中显示视频播放控件</string>
     <!-- 原文: %1$s (fork) -->
     <string name="data_source_title_fork">%1$s（分叉）</string>
+    <!-- 原文: Acquiring security token. Please wait... -->
+    <string name="data_status_acquiring_token">正在获取安全令牌，请稍候……</string>
     <!-- 原文: Installed and activated '%1$s' MCP server -->
     <string name="data_status_plugin_installed">已安装并启用「%1$s」MCP 服务器</string>
     <!-- 原文: Refreshed '%1$s' -->
@@ -231,14 +273,20 @@
     <string name="data_status_server_disabled">已停用「%1$s」</string>
     <!-- 原文: Enabled '%1$s' -->
     <string name="data_status_server_enabled">已启用「%1$s」</string>
+    <!-- 原文: Server is offline. Please start the server. -->
+    <string name="data_status_server_offline">服务器离线，请先启动服务器。</string>
     <!-- 原文: Removed '%1$s'. -->
     <string name="data_status_server_removed">已移除「%1$s」。</string>
     <!-- 原文: Saved '%1$s'. Tap Refresh on the server to connect. -->
     <string name="data_status_server_saved">已保存「%1$s」。点击该服务器上的「刷新」以建立连接。</string>
+    <!-- 原文: Server is starting up. Please wait... -->
+    <string name="data_status_server_starting">服务器正在启动，请稍候……</string>
     <!-- 原文: Signed in to Claude -->
     <string name="data_status_signed_in_claude">已登录 Claude</string>
     <!-- 原文: Signed out of Claude -->
     <string name="data_status_signed_out_claude">已退出 Claude 登录</string>
+    <!-- 原文: Verifying authentication. Please wait... -->
+    <string name="data_status_verifying_auth">正在验证身份，请稍候……</string>
     <!-- 原文: Termux Linux environment verified and installed successfully! -->
     <string name="data_termux_linux_environment_verified_and_in">Termux Linux 环境已验证并安装成功！</string>
     <!-- 原文: Terminal open requests -->
@@ -247,6 +295,18 @@
     <string name="data_the_user_cancelled_the_question">用户取消了该问题。</string>
     <!-- 原文: The user skipped the question. Continue with your best judgement. -->
     <string name="data_the_user_skipped_the_question_continue_w">用户跳过了该问题。请按你的最佳判断继续。</string>
+    <!-- 原文: Authentication Required -->
+    <string name="data_title_authentication_required">需要登录</string>
+    <!-- 原文: Message Delivery Error -->
+    <string name="data_title_message_delivery_error">消息发送错误</string>
+    <!-- 原文: Model Not Found -->
+    <string name="data_title_model_not_found">未找到模型</string>
+    <!-- 原文: Quota Limit Exceeded -->
+    <string name="data_title_quota_exceeded">超出配额限制</string>
+    <!-- 原文: Server Connection Error -->
+    <string name="data_title_server_connection_error">服务器连接错误</string>
+    <!-- 原文: Failed to Start Conversation -->
+    <string name="data_title_start_conversation_failed">启动会话失败</string>
     <!-- 原文: Copied text -->
     <string name="data_toast_copied_text">已复制文本</string>
     <!-- 原文: File not found or unreadable: %1$s -->
