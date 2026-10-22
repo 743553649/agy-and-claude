@@ -43,13 +43,16 @@
 | `e2514fc` | 还原 `title = / label =` 67 处（data class 参数，不能放 `stringResource`） |
 | `37fffea` | `docs/i18n/COVERAGE.md` 覆盖清单 |
 
-### 当前覆盖率（准数）
+### 当前覆盖率（2026-10-22 晚，实测）
 
-- 有源码引用的文案：**705 条**
-- 已翻译：**676 条（95.9%）**
-- 源码中 `stringResource` 调用点：**1324 处**，覆盖 **71 个文件**
-- 资源条目：`values/` 1143 条，`values-zh-rCN/` 1139 条
-- 剩余 29 条全部是有意不翻的（VS Code 变量模板、示例路径/URL、动画测试标识）
+- 资源条目：`values/` **1230** 条，`values-zh-rCN/` **1226** 条（差的 4 条是 `app_name`
+  / `anti_term_name` / `termux_name` / `accessibility_service_name`，属不翻白名单）
+- 源码调用点：`stringResource` **1337 处 / 72 个文件**，`context.getString` **113 处**
+- `python3 scripts/i18n/verify.py` 通过
+
+> ⚠️ 旧的「705 条已译 676 条（95.9%）」指标**已失效，别再引用**：绝大多数英文字面量
+> 已被改写成 `stringResource`，扫描器现在只能扫到 140 条源码字面量，这个百分比没有意义。
+> 现在的权威口径是上面两条（资源 key 差集 + 剩余源码字面量）。
 
 ## 4. 未完成的工作（按建议优先级）
 
@@ -91,14 +94,26 @@
 13 以下降级为跟随系统）。加在 `ui/settings/SettingsDialog.kt` 里，
 `AiLanguage` 读的是 `Locale.getDefault()`，切换后自然生效。
 
-### P2：`title = / label =` 剩余 67 处
+### P2：`title = / label =`（实测 **112 处**字面量，文档旧数字 67 已过期）
 已还原成英文。这些多为 data class 构造参数（如 `ScriptExecutionInfo(title = ...)`、
 `sessionManager.addNewTab(title = ...)`），不能直接放 `stringResource`。正确做法：
 在 Composable 作用域内先 `val t = stringResource(R.string.x)`，再把 `t` 传进构造函数。
+2026-10-22 实测 `title = "` / `label = "` 共 **112 处**，但其中混着工具名、shell 命令、
+模型名（不翻白名单），真正要改的需要**逐条判定**。另有 2 处含插值的
+（`${source.title} (fork)`、`$title Documentation`）仍未处理。
 
-### P3：Toast 的 `message` 参数
-`Toast.makeText(context, "英文", ...)` 这类要点：非 Composable 上下文，必须用
-`context.getString(R.string.x)`。约 7 处。
+### P3：Toast 与包装的提示（✅ 主体已完成，commit `6310f1c`，CI run 39726355921 通过）
+`Toast.makeText(context, "英文", ...)` 必须用 `context.getString(R.string.x)`（非 Composable）。
+实测 **104 处**（文档旧写的「约 7 处」严重低估），已全部改写并新增 88 条 `*_toast_*` 资源；
+含插值的按出现顺序转成 `%n$s` 参数，嵌套引号与多行字面量都能正确处理。
+
+**剩下的（下一批）**：`AppToastHelper.showToast("...")`——项目自己的 Toast 包装，
+不叫 `Toast.makeText`，本轮扫描才发现，实测 **27 处**未改。
+
+### P3.5：含插值但调用点未被回写的文案（✅ 已完成，同一提交）
+16 处译文本已在 `/tmp/i18n_dynamic.json` 里，只是回写没覆盖到：`contentDescription`
+（Composable 内）、`message`（snackbar，非 Composable）和多行字面量。
+新增 `scripts/i18n/apply_dyn_attrs.py` 处理，`title` / `label` 两类仍交给 P2。
 
 ### P4：浏览器扩展文案
 `extensions/google-flow/` 7 个 JS 文件、2618 行，无 HTML popup，文案在
@@ -117,6 +132,9 @@
 | `apply.py` | 改写 `Text("原文")` → `Text(stringResource(...))` |
 | `apply_attrs.py` | 改写 `text = "原文"` / `contentDescription = "原文"`（**KINDS 已收窄，勿再加 title/label**） |
 | `dynamic_apply.py` | 改写含插值的调用点为带参 `stringResource` |
+| `apply_toast.py` | 改写 `Toast.makeText(ctx, "原文", ...)` → `ctx.getString(...)`；逐字符解析，能处理嵌套引号与第二参数换行；读 `toast_zh.tsv`，静态条目写 catalog、含插值写 DYN |
+| `toast_zh.tsv` | Toast 文案对照表（`英文原文<TAB>中文`），88 条，便于复核与重放 |
+| `apply_dyn_attrs.py` | 改写 `contentDescription`（Composable 内）与 `message`（非 Composable）两类插值站点；**内置两道闸**：非 `@Composable` 文件不做 `stringResource`、提示词内部标记一律跳过 |
 | `fix_imports.py` | 补齐 `import com.example.gemini.R` 与 `stringResource` 导入 |
 | `verify.py` | **CI 编译前必跑**：资源 XML 合法性、`R.string` 引用完整性、擦作符/参数一致性、非 Composable 误用、英文资源残留 Kotlin 插值、裸 `%` |
 | `gen_coverage.py` | 生成 `docs/i18n/COVERAGE.md` |
@@ -132,15 +150,22 @@ python3 scripts/i18n/gen_resources.py        # 生成资源
 python3 scripts/i18n/apply.py                # 改写 Text("...")
 python3 scripts/i18n/apply_attrs.py          # 改写 text = / contentDescription =
 python3 scripts/i18n/dynamic_apply.py        # 改写插值调用点
+python3 scripts/i18n/apply_toast.py          # 改写 Toast.makeText 字面量
+python3 scripts/i18n/apply_dyn_attrs.py      # 改写 contentDescription / snackbar message
 python3 scripts/i18n/fix_imports.py          # 补 import
 python3 scripts/i18n/verify.py               # 必须通过
 python3 scripts/i18n/gen_coverage.py          # 更新覆盖文档
 git add -A && git commit && git push         # 触发云端 CI
 ```
 
-**注意**：`/tmp/i18n_*.json` 是中间状态，容器重启或换机器会丢。丢了就先跑
-`kotlin_scan.py` + `rebuild_catalog.py`，已有译文会按英文原文自动匹配回来；
-但**已提交到 `values-zh-rCN/` 的译文不会丢**，那才是最终产物。
+**注意（2026-10-22 更正）**：`/tmp/i18n_*.json` 是中间状态，容器重启或换机器会丢。
+原文写的「已有译文会按英文原文自动匹配回来」**不准确**——`rebuild_catalog.py` 只拿旧
+catalog 做匹配，**不会**从 `values-zh-rCN/*.xml` 反查译文。所以 catalog 一丢，下次
+`rebuild_catalog.py` 会生成一批空译文条目，再跑 `gen_resources.py` 就会把 XML 里的中文
+**全部写空**。
+
+**因此：每批结束都要把 catalog 备份到仓库之外**（`/sdcard/汉化/i18n_state/`），
+XML 是产物但不是译文的可恢复来源。
 
 ## 6. 踩过的坑（全是真实报错，别再踩）
 
@@ -174,7 +199,21 @@ git add -A && git commit && git push         # 触发云端 CI
 
 8. **可空参数不能传给 `stringResource`**
    `stringResource(id, vararg formatArgs: Any)`，传 `String?` 报 `Argument type mismatch`。
-   → `.orEmpty()`。
+   → `.orEmpty()`。（`context.getString` 的形参是平台类型，允许传可空；但异常 message 为 null
+   时 Toast 会显示 "null"，所以那批统一补了 `.orEmpty()`。）
+
+9. **脚本没有 `main` 保护，`import` 一下就会真改源码**
+   2026-10-22 为了「核对」而 `import` 了 `apply_dyn_attrs.py`，它的顶层代码直接执行，
+   一口气改了 18 处：2 处把发给模型的提示词改成了 `stringResource`（服务类不是 Composable，
+   编译必挂），1 处把 `buildString {}` 里的拼接改成 `stringResource`（同样编译不过）。
+   → 改写脚本必须包 `def main()` + `if __name__ == "__main__":`；
+   改完必须逐条 `git diff` 复核，不能只看「改写 N 处」这种汇总数字。
+
+10. **发给模型的提示词脚手架不能翻**
+    `[Previous Context Summary: ...]`、`Please ignore the following [ignore]...[/ignore]`
+    这类字符串会进 API payload，不是用户可见文案。上一轮误译过，本轮已清空译文并从资源移除。
+    → `apply_dyn_attrs.py` 内置 `PROMPT_INTERNAL` 正则兜底，另有「文件里没有 `@Composable`
+    就不做 `stringResource`」的闸。
 
 ## 7. 关键决策记录
 

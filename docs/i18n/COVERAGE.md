@@ -83,7 +83,7 @@
 | `FileDetailsDialog.kt` | 1 |
 | `SelectTextSheet.kt` | 1 |
 
-合计：**71 个文件、1324 处调用点**。
+合计：**72 个文件、1337 处 `stringResource` 调用点**（另有 113 处 `context.getString`）。
 
 ## 三、有意保留英文的内容
 
@@ -101,11 +101,13 @@
 
 | 项目 | 状态 |
 | --- | --- |
-| AI 回复内容本身 | 未实现（Gemini 系统指令 + Claude `initialize`，`AiLanguage.kt` 已就位但未被引用） |
-| Toast 的 `message` 参数 | 未改（非 Composable 上下文，需逐个改 `context.getString`） |
-| `title = / label =` 属性文案 67 处 | 已还原英文（多为 data class 构造参数，不能直接用 `stringResource`） |
-| 设置页语言切换入口 | 未实现 |
-| 浏览器扩展浮层文案 | 未实现（约 40 处） |
+| AI 回复内容本身 | ✅ 已实现（Gemini 系统指令 + Claude `initialize`，commit `8fdd016`；CLI 是否真应用需真机验证） |
+| `Toast.makeText` 的 104 处字面量 | ✅ 已改（`context.getString`，commit `6310f1c`，新增 88 条 `*_toast_*` 资源） |
+| `AppToastHelper.showToast` 27 处 | ❌ 未改（项目自定义 Toast 包装，不叫 `Toast.makeText`，下一步处理） |
+| 含插值的 `contentDescription` / snackbar `message` | ✅ 已改（16 处，`apply_dyn_attrs.py`） |
+| `title = / label =` 字面量 112 处 | ❌ 未改（多为 data class 构造参数，需逐条判定白名单后改造） |
+| 设置页语言切换入口 | ❌ 未实现（项目无 `appcompat` 依赖，方案待定） |
+| 浏览器扩展浮层文案 | ❌ 未实现（约 40 处） |
 
 ## 五、怎么核对
 
