@@ -46,9 +46,26 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: '1.22'
+          # go.sum 在 agy_ide_bridge/ 下，不在仓库根；不指定会每次 Restore cache failed
+          cache-dependency-path: agy_ide_bridge/go.sum
 
+      # gradle/actions 默认只在默认分支写缓存，其它分支只读。本仓库 CI 实际只在
+      # feat 分支跑，默认分支 master 从没跑过 → 缓存永远是空，每次都全量重下依赖。
+      # 打开写入后，后续 run 能复用 ~/.gradle（含依赖与本地 build cache）。
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: false
+
+      # 持久化项目级 Gradle 配置缓存，省掉每次 "Calculating task graph"（约 10–20s）。
+      # 键含构建脚本 hash，配置变化时会自动生成新条目，Gradle 也会自行丢弃不匹配的旧条目。
+      - name: Restore Gradle configuration cache
+        uses: actions/cache@v4
+        with:
+          path: .gradle
+          key: cc-${{ runner.os }}-${{ hashFiles('**/*.gradle.kts', 'gradle/libs.versions.toml', 'gradle.properties') }}
+          restore-keys: |
+            cc-${{ runner.os }}-
 
       - name: Restore Keystore
         env:
