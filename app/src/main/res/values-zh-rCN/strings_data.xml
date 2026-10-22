@@ -11,6 +11,114 @@
     <string name="data_claude_chat">Claude 对话</string>
     <!-- 原文: Execution Failure -->
     <string name="data_execution_failure">执行失败</string>
+    <!-- 原文: AntiGem Rootfs -->
+    <string name="data_install_antigem_rootfs">AntiGem Rootfs</string>
+    <!-- 原文: Bootstrap archive is missing or invalid (< 10 MB). Please check source and retry. -->
+    <string name="data_install_bootstrap_archive_is_missing_or_invalid">bootstrap 压缩包缺失或无效（小于 10 MB），请检查下载来源后重试。</string>
+    <!-- 原文: Configuring Linux Environment (90%) -->
+    <string name="data_install_configuring_linux_environment_90">正在配置 Linux 环境（90%）</string>
+    <!-- 原文: Configuring paths, permissions, and shell profiles... -->
+    <string name="data_install_configuring_paths_permissions_and_shell">正在配置路径、权限与 shell 配置文件……</string>
+    <!-- 原文: Configuring shell profiles, paths, and environment... -->
+    <string name="data_install_configuring_shell_profiles_paths_and_env">正在配置 shell 配置文件、路径与环境……</string>
+    <!-- 原文: Connecting... -->
+    <string name="data_install_connecting">正在连接……</string>
+    <!-- 原文: Connecting direct URL... -->
+    <string name="data_install_connecting_direct_url">正在连接直链……</string>
+    <!-- 原文: Connecting mirror %1$s... -->
+    <string name="data_install_connecting_mirror_index_1">正在连接镜像 %1$s……</string>
+    <!-- 原文: Direct download failed: %1$s -->
+    <string name="data_install_direct_download_failed_e_localizedmessag">直链下载失败：%1$s</string>
+    <!-- 原文: Download failed: %1$s -->
+    <string name="data_install_download_failed_e_message_network_error">下载失败：%1$s</string>
+    <!-- 原文: Download failed: Empty response body. -->
+    <string name="data_install_download_failed_empty_response_body">下载失败：响应体为空。</string>
+    <!-- 原文: Download failed: HTTP %1$s from release server. -->
+    <string name="data_install_download_failed_http_response_code_from">下载失败：发布服务器返回 HTTP %1$s。</string>
+    <!-- 原文: Downloaded file from URL is only %1$s (< 10 MB required). -->
+    <string name="data_install_downloaded_file_from_url_is_only_formatf">从该地址下载的文件只有 %1$s（要求至少 10 MB）。</string>
+    <!-- 原文: Downloaded file is not a valid archive. -->
+    <string name="data_install_downloaded_file_is_not_a_valid_archive">下载的文件不是有效的压缩包。</string>
+    <!-- 原文: Downloaded rootfs archive was incomplete or corrupted. -->
+    <string name="data_install_downloaded_rootfs_archive_was_incomplete">下载的 rootfs 压缩包不完整或已损坏。</string>
+    <!-- 原文: Downloading Linux Rootfs -->
+    <string name="data_install_downloading_linux_rootfs">正在下载 Linux Rootfs</string>
+    <!-- 原文: Downloading Linux Rootfs (%1$s%) -->
+    <string name="data_install_downloading_linux_rootfs_pct">正在下载 Linux Rootfs（%1$s%%）</string>
+    <!-- 原文: Downloading %1$s -->
+    <string name="data_install_downloading_titleprefix">正在下载 %1$s</string>
+    <!-- 原文: Downloading %1$s (%2$s%) -->
+    <string name="data_install_downloading_titleprefix_pct">正在下载 %1$s（%2$s%%）</string>
+    <!-- 原文: Empty response body -->
+    <string name="data_install_empty_response_body">响应体为空</string>
+    <!-- 原文: Empty response body received from URL. -->
+    <string name="data_install_empty_response_body_received_from_url">从该地址收到的响应体为空。</string>
+    <!-- 原文: Extracting Linux Rootfs (0%) -->
+    <string name="data_install_extracting_linux_rootfs_0">正在解压 Linux Rootfs（0%）</string>
+    <!-- 原文: Extracting Packages (%1$s%) -->
+    <string name="data_install_extracting_packages_pct">正在解压软件包（%1$s%%）</string>
+    <!-- 原文: Extracting Rootfs (%1$s%) -->
+    <string name="data_install_extracting_rootfs_pct">正在解压 Rootfs（%1$s%%）</string>
+    <!-- 原文: Failed to import selected ZIP file: %1$s -->
+    <string name="data_install_failed_to_import_selected_zip_file_e_loc">导入所选 ZIP 文件失败：%1$s</string>
+    <!-- 原文: Finding bootstrap package... -->
+    <string name="data_install_finding_bootstrap_package">正在查找 bootstrap 包……</string>
+    <!-- 原文: Finding package... -->
+    <string name="data_install_finding_package">正在查找软件包……</string>
+    <!-- 原文: Importing archive file... -->
+    <string name="data_install_importing_archive_file">正在导入压缩包……</string>
+    <!-- 原文: Importing file... -->
+    <string name="data_install_importing_file">正在导入文件……</string>
+    <!-- 原文: Importing Linux Rootfs -->
+    <string name="data_install_importing_linux_rootfs">正在导入 Linux Rootfs</string>
+    <!-- 原文: Installation Complete -->
+    <string name="data_install_installation_complete">安装完成</string>
+    <!-- 原文: Installation error -->
+    <string name="data_install_installation_error">安装出错</string>
+    <!-- 原文: Installation Failed -->
+    <string name="data_install_installation_failed">安装失败</string>
+    <!-- 原文: Installation failed: %1$s -->
+    <string name="data_install_installation_failed_e_localizedmessage_e">安装失败：%1$s</string>
+    <!-- 原文: Installing Linux Rootfs -->
+    <string name="data_install_installing_linux_rootfs">正在安装 Linux Rootfs</string>
+    <!-- 原文: Invalid download URL. Please provide a valid http/https direct link. -->
+    <string name="data_install_invalid_download_url_please_provide_a_va">下载地址无效，请提供有效的 http/https 直链。</string>
+    <!-- 原文: Local Archive -->
+    <string name="data_install_local_archive">本地压缩包</string>
+    <!-- 原文: Network error -->
+    <string name="data_install_network_error">网络错误</string>
+    <!-- 原文: Preparing directory structure... -->
+    <string name="data_install_preparing_directory_structure">正在准备目录结构……</string>
+    <!-- 原文: Rootfs Installation -->
+    <string name="data_install_rootfs_installation">Rootfs 安装</string>
+    <!-- 原文: Selected file is only %1$s (< 10 MB minimum required). -->
+    <string name="data_install_selected_file_is_only_formatfilesize_fin">所选文件只有 %1$s（至少需要 10 MB）。</string>
+    <!-- 原文: Server returned HTTP %1$s for: %2$s -->
+    <string name="data_install_server_returned_http_response_code_for_c">服务器返回 HTTP %1$s：%2$s</string>
+    <!-- 原文: Shell verification test failed: %1$s -->
+    <string name="data_install_shell_verification_test_failed_testres_o">shell 校验测试失败：%1$s</string>
+    <!-- 原文: Shows progress while downloading and installing the Linux rootfs -->
+    <string name="data_install_shows_progress_while_downloading_and_ins">显示下载与安装 Linux rootfs 的进度</string>
+    <!-- 原文: Starting installation... -->
+    <string name="data_install_starting_installation">正在开始安装……</string>
+    <!-- 原文: Termux Linux environment is verified and ready! -->
+    <string name="data_install_termux_linux_environment_is_verified_and">Termux Linux 环境已校验，可以使用了！</string>
+    <!-- 原文: Testing shell environment... -->
+    <string name="data_install_testing_shell_environment">正在测试 shell 环境……</string>
+    <!-- 原文: The selected file (%1$s) is not a valid or readable archive. -->
+    <string name="data_install_the_selected_file_formatfilesize_finaldo">所选文件（%1$s）不是有效或可读的压缩包。</string>
+    <!-- 原文: Ubuntu Rootfs -->
+    <string name="data_install_ubuntu_rootfs">Ubuntu Rootfs</string>
+    <!-- 原文: Unpacking package: %1$s -->
+    <string name="data_install_unpacking_package_pkgname">正在解包：%1$s</string>
+    <!-- 原文: Unpacking %1$s (%2$s/%3$s) -->
+    <string name="data_install_unpacking_pkgname_count_total">正在解包 %1$s（%2$s/%3$s）</string>
+    <!-- 原文: Verification failed: installed package directory is too small (%1$s). Installation is incomplete. -->
+    <string name="data_install_verification_failed_installed_package_di">校验失败：安装目录过小（%1$s），安装不完整。</string>
+    <!-- 原文: Verifying Installation (95%) -->
+    <string name="data_install_verifying_installation_95">正在校验安装（95%）</string>
+    <!-- 原文: Verifying Linux environment and shell execution... -->
+    <string name="data_install_verifying_linux_environment_and_shell_ex">正在校验 Linux 环境与 shell 执行……</string>
     <!-- 原文: %1$s (fork) -->
     <string name="data_source_title_fork">%1$s（分叉）</string>
     <!-- 原文: Termux Linux environment verified and installed successfully! -->

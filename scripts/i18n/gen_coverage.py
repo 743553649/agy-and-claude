@@ -53,12 +53,14 @@ SCREEN = [
 ]
 
 counts = collections.Counter()
+getstring_sites = 0
 for dirpath, _dirs, files in os.walk(SRC):
     for fn in files:
         if not fn.endswith(".kt"):
             continue
         src = open(os.path.join(dirpath, fn), encoding="utf-8").read()
-        n = src.count("stringResource(R.string.")
+        n = src.count("stringResource(")
+        getstring_sites += src.count("getString(R.string.")
         if n:
             counts[fn] = n
 
@@ -75,7 +77,8 @@ for fn, name, desc in SCREEN:
 out += ['\n## 二、组件与其余已汉化文件\n', '| 文件 | 调用点 |', '| --- | --- |']
 for f, n in sorted(((f, n) for f, n in counts.items() if f not in seen), key=lambda x: -x[1]):
     out.append(f'| `{f}` | {n} |')
-out.append(f'\n合计：**{len(counts)} 个文件、{sum(counts.values())} 处调用点**。\n')
+out.append(f'\n合计：**{len(counts)} 个文件、{sum(counts.values())} 处 `stringResource` 调用点**'
+           f'（另有 {getstring_sites} 处 `getString`，用于非 Composable 上下文：Toast、通知、数据层）。\n')
 
 out += ['## 三、有意保留英文的内容\n',
         '| 内容 | 说明 |', '| --- | --- |',
@@ -89,11 +92,18 @@ out += ['## 三、有意保留英文的内容\n',
         '',
         '## 四、尚未处理的部分\n',
         '| 项目 | 状态 |', '| --- | --- |',
-        '| AI 回复内容本身 | 未实现（Gemini 系统指令 + Claude `initialize`，`AiLanguage.kt` 已就位但未被引用） |',
-        '| Toast 的 `message` 参数 | 未改（非 Composable 上下文，需逐个改 `context.getString`） |',
-        '| `title = / label =` 属性文案 67 处 | 已还原英文（多为 data class 构造参数，不能直接用 `stringResource`） |',
-        '| 设置页语言切换入口 | 未实现 |',
-        '| 浏览器扩展浮层文案 | 未实现（约 40 处） |',
+        '| AI 回复内容本身 | ✅ 已实现（Gemini 系统指令 + Claude `initialize`，commit `8fdd016`；CLI 是否真应用需真机验证） |',
+        '| `Toast.makeText` 的 104 处字面量 | ✅ 已改（`context.getString`，commit `6310f1c`，新增 88 条 `*_toast_*` 资源） |',
+        '| `AppToastHelper.showToast` 27 处 | ❌ 未改（项目自定义 Toast 包装，不叫 `Toast.makeText`，下一步处理） |',
+        '| 含插值的 `contentDescription` / snackbar `message` | ✅ 已改（16 处，`apply_dyn_attrs.py`） |',
+        '| `title = / label =` 字面量 112 处 | ❌ 未改（多为 data class 构造参数，需逐条判定白名单后改造） |',
+        '| 设置首页卡片文案 | ✅ 已改（`title =` / `when` 分支，commit `5d55bc3`，135 处 / 107 条资源） |',
+        '| 环境安装页（全屏 + 对话框） | ✅ 已改（状态标题、硬件取值、下载选项、按钮，同上提交） |',
+        '| 设置顶栏 / 分组枚举 | ✅ 已改（`SettingsSection` 与 `ClaudeSettingsPage` 改 `@StringRes`，commit `4d25d0f`） |',
+        '| 安装通知与进度文案（数据层） | ✅ 已改（`LocalEnvironmentManager` 77 处：通知标题/正文、`speedText`、安装页状态字段、通知渠道名与描述、错误文案；`appContext.getString`，55 条 `data_install_*` 资源） |',
+        '| 其余 `when`/`if` 分支字面量 | ❌ 未改（实测 70 行 `when` 分支 + 243 行单行三元，需剔技术值白名单） |',
+        '| 设置页语言切换入口 | ❌ 未实现（项目无 `appcompat` 依赖，方案待定） |',
+        '| 浏览器扩展浮层文案 | ❌ 未实现（约 40 处） |',
         '',
         '## 五、怎么核对\n',
         '1. 装 `antiGem-termux-*.apk`，手机系统语言设为简体中文',

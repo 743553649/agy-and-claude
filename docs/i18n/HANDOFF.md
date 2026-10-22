@@ -43,12 +43,14 @@
 | `e2514fc` | 还原 `title = / label =` 67 处（data class 参数，不能放 `stringResource`） |
 | `37fffea` | `docs/i18n/COVERAGE.md` 覆盖清单 |
 
-### 当前覆盖率（2026-10-22 晚，实测）
+### 当前覆盖率（P3.7 落地后，实测）
 
-- 资源条目：`values/` **1367** 条，`values-zh-rCN/` **1363** 条（差的 4 条是 `app_name`
+- 资源条目：`values/` **1421** 条，`values-zh-rCN/` **1417** 条（差的 4 条是 `app_name`
   / `anti_term_name` / `termux_name` / `accessibility_service_name`，属不翻白名单）
-- 源码调用点：`stringResource` **1496 处 / 72 个文件**，`context.getString` **113 处**
+- 源码调用点：`stringResource` **1496 处 / 72 个文件**，`getString(R.string.…)` **192 处**
 - `python3 scripts/i18n/verify.py` 通过
+- `docs/i18n/COVERAGE.md` 由 `gen_coverage.py` 重新生成（旧文档的按界面数字是 P3.5/P3.6
+  之前的，别再引用旧值）
 
 > ⚠️ 旧的「705 条已译 676 条（95.9%）」指标**已失效，别再引用**：绝大多数英文字面量
 > 已被改写成 `stringResource`，扫描器现在只能扫到 140 条源码字面量，这个百分比没有意义。
@@ -137,18 +139,38 @@
 **同类盲区还剩**：全仓库 `when`/`else ->` 分支返回字面量 **70 行**、单行
 `if (…) "A" else "B"` **243 行**，需逐条判定白名单后再改（很多是 `"bash"`、`"error"` 这类技术值）。
 
-### P3.7：数据层产出的通知与进度文案（❌ 下一批，未做）
-`data/local/LocalEnvironmentManager.kt` 不在 Composable 里，但它生成的字符串**会显示给用户**：
+### P3.7：数据层产出的通知与进度文案（✅ 已完成，本轮提交）
+`data/local/LocalEnvironmentManager.kt` 不在 Composable 里，但它生成的字符串**会显示给用户**。
+本轮共改 **77 处**，共 **55 条**文案资源：新增 **54 条** `data_install_*`，
+`Termux Linux environment verified and installed successfully!` 复用既有 key
+`data_termux_linux_environment_verified_and_in`。
 
-- `updateInstallNotification(appContext, "标题", "正文", …)` 共 **35 处**（"Downloading Linux Rootfs"、
-  "Installation Failed"、"Connecting…" 等，既是通知标题也进安装页）
-- `speedText = "..."` 共 **5 处**（"Connecting..."、"Finding package..."、"Connecting mirror N..." 等，
-  安装页进度条右侧直接显示——用户实测截图里那条 `Connecting...` 就是它）
-- `errorMessage = "..."` 数处（会显示在安装页错误态）
-- 类里有 `appContext`，所以走 `appContext.getString(R.string.x)`；`Log.d(TAG, …)` 保持英文
+改的是四类站点：
 
-做法可直接照 `apply_toast.py`（非 Composable + 逐字符解析 + 对照表），
-新增一张 `local_env_zh.tsv` 即可；注意同一句文案在通知与 UI 两处复用同一资源。
+1. `updateInstallNotification(appContext, "标题", "正文", …)` **34 处调用、46 处文案**：通知标题/正文
+   （旧文档记的「35 处」把函数定义也算进去了；另有 1 处传空串取消通知，无需翻译）。
+   标题里的 `$titlePrefix` / `$pct%` / `${index + 1}` 按出现顺序转 `%1$s` / `%2$s`，
+   孤立 `%` 写成 `%%`（`gen_resources.py` 的 `normalize_percent`）。
+2. 安装页状态字段：`speedText` **5 处**（`Connecting...` 就是用户截图里那条）、
+   `currentFileName` 2 处、`stepDescription`、`testName`、`message`、`currentPackageName`
+   （`"Local Archive"`）。这些字段被 `FullScreenLocalToolsInstaller` /
+   `LocalToolsInstallDialog` 直接 `Text(state.xxx)` 渲染，翻不翻直接影响安装页。
+3. 通知渠道名 `"Rootfs Installation"` 与 `description`：系统通知设置里可见。注意接收者是
+   `setupInstallNotificationChannel` 的形参 **`context`**，不是 `appContext`。
+4. `errorMsg` **15 处** / `errorMessage` **2 处**：安装页错误态 + 失败通知正文。异常尾串
+   （`${e.localizedMessage ?: e.message}`）按术语表第 5 条保留英文，只翻外层句式；
+   该表达式统一补 `.orEmpty()`（坑 8）。
+
+**故意保留英文**：`bootstrap-$arch.zip`、`"$speedFormatted • $targetAsset"`（无词的模板/文件名）、
+全部 `Log.d/w/e`、shell 脚本与配置文件内容、
+`throw IOException("Could not open input stream from chosen file")`（异常 message）。
+
+**看过但没动的**：`LocalInstallerState.Discovering` 的默认 message
+（`"Searching GitHub for compatible Termux bootstrap release..."`）全仓库没有使用点；
+`data_execution_failure`（`"Execution Failure"`）是 `AgyChatBackend.kt:1577` 的 `title =`，属 P2 批次。
+
+工具：`apply_local_env.py` + `local_env_zh.tsv`（55 条），按「语法框架 + 对照表」双重限定，
+表外一律不动；表里每条都必须能找到站点，否则脚本直接退出（防止写出没人用的资源）。
 
 ### P3.5：含插值但调用点未被回写的文案（✅ 已完成，同一提交）
 16 处译文本已在 `/tmp/i18n_dynamic.json` 里，只是回写没覆盖到：`contentDescription`
@@ -178,6 +200,8 @@
 | `apply_settings_ui.py` | 改写设置首页的 `title = "..."` 与安装页 `when`/`if` 分支里的字面量；按「文件 + 行区间 + 表内原文」三重限定，只动 `settings_ui_zh.tsv` 里列出的文案 |
 | `settings_ui_zh.tsv` | 设置首页 / 环境安装页对照表（116 条） |
 | `apply_settings_enums.py` | 把 `SettingsSection` / `ClaudeSettingsPage` 两个枚举改成 `@StringRes` 并改写使用点；配套 `settings_enums_zh.tsv`（44 条） |
+| `apply_local_env.py` | 改写数据层 `LocalEnvironmentManager` 的通知标题/正文、`speedText`/`currentFileName` 等安装页状态字段、通知渠道名与描述、`errorMsg`/`errorMessage`；按「语法框架 + 对照表」双重限定，非 Composable 走 `appContext` / `context` 的 `getString`；表内条目找不到站点直接退出 |
+| `local_env_zh.tsv` | 数据层文案对照表（55 条） |
 | `fix_imports.py` | 补齐 `import com.example.gemini.R` 与 `stringResource` 导入 |
 | `verify.py` | **CI 编译前必跑**：资源 XML 合法性、`R.string` 引用完整性、擦作符/参数一致性、非 Composable 误用、英文资源残留 Kotlin 插值、裸 `%` |
 | `gen_coverage.py` | 生成 `docs/i18n/COVERAGE.md` |
@@ -196,6 +220,7 @@ python3 scripts/i18n/dynamic_apply.py        # 改写插值调用点
 python3 scripts/i18n/apply_toast.py          # 改写 Toast.makeText 字面量
 python3 scripts/i18n/apply_dyn_attrs.py      # 改写 contentDescription / snackbar message
 python3 scripts/i18n/apply_settings_ui.py    # 改写设置首页 title= 与安装页表达式分支
+python3 scripts/i18n/apply_local_env.py      # 改写数据层通知与安装页进度文案
 python3 scripts/i18n/fix_imports.py          # 补 import
 python3 scripts/i18n/verify.py               # 必须通过
 python3 scripts/i18n/gen_coverage.py          # 更新覆盖文档
@@ -270,6 +295,29 @@ XML 是产物但不是译文的可恢复来源。
     坑 7 的结论只对「data class 构造参数」成立；设置首页的
     `SettingsCategoryCard(title = "...")` 是 Composable 参数，完全可以翻。
     → 判据是**接收方是否是 @Composable**，不是参数名。
+
+13. **数据层的 state 字段 / 通知渠道名也是用户可见，但不在任何清单里**
+    `LocalInstallerState` 的 `speedText`、`currentFileName`、`stepDescription`、`testName`、
+    `message`、`currentPackageName` 由 `LocalEnvironmentManager` 赋值、由安装页直接
+    `Text(state.xxx)` 显示；`NotificationChannel` 的名字与 `description` 在系统通知设置里可见。
+    这些既不是 `Text("...")`、也不是 `title =`、也不是 Toast，`apply.py` / `apply_attrs.py` /
+    `apply_toast.py` 全都扫不到 → 表现为「通知和安装页整片英文」。
+    → 判据：**字符串最终会不会被渲染/系统展示**，而不是它出现在哪个语法位置。
+    同批处理过的：`LocalEnvironmentManager`（见 P3.7）。
+
+14. **实参是表达式时，字面量嵌在表达式中间**
+    `updateInstallNotification(appContext, "Installation Failed", e.localizedMessage ?: "Installation error", …)`
+    的第 3 个实参不是字面量，而是表达式；里面的 `"Installation error"` 既不在
+    `Toast.makeText` 第二参数位置，也不是赋值右值，按「字面量站点」扫不到。
+    → `apply_local_env.py` 的做法：实参不是单个字面量时，把该实参区间内的字面量逐个改写。
+
+15. **`gen_coverage.py` 的第 4 节是硬编码在脚本里的**
+    它每次运行都会**整段重写** `docs/i18n/COVERAGE.md` 的「尚未处理的部分」，用的是脚本里的
+    固定行。批次做完只改文档、不改脚本，下次一跑就把「✅ 已改」写回「❌ 未实现」，把已完成的
+    记录抹掉（本轮实测踩到）。
+    → 落地一个批次后，**同时改脚本里的第 4 节**，再跑 `gen_coverage.py`。
+    另外它统计的是 `stringResource(` 的调用点总数，不是 `stringResource(R.string.`（多行调用会
+    漏计 18 处），改口径要交叉核对 `grep -ro` 的总数。
 
 ## 7. 关键决策记录
 

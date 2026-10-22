@@ -30,6 +30,7 @@
 | Commit | 提交 | |
 | Repository | 仓库 | |
 | Terminal | 终端 | |
+| Rootfs | Rootfs | 技术术语保持原文，大小写随原文（既有译文既有 `Rootfs` 也有 `rootfs`） |
 | Settings | 设置 | |
 | Preferences | 偏好设置 | |
 
