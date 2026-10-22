@@ -31,6 +31,14 @@
     <string name="claude_approve_review_each">批准并逐项审阅修改</string>
     <!-- 原文: Available in -->
     <string name="claude_available_in">可用于</string>
+    <!-- 原文: Claude Code not found on this device -->
+    <string name="claude_banner_not_installed">此设备上未找到 Claude Code</string>
+    <!-- 原文: Restart the local server to use Claude Code -->
+    <string name="claude_banner_restart">重启本地服务器以使用 Claude Code</string>
+    <!-- 原文: Claude Code is signed out -->
+    <string name="claude_banner_signed_out">Claude Code 已退出登录</string>
+    <!-- 原文: Finishing Claude sign-in… -->
+    <string name="claude_banner_signing_in">正在完成 Claude 登录……</string>
     <!-- 原文: Bash(npm run test *) -->
     <string name="claude_bash_npm_run_test">Bash(npm run test *)</string>
     <!-- 原文: Browser can't return to the app? Sign in with a code -->
@@ -205,6 +213,48 @@
     <string name="claude_sign_out">退出登录</string>
     <!-- 原文: Starting… -->
     <string name="claude_starting">正在启动……</string>
+    <!-- 原文: Check again -->
+    <string name="claude_status_action_check_again">重新检查</string>
+    <!-- 原文: Open sign-in -->
+    <string name="claude_status_action_open_sign_in">打开登录页</string>
+    <!-- 原文: Restart server -->
+    <string name="claude_status_action_restart_server">重启服务器</string>
+    <!-- 原文: Set up -->
+    <string name="claude_status_action_set_up">设置</string>
+    <!-- 原文: Set up Claude Code -->
+    <string name="claude_status_action_setup">设置 Claude Code</string>
+    <!-- 原文: Sign in -->
+    <string name="claude_status_action_sign_in">登录</string>
+    <!-- 原文: The status check failed. -->
+    <string name="claude_status_check_failed">状态检查失败。</string>
+    <!-- 原文: Looking for the Claude Code CLI and your sign-in. -->
+    <string name="claude_status_checking_desc">正在查找 Claude Code CLI 与登录状态。</string>
+    <!-- 原文: %1$s You can still send a message. -->
+    <string name="claude_status_error_body">%1$s 你仍然可以发送消息。</string>
+    <!-- 原文: Couldn't check Claude Code -->
+    <string name="claude_status_error_title">无法检查 Claude Code</string>
+    <!-- 原文: The claude CLI is not installed on this device yet. You can install it from Settings in one tap. -->
+    <string name="claude_status_not_installed_desc">此设备尚未安装 claude CLI，可在设置里一键安装。</string>
+    <!-- 原文: Claude Code not found -->
+    <string name="claude_status_not_installed_title">未找到 Claude Code</string>
+    <!-- 原文: Claude Code runs through the local server. Start it to chat with Claude. -->
+    <string name="claude_status_offline_desc">Claude Code 通过本地服务器运行，启动后即可与 Claude 对话。</string>
+    <!-- 原文: Local server offline -->
+    <string name="claude_status_offline_title">本地服务器离线</string>
+    <!-- 原文: The running local server cannot run Claude Code yet. Restart it to load Claude. -->
+    <string name="claude_status_restart_desc">当前运行的本地服务器还不能运行 Claude Code，重启后即可加载 Claude。</string>
+    <!-- 原文: Restart the local server -->
+    <string name="claude_status_restart_title">重启本地服务器</string>
+    <!-- 原文: Claude Code will be ready in a moment. -->
+    <string name="claude_status_server_starting_desc">Claude Code 马上就好。</string>
+    <!-- 原文: Starting the local server… -->
+    <string name="claude_status_server_starting_title">正在启动本地服务器……</string>
+    <!-- 原文: Use your Claude Pro or Max subscription, or an Anthropic Console account, to chat with Claude Code. -->
+    <string name="claude_status_sign_in_desc">用 Claude Pro / Max 订阅或 Anthropic Console 账号与 Claude Code 对话。</string>
+    <!-- 原文: Complete the sign-in in your browser, then come back here. -->
+    <string name="claude_status_signing_in_desc">请在浏览器里完成登录，然后回到这里。</string>
+    <!-- 原文: Finishing sign-in… -->
+    <string name="claude_status_signing_in_title">正在完成登录……</string>
     <!-- 原文: Submit code -->
     <string name="claude_submit_code">提交代码</string>
     <!-- 原文: Switch to %1$s %2$s -->

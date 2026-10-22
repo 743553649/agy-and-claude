@@ -44,58 +44,58 @@ fun ClaudeStatusPrompt(
     val dot = state.dotColor
     if (serverStarting) {
         AgentSetupPrompt(
-            AgentKind.CLAUDE, "Starting the local server…", "Claude Code will be ready in a moment.", modifier, ClaudeStatus.CHECKING.dotColor
+            AgentKind.CLAUDE, stringResource(R.string.claude_status_server_starting_title), stringResource(R.string.claude_status_server_starting_desc), modifier, ClaudeStatus.CHECKING.dotColor
         )
         return
     }
     when (state) {
         ClaudeStatus.CHECKING -> AgentSetupPrompt(
-            AgentKind.CLAUDE, "Checking Claude Code…", "Looking for the Claude Code CLI and your sign-in.", modifier, dot
+            AgentKind.CLAUDE, stringResource(R.string.chat_apptoast_checking_claude_code), stringResource(R.string.claude_status_checking_desc), modifier, dot
         )
         ClaudeStatus.SIGNED_OUT -> AgentSetupPrompt(
             AgentKind.CLAUDE,
-            "Sign in to Claude Code",
-            "Use your Claude Pro or Max subscription, or an Anthropic Console account, to chat with Claude Code.",
+            stringResource(R.string.claude_sign_in_to_claude_code),
+            stringResource(R.string.claude_status_sign_in_desc),
             modifier, dot,
-            actionLabel = "Sign in", onAction = onSignIn
+            actionLabel = stringResource(R.string.claude_status_action_sign_in), onAction = onSignIn
         )
         ClaudeStatus.SIGNING_IN -> AgentSetupPrompt(
             AgentKind.CLAUDE,
-            "Finishing sign-in…",
-            "Complete the sign-in in your browser, then come back here.",
+            stringResource(R.string.claude_status_signing_in_title),
+            stringResource(R.string.claude_status_signing_in_desc),
             modifier, dot,
-            actionLabel = "Open sign-in", onAction = onSignIn
+            actionLabel = stringResource(R.string.claude_status_action_open_sign_in), onAction = onSignIn
         )
         ClaudeStatus.NOT_INSTALLED -> AgentSetupPrompt(
             AgentKind.CLAUDE,
-            "Claude Code not found",
-            "The claude CLI is not installed on this device yet. You can install it from Settings in one tap.",
+            stringResource(R.string.claude_status_not_installed_title),
+            stringResource(R.string.claude_status_not_installed_desc),
             modifier, dot,
-            actionLabel = "Set up Claude Code", onAction = onSetup,
-            secondaryLabel = "Check again", onSecondary = onRetry
+            actionLabel = stringResource(R.string.claude_status_action_setup), onAction = onSetup,
+            secondaryLabel = stringResource(R.string.claude_status_action_check_again), onSecondary = onRetry
         )
         ClaudeStatus.BRIDGE_OUTDATED -> AgentSetupPrompt(
             AgentKind.CLAUDE,
-            "Restart the local server",
-            error ?: "The running local server cannot run Claude Code yet. Restart it to load Claude.",
+            stringResource(R.string.claude_status_restart_title),
+            error ?: stringResource(R.string.claude_status_restart_desc),
             modifier, dot,
-            actionLabel = "Restart server", onAction = onRestartServer,
-            secondaryLabel = "Check again", onSecondary = onRetry
+            actionLabel = stringResource(R.string.claude_status_action_restart_server), onAction = onRestartServer,
+            secondaryLabel = stringResource(R.string.claude_status_action_check_again), onSecondary = onRetry
         )
         ClaudeStatus.BRIDGE_OFFLINE -> AgentSetupPrompt(
             AgentKind.CLAUDE,
-            "Local server offline",
-            "Claude Code runs through the local server. Start it to chat with Claude.",
+            stringResource(R.string.claude_status_offline_title),
+            stringResource(R.string.claude_status_offline_desc),
             modifier, dot,
-            actionLabel = "Retry", onAction = onRetry,
-            secondaryLabel = "Server logs", onSecondary = onServerLogs
+            actionLabel = stringResource(R.string.common_retry), onAction = onRetry,
+            secondaryLabel = stringResource(R.string.agents_server_logs), onSecondary = onServerLogs
         )
         ClaudeStatus.ERROR -> AgentSetupPrompt(
             AgentKind.CLAUDE,
-            "Couldn't check Claude Code",
-            (error ?: "The status check failed.") + " You can still send a message.",
+            stringResource(R.string.claude_status_error_title),
+            stringResource(R.string.claude_status_error_body, error ?: stringResource(R.string.claude_status_check_failed)),
             modifier, dot,
-            actionLabel = "Check again", onAction = onRetry
+            actionLabel = stringResource(R.string.claude_status_action_check_again), onAction = onRetry
         )
         ClaudeStatus.READY -> Unit
     }
@@ -112,11 +112,11 @@ fun ClaudeStatusBanner(
     modifier: Modifier = Modifier
 ) {
     val (text, action) = when (state) {
-        ClaudeStatus.SIGNED_OUT -> "Claude Code is signed out" to ("Sign in" to onSignIn)
-        ClaudeStatus.SIGNING_IN -> "Finishing Claude sign-in…" to ("Open" to onSignIn)
-        ClaudeStatus.NOT_INSTALLED -> "Claude Code not found on this device" to ("Set up" to onSetup)
-        ClaudeStatus.BRIDGE_OUTDATED -> "Restart the local server to use Claude Code" to ("Restart" to onRestartServer)
-        ClaudeStatus.BRIDGE_OFFLINE -> "Local server offline" to ("Retry" to onRetry)
+        ClaudeStatus.SIGNED_OUT -> stringResource(R.string.claude_banner_signed_out) to (stringResource(R.string.claude_status_action_sign_in) to onSignIn)
+        ClaudeStatus.SIGNING_IN -> stringResource(R.string.claude_banner_signing_in) to (stringResource(R.string.common_open) to onSignIn)
+        ClaudeStatus.NOT_INSTALLED -> stringResource(R.string.claude_banner_not_installed) to (stringResource(R.string.claude_status_action_set_up) to onSetup)
+        ClaudeStatus.BRIDGE_OUTDATED -> stringResource(R.string.claude_banner_restart) to (stringResource(R.string.ide_restart) to onRestartServer)
+        ClaudeStatus.BRIDGE_OFFLINE -> stringResource(R.string.claude_status_offline_title) to (stringResource(R.string.common_retry) to onRetry)
         else -> return
     }
     Surface(
