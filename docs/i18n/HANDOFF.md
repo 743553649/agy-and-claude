@@ -369,6 +369,13 @@ XML 是产物但不是译文的可恢复来源。
    → 在 `onClick` 里调用 `stringResource`，报 `@Composable invocations can only happen from the context of a @Composable function`。
    修法：正则加左侧边界 `(?<![A-Za-z0-9_$])`；`ClipData.newPlainText` 用 `context.getString`。
 
+   **2026-10-22 P2 批次再踩一次（变体）**：`title = "..."` 写在
+   `LaunchedEffect(isVisible) { ... }` 里（`BrowserScreen.kt:153`），改成 `stringResource`
+   后 CI 报同一个错——`LaunchedEffect` / `remember` / `onClick` 的 lambda 都不是 Composable
+   上下文；而 `verify.py` 的「非 Composable 误用」检查是**按文件**判断的，文件里有
+   `@Composable` 就放行，抓不到这种嵌套情况。此类站点一律用 `context.getString(R.string.x)`
+   （作用域内有 `context` 时）。
+
 2. **正则无法解析插值里的嵌套引号**
    `Text("${if (x == 1) "" else "s"}")` 会在地一对 `""` 处截断，收录成半截英文。
    → 必须用 `kotlin_scan.py` 的逐字符扫描。

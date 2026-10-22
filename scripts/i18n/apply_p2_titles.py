@@ -101,7 +101,7 @@ SITES = [
      "title = stringResource(R.string.ui_select_model),", 1),
     # --- 浏览器新标签页标题 ---
     ("ui/browser/BrowserScreen.kt", 'title = "New Tab", activate = true)',
-     "title = stringResource(R.string.common_new_tab), activate = true)", 1),
+     "title = context.getString(R.string.common_new_tab), activate = true)", 1),  # LaunchedEffect 里，非 Composable（坑 1 变体）
     ("ui/browser/BrowserSessionManager.kt", 'tab.title = "New Tab"',
      'tab.title = appContext?.getString(R.string.common_new_tab) ?: "New Tab"', 2),
     # --- 插件文档卡片标题（含插值）---
