@@ -13,8 +13,22 @@
     <string name="data_err_background_file_missing">后台文件缺失或无效：%1$s</string>
     <!-- 原文: Extension background worker is required -->
     <string name="data_err_background_required">扩展必须提供后台工作脚本</string>
+    <!-- 原文: The bridge is not running. -->
+    <string name="data_err_bridge_not_running">桥接服务未运行。</string>
+    <!-- 原文: Cannot reach the bridge -->
+    <string name="data_err_cannot_reach_bridge">无法连接桥接服务</string>
+    <!-- 原文: Code rejected: %1$s -->
+    <string name="data_err_code_rejected">验证码被拒绝：%1$s</string>
+    <!-- 原文: Failed to connect to Antigravity Hub -->
+    <string name="data_err_connect_antigravity_hub">无法连接 Antigravity Hub</string>
+    <!-- 原文: Could not reach the bridge. -->
+    <string name="data_err_could_not_reach_bridge">无法连接桥接服务。</string>
+    <!-- 原文: Could not reach the bridge (%1$s). -->
+    <string name="data_err_could_not_reach_bridge_detail">无法连接桥接服务（%1$s）。</string>
     <!-- 原文: Cannot create extension directory -->
     <string name="data_err_create_extension_dir">无法创建扩展目录</string>
+    <!-- 原文: Daemon refresh error (%1$s): %2$s -->
+    <string name="data_err_daemon_refresh_error">刷新 Antigravity 守护进程失败（%1$s）：%2$s</string>
     <!-- 原文: Extension already exists; use Update ZIP -->
     <string name="data_err_extension_exists">扩展已存在，请改用「更新 ZIP」</string>
     <!-- 原文: Extension host exited; see BrowserExtensionManager logs -->
@@ -35,6 +49,12 @@
     <string name="data_err_folder_name_reserved">runtime 是保留的文件夹名</string>
     <!-- 原文: Use 1–64 letters, numbers, dots, underscores or hyphens for the folder name -->
     <string name="data_err_folder_name_rule">文件夹名只能使用 1–64 个字母、数字、点、下划线或连字符</string>
+    <!-- 原文: Error installing %1$s: %2$s -->
+    <string name="data_err_install_plugin_error">安装「%1$s」出错：%2$s</string>
+    <!-- 原文: Failed to install %1$s: %2$s -->
+    <string name="data_err_install_plugin_failed">安装「%1$s」失败：%2$s</string>
+    <!-- 原文: Installation failed -->
+    <string name="data_err_installation_failed">安装失败</string>
     <!-- 原文: Invalid extension ID -->
     <string name="data_err_invalid_extension_id">扩展 ID 无效</string>
     <!-- 原文: manifest.json must declare mcp_tools -->
@@ -43,10 +63,18 @@
     <string name="data_err_manifest_version">只支持 manifest 版本 2 和 3</string>
     <!-- 原文: No messages received from Antigravity. Tap Retry. -->
     <string name="data_err_no_messages_from_antigravity">未收到 Antigravity 的消息，点击重试。</string>
+    <!-- 原文: Claude Code did not return usage -->
+    <string name="data_err_no_usage_returned">Claude Code 未返回用量信息</string>
     <!-- 原文: Node.js is required in the local terminal to run browser extensions -->
     <string name="data_err_node_required">运行浏览器扩展需要本地终端里的 Node.js</string>
+    <!-- 原文: Cannot reach Antigravity daemon (%1$s): %2$s -->
+    <string name="data_err_reach_antigravity_daemon">无法连接 Antigravity 守护进程（%1$s）：%2$s</string>
+    <!-- 原文: Could not read the sign-in state: %1$s -->
+    <string name="data_err_read_sign_in_state">无法读取登录状态：%1$s</string>
     <!-- 原文: Cannot read ZIP -->
     <string name="data_err_read_zip">无法读取 ZIP</string>
+    <!-- 原文: Refresh failed -->
+    <string name="data_err_refresh_failed">刷新失败</string>
     <!-- 原文: Use Rename folder to change the folder before updating -->
     <string name="data_err_rename_before_update">更新前请先用「重命名文件夹」修改文件夹名</string>
     <!-- 原文: Cannot rename extension folder -->
@@ -55,10 +83,26 @@
     <string name="data_err_restore_previous_extension">还原先前的扩展失败</string>
     <!-- 原文: Cannot save extension settings -->
     <string name="data_err_save_extension_settings">无法保存扩展设置</string>
+    <!-- 原文: Failed to save configuration to mcp_config.json -->
+    <string name="data_err_save_mcp_config">无法把配置写入 mcp_config.json</string>
+    <!-- 原文: Could not send code: %1$s -->
+    <string name="data_err_send_code_failed">无法提交验证码：%1$s</string>
+    <!-- 原文: '%1$s': %2$s -->
+    <string name="data_err_server_error_detail">「%1$s」：%2$s</string>
+    <!-- 原文: Sign-in could not start: %1$s -->
+    <string name="data_err_sign_in_could_not_start">无法开始登录：%1$s</string>
+    <!-- 原文: Sign-in failed: %1$s -->
+    <string name="data_err_sign_in_failed">登录失败：%1$s</string>
+    <!-- 原文: Sign-out failed: %1$s -->
+    <string name="data_err_sign_out_failed">退出登录失败：%1$s</string>
     <!-- 原文: Cannot stage previous extension -->
     <string name="data_err_stage_previous_extension">无法暂存先前的扩展</string>
+    <!-- 原文: Status check failed -->
+    <string name="data_err_status_check_failed">状态检查失败</string>
     <!-- 原文: Duplicate or empty MCP tool name -->
     <string name="data_err_tool_name_duplicate">MCP 工具名重复或为空</string>
+    <!-- 原文: unknown error -->
+    <string name="data_err_unknown_error">未知错误</string>
     <!-- 原文: Execution Failure -->
     <string name="data_execution_failure">执行失败</string>
     <!-- 原文: %1$s (fork) -->
@@ -175,6 +219,26 @@
     <string name="data_media_session_description">在对话中显示视频播放控件</string>
     <!-- 原文: %1$s (fork) -->
     <string name="data_source_title_fork">%1$s（分叉）</string>
+    <!-- 原文: Installed and activated '%1$s' MCP server -->
+    <string name="data_status_plugin_installed">已安装并启用「%1$s」MCP 服务器</string>
+    <!-- 原文: Refreshed '%1$s' -->
+    <string name="data_status_refreshed_server">已刷新「%1$s」</string>
+    <!-- 原文: Refreshed '%1$s': %2$s tool(s) available -->
+    <string name="data_status_refreshed_server_tools">已刷新「%1$s」：%2$s 个工具可用</string>
+    <!-- 原文: Refreshed: %1$s server(s) configured, %2$s tool(s) discovered -->
+    <string name="data_status_refreshed_summary">已刷新：%1$s 个服务器已配置，发现 %2$s 个工具</string>
+    <!-- 原文: Disabled '%1$s' -->
+    <string name="data_status_server_disabled">已停用「%1$s」</string>
+    <!-- 原文: Enabled '%1$s' -->
+    <string name="data_status_server_enabled">已启用「%1$s」</string>
+    <!-- 原文: Removed '%1$s'. -->
+    <string name="data_status_server_removed">已移除「%1$s」。</string>
+    <!-- 原文: Saved '%1$s'. Tap Refresh on the server to connect. -->
+    <string name="data_status_server_saved">已保存「%1$s」。点击该服务器上的「刷新」以建立连接。</string>
+    <!-- 原文: Signed in to Claude -->
+    <string name="data_status_signed_in_claude">已登录 Claude</string>
+    <!-- 原文: Signed out of Claude -->
+    <string name="data_status_signed_out_claude">已退出 Claude 登录</string>
     <!-- 原文: Termux Linux environment verified and installed successfully! -->
     <string name="data_termux_linux_environment_verified_and_in">Termux Linux 环境已验证并安装成功！</string>
     <!-- 原文: Terminal open requests -->

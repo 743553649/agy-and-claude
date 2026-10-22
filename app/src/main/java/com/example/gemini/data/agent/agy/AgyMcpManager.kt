@@ -31,16 +31,19 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.encodeToString
+import android.content.Context
 import android.util.Log
 import org.json.JSONObject
 import java.util.UUID
 import com.example.gemini.data.agent.ChatSessionStore
 import kotlinx.coroutines.CoroutineScope
+import com.example.gemini.R
 
 /** Antigravity MCP servers and the Cascade MCP plugin marketplace. Moved out of ChatViewModel unchanged. */
 class AgyMcpManager(
     private val backendScope: CoroutineScope,
-    private val agyHubClient: AgyHubClient
+    private val agyHubClient: AgyHubClient,
+    private val appContext: Context
 ) {
 
     private val _mcpServers = MutableStateFlow<List<com.example.gemini.domain.model.McpServerState>>(emptyList())
@@ -86,7 +89,7 @@ class AgyMcpManager(
                 val liveResult = agyHubClient.getMcpServerStates(hubUrl)
                 var fetchError: String? = null
                 if (liveResult.isFailure) {
-                    val err = liveResult.exceptionOrNull()?.message ?: "Failed to connect to Antigravity Hub"
+                    val err = liveResult.exceptionOrNull()?.message ?: appContext.getString(R.string.data_err_connect_antigravity_hub)
                     Log.w("ChatViewModel", "loadMcpServers liveResult failed: $err")
                     fetchError = err
                 }
@@ -166,7 +169,7 @@ class AgyMcpManager(
                 }
 
                 if (fetchError != null) {
-                    _mcpErrorMessage.value = "Cannot reach Antigravity daemon ($hubUrl): $fetchError"
+                    _mcpErrorMessage.value = appContext.getString(R.string.data_err_reach_antigravity_daemon, hubUrl, fetchError.orEmpty())
                 }
 
                 // If daemon RPC failed and no servers found, preserve existing cached servers if available
@@ -195,24 +198,24 @@ class AgyMcpManager(
                 val hubUrl = AuthPreferences.currentHubUrl
                 val res = agyHubClient.refreshMcpServers(hubUrl)
                 if (res.isFailure) {
-                    val err = res.exceptionOrNull()?.message ?: "Refresh failed"
-                    _mcpErrorMessage.value = "Daemon refresh error ($hubUrl): $err"
+                    val err = res.exceptionOrNull()?.message ?: appContext.getString(R.string.data_err_refresh_failed)
+                    _mcpErrorMessage.value = appContext.getString(R.string.data_err_daemon_refresh_error, hubUrl, err)
                 }
                 delay(600)
                 loadMcpServers()
                 if (targetServer != null) {
                     val s = _mcpServers.value.find { it.name.equals(targetServer, ignoreCase = true) }
                     if (s != null && !s.error.isNullOrBlank()) {
-                        _mcpErrorMessage.value = "'$targetServer': ${s.error}"
+                        _mcpErrorMessage.value = appContext.getString(R.string.data_err_server_error_detail, targetServer, s.error.orEmpty())
                     } else if (s != null && s.tools.isNotEmpty()) {
-                        _mcpStatusMessage.value = "Refreshed '$targetServer': ${s.tools.size} tool(s) available"
+                        _mcpStatusMessage.value = appContext.getString(R.string.data_status_refreshed_server_tools, targetServer, s.tools.size)
                     } else {
-                        _mcpStatusMessage.value = "Refreshed '$targetServer'"
+                        _mcpStatusMessage.value = appContext.getString(R.string.data_status_refreshed_server, targetServer)
                     }
                 } else {
                     val count = _mcpServers.value.size
                     val toolsCount = _mcpServers.value.sumOf { it.tools.size }
-                    _mcpStatusMessage.value = "Refreshed: $count server(s) configured, $toolsCount tool(s) discovered"
+                    _mcpStatusMessage.value = appContext.getString(R.string.data_status_refreshed_summary, count, toolsCount)
                 }
             } catch (e: Exception) {
                 _mcpErrorMessage.value = e.message
@@ -255,7 +258,7 @@ class AgyMcpManager(
                     )
                 } else it
             }.sortedBy { it.name.lowercase() }
-            _mcpStatusMessage.value = if (enabled) "Enabled '$serverName'" else "Disabled '$serverName'"
+            _mcpStatusMessage.value = if (enabled) appContext.getString(R.string.data_status_server_enabled, serverName) else appContext.getString(R.string.data_status_server_disabled, serverName)
         }
     }
 
@@ -313,12 +316,12 @@ class AgyMcpManager(
 
                 val success = com.example.gemini.data.daemon.IdeApiClient.saveMcpConfig(json.toString(2))
                 if (!success) {
-                    _mcpErrorMessage.value = "Failed to save configuration to mcp_config.json"
+                    _mcpErrorMessage.value = appContext.getString(R.string.data_err_save_mcp_config)
                 } else {
                     val hubUrl = AuthPreferences.currentHubUrl
                     agyHubClient.refreshMcpServers(hubUrl)
                     loadMcpServers()
-                    _mcpStatusMessage.value = "Saved '${spec.serverName}'. Tap Refresh on the server to connect."
+                    _mcpStatusMessage.value = appContext.getString(R.string.data_status_server_saved, spec.serverName)
                 }
             } catch (e: Exception) {
                 Log.e("ChatViewModel", "saveMcpServer error: ${e.message}", e)
@@ -349,7 +352,7 @@ class AgyMcpManager(
                 val hubUrl = AuthPreferences.currentHubUrl
                 agyHubClient.refreshMcpServers(hubUrl)
                 loadMcpServers()
-                _mcpStatusMessage.value = "Removed '$serverName'."
+                _mcpStatusMessage.value = appContext.getString(R.string.data_status_server_removed, serverName)
             } catch (e: Exception) {
                 Log.e("ChatViewModel", "deleteMcpServer error: ${e.message}", e)
                 _mcpErrorMessage.value = e.message
@@ -385,15 +388,15 @@ class AgyMcpManager(
             try {
                 val res = agyHubClient.installCascadePlugin(plugin)
                 if (res.isSuccess) {
-                    _mcpStatusMessage.value = "Installed and activated '${plugin.title}' MCP server"
+                    _mcpStatusMessage.value = appContext.getString(R.string.data_status_plugin_installed, plugin.title)
                     delay(500)
                     loadMcpServers()
                 } else {
-                    val err = res.exceptionOrNull()?.message ?: "Installation failed"
-                    _mcpErrorMessage.value = "Failed to install ${plugin.title}: $err"
+                    val err = res.exceptionOrNull()?.message ?: appContext.getString(R.string.data_err_installation_failed)
+                    _mcpErrorMessage.value = appContext.getString(R.string.data_err_install_plugin_failed, plugin.title, err)
                 }
             } catch (e: Exception) {
-                _mcpErrorMessage.value = "Error installing ${plugin.title}: ${e.message}"
+                _mcpErrorMessage.value = appContext.getString(R.string.data_err_install_plugin_error, plugin.title, e.message.orEmpty())
             } finally {
                 _installingCascadePluginId.value = null
             }

@@ -56,7 +56,7 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
         isNetworkConnectedProvider = { isNetworkConnected() },
         onHubOnline = { loadMcpServers() }
     )
-    private val mcpManager = com.example.gemini.data.agent.agy.AgyMcpManager(viewModelScope, agyBackend.agyHubClient)
+    private val mcpManager = com.example.gemini.data.agent.agy.AgyMcpManager(viewModelScope, agyBackend.agyHubClient, application)
     private val pluginsManager = com.example.gemini.data.agent.agy.AgyPluginsManager(viewModelScope, agyBackend.agyHubClient, store, mcpManager)
     private val securityManager = com.example.gemini.data.agent.agy.AgySecuritySettingsManager(viewModelScope, agyBackend.agyHubClient, authPrefs, store)
     private val agyHubClient get() = agyBackend.agyHubClient
@@ -68,7 +68,7 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
     private val claudeClient = com.example.gemini.data.agent.claude.ClaudeBridgeClient()
     val claudeBackend = com.example.gemini.data.agent.claude.ClaudeChatBackend(application, viewModelScope, store, claudePrefs, claudeClient)
     /** Claude account: sign-in state, plan usage, login / logout. */
-    val claudeAccount = com.example.gemini.data.agent.claude.ClaudeAccountManager(viewModelScope, claudeClient)
+    val claudeAccount = com.example.gemini.data.agent.claude.ClaudeAccountManager(viewModelScope, claudeClient, application)
     /** Claude configuration: settings.json, permission rules, MCP, plugins, memory, CLI install. */
     val claudeConfig = com.example.gemini.data.agent.claude.ClaudeConfigManager(viewModelScope, claudeClient)
     /** Dictation for Claude chats (Claude's speech-to-text through the bridge). */

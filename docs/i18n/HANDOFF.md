@@ -200,8 +200,7 @@ Git 面板 4 个分区标题、模型选择标题、浏览器新标签页（1 �
    （`parseSharedConversation` 增加 `Context` 参数，`ChatViewModel` 传 `getApplication()`）。
 
 **仍未翻，留给下一批**：
-- `AgyMcpManager`（18 条）与 `ClaudeAccountManager`（15 条）的错误/状态文案——两个类都没有
-  `Context`，要把 `Application` 注入构造函数，属于「数据层错误族」整批处理；
+- `AgyMcpManager` 与 `ClaudeAccountManager` 的错误/状态文案——**已完成**，见下方「数据层错误族」小节；
 - `ClaudeStatusViews` 的 7 个 `actionLabel`（Sign in / Open sign-in / Set up Claude Code /
   Restart server / Retry / Check again）；
 - `when`/`if` 分支字面量（约 391 行 `-> "…"`、268 行单行三元，绝大多数是技术值）；
@@ -390,6 +389,25 @@ run 39764130892 **失败**：`ClaudeSettingsScreen.DefaultsPage` 没有 `context
 用户明确要求不要在这台上安装（该机 `com.termux` 被 Play 版 Termux Ultra 118.3.50 占用，
 卸载会连带删掉它的数据）。因此 P4 的真机验证与 P1 的待验证①②一并移交用户另一台设备执行，
 **下面第 4 节 P1 的两条「待验证」保持待验证，未在真机确认前不得改写为结论**。
+
+### 数据层错误族：`AgyMcpManager` + `ClaudeAccountManager`（✅ 已落地）
+
+两个类原本都没有 `Context`，本批按用户要求**整批一起改**（`apply_data_errors.py`）：
+
+1. 构造注入：`AgyMcpManager(backendScope, agyHubClient, appContext: Context)`、
+   `ClaudeAccountManager(scope, client, appContext: Context)`；两个构造点都在 `ChatViewModel`
+   （继承 `AndroidViewModel`），直接传 `application`，与同文件 `AuthPreferences(application)` 一致。
+   属性名用 `appContext` 而不是 `context`，避开 Kotlin 2.x 把 `context` 当上下文参数关键字的老问题。
+2. 改写 **36 处**可见文案（12 条静态 + 20 条插值）：
+   - `AgyMcpManager`：连不上 Hub / 守护进程 / 刷新失败、服务器错误详情、刷新结果、
+     启用停用、保存删除、插件安装成功与失败；`_mcpErrorMessage/_mcpStatusMessage`
+     由设置页 MCP 区块 `Text(...)` 直接显示；
+   - `ClaudeAccountManager`：状态检查失败、桥接不可达、未返回用量、登录/登出/验证码全流程；
+     `_statusError/_usageError` 由 Claude 面板显示，`_messages` 走
+     `AppToastHelper.showToast(it, ChatToastType.INFO)`——**调用点已显式传类型**，
+     不受坑 16 的关键词推断影响。
+3. 一律 `appContext.getString(...)`；可空实参补 `.orEmpty()`（坑 8）；
+   `Log.*` 里的文案**没有动**（GLOSSARY §2.5）。
 
 ## 5. 工具链（`scripts/i18n/`）
 
