@@ -26,7 +26,7 @@
 
 ## 3. 已完成的工作
 
-分支上共 10 个提交，5 个功能批次 + 4 次修复 + 1 次文档：
+分支相对 `origin/master` 共 **28** 个提交。下表只列早期批次，后续批次（P3 / P3.5 / P3.6 / P3.7）见第 4 节：
 
 | 提交 | 内容 |
 | --- | --- |
@@ -139,7 +139,7 @@
 **同类盲区还剩**：全仓库 `when`/`else ->` 分支返回字面量 **70 行**、单行
 `if (…) "A" else "B"` **243 行**，需逐条判定白名单后再改（很多是 `"bash"`、`"error"` 这类技术值）。
 
-### P3.7：数据层产出的通知与进度文案（✅ 已完成，本轮提交）
+### P3.7：数据层产出的通知与进度文案（✅ 已完成，commit `6203d58`，CI run 39739137128 通过）
 `data/local/LocalEnvironmentManager.kt` 不在 Composable 里，但它生成的字符串**会显示给用户**。
 本轮共改 **77 处**，共 **55 条**文案资源：新增 **54 条** `data_install_*`，
 `Termux Linux environment verified and installed successfully!` 复用既有 key
@@ -171,6 +171,12 @@
 
 工具：`apply_local_env.py` + `local_env_zh.tsv`（55 条），按「语法框架 + 对照表」双重限定，
 表外一律不动；表里每条都必须能找到站点，否则脚本直接退出（防止写出没人用的资源）。
+
+**CI 证据**（run 39739137128，commit `6203d58`）：`Verify i18n resources` 通过
+（`values: 1421 / values-zh-rCN: 1417 / 引用 1351 key`）、`Build termux APK` 成功、
+产物 `antiGem-termux-v1.0.13-release-6203d58.apk`、`Verify APK signature` 指纹与标准值一致。
+**验证边界**：CI 只证明编译通过；通知进度文案、渠道名、安装页状态字段的实际显示效果
+（尤其中文标题在通知栏的截断、`%2$s%%` 的百分比渲染）必须真机看。
 
 ### P3.5：含插值但调用点未被回写的文案（✅ 已完成，同一提交）
 16 处译文本已在 `/tmp/i18n_dynamic.json` 里，只是回写没覆盖到：`contentDescription`
