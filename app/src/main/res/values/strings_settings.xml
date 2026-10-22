@@ -76,6 +76,7 @@
     <string name="settings_backup_ide_agy_workspaces_or_restore_fro">Backup IDE &amp; AGY workspaces or restore from zip</string>
     <string name="settings_backup_projects">Backup Projects</string>
     <string name="settings_backups_restore">Backups &amp; Restore</string>
+    <string name="settings_badge_shield">Shield</string>
     <string name="settings_base_minimum_termux">Base Minimum Termux</string>
     <string name="settings_binary_executable_paths">Binary Executable Paths</string>
     <string name="settings_bootstrap_rootfs_successfully_configured">Bootstrap rootfs successfully configured. The interactive terminal, Go IDE backend, and AGY AI language server are now ready to run.</string>
@@ -131,6 +132,7 @@
     <string name="settings_danger_zone_factory_reset">Danger Zone: Factory Reset</string>
     <string name="settings_data_loss_prevention">Data Loss Prevention</string>
     <string name="settings_data_loss_protection">Data Loss Protection</string>
+    <string name="settings_data_loss_protection_desc">Accidental uninstall shield &amp; App Info clear data protection</string>
     <string name="settings_date_model_dividers">Date &amp; Model Dividers</string>
     <string name="settings_deactivate">Deactivate</string>
     <string name="settings_deactivate_uninstall_protection">Deactivate Uninstall Protection</string>
@@ -417,6 +419,7 @@
     <string name="settings_the_daemon_is_actively_accessing_databas">The daemon is actively accessing databases and processes. Please stop the server before performing backups or restores to prevent corrupted archives.</string>
     <string name="settings_theme_dark">Dark</string>
     <string name="settings_theme_light">Light</string>
+    <string name="settings_thinking_budget_placeholder">e.g. 2048</string>
     <string name="settings_this_includes_your_termux_linux_packages">This includes your Termux Linux packages, AI configuration, and local SQLite data.</string>
     <string name="settings_this_switch_controls_the_legacy_google_f">This switch controls the legacy Google Flow endpoint only. Install, enable or disable the current extension in Settings → WebView Extensions, then choose it in MCP settings. Tool lists come from the installed extension.</string>
     <string name="settings_this_will_remove_antigem_s_device_admin">This will remove AntiGem\'s Device Admin status. The app will become vulnerable to accidental home-screen uninstallation.</string>
@@ -565,6 +568,7 @@
     <string name="settings_view_skill_md">View SKILL.md</string>
     <string name="settings_view_tag_notes_apk_downloads">View tag notes &amp; APK downloads</string>
     <string name="settings_warning_this_will_perform_an_android_os">Warning: This will perform an Android OS-level data wipe. All installed packages, rootfs, dotfiles, app settings, and history will be completely cleared.\n\nThe app will close and start completely fresh on next launch. Are you sure you want to proceed?</string>
+    <string name="settings_webview_ext_summary">%1$s · %2$s · %3$s MCP tools</string>
     <string name="settings_webview_extension_mcp">WebView Extension MCP</string>
     <string name="settings_webview_extensions">WebView Extensions</string>
     <string name="settings_webview_ui_dom_inspection_screenshots">WebView UI, DOM inspection &amp; screenshots</string>

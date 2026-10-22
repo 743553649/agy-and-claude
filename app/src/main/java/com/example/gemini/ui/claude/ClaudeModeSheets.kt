@@ -135,11 +135,12 @@ fun ClaudePermissionModeSheet(
     onSelect: (String) -> Unit,
     onDismiss: () -> Unit
 ) {
+    val context = androidx.compose.ui.platform.LocalContext.current
     ClaudePickerSheet("Permission mode", "how Claude asks before acting", onDismiss) {
         modes.forEach { (value, label) ->
             PickerOption(
                 title = label,
-                description = permissionModeDescription(value),
+                description = permissionModeDescription(context, value),
                 color = permissionModeColor(value).takeIf { value != "default" } ?: ClaudeAccent,
                 selected = value == current,
                 icon = permissionModeIcon(value),

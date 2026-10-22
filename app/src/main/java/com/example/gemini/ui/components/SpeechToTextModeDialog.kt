@@ -83,7 +83,7 @@ fun SpeechToTextModeDialog(
                 // Option 1: Auto Transcribe (Record & Transcribe via AGY Hub)
                 SpeechModeOptionCard(
                     title = stringResource(R.string.component_auto_transcribe),
-                    subtitle = "Record a voice clip and convert it into text using AGY transcription",
+                    subtitle = stringResource(R.string.component_stt_auto_desc),
                     icon = Icons.Rounded.GraphicEq,
                     accentColor = ClaudeTerracotta,
                     onClick = onSelectAutoTranscribe
@@ -94,7 +94,7 @@ fun SpeechToTextModeDialog(
                 // Option 2: Live Dictation (Real-Time Speech-to-Text)
                 SpeechModeOptionCard(
                     title = stringResource(R.string.component_live_dictation),
-                    subtitle = "Stream words in real-time as you speak directly into the chat prompt",
+                    subtitle = stringResource(R.string.component_stt_live_desc),
                     icon = Icons.Rounded.Mic,
                     accentColor = GeminiBlue,
                     onClick = onSelectLiveDictation

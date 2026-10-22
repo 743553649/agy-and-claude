@@ -56,7 +56,7 @@ fun AttachmentSelectorBottomSheet(
                 icon = Icons.Outlined.Image,
                 iconColor = ClaudeTerracotta,
                 title = stringResource(R.string.component_photo_image),
-                subtitle = "Attach an image for multimodal vision & analysis",
+                subtitle = stringResource(R.string.component_attach_image_desc),
                 onClick = {
                     onDismiss()
                     onPickImage()
@@ -69,7 +69,7 @@ fun AttachmentSelectorBottomSheet(
                 icon = Icons.Outlined.Description,
                 iconColor = GeminiBlue,
                 title = stringResource(R.string.component_document_file),
-                subtitle = "Attach a PDF, text, or binary file from your device",
+                subtitle = stringResource(R.string.component_attach_file_desc),
                 onClick = {
                     onDismiss()
                     onPickFile()

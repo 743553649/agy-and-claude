@@ -1899,9 +1899,10 @@ fun ChatScreen(
                 // Agent prompts docked above the input (both agents): permission requests, then questions
                 val approvalItems = remember(pendingApprovals, claudePending, isClaudeChat) {
                     if (isClaudeChat) {
-                        com.example.gemini.ui.claude.claudeApprovalItems(claudePending, claudeBackend)
+                        com.example.gemini.ui.claude.claudeApprovalItems(context, claudePending, claudeBackend)
                     } else {
                         com.example.gemini.ui.agents.agyApprovalItems(
+                            context,
                             pendingApprovals,
                             onApprove = { toolCall, msgId, scope -> viewModel.approveAndExecuteTerminalTool(toolCall, msgId, scope) },
                             onReject = { toolCall, msgId, reason -> viewModel.rejectTerminalTool(toolCall, msgId, reason) }

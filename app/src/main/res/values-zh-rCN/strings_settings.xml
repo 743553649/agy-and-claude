@@ -147,6 +147,8 @@
     <string name="settings_backup_projects">备份项目</string>
     <!-- 原文: Backups & Restore -->
     <string name="settings_backups_restore">备份与还原</string>
+    <!-- 原文: Shield -->
+    <string name="settings_badge_shield">防护</string>
     <!-- 原文: Base Minimum Termux -->
     <string name="settings_base_minimum_termux">最小基础 Termux</string>
     <!-- 原文: Binary Executable Paths -->
@@ -257,6 +259,8 @@
     <string name="settings_data_loss_prevention">数据丢失防护</string>
     <!-- 原文: Data Loss Protection -->
     <string name="settings_data_loss_protection">数据丢失保护</string>
+    <!-- 原文: Accidental uninstall shield & App Info clear data protection -->
+    <string name="settings_data_loss_protection_desc">防误卸载，并保护「应用信息 → 清除数据」</string>
     <!-- 原文: Date & Model Dividers -->
     <string name="settings_date_model_dividers">日期与模型分隔线</string>
     <!-- 原文: Deactivate -->
@@ -829,6 +833,8 @@
     <string name="settings_theme_dark">深色</string>
     <!-- 原文: Light -->
     <string name="settings_theme_light">浅色</string>
+    <!-- 原文: e.g. 2048 -->
+    <string name="settings_thinking_budget_placeholder">例如 2048</string>
     <!-- 原文: This includes your Termux Linux packages, AI configuration, and local SQLite data. -->
     <string name="settings_this_includes_your_termux_linux_packages">这包括你的 Termux Linux 软件包、AI 配置和本地 SQLite 数据。</string>
     <!-- 原文: This switch controls the legacy Google Flow endpoint only. Install, enable or disable the current extension in Settings → WebView Extensions, then choose it in MCP settings. Tool lists come from the installed extension. -->
@@ -1125,6 +1131,8 @@
     <string name="settings_view_tag_notes_apk_downloads">查看版本说明与 APK 下载</string>
     <!-- 原文: Warning: This will perform an Android OS-level data wipe. All installed packages, rootfs, dotfiles, app settings, and history will be completely cleared.\n\nThe app will close and start completely fresh on next launch. Are you sure you want to proceed? -->
     <string name="settings_warning_this_will_perform_an_android_os">警告：这会执行 Android 系统级数据清除。所有已安装的软件包、rootfs、dotfiles、应用设置和历史记录都将被彻底清空。\n\n应用会关闭，并在下次启动时完全全新开始。确定要继续吗？</string>
+    <!-- 原文: %1$s · %2$s · %3$s MCP tools -->
+    <string name="settings_webview_ext_summary">%1$s · %2$s · %3$s 个 MCP 工具</string>
     <!-- 原文: WebView Extension MCP -->
     <string name="settings_webview_extension_mcp">WebView 扩展 MCP</string>
     <!-- 原文: WebView Extensions -->

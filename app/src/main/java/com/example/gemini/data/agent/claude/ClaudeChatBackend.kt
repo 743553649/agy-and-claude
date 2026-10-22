@@ -284,7 +284,7 @@ class ClaudeChatBackend(
                 startupNoticeJob?.cancel()
                 startupNoticeJob = backendScope.launch(worker) {
                     delay(STARTUP_NOTICE_DELAY_MS)
-                    if (awaitingProcess) _startupStatus.value = "Starting Claude Code…"
+                    if (awaitingProcess) _startupStatus.value = application.getString(R.string.chat_status_starting_claude)
                 }
             }
             emitNow()
@@ -1035,7 +1035,7 @@ class ClaudeChatBackend(
                             transcript.permissionMode?.let { _permissionMode.value = it }
                             if (data["status"]?.jsonPrimitive?.contentOrNull == "compacting") {
                                 _isCompacting.value = true
-                                _startupStatus.value = "Compacting the conversation…"
+                                _startupStatus.value = application.getString(R.string.chat_status_compacting)
                             } else endCompactingNotice()
                         }
                         "compact_boundary" -> endCompactingNotice()
@@ -1066,7 +1066,7 @@ class ClaudeChatBackend(
                     }
                     "spawned" -> {
                         // only when the start-up notice is already shown (a slow start)
-                        if (awaitingProcess && _startupStatus.value != null) _startupStatus.value = "Claude Code is starting…"
+                        if (awaitingProcess && _startupStatus.value != null) _startupStatus.value = application.getString(R.string.chat_status_claude_starting)
                     }
                     "exited" -> {
                         awaitingProcess = false

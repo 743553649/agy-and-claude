@@ -51,8 +51,8 @@ object ImageDownloadHelper {
             if (savedUri != null) {
                 if (snackbarHostState != null) {
                     val result = snackbarHostState.showSnackbar(
-                        message = "Image saved to Downloads/AntiGem",
-                        actionLabel = "Open",
+                        message = context.getString(R.string.component_image_saved_to_downloads_antigem),
+                        actionLabel = context.getString(R.string.common_open),
                         duration = SnackbarDuration.Short
                     )
                     if (result == SnackbarResult.ActionPerformed) {

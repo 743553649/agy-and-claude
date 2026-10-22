@@ -1,5 +1,6 @@
 package com.example.gemini.ui.agents
 
+import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -89,8 +90,8 @@ class ApprovalItem(
     val secondary: List<ApprovalChoice> = emptyList(),
     /** "Always allow…" menu. */
     val always: List<ApprovalChoice> = emptyList(),
-    val denyLabel: String = "Deny",
-    val denyPlaceholder: String = "Tell the agent what to do instead (optional)",
+    @StringRes val denyLabel: Int = R.string.agents_deny,
+    @StringRes val denyPlaceholder: Int = R.string.agents_deny_placeholder,
     val onDeny: (feedback: String?) -> Unit
 )
 
@@ -237,7 +238,7 @@ private fun ApprovalBody(item: ApprovalItem, count: Int, onAllowAll: (() -> Unit
                 OutlinedTextField(
                     value = feedback,
                     onValueChange = { feedback = it },
-                    placeholder = { Text(item.denyPlaceholder, fontSize = 12.5.sp) },
+                    placeholder = { Text(stringResource(item.denyPlaceholder), fontSize = 12.5.sp) },
                     textStyle = MaterialTheme.typography.bodyMedium,
                     shape = RoundedCornerShape(12.dp),
                     modifier = Modifier.fillMaxWidth(),
@@ -250,7 +251,7 @@ private fun ApprovalBody(item: ApprovalItem, count: Int, onAllowAll: (() -> Unit
                         onClick = { item.onDeny(feedback.trim().ifBlank { null }) },
                         colors = ButtonDefaults.buttonColors(containerColor = if (item.secondary.isEmpty()) DenyRed else accent),
                         shape = RoundedCornerShape(12.dp)
-                    ) { Text(item.denyLabel, fontSize = 13.sp, fontWeight = FontWeight.SemiBold) }
+                    ) { Text(stringResource(item.denyLabel), fontSize = 13.sp, fontWeight = FontWeight.SemiBold) }
                 }
                 return@Column
             }
@@ -270,14 +271,14 @@ private fun ApprovalBody(item: ApprovalItem, count: Int, onAllowAll: (() -> Unit
                     }
                 }
                 TextButton(onClick = { denying = true }, modifier = Modifier.fillMaxWidth()) {
-                    Text(stringResource(R.string.agents_item_denylabel, item.denyLabel), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f))
+                    Text(stringResource(R.string.agents_item_denylabel, stringResource(item.denyLabel)), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f))
                 }
                 return@Column
             }
 
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 TextButton(onClick = { denying = true }, contentPadding = PaddingValues(horizontal = 10.dp)) {
-                    Text(item.denyLabel, color = DenyRed, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                    Text(stringResource(item.denyLabel), color = DenyRed, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                 }
                 Spacer(Modifier.weight(1f))
                 if (item.always.isNotEmpty()) {

@@ -5,6 +5,7 @@
 -->
 <resources>
 
+    <string name="common_open">Open</string>
     <string name="component_active_context_summary">Active Context Summary</string>
     <string name="component_active_model">Active Model</string>
     <string name="component_active_prompt">🧠 Active Prompt</string>
@@ -30,8 +31,12 @@
     <string name="component_ask_after_10_messages">Ask after +10 messages</string>
     <string name="component_ask_after_20_messages">Ask after +20 messages</string>
     <string name="component_ask_after_5_messages">Ask after +5 messages</string>
+    <string name="component_attach_file_desc">Attach a PDF, text, or binary file from your device</string>
+    <string name="component_attach_image_desc">Attach an image for multimodal vision &amp; analysis</string>
     <string name="component_attachment_preview">Attachment Preview</string>
     <string name="component_auto_transcribe">Auto Transcribe</string>
+    <string name="component_badge_optional">Optional</string>
+    <string name="component_badge_required">Required</string>
     <string name="component_block_number">%1$s </string>
     <string name="component_blocked_socket_reads">Blocked Socket Reads:</string>
     <string name="component_bridge_status">Bridge Status</string>
@@ -184,6 +189,9 @@
     <string name="component_parent_directory">Parent Directory</string>
     <string name="component_paste_here">Paste Here</string>
     <string name="component_pending_approval">Pending Approval</string>
+    <string name="component_perm_microphone_desc">Enables voice-to-text dictation and voice commands directly in chat.</string>
+    <string name="component_perm_notifications_desc">Required for persistent background terminal service, live status alerts, updates, and rootfs package installer progress.</string>
+    <string name="component_perm_storage_desc">Allows AntiGem to access /sdcard to import local bootstrap packages, inspect files, and manage external code workspaces.</string>
     <string name="component_permission_active">Permission active</string>
     <string name="component_permissions">Permissions</string>
     <string name="component_pgdn">PGDN</string>
@@ -231,6 +239,7 @@
     <string name="component_save_prompt">Save Prompt</string>
     <string name="component_save_summary">Save Summary</string>
     <string name="component_save_to_this_folder">Save to this Folder</string>
+    <string name="component_saved_to_exports">%1$s saved to Downloads/AntiGem/Exports</string>
     <string name="component_savedfilename_saved_to_downloads_antigem">%1$s saved to Downloads/AntiGem/Exports</string>
     <string name="component_select_model_for_summarization">Select model for summarization:</string>
     <string name="component_select_speech_recognition_method">Select speech recognition method</string>
@@ -254,6 +263,8 @@
     <string name="component_stop_command">Stop command</string>
     <string name="component_stopped">stopped</string>
     <string name="component_storage_sdcard">Storage &amp; /sdcard</string>
+    <string name="component_stt_auto_desc">Record a voice clip and convert it into text using AGY transcription</string>
+    <string name="component_stt_live_desc">Stream words in real-time as you speak directly into the chat prompt</string>
     <string name="component_summarize">Summarize</string>
     <string name="component_summarize_conversation">Summarize Conversation</string>
     <string name="component_summarizing_context_with_modelname">Summarizing context with %1$s...</string>

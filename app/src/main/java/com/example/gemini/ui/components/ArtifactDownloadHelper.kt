@@ -48,7 +48,7 @@ object ArtifactDownloadHelper {
                 if (snackbarHostState != null) {
                     val result = snackbarHostState.showSnackbar(
                         message = context.getString(R.string.component_filename_saved_to_downloads_antigem, fileName),
-                        actionLabel = "Open",
+                        actionLabel = context.getString(R.string.common_open),
                         duration = SnackbarDuration.Short
                     )
                     if (result == SnackbarResult.ActionPerformed) {

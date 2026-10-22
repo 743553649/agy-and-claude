@@ -5,6 +5,8 @@
 -->
 <resources>
 
+    <!-- 原文: Open -->
+    <string name="common_open">打开</string>
     <!-- 原文: Active Context Summary -->
     <string name="component_active_context_summary">当前上下文摘要</string>
     <!-- 原文: Active Model -->
@@ -55,10 +57,18 @@
     <string name="component_ask_after_20_messages">超过 20 条消息后询问</string>
     <!-- 原文: Ask after +5 messages -->
     <string name="component_ask_after_5_messages">超过 5 条消息后询问</string>
+    <!-- 原文: Attach a PDF, text, or binary file from your device -->
+    <string name="component_attach_file_desc">从设备附加 PDF、文本或二进制文件</string>
+    <!-- 原文: Attach an image for multimodal vision & analysis -->
+    <string name="component_attach_image_desc">附加图片以进行多模态视觉分析</string>
     <!-- 原文: Attachment Preview -->
     <string name="component_attachment_preview">附件预览</string>
     <!-- 原文: Auto Transcribe -->
     <string name="component_auto_transcribe">自动转写</string>
+    <!-- 原文: Optional -->
+    <string name="component_badge_optional">可选</string>
+    <!-- 原文: Required -->
+    <string name="component_badge_required">必需</string>
     <!-- 原文: %1$s  -->
     <string name="component_block_number">%1$s</string>
     <!-- 原文: Blocked Socket Reads: -->
@@ -363,6 +373,12 @@
     <string name="component_paste_here">粘贴到此处</string>
     <!-- 原文: Pending Approval -->
     <string name="component_pending_approval">待批准</string>
+    <!-- 原文: Enables voice-to-text dictation and voice commands directly in chat. -->
+    <string name="component_perm_microphone_desc">在对话中直接使用语音转文字与语音指令。</string>
+    <!-- 原文: Required for persistent background terminal service, live status alerts, updates, and rootfs package installer progress. -->
+    <string name="component_perm_notifications_desc">后台终端服务常驻、实时状态提醒、更新与 rootfs 安装进度提示所必需。</string>
+    <!-- 原文: Allows AntiGem to access /sdcard to import local bootstrap packages, inspect files, and manage external code workspaces. -->
+    <string name="component_perm_storage_desc">允许 AntiGem 访问 /sdcard，以导入本地引导包、查看文件并管理外部代码工作区。</string>
     <!-- 原文: Permission active -->
     <string name="component_permission_active">权限已启用</string>
     <!-- 原文: Permissions -->
@@ -458,6 +474,8 @@
     <!-- 原文: Save to this Folder -->
     <string name="component_save_to_this_folder">保存到此文件夹</string>
     <!-- 原文: %1$s saved to Downloads/AntiGem/Exports -->
+    <string name="component_saved_to_exports">%1$s 已保存到 Downloads/AntiGem/Exports</string>
+    <!-- 原文: %1$s saved to Downloads/AntiGem/Exports -->
     <string name="component_savedfilename_saved_to_downloads_antigem">%1$s 已保存到 Downloads/AntiGem/Exports</string>
     <!-- 原文: Select model for summarization: -->
     <string name="component_select_model_for_summarization">选择用于摘要的模型：</string>
@@ -503,6 +521,10 @@
     <string name="component_stopped">已停止</string>
     <!-- 原文: Storage & /sdcard -->
     <string name="component_storage_sdcard">存储与 /sdcard</string>
+    <!-- 原文: Record a voice clip and convert it into text using AGY transcription -->
+    <string name="component_stt_auto_desc">录制语音片段并用 AGY 转写为文字</string>
+    <!-- 原文: Stream words in real-time as you speak directly into the chat prompt -->
+    <string name="component_stt_live_desc">说话时实时转写并直接写入对话输入框</string>
     <!-- 原文: Summarize -->
     <string name="component_summarize">摘要</string>
     <!-- 原文: Summarize Conversation -->

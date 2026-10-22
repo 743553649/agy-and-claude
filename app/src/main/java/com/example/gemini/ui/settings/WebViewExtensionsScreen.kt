@@ -62,7 +62,7 @@ fun WebViewExtensionsScreen(onChanged: () -> Unit) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Column(Modifier.weight(1f)) {
                             Text(extension.folderName, style = MaterialTheme.typography.titleMedium)
-                            Text("${extension.name} · ${extension.version} · ${extension.toolCount} MCP tools", style = MaterialTheme.typography.bodySmall)
+                            Text(stringResource(R.string.settings_webview_ext_summary, extension.name, extension.version, extension.toolCount), style = MaterialTheme.typography.bodySmall)
                         }
                         Switch(checked = extension.isEnabled, enabled = !busy, onCheckedChange = { enabled -> runOperation { manager.setEnabled(extension.id, enabled) } })
                     }

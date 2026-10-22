@@ -13,6 +13,8 @@
     <string name="agents_agents">智能体</string>
     <!-- 原文: Agents you turn off do not run at all: the local server starts without them and their settings and chats are hidden (chats stay on disk). -->
     <string name="agents_agents_you_turn_off_do_not_run_at_all_th">被关闭的智能体完全不会运行：本地服务器启动时不加载它们，其设置和对话也会被隐藏（对话仍保存在磁盘上）。</string>
+    <!-- 原文: Allow -->
+    <string name="agents_allow">允许</string>
     <!-- 原文: Allow all %1$s -->
     <string name="agents_allow_all_count">全部允许 %1$s</string>
     <!-- 原文: Always… -->
@@ -21,12 +23,34 @@
     <string name="agents_applying_agents">正在应用智能体</string>
     <!-- 原文: approval -->
     <string name="agents_approval">approval</string>
+    <!-- 原文: Allow %1$s? -->
+    <string name="agents_approval_allow_tool">允许 %1$s？</string>
+    <!-- 原文: Edit a file? -->
+    <string name="agents_approval_edit_file">编辑文件？</string>
+    <!-- 原文: Generate an image? -->
+    <string name="agents_approval_generate_image">生成图片？</string>
+    <!-- 原文: Open a web page? -->
+    <string name="agents_approval_open_web_page">打开网页？</string>
+    <!-- 原文: Read files? -->
+    <string name="agents_approval_read_files">读取文件？</string>
+    <!-- 原文: Run a command? -->
+    <string name="agents_approval_run_command">运行命令？</string>
+    <!-- 原文: Search the web? -->
+    <string name="agents_approval_search_web">搜索网页？</string>
+    <!-- 原文: Use %1$s? -->
+    <string name="agents_approval_use_tool">使用 %1$s？</string>
     <!-- 原文: Choose your agent -->
     <string name="agents_choose_your_agent">选择你的智能体</string>
     <!-- 原文: Continue -->
     <string name="agents_continue">继续</string>
+    <!-- 原文: Deny -->
+    <string name="agents_deny">拒绝</string>
     <!-- 原文: Deny all %1$s -->
     <string name="agents_deny_all_count">全部拒绝 %1$s</string>
+    <!-- 原文: Tell the agent what to do instead (optional) -->
+    <string name="agents_deny_placeholder">告诉智能体你希望怎么做（可选）</string>
+    <!-- 原文: Tell Antigravity what to do instead (optional) -->
+    <string name="agents_deny_placeholder_antigravity">告诉 Antigravity 你希望怎么做（可选）</string>
     <!-- 原文: Each agent signs in on its own. -->
     <string name="agents_each_agent_signs_in_on_its_own">每个智能体各自独立登录。</string>
     <!-- 原文: %1$s… -->
@@ -41,6 +65,18 @@
     <string name="agents_restart_to_apply">重启以生效？</string>
     <!-- 原文: Restarting… -->
     <string name="agents_restarting">正在重启……</string>
+    <!-- 原文: For this conversation -->
+    <string name="agents_scope_conversation">本对话内</string>
+    <!-- 原文: Don't ask again in this chat -->
+    <string name="agents_scope_conversation_desc">不再在本对话中询问</string>
+    <!-- 原文: Everywhere -->
+    <string name="agents_scope_everywhere">所有位置</string>
+    <!-- 原文: Don't ask again anywhere -->
+    <string name="agents_scope_everywhere_desc">不再在任何位置询问</string>
+    <!-- 原文: In this workspace -->
+    <string name="agents_scope_workspace">本工作区内</string>
+    <!-- 原文: Don't ask again in this project -->
+    <string name="agents_scope_workspace_desc">不再在此项目中询问</string>
     <!-- 原文: Server logs -->
     <string name="agents_server_logs">服务器日志</string>
     <!-- 原文: Stopping the local server, then restarting the app… -->

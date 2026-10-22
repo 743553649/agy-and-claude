@@ -970,7 +970,7 @@ class AgyChatBackend(
                             val isKnownExisting = _conversations.value.any { it.id == conversationId && it.title != "New Chat" }
                             if (activeStreamConversationId == conversationId) {
                                 if (isKnownExisting && _messages.value.isEmpty()) {
-                                    _conversationError.value = "No messages received from Antigravity. Tap Retry."
+                                    _conversationError.value = application.getString(R.string.data_err_no_messages_from_antigravity)
                                     _isServerOnline.value = isHubOnline
                                 } else {
                                     _conversationError.value = null

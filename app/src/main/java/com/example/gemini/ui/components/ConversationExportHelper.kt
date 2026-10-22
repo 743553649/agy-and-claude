@@ -87,8 +87,8 @@ object ConversationExportHelper {
                 if (savedUri != null) {
                     if (snackbarHostState != null) {
                         val result = snackbarHostState.showSnackbar(
-                            message = "$savedFileName saved to Downloads/AntiGem/Exports",
-                            actionLabel = "Open",
+                            message = context.getString(R.string.component_saved_to_exports, savedFileName),
+                            actionLabel = context.getString(R.string.common_open),
                             duration = SnackbarDuration.Short
                         )
                         if (result == SnackbarResult.ActionPerformed) {

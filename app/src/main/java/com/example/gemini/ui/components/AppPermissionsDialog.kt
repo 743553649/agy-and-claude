@@ -246,10 +246,10 @@ fun AppPermissionsDialog(
                     isDark = isDark,
                     icon = Icons.Outlined.NotificationsActive,
                     title = stringResource(R.string.component_notifications_service),
-                    badgeText = "Required",
+                    badgeText = stringResource(R.string.component_badge_required),
                     badgeColor = ClaudeTerracotta,
                     accentColor = ClaudeTerracotta,
-                    description = "Required for persistent background terminal service, live status alerts, updates, and rootfs package installer progress.",
+                    description = stringResource(R.string.component_perm_notifications_desc),
                     isGranted = hasNotification,
                     onGrantClick = {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -265,10 +265,10 @@ fun AppPermissionsDialog(
                     isDark = isDark,
                     icon = Icons.Outlined.Folder,
                     title = stringResource(R.string.component_storage_sdcard),
-                    badgeText = "Optional",
+                    badgeText = stringResource(R.string.component_badge_optional),
                     badgeColor = GeminiBlue,
                     accentColor = GeminiBlue,
-                    description = "Allows AntiGem to access /sdcard to import local bootstrap packages, inspect files, and manage external code workspaces.",
+                    description = stringResource(R.string.component_perm_storage_desc),
                     isGranted = hasStorage,
                     onGrantClick = { requestStorage() }
                 )
@@ -278,10 +278,10 @@ fun AppPermissionsDialog(
                     isDark = isDark,
                     icon = Icons.Outlined.Mic,
                     title = stringResource(R.string.component_microphone_voice),
-                    badgeText = "Optional",
+                    badgeText = stringResource(R.string.component_badge_optional),
                     badgeColor = GeminiPurple,
                     accentColor = GeminiPurple,
-                    description = "Enables voice-to-text dictation and voice commands directly in chat.",
+                    description = stringResource(R.string.component_perm_microphone_desc),
                     isGranted = hasAudio,
                     onGrantClick = { audioLauncher.launch(Manifest.permission.RECORD_AUDIO) }
                 )

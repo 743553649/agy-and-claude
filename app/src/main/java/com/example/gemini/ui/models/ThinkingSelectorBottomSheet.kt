@@ -165,7 +165,7 @@ fun ThinkingSelectorBottomSheet(
                                 value = customTokensText,
                                 onValueChange = { customTokensText = it.filter { char -> char.isDigit() } },
                                 label = { Text(stringResource(R.string.ui_token_budget_1_32_768)) },
-                                placeholder = { Text("e.g. 2048") },
+                                placeholder = { Text(stringResource(R.string.settings_thinking_budget_placeholder)) },
                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                                 singleLine = true,
                                 modifier = Modifier.fillMaxWidth(),

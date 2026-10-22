@@ -34,6 +34,9 @@
     <string name="chat_open_full_screen">Open Full Screen</string>
     <string name="chat_send_to_ai_proceed">Send to AI &amp; Proceed</string>
     <string name="chat_sign_in_with_browser">Sign In with Browser</string>
+    <string name="chat_status_claude_starting">Claude Code is starting…</string>
+    <string name="chat_status_compacting">Compacting the conversation…</string>
+    <string name="chat_status_starting_claude">Starting Claude Code…</string>
     <string name="chat_stop_generation">Stop Generation?</string>
     <string name="chat_stop_output">Stop Output</string>
     <string name="chat_stop_turn_here">Stop Turn Here</string>

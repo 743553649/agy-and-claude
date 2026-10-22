@@ -11,8 +11,24 @@
     <string name="claude_account">账号</string>
     <!-- 原文: After approving, Claude shows a code. Paste it here: -->
     <string name="claude_after_approving_claude_shows_a_code_past">批准之后，Claude 会显示一个验证码。粘贴到这里：</string>
+    <!-- 原文: Allow access to %1$s %2$s -->
+    <string name="claude_allow_access_to">允许访问 %1$s %2$s</string>
+    <!-- 原文: Always allow %1$s %2$s -->
+    <string name="claude_always_allow_rules">始终允许 %1$s %2$s</string>
     <!-- 原文: Anthropic Console (API billing) -->
     <string name="claude_anthropic_console_api_billing">Anthropic Console（API 计费）</string>
+    <!-- 原文: Create a file? -->
+    <string name="claude_approval_create_file">创建文件？</string>
+    <!-- 原文: Edit a notebook? -->
+    <string name="claude_approval_edit_notebook">编辑笔记本？</string>
+    <!-- 原文: Fetch a web page? -->
+    <string name="claude_approval_fetch_web_page">抓取网页？</string>
+    <!-- 原文: Read outside the project? -->
+    <string name="claude_approval_read_outside_project">读取项目外的文件？</string>
+    <!-- 原文: Approve · auto-accept edits -->
+    <string name="claude_approve_accept_edits">批准并自动接受修改</string>
+    <!-- 原文: Approve · review each edit -->
+    <string name="claude_approve_review_each">批准并逐项审阅修改</string>
     <!-- 原文: Available in -->
     <string name="claude_available_in">可用于</string>
     <!-- 原文: Bash(npm run test *) -->
@@ -43,6 +59,8 @@
     <string name="claude_command_and_arguments">命令与参数</string>
     <!-- 原文: %1$s of %2$s tokens used (%3$s%) -->
     <string name="claude_compacttokens_c_totaltokens_of_compactto">已用 %1$s / %2$s Token（%3$s%%）</string>
+    <!-- 原文: Configured servers (%1$s) -->
+    <string name="claude_configured_servers_count">已配置的服务器（%1$s）</string>
     <!-- 原文: Context %1$s% -->
     <string name="claude_context_pct_toint">上下文 %1$s%%</string>
     <!-- 原文: Context usage shows once this chat has started (send a message first). -->
@@ -57,8 +75,14 @@
     <string name="claude_custom_server">+ 自定义服务器</string>
     <!-- 原文: Delete %1$s? -->
     <string name="claude_delete_name">删除 %1$s？</string>
+    <!-- 原文: Tell Claude what to do instead (optional) -->
+    <string name="claude_deny_placeholder">告诉 Claude 你希望怎么做（可选）</string>
+    <!-- 原文: %1$s edits -->
+    <string name="claude_edits_count">%1$s 处修改</string>
     <!-- 原文: Effort · %1$s -->
     <string name="claude_effort_effortlabel_effort">强度 · %1$s</string>
+    <!-- 原文: _(empty plan)_ -->
+    <string name="claude_empty_plan">_(空计划)_</string>
     <!-- 原文: Environment (KEY=value per line) -->
     <string name="claude_environment_key_value_per_line">环境变量（每行 KEY=value）</string>
     <!-- 原文: Fast mode · %1$s -->
@@ -71,10 +95,36 @@
     <string name="claude_instructions_claude_follows_in_every_cha"># Claude 在每次对话中都遵循的指令\n- 优先使用 Kotlin 协程\n- 提交前运行 ./gradlew test</string>
     <!-- 原文: %1$s:  -->
     <string name="claude_j_kind">%1$s：</string>
+    <!-- 原文: Keep planning -->
+    <string name="claude_keep_planning">继续规划</string>
     <!-- 原文: Loading Claude's models… -->
     <string name="claude_loading_claude_s_models">正在加载 Claude 的模型……</string>
     <!-- 原文: Loading plan usage… -->
     <string name="claude_loading_plan_usage">正在加载套餐用量……</string>
+    <!-- 原文: Accept edits -->
+    <string name="claude_mode_accept_edits">接受修改</string>
+    <!-- 原文: Apply file edits without asking -->
+    <string name="claude_mode_accept_edits_desc">不询问直接应用文件修改</string>
+    <!-- 原文: Auto -->
+    <string name="claude_mode_auto">自动</string>
+    <!-- 原文: Claude decides what is safe to run -->
+    <string name="claude_mode_auto_desc">由 Claude 判断哪些操作安全</string>
+    <!-- 原文: Bypass -->
+    <string name="claude_mode_bypass">绕过</string>
+    <!-- 原文: Allow everything (sandboxes only) -->
+    <string name="claude_mode_bypass_desc">允许一切（仅限沙箱）</string>
+    <!-- 原文: Don't ask -->
+    <string name="claude_mode_dont_ask">不询问</string>
+    <!-- 原文: Never ask; deny anything not pre-allowed -->
+    <string name="claude_mode_dont_ask_desc">从不询问；未预先允许的一律拒绝</string>
+    <!-- 原文: Manual -->
+    <string name="claude_mode_manual">手动</string>
+    <!-- 原文: Ask before edits and commands -->
+    <string name="claude_mode_manual_desc">编辑与命令前先询问</string>
+    <!-- 原文: Plan -->
+    <string name="claude_mode_plan">计划</string>
+    <!-- 原文: Explore and propose a plan, no changes -->
+    <string name="claude_mode_plan_desc">只探索并给出计划，不做修改</string>
     <!-- 原文: No MCP servers yet -->
     <string name="claude_no_mcp_servers_yet">还没有 MCP 服务器</string>
     <!-- 原文: No models loaded -->
@@ -115,8 +165,12 @@
     <string name="claude_page_sign_in_plan_usage_install_and_u_sub">登录、套餐用量、安装与更新 Claude Code</string>
     <!-- 原文: What Claude may do without asking -->
     <string name="claude_page_what_claude_may_do_without_askin_sub">Claude 可以不经询问直接做的事</string>
+    <!-- 原文: What should change in the plan? -->
+    <string name="claude_plan_deny_placeholder">计划需要改动什么？</string>
     <!-- 原文: Plan limits do not apply to this account (API billing has no 5-hour or weekly limits). -->
     <string name="claude_plan_limits_do_not_apply_to_this_account">该账号不受套餐限额约束（API 计费没有 5 小时或每周限额）。</string>
+    <!-- 原文: Plan mode -->
+    <string name="claude_plan_mode">计划模式</string>
     <!-- 原文: Plan usage -->
     <string name="claude_plan_usage">套餐用量</string>
     <!-- 原文: Plan usage is not available right now. -->
@@ -127,8 +181,20 @@
     <string name="claude_quick_presets">快捷预设</string>
     <!-- 原文: Reason before answering (shown as a summary) -->
     <string name="claude_reason_before_answering_shown_as_a_summa">回答前先推理（以摘要形式显示）</string>
+    <!-- 原文: Remove %1$s? -->
+    <string name="claude_remove_server_title">移除 %1$s？</string>
     <!-- 原文: Review the plan -->
     <string name="claude_review_the_plan">审阅计划</string>
+    <!-- 原文: for this session -->
+    <string name="claude_scope_for_session">仅本次会话</string>
+    <!-- 原文: in this project (only me) -->
+    <string name="claude_scope_local_settings">本项目内（仅我）</string>
+    <!-- 原文: in this project (shared) -->
+    <string name="claude_scope_project_settings">本项目内（共享）</string>
+    <!-- 原文: everywhere -->
+    <string name="claude_scope_user_settings">在所有位置</string>
+    <!-- 原文: Search %1$s plugins -->
+    <string name="claude_search_plugins">搜索 %1$s 个插件</string>
     <!-- 原文: Send /compact to summarize the conversation and free space. -->
     <string name="claude_send_compact_to_summarize_the_conversati">发送 /compact 以摘要对话并释放空间。</string>
     <!-- 原文: Send /fast in the chat to toggle -->
@@ -141,6 +207,8 @@
     <string name="claude_starting">正在启动……</string>
     <!-- 原文: Submit code -->
     <string name="claude_submit_code">提交代码</string>
+    <!-- 原文: Switch to %1$s %2$s -->
+    <string name="claude_switch_to_mode">切换到 %1$s %2$s</string>
     <!-- 原文: The first message of a chat starts Claude Code, which can take a little while on a phone. -->
     <string name="claude_the_first_message_of_a_chat_starts_claud">对话的第一条消息会启动 Claude Code，在手机上可能需要等一会儿。</string>
     <!-- 原文: This chat -->
@@ -149,6 +217,8 @@
     <string name="claude_this_chat_is_running_it">本次对话正在运行 %1$s</string>
     <!-- 原文: Tools Claude can call -->
     <string name="claude_tools_claude_can_call">Claude 可调用的工具</string>
+    <!-- 原文: %1$s tools -->
+    <string name="claude_tools_count">%1$s 个工具</string>
     <!-- 原文: Transport -->
     <string name="claude_transport">传输方式</string>
     <!-- 原文: Try again -->

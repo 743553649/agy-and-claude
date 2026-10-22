@@ -127,7 +127,7 @@ fun ClaudeControlsStrip(
     ) {
         // permission mode
         ControlChip(
-            text = permissionModeLabel(mode),
+            text = permissionModeLabel(androidContext, mode),
             icon = permissionModeIcon(mode),
             color = permissionModeColor(mode),
             highlighted = mode != "default",

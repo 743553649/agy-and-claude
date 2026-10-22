@@ -401,7 +401,7 @@ private fun DefaultsPage(deps: ClaudeSettingsDeps) {
                 androidx.compose.material3.RadioButton(selected = value == mode, onClick = { deps.config.setDefaultMode(value) })
                 Column {
                     Text(label, fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
-                    Hint(permissionModeDescription(value))
+                    Hint(permissionModeDescription(context, value))
                 }
             }
         }
@@ -588,7 +588,7 @@ private fun McpPage(deps: ClaudeSettingsDeps) {
     }
 
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-        Text("Configured servers (${servers.size})", fontSize = 13.5.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+        Text(stringResource(R.string.claude_configured_servers_count, servers.size), fontSize = 13.5.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
         if (servers.isNotEmpty()) Hint("${servers.sumOf { it.tools.size }} tools")
     }
 
@@ -690,7 +690,7 @@ private fun McpPage(deps: ClaudeSettingsDeps) {
                     Modifier.fillMaxWidth().clip(RoundedCornerShape(6.dp)).clickable { expandedTools = if (open) expandedTools - srv.name else expandedTools + srv.name }.padding(vertical = 4.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text("${srv.tools.size} tools", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = ClaudeAccent, modifier = Modifier.weight(1f))
+                    Text(stringResource(R.string.claude_tools_count, srv.tools.size), fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = ClaudeAccent, modifier = Modifier.weight(1f))
                     Text(if (open) "Hide" else "Show", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f))
                 }
                 if (open) {
@@ -720,7 +720,7 @@ private fun McpPage(deps: ClaudeSettingsDeps) {
     toDelete?.let { srv ->
         AlertDialog(
             onDismissRequest = { toDelete = null },
-            title = { Text("Remove ${srv.name}?", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.claude_remove_server_title, srv.name), fontWeight = FontWeight.Bold) },
             text = { Text(stringResource(R.string.claude_claude_will_no_longer_be_able_to_use_its), fontSize = 13.5.sp) },
             confirmButton = {
                 TextButton(onClick = {
@@ -917,7 +917,7 @@ private fun PluginsPage(deps: ClaudeSettingsDeps) {
                     item(key = "search") {
                         OutlinedTextField(
                             query, { query = it }, singleLine = true,
-                            placeholder = { Text("Search ${available.size} plugins") },
+                            placeholder = { Text(stringResource(R.string.claude_search_plugins, available.size)) },
                             trailingIcon = { if (searching) CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp, color = ClaudeAccent) },
                             modifier = Modifier.fillMaxWidth()
                         )

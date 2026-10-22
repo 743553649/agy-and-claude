@@ -233,9 +233,9 @@ object ConversationShareHelper {
     /**
      * Parses an incoming .antigem or .jsonl stream into SharedConversationData.
      */
-    fun parseSharedConversation(inputStream: InputStream): SharedConversationData {
+    fun parseSharedConversation(context: Context, inputStream: InputStream): SharedConversationData {
         val reader = BufferedReader(InputStreamReader(inputStream, Charsets.UTF_8))
-        var title = "Shared Conversation"
+        var title = context.getString(R.string.component_shared_conversation)
         var conversationId = "shared_${System.currentTimeMillis()}"
         var exportedAt = ""
         val steps = mutableListOf<Step>()

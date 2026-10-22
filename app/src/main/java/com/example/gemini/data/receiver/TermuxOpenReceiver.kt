@@ -185,7 +185,7 @@ open class TermuxOpenReceiver : BroadcastReceiver() {
                             "Termux Open",
                             NotificationManager.IMPORTANCE_HIGH
                         ).apply {
-                            this.description = "Terminal open requests"
+                            this.description = context.getString(R.string.data_termux_open_description)
                             enableLights(true)
                             enableVibration(true)
                         }

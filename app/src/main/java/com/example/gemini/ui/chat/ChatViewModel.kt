@@ -1273,7 +1273,7 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
                         return@launch
                     }
 
-                    val parsed = com.example.gemini.ui.components.ConversationShareHelper.parseSharedConversation(bytes.inputStream())
+                    val parsed = com.example.gemini.ui.components.ConversationShareHelper.parseSharedConversation(getApplication<Application>(), bytes.inputStream())
                     if (!isActive) return@launch
                     _sharedConversationPreview.value = parsed
                     withContext(Dispatchers.Main) {
