@@ -155,7 +155,7 @@
   </ul>
   <p><b>代价与未验证点：</b></p>
   <ul>
-    <li>只覆盖 Android 13+；24–32 上该入口只能置灰</li>
+    <li>只覆盖 Android 13+；24–32 上该入口只能置灰或隐藏（这两段版本的用户拿不到应用内切换）</li>
     <li><b>本项目 <code>targetSdk = 28</code></b>：系统的「应用 → 语言」入口一般要求 targetSdk 33+ 才出现，
       自定义入口里直接调 API 是否同样生效，<b>必须真机验证</b>（这是选 C 之前唯一的技术悬念）</li>
   </ul>
@@ -174,7 +174,7 @@
   <tr><td>界面文案跟随</td><td>✅ 全版本</td><td>✅</td><td>✅（13+）</td></tr>
   <tr><td>通知 / Toast 跟随</td><td>✅</td><td>❌ 仍是系统语言</td><td>✅</td></tr>
   <tr><td>AI 回复语言跟随</td><td>✅（Locale.getDefault 变）</td><td>需自己 setDefault</td><td>✅</td></tr>
-  <tr><td>覆盖版本</td><td>24+（全覆盖）</td><td>24+</td><td>33+（约七成在用设备）</td></tr>
+  <tr><td>覆盖版本</td><td>24+（全覆盖）</td><td>24+</td><td>33+（Android 13 及以上；具体占比按你的用户群核对，不作估计）</td></tr>
   <tr><td>风险等级</td><td>高（主题 + 依赖 + R8）</td><td>中（半成品混搭）</td><td>低（可回滚）</td></tr>
   <tr><td>代码量级</td><td>~120 行 + 主题/依赖改动</td><td>~80 行 × 5 个 Activity</td><td>~60 行，1 个文件</td></tr>
 </table>
