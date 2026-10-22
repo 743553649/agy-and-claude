@@ -112,7 +112,8 @@
 | 设置顶栏 / 分组枚举 | ✅ 已改（`SettingsSection` 与 `ClaudeSettingsPage` 改 `@StringRes`，commit `4d25d0f`） |
 | 安装通知与进度文案（数据层） | ✅ 已改（`LocalEnvironmentManager` 77 处：通知标题/正文、`speedText`、安装页状态字段、通知渠道名与描述、错误文案；`appContext.getString`，55 条 `data_install_*` 资源） |
 | 其余 `when`/`if` 分支字面量 | ❌ 未改（实测 70 行 `when` 分支 + 243 行单行三元，需剔技术值白名单） |
-| 设置页语言切换入口 | ❌ 未实现（项目无 `appcompat` 依赖，方案待定） |
+| 设置页语言切换入口 | 🟡 方案已定（A：加 appcompat），计划见 `docs/i18n/p1-language-switch-plan.md`，未开工 |
+| 外观子页残留标签（Auto (System)/Light/Dark、字号、悬浮切换器条目等） | ❌ 未改（`AppearanceSubScreen` 的 `Triple` 元组第二项，见 HANDOFF P3.9） |
 | 浏览器扩展浮层文案 | ❌ 未实现（约 40 处） |
 
 ## 五、怎么核对

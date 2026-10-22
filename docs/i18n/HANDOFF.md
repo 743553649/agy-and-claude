@@ -91,10 +91,23 @@
 在重连后仍然保留。在「bridge 保持同一 CLI 进程、按 seq 续传」的前提下这是对的（同一进程不必重发）；
 只有 bridge 在重连时换了新 CLI 进程才会漏发，届时表现为 AI 又回英文，需要重开会话。
 
-### P1：设置页语言切换
-`AppCompatDelegate.setApplicationLocales`（Android 13+ 原生；项目 `targetSdk = 28`，
-13 以下降级为跟随系统）。加在 `ui/settings/SettingsDialog.kt` 里，
-`AiLanguage` 读的是 `Locale.getDefault()`，切换后自然生效。
+### P1：设置页语言切换（🟡 方案已定，未开工）
+
+**用户 2026-10-22 拍板：走方案 A（加 `androidx.appcompat`）。**
+实施计划见 `docs/i18n/p1-language-switch-plan.md`（读完即可开工，含步骤、风险、真机矩阵、回滚）。
+三方案对比（含 B/C 的代价与证据）见 `docs/i18n/language-switch-options.html`。
+
+⚠️ 本节旧结论有两处**不准确**，已在下文更正，别再按旧说法做：
+
+1. 旧写「13 以下降级为跟随系统」——**错的**：appcompat 1.6+ 在 API<33 会自己包装 Activity
+   资源，能真正切换；只是 `autoStoreLocales`（自动持久化）需要 manifest 声明
+   `AppLocalesMetadataHolderService`，而 manifest 仍不许改 → 要自己用 SharedPreferences 存。
+2. 旧写「`AiLanguage` 读 `Locale.getDefault()`，切换后自然生效」——**未验证**：API<33 下
+   appcompat 改的是资源 Config，静态 `Locale.getDefault()` 是否同步变化没验证过。
+   已改为**读 `context.resources.configuration.locales[0]`** 的方案写进计划，必须真机确认。
+
+方案 A 需要解除两条硬约束（用户同意）：允许改 `app/build.gradle.kts`（加依赖）与
+`res/values/themes.xml`（主题换 AppCompat 后代）。`AndroidManifest.xml` 仍然禁止改。
 
 ### P2：`title = / label =`（实测 **112 处**字面量，文档旧数字 67 已过期）
 已还原成英文。这些多为 data class 构造参数（如 `ScriptExecutionInfo(title = ...)`、
@@ -203,6 +216,21 @@
 16 处译文本已在 `/tmp/i18n_dynamic.json` 里，只是回写没覆盖到：`contentDescription`
 （Composable 内）、`message`（snackbar，非 Composable）和多行字面量。
 新增 `scripts/i18n/apply_dyn_attrs.py` 处理，`title` / `label` 两类仍交给 P2。
+
+### P3.9：外观子页残留英文标签（❌ 未做，建议下一批）
+
+`SettingsDialog.kt` 的 `AppearanceSubScreen`（924 行起）里，卡片的**显示标签**仍是英文，
+是 P3.6 漏掉的盲区变体：标签不是 `Text("...")` 也不是 `title =`，而是
+`listOf(Triple("SYSTEM", "Auto (System)", Icons…))` 元组的**第二项**，随后 `Text(label)` 渲染。
+实测位置：
+
+- 主题卡 `Auto (System)` / `Light` / `Dark`（964-966）
+- 字号卡 `Small` / `Normal` / `Medium` / `Large` / `Huge`（1067）
+- 悬浮切换器方向 `VERTICAL` / `HORIZONTAL`（1337-1362；注意 `VERTICAL` 同时是比较用的取值，需逐条判定）
+- 自动收起 `Never`（1395）
+- 悬浮切换器条目 `Chat` / `IDE (Code Editor)` / `Terminal` / `Web Browser`（1444-1447）
+
+判据：元组第一项是写入偏好的技术值（**不能翻**），第二项是显示标签（**要翻**）。
 
 ### P4：浏览器扩展文案
 `extensions/google-flow/` 7 个 JS 文件、2618 行，无 HTML popup，文案在
@@ -540,6 +568,8 @@ release 版开了 `isMinifyEnabled = true` / `isShrinkResources = true`
 | `docs/i18n/GLOSSARY.md` | 术语表、不翻白名单、占位符约定、AI 语言指令的唯一措辞 |
 | `docs/i18n/COVERAGE.md` | 按界面的覆盖清单（核对用） |
 | `docs/i18n/HANDOFF.md` | 本文档 |
+| `docs/i18n/p1-language-switch-plan.md` | **P1 方案 A 实施计划**（语言切换开工前必读） |
+| `docs/i18n/language-switch-options.html` | P1 三方案对比（A/B/C）与决策依据，含本机核实证据 |
 | `scripts/i18n/` | 全部汉化工具 |
 | `.github/workflows/ci.yml` | 云端构建（termux flavor + verify） |
 | `.github/workflows/release.yml` | 上游发版流程，**不要动** |

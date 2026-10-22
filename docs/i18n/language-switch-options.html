@@ -62,6 +62,11 @@
 <h1>P1 · 设置页语言切换：三个方案对比</h1>
 <p class="sub">AntiGem（com.termux）汉化分支 · feat/zh-cn-i18n · 供拍板用，结论先行</p>
 
+<div class="lead" style="background:linear-gradient(135deg,#2a2318,#171a21);border-color:#5a4a1c">
+  <p><b>决策（2026-10-22）：已选 A。</b>用户拍板走 appcompat 方案；实施计划见
+  <code>docs/i18n/p1-language-switch-plan.md</code>。本页保留作决策依据与 B/C 的备查对照。</p>
+</div>
+
 <div class="lead">
   <p><b>结论：</b>三个方案里只有 <b>C（只做 Android 13+ 的框架 LocaleManager）</b>能同时满足
   「零新增依赖 + 不动 AndroidManifest + 不动主题 + 通知/Toast 也跟着变」。</p>
@@ -92,7 +97,7 @@
 
 <h2>1. 方案 A：加 <code>androidx.appcompat</code> + <code>AppCompatDelegate.setApplicationLocales</code></h2>
 <div class="card a">
-  <h3>A · 官方推荐路径 <span class="tag warn">要加依赖</span><span class="tag bad">要换主题</span></h3>
+  <h3>A · 官方推荐路径 <span class="tag ok">已选定</span><span class="tag warn">要加依赖</span><span class="tag bad">要换主题</span></h3>
   <p><b>改动面：</b>4 处</p>
   <ul>
     <li><code>app/build.gradle.kts</code>：加 <code>implementation("androidx.appcompat:appcompat:1.6.1")</code></li>
