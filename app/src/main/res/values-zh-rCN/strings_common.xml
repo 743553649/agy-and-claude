@@ -47,6 +47,10 @@
     <string name="common_esc">ESC</string>
     <!-- 原文: Failed to load image -->
     <string name="common_failed_to_load_image">图片加载失败</string>
+    <!-- 原文: File -->
+    <string name="common_file">文件</string>
+    <!-- 原文: Folder -->
+    <string name="common_folder">文件夹</string>
     <!-- 原文: Install -->
     <string name="common_install">安装</string>
     <!-- 原文: Installed -->

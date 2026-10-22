@@ -26,6 +26,8 @@
     <string name="common_edit">Edit</string>
     <string name="common_esc">ESC</string>
     <string name="common_failed_to_load_image">Failed to load image</string>
+    <string name="common_file">File</string>
+    <string name="common_folder">Folder</string>
     <string name="common_install">Install</string>
     <string name="common_installed">Installed</string>
     <string name="common_later">Later</string>

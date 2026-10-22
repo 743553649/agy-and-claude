@@ -272,7 +272,7 @@ open class TermuxService : Service(), LifecycleOwner, ViewModelStoreOwner, Saved
         requestDisableBatteryOptimizations(this)
         updateNotification()
         Handler(Looper.getMainLooper()).post {
-            Toast.makeText(this@TermuxService, "Wake lock activated for 1 hour", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@TermuxService, this@TermuxService.getString(R.string.data_toast_wake_lock_activated_for_1_hour), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -303,7 +303,7 @@ open class TermuxService : Service(), LifecycleOwner, ViewModelStoreOwner, Saved
         updateNotification()
         Log.d(TAG, "WakeLocks released successfully")
         Handler(Looper.getMainLooper()).post {
-            Toast.makeText(this@TermuxService, "Wake lock released", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@TermuxService, this@TermuxService.getString(R.string.data_toast_wake_lock_released), Toast.LENGTH_SHORT).show()
         }
     }
 

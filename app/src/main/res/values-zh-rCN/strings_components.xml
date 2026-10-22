@@ -509,6 +509,68 @@
     <string name="component_thought_for_formatduration_durationms">⏱️ 思考了 %1$s</string>
     <!-- 原文: Thread Groups: %1$s -->
     <string name="component_thread_groups_snapshot_threadgroupsummar">线程分组：%1$s</string>
+    <!-- 原文: %1$s is no longer available -->
+    <string name="component_toast_attachment_name_is_no_longer_available">%1$s 已不可用</string>
+    <!-- 原文: Cannot open: %1$s -->
+    <string name="component_toast_cannot_open_e_message">无法打开：%1$s</string>
+    <!-- 原文: Code copied to clipboard -->
+    <string name="component_toast_code_copied_to_clipboard">代码已复制到剪贴板</string>
+    <!-- 原文: Copied %1$s to clipboard -->
+    <string name="component_toast_copied_label_to_clipboard">已将%1$s复制到剪贴板</string>
+    <!-- 原文: Copied prompt -->
+    <string name="component_toast_copied_prompt">已复制提示词</string>
+    <!-- 原文: Copied response -->
+    <string name="component_toast_copied_response">已复制回复</string>
+    <!-- 原文: Could not start audio recording -->
+    <string name="component_toast_could_not_start_audio_recording">无法开始录音</string>
+    <!-- 原文: Created Bash session -->
+    <string name="component_toast_created_bash_session">已创建 Bash 会话</string>
+    <!-- 原文: Diagram code copied -->
+    <string name="component_toast_diagram_code_copied">图表代码已复制</string>
+    <!-- 原文: Dictation: %1$s -->
+    <string name="component_toast_dictation_err">听写：%1$s</string>
+    <!-- 原文: Error details copied to clipboard -->
+    <string name="component_toast_error_details_copied_to_clipboard">错误详情已复制到剪贴板</string>
+    <!-- 原文: Failed to download %1$s -->
+    <string name="component_toast_failed_to_download_filename">下载 %1$s 失败</string>
+    <!-- 原文: Failed to save image -->
+    <string name="component_toast_failed_to_save_image">保存图片失败</string>
+    <!-- 原文: Failed to save video -->
+    <string name="component_toast_failed_to_save_video">保存视频失败</string>
+    <!-- 原文: %1$s saved to Downloads/AntiGem -->
+    <string name="component_toast_filename_saved_to_downloads_antigem">已保存 %1$s 到 Downloads/AntiGem</string>
+    <!-- 原文: Formatted JSON copied to clipboard! -->
+    <string name="component_toast_formatted_json_copied_to_clipboard">已复制格式化 JSON 到剪贴板。</string>
+    <!-- 原文: Markdown content copied -->
+    <string name="component_toast_markdown_content_copied">Markdown 内容已复制</string>
+    <!-- 原文: Microphone permission required for speech recognition -->
+    <string name="component_toast_microphone_permission_required_for_speec">语音识别需要麦克风权限</string>
+    <!-- 原文: No app found to open file -->
+    <string name="component_toast_no_app_found_to_open_file">没有可打开文件的应用</string>
+    <!-- 原文: No app found to open image -->
+    <string name="component_toast_no_app_found_to_open_image">没有可打开图片的应用</string>
+    <!-- 原文: No artifact file to download -->
+    <string name="component_toast_no_artifact_file_to_download">没有可下载的产物文件</string>
+    <!-- 原文: No image to download -->
+    <string name="component_toast_no_image_to_download">没有可下载的图片</string>
+    <!-- 原文: No speech recognized -->
+    <string name="component_toast_no_speech_recognized">未识别到语音</string>
+    <!-- 原文: No video to download -->
+    <string name="component_toast_no_video_to_download">没有可下载的视频</string>
+    <!-- 原文: Output copied -->
+    <string name="component_toast_output_copied">已复制输出</string>
+    <!-- 原文: Path copied to clipboard -->
+    <string name="component_toast_path_copied_to_clipboard">路径已复制到剪贴板</string>
+    <!-- 原文: Please sign in first to send messages. -->
+    <string name="component_toast_please_sign_in_first_to_send_messages">请先登录再发送消息。</string>
+    <!-- 原文: Speech service unavailable -->
+    <string name="component_toast_speech_service_unavailable">语音服务不可用</string>
+    <!-- 原文: System prompt copied to clipboard -->
+    <string name="component_toast_system_prompt_copied_to_clipboard">系统提示词已复制到剪贴板</string>
+    <!-- 原文: Transcribe: %1$s -->
+    <string name="component_toast_transcribe_err">转写：%1$s</string>
+    <!-- 原文: Video saved to Downloads/AntiGem -->
+    <string name="component_toast_video_saved_to_downloads_antigem">视频已保存到 Downloads/AntiGem</string>
     <!-- 原文: Toggle Wrap -->
     <string name="component_toggle_wrap">切换自动换行</string>
     <!-- 原文: Tools Executed -->

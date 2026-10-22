@@ -39,6 +39,7 @@ import com.example.gemini.domain.model.AgentKind
 import com.example.gemini.data.agent.ChatSessionStore
 import com.example.gemini.ui.chat.PendingToolApproval
 import kotlinx.coroutines.CoroutineScope
+import com.example.gemini.R
 
 /**
  * Antigravity (agy --hub) chat backend: conversation sync, live trajectory stream, prompts, approvals,
@@ -1818,7 +1819,7 @@ class AgyChatBackend(
                             }
                             android.widget.Toast.makeText(application, msg, android.widget.Toast.LENGTH_LONG).show()
                         } else {
-                            android.widget.Toast.makeText(application, "Quotas & models refreshed", android.widget.Toast.LENGTH_SHORT).show()
+                            android.widget.Toast.makeText(application, application.getString(R.string.data_toast_quotas_models_refreshed), android.widget.Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

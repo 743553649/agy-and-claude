@@ -730,7 +730,7 @@ private fun QuestionPanelStatusRow(toolCall: ToolCall, questionnaire: ChoiceQues
                 Text(title, fontSize = 13.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurface)
                 questionnaire.questions.take(3).forEach { q ->
                     Text(
-                        "• ${q.prompt}",
+                        stringResource(R.string.component_q_prompt, q.prompt),
                         fontSize = 12.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f),
                         maxLines = 2,

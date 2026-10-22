@@ -70,7 +70,7 @@ fun SelectTextSheet(content: String, onDismiss: () -> Unit) {
                     IconButton(onClick = {
                         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                         clipboard.setPrimaryClip(ClipData.newPlainText("Copied Response", content))
-                        Toast.makeText(context, "Copied response", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.component_toast_copied_response), Toast.LENGTH_SHORT).show()
                     }) { Icon(Icons.Outlined.ContentCopy, "Copy all") }
                 }
                 Row(Modifier.padding(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {

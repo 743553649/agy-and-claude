@@ -438,7 +438,7 @@ private fun NetworkLogDetailDialog(
         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText(label, text)
         clipboard.setPrimaryClip(clip)
-        Toast.makeText(context, "Copied $label to clipboard", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, context.getString(R.string.component_toast_copied_label_to_clipboard, label), Toast.LENGTH_SHORT).show()
     }
 
     Dialog(

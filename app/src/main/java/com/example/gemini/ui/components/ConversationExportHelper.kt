@@ -25,6 +25,7 @@ import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import com.example.gemini.R
 
 object ConversationExportHelper {
     private const val TAG = "ConversationExport"
@@ -123,7 +124,7 @@ object ConversationExportHelper {
         } catch (e: Exception) {
             Log.w(TAG, "No default app to open file: ${e.message}")
             try {
-                Toast.makeText(context, "No app found to open file", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.component_toast_no_app_found_to_open_file), Toast.LENGTH_SHORT).show()
             } catch (_: Exception) {}
         }
     }

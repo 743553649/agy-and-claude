@@ -25,6 +25,7 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import com.example.gemini.R
 
 val LocalSnackbarHostState = staticCompositionLocalOf<SnackbarHostState?> { null }
 
@@ -38,7 +39,7 @@ object ImageDownloadHelper {
         snackbarHostState: SnackbarHostState? = null
     ) {
         if (imageSource.isBlank()) {
-            Toast.makeText(context, "No image to download", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.component_toast_no_image_to_download), Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -58,10 +59,10 @@ object ImageDownloadHelper {
                         openImage(context, savedUri, mimeType)
                     }
                 } else {
-                    Toast.makeText(context, "Image saved to Downloads/AntiGem", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.component_image_saved_to_downloads_antigem), Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(context, "Failed to save image", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.component_toast_failed_to_save_image), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -71,15 +72,15 @@ object ImageDownloadHelper {
      */
     fun downloadVideo(context: Context, videoSource: String, title: String, coroutineScope: CoroutineScope) {
         if (videoSource.isBlank()) {
-            Toast.makeText(context, "No video to download", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.component_toast_no_video_to_download), Toast.LENGTH_SHORT).show()
             return
         }
         coroutineScope.launch {
             val saved = withContext(Dispatchers.IO) { saveVideoToDownloads(context, videoSource, title) }
             if (saved != null) {
-                Toast.makeText(context, "Video saved to Downloads/AntiGem", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.component_toast_video_saved_to_downloads_antigem), Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(context, "Failed to save video", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.component_toast_failed_to_save_video), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -141,7 +142,7 @@ object ImageDownloadHelper {
             }
             context.startActivity(Intent.createChooser(intent, "Open Image"))
         } catch (e: Exception) {
-            Toast.makeText(context, "No app found to open image", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.component_toast_no_app_found_to_open_image), Toast.LENGTH_SHORT).show()
         }
     }
 

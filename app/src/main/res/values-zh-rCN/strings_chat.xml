@@ -45,6 +45,8 @@
     <string name="chat_stop_output">停止输出</string>
     <!-- 原文: Stop Turn Here -->
     <string name="chat_stop_turn_here">在此停止本轮</string>
+    <!-- 原文: This conversation doesn't exist -->
+    <string name="chat_toast_this_conversation_doesn_t_exist">该会话不存在</string>
     <!-- 原文: $ %1$s -->
     <string name="chat_toolcall_command">$ %1$s</string>
     <!-- 原文: Unable to Load Chat -->

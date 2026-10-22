@@ -294,7 +294,7 @@ fun ChatInputBar(
             }
         } catch (e: Exception) {
             Log.e("ChatInputBar", "Failed to start recording: ${e.message}")
-            Toast.makeText(context, "Could not start audio recording", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.component_toast_could_not_start_audio_recording), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -335,7 +335,7 @@ fun ChatInputBar(
                 else -> startAudioRecording()
             }
         } else {
-            Toast.makeText(context, "Microphone permission required for speech recognition", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.component_toast_microphone_permission_required_for_speec), Toast.LENGTH_SHORT).show()
         }
         pendingActionAfterPermission = null
     }
@@ -390,7 +390,7 @@ fun ChatInputBar(
 
         val sm = speechManager
         if (sm == null) {
-            Toast.makeText(context, "Speech service unavailable", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.component_toast_speech_service_unavailable), Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -421,7 +421,7 @@ fun ChatInputBar(
                 baseTextBeforeDictation = combined
             },
             onError = { err ->
-                Toast.makeText(context, "Dictation: $err", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.component_toast_dictation_err, err), Toast.LENGTH_SHORT).show()
                 isLiveDictating = false
                 isDictationPaused = false
                 recordMode = AudioRecordMode.VOICE_NOTE
@@ -457,7 +457,7 @@ fun ChatInputBar(
 
         val sm = speechManager
         if (sm == null) {
-            Toast.makeText(context, "Speech service unavailable", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.component_toast_speech_service_unavailable), Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -495,7 +495,7 @@ fun ChatInputBar(
                 onTextFieldValueChange(TextFieldValue(combined, selection = TextRange(combined.length)))
             },
             onError = { err ->
-                Toast.makeText(context, "Transcribe: $err", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.component_toast_transcribe_err, err), Toast.LENGTH_SHORT).show()
                 cancelAudioRecording()
             }
         )
@@ -516,14 +516,14 @@ fun ChatInputBar(
                     onTextFieldValueChange(TextFieldValue(combined, selection = TextRange(combined.length)))
                     if (andSend) {
                         if (!isAuth) {
-                            Toast.makeText(context, "Please sign in first to send messages.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.component_toast_please_sign_in_first_to_send_messages), Toast.LENGTH_SHORT).show()
                         } else {
                             onSendMessage(combined.trim())
                             onTextFieldValueChange(TextFieldValue(""))
                         }
                     }
                 } else {
-                    Toast.makeText(context, "No speech recognized", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.component_toast_no_speech_recognized), Toast.LENGTH_SHORT).show()
                 }
             }
             isRecordingAudio = false
@@ -563,7 +563,7 @@ fun ChatInputBar(
 
             if (andSend) {
                 if (!isAuth) {
-                    Toast.makeText(context, "Please sign in first to send messages.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.component_toast_please_sign_in_first_to_send_messages), Toast.LENGTH_SHORT).show()
                     onAddAttachment(att)
                 } else {
                     onAddAttachment(att)
@@ -1014,7 +1014,7 @@ fun ChatInputBar(
                                                                 Toast.makeText(context, att.name, Toast.LENGTH_SHORT).show()
                                                             }
                                                         } catch (e: Exception) {
-                                                            Toast.makeText(context, "Cannot open: ${e.message}", Toast.LENGTH_SHORT).show()
+                                                            Toast.makeText(context, context.getString(R.string.component_toast_cannot_open_e_message, e.message.orEmpty()), Toast.LENGTH_SHORT).show()
                                                         }
                                                     }
                                                 }
@@ -1228,7 +1228,7 @@ fun ChatInputBar(
                                 onClick = {
                                     val trimmed = textFieldValue.text.trim()
                                         if (!isAuth) {
-                                            Toast.makeText(context, "Please sign in first to send messages.", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(context, context.getString(R.string.component_toast_please_sign_in_first_to_send_messages), Toast.LENGTH_SHORT).show()
                                             return@Surface
                                         }
                                         if (!isOnline) {

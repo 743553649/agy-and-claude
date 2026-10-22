@@ -25,6 +25,7 @@
     <string name="chat_stop_generation">Stop Generation?</string>
     <string name="chat_stop_output">Stop Output</string>
     <string name="chat_stop_turn_here">Stop Turn Here</string>
+    <string name="chat_toast_this_conversation_doesn_t_exist">This conversation doesn\'t exist</string>
     <string name="chat_toolcall_command">$ %1$s</string>
     <string name="chat_unable_to_load_chat">Unable to Load Chat</string>
     <string name="chat_web_browser_preview">Web Browser Preview</string>

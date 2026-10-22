@@ -244,7 +244,7 @@ private fun AccountPage(deps: ClaudeSettingsDeps) {
         job?.let { j ->
             Spacer(Modifier.height(8.dp))
             Text(
-                "${j.kind}: " + if (j.running) "running…" else "finished (exit ${j.exit_code})",
+                stringResource(R.string.claude_j_kind, j.kind) + if (j.running) "running…" else "finished (exit ${j.exit_code})",
                 fontSize = 12.sp,
                 color = if (!j.running && j.exit_code != 0) QuotaRed else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
             )

@@ -23,6 +23,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.File
+import com.example.gemini.R
 
 object ArtifactDownloadHelper {
 
@@ -34,7 +35,7 @@ object ArtifactDownloadHelper {
     ) {
         val targetUri = artifact.absoluteUri.ifBlank { artifact.name }
         if (targetUri.isBlank()) {
-            Toast.makeText(context, "No artifact file to download", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.component_toast_no_artifact_file_to_download), Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -46,7 +47,7 @@ object ArtifactDownloadHelper {
             if (savedUri != null) {
                 if (snackbarHostState != null) {
                     val result = snackbarHostState.showSnackbar(
-                        message = "$fileName saved to Downloads/AntiGem",
+                        message = context.getString(R.string.component_filename_saved_to_downloads_antigem, fileName),
                         actionLabel = "Open",
                         duration = SnackbarDuration.Short
                     )
@@ -54,10 +55,10 @@ object ArtifactDownloadHelper {
                         openFile(context, savedUri, mimeType)
                     }
                 } else {
-                    Toast.makeText(context, "$fileName saved to Downloads/AntiGem", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.component_toast_filename_saved_to_downloads_antigem, fileName), Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(context, "Failed to download $fileName", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.component_toast_failed_to_download_filename, fileName), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -71,7 +72,7 @@ object ArtifactDownloadHelper {
             }
             context.startActivity(Intent.createChooser(intent, "Open File"))
         } catch (e: Exception) {
-            Toast.makeText(context, "No app found to open file", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.component_toast_no_app_found_to_open_file), Toast.LENGTH_SHORT).show()
         }
     }
 

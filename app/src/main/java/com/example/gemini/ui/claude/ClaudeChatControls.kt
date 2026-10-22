@@ -139,7 +139,7 @@ fun ClaudeControlsStrip(
         if (levels.isNotEmpty()) {
             ControlChip(
                 // "Default" shows the level the process really runs when the CLI reported it
-                text = "Effort · ${effortLabel(effort)}" + if (effort == null && appliedEffort != null) " (${effortLabel(appliedEffort)})" else "",
+                text = stringResource(R.string.claude_effort_effortlabel_effort, effortLabel(effort)) + if (effort == null && appliedEffort != null) " (${effortLabel(appliedEffort)})" else "",
                 icon = Icons.Outlined.Speed,
                 color = if (effort != null) ClaudeAccent else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
                 highlighted = effort != null,
@@ -172,7 +172,7 @@ fun ClaudeControlsStrip(
         context?.let { ctx ->
             val pct = ctx.percentage
             ControlChip(
-                text = "Context ${pct.toInt()}%",
+                text = stringResource(R.string.claude_context_pct_toint, pct.toInt()),
                 icon = Icons.Outlined.DataUsage,
                 color = usageColor(pct / 100.0),
                 onClick = { showContext = true }
@@ -181,7 +181,7 @@ fun ClaudeControlsStrip(
 
         // plan usage (live)
         limits["five_hour"]?.let { w ->
-            ControlChip(text = "5h ${(w.utilization * 100).toInt()}%", icon = Icons.Outlined.Bolt, color = usageColor(w.utilization))
+            ControlChip(text = stringResource(R.string.claude_5h_w_utilization_100_toint, (w.utilization * 100).toInt()), icon = Icons.Outlined.Bolt, color = usageColor(w.utilization))
         }
     }
 
@@ -281,7 +281,7 @@ fun ClaudeModelSheet(
             )
             active?.let {
                 Text(
-                    "This chat is running $it",
+                    stringResource(R.string.claude_this_chat_is_running_it, it),
                     fontSize = 11.5.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
                     modifier = Modifier.padding(start = 48.dp)

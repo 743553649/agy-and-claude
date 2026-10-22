@@ -2319,7 +2319,7 @@ private fun ServersSubScreen(
                             val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as? android.content.ClipboardManager
                             val clip = android.content.ClipData.newPlainText("Framed Security Header", framedHeader)
                             clipboard?.setPrimaryClip(clip)
-                            Toast.makeText(context, "Copied $framedHeader to clipboard", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.settings_toast_copied_framedheader_to_clipboard, framedHeader), Toast.LENGTH_SHORT).show()
                         },
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(8.dp)
@@ -4475,7 +4475,7 @@ private fun BackupsSubScreen(
         } else {
             val permission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
             if (permission != PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(context, "Storage permission needed to save to /sdcard/Download", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.settings_toast_storage_permission_needed_to_save_to_sdc), Toast.LENGTH_SHORT).show()
             }
             onGranted()
         }
@@ -4890,7 +4890,7 @@ private fun BackupsSubScreen(
             title = { Text(stringResource(R.string.settings_server_must_be_stopped), fontWeight = FontWeight.Bold) },
             text = {
                 Text(
-                    "The AGY IDE Bridge and Hub server must be offline before running '$actionName'. Would you like to stop the server now?",
+                    stringResource(R.string.settings_the_agy_ide_bridge_and_hub_server_must_b, actionName),
                     fontSize = 13.sp
                 )
             },
@@ -4899,7 +4899,7 @@ private fun BackupsSubScreen(
                     onClick = {
                         onStopServer()
                         showServerRunningAlert = null
-                        Toast.makeText(context, "Stopping server... Please re-run $actionName once stopped.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.settings_toast_stopping_server_please_re_run_actionname, actionName), Toast.LENGTH_SHORT).show()
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE11D48))
                 ) {
@@ -5689,7 +5689,7 @@ private fun ProjectsBackupRestoreDialog(
                         Button(
                             onClick = {
                                 if (effectiveBackupPaths.isEmpty()) {
-                                    Toast.makeText(context, "Please select at least one project to backup", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, context.getString(R.string.settings_toast_please_select_at_least_one_project_to_ba), Toast.LENGTH_SHORT).show()
                                     return@Button
                                 }
                                 onRequestStoragePermission {
@@ -5806,7 +5806,7 @@ private fun ProjectsBackupRestoreDialog(
                                                 Text(item.name, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
                                                 if (item.originalPath.isNotBlank()) {
                                                     Text(
-                                                        "Target: ${item.originalPath}",
+                                                        stringResource(R.string.settings_target_item_originalpath, item.originalPath),
                                                         fontSize = 10.sp,
                                                         fontFamily = FontFamily.Monospace,
                                                         color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -5912,7 +5912,7 @@ private fun ProjectsBackupRestoreDialog(
                             onClick = {
                                 val zipPath = restoreZipPath.trim()
                                 if (zipPath.isBlank()) {
-                                    Toast.makeText(context, "Please enter or pick a backup zip file", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, context.getString(R.string.settings_toast_please_enter_or_pick_a_backup_zip_file), Toast.LENGTH_SHORT).show()
                                     return@Button
                                 }
                                 onDismiss()
@@ -6296,7 +6296,7 @@ private fun DataProtectionSubScreen(
                                 try {
                                     context.startActivity(AntiGemDeviceAdminReceiver.createDeviceAdminSettingsIntent())
                                 } catch (e2: Exception) {
-                                    Toast.makeText(context, "Could not open Device Admin: ${e2.message}", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, context.getString(R.string.settings_toast_could_not_open_device_admin_e2_message, e2.message.orEmpty()), Toast.LENGTH_SHORT).show()
                                 }
                             }
                         },
@@ -6315,7 +6315,7 @@ private fun DataProtectionSubScreen(
                             try {
                                 context.startActivity(AntiGemDeviceAdminReceiver.createDeviceAdminSettingsIntent())
                             } catch (e: Exception) {
-                                Toast.makeText(context, "Could not open settings: ${e.message}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, context.getString(R.string.settings_toast_could_not_open_settings_e_message, e.message.orEmpty()), Toast.LENGTH_SHORT).show()
                             }
                         },
                         shape = RoundedCornerShape(10.dp),
@@ -6424,7 +6424,7 @@ private fun DataProtectionSubScreen(
                         try {
                             context.startActivity(Intent(context, ManageSpaceActivity::class.java))
                         } catch (e: Exception) {
-                            Toast.makeText(context, "Could not open Space Manager: ${e.message}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.settings_toast_could_not_open_space_manager_e_message, e.message.orEmpty()), Toast.LENGTH_SHORT).show()
                         }
                     },
                     shape = RoundedCornerShape(10.dp),
@@ -8946,13 +8946,13 @@ private fun AboutSubScreen(
                                     } else {
                                         isUpdateCheckError = false
                                         updateCheckResultText = "AntiGem is up to date (v${BuildConfig.VERSION_NAME})."
-                                        Toast.makeText(context, "AntiGem is up to date!", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(context, context.getString(R.string.settings_toast_antigem_is_up_to_date), Toast.LENGTH_SHORT).show()
                                     }
                                 }.onFailure { err ->
                                     isUpdateCheckError = true
                                     val msg = err.localizedMessage ?: "Could not connect to GitHub"
                                     updateCheckResultText = msg
-                                    Toast.makeText(context, "Update check failed: $msg", Toast.LENGTH_LONG).show()
+                                    Toast.makeText(context, context.getString(R.string.settings_toast_update_check_failed_msg, msg), Toast.LENGTH_LONG).show()
                                 }
                             }
                         }
@@ -9072,9 +9072,9 @@ private fun AboutSubScreen(
                                     isExportingBridge = false
                                     refreshBridgeStatus()
                                     if (exported != null && exported.exists()) {
-                                        Toast.makeText(context, "Saved agy_ide_bridge to Downloads!", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(context, context.getString(R.string.settings_toast_saved_agy_ide_bridge_to_downloads), Toast.LENGTH_SHORT).show()
                                     } else {
-                                        Toast.makeText(context, "Failed to export bridge binary", Toast.LENGTH_LONG).show()
+                                        Toast.makeText(context, context.getString(R.string.settings_toast_failed_to_export_bridge_binary), Toast.LENGTH_LONG).show()
                                     }
                                 }
                             }
@@ -9110,7 +9110,7 @@ private fun AboutSubScreen(
                                     }
                                     context.startActivity(intent)
                                 } catch (e: Exception) {
-                                    Toast.makeText(context, "Downloads: ${bridgeFile.absolutePath}", Toast.LENGTH_LONG).show()
+                                    Toast.makeText(context, context.getString(R.string.settings_toast_downloads_bridgefile_absolutepath, bridgeFile.absolutePath), Toast.LENGTH_LONG).show()
                                 }
                             },
                             modifier = Modifier.weight(0.7f),

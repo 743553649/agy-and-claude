@@ -355,7 +355,7 @@ fun IdeScreen(
                             if (res == null) {
                                 Toast.makeText(
                                     context,
-                                    "Cannot open '${node.name}'. IDE Bridge is offline or file is unreachable.",
+                                    context.getString(R.string.ide_toast_cannot_open_node_name_ide_bridge_is_offl, node.name),
                                     Toast.LENGTH_LONG
                                 ).show()
                             } else {
@@ -387,9 +387,9 @@ fun IdeScreen(
                             val ok = IdeApiClient.createFileOrDir(fullPath, isDir)
                             if (ok) {
                                 fileTree = IdeApiClient.getFileTree(activeProject?.path)
-                                Toast.makeText(context, "Created ${if (isDir) "folder" else "file"} '$name'", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, context.getString(R.string.ide_toast_created_if_isdir_folder_else_file_name, if (isDir) context.getString(R.string.common_folder) else context.getString(R.string.common_file), name), Toast.LENGTH_SHORT).show()
                             } else {
-                                Toast.makeText(context, "Failed to create ${if (isDir) "folder" else "file"}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, context.getString(R.string.ide_toast_failed_to_create_if_isdir_folder_else_fi, if (isDir) context.getString(R.string.common_folder) else context.getString(R.string.common_file)), Toast.LENGTH_SHORT).show()
                             }
                         }
                     },
@@ -400,9 +400,9 @@ fun IdeScreen(
                                 val newName = File(newPath).name
                                 TermuxDaemonManager.renameTab(oldPath, newPath, newName)
                                 fileTree = IdeApiClient.getFileTree(activeProject?.path)
-                                Toast.makeText(context, "Renamed to '$newName'", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, context.getString(R.string.ide_toast_renamed_to_newname, newName), Toast.LENGTH_SHORT).show()
                             } else {
-                                Toast.makeText(context, "Failed to rename", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, context.getString(R.string.ide_toast_failed_to_rename), Toast.LENGTH_SHORT).show()
                             }
                         }
                     },
@@ -412,9 +412,9 @@ fun IdeScreen(
                             if (ok) {
                                 TermuxDaemonManager.closeTab(path)
                                 fileTree = IdeApiClient.getFileTree(activeProject?.path)
-                                Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, context.getString(R.string.ide_toast_deleted), Toast.LENGTH_SHORT).show()
                             } else {
-                                Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, context.getString(R.string.ide_toast_failed_to_delete), Toast.LENGTH_SHORT).show()
                             }
                         }
                     },
@@ -594,7 +594,7 @@ fun IdeScreen(
                                             when (result) {
                                                 is FileSaveResult.Success -> {
                                                     TermuxDaemonManager.markTabSaved(activeTab.path, result.hash)
-                                                    Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show()
+                                                    Toast.makeText(context, context.getString(R.string.ide_toast_saved), Toast.LENGTH_SHORT).show()
                                                 }
                                                 is FileSaveResult.Conflict -> {
                                                     conflictDialogTab = activeTab.copy(
@@ -603,7 +603,7 @@ fun IdeScreen(
                                                     )
                                                 }
                                                 is FileSaveResult.Error -> {
-                                                    Toast.makeText(context, "Save Error: ${result.message}", Toast.LENGTH_LONG).show()
+                                                    Toast.makeText(context, context.getString(R.string.ide_toast_save_error_result_message, result.message.orEmpty()), Toast.LENGTH_LONG).show()
                                                 }
                                             }
                                         }
@@ -649,11 +649,11 @@ fun IdeScreen(
                                                     }
                                                 } else {
                                                     val ext = File(activePath).extension
-                                                    Toast.makeText(context, "No default runner for '.$ext'. Configure a run profile.", Toast.LENGTH_SHORT).show()
+                                                    Toast.makeText(context, context.getString(R.string.ide_toast_no_default_runner_for_ext_configure_a_ru, ext), Toast.LENGTH_SHORT).show()
                                                     showAddProfileDialog = true
                                                 }
                                             } else {
-                                                Toast.makeText(context, "Open a file or select a project run profile", Toast.LENGTH_SHORT).show()
+                                                Toast.makeText(context, context.getString(R.string.ide_toast_open_a_file_or_select_a_project_run_prof), Toast.LENGTH_SHORT).show()
                                             }
                                         }
                                     },
@@ -751,11 +751,11 @@ fun IdeScreen(
                                                 if (runner != null) executeRun(runner)
                                             } else {
                                                 val ext = File(activePath).extension
-                                                Toast.makeText(context, "No default runner for '.$ext'. Configure a run profile.", Toast.LENGTH_SHORT).show()
+                                                Toast.makeText(context, context.getString(R.string.ide_toast_no_default_runner_for_ext_configure_a_ru, ext), Toast.LENGTH_SHORT).show()
                                                 showAddProfileDialog = true
                                             }
                                         } else {
-                                            Toast.makeText(context, "Open a file to run", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(context, context.getString(R.string.ide_toast_open_a_file_to_run), Toast.LENGTH_SHORT).show()
                                         }
                                     }
                                 )
@@ -849,7 +849,7 @@ fun IdeScreen(
                                         showRunMenu = false
                                         val projectPath = activeProject?.path ?: ""
                                         if (projectPath.isBlank()) {
-                                            Toast.makeText(context, "Open a project folder first", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(context, context.getString(R.string.ide_toast_open_a_project_folder_first), Toast.LENGTH_SHORT).show()
                                         } else {
                                             showAddProfileDialog = true
                                         }
@@ -865,7 +865,7 @@ fun IdeScreen(
                                         showRunMenu = false
                                         val projectPath = activeProject?.path ?: ""
                                         if (projectPath.isBlank()) {
-                                            Toast.makeText(context, "Open a project folder first", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(context, context.getString(R.string.ide_toast_open_a_project_folder_first), Toast.LENGTH_SHORT).show()
                                         } else {
                                             val file = RunConfigManager.getOrCreateLaunchJson(projectPath, activeTabPath)
                                             val content = try { file.readText() } catch (_: Exception) { "{}" }
@@ -1453,11 +1453,11 @@ fun IdeScreen(
                                     )
                                     if (res is FileSaveResult.Success) {
                                         TermuxDaemonManager.closeTab(target.path)
-                                        Toast.makeText(context, "Saved and closed", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(context, context.getString(R.string.ide_toast_saved_and_closed), Toast.LENGTH_SHORT).show()
                                     } else if (res is FileSaveResult.Conflict) {
                                         conflictDialogTab = target.copy(diskConflict = true, diskContentOnConflict = res.diskContent)
                                     } else {
-                                        Toast.makeText(context, "Failed to save file", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(context, context.getString(R.string.ide_toast_failed_to_save_file), Toast.LENGTH_SHORT).show()
                                     }
                                 }
                             },
@@ -1510,9 +1510,9 @@ fun IdeScreen(
                                     )
                                     if (res is FileSaveResult.Success) {
                                         TermuxDaemonManager.markTabSaved(target.path, res.hash)
-                                        Toast.makeText(context, "Saved (Overwritten)", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(context, context.getString(R.string.ide_toast_saved_overwritten), Toast.LENGTH_SHORT).show()
                                     } else {
-                                        Toast.makeText(context, "Failed to overwrite disk", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(context, context.getString(R.string.ide_toast_failed_to_overwrite_disk), Toast.LENGTH_SHORT).show()
                                     }
                                 }
                             },
@@ -1527,7 +1527,7 @@ fun IdeScreen(
                                 val target = conflictDialogTab ?: return@TextButton
                                 conflictDialogTab = null
                                 TermuxDaemonManager.resolveTabConflict(target.path, keepMine = false)
-                                Toast.makeText(context, "Reverted to disk version", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, context.getString(R.string.ide_toast_reverted_to_disk_version), Toast.LENGTH_SHORT).show()
                             }
                         ) {
                             Text(stringResource(R.string.ide_revert_to_disk), color = Color(0xFFE57373))
@@ -1559,7 +1559,7 @@ fun IdeScreen(
                             if (res == null) {
                                 Toast.makeText(
                                     context,
-                                    "Cannot open '$name'. IDE Bridge is offline or file is unreachable.",
+                                    context.getString(R.string.ide_toast_cannot_open_name_ide_bridge_is_offline_o, name),
                                     Toast.LENGTH_LONG
                                 ).show()
                             } else {
@@ -1616,9 +1616,9 @@ fun IdeScreen(
                                 TermuxDaemonManager.markTabSaved(fullPath, res.hash)
                                 saveAsDialogTab = null
                                 refreshProjectsAndTree()
-                                Toast.makeText(context, "Saved to $fullPath", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, context.getString(R.string.ide_toast_saved_to_fullpath, fullPath), Toast.LENGTH_SHORT).show()
                             } else if (res is FileSaveResult.Error) {
-                                Toast.makeText(context, "Save Error: ${res.message}", Toast.LENGTH_LONG).show()
+                                Toast.makeText(context, context.getString(R.string.ide_toast_save_error_res_message, res.message.orEmpty()), Toast.LENGTH_LONG).show()
                             }
                         }
                     },
@@ -1686,7 +1686,7 @@ fun IdeScreen(
                         RunConfigManager.addConfiguration(projPath, newProfile)
                         refreshRunConfigurations()
                         selectedProfileName = newProfile.name
-                        Toast.makeText(context, "Added run configuration: ${newProfile.name}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.ide_toast_added_run_configuration_newprofile_name, newProfile.name), Toast.LENGTH_SHORT).show()
                     }
                 )
             }

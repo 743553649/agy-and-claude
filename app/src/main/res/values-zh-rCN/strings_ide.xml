@@ -251,6 +251,76 @@
     <string name="ide_tabinfo_name_appears_to_be_a_non_text_bi">「%1$s」看起来是二进制文件而不是文本文件（%2$s）。</string>
     <!-- 原文: The file '%1$s' has been modified on disk or by AI. -->
     <string name="ide_the_file_conflictingtarget_name_has_been">文件「%1$s」已在磁盘上被修改，或被 AI 修改。</string>
+    <!-- 原文: Added run configuration: %1$s -->
+    <string name="ide_toast_added_run_configuration_newprofile_name">已添加运行配置：%1$s</string>
+    <!-- 原文: Author name and email cannot be empty -->
+    <string name="ide_toast_author_name_and_email_cannot_be_empty">作者名和邮箱不能为空</string>
+    <!-- 原文: Branch %1$s created & active -->
+    <string name="ide_toast_branch_name_created_active">已创建并切换到分支 %1$s</string>
+    <!-- 原文: Cannot open '%1$s'. IDE Bridge is offline or file is unreachable. -->
+    <string name="ide_toast_cannot_open_name_ide_bridge_is_offline_o">无法打开 %1$s。IDE 桥接服务离线或文件不可达。</string>
+    <!-- 原文: Cannot open '%1$s'. IDE Bridge is offline or file is unreachable. -->
+    <string name="ide_toast_cannot_open_node_name_ide_bridge_is_offl">无法打开 %1$s。IDE 桥接服务离线或文件不可达。</string>
+    <!-- 原文: Changes stashed! -->
+    <string name="ide_toast_changes_stashed">改动已暂存。</string>
+    <!-- 原文: Committed successfully! -->
+    <string name="ide_toast_committed_successfully">提交成功。</string>
+    <!-- 原文: Created %1$s '%2$s' -->
+    <string name="ide_toast_created_if_isdir_folder_else_file_name">已创建%1$s「%2$s」</string>
+    <!-- 原文: Deleted -->
+    <string name="ide_toast_deleted">已删除</string>
+    <!-- 原文: Failed to create branch -->
+    <string name="ide_toast_failed_to_create_branch">创建分支失败</string>
+    <!-- 原文: Failed to create %1$s -->
+    <string name="ide_toast_failed_to_create_if_isdir_folder_else_fi">创建%1$s失败</string>
+    <!-- 原文: Failed to delete -->
+    <string name="ide_toast_failed_to_delete">删除失败</string>
+    <!-- 原文: Failed to overwrite disk -->
+    <string name="ide_toast_failed_to_overwrite_disk">覆盖磁盘文件失败</string>
+    <!-- 原文: Failed to rename -->
+    <string name="ide_toast_failed_to_rename">重命名失败</string>
+    <!-- 原文: Failed to save file -->
+    <string name="ide_toast_failed_to_save_file">保存文件失败</string>
+    <!-- 原文: Failed to switch branch -->
+    <string name="ide_toast_failed_to_switch_branch">切换分支失败</string>
+    <!-- 原文: Git configuration saved! -->
+    <string name="ide_toast_git_configuration_saved">Git 配置已保存。</string>
+    <!-- 原文: Git Pull Successful -->
+    <string name="ide_toast_git_pull_successful">Git 拉取成功</string>
+    <!-- 原文: Git Push Successful -->
+    <string name="ide_toast_git_push_successful">Git 推送成功</string>
+    <!-- 原文: Git repository initialized! -->
+    <string name="ide_toast_git_repository_initialized">Git 仓库已初始化。</string>
+    <!-- 原文: No default runner for '.%1$s'. Configure a run profile. -->
+    <string name="ide_toast_no_default_runner_for_ext_configure_a_ru">没有针对 \'.%1$s\' 的默认运行器，请先配置运行配置。</string>
+    <!-- 原文: Open a file or select a project run profile -->
+    <string name="ide_toast_open_a_file_or_select_a_project_run_prof">请打开文件或选择项目运行配置</string>
+    <!-- 原文: Open a file to run -->
+    <string name="ide_toast_open_a_file_to_run">请打开要运行的文件</string>
+    <!-- 原文: Open a project folder first -->
+    <string name="ide_toast_open_a_project_folder_first">请先打开项目文件夹</string>
+    <!-- 原文: Please enter a commit message -->
+    <string name="ide_toast_please_enter_a_commit_message">请输入提交信息</string>
+    <!-- 原文: Renamed to '%1$s' -->
+    <string name="ide_toast_renamed_to_newname">已重命名为 %1$s</string>
+    <!-- 原文: Reverted to disk version -->
+    <string name="ide_toast_reverted_to_disk_version">已恢复为磁盘版本</string>
+    <!-- 原文: Save Error: %1$s -->
+    <string name="ide_toast_save_error_res_message">保存出错：%1$s</string>
+    <!-- 原文: Save Error: %1$s -->
+    <string name="ide_toast_save_error_result_message">保存出错：%1$s</string>
+    <!-- 原文: Saved -->
+    <string name="ide_toast_saved">已保存</string>
+    <!-- 原文: Saved and closed -->
+    <string name="ide_toast_saved_and_closed">已保存并关闭</string>
+    <!-- 原文: Saved (Overwritten) -->
+    <string name="ide_toast_saved_overwritten">已保存（覆盖）</string>
+    <!-- 原文: Saved to %1$s -->
+    <string name="ide_toast_saved_to_fullpath">已保存到 %1$s</string>
+    <!-- 原文: Stash failed -->
+    <string name="ide_toast_stash_failed">暂存失败</string>
+    <!-- 原文: Switched to %1$s -->
+    <string name="ide_toast_switched_to_b_name">已切换到 %1$s</string>
     <!-- 原文: Toggle Background -->
     <string name="ide_toggle_background">切换背景</string>
     <!-- 原文: Toggle Sidebar -->

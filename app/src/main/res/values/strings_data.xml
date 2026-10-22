@@ -8,11 +8,16 @@
     <string name="data_antigravity_chat">Antigravity Chat</string>
     <string name="data_claude_chat">Claude Chat</string>
     <string name="data_execution_failure">Execution Failure</string>
-    <string name="data_please_ignore_the_following_ignore_bases">Please ignore the following [ignore]%1$s[/ignore]</string>
-    <string name="data_previous_context_summary_summary">[Previous Context Summary: %1$s]</string>
     <string name="data_source_title_fork">%1$s (fork)</string>
     <string name="data_termux_linux_environment_verified_and_in">Termux Linux environment verified and installed successfully!</string>
     <string name="data_the_user_cancelled_the_question">The user cancelled the question.</string>
     <string name="data_the_user_skipped_the_question_continue_w">The user skipped the question. Continue with your best judgement.</string>
+    <string name="data_toast_copied_text">Copied text</string>
+    <string name="data_toast_file_not_found_or_unreadable_filetoshare">File not found or unreadable: %1$s</string>
+    <string name="data_toast_no_application_found_to_handle_this_requ">No application found to handle this request</string>
+    <string name="data_toast_pasted_text">Pasted text</string>
+    <string name="data_toast_quotas_models_refreshed">Quotas &amp; models refreshed</string>
+    <string name="data_toast_wake_lock_activated_for_1_hour">Wake lock activated for 1 hour</string>
+    <string name="data_toast_wake_lock_released">Wake lock released</string>
     <string name="data_understood_i_will_use_this_context_for_o">Understood. I will use this context for our conversation.</string>
 </resources>

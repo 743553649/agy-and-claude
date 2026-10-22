@@ -865,7 +865,7 @@ fun LocalTerminalContent(
                                     },
                                     onLongClick = {
                                         LocalTerminalManager.createNewSession(context, forceShell = "bash")
-                                        android.widget.Toast.makeText(context, "Created Bash session", android.widget.Toast.LENGTH_SHORT).show()
+                                        android.widget.Toast.makeText(context, context.getString(R.string.component_toast_created_bash_session), android.widget.Toast.LENGTH_SHORT).show()
                                         isTabsMenuExpanded = false
                                     }
                                 )

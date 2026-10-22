@@ -778,7 +778,7 @@ fun MermaidDiagramView(
                         val clip = ClipData.newPlainText(context.getString(R.string.component_mermaid_diagram_2), code)
                         clipboard.setPrimaryClip(clip)
                         isCopied = true
-                        Toast.makeText(context, "Diagram code copied", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.component_toast_diagram_code_copied), Toast.LENGTH_SHORT).show()
                     },
                     modifier = Modifier.size(28.dp)
                 ) {
@@ -1025,7 +1025,7 @@ fun MermaidFullscreenDialog(
                             val clip = ClipData.newPlainText(context.getString(R.string.component_mermaid_diagram_2), code)
                             clipboard.setPrimaryClip(clip)
                             isCopied = true
-                            Toast.makeText(context, "Diagram code copied", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.component_toast_diagram_code_copied), Toast.LENGTH_SHORT).show()
                         },
                         modifier = Modifier.size(36.dp)
                     ) {
@@ -1406,7 +1406,7 @@ fun AgentErrorCard(
                         }.trim()
                         val clip = ClipData.newPlainText("Error Details", copyText)
                         clipboard.setPrimaryClip(clip)
-                        Toast.makeText(context, "Error details copied to clipboard", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.component_toast_error_details_copied_to_clipboard), Toast.LENGTH_SHORT).show()
                     },
                     modifier = Modifier.size(24.dp)
                 ) {

@@ -351,7 +351,7 @@ fun CodeBlock(
                     val clip = ClipData.newPlainText("Copied Code", code)
                     clipboard.setPrimaryClip(clip)
                     isCopied = true
-                    Toast.makeText(context, "Code copied to clipboard", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.component_toast_code_copied_to_clipboard), Toast.LENGTH_SHORT).show()
                 },
                 modifier = Modifier.size(28.dp)
             ) {
@@ -561,7 +561,7 @@ fun CodeBlock(
                                     val clip = ClipData.newPlainText("Copied Code", code)
                                     clipboard.setPrimaryClip(clip)
                                     modalCopied = true
-                                    Toast.makeText(context, "Code copied to clipboard", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, context.getString(R.string.component_toast_code_copied_to_clipboard), Toast.LENGTH_SHORT).show()
                                 }
                             ) {
                                 Icon(

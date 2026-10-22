@@ -757,7 +757,7 @@ private fun CategoryNavigationTile(
 
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowForwardIos,
-                contentDescription = "Open $title",
+                contentDescription = stringResource(R.string.ui_open_title, title),
                 tint = if (activeModelName != null) brandColor else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.35f),
                 modifier = Modifier.size(14.dp)
             )

@@ -30,6 +30,7 @@ import java.io.InputStreamReader
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import com.example.gemini.R
 
 data class SharedConversationData(
     val title: String,
@@ -113,12 +114,12 @@ object ConversationShareHelper {
                 if (snackbarHostState != null) {
                     kotlinx.coroutines.CoroutineScope(Dispatchers.Main).launch {
                         snackbarHostState.showSnackbar(
-                            message = "$savedFileName saved to Downloads/AntiGem/Exports",
+                            message = context.getString(R.string.component_savedfilename_saved_to_downloads_antigem, savedFileName),
                             duration = SnackbarDuration.Short
                         )
                     }
                 } else {
-                    AppToastHelper.showToast("$savedFileName saved to Downloads/AntiGem/Exports", ChatToastType.SUCCESS)
+                    AppToastHelper.showToast(context.getString(R.string.component_savedfilename_saved_to_downloads_antigem, savedFileName), ChatToastType.SUCCESS)
                 }
             }
         } catch (e: Exception) {

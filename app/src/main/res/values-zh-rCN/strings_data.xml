@@ -11,10 +11,6 @@
     <string name="data_claude_chat">Claude 对话</string>
     <!-- 原文: Execution Failure -->
     <string name="data_execution_failure">执行失败</string>
-    <!-- 原文: Please ignore the following [ignore]%1$s[/ignore] -->
-    <string name="data_please_ignore_the_following_ignore_bases">请忽略以下内容 [ignore]%1$s[/ignore]</string>
-    <!-- 原文: [Previous Context Summary: %1$s] -->
-    <string name="data_previous_context_summary_summary">[先前上下文摘要：%1$s]</string>
     <!-- 原文: %1$s (fork) -->
     <string name="data_source_title_fork">%1$s（分叉）</string>
     <!-- 原文: Termux Linux environment verified and installed successfully! -->
@@ -23,6 +19,20 @@
     <string name="data_the_user_cancelled_the_question">用户取消了该问题。</string>
     <!-- 原文: The user skipped the question. Continue with your best judgement. -->
     <string name="data_the_user_skipped_the_question_continue_w">用户跳过了该问题。请按你的最佳判断继续。</string>
+    <!-- 原文: Copied text -->
+    <string name="data_toast_copied_text">已复制文本</string>
+    <!-- 原文: File not found or unreadable: %1$s -->
+    <string name="data_toast_file_not_found_or_unreadable_filetoshare">文件不存在或无法读取：%1$s</string>
+    <!-- 原文: No application found to handle this request -->
+    <string name="data_toast_no_application_found_to_handle_this_requ">没有可处理此请求的应用</string>
+    <!-- 原文: Pasted text -->
+    <string name="data_toast_pasted_text">已粘贴文本</string>
+    <!-- 原文: Quotas & models refreshed -->
+    <string name="data_toast_quotas_models_refreshed">额度与模型已刷新</string>
+    <!-- 原文: Wake lock activated for 1 hour -->
+    <string name="data_toast_wake_lock_activated_for_1_hour">唤醒锁已激活，持续 1 小时</string>
+    <!-- 原文: Wake lock released -->
+    <string name="data_toast_wake_lock_released">唤醒锁已释放</string>
     <!-- 原文: Understood. I will use this context for our conversation. -->
     <string name="data_understood_i_will_use_this_context_for_o">明白了。我会把这段上下文用于我们的对话。</string>
 </resources>

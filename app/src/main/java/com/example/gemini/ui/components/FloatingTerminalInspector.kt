@@ -602,7 +602,7 @@ private fun TerminalCommandCard(
                         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                         val clip = ClipData.newPlainText("Output", command.output)
                         clipboard.setPrimaryClip(clip)
-                        Toast.makeText(context, "Output copied", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.component_toast_output_copied), Toast.LENGTH_SHORT).show()
                     },
                     modifier = Modifier.size(22.dp)
                 ) {

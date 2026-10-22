@@ -1,0 +1,91 @@
+# Toast 文案对照表：英文原文<TAB>简体中文
+# 由 scripts/i18n/apply_toast.py 读取，按模块生成 <module>_toast_* 资源并改写调用点。
+# 占位符顺序与英文里的 $var / ${expr} 出现顺序一致；译法见 docs/i18n/GLOSSARY.md。
+Quotas & models refreshed	额度与模型已刷新
+Copied text	已复制文本
+Pasted text	已粘贴文本
+File not found or unreadable: ${fileToShare.name}	文件不存在或无法读取：%1$s
+No application found to handle this request	没有可处理此请求的应用
+Wake lock activated for 1 hour	唤醒锁已激活，持续 1 小时
+Wake lock released	唤醒锁已释放
+This conversation doesn't exist	该会话不存在
+Output copied	已复制输出
+No artifact file to download	没有可下载的产物文件
+$fileName saved to Downloads/AntiGem	已保存 %1$s 到 Downloads/AntiGem
+Failed to download $fileName	下载 %1$s 失败
+No app found to open file	没有可打开文件的应用
+Could not start audio recording	无法开始录音
+Microphone permission required for speech recognition	语音识别需要麦克风权限
+Speech service unavailable	语音服务不可用
+Dictation: $err	听写：%1$s
+Transcribe: $err	转写：%1$s
+Please sign in first to send messages.	请先登录再发送消息。
+No speech recognized	未识别到语音
+Cannot open: ${e.message}	无法打开：%1$s
+Code copied to clipboard	代码已复制到剪贴板
+System prompt copied to clipboard	系统提示词已复制到剪贴板
+Path copied to clipboard	路径已复制到剪贴板
+Markdown content copied	Markdown 内容已复制
+No image to download	没有可下载的图片
+Image saved to Downloads/AntiGem	图片已保存到 Downloads/AntiGem
+Failed to save image	保存图片失败
+No video to download	没有可下载的视频
+Video saved to Downloads/AntiGem	视频已保存到 Downloads/AntiGem
+Failed to save video	保存视频失败
+No app found to open image	没有可打开图片的应用
+Created Bash session	已创建 Bash 会话
+Diagram code copied	图表代码已复制
+Error details copied to clipboard	错误详情已复制到剪贴板
+Copied prompt	已复制提示词
+Copied response	已复制回复
+${attachment.name} is no longer available	%1$s 已不可用
+Copied $label to clipboard	已将%1$s复制到剪贴板
+Formatted JSON copied to clipboard!	已复制格式化 JSON 到剪贴板。
+Switched to ${b.name}	已切换到 %1$s
+Failed to switch branch	切换分支失败
+Git repository initialized!	Git 仓库已初始化。
+Please enter a commit message	请输入提交信息
+Author name and email cannot be empty	作者名和邮箱不能为空
+Git configuration saved!	Git 配置已保存。
+Branch $name created & active	已创建并切换到分支 %1$s
+Failed to create branch	创建分支失败
+Changes stashed!	改动已暂存。
+Stash failed	暂存失败
+Git Pull Successful	Git 拉取成功
+Git Push Successful	Git 推送成功
+Committed successfully!	提交成功。
+Cannot open '${node.name}'. IDE Bridge is offline or file is unreachable.	无法打开 %1$s。IDE 桥接服务离线或文件不可达。
+Created ${if (isDir) "folder" else "file"} '$name'	已创建%1$s「%2$s」
+Failed to create ${if (isDir) "folder" else "file"}	创建%1$s失败
+Renamed to '$newName'	已重命名为 %1$s
+Failed to rename	重命名失败
+Deleted	已删除
+Failed to delete	删除失败
+Saved	已保存
+Save Error: ${result.message}	保存出错：%1$s
+No default runner for '.$ext'. Configure a run profile.	没有针对 '.%1$s' 的默认运行器，请先配置运行配置。
+Open a file or select a project run profile	请打开文件或选择项目运行配置
+Open a file to run	请打开要运行的文件
+Open a project folder first	请先打开项目文件夹
+Saved and closed	已保存并关闭
+Failed to save file	保存文件失败
+Saved (Overwritten)	已保存（覆盖）
+Failed to overwrite disk	覆盖磁盘文件失败
+Reverted to disk version	已恢复为磁盘版本
+Cannot open '$name'. IDE Bridge is offline or file is unreachable.	无法打开 %1$s。IDE 桥接服务离线或文件不可达。
+Saved to $fullPath	已保存到 %1$s
+Save Error: ${res.message}	保存出错：%1$s
+Added run configuration: ${newProfile.name}	已添加运行配置：%1$s
+Copied $framedHeader to clipboard	已将%1$s复制到剪贴板
+Storage permission needed to save to /sdcard/Download	保存到 /sdcard/Download 需要存储权限
+Stopping server... Please re-run $actionName once stopped.	正在停止服务器……停止后请重新执行 %1$s。
+Please select at least one project to backup	请至少选择一个要备份的项目
+Please enter or pick a backup zip file	请输入或选择备份 zip 文件
+Could not open Device Admin: ${e2.message}	无法打开设备管理器：%1$s
+Could not open settings: ${e.message}	无法打开设置：%1$s
+Could not open Space Manager: ${e.message}	无法打开空间管理：%1$s
+AntiGem is up to date!	AntiGem 已是最新版本。
+Update check failed: $msg	检查更新失败：%1$s
+Saved agy_ide_bridge to Downloads!	已将 agy_ide_bridge 保存到 Downloads。
+Failed to export bridge binary	导出桥接二进制失败
+Downloads: ${bridgeFile.absolutePath}	下载目录：%1$s

@@ -888,7 +888,7 @@ fun ChatScreen(
                         scope.launch { drawerState.close() }
                     }
                 } else {
-                    android.widget.Toast.makeText(context, "This conversation doesn't exist", android.widget.Toast.LENGTH_SHORT).show()
+                    android.widget.Toast.makeText(context, context.getString(R.string.chat_toast_this_conversation_doesn_t_exist), android.widget.Toast.LENGTH_SHORT).show()
                 }
             }
         )

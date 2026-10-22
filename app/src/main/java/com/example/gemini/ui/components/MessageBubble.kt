@@ -169,7 +169,7 @@ fun MessageBubble(
                                 val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                                 val clip = ClipData.newPlainText("Copied Prompt", message.content)
                                 clipboard.setPrimaryClip(clip)
-                                Toast.makeText(context, "Copied prompt", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, context.getString(R.string.component_toast_copied_prompt), Toast.LENGTH_SHORT).show()
                                 showUserActions = false
                             },
                             modifier = Modifier.size(28.dp)
@@ -288,7 +288,7 @@ fun MessageBubble(
                                     val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                                     val clip = ClipData.newPlainText("Copied Response", message.content)
                                     clipboard.setPrimaryClip(clip)
-                                    Toast.makeText(context, "Copied response", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, context.getString(R.string.component_toast_copied_response), Toast.LENGTH_SHORT).show()
                                 },
                                 modifier = Modifier.size(28.dp)
                             ) {
@@ -338,7 +338,7 @@ fun MessageBubble(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Outlined.Layers,
-                                        contentDescription = "View Artifacts ($artifactsCount)",
+                                        contentDescription = stringResource(R.string.component_view_artifacts_artifactscount, artifactsCount),
                                         tint = ClaudeTerracotta,
                                         modifier = Modifier.size(16.dp)
                                     )
@@ -481,7 +481,7 @@ fun UserMessageBubble(
                         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                         val clip = ClipData.newPlainText("Copied Prompt", message.content)
                         clipboard.setPrimaryClip(clip)
-                        Toast.makeText(context, "Copied prompt", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.component_toast_copied_prompt), Toast.LENGTH_SHORT).show()
                         showUserActions = false
                     },
                     modifier = Modifier.size(28.dp)
@@ -572,7 +572,7 @@ fun AssistantMessageFooter(
                     val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                     val clip = ClipData.newPlainText("Copied Response", message.content)
                     clipboard.setPrimaryClip(clip)
-                    Toast.makeText(context, "Copied response", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.component_toast_copied_response), Toast.LENGTH_SHORT).show()
                 },
                 modifier = Modifier.size(28.dp)
             ) {
@@ -661,7 +661,7 @@ fun AssistantMessageFooter(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.Layers,
-                        contentDescription = "View Artifacts ($artifactsCount)",
+                        contentDescription = stringResource(R.string.component_view_artifacts_artifactscount, artifactsCount),
                         tint = ClaudeTerracotta,
                         modifier = Modifier.size(16.dp)
                     )
@@ -1075,7 +1075,7 @@ private fun UserMessageDocumentItem(
                     scope.launch {
                         val file = HubMediaResolver.downloadBridgeFile(context, bridgeUrl, attachment.name)
                         if (file == null) {
-                            Toast.makeText(context, "${attachment.name} is no longer available", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.component_toast_attachment_name_is_no_longer_available, attachment.name), Toast.LENGTH_SHORT).show()
                         } else if (isText) {
                             fileLinkHandler.onOpenFile(file.absolutePath)
                         } else {
@@ -1087,7 +1087,7 @@ private fun UserMessageDocumentItem(
                                 }
                                 context.startActivity(Intent.createChooser(intent, "Open ${attachment.name}"))
                             } catch (e: Exception) {
-                                Toast.makeText(context, "Cannot open: ${e.message}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, context.getString(R.string.component_toast_cannot_open_e_message, e.message.orEmpty()), Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
@@ -1124,7 +1124,7 @@ private fun UserMessageDocumentItem(
                             Toast.makeText(context, attachment.name, Toast.LENGTH_SHORT).show()
                         }
                     } catch (e: Exception) {
-                        Toast.makeText(context, "Cannot open: ${e.message}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.component_toast_cannot_open_e_message, e.message.orEmpty()), Toast.LENGTH_SHORT).show()
                     }
                 }
             }

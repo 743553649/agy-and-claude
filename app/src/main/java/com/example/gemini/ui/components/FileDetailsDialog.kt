@@ -199,7 +199,7 @@ fun FileDetailsDialog(
                     actionDescription = "Copy Path",
                     onActionClick = {
                         clipboardManager.setText(AnnotatedString(path))
-                        Toast.makeText(context, "Path copied to clipboard", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.component_toast_path_copied_to_clipboard), Toast.LENGTH_SHORT).show()
                     }
                 )
 

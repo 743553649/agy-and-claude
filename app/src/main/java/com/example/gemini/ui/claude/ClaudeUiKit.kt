@@ -38,6 +38,8 @@ import com.example.gemini.theme.QuotaGreen
 import com.example.gemini.theme.QuotaRed
 import com.example.gemini.theme.isAppInDarkTheme
 import com.example.gemini.ui.components.ClaudeAccent
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 /** Uppercase group label used to separate Antigravity / Claude Code / App settings. */
 @Composable
@@ -133,7 +135,7 @@ fun UsageBar(label: String, usedFraction: Double, resetText: String?, modifier: 
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             Text(label, fontSize = if (compact) 10.5.sp else 12.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f))
             Text(
-                "${(usedFraction * 100).toInt()}% used" + (resetText?.let { " · resets $it" } ?: ""),
+                stringResource(R.string.claude_usedfraction_100_toint_used, (usedFraction * 100).toInt()) + (resetText?.let { " · resets $it" } ?: ""),
                 fontSize = if (compact) 10.sp else 11.sp,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f)
             )
