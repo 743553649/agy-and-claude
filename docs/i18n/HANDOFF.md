@@ -380,6 +380,17 @@ run 39764130892 **失败**：`ClaudeSettingsScreen.DefaultsPage` 没有 `context
 不进界面；`WebViewExtensionDeveloper.kt` 的消息是开发者 MCP 的工具返回值（给模型看），
 均属白名单，保持英文。
 
+**CI 证据**（run 39791704630，commit `af15088`）：`Verify i18n resources` 通过
+（`values: 1577 / values-zh-rCN: 1573 / 引用 1544 key`，基线 1546/1542/1513，+31 三条对齐）、
+`:app:assembleTermuxRelease` 成功（`BUILD SUCCESSFUL in 6m 59s`）、
+`Verify APK signature` 指纹 `6F:F1:E3:FF:…:7B:5C` 与标准值一致（`OK: 签名与标准指纹一致，可以覆盖安装`）、
+产物 `antiGem-termux-af15088f057dfa5edac7b9a1e4360b591c2c65ec.apk`（15.8MB）。
+
+**真机验证安排**：本轮开发机（Xiaomi 22041211AC / Android 14 / SDK 34）**只用于写代码**，
+用户明确要求不要在这台上安装（该机 `com.termux` 被 Play 版 Termux Ultra 118.3.50 占用，
+卸载会连带删掉它的数据）。因此 P4 的真机验证与 P1 的待验证①②一并移交用户另一台设备执行，
+**下面第 4 节 P1 的两条「待验证」保持待验证，未在真机确认前不得改写为结论**。
+
 ## 5. 工具链（`scripts/i18n/`）
 
 | 脚本 | 作用 |
