@@ -425,6 +425,18 @@
     <string name="settings_installed_bundles_extensions">已安装的包与扩展</string>
     <!-- 原文: Keep Editing -->
     <string name="settings_keep_editing">继续编辑</string>
+    <!-- 原文: English -->
+    <string name="settings_language_en">English</string>
+    <!-- 原文: Follow system -->
+    <string name="settings_language_follow_system">跟随系统</string>
+    <!-- 原文: Interface and AI replies use this language -->
+    <string name="settings_language_hint">界面与 AI 回复使用该语言</string>
+    <!-- 原文: Language -->
+    <string name="settings_language_title">界面语言</string>
+    <!-- 原文: This system version follows the app language only after restart -->
+    <string name="settings_language_unsupported">该系统版本可能需重启应用后完全生效</string>
+    <!-- 原文: Simplified Chinese -->
+    <string name="settings_language_zh">简体中文</string>
     <!-- 原文: Launch Terminal Now -->
     <string name="settings_launch_terminal_now">立即启动终端</string>
     <!-- 原文: Launcher Icon & Name Style -->

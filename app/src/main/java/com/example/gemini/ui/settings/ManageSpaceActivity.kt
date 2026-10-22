@@ -72,6 +72,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.data.preferences.AuthPreferences
 import com.example.gemini.R
+import com.example.gemini.domain.i18n.AppLocaleController
 import com.example.gemini.theme.ClaudeTerracotta
 import com.example.gemini.theme.GeminiTheme
 import com.example.gemini.theme.isSystemInDarkThemeRobust
@@ -119,6 +120,8 @@ class ManageSpaceActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // 界面语言回设必须在 setContent 之前（系统「应用信息 → 存储」可冷启动此页）
+        AppLocaleController.apply(this)
         enableEdgeToEdge()
 
         setContent {

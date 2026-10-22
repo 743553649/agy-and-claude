@@ -120,6 +120,7 @@ fun SettingsDialog(
     isDevModeEnabled: Boolean = false,
     chatFontScale: Float = 1.0f,
     themeMode: String = "SYSTEM",
+    appLanguage: String = "system",
     agyHubUrl: String = com.example.gemini.data.preferences.AuthPreferences.currentHubUrl,
     agyBridgeHttpUrl: String = com.example.gemini.data.preferences.AuthPreferences.currentBridgeHttpUrl,
     isServerOnline: Boolean = true,
@@ -146,6 +147,7 @@ fun SettingsDialog(
     onSetSummaryModelId: (String) -> Unit = {},
     onSetChatFontScale: (Float) -> Unit = {},
     onSetThemeMode: (String) -> Unit = {},
+    onSetAppLanguage: (String) -> Unit = {},
     onSaveServerUrls: (String, String) -> Unit = { _, _ -> },
     onSaveTerminalPreferences: (Int, String, Int, String) -> Unit = { _, _, _, _ -> },
     onToggleDevMode: (Boolean) -> Unit = {},
@@ -387,6 +389,7 @@ fun SettingsDialog(
 
                     SettingsSection.APPEARANCE -> AppearanceSubScreen(
                         themeMode = themeMode,
+                        appLanguage = appLanguage,
                         chatFontScale = chatFontScale,
                         groupChatsByWorkspace = groupChatsByWorkspace,
                         isFloatingSwitcherEnabled = isFloatingSwitcherEnabled,
@@ -396,6 +399,7 @@ fun SettingsDialog(
                         cardBg = cardBg,
                         cardBorder = cardBorder,
                         onSetThemeMode = onSetThemeMode,
+                        onSetAppLanguage = onSetAppLanguage,
                         onSetChatFontScale = onSetChatFontScale,
                         onToggleGroupChatsByWorkspace = onToggleGroupChatsByWorkspace,
                         onToggleFloatingSwitcher = onToggleFloatingSwitcher,
@@ -923,6 +927,7 @@ private fun SettingsCategoryCard(
 @Composable
 private fun AppearanceSubScreen(
     themeMode: String,
+    appLanguage: String,
     chatFontScale: Float,
     groupChatsByWorkspace: Boolean,
     isFloatingSwitcherEnabled: Boolean,
@@ -932,6 +937,7 @@ private fun AppearanceSubScreen(
     cardBg: Color,
     cardBorder: BorderStroke,
     onSetThemeMode: (String) -> Unit,
+    onSetAppLanguage: (String) -> Unit,
     onSetChatFontScale: (Float) -> Unit,
     onToggleGroupChatsByWorkspace: (Boolean) -> Unit,
     onToggleFloatingSwitcher: (Boolean) -> Unit,
@@ -1004,6 +1010,79 @@ private fun AppearanceSubScreen(
         }
 
         Spacer(modifier = Modifier.height(6.dp))
+
+        // App Language Section（P1）：复用主题卡片的选中样式，三选一
+        Text(
+            text = stringResource(R.string.settings_language_title),
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onSurface
+        )
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            val languages = listOf(
+                Triple("system", R.string.settings_language_follow_system, Icons.Outlined.Language),
+                Triple("zh-CN", R.string.settings_language_zh, Icons.Outlined.Language),
+                Triple("en", R.string.settings_language_en, Icons.Outlined.Language)
+            )
+
+            languages.forEach { (tag, labelRes, icon) ->
+                val isSelected = when (tag) {
+                    "system" -> appLanguage == "system"
+                    "zh-CN" -> appLanguage.startsWith("zh", ignoreCase = true)
+                    else -> appLanguage.startsWith("en", ignoreCase = true)
+                }
+                val label = stringResource(labelRes)
+                Surface(
+                    modifier = Modifier
+                        .weight(1f)
+                        .clip(RoundedCornerShape(12.dp))
+                        .clickable { onSetAppLanguage(tag) },
+                    shape = RoundedCornerShape(12.dp),
+                    color = if (isSelected) ClaudeTerracotta.copy(alpha = 0.12f) else cardBg,
+                    border = BorderStroke(
+                        1.5.dp,
+                        if (isSelected) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f)
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier.padding(vertical = 14.dp, horizontal = 8.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Icon(
+                            imageVector = icon,
+                            contentDescription = label,
+                            tint = if (isSelected) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                            modifier = Modifier.size(24.dp)
+                        )
+                        Spacer(modifier = Modifier.height(6.dp))
+                        Text(
+                            text = label,
+                            fontSize = 11.5.sp,
+                            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
+                            color = if (isSelected) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+                }
+            }
+        }
+
+        Text(
+            text = stringResource(R.string.settings_language_hint),
+            fontSize = 11.5.sp,
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+        )
+        if (Build.VERSION.SDK_INT < 33) {
+            Text(
+                text = stringResource(R.string.settings_language_unsupported),
+                fontSize = 11.5.sp,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+            )
+        }
 
         // Font Scaling Section
         Row(

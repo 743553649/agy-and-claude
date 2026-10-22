@@ -27,6 +27,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.example.gemini.AppViewMode
 import com.example.gemini.MainActivity
+import com.example.gemini.domain.i18n.AppLocaleController
 import com.example.gemini.theme.GeminiTheme
 import com.example.gemini.theme.isSystemInDarkThemeRobust
 import com.example.gemini.ui.browser.BrowserScreen
@@ -43,6 +44,8 @@ class FloatingChatActivity : AppCompatActivity() {
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // 界面语言回设必须在 setContent 之前（浮窗可能由通知冷启动进程）
+        AppLocaleController.apply(this)
         enableEdgeToEdge()
         overridePendingTransition(0, 0)
         window.clearFlags(android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND)

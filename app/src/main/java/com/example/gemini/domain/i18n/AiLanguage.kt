@@ -1,5 +1,6 @@
 package com.example.gemini.domain.i18n
 
+import androidx.appcompat.app.AppCompatDelegate
 import java.util.Locale
 
 /**
@@ -7,6 +8,12 @@ import java.util.Locale
  *
  * 界面为简体中文时注入中文指令；其他语言不注入（模型按其默认行为回复）。
  * 这里的措辞是唯一版本，改动前先看 docs/i18n/GLOSSARY.md 第 6 节。
+ *
+ * 语言来源：优先读 appcompat 记录的「应用语言」——API 33+ 来自框架 LocaleManager，
+ * API<33 来自 appcompat 的进程内请求值（即 `AppCompatDelegate.setApplicationLocales` 的入参）；
+ * 没有被显式设置（跟随系统）时才回落到 `Locale.getDefault()`。
+ * 不直接用 `Locale.getDefault()` 判定显式设置的语言：API<33 下 appcompat 只包装 Activity 资源，
+ * 静态默认值是否同步变化尚未在真机验证（见 docs/i18n/HANDOFF.md 的 P1「待验证」项）。
  */
 object AiLanguage {
 
@@ -19,7 +26,10 @@ object AiLanguage {
             "commands, file paths, and commit messages in their original form; do not translate " +
             "technical terms that have no well-established Chinese equivalent."
 
-    private fun isChinese(): Boolean = Locale.getDefault().language == "zh"
+    private fun currentLocale(): Locale =
+        AppCompatDelegate.getApplicationLocales().get(0) ?: Locale.getDefault()
+
+    private fun isChinese(): Boolean = currentLocale().language == "zh"
 
     /** 追加到 Gemini 系统指令末尾的片段；空串表示不注入。 */
     fun suffix(): String = if (isChinese()) "\n\n$ZH_INSTRUCTION" else ""

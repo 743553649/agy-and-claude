@@ -67,6 +67,7 @@ import com.example.gemini.data.daemon.FileNode
 import com.example.gemini.data.daemon.IdeApiClient
 import com.example.gemini.data.daemon.ProjectItem
 import com.example.gemini.data.daemon.TermuxDaemonManager
+import com.example.gemini.domain.i18n.AppLocaleController
 import com.example.gemini.domain.model.AiModel
 import com.example.gemini.domain.model.ChatMessage
 import com.example.gemini.domain.model.MessageRole
@@ -2097,6 +2098,7 @@ fun ChatScreen(
             isDevModeEnabled = isDevModeEnabled,
             chatFontScale = chatFontScale,
             themeMode = themeMode,
+            appLanguage = AppLocaleController.currentLanguageTag(),
             agyHubUrl = agyHubUrl,
             agyBridgeHttpUrl = agyBridgeHttpUrl,
             isServerOnline = isServerOnline == true,
@@ -2139,6 +2141,7 @@ fun ChatScreen(
             onSetSummaryModelId = { viewModel.setSummaryModelId(it) },
             onSetChatFontScale = { viewModel.setChatFontScale(it) },
             onSetThemeMode = { viewModel.setThemeMode(it) },
+            onSetAppLanguage = { tag -> AppLocaleController.setLanguage(context, tag) },
             onSaveServerUrls = { hub, bridge -> viewModel.saveServerUrls(hub, bridge) },
             onSaveTerminalPreferences = { size, cursor, buf, thm -> viewModel.saveTerminalPreferences(size, cursor, buf, thm) },
             onToggleDevMode = { viewModel.setDevModeEnabled(it) },

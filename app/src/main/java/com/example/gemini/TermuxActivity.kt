@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import com.example.gemini.domain.i18n.AppLocaleController
 import com.example.gemini.data.preferences.AuthPreferences
 import com.example.gemini.theme.GeminiTheme
 import com.example.gemini.theme.isSystemInDarkThemeRobust
@@ -18,6 +19,8 @@ class TermuxActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // 界面语言回设必须在 setContent 之前（TermuxActivity 有自己的 launcher alias，可冷启动）
+        AppLocaleController.apply(this)
         enableEdgeToEdge()
         com.example.gemini.data.service.TermuxService.start(this)
 

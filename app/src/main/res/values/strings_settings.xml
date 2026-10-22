@@ -215,6 +215,12 @@
     <string name="settings_installation_log_output">Installation Log Output</string>
     <string name="settings_installed_bundles_extensions">Installed Bundles &amp; Extensions</string>
     <string name="settings_keep_editing">Keep Editing</string>
+    <string name="settings_language_en">English</string>
+    <string name="settings_language_follow_system">Follow system</string>
+    <string name="settings_language_hint">Interface and AI replies use this language</string>
+    <string name="settings_language_title">Language</string>
+    <string name="settings_language_unsupported">This system version follows the app language only after restart</string>
+    <string name="settings_language_zh">Simplified Chinese</string>
     <string name="settings_launch_terminal_now">Launch Terminal Now</string>
     <string name="settings_launcher_icon_name_style">Launcher Icon &amp; Name Style</string>
     <string name="settings_layout_orientation">Layout Orientation</string>
