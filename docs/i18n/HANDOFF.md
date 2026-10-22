@@ -409,6 +409,18 @@ run 39764130892 **失败**：`ClaudeSettingsScreen.DefaultsPage` 没有 `context
 3. 一律 `appContext.getString(...)`；可空实参补 `.orEmpty()`（坑 8）；
    `Log.*` 里的文案**没有动**（GLOSSARY §2.5）。
 
+**CI 证据**（run 39801533790，commit `d43fb64`）：`Verify i18n resources` 通过
+（`values: 1609 / values-zh-rCN: 1605 / 引用 1576 key`）、`BUILD SUCCESSFUL in 7m 10s`、
+`Verify APK signature` 指纹与标准值一致（`OK: 签名与标准指纹一致，可以覆盖安装`）。
+
+**首推失败与根因**（run 39799994047，commit `8333fee`）：`Build termux APK` 报
+`AgyMcpManager.kt:4:24 Conflicting import: imported name 'Context' is ambiguous`
+（第 4 行与脚本新加的第 34 行）。根因是 `apply_data_errors.py` 的导入插入**没先检查
+文件已有同名导入**，而该文件第 4 行本来就 `import android.content.Context`。
+→ 教训：**改写脚本插入 import 前必须先 `grep` 或在脚本里做存在性判断**，
+不要假设「这个文件没导入过 X」。已把脚本那条插入改成注释警示，`fix_imports.py`
+之所以没救回来，是因为它只补 `R` 与 `stringResource`，不处理普通类导入。
+
 ## 5. 工具链（`scripts/i18n/`）
 
 | 脚本 | 作用 |
