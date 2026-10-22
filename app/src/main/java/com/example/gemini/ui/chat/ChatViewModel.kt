@@ -35,6 +35,7 @@ import kotlinx.serialization.encodeToString
 import android.util.Log
 import org.json.JSONObject
 import java.util.UUID
+import com.example.gemini.R
 
 data class PendingToolApproval(
     val toolCall: com.example.gemini.domain.model.ToolCall,

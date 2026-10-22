@@ -222,7 +222,7 @@
 | `apply_showtoast.py` | 改写 `AppToastHelper.showToast` 首参与 `Intent.createChooser` 标题；接收者按文件显式登记（`RECEIVERS`），未登记直接报错 |
 | `showtoast_zh.tsv` | 分享/导出流程文案对照表（32 条） |
 | `fix_imports.py` | 补齐 `import com.example.gemini.R` 与 `stringResource` 导入 |
-| `verify.py` | **CI 编译前必跑**：资源 XML 合法性、`R.string` 引用完整性、擦作符/参数一致性、非 Composable 误用、英文资源残留 Kotlin 插值、裸 `%` |
+| `verify.py` | **CI 编译前必跑**：资源 XML 合法性、`R.string` 引用完整性、占位符/参数一致性、非 Composable 误用、英文资源残留 Kotlin 插值、裸 `%`、**用了裸 `R.string.` 却没有 `import com.example.gemini.R`**（坑 17） |
 | `gen_coverage.py` | 生成 `docs/i18n/COVERAGE.md` |
 
 ### 标准操作顺序
@@ -347,6 +347,16 @@ XML 是产物但不是译文的可恢复来源。
     仍依赖推断的调用点（`MainActivity.showToast(message)`、`ChatScreen` 里
     `authFeedbackMessage` 的 `showToast(msg)`）之所以没受影响，是因为它们上游的文案
     （`AgyChatBackend` 的登录反馈）**目前还是英文**——下一批翻它们时必须同步传类型。
+
+17. **改写脚本产出 `R.string.` 后必须跑 `fix_imports.py`，否则 CI 才报红**
+    `apply_showtoast.py` 把 `ChatViewModel.kt` 的 8 处 Toast 改成
+    `getApplication<Application>().getString(R.string.…)`，但该文件原本没用过资源，
+    没有 `import com.example.gemini.R` → CI 报 `Unresolved reference 'R'`（run 39742025990 红）。
+    根因不是脚本错，而是**漏跑了标准顺序里的 `fix_imports.py`**（`verify.py` 当时不查 import，
+    本地一路绿灯）。
+    → 两个补救：① 改写批次照标准顺序跑 `fix_imports.py`；
+    ② `verify.py` 已加检查：任何含**裸** `R.string.` 的文件必须自己 `import com.example.gemini.R`
+    （正则排除 `com.example.gemini.R.string.` 这种全限定写法），已用失败提交 `df798c3` 的文件内容回放确认会报错。
 
 ## 7. 关键决策记录
 

@@ -61,6 +61,22 @@ for key, files in sorted(used.items()):
     if key not in en_keys:
         errors.append(f"R.string.{key} 未在 values/ 中定义（{sorted(files)[0]}）")
 
+# 用了裸 `R.string.` 的文件必须自己 import R，否则编译期 Unresolved reference 'R'
+# （2026-10-22 踩过：apply_showtoast.py 改写 ChatViewModel 后漏跑 fix_imports.py，CI 才报红）
+BARE_R = re.compile(r"(?<![.\w])R\.string\.")
+R_IMPORT_LINE = "import com.example.gemini.R"
+for dirpath, _dirs, files in os.walk(SRC):
+    for fn in files:
+        if not fn.endswith(".kt"):
+            continue
+        path = os.path.join(dirpath, fn)
+        text = open(path, encoding="utf-8").read()
+        if not BARE_R.search(text):
+            continue
+        if R_IMPORT_LINE not in text.split("\n"):
+            rel = os.path.relpath(path, ROOT)
+            errors.append(f"用到 R.string 但没有 import com.example.gemini.R: {rel}")
+
 # 英文资源里不允许残留 Kotlin 插值语法（\$var / \${expr}），否则英文界面会显示原始代码
 for path in en_files:
     try:
