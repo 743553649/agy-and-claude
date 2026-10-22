@@ -17,6 +17,14 @@
     <string name="drawer_advanced_search">高级搜索 ›</string>
     <!-- 原文: Advanced Search -->
     <string name="drawer_advanced_search_2">高级搜索</string>
+    <!-- 原文: Conversation ID copied -->
+    <string name="drawer_apptoast_conversation_id_copied">会话 ID 已复制</string>
+    <!-- 原文: Exporting HTML... -->
+    <string name="drawer_apptoast_exporting_html">正在导出 HTML……</string>
+    <!-- 原文: Exporting Markdown... -->
+    <string name="drawer_apptoast_exporting_markdown">正在导出 Markdown……</string>
+    <!-- 原文: Preparing .antigem share... -->
+    <string name="drawer_apptoast_preparing_antigem_share">正在准备 .antigem 共享包……</string>
     <!-- 原文: Are you sure you want to delete \"%1$s\"? This will permanently remove all messages and trajectory data. -->
     <string name="drawer_are_you_sure_you_want_to_delete_targetco_2">确定要删除「%1$s」吗？这会永久移除所有消息和执行轨迹数据。</string>
     <!-- 原文: Artifacts -->

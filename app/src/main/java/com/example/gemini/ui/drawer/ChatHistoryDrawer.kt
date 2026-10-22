@@ -1668,7 +1668,7 @@ private fun ChatHistoryItemRow(
                     onClick = {
                         menuExpanded = false
                         clipboardManager.setText(AnnotatedString(conv.id))
-                        AppToastHelper.showToast("Conversation ID copied", ChatToastType.SUCCESS)
+                        AppToastHelper.showToast(context.getString(R.string.drawer_apptoast_conversation_id_copied), ChatToastType.SUCCESS)
                     }
                 )
                 DropdownMenuItem(
@@ -1719,7 +1719,7 @@ private fun ChatHistoryItemRow(
                     },
                     onClick = {
                         menuExpanded = false
-                        com.example.gemini.ui.components.AppToastHelper.showToast("Exporting Markdown...", com.example.gemini.ui.components.ChatToastType.INFO)
+                        com.example.gemini.ui.components.AppToastHelper.showToast(context.getString(R.string.drawer_apptoast_exporting_markdown), com.example.gemini.ui.components.ChatToastType.INFO)
                         scope.launch(Dispatchers.IO) {
                             ConversationExportHelper.exportConversation(
                                 context = context,
@@ -1744,7 +1744,7 @@ private fun ChatHistoryItemRow(
                     },
                     onClick = {
                         menuExpanded = false
-                        com.example.gemini.ui.components.AppToastHelper.showToast("Exporting HTML...", com.example.gemini.ui.components.ChatToastType.INFO)
+                        com.example.gemini.ui.components.AppToastHelper.showToast(context.getString(R.string.drawer_apptoast_exporting_html), com.example.gemini.ui.components.ChatToastType.INFO)
                         scope.launch(Dispatchers.IO) {
                             ConversationExportHelper.exportConversation(
                                 context = context,
@@ -1769,7 +1769,7 @@ private fun ChatHistoryItemRow(
                     },
                     onClick = {
                         menuExpanded = false
-                        com.example.gemini.ui.components.AppToastHelper.showToast("Preparing .antigem share...", com.example.gemini.ui.components.ChatToastType.INFO)
+                        com.example.gemini.ui.components.AppToastHelper.showToast(context.getString(R.string.drawer_apptoast_preparing_antigem_share), com.example.gemini.ui.components.ChatToastType.INFO)
                         scope.launch(Dispatchers.IO) {
                             ConversationShareHelper.shareConversation(
                                 context = context,

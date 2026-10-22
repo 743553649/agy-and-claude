@@ -140,7 +140,7 @@ object ImageDownloadHelper {
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
-            context.startActivity(Intent.createChooser(intent, "Open Image"))
+            context.startActivity(Intent.createChooser(intent, context.getString(R.string.component_chooser_open_image)))
         } catch (e: Exception) {
             Toast.makeText(context, context.getString(R.string.component_toast_no_app_found_to_open_image), Toast.LENGTH_SHORT).show()
         }

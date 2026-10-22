@@ -19,6 +19,12 @@
     <string name="component_answer_in_the_panel_above_the_message_bo">Answer in the panel above the message box.</string>
     <string name="component_antigravity_is_stopped">Antigravity is stopped</string>
     <string name="component_app">App</string>
+    <string name="component_apptoast_export_error_e_message">Export error: %1$s</string>
+    <string name="component_apptoast_failed_to_load_conversation_stepsres_exc">Failed to load conversation: %1$s</string>
+    <string name="component_apptoast_failed_to_save_export_to_downloads">Failed to save export to Downloads</string>
+    <string name="component_apptoast_no_messages_to_export">No messages to export</string>
+    <string name="component_apptoast_no_messages_to_share">No messages to share</string>
+    <string name="component_apptoast_savedfilename_saved_to_downloads_antigem">%1$s saved to Downloads/AntiGem/Exports</string>
     <string name="component_are_you_sure_you_want_to_close_sesstitle">Are you sure you want to close \\"%1$s\\"?\nAny process running in this session will be terminated.</string>
     <string name="component_are_you_sure_you_want_to_permanently_del">Are you sure you want to permanently delete \\"%1$s\\"? This action cannot be undone.</string>
     <string name="component_ask_after_10_messages">Ask after +10 messages</string>
@@ -38,6 +44,12 @@
     <string name="component_chat_without_attaching_to_a_directory">Chat without attaching to a directory</string>
     <string name="component_checking_account_status">Checking account status...</string>
     <string name="component_choose_this_folder">Choose This Folder</string>
+    <string name="component_chooser_open_att_name">Open %1$s</string>
+    <string name="component_chooser_open_attachment_name">Open %1$s</string>
+    <string name="component_chooser_open_exported_conversation">Open Exported Conversation</string>
+    <string name="component_chooser_open_file">Open File</string>
+    <string name="component_chooser_open_image">Open Image</string>
+    <string name="component_chooser_share_antigem_chat">Share AntiGem Chat</string>
     <string name="component_clear_logs">Clear logs</string>
     <string name="component_clear_tab_history">Clear Tab History</string>
     <string name="component_close_player">Close Player</string>

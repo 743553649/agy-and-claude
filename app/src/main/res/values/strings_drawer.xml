@@ -11,6 +11,10 @@
     <string name="drawer_active_cli_process">Active CLI Process</string>
     <string name="drawer_advanced_search">Advanced Search ›</string>
     <string name="drawer_advanced_search_2">Advanced Search</string>
+    <string name="drawer_apptoast_conversation_id_copied">Conversation ID copied</string>
+    <string name="drawer_apptoast_exporting_html">Exporting HTML...</string>
+    <string name="drawer_apptoast_exporting_markdown">Exporting Markdown...</string>
+    <string name="drawer_apptoast_preparing_antigem_share">Preparing .antigem share...</string>
     <string name="drawer_are_you_sure_you_want_to_delete_targetco_2">Are you sure you want to delete \\"%1$s\\"? This will permanently remove all messages and trajectory data.</string>
     <string name="drawer_artifacts">Artifacts</string>
     <string name="drawer_artifacts_size">%1$s</string>

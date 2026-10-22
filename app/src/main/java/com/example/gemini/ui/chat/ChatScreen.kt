@@ -357,11 +357,11 @@ fun ChatScreen(
     val serverRestarting = serverStatus is com.example.gemini.data.local.LocalServerStatus.Starting ||
         serverStatus is com.example.gemini.data.local.LocalServerStatus.Stopping
     val restartLocalServer = {
-        com.example.gemini.ui.components.AppToastHelper.showToast("Restarting the local server…", com.example.gemini.ui.components.ChatToastType.INFO)
+        com.example.gemini.ui.components.AppToastHelper.showToast(context.getString(R.string.chat_apptoast_restarting_the_local_server), com.example.gemini.ui.components.ChatToastType.INFO)
         com.example.gemini.data.local.LocalServerManager.restartServer(context)
     }
     val recheckClaude = {
-        com.example.gemini.ui.components.AppToastHelper.showToast("Checking Claude Code…", com.example.gemini.ui.components.ChatToastType.INFO)
+        com.example.gemini.ui.components.AppToastHelper.showToast(context.getString(R.string.chat_apptoast_checking_claude_code), com.example.gemini.ui.components.ChatToastType.INFO)
         viewModel.claudeAccount.refreshStatus()
     }
     val agyEntry = if (com.example.gemini.domain.model.AgentKind.AGY in enabledAgents) {
@@ -374,7 +374,7 @@ fun ChatScreen(
             onSignIn = { viewModel.loginToAgyHub(force = true) },
             onCheckAuth = { viewModel.checkAgyAuthStatus(userInitiated = true) },
             onRetry = {
-                com.example.gemini.ui.components.AppToastHelper.showToast("Reconnecting to Antigravity…", com.example.gemini.ui.components.ChatToastType.INFO)
+                com.example.gemini.ui.components.AppToastHelper.showToast(context.getString(R.string.chat_apptoast_reconnecting_to_antigravity), com.example.gemini.ui.components.ChatToastType.INFO)
                 viewModel.retryConnections()
             },
             onRestartServer = restartLocalServer
@@ -2012,7 +2012,7 @@ fun ChatScreen(
                         if (unreadable.isNotEmpty()) {
                             // Claude models cannot read audio or video: say so instead of sending a file it would reject
                             com.example.gemini.ui.components.AppToastHelper.showToast(
-                                "Claude can't read audio or video files. Remove them, or tap the mic to dictate instead.",
+                                context.getString(R.string.chat_apptoast_claude_can_t_read_audio_or_video_files_r),
                                 com.example.gemini.ui.components.ChatToastType.ERROR
                             )
                             return@ChatInputBar

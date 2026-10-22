@@ -1009,7 +1009,7 @@ fun ChatInputBar(
                                                                     setDataAndType(uri, att.mimeType ?: "*/*")
                                                                     addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                                                                 }
-                                                                context.startActivity(Intent.createChooser(intent, "Open ${att.name}"))
+                                                                context.startActivity(Intent.createChooser(intent, context.getString(R.string.component_chooser_open_att_name, att.name)))
                                                             } else {
                                                                 Toast.makeText(context, att.name, Toast.LENGTH_SHORT).show()
                                                             }

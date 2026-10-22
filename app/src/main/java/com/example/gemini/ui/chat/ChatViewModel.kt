@@ -148,7 +148,7 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
             ?: AgentKind.AGY
 
     private fun claudeNotSupported(action: String) {
-        com.example.gemini.ui.components.AppToastHelper.showToast("$action is not available in Claude chats yet", com.example.gemini.ui.components.ChatToastType.INFO)
+        com.example.gemini.ui.components.AppToastHelper.showToast(getApplication<Application>().getString(R.string.chat_apptoast_action_is_not_available_in_claude_chats, action), com.example.gemini.ui.components.ChatToastType.INFO)
     }
 
     fun setNewChatAgent(agent: AgentKind) {
@@ -1267,7 +1267,7 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
                         _conversations.value = listOf(newConv) + _conversations.value.filter { it.id != restored.id }
                         withContext(Dispatchers.Main) {
                             selectConversation(restored.id)
-                            com.example.gemini.ui.components.AppToastHelper.showToast("Restored chat: ${restored.title}", com.example.gemini.ui.components.ChatToastType.SUCCESS)
+                            com.example.gemini.ui.components.AppToastHelper.showToast(getApplication<Application>().getString(R.string.chat_apptoast_restored_chat_restored_title, restored.title), com.example.gemini.ui.components.ChatToastType.SUCCESS)
                         }
                         return@launch
                     }
@@ -1276,14 +1276,14 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
                     if (!isActive) return@launch
                     _sharedConversationPreview.value = parsed
                     withContext(Dispatchers.Main) {
-                        com.example.gemini.ui.components.AppToastHelper.showToast("Loaded shared chat: ${parsed.title}", com.example.gemini.ui.components.ChatToastType.SUCCESS)
+                        com.example.gemini.ui.components.AppToastHelper.showToast(getApplication<Application>().getString(R.string.chat_apptoast_loaded_shared_chat_parsed_title, parsed.title), com.example.gemini.ui.components.ChatToastType.SUCCESS)
                     }
                 }
             } catch (e: Exception) {
                 if (e is kotlinx.coroutines.CancellationException) return@launch
                 Log.e("ChatViewModel", "Failed to load shared conversation from uri $uri: ${e.message}", e)
                 withContext(Dispatchers.Main) {
-                    com.example.gemini.ui.components.AppToastHelper.showToast("Failed to load shared chat file", com.example.gemini.ui.components.ChatToastType.ERROR)
+                    com.example.gemini.ui.components.AppToastHelper.showToast(getApplication<Application>().getString(R.string.chat_apptoast_failed_to_load_shared_chat_file), com.example.gemini.ui.components.ChatToastType.ERROR)
                 }
             } finally {
                 _isSharedConversationLoading.value = false
@@ -1326,12 +1326,12 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
                 val content = context.contentResolver.openInputStream(uri)?.bufferedReader(Charsets.UTF_8)?.use { it.readText() } ?: ""
                 _incomingMarkdownPreview.value = resolvedName to content
                 withContext(Dispatchers.Main) {
-                    com.example.gemini.ui.components.AppToastHelper.showToast("Opened $resolvedName", com.example.gemini.ui.components.ChatToastType.SUCCESS)
+                    com.example.gemini.ui.components.AppToastHelper.showToast(getApplication<Application>().getString(R.string.chat_apptoast_opened_resolvedname, resolvedName), com.example.gemini.ui.components.ChatToastType.SUCCESS)
                 }
             } catch (e: Exception) {
                 Log.e("ChatViewModel", "Failed to load markdown from URI $uri: ${e.message}", e)
                 withContext(Dispatchers.Main) {
-                    com.example.gemini.ui.components.AppToastHelper.showToast("Failed to load markdown file", com.example.gemini.ui.components.ChatToastType.ERROR)
+                    com.example.gemini.ui.components.AppToastHelper.showToast(getApplication<Application>().getString(R.string.chat_apptoast_failed_to_load_markdown_file), com.example.gemini.ui.components.ChatToastType.ERROR)
                 }
             }
         }
@@ -1365,12 +1365,12 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
                 )
                 requestViewMode("IDE")
                 withContext(Dispatchers.Main) {
-                    com.example.gemini.ui.components.AppToastHelper.showToast("Opened $resolvedName in IDE", com.example.gemini.ui.components.ChatToastType.SUCCESS)
+                    com.example.gemini.ui.components.AppToastHelper.showToast(getApplication<Application>().getString(R.string.chat_apptoast_opened_resolvedname_in_ide, resolvedName), com.example.gemini.ui.components.ChatToastType.SUCCESS)
                 }
             } catch (e: Exception) {
                 Log.e("ChatViewModel", "Failed to open file in IDE from URI $uri: ${e.message}", e)
                 withContext(Dispatchers.Main) {
-                    com.example.gemini.ui.components.AppToastHelper.showToast("Failed to open file in IDE", com.example.gemini.ui.components.ChatToastType.ERROR)
+                    com.example.gemini.ui.components.AppToastHelper.showToast(getApplication<Application>().getString(R.string.chat_apptoast_failed_to_open_file_in_ide), com.example.gemini.ui.components.ChatToastType.ERROR)
                 }
             }
         }

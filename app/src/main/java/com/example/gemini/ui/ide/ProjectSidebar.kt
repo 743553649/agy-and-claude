@@ -819,7 +819,7 @@ fun FileTreeNodeItem(
                             },
                             onClick = {
                                 menuExpanded = false
-                                AppToastHelper.showToast("Preparing file share...", ChatToastType.INFO)
+                                AppToastHelper.showToast(context.getString(R.string.ide_apptoast_preparing_file_share), ChatToastType.INFO)
                                 coroutineScope.launch(Dispatchers.IO) {
                                     FileShareHelper.shareFile(
                                         context = context,
@@ -960,7 +960,7 @@ object FileShareHelper {
         } catch (e: Exception) {
             Log.e(TAG, "Share failed: ${e.message}", e)
             withContext(Dispatchers.Main) {
-                AppToastHelper.showToast("Share error: ${e.message}", ChatToastType.ERROR)
+                AppToastHelper.showToast(context.getString(R.string.common_apptoast_share_error_e_message, e.message.orEmpty()), ChatToastType.ERROR)
             }
         }
     }
@@ -975,13 +975,13 @@ object FileShareHelper {
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
-            val chooser = Intent.createChooser(shareIntent, "Share $fileName").apply {
+            val chooser = Intent.createChooser(shareIntent, context.getString(R.string.ide_chooser_share_filename, fileName)).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
             context.startActivity(chooser)
         } catch (e: Exception) {
             Log.w(TAG, "Failed to launch share chooser: ${e.message}")
-            AppToastHelper.showToast("Could not open share chooser", ChatToastType.ERROR)
+            AppToastHelper.showToast(context.getString(R.string.common_apptoast_could_not_open_share_chooser), ChatToastType.ERROR)
         }
     }
 }

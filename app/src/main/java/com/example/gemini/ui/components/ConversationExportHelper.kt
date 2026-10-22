@@ -58,7 +58,7 @@ object ConversationExportHelper {
                     engine.ingestStepsDirect(stepsRes.getOrThrow(), conversationId)
                 } else {
                     withContext(Dispatchers.Main) {
-                        AppToastHelper.showToast("Failed to load conversation: ${stepsRes.exceptionOrNull()?.message}", ChatToastType.ERROR)
+                        AppToastHelper.showToast(context.getString(R.string.component_apptoast_failed_to_load_conversation_stepsres_exc, stepsRes.exceptionOrNull()?.message.orEmpty()), ChatToastType.ERROR)
                     }
                     return@withContext
                 }
@@ -66,7 +66,7 @@ object ConversationExportHelper {
 
             if (messages.isEmpty()) {
                 withContext(Dispatchers.Main) {
-                    AppToastHelper.showToast("No messages to export", ChatToastType.INFO)
+                    AppToastHelper.showToast(context.getString(R.string.component_apptoast_no_messages_to_export), ChatToastType.INFO)
                 }
                 return@withContext
             }
@@ -95,17 +95,17 @@ object ConversationExportHelper {
                             openFile(context, savedUri, mimeType)
                         }
                     } else {
-                        AppToastHelper.showToast("$savedFileName saved to Downloads/AntiGem/Exports", ChatToastType.SUCCESS)
+                        AppToastHelper.showToast(context.getString(R.string.component_apptoast_savedfilename_saved_to_downloads_antigem, savedFileName), ChatToastType.SUCCESS)
                         openFile(context, savedUri, mimeType)
                     }
                 } else {
-                    AppToastHelper.showToast("Failed to save export to Downloads", ChatToastType.ERROR)
+                    AppToastHelper.showToast(context.getString(R.string.component_apptoast_failed_to_save_export_to_downloads), ChatToastType.ERROR)
                 }
             }
         } catch (e: Exception) {
             Log.e(TAG, "Export failed: ${e.message}", e)
             withContext(Dispatchers.Main) {
-                AppToastHelper.showToast("Export error: ${e.message}", ChatToastType.ERROR)
+                AppToastHelper.showToast(context.getString(R.string.component_apptoast_export_error_e_message, e.message.orEmpty()), ChatToastType.ERROR)
             }
         }
     }
@@ -117,7 +117,7 @@ object ConversationExportHelper {
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
-            val chooser = Intent.createChooser(intent, "Open Exported Conversation").apply {
+            val chooser = Intent.createChooser(intent, context.getString(R.string.component_chooser_open_exported_conversation)).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
             context.startActivity(chooser)

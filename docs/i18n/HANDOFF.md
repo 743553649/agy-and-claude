@@ -45,9 +45,9 @@
 
 ### 当前覆盖率（P3.7 落地后，实测）
 
-- 资源条目：`values/` **1421** 条，`values-zh-rCN/` **1417** 条（差的 4 条是 `app_name`
+- 资源条目：`values/` **1453** 条，`values-zh-rCN/` **1449** 条（差的 4 条是 `app_name`
   / `anti_term_name` / `termux_name` / `accessibility_service_name`，属不翻白名单）
-- 源码调用点：`stringResource` **1496 处 / 72 个文件**，`getString(R.string.…)` **192 处**
+- 源码调用点：`stringResource` **1496 处 / 72 个文件**，`getString(R.string.…)` **228 处**
 - `python3 scripts/i18n/verify.py` 通过
 - `docs/i18n/COVERAGE.md` 由 `gen_coverage.py` 重新生成（旧文档的按界面数字是 P3.5/P3.6
   之前的，别再引用旧值）
@@ -109,8 +109,19 @@
 实测 **104 处**（文档旧写的「约 7 处」严重低估），已全部改写并新增 88 条 `*_toast_*` 资源；
 含插值的按出现顺序转成 `%n$s` 参数，嵌套引号与多行字面量都能正确处理。
 
-**剩下的（下一批）**：`AppToastHelper.showToast("...")`——项目自己的 Toast 包装，
-不叫 `Toast.makeText`，本轮扫描才发现，实测 **27 处**未改。
+**P3.8（✅ 已完成，本轮提交）**：`AppToastHelper.showToast("...")`——项目自己的 Toast 包装，
+不叫 `Toast.makeText`，所以 `apply_toast.py` 扫不到。实测 **28 处**字面量站点，连同
+`Intent.createChooser(intent, "标题")` 的 **8 处**标题（系统选择器标题也会显示给用户）一起改，
+共 **36 处 / 32 条**资源（`*_apptoast_*` + `*_chooser_*`）。
+
+- 接收者按文件显式登记（`apply_showtoast.py` 的 `RECEIVERS`）：Compose 界面用已有的
+  `val context = LocalContext.current`、`ChatViewModel` 用 `getApplication<Application>()`、
+  组件 object 用方法签名里的 `context: Context`；**未登记的文件直接报错**，不猜。
+- 这些调用点都在 onClick / LaunchedEffect / object 方法里，**不是 @Composable 上下文**，
+  所以不能用 `stringResource`（坑 1 的同类）。
+- 重要耦合：`AppToastHelper` 在调用方不传 `ChatToastType` 时，靠**英文关键词**推断类型
+  （`success`/`fail`/`error`/`copied`…）。本轮 28 处**全都已显式传类型**，所以翻译安全；
+  以后翻这类文案必须显式传类型，否则样式会掉成 INFO（见坑 16）。
 
 ### P3.6：设置首页 + 环境安装页（✅ 已完成，commit `5d55bc3`，CI run 39730503843 通过）
 这两页曾经整页英文，但**不是设计**，是流水线的两处盲区：
@@ -208,6 +219,8 @@
 | `apply_settings_enums.py` | 把 `SettingsSection` / `ClaudeSettingsPage` 两个枚举改成 `@StringRes` 并改写使用点；配套 `settings_enums_zh.tsv`（44 条） |
 | `apply_local_env.py` | 改写数据层 `LocalEnvironmentManager` 的通知标题/正文、`speedText`/`currentFileName` 等安装页状态字段、通知渠道名与描述、`errorMsg`/`errorMessage`；按「语法框架 + 对照表」双重限定，非 Composable 走 `appContext` / `context` 的 `getString`；表内条目找不到站点直接退出 |
 | `local_env_zh.tsv` | 数据层文案对照表（55 条） |
+| `apply_showtoast.py` | 改写 `AppToastHelper.showToast` 首参与 `Intent.createChooser` 标题；接收者按文件显式登记（`RECEIVERS`），未登记直接报错 |
+| `showtoast_zh.tsv` | 分享/导出流程文案对照表（32 条） |
 | `fix_imports.py` | 补齐 `import com.example.gemini.R` 与 `stringResource` 导入 |
 | `verify.py` | **CI 编译前必跑**：资源 XML 合法性、`R.string` 引用完整性、擦作符/参数一致性、非 Composable 误用、英文资源残留 Kotlin 插值、裸 `%` |
 | `gen_coverage.py` | 生成 `docs/i18n/COVERAGE.md` |
@@ -227,6 +240,7 @@ python3 scripts/i18n/apply_toast.py          # 改写 Toast.makeText 字面量
 python3 scripts/i18n/apply_dyn_attrs.py      # 改写 contentDescription / snackbar message
 python3 scripts/i18n/apply_settings_ui.py    # 改写设置首页 title= 与安装页表达式分支
 python3 scripts/i18n/apply_local_env.py      # 改写数据层通知与安装页进度文案
+python3 scripts/i18n/apply_showtoast.py      # 改写分享/导出 Toast 与系统选择器标题
 python3 scripts/i18n/fix_imports.py          # 补 import
 python3 scripts/i18n/verify.py               # 必须通过
 python3 scripts/i18n/gen_coverage.py          # 更新覆盖文档
@@ -324,6 +338,15 @@ XML 是产物但不是译文的可恢复来源。
     → 落地一个批次后，**同时改脚本里的第 4 节**，再跑 `gen_coverage.py`。
     另外它统计的是 `stringResource(` 的调用点总数，不是 `stringResource(R.string.`（多行调用会
     漏计 18 处），改口径要交叉核对 `grep -ro` 的总数。
+
+16. **`AppToastHelper` 的 Toast 类型靠英文关键词推断**
+    调用方不传 `ChatToastType` 时，`showToast` 用 `lowercase().contains("success"/"fail"/"error"/
+    "copied"/…)` 推断成功/失败样式（`AppToastHelper.kt` 与 `ChatScreen.kt:311` 各有一份）。
+    把消息翻成中文后这些关键词不再命中，样式会静默降级成 INFO。
+    → 翻这类文案时**必须显式传 `ChatToastType`**；本轮 28 处原本就都显式传了。
+    仍依赖推断的调用点（`MainActivity.showToast(message)`、`ChatScreen` 里
+    `authFeedbackMessage` 的 `showToast(msg)`）之所以没受影响，是因为它们上游的文案
+    （`AgyChatBackend` 的登录反馈）**目前还是英文**——下一批翻它们时必须同步传类型。
 
 ## 7. 关键决策记录
 

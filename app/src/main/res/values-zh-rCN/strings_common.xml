@@ -13,6 +13,10 @@
     <string name="common_ai_chat">AI 对话</string>
     <!-- 原文: ALT -->
     <string name="common_alt">ALT</string>
+    <!-- 原文: Could not open share chooser -->
+    <string name="common_apptoast_could_not_open_share_chooser">无法打开共享选择器</string>
+    <!-- 原文: Share error: %1$s -->
+    <string name="common_apptoast_share_error_e_message">共享出错：%1$s</string>
     <!-- 原文: Back -->
     <string name="common_back">返回</string>
     <!-- 原文: Cancel -->

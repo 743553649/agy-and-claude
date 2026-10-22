@@ -84,7 +84,7 @@
 | `FileDetailsDialog.kt` | 1 |
 | `SelectTextSheet.kt` | 1 |
 
-合计：**72 个文件、1496 处 `stringResource` 调用点**（另有 192 处 `getString`，用于非 Composable 上下文：Toast、通知、数据层）。
+合计：**72 个文件、1496 处 `stringResource` 调用点**（另有 228 处 `getString`，用于非 Composable 上下文：Toast、通知、数据层）。
 
 ## 三、有意保留英文的内容
 
@@ -104,7 +104,7 @@
 | --- | --- |
 | AI 回复内容本身 | ✅ 已实现（Gemini 系统指令 + Claude `initialize`，commit `8fdd016`；CLI 是否真应用需真机验证） |
 | `Toast.makeText` 的 104 处字面量 | ✅ 已改（`context.getString`，commit `6310f1c`，新增 88 条 `*_toast_*` 资源） |
-| `AppToastHelper.showToast` 27 处 | ❌ 未改（项目自定义 Toast 包装，不叫 `Toast.makeText`，下一步处理） |
+| `AppToastHelper.showToast` 与系统选择器标题 | ✅ 已改（36 处：28 处 showToast 字面量 + 8 处 `Intent.createChooser` 标题；`context.getString`，32 条 `*_apptoast_*` / `*_chooser_*` 资源） |
 | 含插值的 `contentDescription` / snackbar `message` | ✅ 已改（16 处，`apply_dyn_attrs.py`） |
 | `title = / label =` 字面量 112 处 | ❌ 未改（多为 data class 构造参数，需逐条判定白名单后改造） |
 | 设置首页卡片文案 | ✅ 已改（`title =` / `when` 分支，commit `5d55bc3`，135 处 / 107 条资源） |

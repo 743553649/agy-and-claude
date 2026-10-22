@@ -10,6 +10,7 @@
     <string name="ide_add_run_configuration_2">Add Run Configuration</string>
     <string name="ide_additionscount">+%1$s</string>
     <string name="ide_applies_across_all_repositories_in_termu">Applies across all repositories in Termux</string>
+    <string name="ide_apptoast_preparing_file_share">Preparing file share...</string>
     <string name="ide_are_you_sure_you_want_to_commit_staged_c">Are you sure you want to commit staged changes with the following message?</string>
     <string name="ide_are_you_sure_you_want_to_delete_all_untr">Are you sure you want to delete all untracked files? This action cannot be undone.</string>
     <string name="ide_are_you_sure_you_want_to_discard_all_cha">Are you sure you want to discard all changes in \'%1$s\'? This action cannot be undone.</string>
@@ -27,6 +28,7 @@
     <string name="ide_checking_ep_auto_retrying">Checking %1$s (auto-retrying)</string>
     <string name="ide_choose_template">Choose Template</string>
     <string name="ide_choose_whether_to_overwrite_the_disk_ver">Choose whether to overwrite the disk version with your editor changes or reload the version from disk.</string>
+    <string name="ide_chooser_share_filename">Share %1$s</string>
     <string name="ide_close_diff">Close Diff</string>
     <string name="ide_close_find">Close Find</string>
     <string name="ide_command_to_execute">Command to Execute</string>

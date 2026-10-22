@@ -33,6 +33,18 @@
     <string name="component_antigravity_is_stopped">Antigravity 已停止</string>
     <!-- 原文: App -->
     <string name="component_app">应用</string>
+    <!-- 原文: Export error: %1$s -->
+    <string name="component_apptoast_export_error_e_message">导出出错：%1$s</string>
+    <!-- 原文: Failed to load conversation: %1$s -->
+    <string name="component_apptoast_failed_to_load_conversation_stepsres_exc">加载会话失败：%1$s</string>
+    <!-- 原文: Failed to save export to Downloads -->
+    <string name="component_apptoast_failed_to_save_export_to_downloads">保存导出文件到 Downloads 失败</string>
+    <!-- 原文: No messages to export -->
+    <string name="component_apptoast_no_messages_to_export">没有可导出的消息</string>
+    <!-- 原文: No messages to share -->
+    <string name="component_apptoast_no_messages_to_share">没有可共享的消息</string>
+    <!-- 原文: %1$s saved to Downloads/AntiGem/Exports -->
+    <string name="component_apptoast_savedfilename_saved_to_downloads_antigem">%1$s 已保存到 Downloads/AntiGem/Exports</string>
     <!-- 原文: Are you sure you want to close \"%1$s\"?\nAny process running in this session will be terminated. -->
     <string name="component_are_you_sure_you_want_to_close_sesstitle">确定要关闭「%1$s」吗？\n该会话中正在运行的进程都会被终止。</string>
     <!-- 原文: Are you sure you want to permanently delete \"%1$s\"? This action cannot be undone. -->
@@ -71,6 +83,18 @@
     <string name="component_checking_account_status">正在检查账号状态……</string>
     <!-- 原文: Choose This Folder -->
     <string name="component_choose_this_folder">选择此文件夹</string>
+    <!-- 原文: Open %1$s -->
+    <string name="component_chooser_open_att_name">打开 %1$s</string>
+    <!-- 原文: Open %1$s -->
+    <string name="component_chooser_open_attachment_name">打开 %1$s</string>
+    <!-- 原文: Open Exported Conversation -->
+    <string name="component_chooser_open_exported_conversation">打开已导出的会话</string>
+    <!-- 原文: Open File -->
+    <string name="component_chooser_open_file">打开文件</string>
+    <!-- 原文: Open Image -->
+    <string name="component_chooser_open_image">打开图片</string>
+    <!-- 原文: Share AntiGem Chat -->
+    <string name="component_chooser_share_antigem_chat">共享 AntiGem 会话</string>
     <!-- 原文: Clear logs -->
     <string name="component_clear_logs">清除日志</string>
     <!-- 原文: Clear Tab History -->

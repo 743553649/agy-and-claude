@@ -70,7 +70,7 @@ object ArtifactDownloadHelper {
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
-            context.startActivity(Intent.createChooser(intent, "Open File"))
+            context.startActivity(Intent.createChooser(intent, context.getString(R.string.component_chooser_open_file)))
         } catch (e: Exception) {
             Toast.makeText(context, context.getString(R.string.component_toast_no_app_found_to_open_file), Toast.LENGTH_SHORT).show()
         }

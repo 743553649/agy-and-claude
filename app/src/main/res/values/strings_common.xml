@@ -9,6 +9,8 @@
     <string name="common_add">Add</string>
     <string name="common_ai_chat">AI Chat</string>
     <string name="common_alt">ALT</string>
+    <string name="common_apptoast_could_not_open_share_chooser">Could not open share chooser</string>
+    <string name="common_apptoast_share_error_e_message">Share error: %1$s</string>
     <string name="common_back">Back</string>
     <string name="common_cancel">Cancel</string>
     <string name="common_chat_telemetry_tokens">Chat Telemetry &amp; Tokens</string>

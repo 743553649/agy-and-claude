@@ -1085,7 +1085,7 @@ private fun UserMessageDocumentItem(
                                     setDataAndType(uri, attachment.mimeType ?: "*/*")
                                     addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                                 }
-                                context.startActivity(Intent.createChooser(intent, "Open ${attachment.name}"))
+                                context.startActivity(Intent.createChooser(intent, context.getString(R.string.component_chooser_open_attachment_name, attachment.name)))
                             } catch (e: Exception) {
                                 Toast.makeText(context, context.getString(R.string.component_toast_cannot_open_e_message, e.message.orEmpty()), Toast.LENGTH_SHORT).show()
                             }
@@ -1119,7 +1119,7 @@ private fun UserMessageDocumentItem(
                                 setDataAndType(uri, attachment.mimeType ?: "*/*")
                                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                             }
-                            context.startActivity(Intent.createChooser(intent, "Open ${attachment.name}"))
+                            context.startActivity(Intent.createChooser(intent, context.getString(R.string.component_chooser_open_attachment_name, attachment.name)))
                         } else {
                             Toast.makeText(context, attachment.name, Toast.LENGTH_SHORT).show()
                         }

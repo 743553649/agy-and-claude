@@ -7,6 +7,18 @@
 
     <string name="chat_also_restore_files_claude_changed_after">Also restore files Claude changed after this message</string>
     <string name="chat_antigravity_requires_google_authenticati">Antigravity requires Google authentication to access Gemini models.</string>
+    <string name="chat_apptoast_action_is_not_available_in_claude_chats">%1$s is not available in Claude chats yet</string>
+    <string name="chat_apptoast_checking_claude_code">Checking Claude Code…</string>
+    <string name="chat_apptoast_claude_can_t_read_audio_or_video_files_r">Claude can\'t read audio or video files. Remove them, or tap the mic to dictate instead.</string>
+    <string name="chat_apptoast_failed_to_load_markdown_file">Failed to load markdown file</string>
+    <string name="chat_apptoast_failed_to_load_shared_chat_file">Failed to load shared chat file</string>
+    <string name="chat_apptoast_failed_to_open_file_in_ide">Failed to open file in IDE</string>
+    <string name="chat_apptoast_loaded_shared_chat_parsed_title">Loaded shared chat: %1$s</string>
+    <string name="chat_apptoast_opened_resolvedname">Opened %1$s</string>
+    <string name="chat_apptoast_opened_resolvedname_in_ide">Opened %1$s in IDE</string>
+    <string name="chat_apptoast_reconnecting_to_antigravity">Reconnecting to Antigravity…</string>
+    <string name="chat_apptoast_restarting_the_local_server">Restarting the local server…</string>
+    <string name="chat_apptoast_restored_chat_restored_title">Restored chat: %1$s</string>
     <string name="chat_ask_a_question_brainstorm_ideas_or_start">Ask a question, brainstorm ideas, or start coding</string>
     <string name="chat_code_editor_ide">Code Editor IDE</string>
     <string name="chat_command_terminated">Command Terminated</string>

@@ -1,0 +1,38 @@
+# 分享/导出流程文案对照表：英文原文<TAB>简体中文
+# 由 scripts/i18n/apply_showtoast.py 读取：改写 AppToastHelper.showToast 的首参与
+# Intent.createChooser 的标题参数（两者都会直接显示给用户）。
+# 占位符顺序与英文里 $var / ${expr} 出现顺序一致；译法见 docs/i18n/GLOSSARY.md。
+# 注意：AppToastHelper 用英文关键词推断 Toast 类型（success/fail/error…），
+#       译文不再命中这些关键词，所以调用点必须显式传 ChatToastType（本表各处均已显式传）。
+Restarting the local server…	正在重启本地服务器……
+Checking Claude Code…	正在检查 Claude Code……
+Reconnecting to Antigravity…	正在重新连接 Antigravity……
+Claude can't read audio or video files. Remove them, or tap the mic to dictate instead.	Claude 无法读取音频或视频文件。请先移除这些文件，或点击麦克风改用语音输入。
+$action is not available in Claude chats yet	Claude 对话暂不支持 %1$s
+Restored chat: ${restored.title}	已恢复会话：%1$s
+Loaded shared chat: ${parsed.title}	已加载共享会话：%1$s
+Failed to load shared chat file	加载共享会话文件失败
+Opened $resolvedName	已打开 %1$s
+Failed to load markdown file	加载 Markdown 文件失败
+Opened $resolvedName in IDE	已在 IDE 中打开 %1$s
+Failed to open file in IDE	在 IDE 中打开文件失败
+Failed to load conversation: ${stepsRes.exceptionOrNull()?.message}	加载会话失败：%1$s
+No messages to export	没有可导出的消息
+$savedFileName saved to Downloads/AntiGem/Exports	%1$s 已保存到 Downloads/AntiGem/Exports
+Failed to save export to Downloads	保存导出文件到 Downloads 失败
+Export error: ${e.message}	导出出错：%1$s
+No messages to share	没有可共享的消息
+Share error: ${e.message}	共享出错：%1$s
+Could not open share chooser	无法打开共享选择器
+Conversation ID copied	会话 ID 已复制
+Exporting Markdown...	正在导出 Markdown……
+Exporting HTML...	正在导出 HTML……
+Preparing .antigem share...	正在准备 .antigem 共享包……
+Preparing file share...	正在准备文件共享……
+Open File	打开文件
+Open ${att.name}	打开 %1$s
+Open Exported Conversation	打开已导出的会话
+Share AntiGem Chat	共享 AntiGem 会话
+Open Image	打开图片
+Open ${attachment.name}	打开 %1$s
+Share $fileName	共享 %1$s
