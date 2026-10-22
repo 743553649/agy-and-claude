@@ -254,6 +254,30 @@ artifact: antiGem-termux-715f4807eae3a029cadcedc42ab194c452dd56e5  (39 MB)
 下一轮第一件事就是让用户配置 `RELEASE_KEYSTORE_BASE64`，然后 CI 会自动切到
 `:app:assembleTermuxRelease`，产物文件名里的 `debug` 会变成 `release`。
 
+## 8.5 已解除的上游耦合（2026-10-22）
+
+fork 用自己的签名密钥后，**应用内更新必须指向 fork 仓库**，否则会去拉上游签名的官方包：
+签名不同导致安装失败；若上游把 `is_critical` 置真或抬高 `min_supported_version_code`，
+`MainActivity` 启动时的自动检查会弹出**不可关闭**的更新框（`AppUpdateDialog` 里
+`dismissOnBackPress/dismissOnClickOutside` 在 critical 时为 false），应用直接不可用。
+
+已改：
+
+```kotlin
+// data/updater/AppUpdateManager.kt
+private const val UPDATE_REPO = "743553649/agy-and-claude"
+private const val UPDATE_BRANCH = "master"
+private const val DEFAULT_VERSION_URL =
+    "https://raw.githubusercontent.com/$UPDATE_REPO/$UPDATE_BRANCH/version.json"
+// 下载地址同样改用 $UPDATE_REPO
+```
+
+`ui/updater/AppUpdateDialog.kt` 的「访问仓库」按钮也改指 fork。
+
+**未改（有意保留）**：
+- `ui/settings/SettingsDialog.kt:9155 / 9203` 的 GitHub 仓库与 releases 链接——属于「关于」页信息，不是更新检查
+- `data/local/LocalEnvironmentManager.kt:64` 的 `HARDCODED_ROOTFS_URL`——rootfs 是数据文件，从上游下载是正确的
+
 ## 9. 关键文件索引
 
 | 路径 | 说明 |
