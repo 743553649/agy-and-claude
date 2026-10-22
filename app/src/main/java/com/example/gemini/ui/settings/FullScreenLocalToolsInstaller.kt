@@ -182,15 +182,15 @@ fun FullScreenLocalToolsInstaller(
 
             Text(
                 text = when (installerState) {
-                    is LocalInstallerState.Success -> if (isTermux) "Local Linux Tools Ready!" else "Ubuntu Container Ready!"
-                    is LocalInstallerState.Error -> "Setup Encountered an Issue"
-                    is LocalInstallerState.Idle -> if (isTermux) "Initialize Linux Environment" else "Install Ubuntu Container (ARM64)"
-                    is LocalInstallerState.Discovering -> if (isTermux) "Locating Latest Bootstrap..." else "Locating Ubuntu Rootfs..."
-                    is LocalInstallerState.AwaitingConfirmation -> if (isTermux) "Confirm Bootstrap Installation" else "Confirm Ubuntu Installation"
-                    is LocalInstallerState.Downloading -> "Downloading Toolchain..."
-                    is LocalInstallerState.Extracting -> "Extracting & Linking Files..."
-                    is LocalInstallerState.Configuring -> "Finalizing Permissions..."
-                    is LocalInstallerState.Verifying -> "Verifying Environment..."
+                    is LocalInstallerState.Success -> if (isTermux) stringResource(R.string.settings_ui_local_linux_tools_ready) else stringResource(R.string.settings_ui_ubuntu_container_ready)
+                    is LocalInstallerState.Error -> stringResource(R.string.settings_ui_setup_encountered_an_issue)
+                    is LocalInstallerState.Idle -> if (isTermux) stringResource(R.string.settings_ui_initialize_linux_environment) else stringResource(R.string.settings_ui_install_ubuntu_container_arm64)
+                    is LocalInstallerState.Discovering -> if (isTermux) stringResource(R.string.settings_ui_locating_latest_bootstrap) else stringResource(R.string.settings_ui_locating_ubuntu_rootfs)
+                    is LocalInstallerState.AwaitingConfirmation -> if (isTermux) stringResource(R.string.settings_ui_confirm_bootstrap_installation) else stringResource(R.string.settings_ui_confirm_ubuntu_installation)
+                    is LocalInstallerState.Downloading -> stringResource(R.string.settings_ui_downloading_toolchain)
+                    is LocalInstallerState.Extracting -> stringResource(R.string.settings_ui_extracting_linking_files)
+                    is LocalInstallerState.Configuring -> stringResource(R.string.settings_ui_finalizing_permissions)
+                    is LocalInstallerState.Verifying -> stringResource(R.string.settings_ui_verifying_environment)
                 },
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
@@ -199,15 +199,15 @@ fun FullScreenLocalToolsInstaller(
 
             Text(
                 text = when (installerState) {
-                    is LocalInstallerState.Success -> if (isTermux) "Termux-compatible shell, coreutils & AGY tools are installed and ready." else "Ubuntu ARM64 container, bash, glibc & AGY tools are ready."
-                    is LocalInstallerState.Error -> "Failed to unpack rootfs. You can retry or pick a local ZIP archive."
-                    is LocalInstallerState.Idle -> if (isTermux) "Select how you would like to set up the local Termux environment for AntiGem:" else "Select how you would like to set up the Ubuntu Linux container for AntiGem:"
-                    is LocalInstallerState.Discovering -> "Checking releases for the latest verified rootfs archive."
-                    is LocalInstallerState.AwaitingConfirmation -> "Review details below and confirm to begin installation."
-                    is LocalInstallerState.Downloading -> "Fetching rootfs archive into secure application storage."
-                    is LocalInstallerState.Extracting -> "Decompressing packages, setting Unix permissions, and mapping symlinks."
-                    is LocalInstallerState.Configuring -> "Configuring startup scripts, environment variables, and shell binaries."
-                    is LocalInstallerState.Verifying -> "Running verification checks on installed binaries and symlinks."
+                    is LocalInstallerState.Success -> if (isTermux) stringResource(R.string.settings_ui_termux_compatible_shell_coreutils_agy_to) else stringResource(R.string.settings_ui_ubuntu_arm64_container_bash_glibc_agy_to)
+                    is LocalInstallerState.Error -> stringResource(R.string.settings_ui_failed_to_unpack_rootfs_you_can_retry_or)
+                    is LocalInstallerState.Idle -> if (isTermux) stringResource(R.string.settings_ui_select_how_you_would_like_to_set_up_the) else stringResource(R.string.settings_ui_select_how_you_would_like_to_set_up_the_2)
+                    is LocalInstallerState.Discovering -> stringResource(R.string.settings_ui_checking_releases_for_the_latest_verifie)
+                    is LocalInstallerState.AwaitingConfirmation -> stringResource(R.string.settings_ui_review_details_below_and_confirm_to_begi)
+                    is LocalInstallerState.Downloading -> stringResource(R.string.settings_ui_fetching_rootfs_archive_into_secure_appl)
+                    is LocalInstallerState.Extracting -> stringResource(R.string.settings_ui_decompressing_packages_setting_unix_perm)
+                    is LocalInstallerState.Configuring -> stringResource(R.string.settings_ui_configuring_startup_scripts_environment)
+                    is LocalInstallerState.Verifying -> stringResource(R.string.settings_ui_running_verification_checks_on_installed)
                 },
                 fontSize = 13.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -329,8 +329,8 @@ fun FullScreenLocalToolsInstaller(
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Text(
                                     when (hardwareInfo.hasAtomics) {
-                                        true -> "Supported"
-                                        false -> "Not Supported"
+                                        true -> stringResource(R.string.settings_ui_supported)
+                                        false -> stringResource(R.string.settings_ui_not_supported)
                                         else -> "N/A"
                                     },
                                     fontSize = 11.5.sp,
@@ -379,7 +379,7 @@ fun FullScreenLocalToolsInstaller(
                                 Column(modifier = Modifier.weight(1f)) {
                                     Row(verticalAlignment = Alignment.CenterVertically) {
                                         Text(
-                                            text = if (isTermux) "Auto Download from GitHub" else "Ubuntu ARM64 Base (Light)",
+                                            text = if (isTermux) stringResource(R.string.settings_ui_auto_download_from_github) else stringResource(R.string.settings_ui_ubuntu_arm64_base_light),
                                             fontSize = 14.sp,
                                             fontWeight = FontWeight.Bold,
                                             color = MaterialTheme.colorScheme.onSurface
@@ -391,15 +391,15 @@ fun FullScreenLocalToolsInstaller(
                                                 .background(QuotaGreen.copy(alpha = 0.15f))
                                                 .padding(horizontal = 5.dp, vertical = 1.dp)
                                         ) {
-                                            Text(if (isTermux) "Official" else "Recommended", fontSize = 9.5.sp, fontWeight = FontWeight.Bold, color = QuotaGreen)
+                                            Text(if (isTermux) stringResource(R.string.settings_ui_official) else stringResource(R.string.settings_ui_recommended), fontSize = 9.5.sp, fontWeight = FontWeight.Bold, color = QuotaGreen)
                                         }
                                     }
                                     Spacer(modifier = Modifier.height(2.dp))
                                     Text(
                                         text = if (isTermux) {
-                                            "Downloads verified Termux rootfs (~350MB) with preconfigured tools and environment."
+                                            stringResource(R.string.settings_ui_downloads_verified_termux_rootfs_350mb_w)
                                         } else {
-                                            "Downloads official minimal Ubuntu ARM64 rootfs container with glibc, bash, and development tools."
+                                            stringResource(R.string.settings_ui_downloads_official_minimal_ubuntu_arm64)
                                         },
                                         fontSize = 12.sp,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -430,16 +430,16 @@ fun FullScreenLocalToolsInstaller(
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Column(modifier = Modifier.weight(1f)) {
                                         Text(
-                                            text = if (isTermux) "Select Local ZIP Archive" else "Custom Ubuntu Rootfs (.zip)",
+                                            text = if (isTermux) stringResource(R.string.settings_ui_select_local_zip_archive) else stringResource(R.string.settings_ui_custom_ubuntu_rootfs_zip),
                                             fontSize = 14.sp,
                                             fontWeight = FontWeight.Bold,
                                             color = MaterialTheme.colorScheme.onSurface
                                         )
                                         Text(
                                             text = if (isTermux) {
-                                                "Pick an existing bootstrap backup or custom rootfs from phone storage."
+                                                stringResource(R.string.settings_ui_pick_an_existing_bootstrap_backup_or_cus)
                                             } else {
-                                                "Pick an existing container backup or custom rootfs (bootstraps.zip) from phone storage."
+                                                stringResource(R.string.settings_ui_pick_an_existing_container_backup_or_cus)
                                             },
                                             fontSize = 12.sp,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -456,13 +456,13 @@ fun FullScreenLocalToolsInstaller(
                                         Icon(imageVector = Icons.Outlined.FolderOpen, contentDescription = null, modifier = Modifier.size(16.dp))
                                         Spacer(modifier = Modifier.width(6.dp))
                                         Text(
-                                            text = if (selectedFileUri != null) "Change Selected ZIP" else "Browse & Select ZIP File",
+                                            text = if (selectedFileUri != null) stringResource(R.string.settings_ui_change_selected_zip) else stringResource(R.string.settings_ui_browse_select_zip_file),
                                             fontSize = 13.sp
                                         )
                                     }
                                     if (selectedFileUri != null) {
                                         Text(
-                                            text = "Selected: ${selectedFileUri.toString().substringAfterLast("/")}",
+                                            text = stringResource(R.string.settings_ui_selected_selectedfileuri_tostring_substr, selectedFileUri.toString().substringAfterLast("/")),
                                             fontSize = 11.sp,
                                             fontFamily = FontFamily.Monospace,
                                             color = QuotaGreen,
@@ -516,7 +516,7 @@ fun FullScreenLocalToolsInstaller(
                                         }
                                         Spacer(modifier = Modifier.height(2.dp))
                                         Text(
-                                            text = "Downloads clean official Termux base bootstrap for ${LocalEnvironmentManager.getBootstrapArch()} with core utilities and package manager.",
+                                            text = stringResource(R.string.settings_ui_downloads_clean_official_termux_base_boo, LocalEnvironmentManager.getBootstrapArch()),
                                             fontSize = 12.sp,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant
                                         )
@@ -732,7 +732,7 @@ fun FullScreenLocalToolsInstaller(
                             }
                             Spacer(modifier = Modifier.height(10.dp))
                             Text(
-                                text = "Running test: ${state.testName}",
+                                text = stringResource(R.string.settings_ui_running_test_state_testname, state.testName),
                                 fontSize = 11.5.sp,
                                 fontFamily = FontFamily.Monospace,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -888,9 +888,9 @@ fun FullScreenLocalToolsInstaller(
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
                             text = when (selectedSourceType) {
-                                0 -> if (isTermux) "Download & Install AntiGem (~350MB)" else "Download & Install Ubuntu Base"
-                                1 -> "Download Base Termux (~33MB)"
-                                else -> if (selectedFileUri != null) "Install Local ZIP" else "Choose ZIP File"
+                                0 -> if (isTermux) stringResource(R.string.settings_ui_download_install_antigem_350mb) else stringResource(R.string.settings_ui_download_install_ubuntu_base)
+                                1 -> stringResource(R.string.settings_ui_download_base_termux_33mb)
+                                else -> if (selectedFileUri != null) stringResource(R.string.settings_ui_install_local_zip) else stringResource(R.string.settings_ui_choose_zip_file)
                             },
                             fontSize = 15.sp,
                             fontWeight = FontWeight.Bold,

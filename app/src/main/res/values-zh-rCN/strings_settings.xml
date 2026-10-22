@@ -713,6 +713,10 @@
     <string name="settings_start_restore">开始还原</string>
     <!-- 原文: Start Restore (restore_projects) -->
     <string name="settings_start_restore_restore_projects">开始恢复（restore_projects）</string>
+    <!-- 原文: Off -->
+    <string name="settings_state_off">关闭</string>
+    <!-- 原文: On -->
+    <string name="settings_state_on">开启</string>
     <!-- 原文: ⚡ Stdio: %1$s %2$s... -->
     <string name="settings_stdio_cmd_command_cli_cmd_args_emptylist">⚡ Stdio：%1$s %2$s...</string>
     <!-- 原文: Step 1: Downloading / Importing -->
@@ -811,6 +815,216 @@
     <string name="settings_turbo">⚡ 加速</string>
     <!-- 原文: Ubuntu Linux Container (PRoot ARM64) -->
     <string name="settings_ubuntu_linux_container_proot_arm64">Ubuntu Linux 容器（PRoot ARM64）</string>
+    <!-- 原文: 0 Configured -->
+    <string name="settings_ui_0_configured">已配置 0 个</string>
+    <!-- 原文: %1$s Active -->
+    <string name="settings_ui_activemcpcount_active">%1$s 个启用中</string>
+    <!-- 原文: AGY Hub & IDE Bridge endpoints -->
+    <string name="settings_ui_agy_hub_ide_bridge_endpoints">AGY 中枢与 IDE 桥接端点</string>
+    <!-- 原文: All Automation Disabled -->
+    <string name="settings_ui_all_automation_disabled">所有自动化已停用</string>
+    <!-- 原文: Anthropic Claude Code CLI -->
+    <string name="settings_ui_anthropic_claude_code_cli">Anthropic Claude Code 命令行</string>
+    <!-- 原文: Antigravity and Claude Code -->
+    <string name="settings_ui_antigravity_and_claude_code">Antigravity 与 Claude Code</string>
+    <!-- 原文: Antigravity only -->
+    <string name="settings_ui_antigravity_only">仅 Antigravity</string>
+    <!-- 原文: ✋ Ask User -->
+    <string name="settings_ui_ask_user">✋ 询问用户</string>
+    <!-- 原文: Auto Download from GitHub -->
+    <string name="settings_ui_auto_download_from_github">从 GitHub 自动下载</string>
+    <!-- 原文: Auto Download (GitHub) -->
+    <string name="settings_ui_auto_download_github">自动下载（GitHub）</string>
+    <!-- 原文: Auto-downloads verified AntiGem rootfs (~350MB) with preconfigured tools and environment -->
+    <string name="settings_ui_auto_downloads_verified_antigem_rootfs_3">自动下载已校验的 AntiGem rootfs（约 350MB），含预配置工具与环境</string>
+    <!-- 原文: ⚡ Auto-Run -->
+    <string name="settings_ui_auto_run">⚡ 自动运行</string>
+    <!-- 原文: Auto (System) -->
+    <string name="settings_ui_auto_system">跟随系统</string>
+    <!-- 原文: Backup rootfs environment and AGY chat histories -->
+    <string name="settings_ui_backup_rootfs_environment_and_agy_chat_h">备份 rootfs 环境与 AGY 对话历史</string>
+    <!-- 原文: Browse & Select ZIP File -->
+    <string name="settings_ui_browse_select_zip_file">浏览并选择 ZIP 文件</string>
+    <!-- 原文: Browser: %1$s • Terminal: %2$s • Flow: %3$s -->
+    <string name="settings_ui_browser_if_isbrowserautomationenabled_on">浏览器：%1$s · 终端：%2$s · Flow：%3$s</string>
+    <!-- 原文: Change Selected ZIP -->
+    <string name="settings_ui_change_selected_zip">更换已选 ZIP</string>
+    <!-- 原文: Checking releases for the latest verified rootfs archive. -->
+    <string name="settings_ui_checking_releases_for_the_latest_verifie">正在检查最新已校验的 rootfs 发布包。</string>
+    <!-- 原文: Choose ZIP -->
+    <string name="settings_ui_choose_zip">选择 ZIP</string>
+    <!-- 原文: Choose ZIP File -->
+    <string name="settings_ui_choose_zip_file">选择 ZIP 文件</string>
+    <!-- 原文: Claude Code only -->
+    <string name="settings_ui_claude_code_only">仅 Claude Code</string>
+    <!-- 原文: Configuring startup scripts, environment variables, and shell binaries. -->
+    <string name="settings_ui_configuring_startup_scripts_environment">正在配置启动脚本、环境变量与 shell 可执行文件。</string>
+    <!-- 原文: Confirm Bootstrap Installation -->
+    <string name="settings_ui_confirm_bootstrap_installation">确认安装 Bootstrap</string>
+    <!-- 原文: Confirm Ubuntu Installation -->
+    <string name="settings_ui_confirm_ubuntu_installation">确认安装 Ubuntu</string>
+    <!-- 原文: Custom Ubuntu Rootfs (.zip) -->
+    <string name="settings_ui_custom_ubuntu_rootfs_zip">自定义 Ubuntu rootfs（.zip）</string>
+    <!-- 原文: Dark Mode -->
+    <string name="settings_ui_dark_mode">深色模式</string>
+    <!-- 原文: Decompressing packages, setting Unix permissions, and mapping symlinks. -->
+    <string name="settings_ui_decompressing_packages_setting_unix_perm">正在解压软件包、设置 Unix 权限并建立符号链接。</string>
+    <!-- 原文: Disabled -->
+    <string name="settings_ui_disabled">已停用</string>
+    <!-- 原文: Disk space: %1$s -->
+    <string name="settings_ui_disk_space_state_totaldiskusageformatted">磁盘空间：%1$s</string>
+    <!-- 原文: Download Base Termux (~33MB) -->
+    <string name="settings_ui_download_base_termux_33mb">下载基础 Termux（约 33MB）</string>
+    <!-- 原文: Download & Install AntiGem (~350MB) -->
+    <string name="settings_ui_download_install_antigem_350mb">下载并安装 AntiGem（约 350MB）</string>
+    <!-- 原文: Download & Install Ubuntu Base -->
+    <string name="settings_ui_download_install_ubuntu_base">下载并安装 Ubuntu 基础包</string>
+    <!-- 原文: Downloading and unpacking native Linux toolchain inside your app sandbox. -->
+    <string name="settings_ui_downloading_and_unpacking_native_linux_t">正在应用沙箱内下载并解压本地 Linux 工具链。</string>
+    <!-- 原文: Downloading Toolchain... -->
+    <string name="settings_ui_downloading_toolchain">正在下载工具链……</string>
+    <!-- 原文: Downloads clean official Termux base bootstrap for %1$s with core utilities and package manager. -->
+    <string name="settings_ui_downloads_clean_official_termux_base_boo">下载官方纯净的 Termux 基础 bootstrap（%1$s 架构），含核心工具与包管理器。</string>
+    <!-- 原文: Downloads clean official Termux base bootstrap (%1$s) with essential coreutils -->
+    <string name="settings_ui_downloads_clean_official_termux_base_boo_2">下载官方纯净的 Termux 基础 bootstrap（%1$s 架构），含核心 coreutils</string>
+    <!-- 原文: Downloads official minimal Ubuntu ARM64 rootfs container with glibc, bash, and development tools. -->
+    <string name="settings_ui_downloads_official_minimal_ubuntu_arm64">下载官方精简 Ubuntu ARM64 rootfs 容器，含 glibc、bash 与开发工具。</string>
+    <!-- 原文: Downloads official minimal Ubuntu ARM64 container rootfs with glibc, bash, and development tools -->
+    <string name="settings_ui_downloads_official_minimal_ubuntu_arm64_2">下载官方精简 Ubuntu ARM64 容器 rootfs，含 glibc、bash 与开发工具</string>
+    <!-- 原文: Downloads verified Termux rootfs (~350MB) with preconfigured tools and environment. -->
+    <string name="settings_ui_downloads_verified_termux_rootfs_350mb_w">下载已校验的 Termux rootfs（约 350MB），含预配置工具与环境。</string>
+    <!-- 原文: %1$s on -->
+    <string name="settings_ui_enabledagents_size_on">%1$s 个已开启</string>
+    <!-- 原文: Extracting & Linking Files... -->
+    <string name="settings_ui_extracting_linking_files">正在解压并链接文件……</string>
+    <!-- 原文: Failed to configure local environment. You can retry below. -->
+    <string name="settings_ui_failed_to_configure_local_environment_yo">本地环境配置失败，可在下方重试。</string>
+    <!-- 原文: Failed to unpack rootfs. You can retry or pick a local ZIP archive. -->
+    <string name="settings_ui_failed_to_unpack_rootfs_you_can_retry_or">rootfs 解包失败，可以重试或选择本地 ZIP 包。</string>
+    <!-- 原文: Fetching rootfs archive into secure application storage. -->
+    <string name="settings_ui_fetching_rootfs_archive_into_secure_appl">正在把 rootfs 包下载到应用私有存储。</string>
+    <!-- 原文: Finalizing Permissions... -->
+    <string name="settings_ui_finalizing_permissions">正在完成权限配置……</string>
+    <!-- 原文: Found Termux Bootstrap Package -->
+    <string name="settings_ui_found_termux_bootstrap_package">找到 Termux Bootstrap 包</string>
+    <!-- 原文: Found Ubuntu Container Package -->
+    <string name="settings_ui_found_ubuntu_container_package">找到 Ubuntu 容器包</string>
+    <!-- 原文: Full Access -->
+    <string name="settings_ui_full_access">完全访问</string>
+    <!-- 原文: Google Antigravity agent (agy hub) -->
+    <string name="settings_ui_google_antigravity_agent_agy_hub">Google Antigravity 智能体（agy 中枢）</string>
+    <!-- 原文: Initialize Linux Environment -->
+    <string name="settings_ui_initialize_linux_environment">初始化 Linux 环境</string>
+    <!-- 原文: Install Local Linux Tools -->
+    <string name="settings_ui_install_local_linux_tools">安装本地 Linux 工具</string>
+    <!-- 原文: Install Local ZIP -->
+    <string name="settings_ui_install_local_zip">安装本地 ZIP</string>
+    <!-- 原文: Install Ubuntu Container (ARM64) -->
+    <string name="settings_ui_install_ubuntu_container_arm64">安装 Ubuntu 容器（ARM64）</string>
+    <!-- 原文: Install ZIP, update, rename, enable or disable MCP extensions -->
+    <string name="settings_ui_install_zip_update_rename_enable_or_disa">安装 ZIP、更新、重命名、启用或停用 MCP 扩展</string>
+    <!-- 原文: Installation Error -->
+    <string name="settings_ui_installation_error">安装出错</string>
+    <!-- 原文: Installation Logs (%1$s) -->
+    <string name="settings_ui_installation_logs_installerlogs_size">安装日志（%1$s）</string>
+    <!-- 原文: Installed at: %1$s -->
+    <string name="settings_ui_installed_at_state_prefixpath">安装位置：%1$s</string>
+    <!-- 原文: Installed skills, Google plugins catalog, and markdown guides -->
+    <string name="settings_ui_installed_skills_google_plugins_catalog">已安装的技能、Google 插件目录与 Markdown 指南</string>
+    <!-- 原文: Light Mode -->
+    <string name="settings_ui_light_mode">浅色模式</string>
+    <!-- 原文: Local Linux Environment -->
+    <string name="settings_ui_local_linux_environment">本地 Linux 环境</string>
+    <!-- 原文: Local Linux Tools Ready! -->
+    <string name="settings_ui_local_linux_tools_ready">本地 Linux 工具已就绪</string>
+    <!-- 原文: Local Tools Ready! -->
+    <string name="settings_ui_local_tools_ready">本地工具已就绪</string>
+    <!-- 原文: Local ZIP Archive -->
+    <string name="settings_ui_local_zip_archive">本地 ZIP 包</string>
+    <!-- 原文: Locating Latest Bootstrap... -->
+    <string name="settings_ui_locating_latest_bootstrap">正在查找最新 Bootstrap……</string>
+    <!-- 原文: Locating Ubuntu Rootfs... -->
+    <string name="settings_ui_locating_ubuntu_rootfs">正在查找 Ubuntu rootfs……</string>
+    <!-- 原文: Model Context Protocol tools & integrations -->
+    <string name="settings_ui_model_context_protocol_tools_integration">模型上下文协议（MCP）工具与集成</string>
+    <!-- 原文: None -->
+    <string name="settings_ui_none">无</string>
+    <!-- 原文: Not Supported -->
+    <string name="settings_ui_not_supported">不支持</string>
+    <!-- 原文: Official -->
+    <string name="settings_ui_official">官方</string>
+    <!-- 原文: Offline -->
+    <string name="settings_ui_offline">离线</string>
+    <!-- 原文: Online -->
+    <string name="settings_ui_online">在线</string>
+    <!-- 原文: Partial -->
+    <string name="settings_ui_partial">部分可用</string>
+    <!-- 原文: Pick an existing bootstrap backup or custom rootfs from phone storage. -->
+    <string name="settings_ui_pick_an_existing_bootstrap_backup_or_cus">从手机存储选择已有的 bootstrap 备份或自定义 rootfs。</string>
+    <!-- 原文: Pick an existing bootstrap .zip file from device (Offline) -->
+    <string name="settings_ui_pick_an_existing_bootstrap_zip_file_from">从设备选择已有的 bootstrap .zip 文件（离线）</string>
+    <!-- 原文: Pick an existing container backup or custom rootfs (bootstraps.zip) from phone storage. -->
+    <string name="settings_ui_pick_an_existing_container_backup_or_cus">从手机存储选择已有的容器备份或自定义 rootfs（bootstraps.zip）。</string>
+    <!-- 原文: Pick an existing container backup or custom rootfs (bootstraps.zip) from phone storage -->
+    <string name="settings_ui_pick_an_existing_container_backup_or_cus_2">从手机存储选择已有的容器备份或自定义 rootfs（bootstraps.zip）</string>
+    <!-- 原文: Policy: %1$s • %2$s -->
+    <string name="settings_ui_policy_policybadge_sandboxsummary">策略：%1$s · %2$s</string>
+    <!-- 原文: Recommended -->
+    <string name="settings_ui_recommended">推荐</string>
+    <!-- 原文: Review details below and confirm to begin installation. -->
+    <string name="settings_ui_review_details_below_and_confirm_to_begi">查看下方详情，确认后开始安装。</string>
+    <!-- 原文: Rootfs Active -->
+    <string name="settings_ui_rootfs_active">rootfs 运行中</string>
+    <!-- 原文: Running test: %1$s -->
+    <string name="settings_ui_running_test_state_testname">正在运行测试：%1$s</string>
+    <!-- 原文: Running verification checks on installed binaries and symlinks. -->
+    <string name="settings_ui_running_verification_checks_on_installed">正在校验已安装的可执行文件与符号链接。</string>
+    <!-- 原文: Sandbox OFF -->
+    <string name="settings_ui_sandbox_off">沙箱关闭</string>
+    <!-- 原文: Sandbox ON -->
+    <string name="settings_ui_sandbox_on">沙箱开启</string>
+    <!-- 原文: Select how you would like to download and install the Termux rootfs: -->
+    <string name="settings_ui_select_how_you_would_like_to_download_an">选择你希望如何下载并安装 Termux rootfs：</string>
+    <!-- 原文: Select how you would like to set up the local Termux environment for AntiGem: -->
+    <string name="settings_ui_select_how_you_would_like_to_set_up_the">选择你希望如何为 AntiGem 搭建本地 Termux 环境：</string>
+    <!-- 原文: Select how you would like to set up the Ubuntu Linux container for AntiGem: -->
+    <string name="settings_ui_select_how_you_would_like_to_set_up_the_2">选择你希望如何为 AntiGem 搭建 Ubuntu Linux 容器：</string>
+    <!-- 原文: Select Local ZIP Archive -->
+    <string name="settings_ui_select_local_zip_archive">选择本地 ZIP 包</string>
+    <!-- 原文: Selected: %1$s -->
+    <string name="settings_ui_selected_selectedfileuri_tostring_substr">已选择：%1$s</string>
+    <!-- 原文: Setting Up Local Tools -->
+    <string name="settings_ui_setting_up_local_tools">正在搭建本地工具</string>
+    <!-- 原文: Setup Encountered an Issue -->
+    <string name="settings_ui_setup_encountered_an_issue">安装遇到问题</string>
+    <!-- 原文: Shared by both agents -->
+    <string name="settings_ui_shared_by_both_agents">两个智能体共用</string>
+    <!-- 原文: 🛡️ Smart Safety -->
+    <string name="settings_ui_smart_safety">🛡️ 智能防护</string>
+    <!-- 原文: SSH Mode (Termux sshd) -->
+    <string name="settings_ui_ssh_mode_termux_sshd">SSH 模式（Termux sshd）</string>
+    <!-- 原文: Supported -->
+    <string name="settings_ui_supported">支持</string>
+    <!-- 原文: Termux-compatible shell, coreutils & AGY tools are installed and ready. -->
+    <string name="settings_ui_termux_compatible_shell_coreutils_agy_to">Termux 兼容的 shell、coreutils 与 AGY 工具已安装就绪。</string>
+    <!-- 原文: Termux-compatible shell, coreutils & toolchain are now active. -->
+    <string name="settings_ui_termux_compatible_shell_coreutils_toolch">Termux 兼容的 shell、coreutils 与工具链已启用。</string>
+    <!-- 原文: %1$s • %2$s% text scale -->
+    <string name="settings_ui_themelabel_chatfontscale_100_toint_text">%1$s · 文字缩放 %2$s%%</string>
+    <!-- 原文: %1$s server(s) • global mcp_config.json -->
+    <string name="settings_ui_totalmcpcount_server_s_global_mcp_config">%1$s 个服务器 · 全局 mcp_config.json</string>
+    <!-- 原文: %1$s Skills • %2$s Plugins -->
+    <string name="settings_ui_totalskillscount_skills_totalpluginscoun">%1$s 个技能 · %2$s 个插件</string>
+    <!-- 原文: Ubuntu ARM64 Base (Light) -->
+    <string name="settings_ui_ubuntu_arm64_base_light">Ubuntu ARM64 基础版（精简）</string>
+    <!-- 原文: Ubuntu ARM64 container, bash, glibc & AGY tools are ready. -->
+    <string name="settings_ui_ubuntu_arm64_container_bash_glibc_agy_to">Ubuntu ARM64 容器、bash、glibc 与 AGY 工具已就绪。</string>
+    <!-- 原文: Ubuntu Container Ready! -->
+    <string name="settings_ui_ubuntu_container_ready">Ubuntu 容器已就绪</string>
+    <!-- 原文: Verifying Environment... -->
+    <string name="settings_ui_verifying_environment">正在验证环境……</string>
+    <!-- 原文: Which agents run, and the local server they share -->
+    <string name="settings_ui_which_agents_run_and_the_local_server_th">决定运行哪些智能体，以及它们共用的本地服务器</string>
     <!-- 原文: Unable to Load MCP Servers -->
     <string name="settings_unable_to_load_mcp_servers">无法加载 MCP 服务器</string>
     <!-- 原文: Unable to Load Permissions from AGY Hub -->

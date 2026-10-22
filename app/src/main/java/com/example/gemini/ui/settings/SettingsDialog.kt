@@ -603,17 +603,17 @@ private fun MainSettingsMenu(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        SettingsGroupHeader("Agents", MaterialTheme.colorScheme.primary, "Which agents run, and the local server they share")
+        SettingsGroupHeader(stringResource(R.string.settings_agents), MaterialTheme.colorScheme.primary, stringResource(R.string.settings_ui_which_agents_run_and_the_local_server_th))
         SettingsCategoryCard(
             icon = Icons.Outlined.SmartToy,
             iconTint = MaterialTheme.colorScheme.primary,
-            title = "Agents",
+            title = stringResource(R.string.settings_agents),
             subtitle = when {
-                agyOn && claudeOn -> "Antigravity and Claude Code"
-                claudeOn -> "Claude Code only"
-                else -> "Antigravity only"
+                agyOn && claudeOn -> stringResource(R.string.settings_ui_antigravity_and_claude_code)
+                claudeOn -> stringResource(R.string.settings_ui_claude_code_only)
+                else -> stringResource(R.string.settings_ui_antigravity_only)
             },
-            badgeText = "${enabledAgents.size} on",
+            badgeText = stringResource(R.string.settings_ui_enabledagents_size_on, enabledAgents.size),
             badgeColor = MaterialTheme.colorScheme.primary,
             cardBg = cardBg,
             cardBorder = cardBorder,
@@ -621,15 +621,15 @@ private fun MainSettingsMenu(
         )
         // Section 2: Servers & Network
         val (serverBadge, serverColor) = when {
-            isServerOnline && isBridgeOnline -> "Online" to QuotaGreen
-            isServerOnline || isBridgeOnline -> "Partial" to Color(0xFFFFA000)
-            else -> "Offline" to Color.Red
+            isServerOnline && isBridgeOnline -> stringResource(R.string.settings_ui_online) to QuotaGreen
+            isServerOnline || isBridgeOnline -> stringResource(R.string.settings_ui_partial) to Color(0xFFFFA000)
+            else -> stringResource(R.string.settings_ui_offline) to Color.Red
         }
         SettingsCategoryCard(
             icon = Icons.Outlined.Dns,
             iconTint = serverColor,
-            title = "Servers & Connectivity",
-            subtitle = "AGY Hub & IDE Bridge endpoints",
+            title = stringResource(R.string.settings_servers_connectivity),
+            subtitle = stringResource(R.string.settings_ui_agy_hub_ide_bridge_endpoints),
             badgeText = serverBadge,
             badgeColor = serverColor,
             cardBg = cardBg,
@@ -640,22 +640,22 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Extension,
             iconTint = MaterialTheme.colorScheme.primary,
-            title = "WebView Extensions",
-            subtitle = "Install ZIP, update, rename, enable or disable MCP extensions",
+            title = stringResource(R.string.settings_webview_extensions),
+            subtitle = stringResource(R.string.settings_ui_install_zip_update_rename_enable_or_disa),
             cardBg = cardBg,
             cardBorder = cardBorder,
             onClick = { onNavigate(SettingsSection.WEBVIEW_EXTENSIONS) }
         )
 
         if (agyOn) {
-        SettingsGroupHeader("Antigravity", GeminiBlue, "Google Antigravity agent (agy hub)")
+        SettingsGroupHeader("Antigravity", GeminiBlue, stringResource(R.string.settings_ui_google_antigravity_agent_agy_hub))
         // Section 3: MCP Servers & Tools
         val activeMcpCount = mcpServers.count { it.isEnabled }
         val totalMcpCount = mcpServers.size
         val mcpBadge = when {
-            totalMcpCount == 0 -> "0 Configured"
-            activeMcpCount > 0 -> "$activeMcpCount Active"
-            else -> "Disabled"
+            totalMcpCount == 0 -> stringResource(R.string.settings_ui_0_configured)
+            activeMcpCount > 0 -> stringResource(R.string.settings_ui_activemcpcount_active, activeMcpCount)
+            else -> stringResource(R.string.settings_ui_disabled)
         }
         val mcpColor = when {
             activeMcpCount > 0 -> QuotaGreen
@@ -665,8 +665,8 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Extension,
             iconTint = mcpColor,
-            title = "MCP Servers & Tools",
-            subtitle = if (totalMcpCount > 0) "$totalMcpCount server(s) • global mcp_config.json" else "Model Context Protocol tools & integrations",
+            title = stringResource(R.string.settings_mcp_servers_tools),
+            subtitle = if (totalMcpCount > 0) stringResource(R.string.settings_ui_totalmcpcount_server_s_global_mcp_config, totalMcpCount) else stringResource(R.string.settings_ui_model_context_protocol_tools_integration),
             badgeText = mcpBadge,
             badgeColor = mcpColor,
             cardBg = cardBg,
@@ -677,12 +677,12 @@ private fun MainSettingsMenu(
         // Section 3.5: Skills & Plugins
         val totalSkillsCount = allSkills.size
         val totalPluginsCount = installedPlugins.size
-        val skillsBadge = "$totalSkillsCount Skills • $totalPluginsCount Plugins"
+        val skillsBadge = stringResource(R.string.settings_ui_totalskillscount_skills_totalpluginscoun, totalSkillsCount, totalPluginsCount)
         SettingsCategoryCard(
             icon = Icons.Outlined.AutoAwesome,
             iconTint = GeminiBlue,
-            title = "Skills & Plugins",
-            subtitle = "Installed skills, Google plugins catalog, and markdown guides",
+            title = stringResource(R.string.settings_skills_plugins),
+            subtitle = stringResource(R.string.settings_ui_installed_skills_google_plugins_catalog),
             badgeText = skillsBadge,
             badgeColor = GeminiBlue,
             cardBg = cardBg,
@@ -692,16 +692,16 @@ private fun MainSettingsMenu(
 
         // Section 5: Commands & Permissions
         val (policyBadge, policyColor) = when {
-            commandAutoExecutionPolicy.contains("EAGER", ignoreCase = true) -> "⚡ Auto-Run" to QuotaGreen
-            commandAutoExecutionPolicy.contains("AUTO", ignoreCase = true) -> "🛡️ Smart Safety" to Color(0xFF00ACC1)
-            else -> "✋ Ask User" to Color(0xFFF59E0B)
+            commandAutoExecutionPolicy.contains("EAGER", ignoreCase = true) -> stringResource(R.string.settings_ui_auto_run) to QuotaGreen
+            commandAutoExecutionPolicy.contains("AUTO", ignoreCase = true) -> stringResource(R.string.settings_ui_smart_safety) to Color(0xFF00ACC1)
+            else -> stringResource(R.string.settings_ui_ask_user) to Color(0xFFF59E0B)
         }
-        val sandboxSummary = if (commandSandboxEnabled) "Sandbox ON" else "Sandbox OFF"
+        val sandboxSummary = if (commandSandboxEnabled) stringResource(R.string.settings_ui_sandbox_on) else stringResource(R.string.settings_ui_sandbox_off)
         SettingsCategoryCard(
             icon = Icons.Outlined.Security,
             iconTint = policyColor,
-            title = "Commands & Permissions",
-            subtitle = "Policy: $policyBadge • $sandboxSummary",
+            title = stringResource(R.string.settings_commands_permissions),
+            subtitle = stringResource(R.string.settings_ui_policy_policybadge_sandboxsummary, policyBadge, sandboxSummary),
             badgeText = policyBadge,
             badgeColor = policyColor,
             cardBg = cardBg,
@@ -712,22 +712,22 @@ private fun MainSettingsMenu(
         }
 
         if (claudeGroup != null && claudeOn) {
-            SettingsGroupHeader("Claude Code", ClaudeAccent, "Anthropic Claude Code CLI")
+            SettingsGroupHeader("Claude Code", ClaudeAccent, stringResource(R.string.settings_ui_anthropic_claude_code_cli))
             claudeGroup()
         }
 
-        SettingsGroupHeader("App", MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f), "Shared by both agents")
+        SettingsGroupHeader(stringResource(R.string.component_app), MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f), stringResource(R.string.settings_ui_shared_by_both_agents))
         // Section 1: Appearance & Display
         val themeLabel = when (themeMode) {
-            "DARK" -> "Dark Mode"
-            "LIGHT" -> "Light Mode"
-            else -> "Auto (System)"
+            "DARK" -> stringResource(R.string.settings_ui_dark_mode)
+            "LIGHT" -> stringResource(R.string.settings_ui_light_mode)
+            else -> stringResource(R.string.settings_ui_auto_system)
         }
         SettingsCategoryCard(
             icon = Icons.Outlined.Palette,
             iconTint = ClaudeTerracotta,
-            title = "Appearance & Theme",
-            subtitle = "$themeLabel • ${(chatFontScale * 100).toInt()}% text scale",
+            title = stringResource(R.string.settings_appearance_theme),
+            subtitle = stringResource(R.string.settings_ui_themelabel_chatfontscale_100_toint_text, themeLabel, (chatFontScale * 100).toInt()),
             badgeText = themeLabel,
             cardBg = cardBg,
             cardBorder = cardBorder,
@@ -737,19 +737,19 @@ private fun MainSettingsMenu(
         // Section 4: Automation & Device Bridge
         val autoActiveCount = (if (isBrowserAutomationEnabled) 1 else 0) + (if (isTerminalAutomationEnabled) 1 else 0) + (if (isFlowAutomationEnabled) 1 else 0)
         val (autoBadge, autoColor) = when (autoActiveCount) {
-            3 -> "Full Access" to QuotaGreen
-            0 -> "Disabled" to Color(0xFFFFA000)
-            else -> "Partial" to Color(0xFF00ACC1)
+            3 -> stringResource(R.string.settings_ui_full_access) to QuotaGreen
+            0 -> stringResource(R.string.settings_ui_disabled) to Color(0xFFFFA000)
+            else -> stringResource(R.string.settings_ui_partial) to Color(0xFF00ACC1)
         }
         val autoSummary = if (autoActiveCount == 0) {
-            "All Automation Disabled"
+            stringResource(R.string.settings_ui_all_automation_disabled)
         } else {
-            "Browser: ${if (isBrowserAutomationEnabled) "ON" else "OFF"} • Terminal: ${if (isTerminalAutomationEnabled) "ON" else "OFF"} • Flow: ${if (isFlowAutomationEnabled) "ON" else "OFF"}"
+            stringResource(R.string.settings_ui_browser_if_isbrowserautomationenabled_on, if (isBrowserAutomationEnabled) stringResource(R.string.settings_state_on) else stringResource(R.string.settings_state_off), if (isTerminalAutomationEnabled) stringResource(R.string.settings_state_on) else stringResource(R.string.settings_state_off), if (isFlowAutomationEnabled) stringResource(R.string.settings_state_on) else stringResource(R.string.settings_state_off))
         }
         SettingsCategoryCard(
             icon = Icons.Outlined.SmartToy,
             iconTint = autoColor,
-            title = "Automation & Device Tools",
+            title = stringResource(R.string.settings_automation_device_tools),
             subtitle = autoSummary,
             badgeText = autoBadge,
             badgeColor = autoColor,
@@ -762,8 +762,8 @@ private fun MainSettingsMenu(
         SettingsCategoryCard(
             icon = Icons.Outlined.Terminal,
             iconTint = Color(0xFF00ACC1),
-            title = "Terminal & Shell Execution",
-            subtitle = if (useSshTerminal) "SSH Mode (Termux sshd)" else "Local Linux Environment",
+            title = stringResource(R.string.settings_terminal_shell_execution),
+            subtitle = if (useSshTerminal) stringResource(R.string.settings_ui_ssh_mode_termux_sshd) else stringResource(R.string.settings_ui_local_linux_environment),
             badgeText = if (useSshTerminal) "SSH" else "Local",
             cardBg = cardBg,
             cardBorder = cardBorder,
@@ -775,9 +775,9 @@ private fun MainSettingsMenu(
             SettingsCategoryCard(
                 icon = Icons.Outlined.Backup,
                 iconTint = GeminiBlue,
-                title = "Backups & Restore",
-                subtitle = "Backup rootfs environment and AGY chat histories",
-                badgeText = "Rootfs Active",
+                title = stringResource(R.string.settings_backups_restore),
+                subtitle = stringResource(R.string.settings_ui_backup_rootfs_environment_and_agy_chat_h),
+                badgeText = stringResource(R.string.settings_ui_rootfs_active),
                 badgeColor = GeminiBlue,
                 cardBg = cardBg,
                 cardBorder = cardBorder,

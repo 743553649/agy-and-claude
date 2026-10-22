@@ -142,10 +142,10 @@ fun LocalToolsInstallDialog(
 
                 Text(
                     text = when (installerState) {
-                        is LocalInstallerState.Success -> if (isTermux) "Local Tools Ready!" else "Ubuntu Container Ready!"
-                        is LocalInstallerState.Error -> "Installation Error"
-                        is LocalInstallerState.Idle -> if (isTermux) "Install Local Linux Tools" else "Install Ubuntu Container (ARM64)"
-                        else -> "Setting Up Local Tools"
+                        is LocalInstallerState.Success -> if (isTermux) stringResource(R.string.settings_ui_local_tools_ready) else stringResource(R.string.settings_ui_ubuntu_container_ready)
+                        is LocalInstallerState.Error -> stringResource(R.string.settings_ui_installation_error)
+                        is LocalInstallerState.Idle -> if (isTermux) stringResource(R.string.settings_ui_install_local_linux_tools) else stringResource(R.string.settings_ui_install_ubuntu_container_arm64)
+                        else -> stringResource(R.string.settings_ui_setting_up_local_tools)
                     },
                     fontSize = 19.sp,
                     fontWeight = FontWeight.Bold,
@@ -154,10 +154,10 @@ fun LocalToolsInstallDialog(
 
                 Text(
                     text = when (installerState) {
-                        is LocalInstallerState.Success -> if (isTermux) "Termux-compatible shell, coreutils & toolchain are now active." else "Ubuntu ARM64 container, bash, glibc & AGY tools are ready."
-                        is LocalInstallerState.Error -> "Failed to configure local environment. You can retry below."
-                        is LocalInstallerState.Idle -> if (isTermux) "Select how you would like to download and install the Termux rootfs:" else "Select how you would like to set up the Ubuntu Linux container for AntiGem:"
-                        else -> "Downloading and unpacking native Linux toolchain inside your app sandbox."
+                        is LocalInstallerState.Success -> if (isTermux) stringResource(R.string.settings_ui_termux_compatible_shell_coreutils_toolch) else stringResource(R.string.settings_ui_ubuntu_arm64_container_bash_glibc_agy_to)
+                        is LocalInstallerState.Error -> stringResource(R.string.settings_ui_failed_to_configure_local_environment_yo)
+                        is LocalInstallerState.Idle -> if (isTermux) stringResource(R.string.settings_ui_select_how_you_would_like_to_download_an) else stringResource(R.string.settings_ui_select_how_you_would_like_to_set_up_the_2)
+                        else -> stringResource(R.string.settings_ui_downloading_and_unpacking_native_linux_t)
                     },
                     fontSize = 12.5.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -278,8 +278,8 @@ fun LocalToolsInstallDialog(
                                     Spacer(modifier = Modifier.height(1.dp))
                                     Text(
                                         when (hardwareInfo.hasAtomics) {
-                                            true -> "Supported"
-                                            false -> "None"
+                                            true -> stringResource(R.string.settings_ui_supported)
+                                            false -> stringResource(R.string.settings_ui_none)
                                             else -> "N/A"
                                         },
                                         fontSize = 11.sp,
@@ -354,7 +354,7 @@ fun LocalToolsInstallDialog(
                                     Column(modifier = Modifier.weight(1f)) {
                                         Row(verticalAlignment = Alignment.CenterVertically) {
                                             Text(
-                                                text = if (isTermux) "Auto Download (GitHub)" else "Ubuntu ARM64 Base (Light)",
+                                                text = if (isTermux) stringResource(R.string.settings_ui_auto_download_github) else stringResource(R.string.settings_ui_ubuntu_arm64_base_light),
                                                 fontSize = 13.5.sp,
                                                 fontWeight = FontWeight.Bold,
                                                 color = MaterialTheme.colorScheme.onSurface
@@ -366,14 +366,14 @@ fun LocalToolsInstallDialog(
                                                     .background(QuotaGreen.copy(alpha = 0.15f))
                                                     .padding(horizontal = 5.dp, vertical = 1.dp)
                                             ) {
-                                                Text(if (isTermux) "Recommended" else "Official", fontSize = 9.5.sp, fontWeight = FontWeight.Bold, color = QuotaGreen)
+                                                Text(if (isTermux) stringResource(R.string.settings_ui_recommended) else stringResource(R.string.settings_ui_official), fontSize = 9.5.sp, fontWeight = FontWeight.Bold, color = QuotaGreen)
                                             }
                                         }
                                         Text(
                                             text = if (isTermux) {
-                                                "Auto-downloads verified AntiGem rootfs (~350MB) with preconfigured tools and environment"
+                                                stringResource(R.string.settings_ui_auto_downloads_verified_antigem_rootfs_3)
                                             } else {
-                                                "Downloads official minimal Ubuntu ARM64 container rootfs with glibc, bash, and development tools"
+                                                stringResource(R.string.settings_ui_downloads_official_minimal_ubuntu_arm64_2)
                                             },
                                             fontSize = 11.5.sp,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -404,16 +404,16 @@ fun LocalToolsInstallDialog(
                                         Spacer(modifier = Modifier.width(6.dp))
                                         Column(modifier = Modifier.weight(1f)) {
                                             Text(
-                                                text = if (isTermux) "Local ZIP Archive" else "Custom Ubuntu Rootfs (.zip)",
+                                                text = if (isTermux) stringResource(R.string.settings_ui_local_zip_archive) else stringResource(R.string.settings_ui_custom_ubuntu_rootfs_zip),
                                                 fontSize = 13.5.sp,
                                                 fontWeight = FontWeight.Bold,
                                                 color = MaterialTheme.colorScheme.onSurface
                                             )
                                             Text(
                                                 text = if (isTermux) {
-                                                    "Pick an existing bootstrap .zip file from device (Offline)"
+                                                    stringResource(R.string.settings_ui_pick_an_existing_bootstrap_zip_file_from)
                                                 } else {
-                                                    "Pick an existing container backup or custom rootfs (bootstraps.zip) from phone storage"
+                                                    stringResource(R.string.settings_ui_pick_an_existing_container_backup_or_cus_2)
                                                 },
                                                 fontSize = 11.5.sp,
                                                 color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -430,13 +430,13 @@ fun LocalToolsInstallDialog(
                                             Icon(imageVector = Icons.Outlined.FolderOpen, contentDescription = null, modifier = Modifier.size(16.dp))
                                             Spacer(modifier = Modifier.width(6.dp))
                                             Text(
-                                                text = if (selectedFileUri != null) "Change Selected ZIP" else "Browse & Select ZIP File",
+                                                text = if (selectedFileUri != null) stringResource(R.string.settings_ui_change_selected_zip) else stringResource(R.string.settings_ui_browse_select_zip_file),
                                                 fontSize = 12.sp
                                             )
                                         }
                                         if (selectedFileUri != null) {
                                             Text(
-                                                text = "Selected: ${selectedFileUri.toString().substringAfterLast("/")}",
+                                                text = stringResource(R.string.settings_ui_selected_selectedfileuri_tostring_substr, selectedFileUri.toString().substringAfterLast("/")),
                                                 fontSize = 10.5.sp,
                                                 fontFamily = FontFamily.Monospace,
                                                 color = QuotaGreen,
@@ -489,7 +489,7 @@ fun LocalToolsInstallDialog(
                                                 }
                                             }
                                             Text(
-                                                text = "Downloads clean official Termux base bootstrap (${LocalEnvironmentManager.getBootstrapArch()}) with essential coreutils",
+                                                text = stringResource(R.string.settings_ui_downloads_clean_official_termux_base_boo_2, LocalEnvironmentManager.getBootstrapArch()),
                                                 fontSize = 11.5.sp,
                                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                                             )
@@ -527,7 +527,7 @@ fun LocalToolsInstallDialog(
                             verticalArrangement = Arrangement.spacedBy(10.dp)
                         ) {
                             Text(
-                                text = if (isTermux) "Found Termux Bootstrap Package" else "Found Ubuntu Container Package",
+                                text = if (isTermux) stringResource(R.string.settings_ui_found_termux_bootstrap_package) else stringResource(R.string.settings_ui_found_ubuntu_container_package),
                                 fontSize = 13.5.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -782,13 +782,13 @@ fun LocalToolsInstallDialog(
                                 }
                                 Spacer(modifier = Modifier.height(6.dp))
                                 Text(
-                                    text = "Installed at: ${state.prefixPath}",
+                                    text = stringResource(R.string.settings_ui_installed_at_state_prefixpath, state.prefixPath),
                                     fontSize = 11.sp,
                                     fontFamily = FontFamily.Monospace,
                                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                                 )
                                 Text(
-                                    text = "Disk space: ${state.totalDiskUsageFormatted}",
+                                    text = stringResource(R.string.settings_ui_disk_space_state_totaldiskusageformatted, state.totalDiskUsageFormatted),
                                     fontSize = 11.sp,
                                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                                 )
@@ -850,7 +850,7 @@ fun LocalToolsInstallDialog(
                                     )
                                     Spacer(modifier = Modifier.width(6.dp))
                                     Text(
-                                        text = "Installation Logs (${installerLogs.size})",
+                                        text = stringResource(R.string.settings_ui_installation_logs_installerlogs_size, installerLogs.size),
                                         fontSize = 11.5.sp,
                                         fontFamily = FontFamily.Monospace,
                                         fontWeight = FontWeight.SemiBold,
@@ -947,9 +947,9 @@ fun LocalToolsInstallDialog(
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Text(
                                     text = when (selectedSourceType) {
-                                        0 -> if (isTermux) "Download & Install AntiGem (~350MB)" else "Download & Install Ubuntu Base"
-                                        1 -> "Download Base Termux (~33MB)"
-                                        else -> if (selectedFileUri != null) "Install Local ZIP" else "Choose ZIP"
+                                        0 -> if (isTermux) stringResource(R.string.settings_ui_download_install_antigem_350mb) else stringResource(R.string.settings_ui_download_install_ubuntu_base)
+                                        1 -> stringResource(R.string.settings_ui_download_base_termux_33mb)
+                                        else -> if (selectedFileUri != null) stringResource(R.string.settings_ui_install_local_zip) else stringResource(R.string.settings_ui_choose_zip)
                                     },
                                     color = Color.White,
                                     fontWeight = FontWeight.Bold
