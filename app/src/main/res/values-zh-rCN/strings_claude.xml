@@ -89,6 +89,32 @@
     <string name="claude_open_the_sign_in_page_again">重新打开登录页面</string>
     <!-- 原文: owner/repo -->
     <string name="claude_owner_repo">owner/repo</string>
+    <!-- 原文: Account & CLI -->
+    <string name="claude_page_account_cli">账号与 CLI</string>
+    <!-- 原文: Advanced -->
+    <string name="claude_page_advanced">高级</string>
+    <!-- 原文: Chat defaults -->
+    <string name="claude_page_chat_defaults">对话默认值</string>
+    <!-- 原文: Edit ~/.claude/settings.json directly -->
+    <string name="claude_page_edit_claude_settings_json_direct_sub">直接编辑 ~/.claude/settings.json</string>
+    <!-- 原文: Installed plugins, catalog and marketplaces -->
+    <string name="claude_page_installed_plugins_catalog_and_ma_sub">已安装插件、目录与市场</string>
+    <!-- 原文: Instructions (CLAUDE.md) and the notes Claude saved -->
+    <string name="claude_page_instructions_claude_md_and_the_n_sub">指令文件（CLAUDE.md）与 Claude 保存的笔记</string>
+    <!-- 原文: MCP servers -->
+    <string name="claude_page_mcp_servers">MCP 服务器</string>
+    <!-- 原文: Memory -->
+    <string name="claude_page_memory">记忆</string>
+    <!-- 原文: Model, effort, thinking, permission mode, output style -->
+    <string name="claude_page_model_effort_thinking_permission_sub">模型、推理强度、思考、权限模式与输出风格</string>
+    <!-- 原文: Permission rules -->
+    <string name="claude_page_permission_rules">权限规则</string>
+    <!-- 原文: Plugins -->
+    <string name="claude_page_plugins">插件</string>
+    <!-- 原文: Sign-in, plan usage, install and update Claude Code -->
+    <string name="claude_page_sign_in_plan_usage_install_and_u_sub">登录、套餐用量、安装与更新 Claude Code</string>
+    <!-- 原文: What Claude may do without asking -->
+    <string name="claude_page_what_claude_may_do_without_askin_sub">Claude 可以不经询问直接做的事</string>
     <!-- 原文: Plan limits do not apply to this account (API billing has no 5-hour or weekly limits). -->
     <string name="claude_plan_limits_do_not_apply_to_this_account">该账号不受套餐限额约束（API 计费没有 5 小时或每周限额）。</string>
     <!-- 原文: Plan usage -->

@@ -1,0 +1,46 @@
+# 设置分组枚举（SettingsSection）与 Claude 设置子页枚举（ClaudeSettingsPage）文案
+# 英文原文<TAB>简体中文；由 scripts/i18n/apply_settings_enums.py 读取
+Settings & Preferences	设置与偏好
+Configure your AntiGem experience	配置你的 AntiGem 使用体验
+Appearance & Theme	外观与主题
+Theme, dark mode, and chat font scaling	主题、深色模式与对话字号缩放
+Servers & Connectivity	服务器与连接
+Configure AGY Hub and IDE Bridge endpoints	配置 AGY 中枢与 IDE 桥接端点
+WebView Extensions	WebView 扩展
+Install and manage MCP extensions for the browser	安装并管理浏览器的 MCP 扩展
+MCP Servers	MCP 服务器
+Model Context Protocol tools & integrations	模型上下文协议（MCP）工具与集成
+Skills & Plugins	技能与插件
+Agent capabilities, Google plugins, and extensions	智能体能力、Google 插件与扩展
+Automation & Device Tools	自动化与设备工具
+Browser & Terminal AI agent permissions	浏览器与终端的 AI 智能体权限
+Terminal & Shell	终端与 Shell
+SSH configuration, local tools, and styling	SSH 配置、本地工具与样式
+Backups & Restore	备份与恢复
+Backup rootfs environment and AGY chat histories	备份 rootfs 环境与 AGY 对话历史
+Data Loss Protection	数据丢失保护
+Uninstall shield & App Info clear data protection	卸载保护，以及「应用信息 → 清除数据」防护
+Commands & Permissions	命令与权限
+Auto-run policy, sandbox mode, and tool approvals	自动运行策略、沙箱模式与工具批准
+Claude Code	Claude Code
+Account, models, permissions, MCP, plugins & memory	账号、模型、权限、MCP、插件与记忆
+Agents	智能体
+Run Antigravity, Claude Code or both	运行 Antigravity、Claude Code 或两者
+Diagnostics & Performance	诊断与性能
+Live network connections, active streams & thread HUD	实时网络连接、活动流与线程 HUD
+About & Info	关于与信息
+App version, package details, and bridge export	应用版本、包信息与桥接导出
+Account & CLI	账号与 CLI
+Sign-in, plan usage, install and update Claude Code	登录、套餐用量、安装与更新 Claude Code
+Chat defaults	对话默认值
+Model, effort, thinking, permission mode, output style	模型、推理强度、思考、权限模式与输出风格
+Permission rules	权限规则
+What Claude may do without asking	Claude 可以不经询问直接做的事
+MCP servers	MCP 服务器
+Tools Claude can call	Claude 可调用的工具
+Plugins	插件
+Installed plugins, catalog and marketplaces	已安装插件、目录与市场
+Memory	记忆
+Instructions (CLAUDE.md) and the notes Claude saved	指令文件（CLAUDE.md）与 Claude 保存的笔记
+Advanced	高级
+Edit ~/.claude/settings.json directly	直接编辑 ~/.claude/settings.json

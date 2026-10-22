@@ -1,6 +1,7 @@
 package com.example.gemini.ui.claude
 
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
@@ -93,14 +94,14 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 
 /** Pages of the Claude Code settings. */
-enum class ClaudeSettingsPage(val title: String, val subtitle: String) {
-    ACCOUNT("Account & CLI", "Sign-in, plan usage, install and update Claude Code"),
-    DEFAULTS("Chat defaults", "Model, effort, thinking, permission mode, output style"),
-    PERMISSIONS("Permission rules", "What Claude may do without asking"),
-    MCP("MCP servers", "Tools Claude can call"),
-    PLUGINS("Plugins", "Installed plugins, catalog and marketplaces"),
-    MEMORY("Memory", "Instructions (CLAUDE.md) and the notes Claude saved"),
-    ADVANCED("Advanced", "Edit ~/.claude/settings.json directly")
+enum class ClaudeSettingsPage(@StringRes val titleRes: Int, @StringRes val subtitleRes: Int) {
+    ACCOUNT(R.string.claude_page_account_cli, R.string.claude_page_sign_in_plan_usage_install_and_u_sub),
+    DEFAULTS(R.string.claude_page_chat_defaults, R.string.claude_page_model_effort_thinking_permission_sub),
+    PERMISSIONS(R.string.claude_page_permission_rules, R.string.claude_page_what_claude_may_do_without_askin_sub),
+    MCP(R.string.claude_page_mcp_servers, R.string.claude_tools_claude_can_call),
+    PLUGINS(R.string.claude_page_plugins, R.string.claude_page_installed_plugins_catalog_and_ma_sub),
+    MEMORY(R.string.claude_page_memory, R.string.claude_page_instructions_claude_md_and_the_n_sub),
+    ADVANCED(R.string.claude_page_advanced, R.string.claude_page_edit_claude_settings_json_direct_sub)
 }
 
 /** Holder passed from the ViewModel into settings. */
@@ -131,23 +132,25 @@ fun ClaudeSettingsGroup(deps: ClaudeSettingsDeps, onOpen: (ClaudeSettingsPage) -
         else -> state.label
     }
     val accountColor = state.dotColor
+    // resolved before the Column: calling @Composable inside ifBlank's lambda is not safe
+    val accountFallbackSubtitle = stringResource(ClaudeSettingsPage.ACCOUNT.subtitleRes)
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         ClaudeNavCard(
             Icons.Outlined.AccountCircle,
-            ClaudeSettingsPage.ACCOUNT.title,
-            listOfNotNull(auth?.email, status?.version).joinToString(" · ").ifBlank { ClaudeSettingsPage.ACCOUNT.subtitle },
+            stringResource(ClaudeSettingsPage.ACCOUNT.titleRes),
+            listOfNotNull(auth?.email, status?.version).joinToString(" · ").ifBlank { accountFallbackSubtitle },
             badge = accountBadge,
             badgeColor = accountColor
         ) { onOpen(ClaudeSettingsPage.ACCOUNT) }
-        ClaudeNavCard(Icons.Outlined.Tune, ClaudeSettingsPage.DEFAULTS.title, ClaudeSettingsPage.DEFAULTS.subtitle) { onOpen(ClaudeSettingsPage.DEFAULTS) }
+        ClaudeNavCard(Icons.Outlined.Tune, stringResource(ClaudeSettingsPage.DEFAULTS.titleRes), stringResource(ClaudeSettingsPage.DEFAULTS.subtitleRes)) { onOpen(ClaudeSettingsPage.DEFAULTS) }
         val allowCount = settings?.let { deps.config.rules("allow").size } ?: 0
-        ClaudeNavCard(Icons.Outlined.Security, ClaudeSettingsPage.PERMISSIONS.title, ClaudeSettingsPage.PERMISSIONS.subtitle,
+        ClaudeNavCard(Icons.Outlined.Security, stringResource(ClaudeSettingsPage.PERMISSIONS.titleRes), stringResource(ClaudeSettingsPage.PERMISSIONS.subtitleRes),
             badge = allowCount.takeIf { it > 0 }?.let { "$it allowed" }) { onOpen(ClaudeSettingsPage.PERMISSIONS) }
-        ClaudeNavCard(Icons.Outlined.Hub, ClaudeSettingsPage.MCP.title, ClaudeSettingsPage.MCP.subtitle,
+        ClaudeNavCard(Icons.Outlined.Hub, stringResource(ClaudeSettingsPage.MCP.titleRes), stringResource(ClaudeSettingsPage.MCP.subtitleRes),
             badge = mcp.size.takeIf { it > 0 }?.let { "$it servers" }) { onOpen(ClaudeSettingsPage.MCP) }
-        ClaudeNavCard(Icons.Outlined.Extension, ClaudeSettingsPage.PLUGINS.title, ClaudeSettingsPage.PLUGINS.subtitle) { onOpen(ClaudeSettingsPage.PLUGINS) }
-        ClaudeNavCard(Icons.Outlined.Description, ClaudeSettingsPage.MEMORY.title, ClaudeSettingsPage.MEMORY.subtitle) { onOpen(ClaudeSettingsPage.MEMORY) }
-        ClaudeNavCard(Icons.Outlined.Code, ClaudeSettingsPage.ADVANCED.title, ClaudeSettingsPage.ADVANCED.subtitle) { onOpen(ClaudeSettingsPage.ADVANCED) }
+        ClaudeNavCard(Icons.Outlined.Extension, stringResource(ClaudeSettingsPage.PLUGINS.titleRes), stringResource(ClaudeSettingsPage.PLUGINS.subtitleRes)) { onOpen(ClaudeSettingsPage.PLUGINS) }
+        ClaudeNavCard(Icons.Outlined.Description, stringResource(ClaudeSettingsPage.MEMORY.titleRes), stringResource(ClaudeSettingsPage.MEMORY.subtitleRes)) { onOpen(ClaudeSettingsPage.MEMORY) }
+        ClaudeNavCard(Icons.Outlined.Code, stringResource(ClaudeSettingsPage.ADVANCED.titleRes), stringResource(ClaudeSettingsPage.ADVANCED.subtitleRes)) { onOpen(ClaudeSettingsPage.ADVANCED) }
     }
 }
 

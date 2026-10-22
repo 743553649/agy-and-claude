@@ -4,6 +4,7 @@ import com.example.gemini.ui.claude.SettingsGroupHeader
 import com.example.gemini.R
 import com.example.gemini.ui.components.ClaudeAccent
 import android.Manifest
+import androidx.annotation.StringRes
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -85,22 +86,22 @@ import com.example.gemini.data.daemon.ProjectItem
 import com.example.gemini.data.daemon.TermuxDaemonManager
 import com.example.gemini.data.daemon.IdeApiClient
 
-enum class SettingsSection(val title: String, val subtitle: String) {
-    MAIN("Settings & Preferences", "Configure your AntiGem experience"),
-    APPEARANCE("Appearance & Theme", "Theme, dark mode, and chat font scaling"),
-    SERVERS("Servers & Connectivity", "Configure AGY Hub and IDE Bridge endpoints"),
-    WEBVIEW_EXTENSIONS("WebView Extensions", "Install and manage MCP extensions for the browser"),
-    MCP("MCP Servers", "Model Context Protocol tools & integrations"),
-    SKILLS_PLUGINS("Skills & Plugins", "Agent capabilities, Google plugins, and extensions"),
-    AUTOMATION("Automation & Device Tools", "Browser & Terminal AI agent permissions"),
-    TERMINAL("Terminal & Shell", "SSH configuration, local tools, and styling"),
-    BACKUPS("Backups & Restore", "Backup rootfs environment and AGY chat histories"),
-    DATA_PROTECTION("Data Loss Protection", "Uninstall shield & App Info clear data protection"),
-    COMMANDS("Commands & Permissions", "Auto-run policy, sandbox mode, and tool approvals"),
-    CLAUDE("Claude Code", "Account, models, permissions, MCP, plugins & memory"),
-    AGENTS("Agents", "Run Antigravity, Claude Code or both"),
-    DIAGNOSTICS("Diagnostics & Performance", "Live network connections, active streams & thread HUD"),
-    ABOUT("About & Info", "App version, package details, and bridge export")
+enum class SettingsSection(@StringRes val titleRes: Int, @StringRes val subtitleRes: Int) {
+    MAIN(R.string.settings_section_settings_preferences, R.string.settings_section_configure_your_antigem_experienc_sub),
+    APPEARANCE(R.string.settings_appearance_theme, R.string.settings_section_theme_dark_mode_and_chat_font_sc_sub),
+    SERVERS(R.string.settings_servers_connectivity, R.string.settings_section_configure_agy_hub_and_ide_bridge_sub),
+    WEBVIEW_EXTENSIONS(R.string.settings_webview_extensions, R.string.settings_section_install_and_manage_mcp_extension_sub),
+    MCP(R.string.settings_section_mcp_servers, R.string.settings_ui_model_context_protocol_tools_integration),
+    SKILLS_PLUGINS(R.string.settings_skills_plugins, R.string.settings_section_agent_capabilities_google_plugin_sub),
+    AUTOMATION(R.string.settings_automation_device_tools, R.string.settings_section_browser_terminal_ai_agent_permis_sub),
+    TERMINAL(R.string.settings_section_terminal_shell, R.string.settings_section_ssh_configuration_local_tools_an_sub),
+    BACKUPS(R.string.settings_backups_restore, R.string.settings_ui_backup_rootfs_environment_and_agy_chat_h),
+    DATA_PROTECTION(R.string.settings_data_loss_protection, R.string.settings_section_uninstall_shield_app_info_clear_sub),
+    COMMANDS(R.string.settings_commands_permissions, R.string.settings_section_auto_run_policy_sandbox_mode_and_sub),
+    CLAUDE(R.string.settings_section_claude_code, R.string.settings_section_account_models_permissions_mcp_p_sub),
+    AGENTS(R.string.settings_agents, R.string.settings_section_run_antigravity_claude_code_or_b_sub),
+    DIAGNOSTICS(R.string.settings_diagnostics_performance, R.string.settings_section_live_network_connections_active_sub),
+    ABOUT(R.string.settings_about_info, R.string.settings_section_app_version_package_details_and_sub)
 }
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
@@ -282,7 +283,7 @@ fun SettingsDialog(
                     val isClaudePage = currentSection == SettingsSection.CLAUDE && claude != null
                     Column {
                         Text(
-                            text = if (isClaudePage) "Claude Code · ${claudePage.title}" else currentSection.title,
+                            text = if (isClaudePage) "Claude Code · " + stringResource(claudePage.titleRes) else stringResource(currentSection.titleRes),
                             fontSize = 17.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface,
@@ -291,7 +292,7 @@ fun SettingsDialog(
                         )
                         if (currentSection != SettingsSection.MAIN) {
                             Text(
-                                text = if (isClaudePage) claudePage.subtitle else currentSection.subtitle,
+                                text = if (isClaudePage) stringResource(claudePage.subtitleRes) else stringResource(currentSection.subtitleRes),
                                 fontSize = 11.5.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
                                 maxLines = 1,

@@ -639,6 +639,40 @@
     <string name="settings_scrollback_buffer">回滚缓冲区</string>
     <!-- 原文: Search MCP packages (e.g. Firebase, BigQuery, Firestore)... -->
     <string name="settings_search_mcp_packages_e_g_firebase_bigquer">搜索 MCP 软件包（例如 Firebase、BigQuery、Firestore）……</string>
+    <!-- 原文: Account, models, permissions, MCP, plugins & memory -->
+    <string name="settings_section_account_models_permissions_mcp_p_sub">账号、模型、权限、MCP、插件与记忆</string>
+    <!-- 原文: Agent capabilities, Google plugins, and extensions -->
+    <string name="settings_section_agent_capabilities_google_plugin_sub">智能体能力、Google 插件与扩展</string>
+    <!-- 原文: App version, package details, and bridge export -->
+    <string name="settings_section_app_version_package_details_and_sub">应用版本、包信息与桥接导出</string>
+    <!-- 原文: Auto-run policy, sandbox mode, and tool approvals -->
+    <string name="settings_section_auto_run_policy_sandbox_mode_and_sub">自动运行策略、沙箱模式与工具批准</string>
+    <!-- 原文: Browser & Terminal AI agent permissions -->
+    <string name="settings_section_browser_terminal_ai_agent_permis_sub">浏览器与终端的 AI 智能体权限</string>
+    <!-- 原文: Claude Code -->
+    <string name="settings_section_claude_code">Claude Code</string>
+    <!-- 原文: Configure AGY Hub and IDE Bridge endpoints -->
+    <string name="settings_section_configure_agy_hub_and_ide_bridge_sub">配置 AGY 中枢与 IDE 桥接端点</string>
+    <!-- 原文: Configure your AntiGem experience -->
+    <string name="settings_section_configure_your_antigem_experienc_sub">配置你的 AntiGem 使用体验</string>
+    <!-- 原文: Install and manage MCP extensions for the browser -->
+    <string name="settings_section_install_and_manage_mcp_extension_sub">安装并管理浏览器的 MCP 扩展</string>
+    <!-- 原文: Live network connections, active streams & thread HUD -->
+    <string name="settings_section_live_network_connections_active_sub">实时网络连接、活动流与线程 HUD</string>
+    <!-- 原文: MCP Servers -->
+    <string name="settings_section_mcp_servers">MCP 服务器</string>
+    <!-- 原文: Run Antigravity, Claude Code or both -->
+    <string name="settings_section_run_antigravity_claude_code_or_b_sub">运行 Antigravity、Claude Code 或两者</string>
+    <!-- 原文: Settings & Preferences -->
+    <string name="settings_section_settings_preferences">设置与偏好</string>
+    <!-- 原文: SSH configuration, local tools, and styling -->
+    <string name="settings_section_ssh_configuration_local_tools_an_sub">SSH 配置、本地工具与样式</string>
+    <!-- 原文: Terminal & Shell -->
+    <string name="settings_section_terminal_shell">终端与 Shell</string>
+    <!-- 原文: Theme, dark mode, and chat font scaling -->
+    <string name="settings_section_theme_dark_mode_and_chat_font_sc_sub">主题、深色模式与对话字号缩放</string>
+    <!-- 原文: Uninstall shield & App Info clear data protection -->
+    <string name="settings_section_uninstall_shield_app_info_clear_sub">卸载保护，以及「应用信息 → 清除数据」防护</string>
     <!-- 原文: Security Presets -->
     <string name="settings_security_presets">安全预设</string>
     <!-- 原文: Security Token (Header Obfuscation) -->
