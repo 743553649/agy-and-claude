@@ -10,9 +10,9 @@ import android.os.Bundle
 import android.os.Process
 import android.os.storage.StorageManager
 import android.text.format.Formatter
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -80,7 +80,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 
-class ManageSpaceActivity : ComponentActivity() {
+class ManageSpaceActivity : AppCompatActivity() {
 
     private val authPreferences: AuthPreferences by lazy { AuthPreferences(applicationContext) }
 

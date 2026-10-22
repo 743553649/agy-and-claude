@@ -5,10 +5,10 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -36,7 +36,7 @@ import com.example.gemini.ui.chat.ChatViewModelHolder
 import com.example.gemini.ui.components.LocalTerminalContent
 import com.example.gemini.ui.ide.IdeScreen
 
-class FloatingChatActivity : ComponentActivity() {
+class FloatingChatActivity : AppCompatActivity() {
 
     private val chatViewModel: ChatViewModel by lazy { ChatViewModelHolder.get(application) }
 
