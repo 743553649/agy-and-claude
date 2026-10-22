@@ -207,6 +207,13 @@ Git 面板 4 个分区标题、模型选择标题、浏览器新标签页（1 �
 - `when`/`if` 分支字面量（约 391 行 `-> "…"`、268 行单行三元，绝大多数是技术值）；
 - 浏览器扩展浮层（P4）。
 
+**CI 证据**（run 39764615030，commit `99e0aac`）：`Verify i18n resources` 通过
+（1546 / 1542 / 1513）、`:app:assembleTermuxRelease` 成功（6m53s）、产物
+`antiGem-termux-v1.0.13-release-99e0aac.apk`、签名指纹一致。首次推送 `ada6ac8` 的
+run 39764130892 **失败**：`ClaudeSettingsScreen.DefaultsPage` 没有 `context` 变量，
+`permissionModeDescription(context, value)` 里的 `context` 被解析成 Kotlin 上下文参数关键字
+（`Function invocation 'context(...)' expected`），已补 `val context = LocalContext.current`。
+
 **CI 证据**（run 39761475073，commit `dbb7c9c`）：`Verify i18n resources` 通过
 （`values: 1472 / values-zh-rCN: 1468 / 引用 1437 key`）、`:app:assembleTermuxRelease` 成功、
 产物 `antiGem-termux-v1.0.13-release-dbb7c9c.apk`（19M）、签名指纹与标准值一致。
