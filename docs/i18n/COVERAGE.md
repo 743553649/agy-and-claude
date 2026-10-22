@@ -83,7 +83,7 @@
 | `FileDetailsDialog.kt` | 1 |
 | `SelectTextSheet.kt` | 1 |
 
-合计：**72 个文件、1337 处 `stringResource` 调用点**（另有 113 处 `context.getString`）。
+合计：**72 个文件、1478 处 `stringResource` 调用点**（另有 113 处 `context.getString`）。
 
 ## 三、有意保留英文的内容
 
@@ -106,6 +106,9 @@
 | `AppToastHelper.showToast` 27 处 | ❌ 未改（项目自定义 Toast 包装，不叫 `Toast.makeText`，下一步处理） |
 | 含插值的 `contentDescription` / snackbar `message` | ✅ 已改（16 处，`apply_dyn_attrs.py`） |
 | `title = / label =` 字面量 112 处 | ❌ 未改（多为 data class 构造参数，需逐条判定白名单后改造） |
+| 设置首页卡片文案 | ✅ 已改（`title =` / `when` 分支，commit `5d55bc3`，135 处 / 107 条资源） |
+| 环境安装页（全屏 + 对话框） | ✅ 已改（状态标题、硬件取值、下载选项、按钮，同上提交） |
+| 其余 `when`/`if` 分支字面量 | ❌ 未改（实测 70 行 `when` 分支 + 243 行单行三元，需剔技术值白名单） |
 | 设置页语言切换入口 | ❌ 未实现（项目无 `appcompat` 依赖，方案待定） |
 | 浏览器扩展浮层文案 | ❌ 未实现（约 40 处） |
 

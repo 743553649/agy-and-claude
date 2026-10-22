@@ -45,9 +45,9 @@
 
 ### 当前覆盖率（2026-10-22 晚，实测）
 
-- 资源条目：`values/` **1230** 条，`values-zh-rCN/` **1226** 条（差的 4 条是 `app_name`
+- 资源条目：`values/` **1337** 条，`values-zh-rCN/` **1333** 条（差的 4 条是 `app_name`
   / `anti_term_name` / `termux_name` / `accessibility_service_name`，属不翻白名单）
-- 源码调用点：`stringResource` **1337 处 / 72 个文件**，`context.getString` **113 处**
+- 源码调用点：`stringResource` **1478 处 / 72 个文件**，`context.getString` **113 处**
 - `python3 scripts/i18n/verify.py` 通过
 
 > ⚠️ 旧的「705 条已译 676 条（95.9%）」指标**已失效，别再引用**：绝大多数英文字面量
@@ -110,6 +110,24 @@
 **剩下的（下一批）**：`AppToastHelper.showToast("...")`——项目自己的 Toast 包装，
 不叫 `Toast.makeText`，本轮扫描才发现，实测 **27 处**未改。
 
+### P3.6：设置首页 + 环境安装页（✅ 已完成，commit `5d55bc3`，CI run 39730503843 通过）
+这两页曾经整页英文，但**不是设计**，是流水线的两处盲区：
+
+- **`title = "..."` 的 Composable 参数**：当初因为「title 多为 data class 参数」把整类
+  排除了（坑 7），结果设置首页 14 张卡片的标题/副标题也一并留成英文；
+- **表达式分支里的字面量**：`when (state) { Downloading -> "..." }`、
+  `if (isTermux) "A" else "B"`、`when (hasAtomics) { true -> "Supported" }` ——
+  `apply.py` 只匹配 `Text("字面量")`，这些从没进过扫描，连未译清单都不出现（坑 11）。
+
+已改 135 处、新增 107 条 `settings_ui_*` 资源；工具是 `apply_settings_ui.py` +
+`settings_ui_zh.tsv`（116 条对照），按「文件 + 行区间 + 表内原文」三重限定，表外一律不碰。
+**仍有英文但属于白名单**：`EAGER`/`AUTO`/`DARK`/`LIGHT`（比较用的取值）、
+`48-bit (VA48)`/`39-bit (VA39)`/`N/A`/`*/*`/`progress`/`extract_progress`、
+以及日志染色键 `Fail`/`Error`/`Success`/`ready`/`Extracted`（被 `logLine.contains()` 用于选色）。
+
+**同类盲区还剩**：全仓库 `when`/`else ->` 分支返回字面量 **70 行**、单行
+`if (…) "A" else "B"` **243 行**，需逐条判定白名单后再改（很多是 `"bash"`、`"error"` 这类技术值）。
+
 ### P3.5：含插值但调用点未被回写的文案（✅ 已完成，同一提交）
 16 处译文本已在 `/tmp/i18n_dynamic.json` 里，只是回写没覆盖到：`contentDescription`
 （Composable 内）、`message`（snackbar，非 Composable）和多行字面量。
@@ -135,6 +153,8 @@
 | `apply_toast.py` | 改写 `Toast.makeText(ctx, "原文", ...)` → `ctx.getString(...)`；逐字符解析，能处理嵌套引号与第二参数换行；读 `toast_zh.tsv`，静态条目写 catalog、含插值写 DYN |
 | `toast_zh.tsv` | Toast 文案对照表（`英文原文<TAB>中文`），88 条，便于复核与重放 |
 | `apply_dyn_attrs.py` | 改写 `contentDescription`（Composable 内）与 `message`（非 Composable）两类插值站点；**内置两道闸**：非 `@Composable` 文件不做 `stringResource`、提示词内部标记一律跳过 |
+| `apply_settings_ui.py` | 改写设置首页的 `title = "..."` 与安装页 `when`/`if` 分支里的字面量；按「文件 + 行区间 + 表内原文」三重限定，只动 `settings_ui_zh.tsv` 里列出的文案 |
+| `settings_ui_zh.tsv` | 设置首页 / 环境安装页对照表（116 条） |
 | `fix_imports.py` | 补齐 `import com.example.gemini.R` 与 `stringResource` 导入 |
 | `verify.py` | **CI 编译前必跑**：资源 XML 合法性、`R.string` 引用完整性、擦作符/参数一致性、非 Composable 误用、英文资源残留 Kotlin 插值、裸 `%` |
 | `gen_coverage.py` | 生成 `docs/i18n/COVERAGE.md` |
@@ -152,6 +172,7 @@ python3 scripts/i18n/apply_attrs.py          # 改写 text = / contentDescriptio
 python3 scripts/i18n/dynamic_apply.py        # 改写插值调用点
 python3 scripts/i18n/apply_toast.py          # 改写 Toast.makeText 字面量
 python3 scripts/i18n/apply_dyn_attrs.py      # 改写 contentDescription / snackbar message
+python3 scripts/i18n/apply_settings_ui.py    # 改写设置首页 title= 与安装页表达式分支
 python3 scripts/i18n/fix_imports.py          # 补 import
 python3 scripts/i18n/verify.py               # 必须通过
 python3 scripts/i18n/gen_coverage.py          # 更新覆盖文档
@@ -214,6 +235,18 @@ XML 是产物但不是译文的可恢复来源。
     这类字符串会进 API payload，不是用户可见文案。上一轮误译过，本轮已清空译文并从资源移除。
     → `apply_dyn_attrs.py` 内置 `PROMPT_INTERNAL` 正则兜底，另有「文件里没有 `@Composable`
     就不做 `stringResource`」的闸。
+
+11. **表达式分支里的字面量不在任何扫描范围内**
+    `when (state) { Downloading -> "Downloading Toolchain..." }`、`if (isTermux) "A" else "B"`、
+    `when (x) { true -> "Supported" }` —— 这些字面量求值后才传给 `Text(...)`，
+    `apply.py` 只认 `Text("字面量")`，所以它们既不改写、也**不进未译清单**，
+    表现为「覆盖率很高但整页英文」。→ 用 `apply_settings_ui.py` 的区间+对照表模式处理，
+    见 P3.6；全仓库同类还有 70 行 when 分支 + 243 行单行三元。
+
+12. **`title =` 不能整类排除**
+    坑 7 的结论只对「data class 构造参数」成立；设置首页的
+    `SettingsCategoryCard(title = "...")` 是 Composable 参数，完全可以翻。
+    → 判据是**接收方是否是 @Composable**，不是参数名。
 
 ## 7. 关键决策记录
 
