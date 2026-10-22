@@ -169,7 +169,7 @@ Git 面板 4 个分区标题、模型选择标题、浏览器新标签页（1 �
 - 后端（`AgyChatBackend` / `ClaudeChatBackend`）有 `application` → `application.getString(...)`；
 - `BrowserSessionManager` 的 WebView 回调只有 `appContext: Context?` → `appContext?.getString(...) ?: 英文兜底`。
 
-**剩余 61 处未翻，全部有明确理由**（别再当成漏翻）：
+**剩余 58 处未翻，全部有明确理由**（别再当成漏翻）：动画/诊断 label 30、终端按键 22、产品名 4、待模型改造 2。
 - 动画 / 诊断 label（`rememberInfiniteTransition(label=…)`、`animateFloat(..., label=…)`、
   `"progress"`、`"extract_progress"`、`"question_page"`、`"drawerChatListFade"` 等）；
 - 终端按键 `TermuxKey/IdeTermKey(label = "ESC"/"CTRL"/"ALT"/TAB/HOME/方向键)`（终端与日志不翻）；
