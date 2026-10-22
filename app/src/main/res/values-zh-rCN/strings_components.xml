@@ -619,6 +619,108 @@
     <string name="component_toast_video_saved_to_downloads_antigem">视频已保存到 Downloads/AntiGem</string>
     <!-- 原文: Toggle Wrap -->
     <string name="component_toggle_wrap">切换自动换行</string>
+    <!-- 原文: Approve Command: -->
+    <string name="component_tool_approve_command">批准命令：</string>
+    <!-- 原文: Approve MCP: -->
+    <string name="component_tool_approve_mcp">批准 MCP：</string>
+    <!-- 原文: Directory: %1$s -->
+    <string name="component_tool_cmd_directory">目录：%1$s</string>
+    <!-- 原文: File: %1$s -->
+    <string name="component_tool_cmd_file">文件：%1$s</string>
+    <!-- 原文: Find: %1$s -->
+    <string name="component_tool_cmd_find">查找：%1$s</string>
+    <!-- 原文: Grep: %1$s -->
+    <string name="component_tool_cmd_grep">Grep：%1$s</string>
+    <!-- 原文: CAS Expr: %1$s -->
+    <string name="component_tool_cmd_math">表达式：%1$s</string>
+    <!-- 原文: Notification: %1$s -->
+    <string name="component_tool_cmd_notification">通知：%1$s</string>
+    <!-- 原文: Prompt: %1$s -->
+    <string name="component_tool_cmd_prompt">提示词：%1$s</string>
+    <!-- 原文: Search Query: "%1$s" -->
+    <string name="component_tool_cmd_search">搜索词：「%1$s」</string>
+    <!-- 原文: URL: %1$s -->
+    <string name="component_tool_cmd_url">URL：%1$s</string>
+    <!-- 原文: Edited file -->
+    <string name="component_tool_edited_file">已修改文件</string>
+    <!-- 原文: Editing file... -->
+    <string name="component_tool_editing_file">正在修改文件……</string>
+    <!-- 原文: Applying file modifications... -->
+    <string name="component_tool_empty_applying_edits">正在应用文件修改……</string>
+    <!-- 原文: (Directory contents scanned) -->
+    <string name="component_tool_empty_dir_scanned">（目录内容已扫描）</string>
+    <!-- 原文: (File modification completed) -->
+    <string name="component_tool_empty_edit_done">（文件修改已完成）</string>
+    <!-- 原文: (File inspected by model) -->
+    <string name="component_tool_empty_file_inspected">（模型已查看文件）</string>
+    <!-- 原文: (Image generation completed) -->
+    <string name="component_tool_empty_image_done">（图片生成已完成）</string>
+    <!-- 原文: (MCP tool executed - no output) -->
+    <string name="component_tool_empty_mcp_done">（MCP 工具已执行，无输出）</string>
+    <!-- 原文: (No output returned) -->
+    <string name="component_tool_empty_no_output">（无输出返回）</string>
+    <!-- 原文: Processing... -->
+    <string name="component_tool_empty_processing">正在处理……</string>
+    <!-- 原文: Reading file contents... -->
+    <string name="component_tool_empty_reading_file">正在读取文件内容……</string>
+    <!-- 原文: Running in Termux... -->
+    <string name="component_tool_empty_running_termux">正在 Termux 中运行……</string>
+    <!-- 原文: Scanning directory... -->
+    <string name="component_tool_empty_scanning_directory">正在扫描目录……</string>
+    <!-- 原文: (Search completed - no output) -->
+    <string name="component_tool_empty_search_no_output">（搜索已完成，无输出）</string>
+    <!-- 原文: Searching... -->
+    <string name="component_tool_empty_searching">正在搜索……</string>
+    <!-- 原文: (Waiting for approval) -->
+    <string name="component_tool_empty_waiting_approval">（等待批准）</string>
+    <!-- 原文: Evaluating math... -->
+    <string name="component_tool_evaluating_math">正在计算表达式……</string>
+    <!-- 原文: Executing MCP tool... -->
+    <string name="component_tool_executing_mcp">正在调用 MCP 工具……</string>
+    <!-- 原文: Executing in Termux... -->
+    <string name="component_tool_executing_termux">正在 Termux 中执行……</string>
+    <!-- 原文: Failed: -->
+    <string name="component_tool_failed">失败：</string>
+    <!-- 原文: Fetching page... -->
+    <string name="component_tool_fetching_page">正在抓取网页……</string>
+    <!-- 原文: Generated image -->
+    <string name="component_tool_generated_image">已生成图片</string>
+    <!-- 原文: Generating image... -->
+    <string name="component_tool_generating_image">正在生成图片……</string>
+    <!-- 原文: Listed directory -->
+    <string name="component_tool_listed_directory">列出目录</string>
+    <!-- 原文: Listing directory... -->
+    <string name="component_tool_listing_directory">正在列出目录……</string>
+    <!-- 原文: Math evaluated -->
+    <string name="component_tool_math_evaluated">已计算表达式</string>
+    <!-- 原文: MCP tool -->
+    <string name="component_tool_mcp_tool">MCP 工具</string>
+    <!-- 原文: Ran bash -->
+    <string name="component_tool_ran_bash">执行了命令</string>
+    <!-- 原文: Read file -->
+    <string name="component_tool_read_file">读取文件</string>
+    <!-- 原文: Read page -->
+    <string name="component_tool_read_page">读取网页</string>
+    <!-- 原文: Reading file... -->
+    <string name="component_tool_reading_file">正在读取文件……</string>
+    <!-- 原文: Rejected: -->
+    <string name="component_tool_rejected">已拒绝：</string>
+    <!-- 原文: Searched code -->
+    <string name="component_tool_searched_code">搜索代码</string>
+    <!-- 原文: Searching code... -->
+    <string name="component_tool_searching_code">正在搜索代码……</string>
+    <!-- 原文: Searching web... -->
+    <string name="component_tool_searching_web">正在搜索网页……</string>
+    <!-- 原文: Stopped: -->
+    <string name="component_tool_stopped">已停止：</string>
+    <!-- 原文: System: -->
+    <string name="component_tool_system">系统：</string>
+    <!-- 原文: System event... -->
+    <string name="component_tool_system_event">系统事件……</string>
+    <!-- 原文: Tool: -->
+    <string name="component_tool_tool">工具：</string>
+    <!-- 原文: Web search -->
+    <string name="component_tool_web_search">网页搜索</string>
     <!-- 原文: Tools Executed -->
     <string name="component_tools_executed">已执行工具</string>
     <!-- 原文: Total Consumption -->
