@@ -421,6 +421,30 @@ run 39764130892 **失败**：`ClaudeSettingsScreen.DefaultsPage` 没有 `context
 不要假设「这个文件没导入过 X」。已把脚本那条插入改成注释警示，`fix_imports.py`
 之所以没救回来，是因为它只补 `R` 与 `stringResource`，不处理普通类导入。
 
+### Claude 空态 / 工具卡片 / 聊天后端（✅ 已落地，三个批次）
+
+1. **`ClaudeStatusViews.kt`**（`apply_claude_status.py`，35 处）：HANDOFF 原本只记
+   「7 个 actionLabel」，核实后是**整块空态**——6 个状态的标题/说明/主按钮/次按钮
+   + `ClaudeStatusBanner` 的提示文字与药丸按钮。能复用的既有 key 全部复用
+   （`claude_sign_in_to_claude_code`、`common_retry`、`common_open`、
+   `agents_server_logs`、`ide_restart`、`chat_apptoast_checking_claude_code`）；
+   ERROR 状态的复合句 `(error ?: 兜底) + 后缀` 合并成一条带参资源。
+2. **`AgentToolCallCard.kt`**（`apply_toolcard.py`，55 处）：坑 11 的教科书形态，
+   三段 `when` 求值后才喂 `Text(...)`——`actionPrefix`（31）、`commandPrefix`（9，含插值）、
+   `emptyMessage`（16）。工具卡片每轮对话都出现，是「覆盖率很高但满屏英文」的最大残留。
+3. **`AgyChatBackend.kt`**（`apply_chat_errors.py`，32 处）：错误卡片标题/正文、
+   发送拦截 Toast 7 条、审批/取消/转写失败。**刻意不翻**的（都有实测理由，勿当漏翻）：
+   - 工具结果 payload（`output = "Command terminated by user."`、`[Terminal Command ...]`、
+     `denyInstruction`、`skipSummary`）——会回给模型；
+   - `"Voice note"/"Voice message"/"Image"/"Attachment"`——既是消息正文，又被
+     `cleanText == "Voice note"` 比较，**翻了会破坏该比较**（典型「数据兼显示」陷阱）；
+   - 会话标题 `"New Chat"`（数据层标题，同族风险）。
+
+**剩余 `when`/`if` 分支**（判定口径：技术值留英文，只翻最终进 Text/Toast/通知的）：
+`SettingsDialog.kt`（42）、`MarkdownContent.kt`（21）、`ClaudeSettingsScreen.kt`（20）、
+`TrajectoryParser/Engine`（45）、`AndroidLocalBridgeServer.kt`（23）等仍在。
+优先看「分支结果是否被 `Text(...)` 渲染或写进会被 `Text()` 的 state」。
+
 ## 5. 工具链（`scripts/i18n/`）
 
 | 脚本 | 作用 |
@@ -832,10 +856,13 @@ release 版开了 `isMinifyEnabled = true` / `isShrinkResources = true`
 - 缓存 key 内含 SHA，跨提交靠 `restore-keys` 前缀恢复最近一条，所以**下一个提交也会命中**，
   不只是重跑同一 SHA。
 
-**已知未生效项（别再重复踩）**：`actions/cache` 缓存 `.gradle` 那步恢复了 2MB
+**已处置的未生效项（2026-10-22 删除）**：`actions/cache` 缓存 `.gradle` 那步恢复了 2MB
 （日志 `Cache restored from key: cc-Linux-…`），但 Gradle 仍报
-`Calculating task graph as no cached configuration is available` —— 配置缓存没有真正复用，
-**原因未查明**，目前零收益、只多花 1 秒。要么留着等排查，要么删掉这一步。
+`Calculating task graph as no cached configuration is available`。
+根因：`org.gradle.configuration-cache=true` 在本仓库是开着的，但 `gradle/actions/setup-gradle@v4`
+**每次会注入内容随运行变化的 init script，而 init script 是配置缓存的输入之一**，
+条目键每跑必变，因此永远不命中。`ci.yml` 里已删除该步并留下注释（负收益：省不到，
+反而多一次 restore）。
 
 **怎么复测**：`gh run rerun <run-id>` 重跑同一 SHA（热跑），再用
 `gh run view --job=<job-id> --log` 拉日志，按每行的时间戳拆各步骤耗时；

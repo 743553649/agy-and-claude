@@ -57,15 +57,12 @@ jobs:
         with:
           cache-read-only: false
 
-      # 持久化项目级 Gradle 配置缓存，省掉每次 "Calculating task graph"（约 10–20s）。
-      # 键含构建脚本 hash，配置变化时会自动生成新条目，Gradle 也会自行丢弃不匹配的旧条目。
-      - name: Restore Gradle configuration cache
-        uses: actions/cache@v4
-        with:
-          path: .gradle
-          key: cc-${{ runner.os }}-${{ hashFiles('**/*.gradle.kts', 'gradle/libs.versions.toml', 'gradle.properties') }}
-          restore-keys: |
-            cc-${{ runner.os }}-
+      # 注：曾在这里用 actions/cache 缓存项目级 `.gradle`（配置缓存），实测无收益：
+      # 缓存能恢复（日志 Cache restored from key: cc-Linux-…），但 Gradle 仍打印
+      # "Calculating task graph as no cached configuration is available"。
+      # 原因：setup-gradle@v4 每次会注入内容随运行变化的 init script，而 init script
+      # 是配置缓存的输入之一 —— 条目键每跑必变，因此永远不命中，这一步只省 1 秒却多一次 restore，属于负收益。
+      # 已删除；如需再试，先确认注入的 init script 稳定，否则删了比留着干净。
 
       - name: Restore Keystore
         env:
