@@ -149,10 +149,20 @@
   ⚠️ 这个结果与坑 18 里「appcompat 只包装 Activity、`applicationContext.getString(...)`
   不跟随」的字节码推导**相反**。两处都保留、没有互相覆盖：**以实测为准，机制解释待重新查证**
   （可能 appcompat 1.7 在 `setApplicationLocales` 时也更新了应用级 Resources / Configuration）。
-- **待验证②**：API<33 下静态 `Locale.getDefault()` 是否随 appcompat 包装变化。
-  `AiLanguage` 已改为读 appcompat 的应用语言来规避，但这条事实本身仍未在真机确认。
-  2026-10-23 用户在同一台设备上切 English 后**界面英文、功能正常，但没有专门查 Locale 值**，
-  因此只是间接证据，**仍不作为结论**。
+- **✅ 已真机验证②**（2026-10-23，同上设备）：**静态 `Locale.getDefault()` 跟随应用内语言**——**会变**。
+  证据：同一个 `.claude.json` 的文件详情弹窗，中文下「最后修改」显示
+  `10月 22, 2026 · 10:17:33 下午`，切到 English 后显示 `Oct 22, 2026 · 10:17:33 PM`。
+  该行代码是 `FileDetailsDialog.kt:243` 的
+  `SimpleDateFormat("MMM dd, yyyy · hh:mm:ss a", Locale.getDefault())`——`MMM`（月份缩写）
+  与 `a`（AM/PM）都是语言相关符号，两者同时变英文，说明取到的 Locale 已是英文而非系统的 zh_CN。
+  结论与影响：
+  - 与①是同一个机制问题：appcompat 1.7 在 API<33 下**确实**改到了进程级 Locale / 应用级资源，
+    坑 18 里「只包装 Activity」的说法在**这两个方向上都被实测推翻**，机制解释待重新查证；
+  - `AiLanguage` 的实现**不需要改**：它优先读 `AppCompatDelegate.getApplicationLocales()`，
+    比 `Locale.getDefault()` 更精确（能区分"显式设置成中文"与"跟随系统中文"），
+    这条实测只是去掉了它注释里「静态 Locale 不会变」的前提理由；
+  - 今后在 API<33 上直接依赖 `Locale.getDefault()` 做格式化是**可以**的（实测有效），
+    但需要显式区分"用户选的语言"与"系统语言"时，仍必须用 appcompat 的 API。
 - 真机矩阵见计划第 7 节（API 33/34 走框架 `LocaleManager`；28/24 走 appcompat 资源包装）。
 - 已知行为：API 33+ 上若用户从**系统设置**里单独给本应用选语言，应用内设置页会把它显示为
   已选中（读的是框架值）；此时点「跟随系统」会清掉该选择。
@@ -394,9 +404,13 @@ run 39764130892 **失败**：`ClaudeSettingsScreen.DefaultsPage` 没有 `context
 用户明确要求不要在这台上安装（该机 `com.termux` 被 Play 版 Termux Ultra 118.3.50 占用，
 卸载会连带删掉它的数据）。因此 P4 的真机验证与 P1 的待验证①②一并移交用户另一台设备执行。
 
-2026-10-23 更新（用户已在低版本设备上测完）：①通知文案跟随应用内语言——**已确认**（见第 4 节）；
-②静态 `Locale.getDefault()` **未专门验证**（只确认切 English 后界面与功能正常），
-因此仍保持「待验证」，未在真机确认前不得改写为结论。
+2026-10-23 更新（用户已在低版本设备上测完，两条均有结论，见第 4 节）：
+
+- ①通知文案跟随应用内语言——**已确认**；
+- ②静态 `Locale.getDefault()` 跟随应用内语言——**已确认会变**（同一个文件的详情日期从
+  `10月 22, 2026 · 10:17:33 下午` 变为 `Oct 22, 2026 · 10:17:33 PM`）。
+
+两条结论都与坑 18 的字节码推导相反，机制解释待重新查证；`AiLanguage` 的实现不需要改。
 
 ### 数据层错误族：`AgyMcpManager` + `ClaudeAccountManager`（✅ 已落地）
 
@@ -693,8 +707,11 @@ null，`setApplicationLocales` 直接静默返回**（javap appcompat 1.7.0 已�
 → 结论：语言回设**只能放在 Activity 的 `onCreate`（super 之后）**；放 `Application.onCreate`
 （本项目本来也没有自定义 Application）或任何没有 AppCompat Activity 的时机都会静默失效。
 另：API<33 时按字节码看 appcompat 只包装 **Activity** 的资源，`applicationContext.getString(...)`
-（P3.7 的通知文案）理应不跟随应用内语言——但 **2026-10-23 真机实测推翻了这条**：切换应用语言到
-English 后通知文案也变英文。**以实测为准**，此处的机制推导待重新查证（见第 4 节「已真机验证①」）。
+（P3.7 的通知文案）与静态 `Locale.getDefault()` 理应都不跟随应用内语言——但 **2026-10-23 真机实测
+把这两条都推翻了**：切换应用语言到 English 后，①通知文案也变英文；②同一个文件的详情里
+「最后修改」从 `10月 22, 2026 · 10:17:33 下午` 变成 `Oct 22, 2026 · 10:17:33 PM`（该行取
+`Locale.getDefault()`）。**以实测为准**，此处的机制推导待重新查证
+（见第 4 节「已真机验证①②」）。
 
 ### 19. `title = / label =` 只是同族盲区里的一类：`subtitle = / badgeText = / description = / value =` 仍会漏
 P2 批次把 `title =` 与 `label =` 两类回写完了，但同一批组件还有四种「命名参数传字面量」：
