@@ -6,6 +6,7 @@
 <resources>
 
     <string name="chat_also_restore_files_claude_changed_after">Also restore files Claude changed after this message</string>
+    <string name="chat_antigravity_disconnected">Antigravity Disconnected</string>
     <string name="chat_antigravity_requires_google_authenticati">Antigravity requires Google authentication to access Gemini models.</string>
     <string name="chat_apptoast_action_is_not_available_in_claude_chats">%1$s is not available in Claude chats yet</string>
     <string name="chat_apptoast_checking_claude_code">Checking Claude Code…</string>
@@ -20,18 +21,32 @@
     <string name="chat_apptoast_restarting_the_local_server">Restarting the local server…</string>
     <string name="chat_apptoast_restored_chat_restored_title">Restored chat: %1$s</string>
     <string name="chat_ask_a_question_brainstorm_ideas_or_start">Ask a question, brainstorm ideas, or start coding</string>
+    <string name="chat_choose_model">Choose model</string>
+    <string name="chat_claude_not_installed_hint">Claude Code is not installed. Set it up in Settings.</string>
+    <string name="chat_claude_restart_server_hint">Restart the local server to use Claude Code.</string>
+    <string name="chat_claude_server_offline_hint">The local server is offline. Start it to send messages.</string>
     <string name="chat_code_editor_ide">Code Editor IDE</string>
     <string name="chat_command_terminated">Command Terminated</string>
+    <string name="chat_connecting_antigravity">Connecting to Antigravity...</string>
     <string name="chat_do_you_want_to_open_your_browser_to_log">Do you want to open your browser to log in now?</string>
     <string name="chat_do_you_want_to_stop_the_model_from_outpu">Do you want to stop the model from outputting? The current generation will be stopped immediately.</string>
     <string name="chat_e_g_it_was_taking_too_long_please_use_gr">e.g. It was taking too long, please use grep or find a faster way...</string>
+    <string name="chat_edit_and_delete">Edit &amp; Delete</string>
+    <string name="chat_edit_message_title">Edit Message?</string>
     <string name="chat_explain_why_or_give_new_instructions_to">Explain why or give new instructions to AI (optional):</string>
     <string name="chat_how_can_i_help_you_today">How can I help you today?</string>
+    <string name="chat_jump_to_bottom">Jump to Bottom</string>
+    <string name="chat_jump_to_top">Jump to Top</string>
     <string name="chat_list_size">%1$s</string>
     <string name="chat_minimize_to_bubble">Minimize to Bubble</string>
+    <string name="chat_models_loading">Loading models…</string>
+    <string name="chat_models_unavailable">Models unavailable</string>
     <string name="chat_open_browser">Open Browser</string>
     <string name="chat_open_drawer">Open Drawer</string>
     <string name="chat_open_full_screen">Open Full Screen</string>
+    <string name="chat_project_outside">Outside</string>
+    <string name="chat_regenerate_response_title">Regenerate Response?</string>
+    <string name="chat_select_project">Select Project</string>
     <string name="chat_send_to_ai_proceed">Send to AI &amp; Proceed</string>
     <string name="chat_sign_in_with_browser">Sign In with Browser</string>
     <string name="chat_status_claude_starting">Claude Code is starting…</string>

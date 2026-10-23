@@ -765,9 +765,9 @@ fun ChatScreen(
         claudeModelList.find { it.id == selectedModelId } ?: AiModel(
             id = selectedModelId.ifBlank { "default" },
             displayName = when {
-                claudeModelsRefreshing -> "Loading models…"
-                claudeModelsError != null -> "Models unavailable"
-                else -> "Choose model"
+                claudeModelsRefreshing -> stringResource(R.string.chat_models_loading)
+                claudeModelsError != null -> stringResource(R.string.chat_models_unavailable)
+                else -> stringResource(R.string.chat_choose_model)
             },
             family = com.example.gemini.domain.model.ModelFamily.CLAUDE
         )
@@ -1100,7 +1100,7 @@ fun ChatScreen(
                                         val clean = convUri.removePrefix("file://").trimEnd('/')
                                         File(clean).name.ifBlank { "Workspace" }
                                     } else {
-                                        if (isChatStarted) "Outside" else "Select Project"
+                                        if (isChatStarted) stringResource(R.string.chat_project_outside) else stringResource(R.string.chat_select_project)
                                     }
                                 }
 
@@ -1634,7 +1634,7 @@ fun ChatScreen(
                             ) {
                                 Icon(
                                     imageVector = if (showUpArrow) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
-                                    contentDescription = if (showUpArrow) "Jump to Top" else "Jump to Bottom",
+                                    contentDescription = if (showUpArrow) stringResource(R.string.chat_jump_to_top) else stringResource(R.string.chat_jump_to_bottom),
                                     tint = ClaudeTerracotta,
                                     modifier = Modifier.size(22.dp)
                                 )
@@ -1864,7 +1864,7 @@ fun ChatScreen(
                                 }
                                 Spacer(modifier = Modifier.width(8.dp))
                                 Text(
-                                    text = if (isReconnecting) "Connecting to Antigravity..." else "Antigravity Disconnected",
+                                    text = if (isReconnecting) stringResource(R.string.chat_connecting_antigravity) else stringResource(R.string.chat_antigravity_disconnected),
                                     style = MaterialTheme.typography.bodySmall,
                                     fontWeight = FontWeight.Medium,
                                     color = if (isReconnecting) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onErrorContainer,
@@ -1979,9 +1979,9 @@ fun ChatScreen(
                     isOnline = if (isClaudeChat) !claudeState.isBlocking else systemConnectionState.canSend,
                     isAuth = if (isClaudeChat) claudeState != com.example.gemini.data.agent.claude.ClaudeStatus.SIGNED_OUT && claudeState != com.example.gemini.data.agent.claude.ClaudeStatus.SIGNING_IN else systemConnectionState.isAuth,
                     offlineMessage = if (isClaudeChat) when (claudeState) {
-                        com.example.gemini.data.agent.claude.ClaudeStatus.NOT_INSTALLED -> "Claude Code is not installed. Set it up in Settings."
-                        com.example.gemini.data.agent.claude.ClaudeStatus.BRIDGE_OUTDATED -> "Restart the local server to use Claude Code."
-                        else -> "The local server is offline. Start it to send messages."
+                        com.example.gemini.data.agent.claude.ClaudeStatus.NOT_INSTALLED -> stringResource(R.string.chat_claude_not_installed_hint)
+                        com.example.gemini.data.agent.claude.ClaudeStatus.BRIDGE_OUTDATED -> stringResource(R.string.chat_claude_restart_server_hint)
+                        else -> stringResource(R.string.chat_claude_server_offline_hint)
                     } else "Server is offline. Start the server to send messages.",
                     selectedModel = currentModel,
                     quota = currentQuota,
@@ -2297,7 +2297,7 @@ fun ChatScreen(
             containerColor = MaterialTheme.colorScheme.surface,
             title = {
                 Text(
-                    text = if (action.type == MessageActionType.EDIT) "Edit Message?" else "Regenerate Response?",
+                    text = if (action.type == MessageActionType.EDIT) stringResource(R.string.chat_edit_message_title) else stringResource(R.string.chat_regenerate_response_title),
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp
                 )
@@ -2359,7 +2359,7 @@ fun ChatScreen(
                     Text(
                         text = when {
                             isClaudeChat && action.type == MessageActionType.EDIT -> "Edit"
-                            action.type == MessageActionType.EDIT -> "Edit & Delete"
+                            action.type == MessageActionType.EDIT -> stringResource(R.string.chat_edit_and_delete)
                             else -> "Regenerate"
                         },
                         color = ClaudeTerracotta,

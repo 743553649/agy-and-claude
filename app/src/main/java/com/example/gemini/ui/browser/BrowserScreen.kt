@@ -373,7 +373,7 @@ fun BrowserScreen(
                         ) {
                             Icon(
                                 imageVector = if (isDesktopMode) Icons.Outlined.Laptop else Icons.Outlined.TouchApp,
-                                contentDescription = if (isDesktopMode) "Desktop mode enabled" else "Mobile mode enabled",
+                                contentDescription = if (isDesktopMode) stringResource(R.string.browser_desktop_mode_enabled) else stringResource(R.string.browser_mobile_mode_enabled),
                                 tint = if (isDesktopMode) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
                                 modifier = Modifier.size(20.dp)
                             )
@@ -665,7 +665,7 @@ fun BrowserScreen(
                                 }
                             )
                             DropdownMenuItem(
-                                text = { Text(if (activeTab?.isDesktopMode == true) "Mobile Site" else "Desktop Site") },
+                                text = { Text(if (activeTab?.isDesktopMode == true) stringResource(R.string.browser_mobile_site) else stringResource(R.string.browser_desktop_site)) },
                                 leadingIcon = { Icon(Icons.Default.DesktopWindows, contentDescription = null) },
                                 onClick = {
                                     showMoreMenu = false
@@ -985,7 +985,7 @@ private fun SearchHistoryOverlay(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = if (trimmed.isBlank()) "Recent Searches" else "History Suggestions",
+                            text = if (trimmed.isBlank()) stringResource(R.string.browser_recent_searches) else stringResource(R.string.browser_history_suggestions),
                             style = MaterialTheme.typography.labelMedium,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f)
@@ -1741,16 +1741,16 @@ fun BrowserDiagnosticOverlay(
     val targetUrl = lastErr?.url ?: tab.url
 
     val title = when {
-        isStalled -> "Page Loading Stalled"
-        lastErr?.description?.contains("SSL", ignoreCase = true) == true -> "SSL Security Warning"
-        lastErr?.errorCode == -1 -> "Renderer Process Crashed"
-        else -> "Unable to Load Page"
+        isStalled -> stringResource(R.string.browser_error_stalled_title)
+        lastErr?.description?.contains("SSL", ignoreCase = true) == true -> stringResource(R.string.browser_error_ssl_warning)
+        lastErr?.errorCode == -1 -> stringResource(R.string.browser_error_renderer_crashed)
+        else -> stringResource(R.string.browser_error_unable_to_load)
     }
 
     val description = when {
-        isStalled -> "The page is taking unusually long to respond (timeout > 15s). The local server or remote site might be unresponsive."
+        isStalled -> stringResource(R.string.browser_error_stalled_desc)
         !lastErr?.description.isNullOrBlank() -> lastErr?.description ?: "An unexpected network or connection error occurred."
-        else -> "Could not connect to the server or display the requested URL."
+        else -> stringResource(R.string.browser_error_connect_desc)
     }
 
     Box(
@@ -1861,7 +1861,7 @@ fun BrowserDiagnosticOverlay(
                             horizontalArrangement = Arrangement.Center
                         ) {
                             Text(
-                                text = if (showDetails) "Hide Diagnostic Logs" else "Show Diagnostic Logs (${recentLogs.size})",
+                                text = if (showDetails) stringResource(R.string.browser_hide_diagnostic_logs) else stringResource(R.string.browser_show_diagnostic_logs, recentLogs.size),
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.Medium,
                                 color = ClaudeTerracotta
@@ -1993,7 +1993,7 @@ private fun BrowserAiLockOverlay(busy: Boolean, onUnlock: () -> Unit) {
                     Spacer(modifier = Modifier.width(8.dp))
                 }
                 Text(
-                    text = if (busy) "AI is working…" else "Controlled by AI",
+                    text = if (busy) stringResource(R.string.browser_ai_working) else stringResource(R.string.browser_controlled_by_ai),
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Medium,
                     color = Color.White
