@@ -37,6 +37,9 @@ SITES = [
     (IDE, 'text = if (activeFile != null) activeFile.name else "(No file open)",',
      'text = if (activeFile != null) activeFile.name else stringResource(R.string.ide_no_file_open),', 1),
     # ---- Claude effort 说明 ----
+    # effortDescription 是普通函数，改成 @Composable 才能在体内取资源（批次 10 CI 修复）
+    (CMS, 'private fun effortDescription(level: String?): String = when (level) {',
+     '@Composable\nprivate fun effortDescription(level: String?): String = when (level) {', 1),
     (CMS, 'null -> "The model\'s own default"', 'null -> stringResource(R.string.claude_effort_default)', 1),
     (CMS, '"low" -> "Quick answers with light reasoning"', '"low" -> stringResource(R.string.claude_effort_low)', 1),
     (CMS, '"medium" -> "Balanced speed and depth"', '"medium" -> stringResource(R.string.claude_effort_medium)', 1),

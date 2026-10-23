@@ -162,6 +162,7 @@ fun ClaudePermissionModeSheet(
     }
 }
 
+@Composable
 private fun effortDescription(level: String?): String = when (level) {
     null -> stringResource(R.string.claude_effort_default)
     "low" -> stringResource(R.string.claude_effort_low)

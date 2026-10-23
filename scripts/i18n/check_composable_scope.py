@@ -64,7 +64,42 @@ def main():
             inner = next((l.strip() for l in snippet if "stringResource(" in l), "")
             print(f"{os.path.relpath(path, ROOT)}:{line}  {m.group(1)}(...) 内用了 stringResource → {inner[:110]}")
             hits += 1
-    print(f"\n可疑处 {hits} 个")
+
+    # 规则二：非 @Composable 的函数体里调用 stringResource
+    FUN = re.compile(r'(?m)^((?:/\*\*.*?\*/\s*)?(?:(?:private|internal|public)\s+)?fun\s+\w+)')
+    for path in files:
+        text = open(path, encoding="utf-8").read()
+        lines = text.split("\n")
+        for idx, line in enumerate(lines):
+            if not re.match(r'\s*(?:(?:private|internal|public)\s+)?fun\s+\w+', line):
+                continue
+            # 往上找最近的 @Composable 注解（允许 OptIn 之类注释行）
+            annotated = False
+            j = idx - 1
+            while j >= 0 and (lines[j].strip().startswith("@") or lines[j].strip().startswith("//")
+                              or lines[j].strip().startswith("*") or lines[j].strip().startswith("/*")):
+                if "@Composable" in lines[j]:
+                    annotated = True
+                    break
+                j -= 1
+            if annotated:
+                continue
+            body_start = idx
+            depth = 0
+            k = idx
+            seen_brace = False
+            while k < len(lines):
+                depth += lines[k].count("{") - lines[k].count("}")
+                if "{" in lines[k]:
+                    seen_brace = True
+                if seen_brace and depth <= 0:
+                    break
+                k += 1
+            body = "\n".join(lines[body_start:k + 1])
+            if "stringResource(" in body:
+                print(f"{os.path.relpath(path, ROOT)}:{idx + 1}  非 @Composable 函数内用了 stringResource → {lines[idx].strip()[:90]}")
+                globals()['HITS'] = globals().get('HITS', 0) + 1
+    print(f"\n可疑处 {hits + globals().get('HITS', 0)} 个")
     return 1 if hits else 0
 
 
