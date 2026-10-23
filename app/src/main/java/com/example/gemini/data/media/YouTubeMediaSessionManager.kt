@@ -620,7 +620,7 @@ object YouTubeMediaSessionManager {
         )
 
         val playPauseIcon = if (isPlaying) android.R.drawable.ic_media_pause else android.R.drawable.ic_media_play
-        val playPauseTitle = if (isPlaying) "Pause" else "Play"
+        val playPauseTitle = if (isPlaying) context.getString(R.string.data_media_pause) else context.getString(R.string.component_play)
 
         val mediaStyle = Notification.MediaStyle()
             .setMediaSession(session.sessionToken)
@@ -629,7 +629,7 @@ object YouTubeMediaSessionManager {
         val builder = Notification.Builder(context, CHANNEL_ID)
             .setSmallIcon(android.R.drawable.ic_media_play)
             .setContentTitle(activeTitle)
-            .setContentText("YouTube Video")
+            .setContentText(context.getString(R.string.data_media_youtube_video))
             .setSubText("Antigravity")
             .setContentIntent(contentIntent)
             .setDeleteIntent(stopIntent)
@@ -646,7 +646,7 @@ object YouTubeMediaSessionManager {
             .addAction(
                 Notification.Action.Builder(
                     android.graphics.drawable.Icon.createWithResource(context, android.R.drawable.ic_menu_close_clear_cancel),
-                    "Close",
+                    context.getString(R.string.common_close),
                     stopIntent
                 ).build()
             )

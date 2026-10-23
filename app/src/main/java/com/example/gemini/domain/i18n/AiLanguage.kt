@@ -12,8 +12,11 @@ import java.util.Locale
  * 语言来源：优先读 appcompat 记录的「应用语言」——API 33+ 来自框架 LocaleManager，
  * API<33 来自 appcompat 的进程内请求值（即 `AppCompatDelegate.setApplicationLocales` 的入参）；
  * 没有被显式设置（跟随系统）时才回落到 `Locale.getDefault()`。
- * 不直接用 `Locale.getDefault()` 判定显式设置的语言：API<33 下 appcompat 只包装 Activity 资源，
- * 静态默认值是否同步变化尚未在真机验证（见 docs/i18n/HANDOFF.md 的 P1「待验证」项）。
+ * 仍不直接用 `Locale.getDefault()` 判定，原因只剩「区分不了显式设置与跟随系统」这一点：
+ * 2026-10-23 真机实测（API<33）已确认切换应用语言时 `Locale.getDefault()` **确实会跟着变**
+ * （证据见 docs/i18n/HANDOFF.md 第 4 节「已真机验证②」），因此原先「API<33 下 appcompat
+ * 只包装 Activity 资源、静态默认值可能不同步」的顾虑不再成立；读 appcompat 的 API 更精确，
+ * 逻辑保持不动。
  */
 object AiLanguage {
 

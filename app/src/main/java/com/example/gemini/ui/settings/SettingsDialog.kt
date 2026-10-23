@@ -4658,7 +4658,7 @@ private fun BackupsSubScreen(
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = "Package entire Linux /usr system and \$HOME into a bootable zip",
+                            text = stringResource(R.string.settings_rootfs_backup_desc, "\$HOME"),
                             fontSize = 11.5.sp,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                         )

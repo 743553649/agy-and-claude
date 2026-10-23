@@ -255,8 +255,12 @@
     <string name="data_install_verifying_installation_95">正在校验安装（95%）</string>
     <!-- 原文: Verifying Linux environment and shell execution... -->
     <string name="data_install_verifying_linux_environment_and_shell_ex">正在校验 Linux 环境与 shell 执行……</string>
+    <!-- 原文: Pause -->
+    <string name="data_media_pause">暂停</string>
     <!-- 原文: Shows playback controls for videos in chat -->
     <string name="data_media_session_description">在对话中显示视频播放控件</string>
+    <!-- 原文: YouTube Video -->
+    <string name="data_media_youtube_video">YouTube 视频</string>
     <!-- 原文: Exit -->
     <string name="data_service_action_exit">退出</string>
     <!-- 原文: Float -->

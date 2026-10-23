@@ -715,6 +715,8 @@
     <string name="settings_retry_installation">重试安装</string>
     <!-- 原文: Review File Edits & Writes -->
     <string name="settings_review_file_edits_writes">审阅文件修改与写入</string>
+    <!-- 原文: Package entire Linux /usr system and %1$s into a bootable zip -->
+    <string name="settings_rootfs_backup_desc">把整个 Linux /usr 系统与 %1$s 打包成可启动的 zip</string>
     <!-- 原文: Completed in %1$s s (Exit: 0) -->
     <string name="settings_rootfs_completed">已完成，用时 %1$s 秒（退出码：0）</string>
     <!-- 原文: Rootfs Environment Backup -->

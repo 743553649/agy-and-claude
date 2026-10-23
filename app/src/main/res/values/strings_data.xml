@@ -130,7 +130,9 @@
     <string name="data_install_verification_failed_installed_package_di">Verification failed: installed package directory is too small (%1$s). Installation is incomplete.</string>
     <string name="data_install_verifying_installation_95">Verifying Installation (95%)</string>
     <string name="data_install_verifying_linux_environment_and_shell_ex">Verifying Linux environment and shell execution...</string>
+    <string name="data_media_pause">Pause</string>
     <string name="data_media_session_description">Shows playback controls for videos in chat</string>
+    <string name="data_media_youtube_video">YouTube Video</string>
     <string name="data_service_action_exit">Exit</string>
     <string name="data_service_action_float">Float</string>
     <string name="data_service_channel_desc">Terminal sessions and background execution</string>

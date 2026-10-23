@@ -360,6 +360,7 @@
     <string name="settings_retry_connection">Retry Connection</string>
     <string name="settings_retry_installation">Retry Installation</string>
     <string name="settings_review_file_edits_writes">Review File Edits &amp; Writes</string>
+    <string name="settings_rootfs_backup_desc">Package entire Linux /usr system and %1$s into a bootable zip</string>
     <string name="settings_rootfs_completed">Completed in %1$s s (Exit: 0)</string>
     <string name="settings_rootfs_environment_backup">Rootfs Environment Backup</string>
     <string name="settings_rootfs_executing">Executing in rootfs environment...</string>
