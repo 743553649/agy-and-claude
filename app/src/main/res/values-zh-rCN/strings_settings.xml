@@ -33,6 +33,8 @@
     <string name="settings_add_an_enabled_extension_to_your_model_i">在 MCP 设置 → WebView 扩展 MCP 中，为你的模型添加已启用的扩展。重命名文件夹不会影响其 MCP 连接；更新或重新加载会重启该扩展的工作进程。</string>
     <!-- 原文: Add an MCP server to connect SQLite, filesystem, browser automation, or custom local tools to the assistant. -->
     <string name="settings_add_an_mcp_server_to_connect_sqlite_file">添加 MCP 服务器，把 SQLite、文件系统、浏览器自动化或自定义本地工具接入助手。</string>
+    <!-- 原文: Add MCP Server -->
+    <string name="settings_add_mcp_server">添加 MCP 服务器</string>
     <!-- 原文: Add Permission Grant Rule -->
     <string name="settings_add_permission_grant_rule">添加权限授予规则</string>
     <!-- 原文: Add Rule -->
@@ -41,6 +43,10 @@
     <string name="settings_add_server">添加服务器</string>
     <!-- 原文: Address Space -->
     <string name="settings_address_space">地址空间</string>
+    <!-- 原文: Status: Inactive (Optional) -->
+    <string name="settings_admin_inactive">状态：未启用（可选）</string>
+    <!-- 原文: Status: Protected (Device Admin Active) -->
+    <string name="settings_admin_protected">状态：已保护（设备管理器已启用）</string>
     <!-- 原文: Agents -->
     <string name="settings_agents">智能体</string>
     <!-- 原文: AGY Chats & Credentials Backup -->
@@ -145,6 +151,10 @@
     <string name="settings_backup_ide_agy_workspaces_or_restore_fro">备份 IDE 与 AGY 工作区，或从 zip 恢复</string>
     <!-- 原文: Backup Projects -->
     <string name="settings_backup_projects">备份项目</string>
+    <!-- 原文: Backup %1$s Selected Projects -->
+    <string name="settings_backup_selected">备份选中的 %1$s 个项目</string>
+    <!-- 原文: Backup %1$s Selected Projects (%2$s workspace roots) -->
+    <string name="settings_backup_selected_roots">备份选中的 %1$s 个项目（%2$s 个工作区根目录）</string>
     <!-- 原文: Backups & Restore -->
     <string name="settings_backups_restore">备份与还原</string>
     <!-- 原文: Shield -->
@@ -157,6 +167,10 @@
     <string name="settings_bootstrap_rootfs_successfully_configured">Bootstrap rootfs 配置成功。交互式终端、Go IDE 后端和 AGY AI 语言服务器现在都可以运行了。</string>
     <!-- 原文: Bridge: http://%1$s:%2$s -->
     <string name="settings_bridge_http_sharedhost_trim_bridgeport_t">桥接：http://%1$s:%2$s</string>
+    <!-- 原文: ✗ Bridge unreachable (%1$s) -->
+    <string name="settings_bridge_test_fail">✗ 桥接不可达（%1$s）</string>
+    <!-- 原文: ✓ Bridge Connected! -->
+    <string name="settings_bridge_test_ok">✓ 桥接已连接！</string>
     <!-- 原文: Browse MCP Catalog / Marketplace (1-Click) -->
     <string name="settings_browse_mcp_catalog_marketplace_1_click">浏览 MCP 目录 / 市场（一键）</string>
     <!-- 原文: Browser Automation -->
@@ -223,6 +237,8 @@
     <string name="settings_connecting_to_agy_hub_loading_permission">正在连接 AGY 中枢并加载权限……</string>
     <!-- 原文: Connection Issue -->
     <string name="settings_connection_issue">连接问题</string>
+    <!-- 原文: Connection refused -->
+    <string name="settings_connection_refused">连接被拒绝</string>
     <!-- 原文: Control which device capabilities the AI model can access via the embedded MCP bridge. Toggling off any category immediately hides those tools from the AI. -->
     <string name="settings_control_which_device_capabilities_the_ai">控制 AI 模型可经由内置 MCP 桥接访问的设备能力。关闭任一类别会立即对 AI 隐藏对应工具。</string>
     <!-- 原文: Controls terminal command execution and file access outside working directory. -->
@@ -313,6 +329,8 @@
     <string name="settings_e_g_stitch_filesystem_github">例如 stitch、filesystem、github</string>
     <!-- 原文: e.g. -y @modelcontextprotocol/server-filesystem . -->
     <string name="settings_e_g_y_modelcontextprotocol_server_filesy">例如 -y @modelcontextprotocol/server-filesystem .</string>
+    <!-- 原文: Edit MCP Server -->
+    <string name="settings_edit_mcp_server">编辑 MCP 服务器</string>
     <!-- 原文: Edits and creates documents immediately without asking. -->
     <string name="settings_edits_and_creates_documents_immediately">直接编辑和创建文档，不再询问。</string>
     <!-- 原文: Embedded Linux Rootfs -->
@@ -425,6 +443,12 @@
     <string name="settings_http_headers_header_value_per_line">HTTP 请求头（每行 Header: Value）</string>
     <!-- 原文: Hub: http://%1$s:%2$s -->
     <string name="settings_hub_http_sharedhost_trim_hubport_trim">中枢：http://%1$s:%2$s</string>
+    <!-- 原文: ✗ Hub unreachable (%1$s) -->
+    <string name="settings_hub_test_fail">✗ Hub 不可达（%1$s）</string>
+    <!-- 原文: ✓ Hub Connected! -->
+    <string name="settings_hub_test_ok">✓ Hub 已连接！</string>
+    <!-- 原文: Floating live metrics HUD enabled -->
+    <string name="settings_hud_enabled_subtitle">悬浮实时指标 HUD 已启用</string>
     <!-- 原文: ID: %1$s -->
     <string name="settings_id_plugin_id">ID：%1$s</string>
     <!-- 原文: IDE & AGY Projects Backup & Restore -->
@@ -453,6 +477,10 @@
     <string name="settings_installation_log_output">安装日志输出</string>
     <!-- 原文: Installed Bundles & Extensions -->
     <string name="settings_installed_bundles_extensions">已安装的包与扩展</string>
+    <!-- 原文: Installed ✓ -->
+    <string name="settings_installed_check">已安装 ✓</string>
+    <!-- 原文: Installed and ready -->
+    <string name="settings_installed_ready">已安装就绪</string>
     <!-- 原文: Keep Editing -->
     <string name="settings_keep_editing">继续编辑</string>
     <!-- 原文: English -->
@@ -489,6 +517,10 @@
     <string name="settings_loading_mcp_servers">正在加载 MCP 服务器……</string>
     <!-- 原文: Local Linux & Terminal Setup -->
     <string name="settings_local_linux_terminal_setup">本地 Linux 与终端安装</string>
+    <!-- 原文: Local Mode -->
+    <string name="settings_local_mode">本地模式</string>
+    <!-- 原文: Built-in chroot rootfs environment -->
+    <string name="settings_local_mode_desc">内置 chroot rootfs 环境</string>
     <!-- 原文: Logs will appear here once installation begins... -->
     <string name="settings_logs_will_appear_here_once_installation">安装开始后日志会显示在这里……</string>
     <!-- 原文: LSE Atomics -->
@@ -497,6 +529,10 @@
     <string name="settings_machine">💻 本机</string>
     <!-- 原文: Manage Projects Backup & Restore -->
     <string name="settings_manage_projects_backup_restore">管理项目备份与还原</string>
+    <!-- 原文: > %1$s -->
+    <string name="settings_mcp_command_raw">&gt; %1$s</string>
+    <!-- 原文: URL: %1$s -->
+    <string name="settings_mcp_command_url">URL：%1$s</string>
     <!-- 原文: MCP Server Required -->
     <string name="settings_mcp_server_required">需要 MCP 服务器</string>
     <!-- 原文: MCP Servers & Tools -->
@@ -537,6 +573,10 @@
     <string name="settings_no_plugin_bundles_installed_in_gemini_co">~/.gemini/config/plugins/ 中没有安装任何插件包。</string>
     <!-- 原文: No workspace projects registered yet on AGY Hub. -->
     <string name="settings_no_workspace_projects_registered_yet_on">AGY 中枢上还没有注册任何工作区项目。</string>
+    <!-- 原文: Not Installed -->
+    <string name="settings_not_installed">未安装</string>
+    <!-- 原文: Not installed (>30MB download) -->
+    <string name="settings_not_installed_download">未安装（需下载 &gt;30MB）</string>
     <!-- 原文: Official 'Build with Google' Plugins -->
     <string name="settings_official_build_with_google_plugins">官方「Build with Google」插件</string>
     <!-- 原文: Open App Info -->
@@ -643,12 +683,34 @@
     <string name="settings_retry_installation">重试安装</string>
     <!-- 原文: Review File Edits & Writes -->
     <string name="settings_review_file_edits_writes">审阅文件修改与写入</string>
+    <!-- 原文: Completed in %1$s s (Exit: 0) -->
+    <string name="settings_rootfs_completed">已完成，用时 %1$s 秒（退出码：0）</string>
     <!-- 原文: Rootfs Environment Backup -->
     <string name="settings_rootfs_environment_backup">Rootfs 环境备份</string>
+    <!-- 原文: Executing in rootfs environment... -->
+    <string name="settings_rootfs_executing">正在 rootfs 环境中执行……</string>
+    <!-- 原文: Finished with error (Exit: %1$s) -->
+    <string name="settings_rootfs_finished_error">出错结束（退出码：%1$s）</string>
     <!-- 原文: Rootfs System Packager -->
     <string name="settings_rootfs_system_packager">Rootfs 系统打包器</string>
+    <!-- 原文: Command -->
+    <string name="settings_rule_action_command">命令</string>
+    <!-- 原文: MCP Tool -->
+    <string name="settings_rule_action_mcp">MCP 工具</string>
+    <!-- 原文: Read File -->
+    <string name="settings_rule_action_read_file">读文件</string>
+    <!-- 原文: Write File -->
+    <string name="settings_rule_action_write_file">写文件</string>
     <!-- 原文: %1$s %2$s -->
     <string name="settings_rule_actionicon_rule_actionlabel">%1$s %2$s</string>
+    <!-- 原文: ⚠️ Custom Override -->
+    <string name="settings_rules_custom_override">⚠️ 自定义覆盖</string>
+    <!-- 原文: 🌐 Inherits Global -->
+    <string name="settings_rules_inherit_global">🌐 继承全局</string>
+    <!-- 原文: No rules match the selected filter. -->
+    <string name="settings_rules_no_match">没有符合当前筛选的规则。</string>
+    <!-- 原文: No custom permission rules configured. -->
+    <string name="settings_rules_none">尚未配置自定义权限规则。</string>
     <!-- 原文: Run in Background -->
     <string name="settings_run_in_background">后台运行</string>
     <!-- 原文: Run in Background & Open AntiGem -->
@@ -665,6 +727,10 @@
     <string name="settings_safe_to_clear_removes_temporary_logs_and">可以安全清除。只删除临时日志和缓存资源，不会碰你的代码或数据库。</string>
     <!-- 原文: Safely packages your entire ~/.gemini folder (SQLite chat history databases, brain transcripts, summaries index, custom skills, and authentication token). Supports optional zip encryption. -->
     <string name="settings_safely_packages_your_entire_gemini_folde">安全打包你的整个 ~/.gemini 文件夹（SQLite 对话历史数据库、brain 记录、摘要索引、自定义技能和登录令牌）。支持可选的 zip 加密。</string>
+    <!-- 原文: Disabled (Recommended for Hub): Commands execute directly in your Termux / Linux environment. -->
+    <string name="settings_sandbox_disabled_desc">未启用（推荐 Hub 用户）：命令直接在 Termux / Linux 环境中执行。</string>
+    <!-- 原文: Enabled: Isolates commands in sandbox without host network access. -->
+    <string name="settings_sandbox_enabled_desc">已启用：命令在沙箱中隔离运行，无宿主网络访问。</string>
     <!-- 原文: Save Rule -->
     <string name="settings_save_rule">保存规则</string>
     <!-- 原文: Save Server & Security Settings -->
@@ -755,6 +821,10 @@
     <string name="settings_set_to_inherit_global_settings">🌐 设为继承全局设置</string>
     <!-- 原文: Shared server host address with dedicated daemon & bridge ports -->
     <string name="settings_shared_server_host_address_with_dedicate">共享的服务器主机地址，以及各自独立的守护进程和桥接端口</string>
+    <!-- 原文: Disabled (Standard OS Clear Data) -->
+    <string name="settings_shield_disabled">未启用（使用系统标准的清除数据）</string>
+    <!-- 原文: Enabled (Replaces Clear Data with Space Manager) -->
+    <string name="settings_shield_enabled">已启用（「清除数据」改为空间管理）</string>
     <!-- 原文: Show a dedicated terminal icon on your Android home screen and app drawer -->
     <string name="settings_show_a_dedicated_terminal_icon_on_your_a">在 Android 桌面和应用抽屉中显示独立的终端图标</string>
     <!-- 原文: Show on-screen draggable pill with live call count & streams -->
@@ -783,6 +853,14 @@
     <string name="settings_sse_endpoint_url">SSE 接口地址 *</string>
     <!-- 原文: SSH Host -->
     <string name="settings_ssh_host">SSH 主机</string>
+    <!-- 原文: SSH Mode -->
+    <string name="settings_ssh_mode">SSH 模式</string>
+    <!-- 原文: Direct SSH to Termux sshd without local rootfs -->
+    <string name="settings_ssh_mode_desc">直接 SSH 连接 Termux sshd，不经过本地 rootfs</string>
+    <!-- 原文: ✗ Failed: %1$s -->
+    <string name="settings_ssh_test_fail">✗ 失败：%1$s</string>
+    <!-- 原文: ✓ SSH connection successful! -->
+    <string name="settings_ssh_test_ok">✓ SSH 连接成功！</string>
     <!-- 原文: Start Backup -->
     <string name="settings_start_backup">开始备份</string>
     <!-- 原文: Start Restore -->
@@ -809,6 +887,8 @@
     <string name="settings_stop_server_now">立即停止服务</string>
     <!-- 原文: Store -->
     <string name="settings_store">商店</string>
+    <!-- 原文: %1$s sub-project(s) -->
+    <string name="settings_subproject_count">%1$s 个子项目</string>
     <!-- 原文: Suspends and requests your approval before saving document edits. -->
     <string name="settings_suspends_and_requests_your_approval_befo">在保存文档修改前暂停并请求你的批准。</string>
     <!-- 原文: Web Browser -->
@@ -833,12 +913,16 @@
     <string name="settings_terminal_sandbox_isolation">终端沙箱隔离</string>
     <!-- 原文: Terminal & Shell Execution -->
     <string name="settings_terminal_shell_execution">终端与 Shell 执行</string>
+    <!-- 原文: Test & Refresh -->
+    <string name="settings_test_and_refresh">测试并刷新</string>
     <!-- 原文: Test Bridge -->
     <string name="settings_test_bridge">测试桥接</string>
     <!-- 原文: Test Hub -->
     <string name="settings_test_hub">测试中枢</string>
     <!-- 原文: Test SSH Connection -->
     <string name="settings_test_ssh_connection">测试 SSH 连接</string>
+    <!-- 原文: Testing All... -->
+    <string name="settings_testing_all">正在测试全部……</string>
     <!-- 原文: The AGY IDE Bridge and Hub server must be offline before running '%1$s'. Would you like to stop the server now? -->
     <string name="settings_the_agy_ide_bridge_and_hub_server_must_b">执行「%1$s」前必须先停掉 AGY IDE 桥接与中枢服务器。要现在停止吗？</string>
     <!-- 原文: The daemon is actively accessing databases and processes. Please stop the server before performing backups or restores to prevent corrupted archives. -->

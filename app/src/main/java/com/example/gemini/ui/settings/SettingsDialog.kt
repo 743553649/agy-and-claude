@@ -810,7 +810,7 @@ private fun MainSettingsMenu(
             icon = Icons.Outlined.Speed,
             iconTint = if (isFloatingDiagnosticsEnabled) QuotaGreen else Color(0xFF00ACC1),
             title = stringResource(R.string.settings_diagnostics_performance),
-            subtitle = if (isFloatingDiagnosticsEnabled) "Floating live metrics HUD enabled" else "Live network connections, active streams & thread HUD",
+            subtitle = if (isFloatingDiagnosticsEnabled) stringResource(R.string.settings_hud_enabled_subtitle) else stringResource(R.string.settings_section_live_network_connections_active_sub),
             badgeText = diagBadge,
             badgeColor = diagColor,
             cardBg = cardBg,
@@ -2205,7 +2205,7 @@ private fun ServersSubScreen(
                                     }
                                 }
                                 isTestingHub = false
-                                hubTestStatus = if (ok) "✓ Hub Connected!" else "✗ Hub unreachable (${hubPort.trim()})"
+                                hubTestStatus = if (ok) stringResource(R.string.settings_hub_test_ok) else stringResource(R.string.settings_hub_test_fail, hubPort.trim())
                             }
                         },
                         modifier = Modifier.weight(1f),
@@ -2227,7 +2227,7 @@ private fun ServersSubScreen(
                                 val base = "http://${sharedHost.trim()}:${bridgePort.trim()}"
                                 val ok = com.example.gemini.data.remote.AgyBridgeService.instance.checkServerHealth(base)
                                 isTestingBridge = false
-                                bridgeTestStatus = if (ok) "✓ Bridge Connected!" else "✗ Bridge unreachable (${bridgePort.trim()})"
+                                bridgeTestStatus = if (ok) stringResource(R.string.settings_bridge_test_ok) else stringResource(R.string.settings_bridge_test_fail, bridgePort.trim())
                             }
                         },
                         modifier = Modifier.weight(1f),
@@ -2644,7 +2644,7 @@ private fun McpSubScreen(
                             )
                         }
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text(if (isRefreshingAll) "Testing All..." else "Test & Refresh", fontSize = 13.sp)
+                        Text(if (isRefreshingAll) stringResource(R.string.settings_testing_all) else stringResource(R.string.settings_test_and_refresh), fontSize = 13.sp)
                     }
 
                     Button(
@@ -3046,7 +3046,7 @@ private fun McpSubScreen(
                             color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f)
                         ) {
                             Text(
-                                text = if (isSse) "URL: $cmdText" else "> $cmdText",
+                                text = if (isSse) stringResource(R.string.settings_mcp_command_url, cmdText) else stringResource(R.string.settings_mcp_command_raw, cmdText),
                                 fontSize = 11.5.sp,
                                 fontFamily = FontFamily.Monospace,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
@@ -3567,7 +3567,7 @@ private fun AddEditMcpServerDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = if (initialSpec != null && initialSpec.serverName.isNotBlank()) "Edit MCP Server" else "Add MCP Server",
+                text = if (initialSpec != null && initialSpec.serverName.isNotBlank()) stringResource(R.string.settings_edit_mcp_server) else stringResource(R.string.settings_add_mcp_server),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -3958,7 +3958,7 @@ private fun TerminalSubScreen(
                                 color = if (useSshTerminal) QuotaGreen.copy(alpha = 0.15f) else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f)
                             ) {
                                 Text(
-                                    text = if (useSshTerminal) "SSH Mode" else "Local Mode",
+                                    text = if (useSshTerminal) stringResource(R.string.settings_ssh_mode) else stringResource(R.string.settings_local_mode),
                                     fontSize = 10.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = if (useSshTerminal) QuotaGreen else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
@@ -3967,7 +3967,7 @@ private fun TerminalSubScreen(
                             }
                         }
                         Text(
-                            text = if (useSshTerminal) "Direct SSH to Termux sshd without local rootfs" else "Built-in chroot rootfs environment",
+                            text = if (useSshTerminal) stringResource(R.string.settings_ssh_mode_desc) else stringResource(R.string.settings_local_mode_desc),
                             fontSize = 11.5.sp,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                         )
@@ -4067,7 +4067,7 @@ private fun TerminalSubScreen(
                                     pass = passState
                                 )
                                 isTestingSsh = false
-                                sshTestStatus = if (res.isSuccess) "✓ SSH connection successful!" else "✗ Failed: ${res.exceptionOrNull()?.localizedMessage ?: "Connection refused"}"
+                                sshTestStatus = if (res.isSuccess) stringResource(R.string.settings_ssh_test_ok) else stringResource(R.string.settings_ssh_test_fail, res.exceptionOrNull()?.localizedMessage ?: stringResource(R.string.settings_connection_refused))
                             }
                         },
                         modifier = Modifier.fillMaxWidth(),
@@ -4123,14 +4123,14 @@ private fun TerminalSubScreen(
                     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                         Column {
                             Text(stringResource(R.string.settings_embedded_linux_rootfs), fontSize = 13.5.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
-                            Text(text = if (isLocalToolsInstalled) "Installed and ready" else "Not installed (>30MB download)", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                            Text(text = if (isLocalToolsInstalled) stringResource(R.string.settings_installed_ready) else stringResource(R.string.settings_not_installed_download), fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                         }
                         Surface(
                             shape = RoundedCornerShape(4.dp),
                             color = if (isLocalToolsInstalled) QuotaGreen.copy(alpha = 0.15f) else ClaudeTerracotta.copy(alpha = 0.15f)
                         ) {
                             Text(
-                                text = if (isLocalToolsInstalled) "Installed ✓" else "Not Installed",
+                                text = if (isLocalToolsInstalled) stringResource(R.string.settings_installed_check) else stringResource(R.string.settings_not_installed),
                                 fontSize = 10.5.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = if (isLocalToolsInstalled) QuotaGreen else ClaudeTerracotta,
@@ -5719,7 +5719,7 @@ private fun ProjectsBackupRestoreDialog(
                                                                 color = Color(0xFF6366F1).copy(alpha = 0.15f)
                                                             ) {
                                                                 Text(
-                                                                    text = "$childProjectsCount ${if (childProjectsCount == 1) "sub-project" else "sub-projects"}",
+                                                                    text = stringResource(R.string.settings_subproject_count, childProjectsCount),
                                                                     fontSize = 9.5.sp,
                                                                     fontWeight = FontWeight.Bold,
                                                                     color = Color(0xFF6366F1),
@@ -5799,8 +5799,8 @@ private fun ProjectsBackupRestoreDialog(
                             Icon(Icons.Outlined.Archive, contentDescription = null, modifier = Modifier.size(18.dp))
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(
-                                text = if (effectiveBackupPaths.size == selectedCount) "Backup $selectedCount Selected Projects"
-                                       else "Backup $selectedCount Selected Projects (${effectiveBackupPaths.size} workspace roots)",
+                                text = if (effectiveBackupPaths.size == selectedCount) stringResource(R.string.settings_backup_selected, selectedCount)
+                                       else stringResource(R.string.settings_backup_selected_roots, selectedCount, effectiveBackupPaths.size),
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 13.sp
                             )
@@ -6143,7 +6143,7 @@ private fun ScriptExecutionDialog(
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
-                                text = if (isRunning) "Executing in rootfs environment..." else if (exitCode == 0) "Completed in ${(durationMs / 1000.0)}s (Exit: 0)" else "Finished with error (Exit: $exitCode)",
+                                text = if (isRunning) stringResource(R.string.settings_rootfs_executing) else if (exitCode == 0) stringResource(R.string.settings_rootfs_completed, durationMs / 1000.0) else stringResource(R.string.settings_rootfs_finished_error, exitCode),
                                 fontSize = 11.5.sp,
                                 color = if (isRunning) GeminiBlue else if (exitCode == 0) QuotaGreen else Color.Red
                             )
@@ -6343,7 +6343,7 @@ private fun DataProtectionSubScreen(
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = if (isAdminActive) "Status: Protected (Device Admin Active)" else "Status: Inactive (Optional)",
+                            text = if (isAdminActive) stringResource(R.string.settings_admin_protected) else stringResource(R.string.settings_admin_inactive),
                             fontSize = 12.sp,
                             color = if (isAdminActive) QuotaGreen else Color.Gray,
                             fontWeight = FontWeight.SemiBold
@@ -6482,7 +6482,7 @@ private fun DataProtectionSubScreen(
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = if (isShieldEnabled) "Enabled (Replaces Clear Data with Space Manager)" else "Disabled (Standard OS Clear Data)",
+                            text = if (isShieldEnabled) stringResource(R.string.settings_shield_enabled) else stringResource(R.string.settings_shield_disabled),
                             fontSize = 12.sp,
                             color = if (isShieldEnabled) GeminiBlue else Color.Gray
                         )
@@ -7136,8 +7136,8 @@ private fun CommandsSubScreen(
                         )
                         Spacer(modifier = Modifier.height(2.dp))
                         Text(
-                            text = if (activeSandbox) "Enabled: Isolates commands in sandbox without host network access."
-                            else "Disabled (Recommended for Hub): Commands execute directly in your Termux / Linux environment.",
+                            text = if (activeSandbox) stringResource(R.string.settings_sandbox_enabled_desc)
+                            else stringResource(R.string.settings_sandbox_disabled_desc),
                             fontSize = 11.5.sp,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             lineHeight = 15.sp
@@ -7283,7 +7283,7 @@ private fun CommandsSubScreen(
                     verticalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
                     Text(
-                        text = if (allRules.isEmpty()) "No custom permission rules configured." else "No rules match the selected filter.",
+                        text = if (allRules.isEmpty()) stringResource(R.string.settings_rules_none) else stringResource(R.string.settings_rules_no_match),
                         fontSize = 12.5.sp,
                         fontWeight = FontWeight.Medium,
                         color = MaterialTheme.colorScheme.onSurface
@@ -7321,7 +7321,7 @@ private fun CommandsSubScreen(
                                         color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
                                     ) {
                                         Text(
-                                            text = stringResource(R.string.settings_rule_actionicon_rule_actionlabel, rule.actionIcon, rule.actionLabel),
+                                            text = stringResource(R.string.settings_rule_actionicon_rule_actionlabel, rule.actionIcon, if (rule.actionLabelRes != 0) stringResource(rule.actionLabelRes) else rule.action),
                                             fontSize = 11.sp,
                                             fontWeight = FontWeight.SemiBold,
                                             color = MaterialTheme.colorScheme.onSurface,
@@ -7510,7 +7510,7 @@ private fun CommandsSubScreen(
                                     color = if (project.isInheritingGlobal) QuotaGreen.copy(alpha = 0.15f) else Color(0xFFF59E0B).copy(alpha = 0.15f)
                                 ) {
                                     Text(
-                                        text = if (project.isInheritingGlobal) "🌐 Inherits Global" else "⚠️ Custom Override",
+                                        text = if (project.isInheritingGlobal) stringResource(R.string.settings_rules_inherit_global) else stringResource(R.string.settings_rules_custom_override),
                                         fontSize = 10.5.sp,
                                         fontWeight = FontWeight.SemiBold,
                                         color = if (project.isInheritingGlobal) QuotaGreen else Color(0xFFF59E0B),
@@ -7692,13 +7692,14 @@ private data class PermissionGrantRule(
     val decision: String,
     val rawString: String
 ) {
-    val actionLabel: String
+    /** 用户可见的动作名走资源；未识别的动作返回 0，渲染处原样显示技术值。 */
+    val actionLabelRes: Int
         get() = when (action.lowercase()) {
-            "command" -> "Command"
-            "mcp" -> "MCP Tool"
-            "read_file" -> "Read File"
-            "write_file" -> "Write File"
-            else -> action
+            "command" -> R.string.settings_rule_action_command
+            "mcp" -> R.string.settings_rule_action_mcp
+            "read_file" -> R.string.settings_rule_action_read_file
+            "write_file" -> R.string.settings_rule_action_write_file
+            else -> 0
         }
 
     val actionIcon: String
