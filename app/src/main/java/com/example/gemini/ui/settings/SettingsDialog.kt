@@ -2205,7 +2205,7 @@ private fun ServersSubScreen(
                                     }
                                 }
                                 isTestingHub = false
-                                hubTestStatus = if (ok) stringResource(R.string.settings_hub_test_ok) else stringResource(R.string.settings_hub_test_fail, hubPort.trim())
+                                hubTestStatus = if (ok) context.getString(R.string.settings_hub_test_ok) else context.getString(R.string.settings_hub_test_fail, hubPort.trim())
                             }
                         },
                         modifier = Modifier.weight(1f),
@@ -2227,7 +2227,7 @@ private fun ServersSubScreen(
                                 val base = "http://${sharedHost.trim()}:${bridgePort.trim()}"
                                 val ok = com.example.gemini.data.remote.AgyBridgeService.instance.checkServerHealth(base)
                                 isTestingBridge = false
-                                bridgeTestStatus = if (ok) stringResource(R.string.settings_bridge_test_ok) else stringResource(R.string.settings_bridge_test_fail, bridgePort.trim())
+                                bridgeTestStatus = if (ok) context.getString(R.string.settings_bridge_test_ok) else context.getString(R.string.settings_bridge_test_fail, bridgePort.trim())
                             }
                         },
                         modifier = Modifier.weight(1f),
@@ -4067,7 +4067,7 @@ private fun TerminalSubScreen(
                                     pass = passState
                                 )
                                 isTestingSsh = false
-                                sshTestStatus = if (res.isSuccess) stringResource(R.string.settings_ssh_test_ok) else stringResource(R.string.settings_ssh_test_fail, res.exceptionOrNull()?.localizedMessage ?: stringResource(R.string.settings_connection_refused))
+                                sshTestStatus = if (res.isSuccess) context.getString(R.string.settings_ssh_test_ok) else context.getString(R.string.settings_ssh_test_fail, res.exceptionOrNull()?.localizedMessage ?: context.getString(R.string.settings_connection_refused))
                             }
                         },
                         modifier = Modifier.fillMaxWidth(),
@@ -6143,7 +6143,7 @@ private fun ScriptExecutionDialog(
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
-                                text = if (isRunning) stringResource(R.string.settings_rootfs_executing) else if (exitCode == 0) stringResource(R.string.settings_rootfs_completed, durationMs / 1000.0) else stringResource(R.string.settings_rootfs_finished_error, exitCode),
+                                text = if (isRunning) stringResource(R.string.settings_rootfs_executing) else if (exitCode == 0) stringResource(R.string.settings_rootfs_completed, durationMs / 1000.0) else stringResource(R.string.settings_rootfs_finished_error, exitCode ?: -1),
                                 fontSize = 11.5.sp,
                                 color = if (isRunning) GeminiBlue else if (exitCode == 0) QuotaGreen else Color.Red
                             )
