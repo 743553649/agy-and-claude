@@ -126,7 +126,7 @@
 | `ConversationShareHelper` 的 `Shared Conversation` | ✅ 已改（`parseSharedConversation` 增加 `Context` 参数） |
 | 数据层错误族（`AgyMcpManager` / `ClaudeAccountManager`） | ✅ 已改（两个类构造函数注入 `appContext: Context`（`ChatViewModel` 传 `application`），共 36 处可见文案：MCP 加载/刷新/启停/保存/删除/插件安装 + Claude 状态检查/用量/登录登出；12 条静态 + 20 条插值资源，全部 `appContext.getString`） |
 | `ClaudeStatusViews` 空态与状态横幅 | ✅ 已改（不止 7 个 label：整块空态 35 处——6 个状态的标题/说明/主次按钮 + Banner 文字与药丸按钮；能复用的既有 key 全部复用） |
-| 浏览器扩展文案 | ✅ 已改（核实结论：6 个 JS 文件无浮层 UI、界面可见文案为 0，故一行 JS 未改；实际改的是设置页安装/更新对话框与操作失败兜底 6 条、`BrowserExtensionManager` 可显示错误 25 条、内置扩展展示名/描述 2 条；见 HANDOFF P4 与坑 20） |
+| 浏览器扩展文案 | ✅ 已改（核实结论：6 个 JS 文件无浮层 UI、界面可见文案为 0，故一行 JS 未改；实际改的是设置页安装/更新对话框与操作失败兜底 6 条、`BrowserExtensionManager` 可显示错误 25 条、内置扩展展示名/描述 2 条；见 HANDOFF 坑 20） |
 
 ## 五、怎么核对
 
