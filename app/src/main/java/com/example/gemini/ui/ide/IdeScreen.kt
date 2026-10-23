@@ -523,7 +523,7 @@ fun IdeScreen(
                                         DropdownMenuItem(
                                             text = {
                                                 Text(
-                                                    text = if (showSvgSource) "Preview SVG Graphic" else "Edit SVG XML Source",
+                                                    text = if (showSvgSource) stringResource(R.string.ide_preview_svg) else stringResource(R.string.ide_edit_svg_source),
                                                     fontSize = 13.sp
                                                 )
                                             },
@@ -614,7 +614,7 @@ fun IdeScreen(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Save,
-                                    contentDescription = if (isExternal) "Save As..." else "Save File",
+                                    contentDescription = if (isExternal) stringResource(R.string.ide_save_as) else stringResource(R.string.ide_save_file),
                                     tint = if (activeTab.isModified || isExternal) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.35f),
                                     modifier = Modifier.size(20.dp)
                                 )
@@ -665,7 +665,7 @@ fun IdeScreen(
                                     ) {
                                         Icon(
                                             imageVector = Icons.Default.PlayArrow,
-                                            contentDescription = if (isCustomMode) "Run Profile: $selectedProfileName" else "Run Active File",
+                                            contentDescription = if (isCustomMode) stringResource(R.string.ide_run_profile, selectedProfileName) else stringResource(R.string.ide_run_active_file),
                                             tint = if (isCustomMode) GeminiBlue else Color(0xFF4CAF50),
                                             modifier = Modifier.size(20.dp)
                                         )
@@ -718,7 +718,7 @@ fun IdeScreen(
                                                 fontSize = 13.sp
                                             )
                                             Text(
-                                                text = if (activeFile != null) activeFile.name else "(No file open)",
+                                                text = if (activeFile != null) activeFile.name else stringResource(R.string.ide_no_file_open),
                                                 fontSize = 11.sp,
                                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                                             )

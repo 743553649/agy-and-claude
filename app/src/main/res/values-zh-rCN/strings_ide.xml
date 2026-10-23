@@ -111,6 +111,8 @@
     <string name="ide_e_g_john_example_com">例如 john@example.com</string>
     <!-- 原文: Edit launch.json in Editor -->
     <string name="ide_edit_launch_json_in_editor">在编辑器中编辑 launch.json</string>
+    <!-- 原文: Edit SVG XML Source -->
+    <string name="ide_edit_svg_source">编辑 SVG XML 源码</string>
     <!-- 原文: Explorer -->
     <string name="ide_explorer">资源管理器</string>
     <!-- 原文: File Conflict Detected -->
@@ -161,6 +163,8 @@
     <string name="ide_no_changes_detected_or_binary_file">未检测到更改，或为二进制文件。</string>
     <!-- 原文: No custom profiles configured -->
     <string name="ide_no_custom_profiles_configured">没有配置任何自定义项</string>
+    <!-- 原文: (No file open) -->
+    <string name="ide_no_file_open">（未打开文件）</string>
     <!-- 原文: No log entries yet -->
     <string name="ide_no_log_entries_yet">还没有日志记录</string>
     <!-- 原文: No projects found in Termux -->
@@ -185,6 +189,8 @@
     <string name="ide_pop_stash_apply_drop">📤 弹出储藏（应用并丢弃）</string>
     <!-- 原文: Preserve merges (merges) -->
     <string name="ide_preserve_merges_merges">保留合并（merges）</string>
+    <!-- 原文: Preview SVG Graphic -->
+    <string name="ide_preview_svg">预览 SVG 图形</string>
     <!-- 原文: Previous Match -->
     <string name="ide_previous_match">上一个匹配</string>
     <!-- 原文: Profile Name -->
@@ -229,12 +235,20 @@
     <string name="ide_retry_now">立即重试</string>
     <!-- 原文: Revert to Disk -->
     <string name="ide_revert_to_disk">恢复到磁盘版本</string>
+    <!-- 原文: Run Active File -->
+    <string name="ide_run_active_file">运行当前文件</string>
     <!-- 原文: Run Configurations -->
     <string name="ide_run_configurations">运行配置</string>
+    <!-- 原文: Run Profile: %1$s -->
+    <string name="ide_run_profile">运行配置：%1$s</string>
+    <!-- 原文: Save As... -->
+    <string name="ide_save_as">另存为……</string>
     <!-- 原文: Save as Global Config (- -global) -->
     <string name="ide_save_as_global_config_global">保存为全局配置（--global）</string>
     <!-- 原文: Save & Close -->
     <string name="ide_save_close">保存并关闭</string>
+    <!-- 原文: Save File -->
+    <string name="ide_save_file">保存文件</string>
     <!-- 原文: Save Profile -->
     <string name="ide_save_profile">保存配置</string>
     <!-- 原文: Saved into .ide/launch.json in your workspace root. -->

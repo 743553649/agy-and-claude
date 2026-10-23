@@ -109,8 +109,20 @@
     <string name="claude_deny_placeholder">告诉 Claude 你希望怎么做（可选）</string>
     <!-- 原文: %1$s edits -->
     <string name="claude_edits_count">%1$s 处修改</string>
+    <!-- 原文: The model's own default -->
+    <string name="claude_effort_default">模型自身默认值</string>
     <!-- 原文: Effort · %1$s -->
     <string name="claude_effort_effortlabel_effort">强度 · %1$s</string>
+    <!-- 原文: Thorough work on hard tasks -->
+    <string name="claude_effort_high">难题上做更彻底的处理</string>
+    <!-- 原文: Quick answers with light reasoning -->
+    <string name="claude_effort_low">快速回答，轻量推理</string>
+    <!-- 原文: Most thorough; uses plan limits fastest -->
+    <string name="claude_effort_max">最彻底；最快消耗套餐额度</string>
+    <!-- 原文: Balanced speed and depth -->
+    <string name="claude_effort_medium">速度与深度均衡</string>
+    <!-- 原文: Extra depth for complex changes -->
+    <string name="claude_effort_xhigh">为复杂改动提供额外深度</string>
     <!-- 原文: _(empty plan)_ -->
     <string name="claude_empty_plan">_(空计划)_</string>
     <!-- 原文: Environment (KEY=value per line) -->

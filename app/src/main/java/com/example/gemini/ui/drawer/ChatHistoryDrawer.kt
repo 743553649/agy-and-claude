@@ -659,7 +659,7 @@ fun ChatHistoryDrawer(
                     Box(contentAlignment = Alignment.Center) {
                         Icon(
                             imageVector = Icons.Default.Folder,
-                            contentDescription = if (groupByWorkspace) "Disable Workspace Grouping" else "Group by Workspace",
+                            contentDescription = if (groupByWorkspace) stringResource(R.string.drawer_disable_workspace_grouping) else stringResource(R.string.drawer_group_by_workspace),
                             tint = if (groupByWorkspace) ClaudeTerracotta else MaterialTheme.colorScheme.onSurfaceVariant.copy(
                                 alpha = 0.8f
                             ),
@@ -1102,7 +1102,7 @@ fun ChatHistoryDrawer(
                                                     .padding(horizontal = 4.dp, vertical = 2.dp)
                                             ) {
                                                 Text(
-                                                    text = if (isExpanded) "Show less" else "Show ${chats.size - 5} more",
+                                                    text = if (isExpanded) stringResource(R.string.drawer_show_less) else stringResource(R.string.drawer_show_more, chats.size - 5),
                                                     fontSize = 11.5.sp,
                                                     fontWeight = FontWeight.Medium,
                                                     color = ClaudeTerracotta
@@ -1546,7 +1546,7 @@ private fun ChatHistoryItemRow(
                             Spacer(modifier = Modifier.width(2.dp))
                             Icon(
                                 imageVector = if (isSubagentsExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
-                                contentDescription = if (isSubagentsExpanded) "Collapse subagents" else "Expand subagents",
+                                contentDescription = if (isSubagentsExpanded) stringResource(R.string.drawer_collapse_subagents) else stringResource(R.string.drawer_expand_subagents),
                                 tint = if (isSubagentsExpanded) ClaudeTerracotta else MaterialTheme.colorScheme.onSurfaceVariant,
                                 modifier = Modifier.size(13.dp)
                             )
@@ -2132,7 +2132,7 @@ fun SearchChatsDialog(
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
-                                text = if (query.isNotBlank()) "No chats match \"$query\". Try different keywords or reset filters." else "No chats in this category.",
+                                text = if (query.isNotBlank()) stringResource(R.string.drawer_no_chats_match, query) else stringResource(R.string.drawer_no_chats_category),
                                 fontSize = 12.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                                 textAlign = androidx.compose.ui.text.style.TextAlign.Center

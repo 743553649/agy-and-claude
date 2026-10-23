@@ -45,6 +45,8 @@ import androidx.compose.ui.unit.sp
 import com.example.gemini.domain.model.AgentKind
 import com.example.gemini.ui.agents.AgentSheetHeader
 import com.example.gemini.ui.components.ClaudeAccent
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 /** Color of a permission mode (chip, picker icon). */
 @Composable
@@ -161,12 +163,12 @@ fun ClaudePermissionModeSheet(
 }
 
 private fun effortDescription(level: String?): String = when (level) {
-    null -> "The model's own default"
-    "low" -> "Quick answers with light reasoning"
-    "medium" -> "Balanced speed and depth"
-    "high" -> "Thorough work on hard tasks"
-    "xhigh" -> "Extra depth for complex changes"
-    "max" -> "Most thorough; uses plan limits fastest"
+    null -> stringResource(R.string.claude_effort_default)
+    "low" -> stringResource(R.string.claude_effort_low)
+    "medium" -> stringResource(R.string.claude_effort_medium)
+    "high" -> stringResource(R.string.claude_effort_high)
+    "xhigh" -> stringResource(R.string.claude_effort_xhigh)
+    "max" -> stringResource(R.string.claude_effort_max)
     else -> ""
 }
 

@@ -57,7 +57,13 @@
     <string name="claude_delete_name">Delete %1$s?</string>
     <string name="claude_deny_placeholder">Tell Claude what to do instead (optional)</string>
     <string name="claude_edits_count">%1$s edits</string>
+    <string name="claude_effort_default">The model\'s own default</string>
     <string name="claude_effort_effortlabel_effort">Effort · %1$s</string>
+    <string name="claude_effort_high">Thorough work on hard tasks</string>
+    <string name="claude_effort_low">Quick answers with light reasoning</string>
+    <string name="claude_effort_max">Most thorough; uses plan limits fastest</string>
+    <string name="claude_effort_medium">Balanced speed and depth</string>
+    <string name="claude_effort_xhigh">Extra depth for complex changes</string>
     <string name="claude_empty_plan">_(empty plan)_</string>
     <string name="claude_environment_key_value_per_line">Environment (KEY=value per line)</string>
     <string name="claude_fast_mode_fast_replacefirstchar_it_upper">Fast mode · %1$s</string>

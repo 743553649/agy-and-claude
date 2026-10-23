@@ -43,6 +43,8 @@
     <string name="drawer_chats_size">%1$s</string>
     <!-- 原文: Check Status -->
     <string name="drawer_check_status">检查状态</string>
+    <!-- 原文: Collapse subagents -->
+    <string name="drawer_collapse_subagents">收起子智能体</string>
     <!-- 原文: %1$s turns -->
     <string name="drawer_conv_stepcount_turns">%1$s 轮</string>
     <!-- 原文: %1$s total chats indexed -->
@@ -53,6 +55,8 @@
     <string name="drawer_delete_conversation">删除对话？</string>
     <!-- 原文: Delete Conversation -->
     <string name="drawer_delete_conversation_2">删除对话</string>
+    <!-- 原文: Disable Workspace Grouping -->
+    <string name="drawer_disable_workspace_grouping">取消按工作区分组</string>
     <!-- 原文: Do you want to exit the app? This will stop all active background services, servers, and terminals. -->
     <string name="drawer_do_you_want_to_exit_the_app_this_will_st">要退出 App 吗？这会停止所有正在运行的后台服务、服务器和终端。</string>
     <!-- 原文: Download to Downloads/AntiGem -->
@@ -63,6 +67,8 @@
     <string name="drawer_exit_antigem">退出 AntiGem？</string>
     <!-- 原文: Exit App -->
     <string name="drawer_exit_app">退出 App</string>
+    <!-- 原文: Expand subagents -->
+    <string name="drawer_expand_subagents">展开子智能体</string>
     <!-- 原文: Export Markdown (.md) -->
     <string name="drawer_export_markdown_md">导出 Markdown（.md）</string>
     <!-- 原文: Export Standalone HTML -->
@@ -75,12 +81,18 @@
     <string name="drawer_fork_conversation">分叉对话</string>
     <!-- 原文: Generated files, plans & media -->
     <string name="drawer_generated_files_plans_media">生成的文件、计划与媒体</string>
+    <!-- 原文: Group by Workspace -->
+    <string name="drawer_group_by_workspace">按工作区分组</string>
     <!-- 原文: Keep Running -->
     <string name="drawer_keep_running">保持运行</string>
     <!-- 原文: Model: %1$s -->
     <string name="drawer_model_inst_model">模型：%1$s</string>
     <!-- 原文: No artifacts generated yet -->
     <string name="drawer_no_artifacts_generated_yet">还没有生成任何产物</string>
+    <!-- 原文: No chats in this category. -->
+    <string name="drawer_no_chats_category">此分类下暂无会话。</string>
+    <!-- 原文: No chats match "%1$s". Try different keywords or reset filters. -->
+    <string name="drawer_no_chats_match">没有会话匹配「%1$s」。换个关键词或重置筛选试试。</string>
     <!-- 原文: No conversations found -->
     <string name="drawer_no_conversations_found">没有找到对话</string>
     <!-- 原文: Plans, walkthroughs, and generated images will appear here. -->
@@ -103,6 +115,10 @@
     <string name="drawer_search_conversations">搜索对话</string>
     <!-- 原文: Settings -->
     <string name="drawer_settings">设置</string>
+    <!-- 原文: Show less -->
+    <string name="drawer_show_less">收起</string>
+    <!-- 原文: Show %1$s more -->
+    <string name="drawer_show_more">再显示 %1$s 个</string>
     <!-- 原文: Sign In Again -->
     <string name="drawer_sign_in_again">重新登录</string>
     <!-- 原文: Sign-In in Progress -->

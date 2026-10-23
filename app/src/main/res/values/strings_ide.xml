@@ -58,6 +58,7 @@
     <string name="ide_e_g_john_doe">e.g. John Doe</string>
     <string name="ide_e_g_john_example_com">e.g. john@example.com</string>
     <string name="ide_edit_launch_json_in_editor">Edit launch.json in Editor</string>
+    <string name="ide_edit_svg_source">Edit SVG XML Source</string>
     <string name="ide_explorer">Explorer</string>
     <string name="ide_file_conflict_detected">File Conflict Detected</string>
     <string name="ide_file_manager">File Manager</string>
@@ -83,6 +84,7 @@
     <string name="ide_no_changed_files_in_this_commit">No changed files in this commit</string>
     <string name="ide_no_changes_detected_or_binary_file">No changes detected or binary file.</string>
     <string name="ide_no_custom_profiles_configured">No custom profiles configured</string>
+    <string name="ide_no_file_open">(No file open)</string>
     <string name="ide_no_log_entries_yet">No log entries yet</string>
     <string name="ide_no_projects_found_in_termux">No projects found in Termux</string>
     <string name="ide_non_text_file_warning">Non-Text File Warning</string>
@@ -95,6 +97,7 @@
     <string name="ide_overwrite_disk_keep_mine">Overwrite Disk (Keep Mine)</string>
     <string name="ide_pop_stash_apply_drop">📤 Pop Stash (Apply &amp; Drop)</string>
     <string name="ide_preserve_merges_merges">Preserve merges (merges)</string>
+    <string name="ide_preview_svg">Preview SVG Graphic</string>
     <string name="ide_previous_match">Previous Match</string>
     <string name="ide_profile_name">Profile Name</string>
     <string name="ide_project_name_e_g_my_awesome_app">Project Name (e.g. my-awesome-app)</string>
@@ -117,9 +120,13 @@
     <string name="ide_restart">Restart</string>
     <string name="ide_retry_now">Retry Now</string>
     <string name="ide_revert_to_disk">Revert to Disk</string>
+    <string name="ide_run_active_file">Run Active File</string>
     <string name="ide_run_configurations">Run Configurations</string>
+    <string name="ide_run_profile">Run Profile: %1$s</string>
+    <string name="ide_save_as">Save As...</string>
     <string name="ide_save_as_global_config_global">Save as Global Config (--global)</string>
     <string name="ide_save_close">Save &amp; Close</string>
+    <string name="ide_save_file">Save File</string>
     <string name="ide_save_profile">Save Profile</string>
     <string name="ide_saved_into_ide_launch_json_in_your_works">Saved into .ide/launch.json in your workspace root.</string>
     <string name="ide_select_a_file_from_the_sidebar_to_start">Select a file from the sidebar to start editing</string>
