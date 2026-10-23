@@ -1,6 +1,7 @@
 package com.example.gemini.ui.claude
 
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
@@ -37,6 +38,7 @@ import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.outlined.Security
 import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.material3.AlertDialog
+import androidx.compose.ui.res.stringResource
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -75,6 +77,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.data.agent.claude.ClaudeAccountManager
+import com.example.gemini.R
 import com.example.gemini.data.agent.claude.ClaudeStatus
 import com.example.gemini.data.agent.claude.ClaudeChatBackend
 import com.example.gemini.data.agent.claude.ClaudeConfigManager
@@ -91,14 +94,14 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 
 /** Pages of the Claude Code settings. */
-enum class ClaudeSettingsPage(val title: String, val subtitle: String) {
-    ACCOUNT("Account & CLI", "Sign-in, plan usage, install and update Claude Code"),
-    DEFAULTS("Chat defaults", "Model, effort, thinking, permission mode, output style"),
-    PERMISSIONS("Permission rules", "What Claude may do without asking"),
-    MCP("MCP servers", "Tools Claude can call"),
-    PLUGINS("Plugins", "Installed plugins, catalog and marketplaces"),
-    MEMORY("Memory", "Instructions (CLAUDE.md) and the notes Claude saved"),
-    ADVANCED("Advanced", "Edit ~/.claude/settings.json directly")
+enum class ClaudeSettingsPage(@StringRes val titleRes: Int, @StringRes val subtitleRes: Int) {
+    ACCOUNT(R.string.claude_page_account_cli, R.string.claude_page_sign_in_plan_usage_install_and_u_sub),
+    DEFAULTS(R.string.claude_page_chat_defaults, R.string.claude_page_model_effort_thinking_permission_sub),
+    PERMISSIONS(R.string.claude_page_permission_rules, R.string.claude_page_what_claude_may_do_without_askin_sub),
+    MCP(R.string.claude_page_mcp_servers, R.string.claude_tools_claude_can_call),
+    PLUGINS(R.string.claude_page_plugins, R.string.claude_page_installed_plugins_catalog_and_ma_sub),
+    MEMORY(R.string.claude_page_memory, R.string.claude_page_instructions_claude_md_and_the_n_sub),
+    ADVANCED(R.string.claude_page_advanced, R.string.claude_page_edit_claude_settings_json_direct_sub)
 }
 
 /** Holder passed from the ViewModel into settings. */
@@ -124,28 +127,30 @@ fun ClaudeSettingsGroup(deps: ClaudeSettingsDeps, onOpen: (ClaudeSettingsPage) -
     val state by deps.account.state.collectAsState()
     val auth = status?.auth
     val accountBadge = when (state) {
-        ClaudeStatus.READY -> auth?.subscriptionType?.let { com.example.gemini.ui.agents.claudePlanLabel(it) } ?: "Signed in"
-        ClaudeStatus.SIGNED_OUT -> "Signed out"
+        ClaudeStatus.READY -> auth?.subscriptionType?.let { com.example.gemini.ui.agents.claudePlanLabel(it) } ?: stringResource(R.string.claude_account_badge_signed_in)
+        ClaudeStatus.SIGNED_OUT -> stringResource(R.string.claude_account_badge_signed_out)
         else -> state.label
     }
     val accountColor = state.dotColor
+    // resolved before the Column: calling @Composable inside ifBlank's lambda is not safe
+    val accountFallbackSubtitle = stringResource(ClaudeSettingsPage.ACCOUNT.subtitleRes)
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         ClaudeNavCard(
             Icons.Outlined.AccountCircle,
-            ClaudeSettingsPage.ACCOUNT.title,
-            listOfNotNull(auth?.email, status?.version).joinToString(" · ").ifBlank { ClaudeSettingsPage.ACCOUNT.subtitle },
+            stringResource(ClaudeSettingsPage.ACCOUNT.titleRes),
+            listOfNotNull(auth?.email, status?.version).joinToString(" · ").ifBlank { accountFallbackSubtitle },
             badge = accountBadge,
             badgeColor = accountColor
         ) { onOpen(ClaudeSettingsPage.ACCOUNT) }
-        ClaudeNavCard(Icons.Outlined.Tune, ClaudeSettingsPage.DEFAULTS.title, ClaudeSettingsPage.DEFAULTS.subtitle) { onOpen(ClaudeSettingsPage.DEFAULTS) }
+        ClaudeNavCard(Icons.Outlined.Tune, stringResource(ClaudeSettingsPage.DEFAULTS.titleRes), stringResource(ClaudeSettingsPage.DEFAULTS.subtitleRes)) { onOpen(ClaudeSettingsPage.DEFAULTS) }
         val allowCount = settings?.let { deps.config.rules("allow").size } ?: 0
-        ClaudeNavCard(Icons.Outlined.Security, ClaudeSettingsPage.PERMISSIONS.title, ClaudeSettingsPage.PERMISSIONS.subtitle,
+        ClaudeNavCard(Icons.Outlined.Security, stringResource(ClaudeSettingsPage.PERMISSIONS.titleRes), stringResource(ClaudeSettingsPage.PERMISSIONS.subtitleRes),
             badge = allowCount.takeIf { it > 0 }?.let { "$it allowed" }) { onOpen(ClaudeSettingsPage.PERMISSIONS) }
-        ClaudeNavCard(Icons.Outlined.Hub, ClaudeSettingsPage.MCP.title, ClaudeSettingsPage.MCP.subtitle,
+        ClaudeNavCard(Icons.Outlined.Hub, stringResource(ClaudeSettingsPage.MCP.titleRes), stringResource(ClaudeSettingsPage.MCP.subtitleRes),
             badge = mcp.size.takeIf { it > 0 }?.let { "$it servers" }) { onOpen(ClaudeSettingsPage.MCP) }
-        ClaudeNavCard(Icons.Outlined.Extension, ClaudeSettingsPage.PLUGINS.title, ClaudeSettingsPage.PLUGINS.subtitle) { onOpen(ClaudeSettingsPage.PLUGINS) }
-        ClaudeNavCard(Icons.Outlined.Description, ClaudeSettingsPage.MEMORY.title, ClaudeSettingsPage.MEMORY.subtitle) { onOpen(ClaudeSettingsPage.MEMORY) }
-        ClaudeNavCard(Icons.Outlined.Code, ClaudeSettingsPage.ADVANCED.title, ClaudeSettingsPage.ADVANCED.subtitle) { onOpen(ClaudeSettingsPage.ADVANCED) }
+        ClaudeNavCard(Icons.Outlined.Extension, stringResource(ClaudeSettingsPage.PLUGINS.titleRes), stringResource(ClaudeSettingsPage.PLUGINS.subtitleRes)) { onOpen(ClaudeSettingsPage.PLUGINS) }
+        ClaudeNavCard(Icons.Outlined.Description, stringResource(ClaudeSettingsPage.MEMORY.titleRes), stringResource(ClaudeSettingsPage.MEMORY.subtitleRes)) { onOpen(ClaudeSettingsPage.MEMORY) }
+        ClaudeNavCard(Icons.Outlined.Code, stringResource(ClaudeSettingsPage.ADVANCED.titleRes), stringResource(ClaudeSettingsPage.ADVANCED.subtitleRes)) { onOpen(ClaudeSettingsPage.ADVANCED) }
     }
 }
 
@@ -213,18 +218,18 @@ private fun AccountPage(deps: ClaudeSettingsDeps) {
 
     ClaudeCard {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("Claude Code CLI", fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-            IconButton(onClick = { deps.account.refreshStatus() }) { Icon(Icons.Outlined.Refresh, "Refresh") }
+            Text(stringResource(R.string.claude_claude_code_cli), fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+            IconButton(onClick = { deps.account.refreshStatus() }) { Icon(Icons.Outlined.Refresh, stringResource(R.string.common_refresh)) }
         }
         when (state) {
-            ClaudeStatus.CHECKING -> Text("Checking…", fontSize = 12.5.sp)
+            ClaudeStatus.CHECKING -> Text(stringResource(R.string.claude_checking), fontSize = 12.5.sp)
             ClaudeStatus.BRIDGE_OFFLINE, ClaudeStatus.BRIDGE_OUTDATED, ClaudeStatus.ERROR -> {
                 Text(state.label, color = state.dotColor, fontWeight = FontWeight.SemiBold, fontSize = 12.5.sp)
                 statusError?.let { Hint(it) }
             }
-            ClaudeStatus.NOT_INSTALLED -> Text("Claude Code not found on this device.", fontSize = 12.5.sp, color = state.dotColor)
+            ClaudeStatus.NOT_INSTALLED -> Text(stringResource(R.string.claude_claude_code_not_found_on_this_device), fontSize = 12.5.sp, color = state.dotColor)
             else -> {
-                Text(status?.version ?: "Installed", fontSize = 13.sp)
+                Text(status?.version ?: stringResource(R.string.common_installed), fontSize = 13.sp)
                 status?.bin_path?.let { Hint(it) }
             }
         }
@@ -233,16 +238,16 @@ private fun AccountPage(deps: ClaudeSettingsDeps) {
             val running = job?.running == true
             if (state == ClaudeStatus.NOT_INSTALLED) {
                 Button(onClick = { deps.config.startCliJob("install") }, enabled = !running,
-                    colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text("Install Claude Code") }
+                    colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text(stringResource(R.string.claude_install_claude_code)) }
             } else if (status?.installed == true) {
-                OutlinedButton(onClick = { deps.config.startCliJob("update") }, enabled = !running) { Text("Check for updates") }
+                OutlinedButton(onClick = { deps.config.startCliJob("update") }, enabled = !running) { Text(stringResource(R.string.claude_check_for_updates)) }
             }
             if (running) CircularProgressIndicator(Modifier.size(20.dp).align(Alignment.CenterVertically), strokeWidth = 2.dp)
         }
         job?.let { j ->
             Spacer(Modifier.height(8.dp))
             Text(
-                "${j.kind}: " + if (j.running) "running…" else "finished (exit ${j.exit_code})",
+                stringResource(R.string.claude_j_kind, j.kind) + if (j.running) "running…" else "finished (exit ${j.exit_code})",
                 fontSize = 12.sp,
                 color = if (!j.running && j.exit_code != 0) QuotaRed else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
             )
@@ -257,7 +262,7 @@ private fun AccountPage(deps: ClaudeSettingsDeps) {
     }
 
     ClaudeCard {
-        Text("Account", fontWeight = FontWeight.Bold)
+        Text(stringResource(R.string.claude_account), fontWeight = FontWeight.Bold)
         Spacer(Modifier.height(6.dp))
         val auth = status?.auth
         if (auth?.loggedIn == true) {
@@ -267,18 +272,18 @@ private fun AccountPage(deps: ClaudeSettingsDeps) {
                 }
                 Spacer(Modifier.width(10.dp))
                 Column(Modifier.weight(1f)) {
-                    Text(auth.email ?: "Signed in", fontWeight = FontWeight.SemiBold, fontSize = 13.5.sp)
-                    Hint(listOfNotNull(auth.subscriptionType?.let { "Plan: ${it.replaceFirstChar { c -> c.uppercase() }}" },
-                        auth.authMethod?.let { "via $it" }).joinToString(" · "))
+                    Text(auth.email ?: stringResource(R.string.claude_account_badge_signed_in), fontWeight = FontWeight.SemiBold, fontSize = 13.5.sp)
+                    Hint(listOfNotNull(auth.subscriptionType?.let { stringResource(R.string.claude_plan_prefix, it.replaceFirstChar { c -> c.uppercase() }) },
+                        auth.authMethod?.let { stringResource(R.string.claude_via_method, it) }).joinToString(" · "))
                 }
-                OutlinedButton(onClick = { deps.account.logout() }, enabled = !busy) { Text("Sign out", color = QuotaRed) }
+                OutlinedButton(onClick = { deps.account.logout() }, enabled = !busy) { Text(stringResource(R.string.claude_sign_out), color = QuotaRed) }
             }
         } else {
-            Hint("Sign in with your Claude subscription or an Anthropic Console account.")
+            Hint(stringResource(R.string.claude_sign_in_hint))
             Spacer(Modifier.height(8.dp))
             Button(onClick = { showLogin = true }, enabled = !state.isBlocking && state != ClaudeStatus.CHECKING && (!busy || state == ClaudeStatus.SIGNING_IN),
                 colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) {
-                Text(if (state == ClaudeStatus.SIGNING_IN) "Signing in…" else "Sign in")
+                Text(if (state == ClaudeStatus.SIGNING_IN) stringResource(R.string.claude_signing_in_short) else stringResource(R.string.claude_status_action_sign_in))
             }
         }
     }
@@ -290,34 +295,34 @@ private fun AccountPage(deps: ClaudeSettingsDeps) {
         ClaudeCard {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
-                    Text("Plan usage", fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.claude_plan_usage), fontWeight = FontWeight.Bold)
                     Hint(
                         when {
-                            usageRefreshing -> "Updating…"
-                            usageUpdatedAt > 0 -> "Updated " + java.text.SimpleDateFormat("HH:mm:ss", java.util.Locale.getDefault()).format(java.util.Date(usageUpdatedAt))
+                            usageRefreshing -> stringResource(R.string.claude_usage_updating)
+                            usageUpdatedAt > 0 -> stringResource(R.string.claude_usage_updated_at, java.text.SimpleDateFormat("HH:mm:ss", java.util.Locale.getDefault()).format(java.util.Date(usageUpdatedAt)))
                             else -> ""
                         }
                     )
                 }
                 if (usageRefreshing) CircularProgressIndicator(Modifier.padding(12.dp).size(20.dp), strokeWidth = 2.dp, color = ClaudeAccent)
-                else IconButton(onClick = { deps.account.refreshUsage(force = true) }) { Icon(Icons.Outlined.Refresh, "Refresh usage") }
+                else IconButton(onClick = { deps.account.refreshUsage(force = true) }) { Icon(Icons.Outlined.Refresh, stringResource(R.string.claude_usage_refresh)) }
             }
-            usageError?.let { Text("Could not update: $it", fontSize = 12.sp, color = QuotaRed) }
+            usageError?.let { Text(stringResource(R.string.claude_could_not_update_it, it), fontSize = 12.sp, color = QuotaRed) }
             val u = usage ?: return@ClaudeCard
             val rl = u.rate_limits
             if (rl == null || !u.rate_limits_available) {
-                Hint("Plan limits are not available for this account (API billing has no 5-hour / weekly limits).")
+                Hint(stringResource(R.string.claude_usage_limits_unavailable))
             } else {
-                rl.five_hour?.let { UsageBar("5-hour limit", (it.utilization ?: 0.0) / 100.0, formatReset(it.resets_at)) }
+                rl.five_hour?.let { UsageBar(stringResource(R.string.claude_limit_five_hour), (it.utilization ?: 0.0) / 100.0, formatReset(it.resets_at)) }
                 Spacer(Modifier.height(8.dp))
-                rl.seven_day?.let { UsageBar("Weekly limit (all models)", (it.utilization ?: 0.0) / 100.0, formatReset(it.resets_at)) }
+                rl.seven_day?.let { UsageBar(stringResource(R.string.claude_limit_weekly_all), (it.utilization ?: 0.0) / 100.0, formatReset(it.resets_at)) }
                 rl.seven_day_opus?.let {
                     Spacer(Modifier.height(8.dp))
-                    UsageBar("Weekly limit (Opus)", (it.utilization ?: 0.0) / 100.0, formatReset(it.resets_at))
+                    UsageBar(stringResource(R.string.claude_limit_weekly_opus), (it.utilization ?: 0.0) / 100.0, formatReset(it.resets_at))
                 }
                 rl.seven_day_sonnet?.let {
                     Spacer(Modifier.height(8.dp))
-                    UsageBar("Weekly limit (Sonnet)", (it.utilization ?: 0.0) / 100.0, formatReset(it.resets_at))
+                    UsageBar(stringResource(R.string.claude_limit_weekly_sonnet), (it.utilization ?: 0.0) / 100.0, formatReset(it.resets_at))
                 }
             }
         }
@@ -331,6 +336,7 @@ private fun AccountPage(deps: ClaudeSettingsDeps) {
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun DefaultsPage(deps: ClaudeSettingsDeps) {
+    val context = LocalContext.current
     val settings by deps.config.settings.collectAsState()
     val models by deps.backend.modelInfos.collectAsState()
     val styles by deps.backend.outputStyles.collectAsState()
@@ -348,13 +354,13 @@ private fun DefaultsPage(deps: ClaudeSettingsDeps) {
     // no default in settings.json: new chats start in Auto
     val mode = deps.config.defaultMode()?.takeIf { it != "bypassPermissions" } ?: "auto"
 
-    Hint("These apply to new Claude chats (saved in ~/.claude/settings.json, shared with the terminal CLI).")
+    Hint(stringResource(R.string.claude_settings_scope_hint))
 
     ClaudeCard {
-        SectionTitle("Default model")
+        SectionTitle(stringResource(R.string.claude_sec_default_model))
         Spacer(Modifier.height(6.dp))
         FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            val options = models.map { it.value to it.displayName.ifBlank { it.value } }.ifEmpty { listOf("default" to "Default") }
+            val options = models.map { it.value to it.displayName.ifBlank { it.value } }.ifEmpty { listOf("default" to stringResource(R.string.claude_default_value)) }
             options.forEach { (value, label) ->
                 ControlChip(label, highlighted = value == model, color = if (value == model) ClaudeAccent else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
                     onClick = { deps.config.setValue("model", if (value == "default") null else JsonPrimitive(value)) })
@@ -363,7 +369,7 @@ private fun DefaultsPage(deps: ClaudeSettingsDeps) {
         val levels = models.find { it.value == model }?.supportedEffortLevels ?: models.firstOrNull()?.supportedEffortLevels.orEmpty()
         if (levels.isNotEmpty()) {
             Spacer(Modifier.height(12.dp))
-            SectionTitle("Default effort")
+            SectionTitle(stringResource(R.string.claude_sec_default_effort))
             Spacer(Modifier.height(6.dp))
             FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 (listOf<String?>(null) + levels).forEach { level ->
@@ -376,8 +382,8 @@ private fun DefaultsPage(deps: ClaudeSettingsDeps) {
         Spacer(Modifier.height(12.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
-                SectionTitle("Thinking")
-                Hint("Reason before answering")
+                SectionTitle(stringResource(R.string.common_thinking))
+                Hint(stringResource(R.string.claude_thinking_hint))
             }
             Switch(checked = thinking, onCheckedChange = { deps.config.setValue("alwaysThinkingEnabled", JsonPrimitive(it)) },
                 colors = SwitchDefaults.colors(checkedTrackColor = ClaudeAccent))
@@ -385,7 +391,7 @@ private fun DefaultsPage(deps: ClaudeSettingsDeps) {
     }
 
     ClaudeCard {
-        SectionTitle("Default permission mode")
+        SectionTitle(stringResource(R.string.claude_sec_default_permission_mode))
         Spacer(Modifier.height(6.dp))
         ClaudeChatBackend.PERMISSION_MODES.forEach { (value, label) ->
             Row(
@@ -396,7 +402,7 @@ private fun DefaultsPage(deps: ClaudeSettingsDeps) {
                 androidx.compose.material3.RadioButton(selected = value == mode, onClick = { deps.config.setDefaultMode(value) })
                 Column {
                     Text(label, fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
-                    Hint(permissionModeDescription(value))
+                    Hint(permissionModeDescription(context, value))
                 }
             }
         }
@@ -404,8 +410,8 @@ private fun DefaultsPage(deps: ClaudeSettingsDeps) {
 
     if (styles.isNotEmpty()) {
         ClaudeCard {
-            SectionTitle("Output style")
-            Hint("How Claude writes its replies")
+            SectionTitle(stringResource(R.string.claude_sec_output_style))
+            Hint(stringResource(R.string.claude_output_style_hint))
             Spacer(Modifier.height(6.dp))
             FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 styles.forEach { st ->
@@ -418,14 +424,14 @@ private fun DefaultsPage(deps: ClaudeSettingsDeps) {
     }
 
     ClaudeCard {
-        SectionTitle("Dictation language")
-        Hint("Language code for voice input in Claude chats (e.g. en, es, de, ja)")
+        SectionTitle(stringResource(R.string.claude_sec_dictation_language))
+        Hint(stringResource(R.string.claude_dictation_language_hint))
         Spacer(Modifier.height(6.dp))
         var lang by remember(voiceLang) { mutableStateOf(voiceLang) }
         Row(verticalAlignment = Alignment.CenterVertically) {
             OutlinedTextField(lang, { lang = it.trim() }, singleLine = true, modifier = Modifier.weight(1f))
             Spacer(Modifier.width(8.dp))
-            Button(onClick = { deps.prefs.setVoiceLanguage(lang.ifBlank { "en" }) }, colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text("Save") }
+            Button(onClick = { deps.prefs.setVoiceLanguage(lang.ifBlank { "en" }) }, colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text(stringResource(R.string.common_save)) }
         }
     }
 }
@@ -438,7 +444,7 @@ private fun PermissionsPage(deps: ClaudeSettingsDeps) {
     LaunchedEffect(Unit) { deps.config.loadSettings() }
     var newRule by remember { mutableStateOf("") }
     var behavior by remember { mutableStateOf("allow") }
-    if (settings == null) Hint("Loading settings…")
+    if (settings == null) Hint(stringResource(R.string.claude_settings_loading))
 
     // Claude Code's command sandbox: the safe way to have fewer prompts (Bypass is never used by this app)
     val sandbox by deps.config.sandbox.collectAsState()
@@ -446,12 +452,12 @@ private fun PermissionsPage(deps: ClaudeSettingsDeps) {
     ClaudeCard {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
-                SectionTitle("Sandbox commands")
+                SectionTitle(stringResource(R.string.claude_sec_sandbox))
                 Hint(
                     when {
-                        sandbox == null -> "Checking whether the sandbox can run on this device…"
-                        sandbox?.available == true -> "Run Claude's shell commands in an isolated container (no network, limited files). Commands that stay inside it run without asking."
-                        else -> "Not available here: ${sandbox?.reason ?: "unknown reason"}. Auto mode already asks rarely."
+                        sandbox == null -> stringResource(R.string.claude_sandbox_checking)
+                        sandbox?.available == true -> stringResource(R.string.claude_sandbox_desc_enabled)
+                        else -> stringResource(R.string.claude_sandbox_unavailable, sandbox?.reason ?: stringResource(R.string.claude_sandbox_unknown_reason))
                     }
                 )
             }
@@ -464,11 +470,11 @@ private fun PermissionsPage(deps: ClaudeSettingsDeps) {
         }
     }
 
-    Hint("Rules use the CLI syntax: Bash(npm test), Bash(git log *), Read(./src/**), Edit(docs/**), WebFetch(domain:github.com), mcp__server__tool. Deny wins over ask, ask wins over allow.")
+    Hint(stringResource(R.string.claude_rules_syntax_hint))
     ClaudeCard {
-        SectionTitle("Add a rule")
+        SectionTitle(stringResource(R.string.claude_sec_add_rule))
         Spacer(Modifier.height(6.dp))
-        OutlinedTextField(newRule, { newRule = it }, singleLine = true, placeholder = { Text("Bash(npm run test *)") }, modifier = Modifier.fillMaxWidth())
+        OutlinedTextField(newRule, { newRule = it }, singleLine = true, placeholder = { Text(stringResource(R.string.claude_bash_npm_run_test)) }, modifier = Modifier.fillMaxWidth())
         Spacer(Modifier.height(6.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
             listOf("allow" to QuotaGreen, "ask" to QuotaAmber, "deny" to QuotaRed).forEach { (b, c) ->
@@ -478,18 +484,18 @@ private fun PermissionsPage(deps: ClaudeSettingsDeps) {
             Button(onClick = {
                 deps.config.addRule(behavior, newRule)
                 newRule = ""
-            }, enabled = newRule.isNotBlank(), colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text("Add") }
+            }, enabled = newRule.isNotBlank(), colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text(stringResource(R.string.common_add)) }
         }
     }
-    listOf("allow" to "Allowed without asking", "ask" to "Always ask", "deny" to "Never allowed").forEach { (b, title) ->
+    listOf("allow" to stringResource(R.string.claude_rules_allowed), "ask" to stringResource(R.string.claude_rules_ask), "deny" to stringResource(R.string.claude_rules_denied)).forEach { (b, title) ->
         val rules = deps.config.rules(b)
         ClaudeCard {
-            SectionTitle("$title (${rules.size})")
-            if (rules.isEmpty()) Hint("No rules")
+            SectionTitle(stringResource(R.string.claude_rules_group_title, title, rules.size))
+            if (rules.isEmpty()) Hint(stringResource(R.string.claude_rules_none))
             rules.forEach { rule ->
                 Row(Modifier.fillMaxWidth().padding(vertical = 2.dp), verticalAlignment = Alignment.CenterVertically) {
                     Text(rule, fontFamily = FontFamily.Monospace, fontSize = 12.sp, modifier = Modifier.weight(1f), maxLines = 2, overflow = TextOverflow.Ellipsis)
-                    IconButton(onClick = { deps.config.removeRule(b, rule) }) { Icon(Icons.Outlined.Delete, "Remove", tint = QuotaRed.copy(alpha = 0.8f)) }
+                    IconButton(onClick = { deps.config.removeRule(b, rule) }) { Icon(Icons.Outlined.Delete, stringResource(R.string.common_remove), tint = QuotaRed.copy(alpha = 0.8f)) }
                 }
             }
         }
@@ -514,11 +520,11 @@ private fun McpPage(deps: ClaudeSettingsDeps) {
 
     Row(verticalAlignment = Alignment.CenterVertically) {
         Column(Modifier.weight(1f)) {
-            Text("Tools Claude can call", fontWeight = FontWeight.Bold, fontSize = 14.sp)
-            Hint(if (cwd != null) "Includes servers of the open project ($cwd)." else "Open a project to also see its project-scoped servers.")
+            Text(stringResource(R.string.claude_tools_claude_can_call), fontWeight = FontWeight.Bold, fontSize = 14.sp)
+            Hint(if (cwd != null) stringResource(R.string.claude_mcp_includes_project, cwd) else stringResource(R.string.claude_mcp_open_project_hint))
         }
         if (loading) CircularProgressIndicator(Modifier.size(18.dp), strokeWidth = 2.dp, color = ClaudeAccent)
-        else IconButton(onClick = { deps.config.loadMcp(cwd) }) { Icon(Icons.Outlined.Refresh, "Refresh") }
+        else IconButton(onClick = { deps.config.loadMcp(cwd) }) { Icon(Icons.Outlined.Refresh, stringResource(R.string.common_refresh)) }
     }
 
     // quick presets, like the Antigravity MCP screen
@@ -555,9 +561,9 @@ private fun McpPage(deps: ClaudeSettingsDeps) {
         )
         chooseWebViewExtension = false
     }
-    Text("Quick presets", fontSize = 12.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f))
+    Text(stringResource(R.string.claude_quick_presets), fontSize = 12.5.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f))
     Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        OutlinedButton(onClick = { chooseWebViewExtension = true }) { Text("+ WebView Extension MCP") }
+        OutlinedButton(onClick = { chooseWebViewExtension = true }) { Text(stringResource(R.string.common_webview_extension_mcp)) }
         presets.forEach { (label, req) ->
             val added = servers.any { it.name == req.name }
             Surface(
@@ -578,13 +584,13 @@ private fun McpPage(deps: ClaudeSettingsDeps) {
             border = BorderStroke(1.dp, ClaudeAccent.copy(alpha = 0.4f)),
             modifier = Modifier.clip(RoundedCornerShape(8.dp)).clickable { addDraft = ClaudeMcpAddRequest(name = "") }
         ) {
-            Text("+ Custom server", fontSize = 11.5.sp, fontWeight = FontWeight.SemiBold, color = ClaudeAccent, modifier = Modifier.padding(vertical = 8.dp, horizontal = 10.dp))
+            Text(stringResource(R.string.claude_custom_server), fontSize = 11.5.sp, fontWeight = FontWeight.SemiBold, color = ClaudeAccent, modifier = Modifier.padding(vertical = 8.dp, horizontal = 10.dp))
         }
     }
 
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-        Text("Configured servers (${servers.size})", fontSize = 13.5.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-        if (servers.isNotEmpty()) Hint("${servers.sumOf { it.tools.size }} tools")
+        Text(stringResource(R.string.claude_configured_servers_count, servers.size), fontSize = 13.5.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+        if (servers.isNotEmpty()) Hint(stringResource(R.string.claude_mcp_tools_count, servers.sumOf { it.tools.size }))
     }
 
     // servers being added show up right away with their progress
@@ -595,7 +601,7 @@ private fun McpPage(deps: ClaudeSettingsDeps) {
                 Spacer(Modifier.width(10.dp))
                 Column(Modifier.weight(1f)) {
                     Text(name, fontWeight = FontWeight.Bold, fontSize = 14.sp)
-                    Hint(if (op.startsWith("Connecting")) "Added · checking that it starts and listing its tools…" else op)
+                    Hint(if (op.startsWith("Connecting")) stringResource(R.string.claude_mcp_added_checking) else op)
                 }
             }
         }
@@ -607,8 +613,8 @@ private fun McpPage(deps: ClaudeSettingsDeps) {
                 CircularProgressIndicator(Modifier.size(18.dp), strokeWidth = 2.dp, color = ClaudeAccent)
                 Spacer(Modifier.width(10.dp))
                 Column {
-                    Text("Checking MCP servers…", fontWeight = FontWeight.SemiBold, fontSize = 13.5.sp)
-                    Hint("Claude Code starts each server to list its tools; this can take a few seconds.")
+                    Text(stringResource(R.string.claude_checking_mcp_servers), fontWeight = FontWeight.SemiBold, fontSize = 13.5.sp)
+                    Hint(stringResource(R.string.claude_mcp_starting_hint))
                 }
             }
         }
@@ -616,8 +622,8 @@ private fun McpPage(deps: ClaudeSettingsDeps) {
             Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                 Icon(Icons.Outlined.Hub, null, tint = ClaudeAccent.copy(alpha = 0.7f), modifier = Modifier.size(28.dp))
                 Spacer(Modifier.height(6.dp))
-                Text("No MCP servers yet", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
-                Hint("Add one from the presets above or a custom server to give Claude more tools.")
+                Text(stringResource(R.string.claude_no_mcp_servers_yet), fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
+                Hint(stringResource(R.string.claude_mcp_add_hint))
             }
         }
     }
@@ -626,12 +632,12 @@ private fun McpPage(deps: ClaudeSettingsDeps) {
         val op = ops[srv.name]
         val (statusColor, statusLabel) = when {
             op != null -> ClaudeAccent to op
-            srv.status == "connected" -> QuotaGreen to "Connected"
-            srv.status == "pending" -> QuotaAmber to "Starting"
-            srv.status == "failed" -> QuotaRed to "Failed"
-            srv.status == "needs-auth" -> QuotaAmber to "Needs sign-in"
-            srv.status == "disabled" -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f) to "Disabled"
-            else -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f) to srv.status.ifBlank { "Unknown" }.replaceFirstChar { it.uppercase() }
+            srv.status == "connected" -> QuotaGreen to stringResource(R.string.claude_srv_connected)
+            srv.status == "pending" -> QuotaAmber to stringResource(R.string.claude_srv_starting)
+            srv.status == "failed" -> QuotaRed to stringResource(R.string.component_failed)
+            srv.status == "needs-auth" -> QuotaAmber to stringResource(R.string.claude_srv_needs_sign_in)
+            srv.status == "disabled" -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f) to stringResource(R.string.settings_ui_disabled)
+            else -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f) to srv.status.ifBlank { stringResource(R.string.claude_srv_unknown) }.replaceFirstChar { it.uppercase() }
         }
         val cfg = srv.config
         fun cfgStr(key: String) = (cfg?.get(key) as? JsonPrimitive)?.content
@@ -655,14 +661,14 @@ private fun McpPage(deps: ClaudeSettingsDeps) {
                 when {
                     op != null -> CircularProgressIndicator(Modifier.size(18.dp), strokeWidth = 2.dp, color = ClaudeAccent)
                     srv.scope in setOf("user", "project", "local") -> IconButton(onClick = { toDelete = srv }) {
-                        Icon(Icons.Outlined.Delete, "Remove", tint = QuotaRed.copy(alpha = 0.8f))
+                        Icon(Icons.Outlined.Delete, stringResource(R.string.common_remove), tint = QuotaRed.copy(alpha = 0.8f))
                     }
                 }
             }
             if (target.isNotBlank()) {
                 Spacer(Modifier.height(8.dp))
                 Surface(Modifier.fillMaxWidth(), shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f)) {
-                    Text(if (transport == "stdio") "> $target" else "URL: $target", fontSize = 11.5.sp, fontFamily = FontFamily.Monospace,
+                    Text(if (transport == "stdio") "> $target" else stringResource(R.string.claude_mcp_server_url, target), fontSize = 11.5.sp, fontFamily = FontFamily.Monospace,
                         maxLines = 2, overflow = TextOverflow.Ellipsis, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
                         modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp))
                 }
@@ -685,8 +691,8 @@ private fun McpPage(deps: ClaudeSettingsDeps) {
                     Modifier.fillMaxWidth().clip(RoundedCornerShape(6.dp)).clickable { expandedTools = if (open) expandedTools - srv.name else expandedTools + srv.name }.padding(vertical = 4.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text("${srv.tools.size} tools", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = ClaudeAccent, modifier = Modifier.weight(1f))
-                    Text(if (open) "Hide" else "Show", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f))
+                    Text(stringResource(R.string.claude_tools_count, srv.tools.size), fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = ClaudeAccent, modifier = Modifier.weight(1f))
+                    Text(if (open) stringResource(R.string.claude_hide) else stringResource(R.string.claude_show), fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f))
                 }
                 if (open) {
                     FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -715,15 +721,15 @@ private fun McpPage(deps: ClaudeSettingsDeps) {
     toDelete?.let { srv ->
         AlertDialog(
             onDismissRequest = { toDelete = null },
-            title = { Text("Remove ${srv.name}?", fontWeight = FontWeight.Bold) },
-            text = { Text("Claude will no longer be able to use its tools.", fontSize = 13.5.sp) },
+            title = { Text(stringResource(R.string.claude_remove_server_title, srv.name), fontWeight = FontWeight.Bold) },
+            text = { Text(stringResource(R.string.claude_claude_will_no_longer_be_able_to_use_its), fontSize = 13.5.sp) },
             confirmButton = {
                 TextButton(onClick = {
                     deps.config.removeMcp(srv.name, srv.scope, cwd)
                     toDelete = null
-                }) { Text("Remove", color = QuotaRed) }
+                }) { Text(stringResource(R.string.common_remove), color = QuotaRed) }
             },
-            dismissButton = { TextButton(onClick = { toDelete = null }) { Text("Cancel") } }
+            dismissButton = { TextButton(onClick = { toDelete = null }) { Text(stringResource(R.string.common_cancel)) } }
         )
     }
 }
@@ -740,10 +746,11 @@ private fun Badge(text: String, color: Color) {
     }
 }
 
+@Composable
 private fun scopeLabel(scope: String) = when (scope) {
-    "user" -> "all projects"
-    "local" -> "this project (you)"
-    "project" -> "this project (.mcp.json)"
+    "user" -> stringResource(R.string.claude_scope_all_projects_lc)
+    "local" -> stringResource(R.string.claude_scope_this_project_you)
+    "project" -> stringResource(R.string.claude_scope_this_project_mcp_json)
     else -> scope
 }
 
@@ -769,7 +776,7 @@ private fun AddMcpDialog(
     }
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(if (initial.name.isBlank()) "Add MCP server" else "Add ${initial.name}", fontWeight = FontWeight.Bold) },
+        title = { Text(if (initial.name.isBlank()) stringResource(R.string.claude_mcp_add_title) else stringResource(R.string.claude_mcp_add_named, initial.name), fontWeight = FontWeight.Bold) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 error?.let {
@@ -777,28 +784,28 @@ private fun AddMcpDialog(
                         Text(it, fontSize = 12.sp, color = QuotaRed, modifier = Modifier.padding(8.dp))
                     }
                 }
-                OutlinedTextField(name, { name = it.trim() }, label = { Text("Name") }, singleLine = true, modifier = Modifier.fillMaxWidth())
-                Text("Transport", fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+                OutlinedTextField(name, { name = it.trim() }, label = { Text(stringResource(R.string.common_name)) }, singleLine = true, modifier = Modifier.fillMaxWidth())
+                Text(stringResource(R.string.claude_transport), fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
                 Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                     listOf("stdio", "http", "sse").forEach { t ->
                         ControlChip(t, highlighted = transport == t, color = if (transport == t) ClaudeAccent else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f), onClick = { transport = t })
                     }
                 }
-                Text("Available in", fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+                Text(stringResource(R.string.claude_available_in), fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    listOf("user" to "All projects", "local" to "This project (me)", "project" to "This project (.mcp.json)").forEach { (sc, label) ->
+                    listOf("user" to stringResource(R.string.claude_scope_all_projects), "local" to stringResource(R.string.claude_scope_this_project_me), "project" to stringResource(R.string.claude_scope_this_project_mcp_json_title)).forEach { (sc, label) ->
                         val enabled = sc == "user" || cwd != null
                         ControlChip(label, highlighted = scope == sc, color = if (scope == sc) ClaudeAccent else MaterialTheme.colorScheme.onSurface.copy(alpha = if (enabled) 0.7f else 0.3f),
                             onClick = { if (enabled) scope = sc })
                     }
                 }
                 if (transport == "stdio") {
-                    OutlinedTextField(command, { command = it }, label = { Text("Command and arguments") }, placeholder = { Text("npx -y @modelcontextprotocol/server-filesystem /sdcard") }, modifier = Modifier.fillMaxWidth())
-                    OutlinedTextField(pairs, { pairs = it }, label = { Text("Environment (KEY=value per line)") }, minLines = 2, modifier = Modifier.fillMaxWidth())
+                    OutlinedTextField(command, { command = it }, label = { Text(stringResource(R.string.claude_command_and_arguments)) }, placeholder = { Text(stringResource(R.string.claude_npx_y_modelcontextprotocol_server_filesy)) }, modifier = Modifier.fillMaxWidth())
+                    OutlinedTextField(pairs, { pairs = it }, label = { Text(stringResource(R.string.claude_environment_key_value_per_line)) }, minLines = 2, modifier = Modifier.fillMaxWidth())
                 } else {
-                    OutlinedTextField(url, { url = it.trim() }, label = { Text("URL") }, singleLine = true,
+                    OutlinedTextField(url, { url = it.trim() }, label = { Text(stringResource(R.string.common_url)) }, singleLine = true,
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Uri), modifier = Modifier.fillMaxWidth())
-                    OutlinedTextField(pairs, { pairs = it }, label = { Text("Headers (Name: value per line)") }, minLines = 2, modifier = Modifier.fillMaxWidth())
+                    OutlinedTextField(pairs, { pairs = it }, label = { Text(stringResource(R.string.claude_headers_name_value_per_line)) }, minLines = 2, modifier = Modifier.fillMaxWidth())
                 }
             }
         },
@@ -820,9 +827,9 @@ private fun AddMcpDialog(
                     )
                 )
             }, enabled = name.isNotBlank() && (if (transport == "stdio") command.isNotBlank() else url.isNotBlank()),
-                colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text("Add") }
+                colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text(stringResource(R.string.common_add)) }
         },
-        dismissButton = { TextButton(onClick = onDismiss) { Text("Cancel") } }
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.common_cancel)) } }
     )
 }
 
@@ -859,7 +866,7 @@ private fun PluginsPage(deps: ClaudeSettingsDeps) {
 
     Column(Modifier.fillMaxSize()) {
         TabRow(selectedTabIndex = tab, containerColor = Color.Transparent) {
-            listOf("Installed", "Discover", "Marketplaces").forEachIndexed { i, t ->
+            listOf(stringResource(R.string.common_installed), stringResource(R.string.claude_tab_discover), stringResource(R.string.claude_tab_marketplaces)).forEachIndexed { i, t ->
                 Tab(selected = tab == i, onClick = { tab = i }, text = { Text(t, fontSize = 13.sp) })
             }
         }
@@ -868,7 +875,7 @@ private fun PluginsPage(deps: ClaudeSettingsDeps) {
             Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
                 CircularProgressIndicator(Modifier.size(18.dp), strokeWidth = 2.dp, color = ClaudeAccent)
                 Spacer(Modifier.width(8.dp))
-                Hint("Loading plugins… (the catalog can take a few seconds)")
+                Hint(stringResource(R.string.claude_plugins_loading))
             }
             return@Column
         }
@@ -880,7 +887,7 @@ private fun PluginsPage(deps: ClaudeSettingsDeps) {
         ) {
             when (tab) {
                 0 -> {
-                    if (d.plugins.installed.isEmpty()) item { Hint("No plugins installed. Find some in Discover.") }
+                    if (d.plugins.installed.isEmpty()) item { Hint(stringResource(R.string.claude_plugins_empty)) }
                     items(d.plugins.installed.size, key = { "i_" + d.plugins.installed[it].key }) { i ->
                         val p = d.plugins.installed[i]
                         val op = ops[p.key]
@@ -900,9 +907,9 @@ private fun PluginsPage(deps: ClaudeSettingsDeps) {
                             if (p.description.isNotBlank()) Text(p.description, fontSize = 11.5.sp, maxLines = 3, overflow = TextOverflow.Ellipsis,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f))
                             Row(horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.padding(top = 6.dp)) {
-                                OutlinedButton(onClick = { deps.config.pluginAction("update", ClaudePluginAction(plugin = p.key)) }, enabled = op == null) { Text("Update", fontSize = 12.sp) }
+                                OutlinedButton(onClick = { deps.config.pluginAction("update", ClaudePluginAction(plugin = p.key)) }, enabled = op == null) { Text(stringResource(R.string.common_update), fontSize = 12.sp) }
                                 OutlinedButton(onClick = { deps.config.pluginAction("uninstall", ClaudePluginAction(plugin = p.key, scope = p.scope)) }, enabled = op == null) {
-                                    Text("Uninstall", fontSize = 12.sp, color = QuotaRed)
+                                    Text(stringResource(R.string.claude_uninstall), fontSize = 12.sp, color = QuotaRed)
                                 }
                             }
                         }
@@ -912,12 +919,12 @@ private fun PluginsPage(deps: ClaudeSettingsDeps) {
                     item(key = "search") {
                         OutlinedTextField(
                             query, { query = it }, singleLine = true,
-                            placeholder = { Text("Search ${available.size} plugins") },
+                            placeholder = { Text(stringResource(R.string.claude_search_plugins, available.size)) },
                             trailingIcon = { if (searching) CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp, color = ClaudeAccent) },
                             modifier = Modifier.fillMaxWidth()
                         )
                     }
-                    item(key = "count") { Hint(if (searching) "Searching…" else "${results.size} plugin(s)") }
+                    item(key = "count") { Hint(if (searching) stringResource(R.string.claude_plugin_searching) else stringResource(R.string.claude_plugin_count, results.size)) }
                     items(results.size, key = { "a_" + results[it].key }) { i ->
                         val p = results[i]
                         val op = ops[p.key]
@@ -929,9 +936,9 @@ private fun PluginsPage(deps: ClaudeSettingsDeps) {
                                 }
                                 when {
                                     op != null -> PluginProgress(op)
-                                    p.key in installedIds -> Text("Installed", fontSize = 11.sp, fontWeight = FontWeight.SemiBold, color = QuotaGreen)
+                                    p.key in installedIds -> Text(stringResource(R.string.common_installed), fontSize = 11.sp, fontWeight = FontWeight.SemiBold, color = QuotaGreen)
                                     else -> Button(onClick = { deps.config.pluginAction("install", ClaudePluginAction(plugin = p.key, scope = "user")) },
-                                        colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text("Install", fontSize = 12.sp) }
+                                        colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text(stringResource(R.string.common_install), fontSize = 12.sp) }
                                 }
                             }
                             if (p.description.isNotBlank()) Text(p.description, fontSize = 11.5.sp, maxLines = 3, overflow = TextOverflow.Ellipsis,
@@ -941,22 +948,22 @@ private fun PluginsPage(deps: ClaudeSettingsDeps) {
                 }
                 else -> {
                     item(key = "about") {
-                        Hint("A marketplace is a catalog of plugins (a git repo with a marketplace.json). Discover lists the plugins of every marketplace added here; refresh one to get its newest plugins.")
+                        Hint(stringResource(R.string.claude_marketplace_explain))
                     }
                     item(key = "add") {
                         ClaudeCard {
-                            SectionTitle("Add a marketplace")
-                            Hint("GitHub owner/repo, a git URL, or a URL to marketplace.json")
+                            SectionTitle(stringResource(R.string.claude_sec_add_marketplace))
+                            Hint(stringResource(R.string.claude_marketplace_source_hint))
                             Spacer(Modifier.height(6.dp))
                             Row(verticalAlignment = Alignment.CenterVertically) {
-                                OutlinedTextField(marketSource, { marketSource = it.trim() }, singleLine = true, placeholder = { Text("owner/repo") }, modifier = Modifier.weight(1f))
+                                OutlinedTextField(marketSource, { marketSource = it.trim() }, singleLine = true, placeholder = { Text(stringResource(R.string.claude_owner_repo)) }, modifier = Modifier.weight(1f))
                                 Spacer(Modifier.width(8.dp))
                                 val adding = addingMarket != null
                                 Button(onClick = {
                                     addingMarket = marketSource
                                     deps.config.pluginAction("marketplace-add", ClaudePluginAction(source = marketSource))
                                 }, enabled = marketSource.isNotBlank() && !adding, colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) {
-                                    if (adding) CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp, color = Color.White) else Text("Add")
+                                    if (adding) CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp, color = Color.White) else Text(stringResource(R.string.common_add))
                                 }
                             }
                         }
@@ -973,10 +980,10 @@ private fun PluginsPage(deps: ClaudeSettingsDeps) {
                                 if (op != null) PluginProgress(op)
                                 else {
                                     IconButton(onClick = { deps.config.pluginAction("marketplace-update", ClaudePluginAction(name = m.name)) }) {
-                                        Icon(Icons.Outlined.Refresh, "Refresh catalog")
+                                        Icon(Icons.Outlined.Refresh, stringResource(R.string.claude_marketplace_refresh))
                                     }
                                     IconButton(onClick = { deps.config.pluginAction("marketplace-remove", ClaudePluginAction(name = m.name)) }) {
-                                        Icon(Icons.Outlined.Delete, "Remove", tint = QuotaRed.copy(alpha = 0.8f))
+                                        Icon(Icons.Outlined.Delete, stringResource(R.string.common_remove), tint = QuotaRed.copy(alpha = 0.8f))
                                     }
                                 }
                             }
@@ -996,13 +1003,13 @@ private fun PluginProgress(action: String) {
         Spacer(Modifier.width(6.dp))
         Text(
             when (action) {
-                "install" -> "Installing…"
-                "uninstall" -> "Removing…"
-                "enable" -> "Enabling…"
-                "disable" -> "Disabling…"
-                "update", "marketplace-update" -> "Updating…"
-                "marketplace-remove" -> "Removing…"
-                else -> "Working…"
+                "install" -> stringResource(R.string.claude_op_installing)
+                "uninstall" -> stringResource(R.string.claude_op_removing)
+                "enable" -> stringResource(R.string.claude_op_enabling)
+                "disable" -> stringResource(R.string.claude_op_disabling)
+                "update", "marketplace-update" -> stringResource(R.string.claude_usage_updating)
+                "marketplace-remove" -> stringResource(R.string.claude_op_removing)
+                else -> stringResource(R.string.claude_op_working)
             },
             fontSize = 11.5.sp, fontWeight = FontWeight.SemiBold, color = ClaudeAccent
         )
@@ -1017,7 +1024,7 @@ private fun MemoryPage(deps: ClaudeSettingsDeps) {
     val auto by deps.config.autoMemory.collectAsState()
     // the project Claude chats run in: the open project, otherwise the bridge's default workspace
     val cwd = activeProjectPath()
-    val projectName = cwd?.trimEnd('/')?.substringAfterLast('/')?.ifBlank { null } ?: "Default workspace"
+    val projectName = cwd?.trimEnd('/')?.substringAfterLast('/')?.ifBlank { null } ?: stringResource(R.string.claude_default_workspace)
     var scope by remember { mutableStateOf("user") }
     var text by remember { mutableStateOf("") }
     var openNote by remember { mutableStateOf<String?>(null) }
@@ -1028,11 +1035,11 @@ private fun MemoryPage(deps: ClaudeSettingsDeps) {
 
     // ---- CLAUDE.md
     ClaudeCard {
-        SectionTitle("Instructions (CLAUDE.md)")
-        Hint("Rules Claude follows in every chat. New chats read them right away; a chat that is already running reads them the next time its Claude process starts.")
+        SectionTitle(stringResource(R.string.claude_sec_instructions))
+        Hint(stringResource(R.string.claude_instructions_hint))
         Spacer(Modifier.height(8.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            ControlChip("All projects", highlighted = scope == "user", color = if (scope == "user") ClaudeAccent else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f), onClick = { scope = "user" })
+            ControlChip(stringResource(R.string.claude_scope_all_projects), highlighted = scope == "user", color = if (scope == "user") ClaudeAccent else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f), onClick = { scope = "user" })
             ControlChip(projectName, highlighted = scope == "project", color = if (scope == "project") ClaudeAccent else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f), onClick = { scope = "project" })
         }
         Spacer(Modifier.height(8.dp))
@@ -1041,15 +1048,15 @@ private fun MemoryPage(deps: ClaudeSettingsDeps) {
             CircularProgressIndicator(Modifier.size(20.dp), strokeWidth = 2.dp, color = ClaudeAccent)
         } else {
             Hint(
-                (if (scope == "user") "Used in every project · " else "Used only in $projectName · ") +
-                    m.path + if (!m.exists) " (created when you save)" else ""
+                (if (scope == "user") stringResource(R.string.claude_memory_scope_every) else stringResource(R.string.claude_memory_scope_project, projectName)) +
+                    " · " + m.path + if (!m.exists) " " + stringResource(R.string.claude_memory_created_on_save) else ""
             )
             Spacer(Modifier.height(6.dp))
             OutlinedTextField(
                 value = text,
                 onValueChange = { text = it },
                 textStyle = MaterialTheme.typography.bodySmall.copy(fontFamily = FontFamily.Monospace),
-                placeholder = { Text("# Instructions Claude follows in every chat\n- Prefer Kotlin coroutines\n- Run ./gradlew test before committing") },
+                placeholder = { Text(stringResource(R.string.claude_instructions_claude_follows_in_every_cha)) },
                 modifier = Modifier.fillMaxWidth().heightIn(min = 220.dp)
             )
             Spacer(Modifier.height(8.dp))
@@ -1057,7 +1064,7 @@ private fun MemoryPage(deps: ClaudeSettingsDeps) {
                 onClick = { deps.config.saveMemory(scope, if (scope == "project") cwd else null, text) },
                 enabled = text != m.content,
                 colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)
-            ) { Text("Save") }
+            ) { Text(stringResource(R.string.common_save)) }
         }
     }
 
@@ -1065,16 +1072,16 @@ private fun MemoryPage(deps: ClaudeSettingsDeps) {
     ClaudeCard {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
-                SectionTitle("Claude's memory · $projectName")
-                Hint("Notes Claude saved by itself while working in this project. This is what Claude checks when you ask what it remembers.")
+                SectionTitle(stringResource(R.string.claude_memory_title, projectName))
+                Hint(stringResource(R.string.claude_memory_hint))
             }
-            IconButton(onClick = { deps.config.loadAutoMemory(cwd) }) { Icon(Icons.Outlined.Refresh, "Refresh") }
+            IconButton(onClick = { deps.config.loadAutoMemory(cwd) }) { Icon(Icons.Outlined.Refresh, stringResource(R.string.common_refresh)) }
         }
         val a = auto
         when {
             a == null -> CircularProgressIndicator(Modifier.size(20.dp), strokeWidth = 2.dp, color = ClaudeAccent)
             a.error != null -> Text(a.error, fontSize = 12.sp, color = QuotaRed)
-            a.files.isEmpty() -> Hint("No notes yet. Ask Claude to remember something and it saves it here.")
+            a.files.isEmpty() -> Hint(stringResource(R.string.claude_memory_empty))
             else -> {
                 Hint(a.dir)
                 a.files.forEach { f ->
@@ -1088,7 +1095,7 @@ private fun MemoryPage(deps: ClaudeSettingsDeps) {
                             Text(f.name, fontWeight = FontWeight.SemiBold, fontSize = 13.sp, fontFamily = FontFamily.Monospace)
                             Hint(java.text.SimpleDateFormat("d MMM yyyy, HH:mm", java.util.Locale.getDefault()).format(java.util.Date(f.modified)))
                         }
-                        IconButton(onClick = { noteToDelete = f.name }) { Icon(Icons.Outlined.Delete, "Delete", tint = QuotaRed.copy(alpha = 0.8f)) }
+                        IconButton(onClick = { noteToDelete = f.name }) { Icon(Icons.Outlined.Delete, stringResource(R.string.common_delete), tint = QuotaRed.copy(alpha = 0.8f)) }
                     }
                     if (open) {
                         Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.05f), modifier = Modifier.fillMaxWidth()) {
@@ -1103,15 +1110,15 @@ private fun MemoryPage(deps: ClaudeSettingsDeps) {
     noteToDelete?.let { name ->
         AlertDialog(
             onDismissRequest = { noteToDelete = null },
-            title = { Text("Delete $name?", fontWeight = FontWeight.Bold) },
-            text = { Text("Claude forgets what this note says.", fontSize = 13.5.sp) },
+            title = { Text(stringResource(R.string.claude_delete_name, name), fontWeight = FontWeight.Bold) },
+            text = { Text(stringResource(R.string.claude_claude_forgets_what_this_note_says), fontSize = 13.5.sp) },
             confirmButton = {
                 TextButton(onClick = {
                     deps.config.deleteAutoMemory(cwd, name)
                     noteToDelete = null
-                }) { Text("Delete", color = QuotaRed) }
+                }) { Text(stringResource(R.string.common_delete), color = QuotaRed) }
             },
-            dismissButton = { TextButton(onClick = { noteToDelete = null }) { Text("Cancel") } }
+            dismissButton = { TextButton(onClick = { noteToDelete = null }) { Text(stringResource(R.string.common_cancel)) } }
         )
     }
 }
@@ -1120,6 +1127,7 @@ private fun MemoryPage(deps: ClaudeSettingsDeps) {
 
 @Composable
 private fun AdvancedPage(deps: ClaudeSettingsDeps) {
+    val context = androidx.compose.ui.platform.LocalContext.current
     val settings by deps.config.settings.collectAsState()
     val path by deps.config.settingsPath.collectAsState()
     val error by deps.config.settingsError.collectAsState()
@@ -1128,7 +1136,7 @@ private fun AdvancedPage(deps: ClaudeSettingsDeps) {
     LaunchedEffect(Unit) { deps.config.loadSettings() }
     LaunchedEffect(settings) { settings?.let { text = prettyJson.encodeToString(JsonObject.serializer(), it) } }
 
-    Hint("Every Claude Code setting lives here: permissions, hooks, env, model, statusLine… Changes apply to new Claude chats.")
+    Hint(stringResource(R.string.claude_advanced_hint))
     if (path.isNotBlank()) Hint(path)
     error?.let { Text(it, color = QuotaRed, fontSize = 12.sp) }
     OutlinedTextField(
@@ -1143,17 +1151,17 @@ private fun AdvancedPage(deps: ClaudeSettingsDeps) {
     )
     parseError?.let { Text(it, color = QuotaRed, fontSize = 12.sp) }
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        OutlinedButton(onClick = { deps.config.loadSettings() }) { Text("Reload") }
+        OutlinedButton(onClick = { deps.config.loadSettings() }) { Text(stringResource(R.string.common_reload)) }
         Button(onClick = {
             val parsed: JsonElement? = runCatching { Json.parseToJsonElement(text) }.getOrElse {
-                parseError = "Invalid JSON: ${it.message}"
+                parseError = context.getString(R.string.claude_json_invalid, it.message)
                 null
             }
             when (parsed) {
                 null -> Unit
-                is JsonObject -> deps.config.saveSettings(parsed, "settings.json saved")
-                else -> parseError = "settings.json must be a JSON object"
+                is JsonObject -> deps.config.saveSettings(parsed, context.getString(R.string.claude_json_saved))
+                else -> parseError = context.getString(R.string.claude_json_not_object)
             }
-        }, colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text("Validate & save") }
+        }, colors = ButtonDefaults.buttonColors(containerColor = ClaudeAccent)) { Text(stringResource(R.string.claude_validate_save)) }
     }
 }

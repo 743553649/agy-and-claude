@@ -76,7 +76,7 @@ open class TermuxOpenReceiver : BroadcastReceiver() {
             val fileToShare = File(rawPath)
             if (!fileToShare.exists() || !fileToShare.canRead()) {
                 Log.w(TAG, "Not a readable file: ${fileToShare.absolutePath}")
-                Toast.makeText(context, "File not found or unreadable: ${fileToShare.name}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.data_toast_file_not_found_or_unreadable_filetoshare, fileToShare.name), Toast.LENGTH_SHORT).show()
                 return
             }
 
@@ -128,7 +128,7 @@ open class TermuxOpenReceiver : BroadcastReceiver() {
                     return
                 } catch (e: ActivityNotFoundException) {
                     Log.w(TAG, "No app handles intent: ${e.message}")
-                    Toast.makeText(foregroundActivity, "No application found to handle this request", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(foregroundActivity, foregroundActivity.getString(R.string.data_toast_no_application_found_to_handle_this_requ), Toast.LENGTH_SHORT).show()
                     return
                 } catch (e: Exception) {
                     Log.w(TAG, "Activity.startActivity failed: ${e.message}")
@@ -168,7 +168,7 @@ open class TermuxOpenReceiver : BroadcastReceiver() {
                     context.startActivity(intent, optionsBundle)
                 } catch (e: ActivityNotFoundException) {
                     Log.w(TAG, "No app handles intent: ${e.message}")
-                    Toast.makeText(context, "No application found to handle this request", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.data_toast_no_application_found_to_handle_this_requ), Toast.LENGTH_SHORT).show()
                     return
                 } catch (e: Exception) {
                     Log.w(TAG, "Direct startActivity failed: ${e.message}")
@@ -185,7 +185,7 @@ open class TermuxOpenReceiver : BroadcastReceiver() {
                             "Termux Open",
                             NotificationManager.IMPORTANCE_HIGH
                         ).apply {
-                            this.description = "Terminal open requests"
+                            this.description = context.getString(R.string.data_termux_open_description)
                             enableLights(true)
                             enableVibration(true)
                         }

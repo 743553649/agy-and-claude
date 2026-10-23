@@ -17,7 +17,12 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 
 private const val TAG = "AppUpdateManager"
-private const val DEFAULT_VERSION_URL = "https://raw.githubusercontent.com/santoshkurmi/antigem/master/version.json"
+// fork 仓库：更新检查与 APK 下载都指向它，避免去拉上游签名的包（签名不同装不上，
+// 且上游一旦把 is_critical 置真会弹出无法关闭的更新框，导致应用不可用）
+private const val UPDATE_REPO = "743553649/agy-and-claude"
+private const val UPDATE_BRANCH = "master"
+private const val DEFAULT_VERSION_URL =
+    "https://raw.githubusercontent.com/$UPDATE_REPO/$UPDATE_BRANCH/version.json"
 
 data class AppUpdateInfo(
     val versionCode: Int,
@@ -85,7 +90,7 @@ class AppUpdateManager(private val context: Context) {
             // Auto-generate package-specific download URL based on remote version name and flavor
             val currentPkg = context.packageName
             val flavorType = if (currentPkg == "com.termux") "termux" else "standard"
-            val downloadUrl = "https://github.com/santoshkurmi/antigem/releases/download/v$remoteVersionName/antiGem-$flavorType-v$remoteVersionName-release.apk"
+            val downloadUrl = "https://github.com/$UPDATE_REPO/releases/download/v$remoteVersionName/antiGem-$flavorType-v$remoteVersionName-release.apk"
 
             if (remoteVersionCode > BuildConfig.VERSION_CODE && downloadUrl.isNotBlank()) {
                 // Verify that the APK asset is actually published and downloadable on GitHub

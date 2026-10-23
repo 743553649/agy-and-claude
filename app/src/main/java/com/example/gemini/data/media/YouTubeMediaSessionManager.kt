@@ -33,6 +33,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import com.example.gemini.R
 
 /**
  * Singleton manager that retains the active YouTube player WebView across Compose list recycling,
@@ -702,7 +703,7 @@ object YouTubeMediaSessionManager {
                 "YouTube Playback",
                 NotificationManager.IMPORTANCE_LOW
             ).apply {
-                description = "Shows playback controls for videos in chat"
+                description = context.getString(R.string.data_media_session_description)
                 setShowBadge(false)
                 lockscreenVisibility = Notification.VISIBILITY_PUBLIC
             }

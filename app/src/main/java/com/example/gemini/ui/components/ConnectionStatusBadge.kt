@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.data.remote.AgyActiveInstance
+import com.example.gemini.R
 import com.example.gemini.data.remote.BridgeConnectionState
 import com.example.gemini.theme.ClaudeTerracotta
 
@@ -69,20 +71,20 @@ fun ConnectionStatusBadge(
                             .background(dotColor, CircleShape)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = "Bridge Status", style = MaterialTheme.typography.titleMedium)
+                    Text(text = stringResource(R.string.component_bridge_status), style = MaterialTheme.typography.titleMedium)
                 }
             },
             text = {
                 Column(modifier = Modifier.fillMaxWidth()) {
                     Text(
-                        text = "Status: $labelText",
+                        text = stringResource(R.string.component_status_labeltext, labelText),
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 14.sp
                     )
                     Spacer(modifier = Modifier.height(6.dp))
                     Text(
-                        text = "Endpoint: $bridgeUrl",
+                        text = stringResource(R.string.component_endpoint_bridgeurl, bridgeUrl),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -91,7 +93,7 @@ fun ConnectionStatusBadge(
                     Spacer(modifier = Modifier.height(10.dp))
 
                     Text(
-                        text = "Active Worker Instances (${activeInstances.size}):",
+                        text = stringResource(R.string.component_active_worker_instances_activeinstances, activeInstances.size),
                         style = MaterialTheme.typography.labelMedium,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface
@@ -100,7 +102,7 @@ fun ConnectionStatusBadge(
 
                     if (activeInstances.isEmpty()) {
                         Text(
-                            text = "No active warm processes in RAM.",
+                            text = stringResource(R.string.component_no_active_warm_processes_in_ram),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -125,14 +127,14 @@ fun ConnectionStatusBadge(
                                             color = ClaudeTerracotta
                                         )
                                         Text(
-                                            text = "PID: ${inst.pid}",
+                                            text = stringResource(R.string.common_pid_inst_pid, inst.pid),
                                             fontSize = 11.sp,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant
                                         )
                                     }
                                     Spacer(modifier = Modifier.height(2.dp))
                                     Text(
-                                        text = "Chat: ${inst.conversationId.take(12)}... | Uptime: ${inst.uptimeSeconds}s",
+                                        text = stringResource(R.string.component_chat_inst_conversationid_take_12_uptime, inst.conversationId.take(12), inst.uptimeSeconds),
                                         fontSize = 11.sp,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
@@ -151,12 +153,12 @@ fun ConnectionStatusBadge(
                 ) {
                     Icon(imageVector = Icons.Outlined.Refresh, contentDescription = null, modifier = Modifier.size(16.dp))
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text("Reconnect")
+                    Text(stringResource(R.string.common_reconnect))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showDialog = false }) {
-                    Text("Close")
+                    Text(stringResource(R.string.common_close))
                 }
             }
         )

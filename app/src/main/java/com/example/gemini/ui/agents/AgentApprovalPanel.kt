@@ -1,5 +1,6 @@
 package com.example.gemini.ui.agents
 
+import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -25,6 +26,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ExpandMore
 import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material3.Button
+import androidx.compose.ui.res.stringResource
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -57,6 +59,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.domain.model.AgentKind
+import com.example.gemini.R
 import com.example.gemini.ui.components.MarkdownContent
 import com.example.gemini.ui.components.accent
 import com.example.gemini.ui.components.label
@@ -87,8 +90,8 @@ class ApprovalItem(
     val secondary: List<ApprovalChoice> = emptyList(),
     /** "Always allow…" menu. */
     val always: List<ApprovalChoice> = emptyList(),
-    val denyLabel: String = "Deny",
-    val denyPlaceholder: String = "Tell the agent what to do instead (optional)",
+    @StringRes val denyLabel: Int = R.string.agents_deny,
+    @StringRes val denyPlaceholder: Int = R.string.agents_deny_placeholder,
     val onDeny: (feedback: String?) -> Unit
 )
 
@@ -148,7 +151,7 @@ private fun ApprovalBody(item: ApprovalItem, count: Int, onAllowAll: (() -> Unit
             }
             if (count > 1) {
                 Text(
-                    "1 of $count",
+                    stringResource(R.string.agents_1_of_count, count),
                     fontSize = 11.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
@@ -165,13 +168,13 @@ private fun ApprovalBody(item: ApprovalItem, count: Int, onAllowAll: (() -> Unit
                     }
                     DropdownMenu(expanded = overflow, onDismissRequest = { overflow = false }) {
                         onAllowAll?.let {
-                            DropdownMenuItem(text = { Text("Allow all $count") }, onClick = {
+                            DropdownMenuItem(text = { Text(stringResource(R.string.agents_allow_all_count, count)) }, onClick = {
                                 overflow = false
                                 it()
                             })
                         }
                         onDenyAll?.let {
-                            DropdownMenuItem(text = { Text("Deny all $count", color = DenyRed) }, onClick = {
+                            DropdownMenuItem(text = { Text(stringResource(R.string.agents_deny_all_count, count), color = DenyRed) }, onClick = {
                                 overflow = false
                                 it()
                             })
@@ -235,20 +238,20 @@ private fun ApprovalBody(item: ApprovalItem, count: Int, onAllowAll: (() -> Unit
                 OutlinedTextField(
                     value = feedback,
                     onValueChange = { feedback = it },
-                    placeholder = { Text(item.denyPlaceholder, fontSize = 12.5.sp) },
+                    placeholder = { Text(stringResource(item.denyPlaceholder), fontSize = 12.5.sp) },
                     textStyle = MaterialTheme.typography.bodyMedium,
                     shape = RoundedCornerShape(12.dp),
                     modifier = Modifier.fillMaxWidth(),
                     maxLines = 4
                 )
                 Row(Modifier.fillMaxWidth().padding(top = 8.dp), horizontalArrangement = Arrangement.End, verticalAlignment = Alignment.CenterVertically) {
-                    TextButton(onClick = { denying = false }) { Text("Back") }
+                    TextButton(onClick = { denying = false }) { Text(stringResource(R.string.common_back)) }
                     Spacer(Modifier.width(6.dp))
                     Button(
                         onClick = { item.onDeny(feedback.trim().ifBlank { null }) },
                         colors = ButtonDefaults.buttonColors(containerColor = if (item.secondary.isEmpty()) DenyRed else accent),
                         shape = RoundedCornerShape(12.dp)
-                    ) { Text(item.denyLabel, fontSize = 13.sp, fontWeight = FontWeight.SemiBold) }
+                    ) { Text(stringResource(item.denyLabel), fontSize = 13.sp, fontWeight = FontWeight.SemiBold) }
                 }
                 return@Column
             }
@@ -268,14 +271,14 @@ private fun ApprovalBody(item: ApprovalItem, count: Int, onAllowAll: (() -> Unit
                     }
                 }
                 TextButton(onClick = { denying = true }, modifier = Modifier.fillMaxWidth()) {
-                    Text("${item.denyLabel}…", color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f))
+                    Text(stringResource(R.string.agents_item_denylabel, stringResource(item.denyLabel)), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f))
                 }
                 return@Column
             }
 
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 TextButton(onClick = { denying = true }, contentPadding = PaddingValues(horizontal = 10.dp)) {
-                    Text(item.denyLabel, color = DenyRed, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                    Text(stringResource(item.denyLabel), color = DenyRed, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                 }
                 Spacer(Modifier.weight(1f))
                 if (item.always.isNotEmpty()) {
@@ -285,7 +288,7 @@ private fun ApprovalBody(item: ApprovalItem, count: Int, onAllowAll: (() -> Unit
                             shape = RoundedCornerShape(12.dp),
                             contentPadding = PaddingValues(start = 12.dp, end = 6.dp)
                         ) {
-                            Text("Always…", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface)
+                            Text(stringResource(R.string.agents_always), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface)
                             Icon(Icons.Outlined.ExpandMore, null, modifier = Modifier.size(18.dp), tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                         }
                         DropdownMenu(expanded = alwaysMenu, onDismissRequest = { alwaysMenu = false }) {

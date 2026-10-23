@@ -1,0 +1,59 @@
+# 数据层（LocalEnvironmentManager）文案对照表：英文原文<TAB>简体中文
+# 由 scripts/i18n/apply_local_env.py 读取；生成 data_install_* 资源并改写调用点。
+# 站点只有三类：updateInstallNotification 的标题/正文、固定字段赋值（speedText/errorMsg/currentFileName/stepDescription/testName/message/currentPackageName/errorMessage）、通知渠道名与描述。
+# 占位符顺序与英文里 $var / ${expr} 出现顺序一致；译法见 docs/i18n/GLOSSARY.md。
+Rootfs Installation	Rootfs 安装
+Shows progress while downloading and installing the Linux rootfs	显示下载与安装 Linux rootfs 的进度
+Installing Linux Rootfs	正在安装 Linux Rootfs
+Starting installation...	正在开始安装……
+AntiGem Rootfs	AntiGem Rootfs
+Ubuntu Rootfs	Ubuntu Rootfs
+Downloading $titlePrefix	正在下载 %1$s
+Connecting...	正在连接……
+Installation Failed	安装失败
+Downloading $titlePrefix ($pct%)	正在下载 %1$s（%2$s%%）
+Downloading Linux Rootfs	正在下载 Linux Rootfs
+Finding bootstrap package...	正在查找 bootstrap 包……
+Finding package...	正在查找软件包……
+Connecting mirror ${index + 1}...	正在连接镜像 %1$s……
+Downloading Linux Rootfs ($pct%)	正在下载 Linux Rootfs（%1$s%%）
+Connecting direct URL...	正在连接直链……
+Importing file...	正在导入文件……
+Local Archive	本地压缩包
+Importing Linux Rootfs	正在导入 Linux Rootfs
+Importing archive file...	正在导入压缩包……
+Preparing directory structure...	正在准备目录结构……
+Extracting Linux Rootfs (0%)	正在解压 Linux Rootfs（0%）
+Unpacking package: $pkgName	正在解包：%1$s
+Extracting Packages ($pct%)	正在解压软件包（%1$s%%）
+Unpacking $pkgName ($count/$total)	正在解包 %1$s（%2$s/%3$s）
+Extracting Rootfs ($pct%)	正在解压 Rootfs（%1$s%%）
+Configuring shell profiles, paths, and environment...	正在配置 shell 配置文件、路径与环境……
+Configuring Linux Environment (90%)	正在配置 Linux 环境（90%）
+Configuring paths, permissions, and shell profiles...	正在配置路径、权限与 shell 配置文件……
+Verifying Linux environment and shell execution...	正在校验 Linux 环境与 shell 执行……
+Verifying Installation (95%)	正在校验安装（95%）
+Testing shell environment...	正在测试 shell 环境……
+Installation Complete	安装完成
+Termux Linux environment is verified and ready!	Termux Linux 环境已校验，可以使用了！
+Termux Linux environment verified and installed successfully!	Termux Linux 环境已验证并安装成功！
+Invalid download URL. Please provide a valid http/https direct link.	下载地址无效，请提供有效的 http/https 直链。
+Download failed: HTTP ${response.code} from release server.	下载失败：发布服务器返回 HTTP %1$s。
+Download failed: Empty response body.	下载失败：响应体为空。
+Downloaded rootfs archive was incomplete or corrupted.	下载的 rootfs 压缩包不完整或已损坏。
+Download failed: ${e.message ?: "Network error"}	下载失败：%1$s
+Network error	网络错误
+Server returned HTTP ${response.code} for: $customUrl	服务器返回 HTTP %1$s：%2$s
+Empty response body	响应体为空
+Empty response body received from URL.	从该地址收到的响应体为空。
+Downloaded file from URL is only ${formatFileSize(finalDownloadedSize)} (< 10 MB required).	从该地址下载的文件只有 %1$s（要求至少 10 MB）。
+Downloaded file is not a valid archive.	下载的文件不是有效的压缩包。
+Direct download failed: ${e.localizedMessage ?: e.message}	直链下载失败：%1$s
+Selected file is only ${formatFileSize(finalDownloadedSize)} (< 10 MB minimum required).	所选文件只有 %1$s（至少需要 10 MB）。
+The selected file (${formatFileSize(finalDownloadedSize)}) is not a valid or readable archive.	所选文件（%1$s）不是有效或可读的压缩包。
+Failed to import selected ZIP file: ${e.localizedMessage ?: e.message}	导入所选 ZIP 文件失败：%1$s
+Bootstrap archive is missing or invalid (< 10 MB). Please check source and retry.	bootstrap 压缩包缺失或无效（小于 10 MB），请检查下载来源后重试。
+Verification failed: installed package directory is too small ($installedSizeStr). Installation is incomplete.	校验失败：安装目录过小（%1$s），安装不完整。
+Shell verification test failed: ${testRes.output}	shell 校验测试失败：%1$s
+Installation error	安装出错
+Installation failed: ${e.localizedMessage ?: e.message}	安装失败：%1$s

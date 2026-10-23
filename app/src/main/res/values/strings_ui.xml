@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  由 scripts/i18n 生成，请勿手工调整条目顺序。
+  译法基准见 docs/i18n/GLOSSARY.md
+-->
+<resources>
+
+    <string name="models_available_count">%1$s models</string>
+    <string name="models_none_loaded">no models loaded</string>
+    <string name="ui_ai_assistant_bubble">AI Assistant Bubble</string>
+    <string name="ui_allocates_chars_characters_of_reasoning">Allocates ~%1$s characters of reasoning capacity</string>
+    <string name="ui_anthropic_claude">Anthropic Claude</string>
+    <string name="ui_apply_custom_budget">Apply Custom Budget</string>
+    <string name="ui_back_to_categories">Back to categories</string>
+    <string name="ui_chat_ide">Chat &amp; IDE</string>
+    <string name="ui_choose_how_you_want_to_access_the_linux">Choose how you want to access the Linux command line on your device.</string>
+    <string name="ui_classic_terminal_prompt_icon_familiar_na">Classic terminal &gt;_ prompt icon &amp; familiar name</string>
+    <string name="ui_configure_reasoning_depth_and_token_budg">Configure reasoning depth and token budget</string>
+    <string name="ui_connect_your_google_account_in_settings">Connect your Google account in Settings or tap refresh to load your active models.</string>
+    <string name="ui_count">%1$s</string>
+    <string name="ui_default">DEFAULT</string>
+    <string name="ui_download_failed_state_message">Download failed: %1$s</string>
+    <string name="ui_downloaded_launching_installer">Downloaded! Launching installer...</string>
+    <string name="ui_downloading">Downloading...</string>
+    <string name="ui_error_loading_data_state_as_mainscreenui">Error loading data: %1$s</string>
+    <string name="ui_formatsize_state_downloadedbytes_formats">%1$s / %2$s</string>
+    <string name="ui_github">GitHub</string>
+    <string name="ui_google_gemini">Google Gemini</string>
+    <string name="ui_groupedmodels_size_base_models_models_si">%1$s base models • %2$s variants</string>
+    <string name="ui_hello_name">Hello %1$s!</string>
+    <string name="ui_home_screen_preview">HOME SCREEN PREVIEW</string>
+    <string name="ui_modern_unified_icon_matching_antigem">Modern unified icon matching AntiGem</string>
+    <string name="ui_new_update_available">New Update Available</string>
+    <string name="ui_no_models_loaded">No Models Loaded</string>
+    <string name="ui_open_title">Open %1$s</string>
+    <string name="ui_places_a_dedicated_icon_in_your_app_laun">Places a dedicated icon in your app launcher for 1-tap terminal access</string>
+    <string name="ui_save_continue">Save &amp; Continue</string>
+    <string name="ui_select_icon_app_name">Select Icon &amp; App Name:</string>
+    <string name="ui_select_model">Select model</string>
+    <string name="ui_standalone_terminal_app_icon">Standalone Terminal App Icon</string>
+    <string name="ui_state_progress_100_toint">%1$s%%</string>
+    <string name="ui_tap_to_choose_model">Tap to choose model</string>
+    <string name="ui_terminal_app_setup">Terminal App Setup</string>
+    <string name="ui_thinking_reasoning_level">Thinking &amp; Reasoning Level</string>
+    <string name="ui_token_budget_1_32_768">Token Budget (1 - 32,768)</string>
+    <string name="ui_v_updateinfo_currentversionname">v%1$s</string>
+    <string name="ui_v_updateinfo_versionname">v%1$s</string>
+    <string name="ui_what_s_new">WHAT\'S NEW</string>
+    <string name="ui_you_can_always_change_or_toggle_this_any">You can always change or toggle this anytime in Settings.</string>
+</resources>

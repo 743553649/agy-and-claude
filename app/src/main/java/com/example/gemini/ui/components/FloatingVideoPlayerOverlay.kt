@@ -34,6 +34,8 @@ import com.example.gemini.data.media.YouTubeMediaSessionManager
 import com.example.gemini.theme.ClaudeTerracotta
 import com.example.gemini.theme.isAppInDarkTheme
 import kotlin.math.roundToInt
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 /**
  * Floating in-app controller for active YouTube playback across Chat, IDE, Browser, and Terminal.
@@ -199,7 +201,7 @@ fun FloatingVideoPlayerOverlay(
                                 val posFormatted = formatMs(activeState.positionMs)
                                 val durFormatted = formatMs(activeState.durationMs)
                                 Text(
-                                    text = "$posFormatted / $durFormatted",
+                                    text = stringResource(R.string.component_posformatted_durformatted, posFormatted, durFormatted),
                                     fontSize = 11.sp,
                                     color = contentColor.copy(alpha = 0.65f)
                                 )
@@ -217,7 +219,7 @@ fun FloatingVideoPlayerOverlay(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Filled.ExpandLess,
-                                        contentDescription = "Collapse",
+                                        contentDescription = stringResource(R.string.component_collapse),
                                         tint = contentColor.copy(alpha = 0.6f),
                                         modifier = Modifier.size(16.dp)
                                     )
@@ -233,7 +235,7 @@ fun FloatingVideoPlayerOverlay(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Filled.Close,
-                                        contentDescription = "Stop & Close",
+                                        contentDescription = stringResource(R.string.component_stop_close),
                                         tint = MaterialTheme.colorScheme.error.copy(alpha = 0.75f),
                                         modifier = Modifier.size(14.dp)
                                     )

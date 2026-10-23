@@ -1,0 +1,118 @@
+# 设置首页 + 环境安装页文案对照表：英文原文<TAB>简体中文
+# 由 scripts/i18n/apply_settings_ui.py 读取。占位符顺序与英文里 $var / ${expr} 出现顺序一致。
+Agents	智能体
+Which agents run, and the local server they share	决定运行哪些智能体，以及它们共用的本地服务器
+Antigravity and Claude Code	Antigravity 与 Claude Code
+Claude Code only	仅 Claude Code
+Antigravity only	仅 Antigravity
+${enabledAgents.size} on	%1$s 个已开启
+Online	在线
+Partial	部分可用
+Offline	离线
+Servers & Connectivity	服务器与连接
+AGY Hub & IDE Bridge endpoints	AGY 中枢与 IDE 桥接端点
+WebView Extensions	WebView 扩展
+Install ZIP, update, rename, enable or disable MCP extensions	安装 ZIP、更新、重命名、启用或停用 MCP 扩展
+Google Antigravity agent (agy hub)	Google Antigravity 智能体（agy 中枢）
+0 Configured	已配置 0 个
+$activeMcpCount Active	%1$s 个启用中
+Disabled	已停用
+MCP Servers & Tools	MCP 服务器与工具
+$totalMcpCount server(s) • global mcp_config.json	%1$s 个服务器 · 全局 mcp_config.json
+Model Context Protocol tools & integrations	模型上下文协议（MCP）工具与集成
+$totalSkillsCount Skills • $totalPluginsCount Plugins	%1$s 个技能 · %2$s 个插件
+Skills & Plugins	技能与插件
+Installed skills, Google plugins catalog, and markdown guides	已安装的技能、Google 插件目录与 Markdown 指南
+⚡ Auto-Run	⚡ 自动运行
+🛡️ Smart Safety	🛡️ 智能防护
+✋ Ask User	✋ 询问用户
+Sandbox ON	沙箱开启
+Sandbox OFF	沙箱关闭
+Commands & Permissions	命令与权限
+Policy: $policyBadge • $sandboxSummary	策略：%1$s · %2$s
+Anthropic Claude Code CLI	Anthropic Claude Code 命令行
+App	应用
+Shared by both agents	两个智能体共用
+Dark Mode	深色模式
+Light Mode	浅色模式
+Auto (System)	跟随系统
+Appearance & Theme	外观与主题
+$themeLabel • ${(chatFontScale * 100).toInt()}% text scale	%1$s · 文字缩放 %2$s%%
+Full Access	完全访问
+All Automation Disabled	所有自动化已停用
+Browser: ${if (isBrowserAutomationEnabled) "ON" else "OFF"} • Terminal: ${if (isTerminalAutomationEnabled) "ON" else "OFF"} • Flow: ${if (isFlowAutomationEnabled) "ON" else "OFF"}	浏览器：%1$s · 终端：%2$s · Flow：%3$s
+Automation & Device Tools	自动化与设备工具
+Terminal & Shell Execution	终端与 Shell 执行
+SSH Mode (Termux sshd)	SSH 模式（Termux sshd）
+Local Linux Environment	本地 Linux 环境
+Backups & Restore	备份与恢复
+Backup rootfs environment and AGY chat histories	备份 rootfs 环境与 AGY 对话历史
+Rootfs Active	rootfs 运行中
+Local Linux Tools Ready!	本地 Linux 工具已就绪
+Ubuntu Container Ready!	Ubuntu 容器已就绪
+Setup Encountered an Issue	安装遇到问题
+Initialize Linux Environment	初始化 Linux 环境
+Install Ubuntu Container (ARM64)	安装 Ubuntu 容器（ARM64）
+Locating Latest Bootstrap...	正在查找最新 Bootstrap……
+Locating Ubuntu Rootfs...	正在查找 Ubuntu rootfs……
+Confirm Bootstrap Installation	确认安装 Bootstrap
+Confirm Ubuntu Installation	确认安装 Ubuntu
+Downloading Toolchain...	正在下载工具链……
+Extracting & Linking Files...	正在解压并链接文件……
+Finalizing Permissions...	正在完成权限配置……
+Verifying Environment...	正在验证环境……
+Termux-compatible shell, coreutils & AGY tools are installed and ready.	Termux 兼容的 shell、coreutils 与 AGY 工具已安装就绪。
+Ubuntu ARM64 container, bash, glibc & AGY tools are ready.	Ubuntu ARM64 容器、bash、glibc 与 AGY 工具已就绪。
+Failed to unpack rootfs. You can retry or pick a local ZIP archive.	rootfs 解包失败，可以重试或选择本地 ZIP 包。
+Select how you would like to set up the local Termux environment for AntiGem:	选择你希望如何为 AntiGem 搭建本地 Termux 环境：
+Select how you would like to set up the Ubuntu Linux container for AntiGem:	选择你希望如何为 AntiGem 搭建 Ubuntu Linux 容器：
+Checking releases for the latest verified rootfs archive.	正在检查最新已校验的 rootfs 发布包。
+Review details below and confirm to begin installation.	查看下方详情，确认后开始安装。
+Fetching rootfs archive into secure application storage.	正在把 rootfs 包下载到应用私有存储。
+Decompressing packages, setting Unix permissions, and mapping symlinks.	正在解压软件包、设置 Unix 权限并建立符号链接。
+Configuring startup scripts, environment variables, and shell binaries.	正在配置启动脚本、环境变量与 shell 可执行文件。
+Running verification checks on installed binaries and symlinks.	正在校验已安装的可执行文件与符号链接。
+Supported	支持
+Not Supported	不支持
+Auto Download from GitHub	从 GitHub 自动下载
+Ubuntu ARM64 Base (Light)	Ubuntu ARM64 基础版（精简）
+Official	官方
+Recommended	推荐
+Downloads verified Termux rootfs (~350MB) with preconfigured tools and environment.	下载已校验的 Termux rootfs（约 350MB），含预配置工具与环境。
+Downloads official minimal Ubuntu ARM64 rootfs container with glibc, bash, and development tools.	下载官方精简 Ubuntu ARM64 rootfs 容器，含 glibc、bash 与开发工具。
+Select Local ZIP Archive	选择本地 ZIP 包
+Custom Ubuntu Rootfs (.zip)	自定义 Ubuntu rootfs（.zip）
+Pick an existing bootstrap backup or custom rootfs from phone storage.	从手机存储选择已有的 bootstrap 备份或自定义 rootfs。
+Pick an existing container backup or custom rootfs (bootstraps.zip) from phone storage.	从手机存储选择已有的容器备份或自定义 rootfs（bootstraps.zip）。
+Change Selected ZIP	更换已选 ZIP
+Browse & Select ZIP File	浏览并选择 ZIP 文件
+Selected: ${selectedFileUri.toString().substringAfterLast("/")}	已选择：%1$s
+Downloads clean official Termux base bootstrap for ${LocalEnvironmentManager.getBootstrapArch()} with core utilities and package manager.	下载官方纯净的 Termux 基础 bootstrap（%1$s 架构），含核心工具与包管理器。
+Running test: ${state.testName}	正在运行测试：%1$s
+Download & Install AntiGem (~350MB)	下载并安装 AntiGem（约 350MB）
+Download & Install Ubuntu Base	下载并安装 Ubuntu 基础包
+Download Base Termux (~33MB)	下载基础 Termux（约 33MB）
+Install Local ZIP	安装本地 ZIP
+Choose ZIP File	选择 ZIP 文件
+Local Tools Ready!	本地工具已就绪
+Installation Error	安装出错
+Install Local Linux Tools	安装本地 Linux 工具
+Setting Up Local Tools	正在搭建本地工具
+Termux-compatible shell, coreutils & toolchain are now active.	Termux 兼容的 shell、coreutils 与工具链已启用。
+Failed to configure local environment. You can retry below.	本地环境配置失败，可在下方重试。
+Select how you would like to download and install the Termux rootfs:	选择你希望如何下载并安装 Termux rootfs：
+Downloading and unpacking native Linux toolchain inside your app sandbox.	正在应用沙箱内下载并解压本地 Linux 工具链。
+None	无
+Auto Download (GitHub)	自动下载（GitHub）
+Auto-downloads verified AntiGem rootfs (~350MB) with preconfigured tools and environment	自动下载已校验的 AntiGem rootfs（约 350MB），含预配置工具与环境
+Downloads official minimal Ubuntu ARM64 container rootfs with glibc, bash, and development tools	下载官方精简 Ubuntu ARM64 容器 rootfs，含 glibc、bash 与开发工具
+Local ZIP Archive	本地 ZIP 包
+Pick an existing bootstrap .zip file from device (Offline)	从设备选择已有的 bootstrap .zip 文件（离线）
+Pick an existing container backup or custom rootfs (bootstraps.zip) from phone storage	从手机存储选择已有的容器备份或自定义 rootfs（bootstraps.zip）
+Downloads clean official Termux base bootstrap (${LocalEnvironmentManager.getBootstrapArch()}) with essential coreutils	下载官方纯净的 Termux 基础 bootstrap（%1$s 架构），含核心 coreutils
+Found Termux Bootstrap Package	找到 Termux Bootstrap 包
+Found Ubuntu Container Package	找到 Ubuntu 容器包
+Installed at: ${state.prefixPath}	安装位置：%1$s
+Disk space: ${state.totalDiskUsageFormatted}	磁盘空间：%1$s
+Installation Logs (${installerLogs.size})	安装日志（%1$s）
+Choose ZIP	选择 ZIP

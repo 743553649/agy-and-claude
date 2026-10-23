@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import com.example.gemini.data.remote.core.AntiGemLiveDiagnostics
+import com.example.gemini.R
 import kotlin.math.roundToInt
 
 @Composable
@@ -93,7 +95,7 @@ fun FloatingDiagnosticsOverlay(
                         )
 
                         Text(
-                            text = "🧵 ${snapshot.activeJvmThreads}",
+                            text = stringResource(R.string.component_snapshot_activejvmthreads, snapshot.activeJvmThreads),
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color(0xFFE0E0E0),
@@ -101,7 +103,7 @@ fun FloatingDiagnosticsOverlay(
                         )
 
                         Text(
-                            text = "⚡${snapshot.agyRunning + snapshot.ideRunning}r",
+                            text = stringResource(R.string.component_snapshot_agyrunning_snapshot_iderunning, snapshot.agyRunning + snapshot.ideRunning),
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
                             color = if (snapshot.agyRunning > 0) Color(0xFF81D4FA) else Color(0xFF9E9E9E),
@@ -110,7 +112,7 @@ fun FloatingDiagnosticsOverlay(
 
                         if (snapshot.agyQueued > 0 || snapshot.ideQueued > 0) {
                             Text(
-                                text = "⏳${snapshot.agyQueued + snapshot.ideQueued}q",
+                                text = stringResource(R.string.component_snapshot_agyqueued_snapshot_idequeued_q, snapshot.agyQueued + snapshot.ideQueued),
                                 fontSize = 11.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color(0xFFFF5252),
@@ -119,7 +121,7 @@ fun FloatingDiagnosticsOverlay(
                         }
 
                         Text(
-                            text = "🔌${snapshot.agyConns + snapshot.ideConns}c",
+                            text = stringResource(R.string.component_snapshot_agyconns_snapshot_ideconns_c, snapshot.agyConns + snapshot.ideConns),
                             fontSize = 11.sp,
                             color = Color(0xFFB0BEC5),
                             fontFamily = FontFamily.Monospace
@@ -145,7 +147,7 @@ fun FloatingDiagnosticsOverlay(
 
                             // Groups
                             Text(
-                                text = "Thread Groups: ${snapshot.threadGroupSummary}",
+                                text = stringResource(R.string.component_thread_groups_snapshot_threadgroupsummar, snapshot.threadGroupSummary),
                                 fontSize = 10.sp,
                                 color = Color(0xFFB0BEC5),
                                 fontFamily = FontFamily.Monospace
@@ -157,14 +159,14 @@ fun FloatingDiagnosticsOverlay(
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Text(
-                                    text = "AgyGrpc Hub:",
+                                    text = stringResource(R.string.component_agygrpc_hub),
                                     fontSize = 10.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = Color(0xFF90CAF9),
                                     fontFamily = FontFamily.Monospace
                                 )
                                 Text(
-                                    text = "Run=${snapshot.agyRunning} | Q=${snapshot.agyQueued} | Pool=${snapshot.agyConns} (${snapshot.agyIdleConns} idle)",
+                                    text = stringResource(R.string.component_run_snapshot_agyrunning_q_snapshot_agyqu, snapshot.agyRunning, snapshot.agyQueued, snapshot.agyConns, snapshot.agyIdleConns),
                                     fontSize = 10.sp,
                                     color = Color(0xFFE0E0E0),
                                     fontFamily = FontFamily.Monospace
@@ -177,14 +179,14 @@ fun FloatingDiagnosticsOverlay(
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Text(
-                                    text = "IDE Bridge:",
+                                    text = stringResource(R.string.component_ide_bridge),
                                     fontSize = 10.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = Color(0xFFA5D6A7),
                                     fontFamily = FontFamily.Monospace
                                 )
                                 Text(
-                                    text = "Run=${snapshot.ideRunning} | Q=${snapshot.ideQueued} | Pool=${snapshot.ideConns} (${snapshot.ideIdleConns} idle)",
+                                    text = stringResource(R.string.component_run_snapshot_iderunning_q_snapshot_idequ, snapshot.ideRunning, snapshot.ideQueued, snapshot.ideConns, snapshot.ideIdleConns),
                                     fontSize = 10.sp,
                                     color = Color(0xFFE0E0E0),
                                     fontFamily = FontFamily.Monospace
@@ -194,7 +196,7 @@ fun FloatingDiagnosticsOverlay(
                             // Blocked Threads breakdown
                             if (snapshot.topBlockedThreads.isNotEmpty()) {
                                 Text(
-                                    text = "Blocked Socket Reads:",
+                                    text = stringResource(R.string.component_blocked_socket_reads),
                                     fontSize = 10.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = Color(0xFFFFB74D),
@@ -202,7 +204,7 @@ fun FloatingDiagnosticsOverlay(
                                 )
                                 snapshot.topBlockedThreads.forEach { trace ->
                                     Text(
-                                        text = "• $trace",
+                                        text = stringResource(R.string.component_trace, trace),
                                         fontSize = 9.sp,
                                         color = Color(0xFFFFCC80),
                                         fontFamily = FontFamily.Monospace,
@@ -222,7 +224,7 @@ fun FloatingDiagnosticsOverlay(
                                     },
                                     contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp)
                                 ) {
-                                    Text("Hide HUD", fontSize = 10.sp, color = Color(0xFFEF5350))
+                                    Text(stringResource(R.string.component_hide_hud), fontSize = 10.sp, color = Color(0xFFEF5350))
                                 }
                             }
                         }

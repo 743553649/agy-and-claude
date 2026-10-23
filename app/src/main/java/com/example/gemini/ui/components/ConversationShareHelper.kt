@@ -30,6 +30,7 @@ import java.io.InputStreamReader
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import com.example.gemini.R
 
 data class SharedConversationData(
     val title: String,
@@ -71,7 +72,7 @@ object ConversationShareHelper {
                         engine.ingestStepsDirect(steps, conversationId)
                     } else {
                         withContext(Dispatchers.Main) {
-                            AppToastHelper.showToast("Failed to load conversation: ${stepsRes.exceptionOrNull()?.message}", ChatToastType.ERROR)
+                            AppToastHelper.showToast(context.getString(R.string.component_apptoast_failed_to_load_conversation_stepsres_exc, stepsRes.exceptionOrNull()?.message.orEmpty()), ChatToastType.ERROR)
                         }
                         return@withContext
                     }
@@ -79,7 +80,7 @@ object ConversationShareHelper {
 
                 if (messages.isEmpty()) {
                     withContext(Dispatchers.Main) {
-                        AppToastHelper.showToast("No messages to share", ChatToastType.INFO)
+                        AppToastHelper.showToast(context.getString(R.string.component_apptoast_no_messages_to_share), ChatToastType.INFO)
                     }
                     return@withContext
                 }
@@ -113,18 +114,18 @@ object ConversationShareHelper {
                 if (snackbarHostState != null) {
                     kotlinx.coroutines.CoroutineScope(Dispatchers.Main).launch {
                         snackbarHostState.showSnackbar(
-                            message = "$savedFileName saved to Downloads/AntiGem/Exports",
+                            message = context.getString(R.string.component_savedfilename_saved_to_downloads_antigem, savedFileName),
                             duration = SnackbarDuration.Short
                         )
                     }
                 } else {
-                    AppToastHelper.showToast("$savedFileName saved to Downloads/AntiGem/Exports", ChatToastType.SUCCESS)
+                    AppToastHelper.showToast(context.getString(R.string.component_savedfilename_saved_to_downloads_antigem, savedFileName), ChatToastType.SUCCESS)
                 }
             }
         } catch (e: Exception) {
             Log.e(TAG, "Share failed: ${e.message}", e)
             withContext(Dispatchers.Main) {
-                AppToastHelper.showToast("Share error: ${e.message}", ChatToastType.ERROR)
+                AppToastHelper.showToast(context.getString(R.string.common_apptoast_share_error_e_message, e.message.orEmpty()), ChatToastType.ERROR)
             }
         }
     }
@@ -139,13 +140,13 @@ object ConversationShareHelper {
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
-            val chooser = Intent.createChooser(shareIntent, "Share AntiGem Chat").apply {
+            val chooser = Intent.createChooser(shareIntent, context.getString(R.string.component_chooser_share_antigem_chat)).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
             context.startActivity(chooser)
         } catch (e: Exception) {
             Log.w(TAG, "Failed to launch share chooser: ${e.message}")
-            AppToastHelper.showToast("Could not open share chooser", ChatToastType.ERROR)
+            AppToastHelper.showToast(context.getString(R.string.common_apptoast_could_not_open_share_chooser), ChatToastType.ERROR)
         }
     }
 
@@ -232,9 +233,9 @@ object ConversationShareHelper {
     /**
      * Parses an incoming .antigem or .jsonl stream into SharedConversationData.
      */
-    fun parseSharedConversation(inputStream: InputStream): SharedConversationData {
+    fun parseSharedConversation(context: Context, inputStream: InputStream): SharedConversationData {
         val reader = BufferedReader(InputStreamReader(inputStream, Charsets.UTF_8))
-        var title = "Shared Conversation"
+        var title = context.getString(R.string.component_shared_conversation)
         var conversationId = "shared_${System.currentTimeMillis()}"
         var exportedAt = ""
         val steps = mutableListOf<Step>()

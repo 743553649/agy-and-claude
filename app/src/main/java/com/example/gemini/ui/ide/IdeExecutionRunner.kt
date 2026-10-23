@@ -34,6 +34,8 @@ import com.termux.terminal.TerminalSession
 import com.termux.view.TerminalView
 import com.termux.view.TerminalViewClient
 import java.util.UUID
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 data class IdeExecutionRequest(
     val id: String = UUID.randomUUID().toString(),
@@ -165,7 +167,7 @@ fun IdeExecutionRunnerSheet(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Refresh,
-                            contentDescription = "Restart",
+                            contentDescription = stringResource(R.string.ide_restart),
                             tint = Color.LightGray,
                             modifier = Modifier.size(18.dp)
                         )
@@ -184,7 +186,7 @@ fun IdeExecutionRunnerSheet(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Stop,
-                            contentDescription = "Stop",
+                            contentDescription = stringResource(R.string.common_stop),
                             tint = if (!isExited) Color(0xFFEF4444) else Color.DarkGray,
                             modifier = Modifier.size(18.dp)
                         )
@@ -202,7 +204,7 @@ fun IdeExecutionRunnerSheet(
                     ) {
                         Icon(
                             imageVector = Icons.Default.ClearAll,
-                            contentDescription = "Clear",
+                            contentDescription = stringResource(R.string.common_clear),
                             tint = Color.LightGray,
                             modifier = Modifier.size(18.dp)
                         )
@@ -215,7 +217,7 @@ fun IdeExecutionRunnerSheet(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Close,
-                            contentDescription = "Close",
+                            contentDescription = stringResource(R.string.common_close),
                             tint = Color.LightGray,
                             modifier = Modifier.size(19.dp)
                         )

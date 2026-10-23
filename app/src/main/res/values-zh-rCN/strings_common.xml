@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  由 scripts/i18n 生成，请勿手工调整条目顺序。
+  译法基准见 docs/i18n/GLOSSARY.md
+-->
+<resources>
+
+    <!-- 原文: Active -->
+    <string name="common_active">已启用</string>
+    <!-- 原文: Add -->
+    <string name="common_add">添加</string>
+    <!-- 原文: AI Chat -->
+    <string name="common_ai_chat">AI 对话</string>
+    <!-- 原文: ALT -->
+    <string name="common_alt">ALT</string>
+    <!-- 原文: Could not open share chooser -->
+    <string name="common_apptoast_could_not_open_share_chooser">无法打开共享选择器</string>
+    <!-- 原文: Share error: %1$s -->
+    <string name="common_apptoast_share_error_e_message">共享出错：%1$s</string>
+    <!-- 原文: Back -->
+    <string name="common_back">返回</string>
+    <!-- 原文: Cancel -->
+    <string name="common_cancel">取消</string>
+    <!-- 原文: Chat Telemetry & Tokens -->
+    <string name="common_chat_telemetry_tokens">对话遥测与 Token</string>
+    <!-- 原文: Clear -->
+    <string name="common_clear">清除</string>
+    <!-- 原文: Clear All -->
+    <string name="common_clear_all">全部清除</string>
+    <!-- 原文: Close -->
+    <string name="common_close">关闭</string>
+    <!-- 原文: Close Tab -->
+    <string name="common_close_tab">关闭标签页</string>
+    <!-- 原文: Create -->
+    <string name="common_create">创建</string>
+    <!-- 原文: CTRL -->
+    <string name="common_ctrl">CTRL</string>
+    <!-- 原文: Delete -->
+    <string name="common_delete">删除</string>
+    <!-- 原文: Details -->
+    <string name="common_details">详情</string>
+    <!-- 原文: Discard Changes -->
+    <string name="common_discard_changes">放弃更改</string>
+    <!-- 原文: Dismiss -->
+    <string name="common_dismiss">关闭</string>
+    <!-- 原文: Done -->
+    <string name="common_done">完成</string>
+    <!-- 原文: Edit -->
+    <string name="common_edit">编辑</string>
+    <!-- 原文: ESC -->
+    <string name="common_esc">ESC</string>
+    <!-- 原文: Failed to load image -->
+    <string name="common_failed_to_load_image">图片加载失败</string>
+    <!-- 原文: File -->
+    <string name="common_file">文件</string>
+    <!-- 原文: Folder -->
+    <string name="common_folder">文件夹</string>
+    <!-- 原文: Install -->
+    <string name="common_install">安装</string>
+    <!-- 原文: Installed -->
+    <string name="common_installed">已安装</string>
+    <!-- 原文: Later -->
+    <string name="common_later">稍后</string>
+    <!-- 原文: Name -->
+    <string name="common_name">名称</string>
+    <!-- 原文: New Chat -->
+    <string name="common_new_chat">新对话</string>
+    <!-- 原文: New File -->
+    <string name="common_new_file">新建文件</string>
+    <!-- 原文: New Folder -->
+    <string name="common_new_folder">新建文件夹</string>
+    <!-- 原文: New Name -->
+    <string name="common_new_name">新名称</string>
+    <!-- 原文: New Tab -->
+    <string name="common_new_tab">新建标签页</string>
+    <!-- 原文: Options -->
+    <string name="common_options">选项</string>
+    <!-- 原文: PID: %1$s -->
+    <string name="common_pid_inst_pid">PID：%1$s</string>
+    <!-- 原文: progress -->
+    <string name="common_progress">进度</string>
+    <!-- 原文: Reconnect -->
+    <string name="common_reconnect">重新连接</string>
+    <!-- 原文: Refresh -->
+    <string name="common_refresh">刷新</string>
+    <!-- 原文: Reload -->
+    <string name="common_reload">重新加载</string>
+    <!-- 原文: Remove -->
+    <string name="common_remove">移除</string>
+    <!-- 原文: Rename -->
+    <string name="common_rename">重命名</string>
+    <!-- 原文: Restart App -->
+    <string name="common_restart_app">重启应用</string>
+    <!-- 原文: Retry -->
+    <string name="common_retry">重试</string>
+    <!-- 原文: Save -->
+    <string name="common_save">保存</string>
+    <!-- 原文: Search -->
+    <string name="common_search">搜索</string>
+    <!-- 原文: Selected -->
+    <string name="common_selected">已选中</string>
+    <!-- 原文: Share -->
+    <string name="common_share">分享</string>
+    <!-- 原文: Sign In -->
+    <string name="common_sign_in">登录</string>
+    <!-- 原文: Skip -->
+    <string name="common_skip">跳过</string>
+    <!-- 原文: Stop -->
+    <string name="common_stop">停止</string>
+    <!-- 原文: Stop Server -->
+    <string name="common_stop_server">停止服务</string>
+    <!-- 原文: Terminal -->
+    <string name="common_terminal">终端</string>
+    <!-- 原文: Thinking -->
+    <string name="common_thinking">思考中</string>
+    <!-- 原文: Undo -->
+    <string name="common_undo">撤销</string>
+    <!-- 原文: Update -->
+    <string name="common_update">更新</string>
+    <!-- 原文: URL -->
+    <string name="common_url">URL</string>
+    <!-- 原文: + WebView Extension MCP -->
+    <string name="common_webview_extension_mcp">+ WebView 扩展 MCP</string>
+    <!-- 原文: YouTube -->
+    <string name="common_youtube">YouTube</string>
+    <!-- 原文: Zoom In -->
+    <string name="common_zoom_in">放大</string>
+    <!-- 原文: Zoom Out -->
+    <string name="common_zoom_out">缩小</string>
+</resources>

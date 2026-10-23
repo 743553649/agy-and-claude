@@ -2,10 +2,10 @@ package com.example.gemini
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.WindowInsets
@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
+import com.example.gemini.domain.i18n.AppLocaleController
 import com.example.gemini.theme.GeminiTheme
 import com.example.gemini.ui.chat.ChatScreen
 import com.example.gemini.ui.browser.BrowserScreen
@@ -33,7 +34,7 @@ enum class AppViewMode {
     BROWSER
 }
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
 
     companion object {
         private var instanceRef: java.lang.ref.WeakReference<MainActivity>? = null
@@ -50,6 +51,8 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // 界面语言回设必须在 setContent 之前；manifest 不能加自定义 Application，所以放在各入口 Activity
+        AppLocaleController.apply(this)
         enableEdgeToEdge()
         instanceRef = java.lang.ref.WeakReference(this)
         com.example.gemini.data.remote.inspector.NetworkInspectorManager.isEnabled =

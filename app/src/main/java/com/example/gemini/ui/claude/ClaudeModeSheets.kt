@@ -45,6 +45,8 @@ import androidx.compose.ui.unit.sp
 import com.example.gemini.domain.model.AgentKind
 import com.example.gemini.ui.agents.AgentSheetHeader
 import com.example.gemini.ui.components.ClaudeAccent
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 /** Color of a permission mode (chip, picker icon). */
 @Composable
@@ -135,11 +137,12 @@ fun ClaudePermissionModeSheet(
     onSelect: (String) -> Unit,
     onDismiss: () -> Unit
 ) {
+    val context = androidx.compose.ui.platform.LocalContext.current
     ClaudePickerSheet("Permission mode", "how Claude asks before acting", onDismiss) {
         modes.forEach { (value, label) ->
             PickerOption(
                 title = label,
-                description = permissionModeDescription(value),
+                description = permissionModeDescription(context, value),
                 color = permissionModeColor(value).takeIf { value != "default" } ?: ClaudeAccent,
                 selected = value == current,
                 icon = permissionModeIcon(value),
@@ -159,13 +162,14 @@ fun ClaudePermissionModeSheet(
     }
 }
 
+@Composable
 private fun effortDescription(level: String?): String = when (level) {
-    null -> "The model's own default"
-    "low" -> "Quick answers with light reasoning"
-    "medium" -> "Balanced speed and depth"
-    "high" -> "Thorough work on hard tasks"
-    "xhigh" -> "Extra depth for complex changes"
-    "max" -> "Most thorough; uses plan limits fastest"
+    null -> stringResource(R.string.claude_effort_default)
+    "low" -> stringResource(R.string.claude_effort_low)
+    "medium" -> stringResource(R.string.claude_effort_medium)
+    "high" -> stringResource(R.string.claude_effort_high)
+    "xhigh" -> stringResource(R.string.claude_effort_xhigh)
+    "max" -> stringResource(R.string.claude_effort_max)
     else -> ""
 }
 

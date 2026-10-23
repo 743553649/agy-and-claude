@@ -21,6 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.gemini.data.preferences.AuthPreferences
+import com.example.gemini.R
 import com.example.gemini.data.ssh.*
 import com.example.gemini.theme.*
 import kotlinx.coroutines.flow.firstOrNull
@@ -123,7 +125,7 @@ fun FloatingTerminalInspector(
 
                 Icon(
                     imageVector = Icons.Default.Terminal,
-                    contentDescription = "Terminal",
+                    contentDescription = stringResource(R.string.common_terminal),
                     tint = ClaudeTerracotta,
                     modifier = Modifier.size(14.dp)
                 )
@@ -223,7 +225,7 @@ private fun TerminalInspectorDialogContent(
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
-                    text = "Termux SSH Terminal",
+                    text = stringResource(R.string.component_termux_ssh_terminal),
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
@@ -237,7 +239,7 @@ private fun TerminalInspectorDialogContent(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = "Close",
+                        contentDescription = stringResource(R.string.common_close),
                         tint = Color.Gray,
                         modifier = Modifier.size(18.dp)
                     )
@@ -301,7 +303,7 @@ private fun TerminalInspectorDialogContent(
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Icon(
                                     imageVector = Icons.Default.Close,
-                                    contentDescription = "Close Tab",
+                                    contentDescription = stringResource(R.string.common_close_tab),
                                     tint = Color.Gray,
                                     modifier = Modifier
                                         .size(13.dp)
@@ -327,7 +329,7 @@ private fun TerminalInspectorDialogContent(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Add,
-                            contentDescription = "New Session",
+                            contentDescription = stringResource(R.string.component_new_session),
                             tint = ClaudeTerracotta,
                             modifier = Modifier.size(15.dp)
                         )
@@ -368,7 +370,7 @@ private fun TerminalInspectorDialogContent(
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.DeleteSweep,
-                                contentDescription = "Clear Tab History",
+                                contentDescription = stringResource(R.string.component_clear_tab_history),
                                 tint = Color.Gray,
                                 modifier = Modifier.size(15.dp)
                             )
@@ -399,12 +401,12 @@ private fun TerminalInspectorDialogContent(
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Session ready.",
+                            text = stringResource(R.string.component_session_ready),
                             fontSize = 13.sp,
                             color = Color.Gray
                         )
                         Text(
-                            text = "AI tool commands and manual commands will output here.",
+                            text = stringResource(R.string.component_ai_tool_commands_and_manual_commands_wil),
                             fontSize = 11.5.sp,
                             color = Color.DarkGray
                         )
@@ -449,7 +451,7 @@ private fun TerminalInspectorDialogContent(
                     OutlinedTextField(
                         value = commandInput,
                         onValueChange = { commandInput = it },
-                        placeholder = { Text("Run bash command in Termux...", fontSize = 12.5.sp, color = Color.Gray) },
+                        placeholder = { Text(stringResource(R.string.component_run_bash_command_in_termux), fontSize = 12.5.sp, color = Color.Gray) },
                         modifier = Modifier.weight(1f),
                         singleLine = true,
                         colors = OutlinedTextFieldDefaults.colors(
@@ -497,14 +499,14 @@ private fun TerminalInspectorDialogContent(
                         if (isExecutingManual) {
                             Icon(
                                 imageVector = Icons.Default.HourglassTop,
-                                contentDescription = "Running",
+                                contentDescription = stringResource(R.string.component_running),
                                 tint = Color.White,
                                 modifier = Modifier.size(16.dp)
                             )
                         } else {
                             Icon(
                                 imageVector = Icons.Default.PlayArrow,
-                                contentDescription = "Run",
+                                contentDescription = stringResource(R.string.component_run),
                                 tint = Color.White,
                                 modifier = Modifier.size(18.dp)
                             )
@@ -548,7 +550,7 @@ private fun TerminalCommandCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "$ ${command.command}",
+                    text = stringResource(R.string.component_command_command, command.command),
                     fontFamily = FontFamily.Monospace,
                     fontWeight = FontWeight.Bold,
                     fontSize = 12.sp,
@@ -558,7 +560,7 @@ private fun TerminalCommandCard(
 
                 if (command.durationMs > 0) {
                     Text(
-                        text = "${command.durationMs}ms",
+                        text = stringResource(R.string.component_command_durationms_ms, command.durationMs),
                         fontSize = 10.sp,
                         color = Color.Gray,
                         modifier = Modifier.padding(horizontal = 4.dp)
@@ -573,7 +575,7 @@ private fun TerminalCommandCard(
                             .padding(horizontal = 5.dp, vertical = 1.dp)
                     ) {
                         Text(
-                            text = "exit ${command.exitCode}",
+                            text = stringResource(R.string.component_exit_command_exitcode, command.exitCode),
                             fontSize = 9.sp,
                             fontWeight = FontWeight.Bold,
                             color = if (isSuccess) QuotaGreen else Color.Red
@@ -588,7 +590,7 @@ private fun TerminalCommandCard(
                     ) {
                         Icon(
                             imageVector = Icons.Default.StopCircle,
-                            contentDescription = "Kill Process",
+                            contentDescription = stringResource(R.string.component_kill_process),
                             tint = Color.Red,
                             modifier = Modifier.size(16.dp)
                         )
@@ -600,13 +602,13 @@ private fun TerminalCommandCard(
                         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                         val clip = ClipData.newPlainText("Output", command.output)
                         clipboard.setPrimaryClip(clip)
-                        Toast.makeText(context, "Output copied", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.component_toast_output_copied), Toast.LENGTH_SHORT).show()
                     },
                     modifier = Modifier.size(22.dp)
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.ContentCopy,
-                        contentDescription = "Copy",
+                        contentDescription = stringResource(R.string.component_copy),
                         tint = Color.Gray,
                         modifier = Modifier.size(13.dp)
                     )

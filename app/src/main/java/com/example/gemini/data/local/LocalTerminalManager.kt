@@ -18,6 +18,7 @@ import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.Properties
+import com.example.gemini.R
 
 const val UNIVERSAL_SSH_PATH =
     "export PATH=\"\$HOME/.local/bin:\$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/data/data/com.termux/files/usr/bin:\$PATH\"; "
@@ -1009,7 +1010,7 @@ class LocalPtySession(
             val clip = android.content.ClipData.newPlainText("Terminal Text", text)
             clipboard?.setPrimaryClip(clip)
             android.os.Handler(android.os.Looper.getMainLooper()).post {
-                android.widget.Toast.makeText(context, "Copied text", android.widget.Toast.LENGTH_SHORT).show()
+                android.widget.Toast.makeText(context, context.getString(R.string.data_toast_copied_text), android.widget.Toast.LENGTH_SHORT).show()
             }
             Log.d(TAG, "Copied ${text.length} chars to clipboard")
         } catch (e: Exception) {
@@ -1026,7 +1027,7 @@ class LocalPtySession(
                 if (!text.isNullOrEmpty()) {
                     write(text)
                     android.os.Handler(android.os.Looper.getMainLooper()).post {
-                        android.widget.Toast.makeText(context, "Pasted text", android.widget.Toast.LENGTH_SHORT).show()
+                        android.widget.Toast.makeText(context, context.getString(R.string.data_toast_pasted_text), android.widget.Toast.LENGTH_SHORT).show()
                     }
                 }
             }

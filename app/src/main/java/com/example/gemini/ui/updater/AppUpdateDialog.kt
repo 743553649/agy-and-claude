@@ -13,6 +13,7 @@ import androidx.compose.material.icons.automirrored.rounded.ArrowForward
 import androidx.compose.material.icons.automirrored.rounded.OpenInNew
 import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.gemini.data.updater.AppUpdateInfo
+import com.example.gemini.R
 import com.example.gemini.data.updater.AppUpdateManager
 import com.example.gemini.data.updater.DownloadState
 import com.example.gemini.theme.QuotaGreen
@@ -94,7 +96,7 @@ fun AppUpdateDialog(
                     ) {
                         Icon(
                             imageVector = Icons.Rounded.RocketLaunch,
-                            contentDescription = "Update",
+                            contentDescription = stringResource(R.string.common_update),
                             tint = primaryColor,
                             modifier = Modifier.size(22.dp)
                         )
@@ -104,7 +106,7 @@ fun AppUpdateDialog(
 
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "New Update Available",
+                            text = stringResource(R.string.ui_new_update_available),
                             color = onSurfaceColor,
                             fontSize = 17.sp,
                             fontWeight = FontWeight.Bold
@@ -132,7 +134,7 @@ fun AppUpdateDialog(
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
-                            text = "v${updateInfo.currentVersionName}",
+                            text = stringResource(R.string.ui_v_updateinfo_currentversionname, updateInfo.currentVersionName),
                             color = onSurfaceVariantColor,
                             fontSize = 12.5.sp,
                             fontFamily = FontFamily.Monospace
@@ -146,7 +148,7 @@ fun AppUpdateDialog(
                                 .size(13.dp)
                         )
                         Text(
-                            text = "v${updateInfo.versionName}",
+                            text = stringResource(R.string.ui_v_updateinfo_versionname, updateInfo.versionName),
                             color = primaryColor,
                             fontSize = 12.5.sp,
                             fontWeight = FontWeight.Bold,
@@ -173,7 +175,7 @@ fun AppUpdateDialog(
 
                 // Changelog Card
                 Text(
-                    text = "WHAT'S NEW",
+                    text = stringResource(R.string.ui_what_s_new),
                     color = onSurfaceVariantColor,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Bold,
@@ -216,12 +218,12 @@ fun AppUpdateDialog(
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Text(
-                                    text = "Downloading...",
+                                    text = stringResource(R.string.ui_downloading),
                                     color = onSurfaceVariantColor,
                                     fontSize = 12.sp
                                 )
                                 Text(
-                                    text = "${(state.progress * 100).toInt()}%",
+                                    text = stringResource(R.string.ui_state_progress_100_toint, (state.progress * 100).toInt()),
                                     color = primaryColor,
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Bold
@@ -239,7 +241,7 @@ fun AppUpdateDialog(
                             )
                             Spacer(modifier = Modifier.height(4.dp))
                             Text(
-                                text = "${formatSize(state.downloadedBytes)} / ${formatSize(state.totalBytes)}",
+                                text = stringResource(R.string.ui_formatsize_state_downloadedbytes_formats, formatSize(state.downloadedBytes), formatSize(state.totalBytes)),
                                 color = onSurfaceVariantColor,
                                 fontSize = 10.5.sp,
                                 modifier = Modifier.align(Alignment.End)
@@ -265,7 +267,7 @@ fun AppUpdateDialog(
                             )
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(
-                                text = "Downloaded! Launching installer...",
+                                text = stringResource(R.string.ui_downloaded_launching_installer),
                                 color = QuotaGreen,
                                 fontSize = 12.sp
                             )
@@ -290,7 +292,7 @@ fun AppUpdateDialog(
                             )
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(
-                                text = "Download failed: ${state.message}",
+                                text = stringResource(R.string.ui_download_failed_state_message, state.message),
                                 color = QuotaRed,
                                 fontSize = 11.5.sp,
                                 maxLines = 2
@@ -312,7 +314,7 @@ fun AppUpdateDialog(
                         onClick = {
                             val intent = android.content.Intent(
                                 android.content.Intent.ACTION_VIEW,
-                                android.net.Uri.parse("https://github.com/santoshkurmi/antigem")
+                                android.net.Uri.parse("https://github.com/743553649/agy-and-claude")
                             ).apply {
                                 addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
                             }
@@ -323,11 +325,11 @@ fun AppUpdateDialog(
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Rounded.OpenInNew,
-                            contentDescription = "GitHub",
+                            contentDescription = stringResource(R.string.ui_github),
                             modifier = Modifier.size(14.dp)
                         )
                         Spacer(modifier = Modifier.width(4.dp))
-                        Text("GitHub", fontSize = 12.5.sp, fontWeight = FontWeight.Medium)
+                        Text(stringResource(R.string.ui_github), fontSize = 12.5.sp, fontWeight = FontWeight.Medium)
                     }
 
                     Row(
@@ -340,7 +342,7 @@ fun AppUpdateDialog(
                                 contentPadding = PaddingValues(horizontal = 10.dp, vertical = 4.dp),
                                 colors = ButtonDefaults.textButtonColors(contentColor = onSurfaceVariantColor)
                             ) {
-                                Text("Later", fontSize = 13.sp)
+                                Text(stringResource(R.string.common_later), fontSize = 13.sp)
                             }
                         }
 

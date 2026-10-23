@@ -20,6 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.theme.ClaudeTerracotta
 import com.example.gemini.theme.GeminiBlue
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,7 +45,7 @@ fun AttachmentSelectorBottomSheet(
                 .padding(bottom = 24.dp)
         ) {
             Text(
-                text = "Add to Chat",
+                text = stringResource(R.string.component_add_to_chat),
                 fontSize = 17.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface
@@ -53,8 +55,8 @@ fun AttachmentSelectorBottomSheet(
             AttachmentOptionRow(
                 icon = Icons.Outlined.Image,
                 iconColor = ClaudeTerracotta,
-                title = "Photo / Image",
-                subtitle = "Attach an image for multimodal vision & analysis",
+                title = stringResource(R.string.component_photo_image),
+                subtitle = stringResource(R.string.component_attach_image_desc),
                 onClick = {
                     onDismiss()
                     onPickImage()
@@ -66,8 +68,8 @@ fun AttachmentSelectorBottomSheet(
             AttachmentOptionRow(
                 icon = Icons.Outlined.Description,
                 iconColor = GeminiBlue,
-                title = "Document / File",
-                subtitle = "Attach a PDF, text, or binary file from your device",
+                title = stringResource(R.string.component_document_file),
+                subtitle = stringResource(R.string.component_attach_file_desc),
                 onClick = {
                     onDismiss()
                     onPickFile()

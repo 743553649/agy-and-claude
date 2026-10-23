@@ -39,6 +39,7 @@ import com.example.gemini.domain.model.AgentKind
 import com.example.gemini.data.agent.ChatSessionStore
 import com.example.gemini.ui.chat.PendingToolApproval
 import kotlinx.coroutines.CoroutineScope
+import com.example.gemini.R
 
 /**
  * Antigravity (agy --hub) chat backend: conversation sync, live trajectory stream, prompts, approvals,
@@ -489,7 +490,7 @@ class AgyChatBackend(
                             "error" -> {
                                 _isServerOnline.value = false
                                 _isConversationsLoading.value = false
-                                _conversationError.value = "Antigravity Hub failed to start: ${status.error ?: "Check server logs"}"
+                                _conversationError.value = application.getString(R.string.data_err_hub_failed_to_start, status.error ?: application.getString(R.string.data_err_check_server_logs))
                             }
                             "stopped" -> {
                                 _isServerOnline.value = false
@@ -693,11 +694,11 @@ class AgyChatBackend(
                     if (_currentConversation.value?.isRunning == true) {
                         _currentConversation.value = _currentConversation.value?.copy(isRunning = false)
                     }
-                    val rawErr = e.message ?: "Connection failed"
+                    val rawErr = e.message ?: application.getString(R.string.data_err_connection_failed)
                     val helpfulMsg = if (rawErr.contains("Connect", ignoreCase = true) || rawErr.contains("Failed to connect", ignoreCase = true)) {
-                        "Cannot connect to Antigravity Hub (${AuthPreferences.currentHubUrl}). Make sure 'agy --hub' is running."
+                        application.getString(R.string.data_err_cannot_connect_hub, AuthPreferences.currentHubUrl)
                     } else {
-                        "Antigravity Hub unreachable: $rawErr"
+                        application.getString(R.string.data_err_hub_unreachable, rawErr)
                     }
                     val isStarting = agyBridgeService.hubStatus.value.status == "starting"
                     if (_conversations.value.isEmpty() && !isStarting) {
@@ -817,7 +818,7 @@ class AgyChatBackend(
         } else ""
         val newConv = Conversation(
             id = UUID.randomUUID().toString(),
-            title = "New Chat",
+            title = application.getString(R.string.common_new_chat),
             modelId = modelToUse,
             sessionId = UUID.randomUUID().toString(),
             workspaceUri = defaultWorkspaceUri
@@ -860,7 +861,7 @@ class AgyChatBackend(
             _conversationError.value = null
 
             val conv = _conversations.value.find { it.id == id }
-                ?: Conversation(id = id, title = "Antigravity Chat", sessionId = id)
+                ?: Conversation(id = id, title = application.getString(R.string.data_antigravity_chat), sessionId = id)
             Log.d("CHAT_OPEN_DEBUG", "👉 [ChatViewModel.selectConversation] Launching stream for conv: title='${conv.title}', id=${conv.id}")
             _currentConversation.value = conv
             knownDaemonCascadeIds.add(id)
@@ -969,7 +970,7 @@ class AgyChatBackend(
                             val isKnownExisting = _conversations.value.any { it.id == conversationId && it.title != "New Chat" }
                             if (activeStreamConversationId == conversationId) {
                                 if (isKnownExisting && _messages.value.isEmpty()) {
-                                    _conversationError.value = "No messages received from Antigravity. Tap Retry."
+                                    _conversationError.value = application.getString(R.string.data_err_no_messages_from_antigravity)
                                     _isServerOnline.value = isHubOnline
                                 } else {
                                     _conversationError.value = null
@@ -1075,11 +1076,11 @@ class AgyChatBackend(
                         selectConversation(newCascadeId)
                     }
                 } else {
-                    _conversationError.value = "Fork failed: ${res.exceptionOrNull()?.message}"
+                    _conversationError.value = application.getString(R.string.data_err_fork_failed, res.exceptionOrNull()?.message.orEmpty())
                 }
             } catch (e: Exception) {
                 android.util.Log.e("ChatViewModel", "Fork failed: ${e.message}")
-                _conversationError.value = "Fork error: ${e.message}"
+                _conversationError.value = application.getString(R.string.data_err_fork_error, e.message.orEmpty())
             } finally {
                 _isLoadingConversation.value = false
             }
@@ -1110,13 +1111,13 @@ class AgyChatBackend(
         val state = systemConnectionState.value
         if (!state.canSend) {
             val reason = when (state.status) {
-                com.example.gemini.data.remote.SystemStatus.OFFLINE -> "Server is offline. Please start the server."
-                com.example.gemini.data.remote.SystemStatus.STARTING -> "Server is starting up. Please wait..."
-                com.example.gemini.data.remote.SystemStatus.ACQUIRING_CSRF -> "Acquiring security token. Please wait..."
-                com.example.gemini.data.remote.SystemStatus.CHECKING_AUTH -> "Verifying authentication. Please wait..."
-                com.example.gemini.data.remote.SystemStatus.UNAUTHENTICATED -> "Please sign in to send messages."
-                com.example.gemini.data.remote.SystemStatus.ERROR -> "Server error. Please check server logs."
-                else -> "Cannot send message right now."
+                com.example.gemini.data.remote.SystemStatus.OFFLINE -> application.getString(R.string.data_status_server_offline)
+                com.example.gemini.data.remote.SystemStatus.STARTING -> application.getString(R.string.data_status_server_starting)
+                com.example.gemini.data.remote.SystemStatus.ACQUIRING_CSRF -> application.getString(R.string.data_status_acquiring_token)
+                com.example.gemini.data.remote.SystemStatus.CHECKING_AUTH -> application.getString(R.string.data_status_verifying_auth)
+                com.example.gemini.data.remote.SystemStatus.UNAUTHENTICATED -> application.getString(R.string.data_err_sign_in_to_send)
+                com.example.gemini.data.remote.SystemStatus.ERROR -> application.getString(R.string.data_err_server_error_check_logs)
+                else -> application.getString(R.string.data_err_cannot_send_now)
             }
             android.widget.Toast.makeText(application, reason, android.widget.Toast.LENGTH_SHORT).show()
             return
@@ -1246,15 +1247,15 @@ class AgyChatBackend(
                     if (text.isNotBlank()) {
                         onDone(text)
                     } else {
-                        onError("No speech recognized in recording")
+                        onError(application.getString(R.string.data_err_no_speech_recognized))
                     }
                 } else {
-                    val msg = res.exceptionOrNull()?.message ?: "Transcription failed"
+                    val msg = res.exceptionOrNull()?.message ?: application.getString(R.string.data_err_transcription_failed)
                     onError(msg)
                 }
             } catch (e: Exception) {
                 Log.e("ChatViewModel", "transcribeAudioFile error: ${e.message}", e)
-                onError(e.message ?: "Transcription error")
+                onError(e.message ?: application.getString(R.string.data_err_transcription_error))
             } finally {
                 isTranscribingAudio.value = false
             }
@@ -1349,7 +1350,7 @@ class AgyChatBackend(
             } else ""
             _currentConversation.value = Conversation(
                 id = UUID.randomUUID().toString(),
-                title = "New Chat",
+                title = application.getString(R.string.common_new_chat),
                 modelId = modelToUse,
                 sessionId = UUID.randomUUID().toString(),
                 workspaceUri = defaultWorkspaceUri
@@ -1451,10 +1452,10 @@ class AgyChatBackend(
                         hubUrl = hubUrl
                     )
                     if (startRes.isFailure) {
-                        val err = startRes.exceptionOrNull()?.message ?: "Failed to start conversation on daemon"
+                        val err = startRes.exceptionOrNull()?.message ?: application.getString(R.string.data_err_start_conversation)
                         Log.e("ChatViewModel", "startCascade error: $err")
                         val formattedErr = formatStructuredErrorMessage(
-                            title = if (err.contains("auth", ignoreCase = true)) "Authentication Required" else "Failed to Start Conversation",
+                            title = if (err.contains("auth", ignoreCase = true)) application.getString(R.string.data_title_authentication_required) else application.getString(R.string.data_title_start_conversation_failed),
                             userMessage = err,
                             shortError = err
                         )
@@ -1513,7 +1514,7 @@ class AgyChatBackend(
                 )
 
                 if (sendRes.isFailure) {
-                    val err = sendRes.exceptionOrNull()?.message ?: "Failed to send message"
+                    val err = sendRes.exceptionOrNull()?.message ?: application.getString(R.string.data_err_failed_to_send)
                     Log.e("ChatViewModel", "sendUserPrompt error: $err")
                     // If trajectory was not found on daemon (e.g. daemon restarted or session expired),
                     // attempt to re-start cascade and retry sending the prompt once!
@@ -1543,15 +1544,15 @@ class AgyChatBackend(
                 if (sendRes.isSuccess) {
                     isPromptInFlight = false
                 } else {
-                    val err = sendRes.exceptionOrNull()?.message ?: "Failed to send message"
+                    val err = sendRes.exceptionOrNull()?.message ?: application.getString(R.string.data_err_failed_to_send)
                     Log.e("ChatViewModel", "sendUserPrompt final error: $err")
                     val formattedErr = formatStructuredErrorMessage(
                         title = when {
-                            err.contains("auth", ignoreCase = true) -> "Authentication Required"
-                            err.contains("quota", ignoreCase = true) || err.contains("credit", ignoreCase = true) || err.contains("429") -> "Quota Limit Exceeded"
-                            err.contains("model not found", ignoreCase = true) -> "Model Not Found"
-                            err.contains("connect", ignoreCase = true) || err.contains("network", ignoreCase = true) -> "Server Connection Error"
-                            else -> "Message Delivery Error"
+                            err.contains("auth", ignoreCase = true) -> application.getString(R.string.data_title_authentication_required)
+                            err.contains("quota", ignoreCase = true) || err.contains("credit", ignoreCase = true) || err.contains("429") -> application.getString(R.string.data_title_quota_exceeded)
+                            err.contains("model not found", ignoreCase = true) -> application.getString(R.string.data_title_model_not_found)
+                            err.contains("connect", ignoreCase = true) || err.contains("network", ignoreCase = true) -> application.getString(R.string.data_title_server_connection_error)
+                            else -> application.getString(R.string.data_title_message_delivery_error)
                         },
                         userMessage = err,
                         shortError = err
@@ -1573,8 +1574,8 @@ class AgyChatBackend(
             } catch (e: Exception) {
                 Log.e("ChatViewModel", "sendUserPrompt exception: ${e.message}", e)
                 val formattedErr = formatStructuredErrorMessage(
-                    title = "Execution Failure",
-                    userMessage = e.message ?: "Unknown error",
+                    title = application.getString(R.string.data_execution_failure),
+                    userMessage = e.message ?: application.getString(R.string.data_err_unknown_error),
                     shortError = e.message ?: "",
                     fullError = e.stackTraceToString()
                 )
@@ -1818,7 +1819,7 @@ class AgyChatBackend(
                             }
                             android.widget.Toast.makeText(application, msg, android.widget.Toast.LENGTH_LONG).show()
                         } else {
-                            android.widget.Toast.makeText(application, "Quotas & models refreshed", android.widget.Toast.LENGTH_SHORT).show()
+                            android.widget.Toast.makeText(application, application.getString(R.string.data_toast_quotas_models_refreshed), android.widget.Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -1855,9 +1856,9 @@ class AgyChatBackend(
                 hubUrl = hubUrl
             )
             if (res.isFailure) {
-                val err = res.exceptionOrNull()?.message ?: "Failed to approve tool"
+                val err = res.exceptionOrNull()?.message ?: application.getString(R.string.data_err_failed_to_approve)
                 Log.e("ChatViewModel", "handleCascadeUserInteraction (approve) error: $err")
-                _conversationError.value = "Approval failed: $err"
+                _conversationError.value = application.getString(R.string.data_err_approval_failed, err)
                 _isStreaming.value = false
 
                 // Roll back optimistic state on failure so UI accurately reflects reality
@@ -1894,9 +1895,9 @@ class AgyChatBackend(
                 hubUrl = hubUrl
             )
             if (res.isFailure) {
-                val err = res.exceptionOrNull()?.message ?: "Failed to reject tool"
+                val err = res.exceptionOrNull()?.message ?: application.getString(R.string.data_err_failed_to_reject)
                 Log.e("ChatViewModel", "handleCascadeUserInteraction (deny) error: $err")
-                _conversationError.value = "Rejection failed: $err"
+                _conversationError.value = application.getString(R.string.data_err_rejection_failed, err)
 
                 // Roll back optimistic state on failure so UI accurately reflects reality
                 trajectoryEngine.unmarkStepResponded(stepIndex)
@@ -1938,7 +1939,7 @@ class AgyChatBackend(
                 hubUrl = hubUrl
             )
             if (res.isFailure) {
-                val err = res.exceptionOrNull()?.message ?: "Failed to cancel step"
+                val err = res.exceptionOrNull()?.message ?: application.getString(R.string.data_err_failed_to_cancel_step)
                 Log.e("ChatViewModel", "cancelCascadeSteps error for step $stepIndex: $err")
             }
         }

@@ -27,6 +27,7 @@ import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.outlined.Speed
 import androidx.compose.material.icons.outlined.Timer
 import androidx.compose.material3.AlertDialog
+import androidx.compose.ui.res.stringResource
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -55,6 +56,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.data.agent.claude.ClaudeAccountManager
+import com.example.gemini.R
 import com.example.gemini.data.agent.claude.ClaudeChatBackend
 import com.example.gemini.data.agent.claude.ClaudePreferences
 import com.example.gemini.theme.QuotaAmber
@@ -125,7 +127,7 @@ fun ClaudeControlsStrip(
     ) {
         // permission mode
         ControlChip(
-            text = permissionModeLabel(mode),
+            text = permissionModeLabel(androidContext, mode),
             icon = permissionModeIcon(mode),
             color = permissionModeColor(mode),
             highlighted = mode != "default",
@@ -137,7 +139,7 @@ fun ClaudeControlsStrip(
         if (levels.isNotEmpty()) {
             ControlChip(
                 // "Default" shows the level the process really runs when the CLI reported it
-                text = "Effort · ${effortLabel(effort)}" + if (effort == null && appliedEffort != null) " (${effortLabel(appliedEffort)})" else "",
+                text = stringResource(R.string.claude_effort_effortlabel_effort, effortLabel(effort)) + if (effort == null && appliedEffort != null) " (${effortLabel(appliedEffort)})" else "",
                 icon = Icons.Outlined.Speed,
                 color = if (effort != null) ClaudeAccent else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
                 highlighted = effort != null,
@@ -147,7 +149,7 @@ fun ClaudeControlsStrip(
 
         // thinking
         ControlChip(
-            text = if (thinking) "Thinking" else "No thinking",
+            text = if (thinking) stringResource(R.string.common_thinking) else stringResource(R.string.claude_thinking_off),
             icon = Icons.Outlined.Lightbulb,
             color = if (thinking) ClaudeAccent else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
             highlighted = thinking,
@@ -159,7 +161,7 @@ fun ClaudeControlsStrip(
             val left = c.anchorMs + c.ttlMs - now
             val warm = !c.compacted && c.ttlMs > 0 && left > 0
             ControlChip(
-                text = if (warm) "Cache ${((left + 59_999) / 60_000)}m" else "Cache cold",
+                text = if (warm) stringResource(R.string.claude_cache_warm_short, (left + 59_999) / 60_000) else stringResource(R.string.claude_cache_cold),
                 icon = Icons.Outlined.Timer,
                 color = if (warm) QuotaGreen else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
                 onClick = { showCache = true }
@@ -170,7 +172,7 @@ fun ClaudeControlsStrip(
         context?.let { ctx ->
             val pct = ctx.percentage
             ControlChip(
-                text = "Context ${pct.toInt()}%",
+                text = stringResource(R.string.claude_context_pct_toint, pct.toInt()),
                 icon = Icons.Outlined.DataUsage,
                 color = usageColor(pct / 100.0),
                 onClick = { showContext = true }
@@ -179,7 +181,7 @@ fun ClaudeControlsStrip(
 
         // plan usage (live)
         limits["five_hour"]?.let { w ->
-            ControlChip(text = "5h ${(w.utilization * 100).toInt()}%", icon = Icons.Outlined.Bolt, color = usageColor(w.utilization))
+            ControlChip(text = stringResource(R.string.claude_5h_w_utilization_100_toint, (w.utilization * 100).toInt()), icon = Icons.Outlined.Bolt, color = usageColor(w.utilization))
         }
     }
 
@@ -212,21 +214,21 @@ fun ClaudeControlsStrip(
         val c = cache
         AlertDialog(
             onDismissRequest = { showCache = false },
-            title = { Text("Prompt cache", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.claude_prompt_cache), fontWeight = FontWeight.Bold) },
             text = {
                 val left = c?.let { it.anchorMs + it.ttlMs - now } ?: 0
                 Text(
                     when {
-                        c == null -> "No cache information yet."
-                        c.compacted -> "The conversation was compacted, so your next message will re-cache it."
-                        left > 0 -> "Cache warm, about ${(left + 59_999) / 60_000} min left (${if (c.ttlMs >= 3_600_000) "1-hour" else "5-minute"} cache). " +
-                            "Messages sent before it expires reuse it and cost less."
-                        else -> "The prompt cache has likely expired, so your next message will re-cache about ${compactTokens(c.recacheTokens)} tokens."
+                        c == null -> stringResource(R.string.claude_cache_no_info)
+                        c.compacted -> stringResource(R.string.claude_cache_compacted)
+                        left > 0 -> stringResource(R.string.claude_cache_warm, (left + 59_999) / 60_000, stringResource(if (c.ttlMs >= 3_600_000) R.string.claude_cache_ttl_one_hour else R.string.claude_cache_ttl_five_min)) + " " +
+                            stringResource(R.string.claude_cache_warm_note)
+                        else -> stringResource(R.string.claude_cache_expired, compactTokens(c.recacheTokens))
                     },
                     fontSize = 13.5.sp
                 )
             },
-            confirmButton = { TextButton(onClick = { showCache = false }) { Text("OK") } }
+            confirmButton = { TextButton(onClick = { showCache = false }) { Text(stringResource(R.string.claude_ok)) } }
         )
     }
 }
@@ -270,7 +272,7 @@ fun ClaudeModelSheet(
                 AgentKind.CLAUDE,
                 "Select model",
                 when {
-                    rows.isNotEmpty() -> "${rows.size} models"
+                    rows.isNotEmpty() -> stringResource(R.string.models_available_count, rows.size)
                     refreshing -> "loading models…"
                     else -> "no models loaded"
                 },
@@ -279,7 +281,7 @@ fun ClaudeModelSheet(
             )
             active?.let {
                 Text(
-                    "This chat is running $it",
+                    stringResource(R.string.claude_this_chat_is_running_it, it),
                     fontSize = 11.5.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
                     modifier = Modifier.padding(start = 48.dp)
@@ -320,17 +322,17 @@ fun ClaudeModelSheet(
                         if (refreshing) {
                             androidx.compose.material3.CircularProgressIndicator(Modifier.size(22.dp), strokeWidth = 2.dp, color = ClaudeAccent)
                             Spacer(Modifier.height(10.dp))
-                            Text("Loading Claude's models…", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
-                            Text("Claude Code is starting to list them; this can take a moment.", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                            Text(stringResource(R.string.claude_loading_claude_s_models), fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
+                            Text(stringResource(R.string.claude_claude_code_is_starting_to_list_them_thi), fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                         } else {
-                            Text("No models loaded", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
+                            Text(stringResource(R.string.claude_no_models_loaded), fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
                             Text(
                                 modelsError ?: "Claude Code has not listed its models yet.",
                                 fontSize = 12.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                             )
                             Spacer(Modifier.height(10.dp))
-                            TextButton(onClick = { backend.refreshInfo(force = true) }) { Text("Try again", color = ClaudeAccent) }
+                            TextButton(onClick = { backend.refreshInfo(force = true) }) { Text(stringResource(R.string.claude_try_again), color = ClaudeAccent) }
                         }
                     }
                 }
@@ -360,7 +362,7 @@ fun ClaudeModelSheet(
                                 ) {
                                     Icon(Icons.Default.Check, null, tint = ClaudeAccent, modifier = Modifier.size(12.dp))
                                     Spacer(Modifier.width(3.dp))
-                                    Text("Active", fontSize = 10.5.sp, fontWeight = FontWeight.Bold, color = ClaudeAccent)
+                                    Text(stringResource(R.string.common_active), fontSize = 10.5.sp, fontWeight = FontWeight.Bold, color = ClaudeAccent)
                                 }
                             }
                         }
@@ -387,8 +389,8 @@ fun ClaudeModelSheet(
                         Icon(Icons.Outlined.Lightbulb, null, tint = if (thinking) ClaudeAccent else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f), modifier = Modifier.size(18.dp))
                         Spacer(Modifier.width(10.dp))
                         Column(Modifier.weight(1f).padding(vertical = 6.dp)) {
-                            Text("Thinking", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
-                            Text("Reason before answering (shown as a summary)", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f))
+                            Text(stringResource(R.string.common_thinking), fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
+                            Text(stringResource(R.string.claude_reason_before_answering_shown_as_a_summa), fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f))
                         }
                         Switch(checked = thinking, onCheckedChange = { backend.setThinking(it) }, colors = SwitchDefaults.colors(checkedTrackColor = ClaudeAccent))
                     }
@@ -398,8 +400,8 @@ fun ClaudeModelSheet(
                             Icon(Icons.Outlined.Bolt, null, tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f), modifier = Modifier.size(18.dp))
                             Spacer(Modifier.width(10.dp))
                             Column(Modifier.weight(1f)) {
-                                Text("Fast mode · ${fast.replaceFirstChar { it.uppercase() }}", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
-                                Text("Send /fast in the chat to toggle", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f))
+                                Text(stringResource(R.string.claude_fast_mode_fast_replacefirstchar_it_upper, fast.replaceFirstChar { it.uppercase() }), fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
+                                Text(stringResource(R.string.claude_send_fast_in_the_chat_to_toggle), fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f))
                             }
                         }
                     }
@@ -416,15 +418,15 @@ fun ClaudeContextDialog(backend: ClaudeChatBackend, onDismiss: () -> Unit) {
     LaunchedEffect(Unit) { backend.refreshContextUsage() }
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Context window", fontWeight = FontWeight.Bold) },
+        title = { Text(stringResource(R.string.claude_context_window), fontWeight = FontWeight.Bold) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 val c = ctx
                 if (c == null) {
-                    Text("Context usage shows once this chat has started (send a message first).", fontSize = 13.sp)
+                    Text(stringResource(R.string.claude_context_usage_shows_once_this_chat_has_s), fontSize = 13.sp)
                 } else {
-                    Text("${compactTokens(c.totalTokens)} of ${compactTokens(c.maxTokens)} tokens used (${c.percentage.toInt()}%)", fontSize = 13.sp)
-                    UsageBar("Used", c.percentage / 100.0, null)
+                    Text(stringResource(R.string.claude_compacttokens_c_totaltokens_of_compactto, compactTokens(c.totalTokens), compactTokens(c.maxTokens), c.percentage.toInt()), fontSize = 13.sp)
+                    UsageBar(stringResource(R.string.claude_usage_used), c.percentage / 100.0, null)
                     HorizontalDivider(Modifier.padding(vertical = 4.dp))
                     c.categories.forEach { cat ->
                         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
@@ -432,8 +434,7 @@ fun ClaudeContextDialog(backend: ClaudeChatBackend, onDismiss: () -> Unit) {
                             Text(compactTokens(cat.tokens), fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                         }
                     }
-                    Text(
-                        "Send /compact to summarize the conversation and free space.",
+                    Text(stringResource(R.string.claude_send_compact_to_summarize_the_conversati),
                         fontSize = 11.5.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
                         modifier = Modifier.padding(top = 6.dp)
@@ -441,8 +442,8 @@ fun ClaudeContextDialog(backend: ClaudeChatBackend, onDismiss: () -> Unit) {
                 }
             }
         },
-        confirmButton = { TextButton(onClick = { backend.refreshContextUsage() }) { Text("Refresh") } },
-        dismissButton = { TextButton(onClick = onDismiss) { Text("Close") } }
+        confirmButton = { TextButton(onClick = { backend.refreshContextUsage() }) { Text(stringResource(R.string.common_refresh)) } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.common_close)) } }
     )
 }
 
@@ -463,7 +464,7 @@ fun ClaudeUsageDialog(account: ClaudeAccountManager, backend: ClaudeChatBackend,
         onDismissRequest = onDismiss,
         title = {
             Column {
-                Text("Usage", fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.claude_usage), fontWeight = FontWeight.Bold)
                 val plan = (usage?.subscription_type ?: status?.auth?.subscriptionType)?.let { com.example.gemini.ui.agents.claudePlanLabel(it) }
                 Text(
                     listOfNotNull("Claude Code", plan?.let { "$it plan" }).joinToString(" · "),
@@ -482,33 +483,32 @@ fun ClaudeUsageDialog(account: ClaudeAccountManager, backend: ClaudeChatBackend,
                     ?: rl?.seven_day?.let { (it.utilization ?: 0.0) / 100.0 to formatReset(it.resets_at) }
                 when {
                     five != null || week != null -> {
-                        five?.let { UsageBar("Current session (5-hour)", it.first, it.second) }
-                        week?.let { UsageBar("This week (all models)", it.first, it.second) }
-                        rl?.seven_day_opus?.let { UsageBar("This week (Opus)", (it.utilization ?: 0.0) / 100.0, formatReset(it.resets_at)) }
-                        rl?.seven_day_sonnet?.let { UsageBar("This week (Sonnet)", (it.utilization ?: 0.0) / 100.0, formatReset(it.resets_at)) }
+                        five?.let { UsageBar(stringResource(R.string.claude_usage_session_5h), it.first, it.second) }
+                        week?.let { UsageBar(stringResource(R.string.claude_usage_week_all), it.first, it.second) }
+                        rl?.seven_day_opus?.let { UsageBar(stringResource(R.string.claude_usage_week_opus), (it.utilization ?: 0.0) / 100.0, formatReset(it.resets_at)) }
+                        rl?.seven_day_sonnet?.let { UsageBar(stringResource(R.string.claude_usage_week_sonnet), (it.utilization ?: 0.0) / 100.0, formatReset(it.resets_at)) }
                     }
                     loading -> Row(verticalAlignment = Alignment.CenterVertically) {
                         androidx.compose.material3.CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp, color = ClaudeAccent)
                         Spacer(Modifier.width(10.dp))
-                        Text("Loading plan usage…", fontSize = 13.sp)
+                        Text(stringResource(R.string.claude_loading_plan_usage), fontSize = 13.sp)
                     }
                     usage != null && !usage!!.rate_limits_available ->
-                        Text("Plan limits do not apply to this account (API billing has no 5-hour or weekly limits).", fontSize = 13.sp)
-                    else -> Text("Plan usage is not available right now.", fontSize = 13.sp)
+                        Text(stringResource(R.string.claude_plan_limits_do_not_apply_to_this_account), fontSize = 13.sp)
+                    else -> Text(stringResource(R.string.claude_plan_usage_is_not_available_right_now), fontSize = 13.sp)
                 }
                 HorizontalDivider()
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                    Text("This chat", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f))
+                    Text(stringResource(R.string.claude_this_chat), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f))
                     Text(if (cost > 0) String.format(java.util.Locale.US, "$%.2f", cost) else "–", fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                 }
-                Text(
-                    "Cost is what this chat would cost at API prices; on a subscription it counts toward the limits above.",
+                Text(stringResource(R.string.claude_cost_is_what_this_chat_would_cost_at_api),
                     fontSize = 11.5.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f)
                 )
             }
         },
-        confirmButton = { TextButton(onClick = { account.refreshUsage(force = true) }) { Text("Refresh") } },
-        dismissButton = { TextButton(onClick = onDismiss) { Text("Close") } }
+        confirmButton = { TextButton(onClick = { account.refreshUsage(force = true) }) { Text(stringResource(R.string.common_refresh)) } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.common_close)) } }
     )
 }

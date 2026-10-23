@@ -26,6 +26,8 @@ import androidx.compose.ui.unit.dp
 import com.example.gemini.theme.ClaudeTerracotta
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 enum class BubbleTab {
     CHAT,
@@ -128,7 +130,7 @@ fun FloatingBubbleContent(
                 ) {
                     Icon(
                         imageVector = Icons.Default.AutoAwesome,
-                        contentDescription = "AI Assistant Bubble",
+                        contentDescription = stringResource(R.string.ui_ai_assistant_bubble),
                         tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(28.dp)
                     )

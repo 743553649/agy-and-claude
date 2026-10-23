@@ -76,6 +76,8 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import java.io.File
 import java.util.UUID
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 /**
  * Elegant 4-bar audio waveform icon matching Claude's signature voice mode button.
@@ -292,7 +294,7 @@ fun ChatInputBar(
             }
         } catch (e: Exception) {
             Log.e("ChatInputBar", "Failed to start recording: ${e.message}")
-            Toast.makeText(context, "Could not start audio recording", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.component_toast_could_not_start_audio_recording), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -333,7 +335,7 @@ fun ChatInputBar(
                 else -> startAudioRecording()
             }
         } else {
-            Toast.makeText(context, "Microphone permission required for speech recognition", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.component_toast_microphone_permission_required_for_speec), Toast.LENGTH_SHORT).show()
         }
         pendingActionAfterPermission = null
     }
@@ -388,7 +390,7 @@ fun ChatInputBar(
 
         val sm = speechManager
         if (sm == null) {
-            Toast.makeText(context, "Speech service unavailable", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.component_toast_speech_service_unavailable), Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -419,7 +421,7 @@ fun ChatInputBar(
                 baseTextBeforeDictation = combined
             },
             onError = { err ->
-                Toast.makeText(context, "Dictation: $err", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.component_toast_dictation_err, err), Toast.LENGTH_SHORT).show()
                 isLiveDictating = false
                 isDictationPaused = false
                 recordMode = AudioRecordMode.VOICE_NOTE
@@ -455,7 +457,7 @@ fun ChatInputBar(
 
         val sm = speechManager
         if (sm == null) {
-            Toast.makeText(context, "Speech service unavailable", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.component_toast_speech_service_unavailable), Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -493,7 +495,7 @@ fun ChatInputBar(
                 onTextFieldValueChange(TextFieldValue(combined, selection = TextRange(combined.length)))
             },
             onError = { err ->
-                Toast.makeText(context, "Transcribe: $err", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.component_toast_transcribe_err, err), Toast.LENGTH_SHORT).show()
                 cancelAudioRecording()
             }
         )
@@ -514,14 +516,14 @@ fun ChatInputBar(
                     onTextFieldValueChange(TextFieldValue(combined, selection = TextRange(combined.length)))
                     if (andSend) {
                         if (!isAuth) {
-                            Toast.makeText(context, "Please sign in first to send messages.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.component_toast_please_sign_in_first_to_send_messages), Toast.LENGTH_SHORT).show()
                         } else {
                             onSendMessage(combined.trim())
                             onTextFieldValueChange(TextFieldValue(""))
                         }
                     }
                 } else {
-                    Toast.makeText(context, "No speech recognized", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.component_toast_no_speech_recognized), Toast.LENGTH_SHORT).show()
                 }
             }
             isRecordingAudio = false
@@ -561,7 +563,7 @@ fun ChatInputBar(
 
             if (andSend) {
                 if (!isAuth) {
-                    Toast.makeText(context, "Please sign in first to send messages.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.component_toast_please_sign_in_first_to_send_messages), Toast.LENGTH_SHORT).show()
                     onAddAttachment(att)
                 } else {
                     onAddAttachment(att)
@@ -583,7 +585,7 @@ fun ChatInputBar(
     if (previewImageUrl != null) {
         FullScreenImageDialog(
             imageUrl = previewImageUrl!!,
-            title = "Attachment Preview",
+            title = stringResource(R.string.component_attachment_preview),
             onDismiss = { previewImageUrl = null }
         )
     }
@@ -665,7 +667,7 @@ fun ChatInputBar(
                                     )
                                     Spacer(modifier = Modifier.width(2.dp))
                                     Text(
-                                        text = "Transcribe",
+                                        text = stringResource(R.string.component_transcribe),
                                         fontSize = 9.5.sp,
                                         fontWeight = FontWeight.Bold,
                                         color = ClaudeTerracotta
@@ -716,7 +718,7 @@ fun ChatInputBar(
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.Close,
-                                contentDescription = "Cancel recording",
+                                contentDescription = stringResource(R.string.component_cancel_recording),
                                 tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                                 modifier = Modifier.size(18.dp)
                             )
@@ -735,7 +737,7 @@ fun ChatInputBar(
                             Box(contentAlignment = Alignment.Center) {
                                 Icon(
                                     imageVector = Icons.Default.Stop,
-                                    contentDescription = "Stop & Attach",
+                                    contentDescription = stringResource(R.string.component_stop_attach),
                                     tint = MaterialTheme.colorScheme.onSurface,
                                     modifier = Modifier.size(17.dp)
                                 )
@@ -754,7 +756,7 @@ fun ChatInputBar(
                             Box(contentAlignment = Alignment.Center) {
                                 Icon(
                                     imageVector = Icons.Default.ArrowUpward,
-                                    contentDescription = "Send voice note",
+                                    contentDescription = stringResource(R.string.component_send_voice_note),
                                     tint = Color.White,
                                     modifier = Modifier.size(18.dp)
                                 )
@@ -792,7 +794,7 @@ fun ChatInputBar(
                                     )
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Text(
-                                        text = if (isDictationPaused) "Dictation paused (tap resume to speak)" else "Listening... Speak now",
+                                        text = if (isDictationPaused) stringResource(R.string.chat_dictation_paused) else stringResource(R.string.chat_dictation_listening),
                                         fontSize = 12.sp,
                                         fontWeight = FontWeight.Medium,
                                         color = MaterialTheme.colorScheme.onSurface,
@@ -836,7 +838,7 @@ fun ChatInputBar(
                                         Box(contentAlignment = Alignment.Center) {
                                             Icon(
                                                 imageVector = Icons.Default.Stop,
-                                                contentDescription = "Stop",
+                                                contentDescription = stringResource(R.string.common_stop),
                                                 tint = Color(0xFFE53935),
                                                 modifier = Modifier.size(15.dp)
                                             )
@@ -867,7 +869,7 @@ fun ChatInputBar(
                                     )
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Text(
-                                        text = "Transcribing audio via AGY Hub...",
+                                        text = stringResource(R.string.component_transcribing_audio_via_agy_hub),
                                         fontSize = 12.sp,
                                         color = ClaudeTerracotta,
                                         fontWeight = FontWeight.Medium
@@ -882,7 +884,7 @@ fun ChatInputBar(
                         onValueChange = onTextFieldValueChange,
                         placeholder = {
                             Text(
-                                text = "Reply to ${selectedModel.displayName.split(" ").firstOrNull() ?: "Gemini"}...",
+                                text = stringResource(R.string.component_reply_to_selectedmodel_displayname_split_2, selectedModel.displayName.split(" ").firstOrNull() ?: "Gemini"),
                                 fontSize = 15.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.42f)
                             )
@@ -936,7 +938,7 @@ fun ChatInputBar(
                                         )
                                         Spacer(modifier = Modifier.width(6.dp))
                                         Text(
-                                            text = "Uploading attachment...",
+                                            text = stringResource(R.string.component_uploading_attachment),
                                             fontSize = 11.5.sp,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant
                                         )
@@ -1007,12 +1009,12 @@ fun ChatInputBar(
                                                                     setDataAndType(uri, att.mimeType ?: "*/*")
                                                                     addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                                                                 }
-                                                                context.startActivity(Intent.createChooser(intent, "Open ${att.name}"))
+                                                                context.startActivity(Intent.createChooser(intent, context.getString(R.string.component_chooser_open_att_name, att.name)))
                                                             } else {
                                                                 Toast.makeText(context, att.name, Toast.LENGTH_SHORT).show()
                                                             }
                                                         } catch (e: Exception) {
-                                                            Toast.makeText(context, "Cannot open: ${e.message}", Toast.LENGTH_SHORT).show()
+                                                            Toast.makeText(context, context.getString(R.string.component_toast_cannot_open_e_message, e.message.orEmpty()), Toast.LENGTH_SHORT).show()
                                                         }
                                                     }
                                                 }
@@ -1066,7 +1068,7 @@ fun ChatInputBar(
                                         ) {
                                             Icon(
                                                 imageVector = Icons.Outlined.Close,
-                                                contentDescription = "Remove",
+                                                contentDescription = stringResource(R.string.common_remove),
                                                 tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                                                 modifier = Modifier.size(13.dp)
                                             )
@@ -1095,7 +1097,7 @@ fun ChatInputBar(
                             Box(contentAlignment = Alignment.Center) {
                                 Icon(
                                     imageVector = Icons.Outlined.Add,
-                                    contentDescription = "Add attachments",
+                                    contentDescription = stringResource(R.string.component_add_attachments),
                                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
                                     modifier = Modifier.size(19.dp)
                                 )
@@ -1165,7 +1167,7 @@ fun ChatInputBar(
                                     Spacer(modifier = Modifier.width(2.dp))
                                     Icon(
                                         imageVector = Icons.Default.KeyboardArrowDown,
-                                        contentDescription = "Switch Model",
+                                        contentDescription = stringResource(R.string.component_switch_model),
                                         tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                                         modifier = Modifier.size(14.dp)
                                     )
@@ -1194,7 +1196,7 @@ fun ChatInputBar(
                                 Box(contentAlignment = Alignment.Center) {
                                     Icon(
                                         imageVector = Icons.Rounded.GraphicEq,
-                                        contentDescription = if (isLiveDictating) "Stop Dictation" else "Live Dictation",
+                                        contentDescription = if (isLiveDictating) stringResource(R.string.chat_dictation_stop) else stringResource(R.string.component_live_dictation),
                                         tint = if (isLiveDictating) GeminiBlue else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
                                         modifier = Modifier.size(18.dp)
                                     )
@@ -1214,7 +1216,7 @@ fun ChatInputBar(
                                 Box(contentAlignment = Alignment.Center) {
                                     Icon(
                                         imageVector = Icons.Default.Stop,
-                                        contentDescription = "Stop",
+                                        contentDescription = stringResource(R.string.common_stop),
                                         tint = Color.White,
                                         modifier = Modifier.size(18.dp)
                                     )
@@ -1226,7 +1228,7 @@ fun ChatInputBar(
                                 onClick = {
                                     val trimmed = textFieldValue.text.trim()
                                         if (!isAuth) {
-                                            Toast.makeText(context, "Please sign in first to send messages.", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(context, context.getString(R.string.component_toast_please_sign_in_first_to_send_messages), Toast.LENGTH_SHORT).show()
                                             return@Surface
                                         }
                                         if (!isOnline) {
@@ -1246,7 +1248,7 @@ fun ChatInputBar(
                                 Box(contentAlignment = Alignment.Center) {
                                     Icon(
                                         imageVector = Icons.Default.ArrowUpward,
-                                        contentDescription = "Send",
+                                        contentDescription = stringResource(R.string.component_send),
                                         tint = if (isAuth && isOnline) (if (isBackgroundActive) Color(0xFF1E1E1E) else Color.White) else Color(0xFFD1D5DB),
                                         modifier = Modifier.size(19.dp)
                                     )
@@ -1274,7 +1276,7 @@ fun ChatInputBar(
                                 Box(contentAlignment = Alignment.Center) {
                                     Icon(
                                         imageVector = Icons.Rounded.Mic,
-                                        contentDescription = if (voiceNotesAsText) "Record and transcribe" else "Record voice note",
+                                        contentDescription = if (voiceNotesAsText) stringResource(R.string.chat_record_and_transcribe) else stringResource(R.string.chat_record_voice_note),
                                         tint = voiceIconColor,
                                         modifier = Modifier.size(20.dp)
                                     )

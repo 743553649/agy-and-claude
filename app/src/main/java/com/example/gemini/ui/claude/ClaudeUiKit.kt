@@ -1,5 +1,6 @@
 package com.example.gemini.ui.claude
 
+import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -38,6 +39,8 @@ import com.example.gemini.theme.QuotaGreen
 import com.example.gemini.theme.QuotaRed
 import com.example.gemini.theme.isAppInDarkTheme
 import com.example.gemini.ui.components.ClaudeAccent
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 /** Uppercase group label used to separate Antigravity / Claude Code / App settings. */
 @Composable
@@ -133,7 +136,7 @@ fun UsageBar(label: String, usedFraction: Double, resetText: String?, modifier: 
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             Text(label, fontSize = if (compact) 10.5.sp else 12.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f))
             Text(
-                "${(usedFraction * 100).toInt()}% used" + (resetText?.let { " · resets $it" } ?: ""),
+                stringResource(R.string.claude_usedfraction_100_toint_used, (usedFraction * 100).toInt()) + (resetText?.let { " · resets $it" } ?: ""),
                 fontSize = if (compact) 10.sp else 11.sp,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f)
             )
@@ -192,23 +195,23 @@ fun formatReset(iso: String?, epochSeconds: Long? = null): String? {
 }
 
 /** Human label for a Claude permission mode. */
-fun permissionModeLabel(mode: String): String = when (mode) {
-    "default" -> "Manual"
-    "acceptEdits" -> "Accept edits"
-    "plan" -> "Plan"
-    "auto" -> "Auto"
-    "dontAsk" -> "Don't ask"
-    "bypassPermissions" -> "Bypass"
+fun permissionModeLabel(context: Context, mode: String): String = when (mode) {
+    "default" -> context.getString(R.string.claude_mode_manual)
+    "acceptEdits" -> context.getString(R.string.claude_mode_accept_edits)
+    "plan" -> context.getString(R.string.claude_mode_plan)
+    "auto" -> context.getString(R.string.claude_mode_auto)
+    "dontAsk" -> context.getString(R.string.claude_mode_dont_ask)
+    "bypassPermissions" -> context.getString(R.string.claude_mode_bypass)
     else -> mode
 }
 
-fun permissionModeDescription(mode: String): String = when (mode) {
-    "default" -> "Ask before edits and commands"
-    "acceptEdits" -> "Apply file edits without asking"
-    "plan" -> "Explore and propose a plan, no changes"
-    "auto" -> "Claude decides what is safe to run"
-    "dontAsk" -> "Never ask; deny anything not pre-allowed"
-    "bypassPermissions" -> "Allow everything (sandboxes only)"
+fun permissionModeDescription(context: Context, mode: String): String = when (mode) {
+    "default" -> context.getString(R.string.claude_mode_manual_desc)
+    "acceptEdits" -> context.getString(R.string.claude_mode_accept_edits_desc)
+    "plan" -> context.getString(R.string.claude_mode_plan_desc)
+    "auto" -> context.getString(R.string.claude_mode_auto_desc)
+    "dontAsk" -> context.getString(R.string.claude_mode_dont_ask_desc)
+    "bypassPermissions" -> context.getString(R.string.claude_mode_bypass_desc)
     else -> ""
 }
 

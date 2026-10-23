@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  由 scripts/i18n 生成，请勿手工调整条目顺序。
+  译法基准见 docs/i18n/GLOSSARY.md
+-->
+<resources>
+
+    <!-- 原文: Add Shortcut -->
+    <string name="browser_add_shortcut">添加快捷方式</string>
+    <!-- 原文: Add shortcut -->
+    <string name="browser_add_shortcut_2">添加快捷方式</string>
+    <!-- 原文: AI is working… -->
+    <string name="browser_ai_working">AI 正在工作……</string>
+    <!-- 原文: Are you sure you want to close all open tabs and return to chat? -->
+    <string name="browser_are_you_sure_you_want_to_close_all_open">确定要关闭所有已打开的标签页并返回对话吗？</string>
+    <!-- 原文: Clear Tab Cache -->
+    <string name="browser_clear_tab_cache">清除标签页缓存</string>
+    <!-- 原文: Close All -->
+    <string name="browser_close_all">全部关闭</string>
+    <!-- 原文: Close All Tabs -->
+    <string name="browser_close_all_tabs">关闭所有标签页</string>
+    <!-- 原文: Close Browser -->
+    <string name="browser_close_browser">关闭浏览器</string>
+    <!-- 原文: Close tab -->
+    <string name="browser_close_tab">关闭标签页</string>
+    <!-- 原文: Controlled by AI -->
+    <string name="browser_controlled_by_ai">由 AI 控制</string>
+    <!-- 原文: Delete all -->
+    <string name="browser_delete_all">全部删除</string>
+    <!-- 原文: Desktop mode enabled -->
+    <string name="browser_desktop_mode_enabled">已启用桌面模式</string>
+    <!-- 原文: Desktop Site -->
+    <string name="browser_desktop_site">桌面版网站</string>
+    <!-- 原文: DevTools Inspector -->
+    <string name="browser_devtools_inspector">DevTools 检查器</string>
+    <!-- 原文: e.g. GitHub -->
+    <string name="browser_e_g_github">例如 GitHub</string>
+    <!-- 原文: Could not connect to the server or display the requested URL. -->
+    <string name="browser_error_connect_desc">无法连接服务器或显示请求的网址。</string>
+    <!-- 原文: Renderer Process Crashed -->
+    <string name="browser_error_renderer_crashed">渲染进程已崩溃</string>
+    <!-- 原文: SSL Security Warning -->
+    <string name="browser_error_ssl_warning">SSL 安全警告</string>
+    <!-- 原文: The page is taking unusually long to respond (timeout > 15s). The local server or remote site might be unresponsive. -->
+    <string name="browser_error_stalled_desc">页面响应异常缓慢（超时超过 15 秒）。本地服务器或远端站点可能无响应。</string>
+    <!-- 原文: Page Loading Stalled -->
+    <string name="browser_error_stalled_title">页面加载停滞</string>
+    <!-- 原文: Unable to Load Page -->
+    <string name="browser_error_unable_to_load">无法加载页面</string>
+    <!-- 原文: Forward -->
+    <string name="browser_forward">前进</string>
+    <!-- 原文: Go -->
+    <string name="browser_go">前往</string>
+    <!-- 原文: Google -->
+    <string name="browser_google">Google</string>
+    <!-- 原文: Hide Diagnostic Logs -->
+    <string name="browser_hide_diagnostic_logs">隐藏诊断日志</string>
+    <!-- 原文: History Suggestions -->
+    <string name="browser_history_suggestions">历史记录建议</string>
+    <!-- 原文: Home -->
+    <string name="browser_home">主页</string>
+    <!-- 原文: Insert -->
+    <string name="browser_insert">插入</string>
+    <!-- 原文: Inspect DevTools -->
+    <string name="browser_inspect_devtools">检查 DevTools</string>
+    <!-- 原文: [%1$s] %2$s -->
+    <string name="browser_log_level_log_message">[%1$s] %2$s</string>
+    <!-- 原文: Mobile mode enabled -->
+    <string name="browser_mobile_mode_enabled">已启用移动模式</string>
+    <!-- 原文: Mobile Site -->
+    <string name="browser_mobile_site">移动版网站</string>
+    <!-- 原文: More Options -->
+    <string name="browser_more_options">更多选项</string>
+    <!-- 原文: New tab -->
+    <string name="browser_new_tab">新建标签页</string>
+    <!-- 原文: No recent search history -->
+    <string name="browser_no_recent_search_history">没有最近的搜索记录</string>
+    <!-- 原文: Recent Searches -->
+    <string name="browser_recent_searches">最近搜索</string>
+    <!-- 原文: Remove '%1$s' from your home shortcuts? -->
+    <string name="browser_remove_sc_title_from_your_home_shortcuts">要把「%1$s」从首页快捷方式中移除吗？</string>
+    <!-- 原文: Remove Shortcut -->
+    <string name="browser_remove_shortcut">移除快捷方式</string>
+    <!-- 原文: Search Google for \"%1$s\" -->
+    <string name="browser_search_google_for_trimmed">在 Google 中搜索「%1$s」</string>
+    <!-- 原文: Search or type URL -->
+    <string name="browser_search_or_type_url">搜索或输入网址</string>
+    <!-- 原文: Show Diagnostic Logs (%1$s) -->
+    <string name="browser_show_diagnostic_logs">显示诊断日志（%1$s）</string>
+    <!-- 原文: Tab closed -->
+    <string name="browser_tab_closed">标签页已关闭</string>
+    <!-- 原文: %1$s -->
+    <string name="browser_tabs_size">%1$s</string>
+    <!-- 原文: %1$s -->
+    <string name="browser_tabs_size_coerceatleast_1">%1$s</string>
+    <!-- 原文: Tabs (%1$s) -->
+    <string name="browser_tabs_tabs_size">标签页（%1$s）</string>
+    <!-- 原文: Unlock -->
+    <string name="browser_unlock">解锁</string>
+</resources>

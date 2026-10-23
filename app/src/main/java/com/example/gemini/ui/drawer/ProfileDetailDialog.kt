@@ -35,6 +35,8 @@ import coil.request.ImageRequest
 import com.example.gemini.data.remote.AgyHubClient
 import com.example.gemini.theme.ClaudeTerracotta
 import com.example.gemini.theme.QuotaGreen
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 /**
  * Safely parses base64 data URIs ("data:image/jpeg;base64,...") into ByteArray for Coil,
@@ -90,7 +92,7 @@ fun ProfileDetailDialog(
                     ) {
                         Icon(
                             imageVector = Icons.Outlined.Close,
-                            contentDescription = "Close",
+                            contentDescription = stringResource(R.string.common_close),
                             tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                         )
                     }
@@ -102,7 +104,7 @@ fun ProfileDetailDialog(
                         .data(parseProfileAvatarModel(authInfo.profilePictureUrl))
                         .crossfade(true)
                         .build(),
-                    contentDescription = "Profile Picture",
+                    contentDescription = stringResource(R.string.drawer_profile_picture),
                     modifier = Modifier
                         .size(76.dp)
                         .clip(CircleShape)
@@ -194,7 +196,7 @@ fun ProfileDetailDialog(
                             if (authInfo.planName.isNotBlank() && authInfo.planName != tierName) {
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Text(
-                                    text = "•  ${authInfo.planName}",
+                                    text = stringResource(R.string.drawer_authinfo_planname, authInfo.planName),
                                     fontSize = 11.sp,
                                     fontWeight = FontWeight.Medium,
                                     color = ClaudeTerracotta.copy(alpha = 0.8f)
@@ -231,14 +233,14 @@ fun ProfileDetailDialog(
                                         )
                                         Spacer(modifier = Modifier.width(4.dp))
                                         Text(
-                                            text = "Prompt Credits",
+                                            text = stringResource(R.string.drawer_prompt_credits),
                                             fontSize = 11.sp,
                                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                                         )
                                     }
                                     Spacer(modifier = Modifier.height(2.dp))
                                     Text(
-                                        text = "${authInfo.availablePromptCredits} Available",
+                                        text = stringResource(R.string.drawer_authinfo_availablepromptcredits_availabl, authInfo.availablePromptCredits),
                                         fontSize = 13.sp,
                                         fontWeight = FontWeight.Bold,
                                         color = MaterialTheme.colorScheme.onSurface
@@ -266,14 +268,14 @@ fun ProfileDetailDialog(
                                         )
                                         Spacer(modifier = Modifier.width(4.dp))
                                         Text(
-                                            text = "Flow Credits",
+                                            text = stringResource(R.string.drawer_flow_credits),
                                             fontSize = 11.sp,
                                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                                         )
                                     }
                                     Spacer(modifier = Modifier.height(2.dp))
                                     Text(
-                                        text = "${authInfo.availableFlowCredits} Available",
+                                        text = stringResource(R.string.drawer_authinfo_availableflowcredits_available, authInfo.availableFlowCredits),
                                         fontSize = 13.sp,
                                         fontWeight = FontWeight.Bold,
                                         color = MaterialTheme.colorScheme.onSurface
@@ -298,14 +300,14 @@ fun ProfileDetailDialog(
                     ) {
                         Icon(
                             imageVector = Icons.Outlined.Email,
-                            contentDescription = "Email",
+                            contentDescription = stringResource(R.string.drawer_email),
                             tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                             modifier = Modifier.size(18.dp)
                         )
                         Spacer(modifier = Modifier.width(10.dp))
                         Column {
                             Text(
-                                text = "Account Email",
+                                text = stringResource(R.string.drawer_account_email),
                                 fontSize = 11.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
                             )
@@ -330,14 +332,14 @@ fun ProfileDetailDialog(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.VerifiedUser,
-                        contentDescription = "Status",
+                        contentDescription = stringResource(R.string.drawer_status),
                         tint = ClaudeTerracotta,
                         modifier = Modifier.size(18.dp)
                     )
                     Spacer(modifier = Modifier.width(10.dp))
                     Column {
                         Text(
-                            text = "Status",
+                            text = stringResource(R.string.drawer_status),
                             fontSize = 11.sp,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
                         )
@@ -368,14 +370,14 @@ fun ProfileDetailDialog(
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Outlined.OpenInNew,
-                            contentDescription = "Upgrade",
+                            contentDescription = stringResource(R.string.drawer_upgrade),
                             tint = ClaudeTerracotta,
                             modifier = Modifier.size(18.dp)
                         )
                         Spacer(modifier = Modifier.width(10.dp))
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = "Subscription",
+                                text = stringResource(R.string.drawer_subscription),
                                 fontSize = 11.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
                             )
@@ -407,12 +409,12 @@ fun ProfileDetailDialog(
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Outlined.Logout,
-                        contentDescription = "Sign Out",
+                        contentDescription = stringResource(R.string.drawer_sign_out),
                         modifier = Modifier.size(18.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Sign Out",
+                        text = stringResource(R.string.drawer_sign_out),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.SemiBold
                     )

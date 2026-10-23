@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.gemini.data.daemon.IdeApiClient
+import com.example.gemini.R
 import com.example.gemini.data.daemon.ProjectItem
 import com.example.gemini.theme.ClaudeTerracotta
 import kotlinx.coroutines.launch
@@ -94,7 +96,7 @@ fun WorkspaceFolderBrowserDialog(
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                            contentDescription = "Parent Directory",
+                            contentDescription = stringResource(R.string.component_parent_directory),
                             tint = if (parentPath.isNotBlank()) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
                         )
                     }
@@ -105,7 +107,7 @@ fun WorkspaceFolderBrowserDialog(
                             .padding(horizontal = 4.dp)
                     ) {
                         Text(
-                            text = "Browse Folders",
+                            text = stringResource(R.string.component_browse_folders),
                             fontSize = 15.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
@@ -125,7 +127,7 @@ fun WorkspaceFolderBrowserDialog(
                     ) {
                         Icon(
                             imageVector = Icons.Outlined.Refresh,
-                            contentDescription = "Refresh",
+                            contentDescription = stringResource(R.string.common_refresh),
                             tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                         )
                     }
@@ -139,7 +141,7 @@ fun WorkspaceFolderBrowserDialog(
                     ) {
                         Icon(
                             imageVector = Icons.Default.CreateNewFolder,
-                            contentDescription = "New Folder",
+                            contentDescription = stringResource(R.string.common_new_folder),
                             tint = ClaudeTerracotta
                         )
                     }
@@ -184,7 +186,7 @@ fun WorkspaceFolderBrowserDialog(
                                     )
                                     Spacer(modifier = Modifier.height(10.dp))
                                     Button(onClick = { loadDir(currentPath) }) {
-                                        Text("Retry")
+                                        Text(stringResource(R.string.common_retry))
                                     }
                                 }
                             }
@@ -195,7 +197,7 @@ fun WorkspaceFolderBrowserDialog(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Text(
-                                    text = "No subfolders found\n(You can select this folder)",
+                                    text = stringResource(R.string.component_no_subfolders_found_n_you_can_select_thi),
                                     fontSize = 13.sp,
                                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                                     textAlign = androidx.compose.ui.text.style.TextAlign.Center
@@ -256,7 +258,7 @@ fun WorkspaceFolderBrowserDialog(
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(10.dp)
                     ) {
-                        Text("Cancel", fontSize = 13.sp)
+                        Text(stringResource(R.string.common_cancel), fontSize = 13.sp)
                     }
 
                     Button(
@@ -277,7 +279,7 @@ fun WorkspaceFolderBrowserDialog(
                         )
                         Spacer(modifier = Modifier.width(6.dp))
                         Text(
-                            text = "Choose This Folder",
+                            text = stringResource(R.string.component_choose_this_folder),
                             color = Color.White,
                             fontSize = 13.sp,
                             fontWeight = FontWeight.SemiBold
@@ -292,12 +294,12 @@ fun WorkspaceFolderBrowserDialog(
         AlertDialog(
             onDismissRequest = { showNewFolderDialog = false },
             title = {
-                Text("New Folder", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                Text(stringResource(R.string.common_new_folder), fontWeight = FontWeight.Bold, fontSize = 16.sp)
             },
             text = {
                 Column {
                     Text(
-                        text = "Create folder inside: $currentPath",
+                        text = stringResource(R.string.component_create_folder_inside_currentpath, currentPath),
                         fontSize = 11.5.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                     )
@@ -305,7 +307,7 @@ fun WorkspaceFolderBrowserDialog(
                     OutlinedTextField(
                         value = newFolderName,
                         onValueChange = { newFolderName = it },
-                        placeholder = { Text("folder-name") },
+                        placeholder = { Text(stringResource(R.string.component_folder_name_2)) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(8.dp)
@@ -332,12 +334,12 @@ fun WorkspaceFolderBrowserDialog(
                     colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta),
                     enabled = newFolderName.isNotBlank() && !isCreatingFolder
                 ) {
-                    Text("Create", fontSize = 13.sp)
+                    Text(stringResource(R.string.common_create), fontSize = 13.sp)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showNewFolderDialog = false }) {
-                    Text("Cancel", fontSize = 13.sp)
+                    Text(stringResource(R.string.common_cancel), fontSize = 13.sp)
                 }
             }
         )

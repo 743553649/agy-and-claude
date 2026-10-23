@@ -6,12 +6,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.gemini.R
 
 data class ProjectTemplate(
     val id: String,
@@ -40,7 +42,7 @@ fun NewProjectDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            Text("Create New Project", style = MaterialTheme.typography.titleLarge)
+            Text(stringResource(R.string.ide_create_new_project), style = MaterialTheme.typography.titleLarge)
         },
         text = {
             Column(
@@ -76,7 +78,7 @@ fun NewProjectDialog(
                             Box(contentAlignment = Alignment.CenterStart) {
                                 if (projectName.isEmpty()) {
                                     Text(
-                                        text = "Project Name (e.g. my-awesome-app)",
+                                        text = stringResource(R.string.ide_project_name_e_g_my_awesome_app),
                                         fontSize = 13.5.sp,
                                         lineHeight = 18.sp,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
@@ -88,8 +90,7 @@ fun NewProjectDialog(
                     )
                 }
 
-                Text(
-                    "Choose Template",
+                Text(stringResource(R.string.ide_choose_template),
                     style = MaterialTheme.typography.labelLarge,
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -161,12 +162,12 @@ fun NewProjectDialog(
                 },
                 enabled = projectName.isNotBlank()
             ) {
-                Text("Create")
+                Text(stringResource(R.string.common_create))
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text(stringResource(R.string.common_cancel))
             }
         }
     )

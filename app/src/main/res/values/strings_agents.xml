@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  由 scripts/i18n 生成，请勿手工调整条目顺序。
+  译法基准见 docs/i18n/GLOSSARY.md
+-->
+<resources>
+
+    <string name="agents_1_of_count">1 of %1$s</string>
+    <string name="agents_accounts">Accounts</string>
+    <string name="agents_agents">AGENTS</string>
+    <string name="agents_agents_you_turn_off_do_not_run_at_all_th">Agents you turn off do not run at all: the local server starts without them and their settings and chats are hidden (chats stay on disk).</string>
+    <string name="agents_allow">Allow</string>
+    <string name="agents_allow_all_count">Allow all %1$s</string>
+    <string name="agents_always">Always…</string>
+    <string name="agents_applying_agents">Applying agents</string>
+    <string name="agents_approval">approval</string>
+    <string name="agents_approval_allow_tool">Allow %1$s?</string>
+    <string name="agents_approval_edit_file">Edit a file?</string>
+    <string name="agents_approval_generate_image">Generate an image?</string>
+    <string name="agents_approval_open_web_page">Open a web page?</string>
+    <string name="agents_approval_read_files">Read files?</string>
+    <string name="agents_approval_run_command">Run a command?</string>
+    <string name="agents_approval_search_web">Search the web?</string>
+    <string name="agents_approval_use_tool">Use %1$s?</string>
+    <string name="agents_choose_your_agent">Choose your agent</string>
+    <string name="agents_continue">Continue</string>
+    <string name="agents_deny">Deny</string>
+    <string name="agents_deny_all_count">Deny all %1$s</string>
+    <string name="agents_deny_placeholder">Tell the agent what to do instead (optional)</string>
+    <string name="agents_deny_placeholder_antigravity">Tell Antigravity what to do instead (optional)</string>
+    <string name="agents_each_agent_signs_in_on_its_own">Each agent signs in on its own.</string>
+    <string name="agents_item_denylabel">%1$s…</string>
+    <string name="agents_page_1_of_questions_size">%1$s of %2$s</string>
+    <string name="agents_question_agent_label_has_if_questions_si_2">%1$s has %2$s</string>
+    <string name="agents_restart_app">Restart app</string>
+    <string name="agents_restart_apply_desc">The local server stops and the app restarts with the new agents, so nothing of a turned-off agent keeps running. Replies in progress stop, and a chat of a turned-off agent is closed.</string>
+    <string name="agents_restart_to_apply">Restart to apply?</string>
+    <string name="agents_restarting">Restarting…</string>
+    <string name="agents_scope_conversation">For this conversation</string>
+    <string name="agents_scope_conversation_desc">Don\'t ask again in this chat</string>
+    <string name="agents_scope_everywhere">Everywhere</string>
+    <string name="agents_scope_everywhere_desc">Don\'t ask again anywhere</string>
+    <string name="agents_scope_workspace">In this workspace</string>
+    <string name="agents_scope_workspace_desc">Don\'t ask again in this project</string>
+    <string name="agents_server_logs">Server logs</string>
+    <string name="agents_stopping_the_local_server_then_restartin">Stopping the local server, then restarting the app…</string>
+    <string name="agents_the_app_runs_only_the_agents_you_pick_yo">The app runs only the agents you pick. You can change this later in Settings → Agents.</string>
+    <string name="agents_the_local_server_stops_and_the_app_resta">The local server stops and the app restarts with the new agents, so nothing of a turned-off agent keeps running. </string>
+    <string name="agents_your_answer">Your answer</string>
+</resources>

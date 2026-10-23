@@ -22,6 +22,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
 import java.util.concurrent.TimeUnit
+import com.example.gemini.R
 
 data class BrowserExtension(
     val id: String,
@@ -123,7 +124,7 @@ class BrowserExtensionManager private constructor() {
         if (runCatching { JSONObject(hostRequest("/health")).optBoolean("ready") }.getOrDefault(false)) return@withLock
         if (hostProcess?.isAlive != true) {
             val node = File(LocalEnvironmentManager.getBinDir(context), "node")
-            if (!node.canExecute()) throw IllegalStateException("Node.js is required in the local terminal to run browser extensions")
+            if (!node.canExecute()) throw IllegalStateException(appContext?.getString(R.string.data_err_node_required) ?: "Node.js is required in the local terminal to run browser extensions")
             val command = mutableListOf(node.absolutePath, "--experimental-vm-modules", runtimeFile(context).absolutePath,
                 "--serve", "--port", hostPort().toString(), "--root", File(context.filesDir, "browser-extensions").absolutePath,
                 "--device-id", deviceId(), "--bridge-url", "http://127.0.0.1:${com.example.gemini.data.remote.AndroidLocalBridgeServer.instance.boundPort}")
@@ -142,10 +143,10 @@ class BrowserExtensionManager private constructor() {
         }
         repeat(80) {
             if (runCatching { JSONObject(hostRequest("/health")).optBoolean("ready") }.getOrDefault(false)) { lastError = null; return@withLock }
-            if (hostProcess?.isAlive != true) throw IllegalStateException("Extension host exited; see BrowserExtensionManager logs")
+            if (hostProcess?.isAlive != true) throw IllegalStateException(appContext?.getString(R.string.data_err_extension_host_exited) ?: "Extension host exited; see BrowserExtensionManager logs")
             delay(100)
         }
-        throw IllegalStateException("Extension host did not start in time")
+        throw IllegalStateException(appContext?.getString(R.string.data_err_extension_host_timeout) ?: "Extension host did not start in time")
     } }
 
     suspend fun request(path: String, body: JSONObject = JSONObject()) = withContext(Dispatchers.IO) {
@@ -213,12 +214,12 @@ class BrowserExtensionManager private constructor() {
     }
 
     private fun saveDisabledExtensionIds(extDir: File, disabled: Set<String>) {
-        require(extDir.mkdirs() || extDir.isDirectory) { "Cannot create extension directory" }
+        require(extDir.mkdirs() || extDir.isDirectory) { appContext?.getString(R.string.data_err_create_extension_dir) ?: "Cannot create extension directory" }
         val file = getConfigFile(extDir)
         val temporary = File(extDir, ".extensions-${java.util.UUID.randomUUID()}.tmp")
         try {
             temporary.writeText(JSONObject().put("disabled", JSONArray(disabled.toList())).toString(2))
-            check(temporary.renameTo(file)) { "Cannot save extension settings" }
+            check(temporary.renameTo(file)) { appContext?.getString(R.string.data_err_save_extension_settings) ?: "Cannot save extension settings" }
         } finally { temporary.delete() }
     }
 
@@ -284,29 +285,29 @@ class BrowserExtensionManager private constructor() {
 
     private fun checkedFolder(name: String): String {
         val value = name.trim()
-        require(Regex("[A-Za-z0-9][A-Za-z0-9._-]{0,63}").matches(value) && value != "." && value != "..") { "Use 1–64 letters, numbers, dots, underscores or hyphens for the folder name" }
-        require(value != "runtime") { "The folder name runtime is reserved" }
+        require(Regex("[A-Za-z0-9][A-Za-z0-9._-]{0,63}").matches(value) && value != "." && value != "..") { appContext?.getString(R.string.data_err_folder_name_rule) ?: "Use 1–64 letters, numbers, dots, underscores or hyphens for the folder name" }
+        require(value != "runtime") { appContext?.getString(R.string.data_err_folder_name_reserved) ?: "The folder name runtime is reserved" }
         return value
     }
 
     internal fun validatePackage(root: File): JSONObject {
         val manifest = JSONObject(File(root, "manifest.json").readText())
-        require(manifest.optInt("manifest_version") in 2..3) { "Only manifest versions 2 and 3 are supported" }
-        require(manifest.optString("name").isNotBlank()) { "Extension name is required" }
-        val tools = manifest.optJSONArray("mcp_tools") ?: error("manifest.json must declare mcp_tools")
-        require(tools.length() > 0) { "Extension must declare at least one MCP tool" }
+        require(manifest.optInt("manifest_version") in 2..3) { appContext?.getString(R.string.data_err_manifest_version) ?: "Only manifest versions 2 and 3 are supported" }
+        require(manifest.optString("name").isNotBlank()) { appContext?.getString(R.string.data_err_extension_name_required) ?: "Extension name is required" }
+        val tools = manifest.optJSONArray("mcp_tools") ?: error(appContext?.getString(R.string.data_err_manifest_tools_required) ?: "manifest.json must declare mcp_tools")
+        require(tools.length() > 0) { appContext?.getString(R.string.data_err_extension_tools_required) ?: "Extension must declare at least one MCP tool" }
         val names = mutableSetOf<String>()
         for (i in 0 until tools.length()) {
             val name = tools.getJSONObject(i).getString("name")
-            require(name.isNotBlank() && names.add(name)) { "Duplicate or empty MCP tool name" }
+            require(name.isNotBlank() && names.add(name)) { appContext?.getString(R.string.data_err_tool_name_duplicate) ?: "Duplicate or empty MCP tool name" }
         }
-        val background = manifest.optJSONObject("background") ?: error("Extension background worker is required")
+        val background = manifest.optJSONObject("background") ?: error(appContext?.getString(R.string.data_err_background_required) ?: "Extension background worker is required")
         val files = background.optString("service_worker").takeIf { it.isNotBlank() }?.let { listOf(it) }
             ?: background.optJSONArray("scripts")?.let { array -> (0 until array.length()).map { array.getString(it) } }.orEmpty()
-        require(files.isNotEmpty()) { "Extension background worker is required" }
+        require(files.isNotEmpty()) { appContext?.getString(R.string.data_err_background_required) ?: "Extension background worker is required" }
         for (relative in files) {
             val file = File(root, relative).canonicalFile
-            require(file.path.startsWith(root.canonicalPath + File.separator) && file.isFile) { "Missing or invalid background file: $relative" }
+            require(file.path.startsWith(root.canonicalPath + File.separator) && file.isFile) { appContext?.getString(R.string.data_err_background_file_missing, relative) ?: "Missing or invalid background file: $relative" }
         }
         return manifest
     }
@@ -329,7 +330,7 @@ class BrowserExtensionManager private constructor() {
 
     suspend fun setEnabled(id: String, enable: Boolean) = withContext(Dispatchers.IO) { extensionMutex.withLock {
         ensureHost()
-        val extension = extensions.firstOrNull { it.id == id } ?: error("Extension not found")
+        val extension = extensions.firstOrNull { it.id == id } ?: error(appContext?.getString(R.string.data_err_extension_not_found) ?: "Extension not found")
         if (enable) hostRequest("/extension/load", JSONObject().put("dir", extension.dirPath))
         else {
             runCatching { hostRequest("/extension/unload", JSONObject().put("id", id)) }
@@ -356,7 +357,7 @@ class BrowserExtensionManager private constructor() {
 
     suspend fun reload(id: String) = withContext(Dispatchers.IO) { extensionMutex.withLock {
         ensureHost()
-        val extension = extensions.firstOrNull { it.id == id } ?: error("Extension not found")
+        val extension = extensions.firstOrNull { it.id == id } ?: error(appContext?.getString(R.string.data_err_extension_not_found) ?: "Extension not found")
         if (extension.isEnabled) {
             BrowserAutomationController.release(id)
             unloadIfLoaded(id)
@@ -369,26 +370,26 @@ class BrowserExtensionManager private constructor() {
         val context = appContext ?: error("Extension manager is not initialized")
         val folder = checkedFolder(folderName)
         ensureHost()
-        val previous = updateId?.let { id -> extensions.firstOrNull { it.id == id } ?: error("Extension not found") }
+        val previous = updateId?.let { id -> extensions.firstOrNull { it.id == id } ?: error(appContext?.getString(R.string.data_err_extension_not_found) ?: "Extension not found") }
         val stage = File(context.cacheDir, "webview-extension-${java.util.UUID.randomUUID()}").apply { mkdirs() }
         try {
-            val root = context.contentResolver.openInputStream(uri)?.use { WebViewExtensionArchive.extract(it, File(stage, "unpacked")) } ?: error("Cannot read ZIP")
-            require(previous == null || folder == previous.folderName) { "Use Rename folder to change the folder before updating" }
+            val root = context.contentResolver.openInputStream(uri)?.use { WebViewExtensionArchive.extract(it, File(stage, "unpacked")) } ?: error(appContext?.getString(R.string.data_err_read_zip) ?: "Cannot read ZIP")
+            require(previous == null || folder == previous.folderName) { appContext?.getString(R.string.data_err_rename_before_update) ?: "Use Rename folder to change the folder before updating" }
             val manifest = validatePackage(root)
             val id = previous?.id ?: manifest.optString("id").ifBlank { folder.replace('.', '_') }
-            require(Regex("[A-Za-z0-9_-]+").matches(id)) { "Invalid extension ID" }
-            require(previous != null || extensions.none { it.id == id }) { "Extension already exists; use Update ZIP" }
+            require(Regex("[A-Za-z0-9_-]+").matches(id)) { appContext?.getString(R.string.data_err_invalid_extension_id) ?: "Invalid extension ID" }
+            require(previous != null || extensions.none { it.id == id }) { appContext?.getString(R.string.data_err_extension_exists) ?: "Extension already exists; use Update ZIP" }
             manifest.put("id", id)
             File(root, "manifest.json").writeText(manifest.toString(2))
             val target = File(managedRoot(), folder)
-            require(previous != null || !target.exists()) { "Folder already exists" }
-            require(previous == null || !target.exists() || target.absolutePath == previous.dirPath) { "Folder belongs to another extension" }
+            require(previous != null || !target.exists()) { appContext?.getString(R.string.data_err_folder_exists) ?: "Folder already exists" }
+            require(previous == null || !target.exists() || target.absolutePath == previous.dirPath) { appContext?.getString(R.string.data_err_folder_belongs_to_other) ?: "Folder belongs to another extension" }
             val backup = File(stage, "previous")
             val enabled = previous?.isEnabled ?: true
             if (previous?.isEnabled == true) unloadIfLoaded(id)
             val existed = target.exists()
             try {
-                if (existed) require(target.renameTo(backup)) { "Cannot stage previous extension" }
+                if (existed) require(target.renameTo(backup)) { appContext?.getString(R.string.data_err_stage_previous_extension) ?: "Cannot stage previous extension" }
                 root.copyRecursively(target, overwrite = false)
                 if (enabled) hostRequest("/extension/load", JSONObject().put("dir", target.absolutePath))
                 val disabled = getDisabledExtensionIds(managedRoot()).toMutableSet()
@@ -397,7 +398,7 @@ class BrowserExtensionManager private constructor() {
             } catch (error: Exception) {
                 runCatching { hostRequest("/extension/unload", JSONObject().put("id", id)) }
                 if (!existed || backup.exists()) target.deleteRecursively()
-                if (backup.exists()) check(backup.renameTo(target)) { "Failed to restore previous extension" }
+                if (backup.exists()) check(backup.renameTo(target)) { appContext?.getString(R.string.data_err_restore_previous_extension) ?: "Failed to restore previous extension" }
                 if (previous?.isEnabled == true) hostRequest("/extension/load", JSONObject().put("dir", previous.dirPath))
                 throw error
             }
@@ -408,15 +409,15 @@ class BrowserExtensionManager private constructor() {
     suspend fun renameFolder(id: String, folderName: String): BrowserExtension = withContext(Dispatchers.IO) { extensionMutex.withLock {
         val name = checkedFolder(folderName)
         ensureHost()
-        val extension = extensions.firstOrNull { it.id == id } ?: error("Extension not found")
+        val extension = extensions.firstOrNull { it.id == id } ?: error(appContext?.getString(R.string.data_err_extension_not_found) ?: "Extension not found")
         val source = File(extension.dirPath)
         val target = File(managedRoot(), name)
         if (source.canonicalFile == target.canonicalFile) return@withLock extension
-        require(!target.exists()) { "Folder already exists" }
+        require(!target.exists()) { appContext?.getString(R.string.data_err_folder_exists) ?: "Folder already exists" }
         if (extension.isEnabled) unloadIfLoaded(id)
         val move = source.parentFile?.canonicalFile == managedRoot().canonicalFile
         try {
-            if (move) require(source.renameTo(target)) { "Cannot rename extension folder" } else source.copyRecursively(target)
+            if (move) require(source.renameTo(target)) { appContext?.getString(R.string.data_err_rename_extension_folder) ?: "Cannot rename extension folder" } else source.copyRecursively(target)
             val manifest = JSONObject(File(target, "manifest.json").readText()).put("id", id)
             File(target, "manifest.json").writeText(manifest.toString(2))
             if (extension.isEnabled) hostRequest("/extension/load", JSONObject().put("dir", target.absolutePath))

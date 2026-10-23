@@ -21,6 +21,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
+import androidx.compose.ui.res.stringResource
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -46,6 +47,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.gemini.domain.model.AgentKind
+import com.example.gemini.R
 import com.example.gemini.ui.components.accent
 
 private data class AgentOption(val agents: Set<AgentKind>, val title: String, val description: String)
@@ -132,10 +134,9 @@ fun AgentChoiceDialog(onConfirm: (Set<AgentKind>) -> Unit) {
                     AgentMark(AgentKind.CLAUDE, size = 48.dp, modifier = Modifier.offset(x = 28.dp, y = 8.dp))
                 }
                 Spacer(Modifier.height(14.dp))
-                Text("Choose your agent", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.agents_choose_your_agent), fontSize = 20.sp, fontWeight = FontWeight.Bold)
                 Spacer(Modifier.height(6.dp))
-                Text(
-                    "The app runs only the agents you pick. You can change this later in Settings → Agents.",
+                Text(stringResource(R.string.agents_the_app_runs_only_the_agents_you_pick_yo),
                     fontSize = 13.sp,
                     lineHeight = 18.sp,
                     textAlign = TextAlign.Center,
@@ -149,7 +150,7 @@ fun AgentChoiceDialog(onConfirm: (Set<AgentKind>) -> Unit) {
                     shape = RoundedCornerShape(14.dp),
                     contentPadding = PaddingValues(vertical = 12.dp),
                     modifier = Modifier.fillMaxWidth()
-                ) { Text("Continue", fontSize = 15.sp, fontWeight = FontWeight.SemiBold) }
+                ) { Text(stringResource(R.string.agents_continue), fontSize = 15.sp, fontWeight = FontWeight.SemiBold) }
             }
         }
     }
@@ -166,8 +167,7 @@ fun AgentsSettingsPage(
     var selected by remember(enabled) { mutableStateOf(enabled) }
     var confirm by remember { mutableStateOf(false) }
     Column(modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp)) {
-        Text(
-            "Agents you turn off do not run at all: the local server starts without them and their settings and chats are hidden (chats stay on disk).",
+        Text(stringResource(R.string.agents_agents_you_turn_off_do_not_run_at_all_th),
             fontSize = 12.5.sp,
             lineHeight = 17.sp,
             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f)
@@ -185,7 +185,7 @@ fun AgentsSettingsPage(
             if (isApplying) {
                 CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp, color = Color.White)
                 Spacer(Modifier.width(10.dp))
-                Text("Restarting…")
+                Text(stringResource(R.string.agents_restarting))
             } else {
                 Text(if (selected == enabled) "No changes" else "Apply and restart app", fontWeight = FontWeight.SemiBold)
             }
@@ -194,11 +194,10 @@ fun AgentsSettingsPage(
     if (confirm) {
         AlertDialog(
             onDismissRequest = { confirm = false },
-            title = { Text("Restart to apply?", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.agents_restart_to_apply), fontWeight = FontWeight.Bold) },
             text = {
                 Text(
-                    "The local server stops and the app restarts with the new agents, so nothing of a turned-off agent keeps running. " +
-                        "Replies in progress stop, and a chat of a turned-off agent is closed.",
+                    stringResource(R.string.agents_restart_apply_desc),
                     fontSize = 13.5.sp
                 )
             },
@@ -206,9 +205,9 @@ fun AgentsSettingsPage(
                 Button(onClick = {
                     confirm = false
                     onApply(selected)
-                }) { Text("Restart app") }
+                }) { Text(stringResource(R.string.agents_restart_app)) }
             },
-            dismissButton = { TextButton(onClick = { confirm = false }) { Text("Cancel") } }
+            dismissButton = { TextButton(onClick = { confirm = false }) { Text(stringResource(R.string.common_cancel)) } }
         )
     }
 }
@@ -222,8 +221,8 @@ fun AgentsApplyingDialog() {
                 CircularProgressIndicator(Modifier.size(22.dp), strokeWidth = 2.5.dp)
                 Spacer(Modifier.width(14.dp))
                 Column {
-                    Text("Applying agents", fontWeight = FontWeight.SemiBold, fontSize = 15.sp)
-                    Text("Stopping the local server, then restarting the app…", fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                    Text(stringResource(R.string.agents_applying_agents), fontWeight = FontWeight.SemiBold, fontSize = 15.sp)
+                    Text(stringResource(R.string.agents_stopping_the_local_server_then_restartin), fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                 }
             }
         }

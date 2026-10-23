@@ -1,0 +1,872 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  由 scripts/i18n 生成，请勿手工调整条目顺序。
+  译法基准见 docs/i18n/GLOSSARY.md
+-->
+<resources>
+
+    <!-- 原文: Open -->
+    <string name="common_open">打开</string>
+    <!-- 原文: Active Context Summary -->
+    <string name="component_active_context_summary">当前上下文摘要</string>
+    <!-- 原文: Active Model -->
+    <string name="component_active_model">当前模型</string>
+    <!-- 原文: 🧠 Active Prompt -->
+    <string name="component_active_prompt">🧠 当前提示词</string>
+    <!-- 原文: Active Summary -->
+    <string name="component_active_summary">当前摘要</string>
+    <!-- 原文: Active Worker Instances (%1$s): -->
+    <string name="component_active_worker_instances_activeinstances">活跃工作实例（%1$s）：</string>
+    <!-- 原文: %1$s stream -->
+    <string name="component_activestreams_stream">%1$s 个流</string>
+    <!-- 原文: Add attachments -->
+    <string name="component_add_attachments">添加附件</string>
+    <!-- 原文: Add to Chat -->
+    <string name="component_add_to_chat">添加到对话</string>
+    <!-- 原文: Aggregated usage telemetry for \"%1$s\": -->
+    <string name="component_aggregated_usage_telemetry_for_conversat_2">「%1$s」的累计用量遥测：</string>
+    <!-- 原文: AgyGrpc Hub: -->
+    <string name="component_agygrpc_hub">AgyGrpc 中枢：</string>
+    <!-- 原文: AI tool commands and manual commands will output here. -->
+    <string name="component_ai_tool_commands_and_manual_commands_wil">AI 工具命令和手动命令的输出会显示在这里。</string>
+    <!-- 原文: Answer in the panel above the message box. -->
+    <string name="component_answer_in_the_panel_above_the_message_bo">在消息框上方的面板中作答。</string>
+    <!-- 原文: Antigravity is stopped -->
+    <string name="component_antigravity_is_stopped">Antigravity 已停止</string>
+    <!-- 原文: App -->
+    <string name="component_app">应用</string>
+    <!-- 原文: Export error: %1$s -->
+    <string name="component_apptoast_export_error_e_message">导出出错：%1$s</string>
+    <!-- 原文: Failed to load conversation: %1$s -->
+    <string name="component_apptoast_failed_to_load_conversation_stepsres_exc">加载会话失败：%1$s</string>
+    <!-- 原文: Failed to save export to Downloads -->
+    <string name="component_apptoast_failed_to_save_export_to_downloads">保存导出文件到 Downloads 失败</string>
+    <!-- 原文: No messages to export -->
+    <string name="component_apptoast_no_messages_to_export">没有可导出的消息</string>
+    <!-- 原文: No messages to share -->
+    <string name="component_apptoast_no_messages_to_share">没有可共享的消息</string>
+    <!-- 原文: %1$s saved to Downloads/AntiGem/Exports -->
+    <string name="component_apptoast_savedfilename_saved_to_downloads_antigem">%1$s 已保存到 Downloads/AntiGem/Exports</string>
+    <!-- 原文: Are you sure you want to close \"%1$s\"?\nAny process running in this session will be terminated. -->
+    <string name="component_are_you_sure_you_want_to_close_sesstitle">确定要关闭「%1$s」吗？\n该会话中正在运行的进程都会被终止。</string>
+    <!-- 原文: Are you sure you want to permanently delete \"%1$s\"? This action cannot be undone. -->
+    <string name="component_are_you_sure_you_want_to_permanently_del">确定要永久删除「%1$s」吗？此操作无法撤销。</string>
+    <!-- 原文: Ask after +10 messages -->
+    <string name="component_ask_after_10_messages">超过 10 条消息后询问</string>
+    <!-- 原文: Ask after +20 messages -->
+    <string name="component_ask_after_20_messages">超过 20 条消息后询问</string>
+    <!-- 原文: Ask after +5 messages -->
+    <string name="component_ask_after_5_messages">超过 5 条消息后询问</string>
+    <!-- 原文: Attach a PDF, text, or binary file from your device -->
+    <string name="component_attach_file_desc">从设备附加 PDF、文本或二进制文件</string>
+    <!-- 原文: Attach an image for multimodal vision & analysis -->
+    <string name="component_attach_image_desc">附加图片以进行多模态视觉分析</string>
+    <!-- 原文: Attachment Preview -->
+    <string name="component_attachment_preview">附件预览</string>
+    <!-- 原文: Auto Transcribe -->
+    <string name="component_auto_transcribe">自动转写</string>
+    <!-- 原文: DIRECTORY -->
+    <string name="component_badge_directory">目录</string>
+    <!-- 原文: FILE -->
+    <string name="component_badge_file">文件</string>
+    <!-- 原文: Optional -->
+    <string name="component_badge_optional">可选</string>
+    <!-- 原文: Required -->
+    <string name="component_badge_required">必需</string>
+    <!-- 原文: %1$s  -->
+    <string name="component_block_number">%1$s</string>
+    <!-- 原文: Blocked Socket Reads: -->
+    <string name="component_blocked_socket_reads">被阻塞的套接字读取：</string>
+    <!-- 原文: Read/Write Access (Bridge Managed) -->
+    <string name="component_bridge_managed_access">读/写权限（由桥接管理）</string>
+    <!-- 原文: Bridge Status -->
+    <string name="component_bridge_status">桥接状态</string>
+    <!-- 原文: Browse Folders -->
+    <string name="component_browse_folders">浏览文件夹</string>
+    <!-- 原文: Browse or Open Other Folder... -->
+    <string name="component_browse_or_open_other_folder">浏览或打开其他文件夹……</string>
+    <!-- 原文: Cache Read Hits -->
+    <string name="component_cache_read_hits">缓存读取命中</string>
+    <!-- 原文: Cancel recording -->
+    <string name="component_cancel_recording">取消录音</string>
+    <!-- 原文: Chat: %1$s... | Uptime: %2$ss -->
+    <string name="component_chat_inst_conversationid_take_12_uptime">对话：%1$s... | 运行时长：%2$s 秒</string>
+    <!-- 原文: Chat System Prompt -->
+    <string name="component_chat_system_prompt">对话系统提示词</string>
+    <!-- 原文: Chat without attaching to a directory -->
+    <string name="component_chat_without_attaching_to_a_directory">不关联目录直接对话</string>
+    <!-- 原文: Checking account status... -->
+    <string name="component_checking_account_status">正在检查账号状态……</string>
+    <!-- 原文: %1$s items -->
+    <string name="component_child_items">%1$s 个项目</string>
+    <!-- 原文: Choose This Folder -->
+    <string name="component_choose_this_folder">选择此文件夹</string>
+    <!-- 原文: Open %1$s -->
+    <string name="component_chooser_open_att_name">打开 %1$s</string>
+    <!-- 原文: Open %1$s -->
+    <string name="component_chooser_open_attachment_name">打开 %1$s</string>
+    <!-- 原文: Open Exported Conversation -->
+    <string name="component_chooser_open_exported_conversation">打开已导出的会话</string>
+    <!-- 原文: Open File -->
+    <string name="component_chooser_open_file">打开文件</string>
+    <!-- 原文: Open Image -->
+    <string name="component_chooser_open_image">打开图片</string>
+    <!-- 原文: Share AntiGem Chat -->
+    <string name="component_chooser_share_antigem_chat">共享 AntiGem 会话</string>
+    <!-- 原文: Clear logs -->
+    <string name="component_clear_logs">清除日志</string>
+    <!-- 原文: Clear Tab History -->
+    <string name="component_clear_tab_history">清除标签页历史</string>
+    <!-- 原文: Close Player -->
+    <string name="component_close_player">关闭播放器</string>
+    <!-- 原文: Close Tab? -->
+    <string name="component_close_tab">关闭标签页？</string>
+    <!-- 原文: Code -->
+    <string name="component_code">代码</string>
+    <!-- 原文: Collapse code block -->
+    <string name="component_code_collapse">收起代码块</string>
+    <!-- 原文: Collapse code block ▲ -->
+    <string name="component_code_collapse_arrow">收起代码块 ▲</string>
+    <!-- 原文: Code: %1$s -->
+    <string name="component_code_error_errorcode">代码：%1$s</string>
+    <!-- 原文: Expand full height -->
+    <string name="component_code_expand">展开为完整高度</string>
+    <!-- 原文: Interactive Artifact -->
+    <string name="component_code_interactive_artifact">可交互产物</string>
+    <!-- 原文: %1$s lines -->
+    <string name="component_code_line_count">%1$s 行</string>
+    <!-- 原文: Preview: %1$s -->
+    <string name="component_code_preview">预览：%1$s</string>
+    <!-- 原文: Show all %1$s lines (%2$s more) ▼ -->
+    <string name="component_code_show_all">展开全部 %1$s 行（还有 %2$s 行）▼</string>
+    <!-- 原文: Collapse -->
+    <string name="component_collapse">收起</string>
+    <!-- 原文: Collapse Switcher -->
+    <string name="component_collapse_switcher">收起切换器</string>
+    <!-- 原文: $ %1$s -->
+    <string name="component_command_command">$ %1$s</string>
+    <!-- 原文: %1$sms -->
+    <string name="component_command_durationms_ms">%1$s 毫秒</string>
+    <!-- 原文: Configure your permissions to enable background execution, terminal tools, and local project storage. -->
+    <string name="component_configure_your_permissions_to_enable_bac">配置权限以启用后台执行、终端工具和本地项目存储。</string>
+    <!-- 原文: 🧠 Context Compacted (History Summarized) -->
+    <string name="component_context_compacted_history_summarized">🧠 上下文已压缩（历史已摘要）</string>
+    <!-- 原文: Context Memory -->
+    <string name="component_context_memory">上下文记忆</string>
+    <!-- 原文: Context Threshold Reached (%1$s msgs) -->
+    <string name="component_context_threshold_reached_messagecount_m">已达上下文阈值（%1$s 条消息）</string>
+    <!-- 原文: Conversation Stats -->
+    <string name="component_conversation_stats">对话统计</string>
+    <!-- 原文: Copied -->
+    <string name="component_copied">已复制</string>
+    <!-- 原文: Copy -->
+    <string name="component_copy">复制</string>
+    <!-- 原文: Copy code -->
+    <string name="component_copy_code">复制代码</string>
+    <!-- 原文: Copy Content -->
+    <string name="component_copy_content">复制内容</string>
+    <!-- 原文: Copy Error Details -->
+    <string name="component_copy_error_details">复制错误详情</string>
+    <!-- 原文: Copy JSON -->
+    <string name="component_copy_json">复制 JSON</string>
+    <!-- 原文: Copy message -->
+    <string name="component_copy_message">复制消息</string>
+    <!-- 原文: Copy Output -->
+    <string name="component_copy_output">复制输出</string>
+    <!-- 原文: Copy Path -->
+    <string name="component_copy_path">复制路径</string>
+    <!-- 原文: Copy Prompt -->
+    <string name="component_copy_prompt">复制提示词</string>
+    <!-- 原文: Create folder inside: %1$s -->
+    <string name="component_create_folder_inside_currentpath">在以下位置创建文件夹：%1$s</string>
+    <!-- 原文: Create & Open -->
+    <string name="component_create_open">创建并打开</string>
+    <!-- 原文: Create Project -->
+    <string name="component_create_project">创建项目</string>
+    <!-- 原文: ✍️ Custom Override -->
+    <string name="component_custom_override">✍️ 自定义覆盖</string>
+    <!-- 原文: Custom System Prompt -->
+    <string name="component_custom_system_prompt">自定义系统提示词</string>
+    <!-- 原文: Cut / Move -->
+    <string name="component_cut_move">剪切 / 移动</string>
+    <!-- 原文: %1$s messages · AntiGem Shared Trajectory -->
+    <string name="component_data_messages_size_messages_antigem_shar">%1$s 条消息 · AntiGem 共享执行轨迹</string>
+    <!-- 原文: Delete %1$s? -->
+    <string name="component_delete_if_item_isdir_folder_else_file">删除%1$s？</string>
+    <!-- 原文: Delete Summary -->
+    <string name="component_delete_summary">删除摘要</string>
+    <!-- 原文: %1$s lines -->
+    <string name="component_details_linecount_lines">%1$s 行</string>
+    <!-- 原文: Diagram -->
+    <string name="component_diagram">图表</string>
+    <!-- 原文: Directory -->
+    <string name="component_dir_label">目录</string>
+    <!-- 原文: Directory Not Accessible -->
+    <string name="component_directory_not_accessible">目录不可访问</string>
+    <!-- 原文: Document / File -->
+    <string name="component_document_file">文档 / 文件</string>
+    <!-- 原文: Don't Open -->
+    <string name="component_don_t_open">不要打开</string>
+    <!-- 原文: Download -->
+    <string name="component_download">下载</string>
+    <!-- 原文: Download Image -->
+    <string name="component_download_image">下载图片</string>
+    <!-- 原文: Download video -->
+    <string name="component_download_video">下载视频</string>
+    <!-- 原文: e.g. You are an expert Android Kotlin engineer. Write clean Compose code with 0 bugs... -->
+    <string name="component_e_g_you_are_an_expert_android_kotlin_eng">例如：你是一位资深 Android Kotlin 工程师。请编写干净、零 bug 的 Compose 代码……</string>
+    <!-- 原文: Edit Context Memory -->
+    <string name="component_edit_context_memory">编辑上下文记忆</string>
+    <!-- 原文: Edit in IDE -->
+    <string name="component_edit_in_ide">在 IDE 中编辑</string>
+    <!-- 原文: Edit prompt -->
+    <string name="component_edit_prompt">编辑提示词</string>
+    <!-- 原文: Edit Summary -->
+    <string name="component_edit_summary">编辑摘要</string>
+    <!-- 原文: END -->
+    <string name="component_end">END</string>
+    <!-- 原文: Endpoint: %1$s -->
+    <string name="component_endpoint_bridgeurl">端点：%1$s</string>
+    <!-- 原文: Error -->
+    <string name="component_error">错误</string>
+    <!-- 原文: Error ID: %1$s -->
+    <string name="component_error_id_error_errorid">错误 ID：%1$s</string>
+    <!-- 原文: %1$s err -->
+    <string name="component_errorcount_err">%1$s 个错误</string>
+    <!-- 原文: (est.) -->
+    <string name="component_est">（估算）</string>
+    <!-- 原文: exit %1$s -->
+    <string name="component_exit_command_exitcode">退出码 %1$s</string>
+    <!-- 原文: Exit Fullscreen -->
+    <string name="component_exit_fullscreen">退出全屏</string>
+    <!-- 原文: exit %1$s -->
+    <string name="component_exit_toolcall_exitcode">退出码 %1$s</string>
+    <!-- 原文: Expand -->
+    <string name="component_expand">展开</string>
+    <!-- 原文: Expand Switcher -->
+    <string name="component_expand_switcher">展开切换器</string>
+    <!-- 原文: Failed -->
+    <string name="component_failed">失败</string>
+    <!-- 原文: Failed: %1$s -->
+    <string name="component_failed_errormessage">失败：%1$s</string>
+    <!-- 原文: Failed to load video -->
+    <string name="component_failed_to_load_video">视频加载失败</string>
+    <!-- 原文: + File -->
+    <string name="component_file">+ 文件</string>
+    <!-- 原文: File Name (e.g. main.kt, script.py) -->
+    <string name="component_file_name_e_g_main_kt_script_py">文件名（例如 main.kt、script.py）</string>
+    <!-- 原文: File Name to Save -->
+    <string name="component_file_name_to_save">保存的文件名</string>
+    <!-- 原文: Archive File (.%1$s) -->
+    <string name="component_file_type_archive">压缩包（.%1$s）</string>
+    <!-- 原文: C/C++ Source (.%1$s) -->
+    <string name="component_file_type_c">C/C++ 源文件（.%1$s）</string>
+    <!-- 原文: Stylesheet (.%1$s) -->
+    <string name="component_file_type_css">样式表（.%1$s）</string>
+    <!-- 原文: Folder (Directory) -->
+    <string name="component_file_type_folder">文件夹（目录）</string>
+    <!-- 原文: Go Source File (.go) -->
+    <string name="component_file_type_go">Go 源文件（.go）</string>
+    <!-- 原文: HTML Document (.%1$s) -->
+    <string name="component_file_type_html">HTML 文档（.%1$s）</string>
+    <!-- 原文: Image Asset (.%1$s) -->
+    <string name="component_file_type_image">图片资源（.%1$s）</string>
+    <!-- 原文: Java Source File (.java) -->
+    <string name="component_file_type_java">Java 源文件（.java）</string>
+    <!-- 原文: JavaScript File (.js) -->
+    <string name="component_file_type_js">JavaScript 文件（.js）</string>
+    <!-- 原文: JSON Data (.json) -->
+    <string name="component_file_type_json">JSON 数据（.json）</string>
+    <!-- 原文: Kotlin Source File (.%1$s) -->
+    <string name="component_file_type_kt">Kotlin 源文件（.%1$s）</string>
+    <!-- 原文: Markdown Document (.%1$s) -->
+    <string name="component_file_type_md">Markdown 文档（.%1$s）</string>
+    <!-- 原文: %1$s File (.%2$s) -->
+    <string name="component_file_type_other">%1$s 文件（.%2$s）</string>
+    <!-- 原文: Python Script (.py) -->
+    <string name="component_file_type_py">Python 脚本（.py）</string>
+    <!-- 原文: React Component (.%1$s) -->
+    <string name="component_file_type_react">React 组件（.%1$s）</string>
+    <!-- 原文: Rust Source File (.rs) -->
+    <string name="component_file_type_rs">Rust 源文件（.rs）</string>
+    <!-- 原文: Shell Script (.%1$s) -->
+    <string name="component_file_type_shell">Shell 脚本（.%1$s）</string>
+    <!-- 原文: TOML Configuration (.toml) -->
+    <string name="component_file_type_toml">TOML 配置（.toml）</string>
+    <!-- 原文: TypeScript File (.ts) -->
+    <string name="component_file_type_ts">TypeScript 文件（.ts）</string>
+    <!-- 原文: Text Document (.%1$s) -->
+    <string name="component_file_type_txt">文本文档（.%1$s）</string>
+    <!-- 原文: XML Document (.xml) -->
+    <string name="component_file_type_xml">XML 文档（.xml）</string>
+    <!-- 原文: YAML Configuration (.%1$s) -->
+    <string name="component_file_type_yaml">YAML 配置（.%1$s）</string>
+    <!-- 原文: %1$s saved to Downloads/AntiGem -->
+    <string name="component_filename_saved_to_downloads_antigem">%1$s 已保存到 Downloads/AntiGem</string>
+    <!-- 原文: Filter by endpoint, route, or status... -->
+    <string name="component_filter_by_endpoint_route_or_status">按接口、路由或状态筛选……</string>
+    <!-- 原文: + Folder -->
+    <string name="component_folder">+ 文件夹</string>
+    <!-- 原文: Folder: %1$s -->
+    <string name="component_folder_currentpath_ifblank_2">文件夹：%1$s</string>
+    <!-- 原文: Folder is empty -->
+    <string name="component_folder_is_empty">文件夹为空</string>
+    <!-- 原文: Folder Name -->
+    <string name="component_folder_name">文件夹名称</string>
+    <!-- 原文: folder-name -->
+    <string name="component_folder_name_2">文件夹名称</string>
+    <!-- 原文: %1$s / %2$s -->
+    <string name="component_formataudioms_currentpositionms_formatau">%1$s / %2$s</string>
+    <!-- 原文: ⚡ %1$s (%2$s%) -->
+    <string name="component_formatcompacttokens_usage_cachedtokens_c">⚡ %1$s（%2$s%%）</string>
+    <!-- 原文: 📤 %1$s -->
+    <string name="component_formatcompacttokens_usage_outputtokens">📤 %1$s</string>
+    <!-- 原文: 📥 %1$s -->
+    <string name="component_formatcompacttokens_usage_prompttokens">📥 %1$s</string>
+    <!-- 原文: ⏱️ %1$s -->
+    <string name="component_formatduration_toolcall_durationms">⏱️ %1$s</string>
+    <!-- 原文: ⏱️ %1$s -->
+    <string name="component_formatduration_usage_durationms">⏱️ %1$s</string>
+    <!-- 原文: Formatted JSON payload transmitted to Google CloudCode API: -->
+    <string name="component_formatted_json_payload_transmitted_to_go">发送到 Google CloudCode API 的格式化 JSON 载荷：</string>
+    <!-- 原文: %1$s / %2$s -->
+    <string name="component_formatvideotime_positionms_formatvideoti">%1$s / %2$s</string>
+    <!-- 原文: Full Path: -->
+    <string name="component_full_path">完整路径：</string>
+    <!-- 原文: Full view -->
+    <string name="component_full_view">完整视图</string>
+    <!-- 原文: Fullscreen -->
+    <string name="component_fullscreen">全屏</string>
+    <!-- 原文: General (No Workspace) -->
+    <string name="component_general_no_workspace">通用（无工作区）</string>
+    <!-- 原文: Go to Home (~) -->
+    <string name="component_go_to_home">前往主目录（~）</string>
+    <!-- 原文: Grant Access -->
+    <string name="component_grant_access">授予访问权限</string>
+    <!-- 原文: Hide HUD -->
+    <string name="component_hide_hud">隐藏悬浮信息</string>
+    <!-- 原文: HOME -->
+    <string name="component_home">HOME</string>
+    <!-- 原文: IDE Bridge: -->
+    <string name="component_ide_bridge">IDE 桥接：</string>
+    <!-- 原文: %1$s: %2$s -->
+    <string name="component_if_filemanagerstateholder_clipboardiscut_2">%1$s：%2$s</string>
+    <!-- 原文: Image Preview -->
+    <string name="component_image_preview">图片预览</string>
+    <!-- 原文: Image saved to Downloads/AntiGem -->
+    <string name="component_image_saved_to_downloads_antigem">图片已保存到 Downloads/AntiGem</string>
+    <!-- 原文: %1$s -->
+    <string name="component_index">%1$s</string>
+    <!-- 原文: Input Tokens -->
+    <string name="component_input_tokens">输入 Token</string>
+    <!-- 原文: Kill Process -->
+    <string name="component_kill_process">结束进程</string>
+    <!-- 原文: Last Modified -->
+    <string name="component_last_modified">最后修改</string>
+    <!-- 原文: •  %1$s lines -->
+    <string name="component_linecount_lines">•  %1$s 行</string>
+    <!-- 原文: Lines -->
+    <string name="component_lines">行</string>
+    <!-- 原文: Live Dictation -->
+    <string name="component_live_dictation">实时听写</string>
+    <!-- 原文: Loading image... -->
+    <string name="component_loading_image">正在加载图片……</string>
+    <!-- 原文: Local Server Logs -->
+    <string name="component_local_server_logs">本地服务日志</string>
+    <!-- 原文: Location -->
+    <string name="component_location">位置</string>
+    <!-- 原文: %1$s -->
+    <string name="component_logs_size">%1$s</string>
+    <!-- 原文: %1$s calls recorded · %2$s active stream -->
+    <string name="component_logs_size_calls_recorded_activestreams_a_2">已记录 %1$s 次调用 · %2$s 个活跃流</string>
+    <!-- 原文: Long-press to force Bash shell -->
+    <string name="component_long_press_to_force_bash_shell">长按强制使用 Bash shell</string>
+    <!-- 原文: Hide Error Details & Stack Trace -->
+    <string name="component_md_hide_error_details">收起错误详情与堆栈</string>
+    <!-- 原文: View Error Details & Stack Trace -->
+    <string name="component_md_view_error_details">查看错误详情与堆栈</string>
+    <!-- 原文: MERMAID DIAGRAM -->
+    <string name="component_mermaid_diagram">MERMAID 图表</string>
+    <!-- 原文: Mermaid Diagram -->
+    <string name="component_mermaid_diagram_2">Mermaid 图表</string>
+    <!-- 原文: Microphone & Voice -->
+    <string name="component_microphone_voice">麦克风与语音</string>
+    <!-- 原文: Model Responses -->
+    <string name="component_model_responses">模型回复</string>
+    <!-- 原文: Modified -->
+    <string name="component_modified">已修改</string>
+    <!-- 原文: Modify or add custom notes to this executive summary. The AI will use this as its permanent context. -->
+    <string name="component_modify_or_add_custom_notes_to_this_execu">修改或添加这份执行摘要的自定义备注。AI 会把它作为永久上下文使用。</string>
+    <!-- 原文: Multi-select -->
+    <string name="component_multi_select">多选</string>
+    <!-- 原文: Duration -->
+    <string name="component_net_duration">耗时</string>
+    <!-- 原文: Error Message -->
+    <string name="component_net_error_message">错误信息</string>
+    <!-- 原文: Full URL -->
+    <string name="component_net_full_url">完整 URL</string>
+    <!-- 原文: gRPC Status -->
+    <string name="component_net_grpc_status">gRPC 状态</string>
+    <!-- 原文: Method -->
+    <string name="component_net_method">方法</string>
+    <!-- 原文: Service Target -->
+    <string name="component_net_service_target">服务目标</string>
+    <!-- 原文: Headers -->
+    <string name="component_net_tab_headers">请求头</string>
+    <!-- 原文: Overview -->
+    <string name="component_net_tab_overview">概览</string>
+    <!-- 原文: Timestamp -->
+    <string name="component_net_timestamp">时间</string>
+    <!-- 原文: Connected / Streaming -->
+    <string name="component_network_connected_streaming">已连接 / 流式传输中</string>
+    <!-- 原文: HTTP Status -->
+    <string name="component_network_http_status">HTTP 状态</string>
+    <!-- 原文: Network Inspector -->
+    <string name="component_network_inspector">网络检查器</string>
+    <!-- 原文: Live Stream -->
+    <string name="component_network_live_stream">实时流</string>
+    <!-- 原文: No network calls captured yet -->
+    <string name="component_network_no_calls">尚未捕获任何网络请求</string>
+    <!-- 原文: No matching calls found -->
+    <string name="component_network_no_match">没有匹配的请求</string>
+    <!-- 原文: Pending -->
+    <string name="component_network_pending">等待中</string>
+    <!-- 原文: Never for this session -->
+    <string name="component_never_for_this_session">本次会话内不再询问</string>
+    <!-- 原文: New Session -->
+    <string name="component_new_session">新建会话</string>
+    <!-- 原文: No -->
+    <string name="component_no">否</string>
+    <!-- 原文: No active warm processes in RAM. -->
+    <string name="component_no_active_warm_processes_in_ram">内存中没有活跃的热进程。</string>
+    <!-- 原文: No bridge process running.\nTap 'Restart' above to run agy_ide_bridge -->
+    <string name="component_no_bridge_process_running_ntap_restart_a">没有正在运行的桥接进程。\n点击上方的「重启」来运行 agy_ide_bridge</string>
+    <!-- 原文: No internet connection detected. You can still type your prompt below. -->
+    <string name="component_no_internet_connection_detected_you_can">未检测到网络连接。你仍然可以在下方输入提示词。</string>
+    <!-- 原文: No messages found in this trajectory -->
+    <string name="component_no_messages_found_in_this_trajectory">这条执行轨迹中没有找到消息</string>
+    <!-- 原文: No request headers recorded. -->
+    <string name="component_no_request_headers_recorded">没有记录请求头。</string>
+    <!-- 原文: No response headers recorded. -->
+    <string name="component_no_response_headers_recorded">没有记录响应头。</string>
+    <!-- 原文: No subfolders found\n(You can select this folder) -->
+    <string name="component_no_subfolders_found_n_you_can_select_thi">没有找到子文件夹\n（你可以选择当前文件夹）</string>
+    <!-- 原文: Not Now -->
+    <string name="component_not_now">暂不</string>
+    <!-- 原文: Notifications & Service -->
+    <string name="component_notifications_service">通知与服务</string>
+    <!-- 原文: Open as Project in IDE -->
+    <string name="component_open_as_project_in_ide">在 IDE 中作为项目打开</string>
+    <!-- 原文: Open Fullscreen -->
+    <string name="component_open_fullscreen">打开全屏</string>
+    <!-- 原文: Open in Editor -->
+    <string name="component_open_in_editor">在编辑器中打开</string>
+    <!-- 原文: Open in YouTube -->
+    <string name="component_open_in_youtube">在 YouTube 中打开</string>
+    <!-- 原文: Open this folder as Project -->
+    <string name="component_open_this_folder_as_project">把此文件夹作为项目打开</string>
+    <!-- 原文: Opening Shared Chat -->
+    <string name="component_opening_shared_chat">正在打开共享对话</string>
+    <!-- 原文: Other (write your answer) -->
+    <string name="component_other_write_your_answer">其他（自行输入）</string>
+    <!-- 原文: Output Tokens -->
+    <string name="component_output_tokens">输出 Token</string>
+    <!-- 原文: Parent Directory -->
+    <string name="component_parent_directory">上级目录</string>
+    <!-- 原文: Paste Here -->
+    <string name="component_paste_here">粘贴到此处</string>
+    <!-- 原文: Pending Approval -->
+    <string name="component_pending_approval">待批准</string>
+    <!-- 原文: Enables voice-to-text dictation and voice commands directly in chat. -->
+    <string name="component_perm_microphone_desc">在对话中直接使用语音转文字与语音指令。</string>
+    <!-- 原文: Required for persistent background terminal service, live status alerts, updates, and rootfs package installer progress. -->
+    <string name="component_perm_notifications_desc">后台终端服务常驻、实时状态提醒、更新与 rootfs 安装进度提示所必需。</string>
+    <!-- 原文: Allows AntiGem to access /sdcard to import local bootstrap packages, inspect files, and manage external code workspaces. -->
+    <string name="component_perm_storage_desc">允许 AntiGem 访问 /sdcard，以导入本地引导包、查看文件并管理外部代码工作区。</string>
+    <!-- 原文: Permission active -->
+    <string name="component_permission_active">权限已启用</string>
+    <!-- 原文: Permissions -->
+    <string name="component_permissions">权限</string>
+    <!-- 原文: %1$s%2$s%3$s (Read: %4$s, Write: %5$s, Exec: %6$s) -->
+    <string name="component_permissions_line">%1$s%2$s%3$s（读取：%4$s，写入：%5$s，执行：%6$s）</string>
+    <!-- 原文: PGDN -->
+    <string name="component_pgdn">PGDN</string>
+    <!-- 原文: PGUP -->
+    <string name="component_pgup">PGUP</string>
+    <!-- 原文: Photo / Image -->
+    <string name="component_photo_image">照片 / 图片</string>
+    <!-- 原文: %1$s%2$s -->
+    <string name="component_phrase_dots">%1$s%2$s</string>
+    <!-- 原文: Play -->
+    <string name="component_play">播放</string>
+    <!-- 原文: Play Video -->
+    <string name="component_play_video">播放视频</string>
+    <!-- 原文: 👉 Please enable Notifications above to proceed -->
+    <string name="component_please_enable_notifications_above_to_pro">👉 请先在上方开启通知以继续</string>
+    <!-- 原文: Please sign in to send messages, manage chat history, and interact with your workspace. -->
+    <string name="component_please_sign_in_to_send_messages_manage_c">请先登录，才能发送消息、管理对话记录并与工作区交互。</string>
+    <!-- 原文: %1$s / %2$s -->
+    <string name="component_posformatted_durformatted">%1$s / %2$s</string>
+    <!-- 原文: Preferences Submitted -->
+    <string name="component_preferences_submitted">偏好设置已提交</string>
+    <!-- 原文: Preview -->
+    <string name="component_preview">预览</string>
+    <!-- 原文: + Project -->
+    <string name="component_project">+ 项目</string>
+    <!-- 原文: Project Name -->
+    <string name="component_project_name">项目名称</string>
+    <!-- 原文: Project Template: -->
+    <string name="component_project_template">项目模板：</string>
+    <!-- 原文: %1$s available workspace -->
+    <string name="component_projects_size_available_workspace_if_pro_2">%1$s 个可用工作区</string>
+    <!-- 原文: • %1$s -->
+    <string name="component_q_prompt">• %1$s</string>
+    <!-- 原文: Questionnaire -->
+    <string name="component_questionnaire">问卷</string>
+    <!-- 原文: +%1$s more -->
+    <string name="component_questionnaire_questions_size_3_more">还有 %1$s 个</string>
+    <!-- 原文: %1$s of %2$s -->
+    <string name="component_questionnumber_of_totalquestions">第 %1$s / %2$s 题</string>
+    <!-- 原文: ⏳ Queued: \"%1$s\"%2$s (will send immediately after summary) -->
+    <string name="component_queued_pendingqueuedmessage_take_80_if_p_2">⏳ 排队中：「%1$s」（摘要完成后会立即发送）</string>
+    <!-- 原文: Raw Request Payload -->
+    <string name="component_raw_request_payload">原始请求载荷</string>
+    <!-- 原文: READ-ONLY -->
+    <string name="component_read_only">只读</string>
+    <!-- 原文: Reading trajectory steps and conversation messages... -->
+    <string name="component_reading_trajectory_steps_and_conversatio">正在读取执行轨迹和对话消息……</string>
+    <!-- 原文: Regenerate -->
+    <string name="component_regenerate">重新生成</string>
+    <!-- 原文: Regenerate response? -->
+    <string name="component_regenerate_response">重新生成回复？</string>
+    <!-- 原文: Regenerate response -->
+    <string name="component_regenerate_response_2">重新生成回复</string>
+    <!-- 原文: Rejected -->
+    <string name="component_rejected">已拒绝</string>
+    <!-- 原文: Reload preview -->
+    <string name="component_reload_preview">重新加载预览</string>
+    <!-- 原文: Rename %1$s -->
+    <string name="component_rename_if_item_isdir_folder_else_file">重命名%1$s</string>
+    <!-- 原文: Reply to %1$s... -->
+    <string name="component_reply_to_selectedmodel_displayname_split_2">回复 %1$s...</string>
+    <!-- 原文: Request Headers (%1$s) -->
+    <string name="component_request_headers_entry_requestheaders_siz">请求头（%1$s）</string>
+    <!-- 原文: Reset -->
+    <string name="component_reset">重置</string>
+    <!-- 原文: Reset Zoom -->
+    <string name="component_reset_zoom">重置缩放</string>
+    <!-- 原文: Response Headers (%1$s) -->
+    <string name="component_response_headers_entry_responseheaders_s">响应头（%1$s）</string>
+    <!-- 原文: Restart Server -->
+    <string name="component_restart_server">重启服务</string>
+    <!-- 原文: Restoring active terminal sessions... -->
+    <string name="component_restoring_active_terminal_sessions">正在恢复活动终端会话……</string>
+    <!-- 原文: Retry prompt -->
+    <string name="component_retry_prompt">重试提示词</string>
+    <!-- 原文: Run -->
+    <string name="component_run">运行</string>
+    <!-- 原文: Run bash command in Termux... -->
+    <string name="component_run_bash_command_in_termux">在 Termux 中运行 bash 命令……</string>
+    <!-- 原文: Run=%1$s | Q=%2$s | Pool=%3$s (%4$s idle) -->
+    <string name="component_run_snapshot_agyrunning_q_snapshot_agyqu">运行=%1$s | 排队=%2$s | 连接池=%3$s（%4$s 空闲）</string>
+    <!-- 原文: Run=%1$s | Q=%2$s | Pool=%3$s (%4$s idle) -->
+    <string name="component_run_snapshot_iderunning_q_snapshot_idequ">运行=%1$s | 排队=%2$s | 连接池=%3$s（%4$s 空闲）</string>
+    <!-- 原文: Running -->
+    <string name="component_running">运行中</string>
+    <!-- 原文: Save Prompt -->
+    <string name="component_save_prompt">保存提示词</string>
+    <!-- 原文: Save Summary -->
+    <string name="component_save_summary">保存摘要</string>
+    <!-- 原文: Save to this Folder -->
+    <string name="component_save_to_this_folder">保存到此文件夹</string>
+    <!-- 原文: %1$s saved to Downloads/AntiGem/Exports -->
+    <string name="component_saved_to_exports">%1$s 已保存到 Downloads/AntiGem/Exports</string>
+    <!-- 原文: %1$s saved to Downloads/AntiGem/Exports -->
+    <string name="component_savedfilename_saved_to_downloads_antigem">%1$s 已保存到 Downloads/AntiGem/Exports</string>
+    <!-- 原文: Select model for summarization: -->
+    <string name="component_select_model_for_summarization">选择用于摘要的模型：</string>
+    <!-- 原文: Select speech recognition method -->
+    <string name="component_select_speech_recognition_method">选择语音识别方式</string>
+    <!-- 原文: Select text -->
+    <string name="component_select_text">选中文字</string>
+    <!-- 原文: Select Workspace -->
+    <string name="component_select_workspace">选择工作区</string>
+    <!-- 原文: Send -->
+    <string name="component_send">发送</string>
+    <!-- 原文: Send voice note -->
+    <string name="component_send_voice_note">发送语音消息</string>
+    <!-- 原文: Session ready. -->
+    <string name="component_session_ready">会话就绪。</string>
+    <!-- 原文: Shared Conversation -->
+    <string name="component_shared_conversation">共享对话</string>
+    <!-- 原文: Sign in to Antigravity -->
+    <string name="component_sign_in_to_antigravity">登录 Antigravity</string>
+    <!-- 原文: Size -->
+    <string name="component_size">大小</string>
+    <!-- 原文: %1$s bytes -->
+    <string name="component_size_bytes">%1$s 字节</string>
+    <!-- 原文: %1$s (%2$s bytes) -->
+    <string name="component_size_with_raw">%1$s（%2$s 字节）</string>
+    <!-- 原文: 0 B (0 bytes) -->
+    <string name="component_size_zero">0 B（0 字节）</string>
+    <!-- 原文: 🧵 %1$s -->
+    <string name="component_snapshot_activejvmthreads">🧵 %1$s</string>
+    <!-- 原文: 🔌%1$sc -->
+    <string name="component_snapshot_agyconns_snapshot_ideconns_c">🔌%1$s 连接</string>
+    <!-- 原文: ⏳%1$sq -->
+    <string name="component_snapshot_agyqueued_snapshot_idequeued_q">⏳%1$s 排队</string>
+    <!-- 原文: ⚡%1$sr -->
+    <string name="component_snapshot_agyrunning_snapshot_iderunning">⚡%1$s 运行</string>
+    <!-- 原文: Speech to Text -->
+    <string name="component_speech_to_text">语音转文字</string>
+    <!-- 原文: Start Summarize -->
+    <string name="component_start_summarize">开始摘要</string>
+    <!-- 原文: Status: %1$s -->
+    <string name="component_status_labeltext">状态：%1$s</string>
+    <!-- 原文: Stop & Attach -->
+    <string name="component_stop_attach">停止并附加</string>
+    <!-- 原文: Stop & Close -->
+    <string name="component_stop_close">停止并关闭</string>
+    <!-- 原文: Stop command -->
+    <string name="component_stop_command">停止命令</string>
+    <!-- 原文: stopped -->
+    <string name="component_stopped">已停止</string>
+    <!-- 原文: Storage & /sdcard -->
+    <string name="component_storage_sdcard">存储与 /sdcard</string>
+    <!-- 原文: Record a voice clip and convert it into text using AGY transcription -->
+    <string name="component_stt_auto_desc">录制语音片段并用 AGY 转写为文字</string>
+    <!-- 原文: Stream words in real-time as you speak directly into the chat prompt -->
+    <string name="component_stt_live_desc">说话时实时转写并直接写入对话输入框</string>
+    <!-- 原文: Summarize -->
+    <string name="component_summarize">摘要</string>
+    <!-- 原文: Summarize Conversation -->
+    <string name="component_summarize_conversation">摘要此对话</string>
+    <!-- 原文: Summarizing context with %1$s... -->
+    <string name="component_summarizing_context_with_modelname">正在用 %1$s 摘要上下文...</string>
+    <!-- 原文: Summarizing older conversation turns keeps replies fast and saves tokens while keeping the last %1$s messages verbatim. -->
+    <string name="component_summarizing_older_conversation_turns_kee">摘要较早的对话轮次可以让回复保持快速并节省 Token，同时完整保留最近 %1$s 条消息。</string>
+    <!-- 原文: Switch Model -->
+    <string name="component_switch_model">切换模型</string>
+    <!-- 原文: Switch Tab -->
+    <string name="component_switch_tab">切换标签页</string>
+    <!-- 原文: Tap image to enlarge • Double-tap zoom -->
+    <string name="component_tap_image_to_enlarge_double_tap_zoom">点击图片放大 • 双击缩放</string>
+    <!-- 原文: Terminated -->
+    <string name="component_terminated">已终止</string>
+    <!-- 原文: Termux SSH Terminal -->
+    <string name="component_termux_ssh_terminal">Termux SSH 终端</string>
+    <!-- 原文: The background AI engine is starting up. Your chats and workspace will be ready in a moment. -->
+    <string name="component_the_background_ai_engine_is_starting_up">后台 AI 引擎正在启动。你的对话和工作区马上就好。</string>
+    <!-- 原文: The local AI engine is currently stopped. Tap the status dot in the top header to start, restart, or stop the server and inspect live logs. -->
+    <string name="component_the_local_ai_engine_is_currently_stopped">本地 AI 引擎当前已停止。点击顶部标题栏的状态圆点即可启动、重启或停止服务，并查看实时日志。</string>
+    <!-- 原文: The same message is sent again and this reply is replaced by a new one. -->
+    <string name="component_the_same_message_is_sent_again_and_this">同一条消息会再次发送，这条回复将被新回复替换。</string>
+    <!-- 原文: Thinking... -->
+    <string name="component_thinking">思考中……</string>
+    <!-- 原文: ⏱️ Thought for %1$s -->
+    <string name="component_thought_for_formatduration_durationms">⏱️ 思考了 %1$s</string>
+    <!-- 原文: Thread Groups: %1$s -->
+    <string name="component_thread_groups_snapshot_threadgroupsummar">线程分组：%1$s</string>
+    <!-- 原文: %1$s is no longer available -->
+    <string name="component_toast_attachment_name_is_no_longer_available">%1$s 已不可用</string>
+    <!-- 原文: Cannot open: %1$s -->
+    <string name="component_toast_cannot_open_e_message">无法打开：%1$s</string>
+    <!-- 原文: Code copied to clipboard -->
+    <string name="component_toast_code_copied_to_clipboard">代码已复制到剪贴板</string>
+    <!-- 原文: Copied %1$s to clipboard -->
+    <string name="component_toast_copied_label_to_clipboard">已将%1$s复制到剪贴板</string>
+    <!-- 原文: Copied prompt -->
+    <string name="component_toast_copied_prompt">已复制提示词</string>
+    <!-- 原文: Copied response -->
+    <string name="component_toast_copied_response">已复制回复</string>
+    <!-- 原文: Could not start audio recording -->
+    <string name="component_toast_could_not_start_audio_recording">无法开始录音</string>
+    <!-- 原文: Created Bash session -->
+    <string name="component_toast_created_bash_session">已创建 Bash 会话</string>
+    <!-- 原文: Diagram code copied -->
+    <string name="component_toast_diagram_code_copied">图表代码已复制</string>
+    <!-- 原文: Dictation: %1$s -->
+    <string name="component_toast_dictation_err">听写：%1$s</string>
+    <!-- 原文: Error details copied to clipboard -->
+    <string name="component_toast_error_details_copied_to_clipboard">错误详情已复制到剪贴板</string>
+    <!-- 原文: Failed to download %1$s -->
+    <string name="component_toast_failed_to_download_filename">下载 %1$s 失败</string>
+    <!-- 原文: Failed to save image -->
+    <string name="component_toast_failed_to_save_image">保存图片失败</string>
+    <!-- 原文: Failed to save video -->
+    <string name="component_toast_failed_to_save_video">保存视频失败</string>
+    <!-- 原文: %1$s saved to Downloads/AntiGem -->
+    <string name="component_toast_filename_saved_to_downloads_antigem">已保存 %1$s 到 Downloads/AntiGem</string>
+    <!-- 原文: Formatted JSON copied to clipboard! -->
+    <string name="component_toast_formatted_json_copied_to_clipboard">已复制格式化 JSON 到剪贴板。</string>
+    <!-- 原文: Markdown content copied -->
+    <string name="component_toast_markdown_content_copied">Markdown 内容已复制</string>
+    <!-- 原文: Microphone permission required for speech recognition -->
+    <string name="component_toast_microphone_permission_required_for_speec">语音识别需要麦克风权限</string>
+    <!-- 原文: No app found to open file -->
+    <string name="component_toast_no_app_found_to_open_file">没有可打开文件的应用</string>
+    <!-- 原文: No app found to open image -->
+    <string name="component_toast_no_app_found_to_open_image">没有可打开图片的应用</string>
+    <!-- 原文: No artifact file to download -->
+    <string name="component_toast_no_artifact_file_to_download">没有可下载的产物文件</string>
+    <!-- 原文: No image to download -->
+    <string name="component_toast_no_image_to_download">没有可下载的图片</string>
+    <!-- 原文: No speech recognized -->
+    <string name="component_toast_no_speech_recognized">未识别到语音</string>
+    <!-- 原文: No video to download -->
+    <string name="component_toast_no_video_to_download">没有可下载的视频</string>
+    <!-- 原文: Output copied -->
+    <string name="component_toast_output_copied">已复制输出</string>
+    <!-- 原文: Path copied to clipboard -->
+    <string name="component_toast_path_copied_to_clipboard">路径已复制到剪贴板</string>
+    <!-- 原文: Please sign in first to send messages. -->
+    <string name="component_toast_please_sign_in_first_to_send_messages">请先登录再发送消息。</string>
+    <!-- 原文: Speech service unavailable -->
+    <string name="component_toast_speech_service_unavailable">语音服务不可用</string>
+    <!-- 原文: System prompt copied to clipboard -->
+    <string name="component_toast_system_prompt_copied_to_clipboard">系统提示词已复制到剪贴板</string>
+    <!-- 原文: Transcribe: %1$s -->
+    <string name="component_toast_transcribe_err">转写：%1$s</string>
+    <!-- 原文: Video saved to Downloads/AntiGem -->
+    <string name="component_toast_video_saved_to_downloads_antigem">视频已保存到 Downloads/AntiGem</string>
+    <!-- 原文: Toggle Wrap -->
+    <string name="component_toggle_wrap">切换自动换行</string>
+    <!-- 原文: Approve Command: -->
+    <string name="component_tool_approve_command">批准命令：</string>
+    <!-- 原文: Approve MCP: -->
+    <string name="component_tool_approve_mcp">批准 MCP：</string>
+    <!-- 原文: Directory: %1$s -->
+    <string name="component_tool_cmd_directory">目录：%1$s</string>
+    <!-- 原文: File: %1$s -->
+    <string name="component_tool_cmd_file">文件：%1$s</string>
+    <!-- 原文: Find: %1$s -->
+    <string name="component_tool_cmd_find">查找：%1$s</string>
+    <!-- 原文: Grep: %1$s -->
+    <string name="component_tool_cmd_grep">Grep：%1$s</string>
+    <!-- 原文: CAS Expr: %1$s -->
+    <string name="component_tool_cmd_math">表达式：%1$s</string>
+    <!-- 原文: Notification: %1$s -->
+    <string name="component_tool_cmd_notification">通知：%1$s</string>
+    <!-- 原文: Prompt: %1$s -->
+    <string name="component_tool_cmd_prompt">提示词：%1$s</string>
+    <!-- 原文: Search Query: "%1$s" -->
+    <string name="component_tool_cmd_search">搜索词：「%1$s」</string>
+    <!-- 原文: URL: %1$s -->
+    <string name="component_tool_cmd_url">URL：%1$s</string>
+    <!-- 原文: Edited file -->
+    <string name="component_tool_edited_file">已修改文件</string>
+    <!-- 原文: Editing file... -->
+    <string name="component_tool_editing_file">正在修改文件……</string>
+    <!-- 原文: Applying file modifications... -->
+    <string name="component_tool_empty_applying_edits">正在应用文件修改……</string>
+    <!-- 原文: (Directory contents scanned) -->
+    <string name="component_tool_empty_dir_scanned">（目录内容已扫描）</string>
+    <!-- 原文: (File modification completed) -->
+    <string name="component_tool_empty_edit_done">（文件修改已完成）</string>
+    <!-- 原文: (File inspected by model) -->
+    <string name="component_tool_empty_file_inspected">（模型已查看文件）</string>
+    <!-- 原文: (Image generation completed) -->
+    <string name="component_tool_empty_image_done">（图片生成已完成）</string>
+    <!-- 原文: (MCP tool executed - no output) -->
+    <string name="component_tool_empty_mcp_done">（MCP 工具已执行，无输出）</string>
+    <!-- 原文: (No output returned) -->
+    <string name="component_tool_empty_no_output">（无输出返回）</string>
+    <!-- 原文: Processing... -->
+    <string name="component_tool_empty_processing">正在处理……</string>
+    <!-- 原文: Reading file contents... -->
+    <string name="component_tool_empty_reading_file">正在读取文件内容……</string>
+    <!-- 原文: Running in Termux... -->
+    <string name="component_tool_empty_running_termux">正在 Termux 中运行……</string>
+    <!-- 原文: Scanning directory... -->
+    <string name="component_tool_empty_scanning_directory">正在扫描目录……</string>
+    <!-- 原文: (Search completed - no output) -->
+    <string name="component_tool_empty_search_no_output">（搜索已完成，无输出）</string>
+    <!-- 原文: Searching... -->
+    <string name="component_tool_empty_searching">正在搜索……</string>
+    <!-- 原文: (Waiting for approval) -->
+    <string name="component_tool_empty_waiting_approval">（等待批准）</string>
+    <!-- 原文: Evaluating math... -->
+    <string name="component_tool_evaluating_math">正在计算表达式……</string>
+    <!-- 原文: Executing MCP tool... -->
+    <string name="component_tool_executing_mcp">正在调用 MCP 工具……</string>
+    <!-- 原文: Executing in Termux... -->
+    <string name="component_tool_executing_termux">正在 Termux 中执行……</string>
+    <!-- 原文: Failed: -->
+    <string name="component_tool_failed">失败：</string>
+    <!-- 原文: Fetching page... -->
+    <string name="component_tool_fetching_page">正在抓取网页……</string>
+    <!-- 原文: Generated image -->
+    <string name="component_tool_generated_image">已生成图片</string>
+    <!-- 原文: Generating image... -->
+    <string name="component_tool_generating_image">正在生成图片……</string>
+    <!-- 原文: Listed directory -->
+    <string name="component_tool_listed_directory">列出目录</string>
+    <!-- 原文: Listing directory... -->
+    <string name="component_tool_listing_directory">正在列出目录……</string>
+    <!-- 原文: Math evaluated -->
+    <string name="component_tool_math_evaluated">已计算表达式</string>
+    <!-- 原文: MCP tool -->
+    <string name="component_tool_mcp_tool">MCP 工具</string>
+    <!-- 原文: Ran bash -->
+    <string name="component_tool_ran_bash">执行了命令</string>
+    <!-- 原文: Read file -->
+    <string name="component_tool_read_file">读取文件</string>
+    <!-- 原文: Read page -->
+    <string name="component_tool_read_page">读取网页</string>
+    <!-- 原文: Reading file... -->
+    <string name="component_tool_reading_file">正在读取文件……</string>
+    <!-- 原文: Rejected: -->
+    <string name="component_tool_rejected">已拒绝：</string>
+    <!-- 原文: Searched code -->
+    <string name="component_tool_searched_code">搜索代码</string>
+    <!-- 原文: Searching code... -->
+    <string name="component_tool_searching_code">正在搜索代码……</string>
+    <!-- 原文: Searching web... -->
+    <string name="component_tool_searching_web">正在搜索网页……</string>
+    <!-- 原文: Stopped: -->
+    <string name="component_tool_stopped">已停止：</string>
+    <!-- 原文: System: -->
+    <string name="component_tool_system">系统：</string>
+    <!-- 原文: System event... -->
+    <string name="component_tool_system_event">系统事件……</string>
+    <!-- 原文: Tool: -->
+    <string name="component_tool_tool">工具：</string>
+    <!-- 原文: Web search -->
+    <string name="component_tool_web_search">网页搜索</string>
+    <!-- 原文: Tools Executed -->
+    <string name="component_tools_executed">已执行工具</string>
+    <!-- 原文: Total Consumption -->
+    <string name="component_total_consumption">总消耗</string>
+    <!-- 原文: • %1$s -->
+    <string name="component_trace">• %1$s</string>
+    <!-- 原文: Transcribe -->
+    <string name="component_transcribe">转写</string>
+    <!-- 原文: Transcribing audio via AGY Hub... -->
+    <string name="component_transcribing_audio_via_agy_hub">正在通过 AGY 中枢转写音频……</string>
+    <!-- 原文: Type -->
+    <string name="component_type">类型</string>
+    <!-- 原文: Type your custom answer here... -->
+    <string name="component_type_your_custom_answer_here">在此输入你的自定义回答……</string>
+    <!-- 原文: Undo and edit prompt -->
+    <string name="component_undo_and_edit_prompt">撤销并编辑提示词</string>
+    <!-- 原文: Uploading attachment... -->
+    <string name="component_uploading_attachment">正在上传附件……</string>
+    <!-- 原文: User Turns -->
+    <string name="component_user_turns">用户轮次</string>
+    <!-- 原文: Verifying your sign-in with Antigravity. You can start typing your message below anytime! -->
+    <string name="component_verifying_your_sign_in_with_antigravity">正在验证你的 Antigravity 登录状态。你随时可以在下方开始输入消息！</string>
+    <!-- 原文: View Artifacts (%1$s) -->
+    <string name="component_view_artifacts_artifactscount">查看产物（%1$s）</string>
+    <!-- 原文: View Raw Request Payload -->
+    <string name="component_view_raw_request_payload">查看原始请求载荷</string>
+    <!-- 原文: Waking up Antigravity... -->
+    <string name="component_waking_up_antigravity">正在唤醒 Antigravity……</string>
+    <!-- 原文: Welcome to AntiGem -->
+    <string name="component_welcome_to_antigem">欢迎使用 AntiGem</string>
+    <!-- 原文: Yes -->
+    <string name="component_yes">是</string>
+    <!-- 原文: You seem to be offline -->
+    <string name="component_you_seem_to_be_offline">你似乎处于离线状态</string>
+    <!-- 原文: Your chats will appear as soon as the engine connects. -->
+    <string name="component_your_chats_will_appear_as_soon_as_the_en">引擎连接后，你的对话就会显示在这里。</string>
+</resources>

@@ -47,6 +47,8 @@ import com.example.gemini.data.remote.dto.AskQuestionResponseItemDto
 import com.example.gemini.domain.model.ToolCall
 import com.example.gemini.domain.model.ToolType
 import com.example.gemini.theme.*
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 private val IMAGE_FILE_REGEX = Regex(".*\\.(png|jpe?g|webp|gif)(\\?.*)?$", RegexOption.IGNORE_CASE)
 
@@ -128,36 +130,36 @@ fun AgentToolCallCard(
     val isFailed = toolCall.status == "FAILED" || (toolCall.exitCode != null && toolCall.exitCode != 0 && !isTerminated && !isRejected)
 
     val actionPrefix = when {
-        isPendingApproval && isMcp -> "Approve MCP:"
-        isPendingApproval -> "Approve Command:"
-        isRunning && isSearch -> "Searching web..."
-        isRunning && isReader -> "Fetching page..."
-        isRunning && isMath -> "Evaluating math..."
-        isRunning && isViewFile -> "Reading file..."
-        isRunning && isEditFile -> "Editing file..."
-        isRunning && isListDir -> "Listing directory..."
-        isRunning && (isFind || isGrep) -> "Searching code..."
-        isRunning && isGenImg -> "Generating image..."
-        isRunning && isMcp -> "Executing MCP tool..."
-        isRunning && isSystemNotice -> "System event..."
-        isRunning -> "Executing in Termux..."
+        isPendingApproval && isMcp -> stringResource(R.string.component_tool_approve_mcp)
+        isPendingApproval -> stringResource(R.string.component_tool_approve_command)
+        isRunning && isSearch -> stringResource(R.string.component_tool_searching_web)
+        isRunning && isReader -> stringResource(R.string.component_tool_fetching_page)
+        isRunning && isMath -> stringResource(R.string.component_tool_evaluating_math)
+        isRunning && isViewFile -> stringResource(R.string.component_tool_reading_file)
+        isRunning && isEditFile -> stringResource(R.string.component_tool_editing_file)
+        isRunning && isListDir -> stringResource(R.string.component_tool_listing_directory)
+        isRunning && (isFind || isGrep) -> stringResource(R.string.component_tool_searching_code)
+        isRunning && isGenImg -> stringResource(R.string.component_tool_generating_image)
+        isRunning && isMcp -> stringResource(R.string.component_tool_executing_mcp)
+        isRunning && isSystemNotice -> stringResource(R.string.component_tool_system_event)
+        isRunning -> stringResource(R.string.component_tool_executing_termux)
 
-        isSuccess && isSystemNotice -> "System:"
-        isSuccess && isSearch -> "Web search"
-        isSuccess && isReader -> "Read page"
-        isSuccess && isMath -> "Math evaluated"
-        isSuccess && isViewFile -> "Read file"
-        isSuccess && isEditFile -> "Edited file"
-        isSuccess && isListDir -> "Listed directory"
-        isSuccess && (isFind || isGrep) -> "Searched code"
-        isSuccess && isGenImg -> "Generated image"
-        isSuccess && isMcp -> "MCP tool"
-        isSuccess -> "Ran bash"
+        isSuccess && isSystemNotice -> stringResource(R.string.component_tool_system)
+        isSuccess && isSearch -> stringResource(R.string.component_tool_web_search)
+        isSuccess && isReader -> stringResource(R.string.component_tool_read_page)
+        isSuccess && isMath -> stringResource(R.string.component_tool_math_evaluated)
+        isSuccess && isViewFile -> stringResource(R.string.component_tool_read_file)
+        isSuccess && isEditFile -> stringResource(R.string.component_tool_edited_file)
+        isSuccess && isListDir -> stringResource(R.string.component_tool_listed_directory)
+        isSuccess && (isFind || isGrep) -> stringResource(R.string.component_tool_searched_code)
+        isSuccess && isGenImg -> stringResource(R.string.component_tool_generated_image)
+        isSuccess && isMcp -> stringResource(R.string.component_tool_mcp_tool)
+        isSuccess -> stringResource(R.string.component_tool_ran_bash)
 
-        isTerminated -> "Stopped:"
-        isRejected -> "Rejected:"
-        isFailed -> "Failed:"
-        else -> "Tool:"
+        isTerminated -> stringResource(R.string.component_tool_stopped)
+        isRejected -> stringResource(R.string.component_tool_rejected)
+        isFailed -> stringResource(R.string.component_tool_failed)
+        else -> stringResource(R.string.component_tool_tool)
     }
 
     val actionColor = when {
@@ -192,7 +194,7 @@ fun AgentToolCallCard(
             // Frontend Expand Chevron (-> / rotating arrow)
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                contentDescription = if (isExpanded) "Collapse" else "Expand",
+                contentDescription = if (isExpanded) stringResource(R.string.component_collapse) else stringResource(R.string.component_expand),
                 tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
                 modifier = Modifier
                     .size(16.dp)
@@ -220,14 +222,14 @@ fun AgentToolCallCard(
             if (isPendingApproval) {
                 Icon(
                     imageVector = Icons.Default.HourglassEmpty,
-                    contentDescription = "Pending Approval",
+                    contentDescription = stringResource(R.string.component_pending_approval),
                     tint = Color(0xFFF59E0B),
                     modifier = Modifier.size(14.dp)
                 )
             } else if (isRunning) {
                 Icon(
                     imageVector = toolIcon,
-                    contentDescription = "Running",
+                    contentDescription = stringResource(R.string.component_running),
                     tint = ClaudeTerracotta,
                     modifier = Modifier.size(14.dp)
                 )
@@ -241,21 +243,21 @@ fun AgentToolCallCard(
             } else if (isTerminated) {
                 Icon(
                     imageVector = Icons.Default.Cancel,
-                    contentDescription = "Terminated",
+                    contentDescription = stringResource(R.string.component_terminated),
                     tint = Color(0xFFEF4444),
                     modifier = Modifier.size(14.dp)
                 )
             } else if (isRejected) {
                 Icon(
                     imageVector = Icons.Default.Close,
-                    contentDescription = "Rejected",
+                    contentDescription = stringResource(R.string.component_rejected),
                     tint = Color.Gray,
                     modifier = Modifier.size(14.dp)
                 )
             } else if (isFailed) {
                 Icon(
                     imageVector = Icons.Default.Warning,
-                    contentDescription = "Failed",
+                    contentDescription = stringResource(R.string.component_failed),
                     tint = Color.Red,
                     modifier = Modifier.size(14.dp)
                 )
@@ -300,7 +302,7 @@ fun AgentToolCallCard(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Stop,
-                        contentDescription = "Stop command",
+                        contentDescription = stringResource(R.string.component_stop_command),
                         tint = Color(0xFFEF4444),
                         modifier = Modifier.size(12.dp)
                     )
@@ -328,7 +330,7 @@ fun AgentToolCallCard(
                         .padding(horizontal = 4.dp, vertical = 1.dp)
                 ) {
                     Text(
-                        text = "stopped",
+                        text = stringResource(R.string.component_stopped),
                         fontSize = 9.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Red
@@ -342,7 +344,7 @@ fun AgentToolCallCard(
                         .padding(horizontal = 4.dp, vertical = 1.dp)
                 ) {
                     Text(
-                        text = "exit ${toolCall.exitCode}",
+                        text = stringResource(R.string.component_exit_toolcall_exitcode, toolCall.exitCode),
                         fontSize = 9.sp,
                         fontWeight = FontWeight.Bold,
                         color = if (isSuccess) QuotaGreen else Color.Red
@@ -409,7 +411,7 @@ fun AgentToolCallCard(
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Text(
-                                        text = "Loading image...",
+                                        text = stringResource(R.string.component_loading_image),
                                         fontSize = 12.sp,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
@@ -437,7 +439,7 @@ fun AgentToolCallCard(
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Text(
-                                text = "Tap image to enlarge • Double-tap zoom",
+                                text = stringResource(R.string.component_tap_image_to_enlarge_double_tap_zoom),
                                 fontSize = 11.sp,
                                 color = Color.Gray,
                                 modifier = Modifier.weight(1f)
@@ -449,7 +451,7 @@ fun AgentToolCallCard(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Fullscreen,
-                                    contentDescription = "Full view",
+                                    contentDescription = stringResource(R.string.component_full_view),
                                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                     modifier = Modifier.size(16.dp)
                                 )
@@ -471,7 +473,7 @@ fun AgentToolCallCard(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Download,
-                                    contentDescription = "Download Image",
+                                    contentDescription = stringResource(R.string.component_download_image),
                                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                     modifier = Modifier.size(16.dp)
                                 )
@@ -506,16 +508,16 @@ fun AgentToolCallCard(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         val commandPrefix = when {
-                            isSystemNotice -> "Notification: ${toolCall.command}"
-                            isSearch -> "Search Query: \"${toolCall.command}\""
-                            isReader -> "URL: ${toolCall.command}"
-                            isMath -> "CAS Expr: ${toolCall.command}"
-                            isViewFile -> "File: ${toolCall.command}"
-                            isEditFile -> "File: ${toolCall.command}"
-                            isListDir -> "Directory: ${toolCall.command}"
-                            isGrep -> "Grep: ${toolCall.command}"
-                            isFind -> "Find: ${toolCall.command}"
-                            isGenImg -> "Prompt: ${toolCall.command}"
+                            isSystemNotice -> stringResource(R.string.component_tool_cmd_notification, toolCall.command)
+                            isSearch -> stringResource(R.string.component_tool_cmd_search, toolCall.command)
+                            isReader -> stringResource(R.string.component_tool_cmd_url, toolCall.command)
+                            isMath -> stringResource(R.string.component_tool_cmd_math, toolCall.command)
+                            isViewFile -> stringResource(R.string.component_tool_cmd_file, toolCall.command)
+                            isEditFile -> stringResource(R.string.component_tool_cmd_file, toolCall.command)
+                            isListDir -> stringResource(R.string.component_tool_cmd_directory, toolCall.command)
+                            isGrep -> stringResource(R.string.component_tool_cmd_grep, toolCall.command)
+                            isFind -> stringResource(R.string.component_tool_cmd_find, toolCall.command)
+                            isGenImg -> stringResource(R.string.component_tool_cmd_prompt, toolCall.command)
                             isMcp -> "MCP: ${toolCall.command}"
                             else -> if (isBash) "$ ${toolCall.command}" else toolCall.command
                         }
@@ -530,7 +532,7 @@ fun AgentToolCallCard(
 
                         if (toolCall.durationMs != null && toolCall.durationMs > 0) {
                             Text(
-                                text = "⏱️ ${formatDuration(toolCall.durationMs)}",
+                                text = stringResource(R.string.component_formatduration_toolcall_durationms, formatDuration(toolCall.durationMs)),
                                 fontSize = 11.sp,
                                 fontFamily = FontFamily.Monospace,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
@@ -543,13 +545,13 @@ fun AgentToolCallCard(
                                 val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                                 val clip = ClipData.newPlainText("Tool Output", toolCall.output)
                                 clipboard.setPrimaryClip(clip)
-                                Toast.makeText(context, "Output copied", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, context.getString(R.string.component_toast_output_copied), Toast.LENGTH_SHORT).show()
                             },
                             modifier = Modifier.size(24.dp)
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.ContentCopy,
-                                contentDescription = "Copy Output",
+                                contentDescription = stringResource(R.string.component_copy_output),
                                 tint = Color.Gray,
                                 modifier = Modifier.size(13.dp)
                             )
@@ -560,22 +562,22 @@ fun AgentToolCallCard(
 
                     if (toolCall.output.isEmpty()) {
                         val emptyMessage = when {
-                            isRunning && isViewFile -> "Reading file contents..."
-                            isRunning && isEditFile -> "Applying file modifications..."
-                            isRunning && isListDir -> "Scanning directory..."
-                            isRunning && (isFind || isGrep) -> "Searching..."
-                            isRunning && isGenImg -> "Generating image..."
-                            isRunning && isMcp -> "Executing MCP tool..."
-                            isRunning && isBash -> "Running in Termux..."
-                            isRunning -> "Processing..."
-                            isPendingApproval -> "(Waiting for approval)"
-                            isViewFile -> "(File inspected by model)"
-                            isEditFile -> "(File modification completed)"
-                            isListDir -> "(Directory contents scanned)"
-                            isFind || isGrep -> "(Search completed - no output)"
-                            isGenImg -> "(Image generation completed)"
-                            isMcp -> "(MCP tool executed - no output)"
-                            else -> "(No output returned)"
+                            isRunning && isViewFile -> stringResource(R.string.component_tool_empty_reading_file)
+                            isRunning && isEditFile -> stringResource(R.string.component_tool_empty_applying_edits)
+                            isRunning && isListDir -> stringResource(R.string.component_tool_empty_scanning_directory)
+                            isRunning && (isFind || isGrep) -> stringResource(R.string.component_tool_empty_searching)
+                            isRunning && isGenImg -> stringResource(R.string.component_tool_generating_image)
+                            isRunning && isMcp -> stringResource(R.string.component_tool_executing_mcp)
+                            isRunning && isBash -> stringResource(R.string.component_tool_empty_running_termux)
+                            isRunning -> stringResource(R.string.component_tool_empty_processing)
+                            isPendingApproval -> stringResource(R.string.component_tool_empty_waiting_approval)
+                            isViewFile -> stringResource(R.string.component_tool_empty_file_inspected)
+                            isEditFile -> stringResource(R.string.component_tool_empty_edit_done)
+                            isListDir -> stringResource(R.string.component_tool_empty_dir_scanned)
+                            isFind || isGrep -> stringResource(R.string.component_tool_empty_search_no_output)
+                            isGenImg -> stringResource(R.string.component_tool_empty_image_done)
+                            isMcp -> stringResource(R.string.component_tool_empty_mcp_done)
+                            else -> stringResource(R.string.component_tool_empty_no_output)
                         }
                         Text(
                             text = emptyMessage,

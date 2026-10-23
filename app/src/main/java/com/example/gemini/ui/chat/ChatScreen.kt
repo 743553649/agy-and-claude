@@ -1,6 +1,7 @@
 package com.example.gemini.ui.chat
 
 import com.example.gemini.ui.components.ChatToast
+import com.example.gemini.R
 import com.example.gemini.ui.components.ChatToastType
 import com.example.gemini.ui.components.AppToastHelper
 import android.content.Intent
@@ -35,6 +36,7 @@ import androidx.compose.material.icons.automirrored.outlined.OpenInNew
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import com.example.gemini.data.preferences.AuthPreferences
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -65,6 +67,7 @@ import com.example.gemini.data.daemon.FileNode
 import com.example.gemini.data.daemon.IdeApiClient
 import com.example.gemini.data.daemon.ProjectItem
 import com.example.gemini.data.daemon.TermuxDaemonManager
+import com.example.gemini.domain.i18n.AppLocaleController
 import com.example.gemini.domain.model.AiModel
 import com.example.gemini.domain.model.ChatMessage
 import com.example.gemini.domain.model.MessageRole
@@ -355,11 +358,11 @@ fun ChatScreen(
     val serverRestarting = serverStatus is com.example.gemini.data.local.LocalServerStatus.Starting ||
         serverStatus is com.example.gemini.data.local.LocalServerStatus.Stopping
     val restartLocalServer = {
-        com.example.gemini.ui.components.AppToastHelper.showToast("Restarting the local server…", com.example.gemini.ui.components.ChatToastType.INFO)
+        com.example.gemini.ui.components.AppToastHelper.showToast(context.getString(R.string.chat_apptoast_restarting_the_local_server), com.example.gemini.ui.components.ChatToastType.INFO)
         com.example.gemini.data.local.LocalServerManager.restartServer(context)
     }
     val recheckClaude = {
-        com.example.gemini.ui.components.AppToastHelper.showToast("Checking Claude Code…", com.example.gemini.ui.components.ChatToastType.INFO)
+        com.example.gemini.ui.components.AppToastHelper.showToast(context.getString(R.string.chat_apptoast_checking_claude_code), com.example.gemini.ui.components.ChatToastType.INFO)
         viewModel.claudeAccount.refreshStatus()
     }
     val agyEntry = if (com.example.gemini.domain.model.AgentKind.AGY in enabledAgents) {
@@ -372,7 +375,7 @@ fun ChatScreen(
             onSignIn = { viewModel.loginToAgyHub(force = true) },
             onCheckAuth = { viewModel.checkAgyAuthStatus(userInitiated = true) },
             onRetry = {
-                com.example.gemini.ui.components.AppToastHelper.showToast("Reconnecting to Antigravity…", com.example.gemini.ui.components.ChatToastType.INFO)
+                com.example.gemini.ui.components.AppToastHelper.showToast(context.getString(R.string.chat_apptoast_reconnecting_to_antigravity), com.example.gemini.ui.components.ChatToastType.INFO)
                 viewModel.retryConnections()
             },
             onRestartServer = restartLocalServer
@@ -762,9 +765,9 @@ fun ChatScreen(
         claudeModelList.find { it.id == selectedModelId } ?: AiModel(
             id = selectedModelId.ifBlank { "default" },
             displayName = when {
-                claudeModelsRefreshing -> "Loading models…"
-                claudeModelsError != null -> "Models unavailable"
-                else -> "Choose model"
+                claudeModelsRefreshing -> stringResource(R.string.chat_models_loading)
+                claudeModelsError != null -> stringResource(R.string.chat_models_unavailable)
+                else -> stringResource(R.string.chat_choose_model)
             },
             family = com.example.gemini.domain.model.ModelFamily.CLAUDE
         )
@@ -886,7 +889,7 @@ fun ChatScreen(
                         scope.launch { drawerState.close() }
                     }
                 } else {
-                    android.widget.Toast.makeText(context, "This conversation doesn't exist", android.widget.Toast.LENGTH_SHORT).show()
+                    android.widget.Toast.makeText(context, context.getString(R.string.chat_toast_this_conversation_doesn_t_exist), android.widget.Toast.LENGTH_SHORT).show()
                 }
             }
         )
@@ -1017,7 +1020,7 @@ fun ChatScreen(
                 onDismissRequest = { viewModel.clearPendingLoginUrl() },
                 title = {
                     Text(
-                        text = "Sign In with Browser",
+                        text = stringResource(R.string.chat_sign_in_with_browser),
                         fontWeight = FontWeight.Bold,
                         fontSize = 17.sp
                     )
@@ -1025,13 +1028,13 @@ fun ChatScreen(
                 text = {
                     Column {
                         Text(
-                            text = "Antigravity requires Google authentication to access Gemini models.",
+                            text = stringResource(R.string.chat_antigravity_requires_google_authenticati),
                             fontSize = 13.5.sp,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Spacer(modifier = Modifier.height(10.dp))
                         Text(
-                            text = "Do you want to open your browser to log in now?",
+                            text = stringResource(R.string.chat_do_you_want_to_open_your_browser_to_log),
                             fontSize = 13.5.sp,
                             fontWeight = FontWeight.Medium,
                             color = MaterialTheme.colorScheme.onSurface
@@ -1053,12 +1056,12 @@ fun ChatScreen(
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta)
                     ) {
-                        Text("Open Browser", fontWeight = FontWeight.SemiBold)
+                        Text(stringResource(R.string.chat_open_browser), fontWeight = FontWeight.SemiBold)
                     }
                 },
                 dismissButton = {
                     TextButton(onClick = { viewModel.clearPendingLoginUrl() }) {
-                        Text("Cancel")
+                        Text(stringResource(R.string.common_cancel))
                     }
                 }
             )
@@ -1091,15 +1094,18 @@ fun ChatScreen(
                             Spacer(modifier = Modifier.height(2.dp))
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 val isChatStarted = messages.isNotEmpty()
-                                val displayedProjectName = remember(currentConv?.workspaceUri, isChatStarted) {
+                                // 只 remember URI 解析结果：标签文案放到组合作用域取，
+                                // 否则 remember 的键里没有语言，切语言后标签不会刷新（坑 1 变体）。
+                                val projectNameFromUri = remember(currentConv?.workspaceUri) {
                                     val convUri = currentConv?.workspaceUri
                                     if (!convUri.isNullOrBlank()) {
                                         val clean = convUri.removePrefix("file://").trimEnd('/')
-                                        File(clean).name.ifBlank { "Workspace" }
-                                    } else {
-                                        if (isChatStarted) "Outside" else "Select Project"
-                                    }
+                                        File(clean).name
+                                    } else null
                                 }
+                                val displayedProjectName = projectNameFromUri?.let { name ->
+                                    if (name.isBlank()) stringResource(R.string.chat_workspace_fallback) else name
+                                } ?: if (isChatStarted) stringResource(R.string.chat_project_outside) else stringResource(R.string.chat_select_project)
 
                                 Surface(
                                     shape = RoundedCornerShape(4.dp),
@@ -1143,7 +1149,7 @@ fun ChatScreen(
                             IconButton(onClick = navigateBackConversation) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                    contentDescription = "Back",
+                                    contentDescription = stringResource(R.string.common_back),
                                     tint = MaterialTheme.colorScheme.onSurface
                                 )
                             }
@@ -1151,7 +1157,7 @@ fun ChatScreen(
                             IconButton(onClick = { scope.launch { drawerState.open() } }) {
                                 Icon(
                                     imageVector = Icons.Default.Menu,
-                                    contentDescription = "Open Drawer",
+                                    contentDescription = stringResource(R.string.chat_open_drawer),
                                     tint = MaterialTheme.colorScheme.onSurface
                                 )
                             }
@@ -1162,14 +1168,14 @@ fun ChatScreen(
                             IconButton(onClick = onMinimizeWindow) {
                                 Icon(
                                     imageVector = Icons.Default.Remove,
-                                    contentDescription = "Minimize to Bubble",
+                                    contentDescription = stringResource(R.string.chat_minimize_to_bubble),
                                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f)
                                 )
                             }
                             IconButton(onClick = onOpenFullScreen) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Outlined.OpenInNew,
-                                    contentDescription = "Open Full Screen",
+                                    contentDescription = stringResource(R.string.chat_open_full_screen),
                                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f)
                                 )
                             }
@@ -1184,7 +1190,7 @@ fun ChatScreen(
                         IconButton(onClick = onNavigateToBrowser) {
                             Icon(
                                 imageVector = Icons.Outlined.Language,
-                                contentDescription = "Web Browser Preview",
+                                contentDescription = stringResource(R.string.chat_web_browser_preview),
                                 tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f)
                             )
                         }
@@ -1200,14 +1206,14 @@ fun ChatScreen(
                         }) {
                             Icon(
                                 imageVector = Icons.Outlined.Terminal,
-                                contentDescription = "Terminal",
+                                contentDescription = stringResource(R.string.common_terminal),
                                 tint = if (useSshTerminal || (isLocalToolsInstalled && isLocalToolsEnabled)) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f)
                             )
                         }
                         IconButton(onClick = onNavigateToIde) {
                             Icon(
                                 imageVector = Icons.Default.Code,
-                                contentDescription = "Code Editor IDE",
+                                contentDescription = stringResource(R.string.chat_code_editor_ide),
                                 tint = MaterialTheme.colorScheme.primary
                             )
                         }
@@ -1215,7 +1221,7 @@ fun ChatScreen(
                             IconButton(onClick = { showChatTelemetryDialog = true }) {
                                 Icon(
                                     imageVector = Icons.Outlined.Analytics,
-                                    contentDescription = "Chat Telemetry & Tokens",
+                                    contentDescription = stringResource(R.string.common_chat_telemetry_tokens),
                                     tint = ClaudeTerracotta
                                 )
                             }
@@ -1293,7 +1299,7 @@ fun ChatScreen(
                             )
                             Spacer(modifier = Modifier.height(12.dp))
                             Text(
-                                text = "Unable to Load Chat",
+                                text = stringResource(R.string.chat_unable_to_load_chat),
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -1326,7 +1332,7 @@ fun ChatScreen(
                                     modifier = Modifier.size(16.dp)
                                 )
                                 Spacer(modifier = Modifier.width(6.dp))
-                                Text("Retry", fontSize = 13.5.sp)
+                                Text(stringResource(R.string.common_retry), fontSize = 13.5.sp)
                             }
                         }
                     } else if (isExistingChat) {
@@ -1385,7 +1391,7 @@ fun ChatScreen(
                                     }
                                     else -> {
                                         Text(
-                                            text = "How can I help you today?",
+                                            text = stringResource(R.string.chat_how_can_i_help_you_today),
                                             fontSize = 22.sp,
                                             fontWeight = FontWeight.SemiBold,
                                             color = MaterialTheme.colorScheme.onSurface,
@@ -1393,7 +1399,7 @@ fun ChatScreen(
                                         )
                                         Spacer(modifier = Modifier.height(8.dp))
                                         Text(
-                                            text = "Ask a question, brainstorm ideas, or start coding",
+                                            text = stringResource(R.string.chat_ask_a_question_brainstorm_ideas_or_start),
                                             fontSize = 14.sp,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.55f),
                                             textAlign = TextAlign.Center
@@ -1631,7 +1637,7 @@ fun ChatScreen(
                             ) {
                                 Icon(
                                     imageVector = if (showUpArrow) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
-                                    contentDescription = if (showUpArrow) "Jump to Top" else "Jump to Bottom",
+                                    contentDescription = if (showUpArrow) stringResource(R.string.chat_jump_to_top) else stringResource(R.string.chat_jump_to_bottom),
                                     tint = ClaudeTerracotta,
                                     modifier = Modifier.size(22.dp)
                                 )
@@ -1861,7 +1867,7 @@ fun ChatScreen(
                                 }
                                 Spacer(modifier = Modifier.width(8.dp))
                                 Text(
-                                    text = if (isReconnecting) "Connecting to Antigravity..." else "Antigravity Disconnected",
+                                    text = if (isReconnecting) stringResource(R.string.chat_connecting_antigravity) else stringResource(R.string.chat_antigravity_disconnected),
                                     style = MaterialTheme.typography.bodySmall,
                                     fontWeight = FontWeight.Medium,
                                     color = if (isReconnecting) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onErrorContainer,
@@ -1882,7 +1888,7 @@ fun ChatScreen(
                                     )
                                     Spacer(modifier = Modifier.width(4.dp))
                                     Text(
-                                        text = "Reconnect",
+                                        text = stringResource(R.string.common_reconnect),
                                         style = MaterialTheme.typography.labelSmall,
                                         fontWeight = FontWeight.Bold,
                                         color = MaterialTheme.colorScheme.error
@@ -1896,9 +1902,10 @@ fun ChatScreen(
                 // Agent prompts docked above the input (both agents): permission requests, then questions
                 val approvalItems = remember(pendingApprovals, claudePending, isClaudeChat) {
                     if (isClaudeChat) {
-                        com.example.gemini.ui.claude.claudeApprovalItems(claudePending, claudeBackend)
+                        com.example.gemini.ui.claude.claudeApprovalItems(context, claudePending, claudeBackend)
                     } else {
                         com.example.gemini.ui.agents.agyApprovalItems(
+                            context,
                             pendingApprovals,
                             onApprove = { toolCall, msgId, scope -> viewModel.approveAndExecuteTerminalTool(toolCall, msgId, scope) },
                             onReject = { toolCall, msgId, reason -> viewModel.rejectTerminalTool(toolCall, msgId, reason) }
@@ -1975,9 +1982,9 @@ fun ChatScreen(
                     isOnline = if (isClaudeChat) !claudeState.isBlocking else systemConnectionState.canSend,
                     isAuth = if (isClaudeChat) claudeState != com.example.gemini.data.agent.claude.ClaudeStatus.SIGNED_OUT && claudeState != com.example.gemini.data.agent.claude.ClaudeStatus.SIGNING_IN else systemConnectionState.isAuth,
                     offlineMessage = if (isClaudeChat) when (claudeState) {
-                        com.example.gemini.data.agent.claude.ClaudeStatus.NOT_INSTALLED -> "Claude Code is not installed. Set it up in Settings."
-                        com.example.gemini.data.agent.claude.ClaudeStatus.BRIDGE_OUTDATED -> "Restart the local server to use Claude Code."
-                        else -> "The local server is offline. Start it to send messages."
+                        com.example.gemini.data.agent.claude.ClaudeStatus.NOT_INSTALLED -> stringResource(R.string.chat_claude_not_installed_hint)
+                        com.example.gemini.data.agent.claude.ClaudeStatus.BRIDGE_OUTDATED -> stringResource(R.string.chat_claude_restart_server_hint)
+                        else -> stringResource(R.string.chat_claude_server_offline_hint)
                     } else "Server is offline. Start the server to send messages.",
                     selectedModel = currentModel,
                     quota = currentQuota,
@@ -2010,7 +2017,7 @@ fun ChatScreen(
                         if (unreadable.isNotEmpty()) {
                             // Claude models cannot read audio or video: say so instead of sending a file it would reject
                             com.example.gemini.ui.components.AppToastHelper.showToast(
-                                "Claude can't read audio or video files. Remove them, or tap the mic to dictate instead.",
+                                context.getString(R.string.chat_apptoast_claude_can_t_read_audio_or_video_files_r),
                                 com.example.gemini.ui.components.ChatToastType.ERROR
                             )
                             return@ChatInputBar
@@ -2095,6 +2102,7 @@ fun ChatScreen(
             isDevModeEnabled = isDevModeEnabled,
             chatFontScale = chatFontScale,
             themeMode = themeMode,
+            appLanguage = AppLocaleController.currentLanguageTag(),
             agyHubUrl = agyHubUrl,
             agyBridgeHttpUrl = agyBridgeHttpUrl,
             isServerOnline = isServerOnline == true,
@@ -2137,6 +2145,7 @@ fun ChatScreen(
             onSetSummaryModelId = { viewModel.setSummaryModelId(it) },
             onSetChatFontScale = { viewModel.setChatFontScale(it) },
             onSetThemeMode = { viewModel.setThemeMode(it) },
+            onSetAppLanguage = { tag -> AppLocaleController.setLanguage(context, tag) },
             onSaveServerUrls = { hub, bridge -> viewModel.saveServerUrls(hub, bridge) },
             onSaveTerminalPreferences = { size, cursor, buf, thm -> viewModel.saveTerminalPreferences(size, cursor, buf, thm) },
             onToggleDevMode = { viewModel.setDevModeEnabled(it) },
@@ -2291,7 +2300,7 @@ fun ChatScreen(
             containerColor = MaterialTheme.colorScheme.surface,
             title = {
                 Text(
-                    text = if (action.type == MessageActionType.EDIT) "Edit Message?" else "Regenerate Response?",
+                    text = if (action.type == MessageActionType.EDIT) stringResource(R.string.chat_edit_message_title) else stringResource(R.string.chat_regenerate_response_title),
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp
                 )
@@ -2321,7 +2330,7 @@ fun ChatScreen(
                                 .clickable { restoreCodeOnEdit = !restoreCodeOnEdit }
                         ) {
                             androidx.compose.material3.Checkbox(checked = restoreCodeOnEdit, onCheckedChange = { restoreCodeOnEdit = it })
-                            Text("Also restore files Claude changed after this message", fontSize = 13.5.sp)
+                            Text(stringResource(R.string.chat_also_restore_files_claude_changed_after), fontSize = 13.5.sp)
                         }
                     }
                 }
@@ -2353,7 +2362,7 @@ fun ChatScreen(
                     Text(
                         text = when {
                             isClaudeChat && action.type == MessageActionType.EDIT -> "Edit"
-                            action.type == MessageActionType.EDIT -> "Edit & Delete"
+                            action.type == MessageActionType.EDIT -> stringResource(R.string.chat_edit_and_delete)
                             else -> "Regenerate"
                         },
                         color = ClaudeTerracotta,
@@ -2363,7 +2372,7 @@ fun ChatScreen(
             },
             dismissButton = {
                 TextButton(onClick = { pendingMessageAction = null }) {
-                    Text(text = "Cancel", color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                    Text(text = stringResource(R.string.common_cancel), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                 }
             }
         )
@@ -2385,7 +2394,7 @@ fun ChatScreen(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Stop Generation?",
+                        text = stringResource(R.string.chat_stop_generation),
                         fontWeight = FontWeight.Bold,
                         fontSize = 17.5.sp
                     )
@@ -2393,7 +2402,7 @@ fun ChatScreen(
             },
             text = {
                 Text(
-                    text = "Do you want to stop the model from outputting? The current generation will be stopped immediately.",
+                    text = stringResource(R.string.chat_do_you_want_to_stop_the_model_from_outpu),
                     fontSize = 14.sp,
                     lineHeight = 20.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
@@ -2409,7 +2418,7 @@ fun ChatScreen(
                     shape = RoundedCornerShape(8.dp)
                 ) {
                     Text(
-                        text = "Stop Output",
+                        text = stringResource(R.string.chat_stop_output),
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onError
                     )
@@ -2417,7 +2426,7 @@ fun ChatScreen(
             },
             dismissButton = {
                 TextButton(onClick = { showStopConfirmDialog = false }) {
-                    Text(text = "Cancel", color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                    Text(text = stringResource(R.string.common_cancel), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                 }
             }
         )
@@ -2441,7 +2450,7 @@ fun ChatScreen(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Command Terminated",
+                        text = stringResource(R.string.chat_command_terminated),
                         fontWeight = FontWeight.Bold,
                         fontSize = 17.sp
                     )
@@ -2450,7 +2459,7 @@ fun ChatScreen(
             text = {
                 Column(modifier = Modifier.fillMaxWidth()) {
                     Text(
-                        text = "You stopped the running command:",
+                        text = stringResource(R.string.chat_you_stopped_the_running_command),
                         fontSize = 13.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -2461,7 +2470,7 @@ fun ChatScreen(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            text = "$ ${toolCall.command}",
+                            text = stringResource(R.string.chat_toolcall_command, toolCall.command),
                             fontFamily = FontFamily.Monospace,
                             fontSize = 12.sp,
                             fontWeight = FontWeight.SemiBold,
@@ -2471,7 +2480,7 @@ fun ChatScreen(
                     }
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
-                        text = "Explain why or give new instructions to AI (optional):",
+                        text = stringResource(R.string.chat_explain_why_or_give_new_instructions_to),
                         fontSize = 12.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -2479,7 +2488,7 @@ fun ChatScreen(
                     OutlinedTextField(
                         value = userFeedback,
                         onValueChange = { userFeedback = it },
-                        placeholder = { Text("e.g. It was taking too long, please use grep or find a faster way...", fontSize = 12.5.sp) },
+                        placeholder = { Text(stringResource(R.string.chat_e_g_it_was_taking_too_long_please_use_gr), fontSize = 12.5.sp) },
                         textStyle = androidx.compose.ui.text.TextStyle(fontSize = 13.sp),
                         modifier = Modifier.fillMaxWidth(),
                         maxLines = 3,
@@ -2495,14 +2504,14 @@ fun ChatScreen(
                     colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta),
                     shape = RoundedCornerShape(8.dp)
                 ) {
-                    Text(text = "Send to AI & Proceed", fontWeight = FontWeight.Bold, fontSize = 12.5.sp)
+                    Text(text = stringResource(R.string.chat_send_to_ai_proceed), fontWeight = FontWeight.Bold, fontSize = 12.5.sp)
                 }
             },
             dismissButton = {
                 TextButton(
                     onClick = { viewModel.dismissTerminatedToolDialog() }
                 ) {
-                    Text(text = "Stop Turn Here", color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f), fontSize = 12.5.sp)
+                    Text(text = stringResource(R.string.chat_stop_turn_here), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f), fontSize = 12.5.sp)
                 }
             }
         )
@@ -2889,7 +2898,7 @@ fun ChatToastBanner(
             ) {
                 Icon(
                     imageVector = Icons.Outlined.Close,
-                    contentDescription = "Dismiss",
+                    contentDescription = stringResource(R.string.common_dismiss),
                     tint = textColor.copy(alpha = 0.6f),
                     modifier = Modifier.size(16.dp)
                 )

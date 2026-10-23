@@ -27,6 +27,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -47,6 +48,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.window.PopupProperties
 import com.example.gemini.data.local.LocalPtySession
+import com.example.gemini.R
 import com.example.gemini.data.local.LocalTerminalManager
 import com.example.gemini.data.preferences.AuthPreferences
 import com.example.gemini.theme.*
@@ -140,7 +142,7 @@ fun LocalTerminalContent(
                     modifier = Modifier.size(28.dp)
                 )
                 Text(
-                    text = "Restoring active terminal sessions...",
+                    text = stringResource(R.string.component_restoring_active_terminal_sessions),
                     color = Color.LightGray,
                     fontSize = 13.sp
                 )
@@ -382,7 +384,7 @@ fun LocalTerminalContent(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.Refresh,
-                                        contentDescription = "Retry",
+                                        contentDescription = stringResource(R.string.common_retry),
                                         tint = Color(0xFF4CAF50),
                                         modifier = Modifier.size(18.dp)
                                     )
@@ -396,7 +398,7 @@ fun LocalTerminalContent(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Close,
-                                    contentDescription = "Close",
+                                    contentDescription = stringResource(R.string.common_close),
                                     tint = Color.White,
                                     modifier = Modifier.size(18.dp)
                                 )
@@ -785,7 +787,7 @@ fun LocalTerminalContent(
                         )
                         Icon(
                             imageVector = Icons.Default.ArrowDropDown,
-                            contentDescription = "Switch Tab",
+                            contentDescription = stringResource(R.string.component_switch_tab),
                             tint = Color.LightGray,
                             modifier = Modifier.size(16.dp)
                         )
@@ -835,7 +837,7 @@ fun LocalTerminalContent(
                                         ) {
                                             Icon(
                                                 imageVector = Icons.Default.Close,
-                                                contentDescription = "Close Tab",
+                                                contentDescription = stringResource(R.string.common_close_tab),
                                                 tint = Color.Gray,
                                                 modifier = Modifier.size(12.dp)
                                             )
@@ -863,7 +865,7 @@ fun LocalTerminalContent(
                                     },
                                     onLongClick = {
                                         LocalTerminalManager.createNewSession(context, forceShell = "bash")
-                                        android.widget.Toast.makeText(context, "Created Bash session", android.widget.Toast.LENGTH_SHORT).show()
+                                        android.widget.Toast.makeText(context, context.getString(R.string.component_toast_created_bash_session), android.widget.Toast.LENGTH_SHORT).show()
                                         isTabsMenuExpanded = false
                                     }
                                 )
@@ -872,20 +874,20 @@ fun LocalTerminalContent(
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Icon(
                                     imageVector = Icons.Default.Add,
-                                    contentDescription = "New Tab",
+                                    contentDescription = stringResource(R.string.common_new_tab),
                                     tint = if (!isSyncingTmux) ClaudeTerracotta else Color.Gray,
                                     modifier = Modifier.size(16.dp)
                                 )
                                 Spacer(modifier = Modifier.width(8.dp))
                                 Column {
                                     Text(
-                                        text = "New Session",
+                                        text = stringResource(R.string.component_new_session),
                                         color = if (!isSyncingTmux) ClaudeTerracotta else Color.Gray,
                                         fontSize = 13.sp,
                                         fontWeight = FontWeight.SemiBold
                                     )
                                     Text(
-                                        text = "Long-press to force Bash shell",
+                                        text = stringResource(R.string.component_long_press_to_force_bash_shell),
                                         color = Color(0x88FFFFFF),
                                         fontSize = 10.sp
                                     )
@@ -914,7 +916,7 @@ fun LocalTerminalContent(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = "Close",
+                        contentDescription = stringResource(R.string.common_close),
                         tint = Color.White,
                         modifier = Modifier.size(14.dp)
                     )
@@ -949,7 +951,7 @@ fun LocalTerminalContent(
                         }
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
-                            text = "Close Tab?",
+                            text = stringResource(R.string.component_close_tab),
                             fontSize = 17.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = Color.White
@@ -958,7 +960,7 @@ fun LocalTerminalContent(
                 },
                 text = {
                     Text(
-                        text = "Are you sure you want to close \"$sessTitle\"?\nAny process running in this session will be terminated.",
+                        text = stringResource(R.string.component_are_you_sure_you_want_to_close_sesstitle, sessTitle),
                         fontSize = 13.sp,
                         color = Color(0xFFCCCCCC),
                         lineHeight = 18.sp
@@ -975,7 +977,7 @@ fun LocalTerminalContent(
                         shape = RoundedCornerShape(10.dp),
                         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
                     ) {
-                        Text("Close Tab", color = Color.White, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                        Text(stringResource(R.string.common_close_tab), color = Color.White, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                     }
                 },
                 dismissButton = {
@@ -983,7 +985,7 @@ fun LocalTerminalContent(
                         onClick = { sessionToClose = null },
                         shape = RoundedCornerShape(10.dp)
                     ) {
-                        Text("Cancel", color = Color.Gray, fontSize = 13.sp)
+                        Text(stringResource(R.string.common_cancel), color = Color.Gray, fontSize = 13.sp)
                     }
                 }
             )

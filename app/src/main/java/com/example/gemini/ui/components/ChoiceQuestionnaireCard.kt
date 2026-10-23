@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.ChatBubbleOutline
 import androidx.compose.material.icons.automirrored.outlined.HelpOutline
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.data.remote.dto.AskQuestionOptionDto
+import com.example.gemini.R
 import com.example.gemini.data.remote.dto.AskQuestionResponseItemDto
 import com.example.gemini.domain.model.*
 import com.example.gemini.theme.ClaudeTerracotta
@@ -64,7 +66,7 @@ fun ChoiceQuestionnaireCard(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Questionnaire",
+                        text = stringResource(R.string.component_questionnaire),
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFFE5E7EB)
@@ -126,7 +128,7 @@ fun ChoiceQuestionnaireCard(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Preferences Submitted",
+                        text = stringResource(R.string.component_preferences_submitted),
                         fontSize = 13.5.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFFE5E7EB)
@@ -267,7 +269,7 @@ fun ChoiceQuestionnaireCard(
                         modifier = Modifier.height(32.dp)
                     ) {
                         Text(
-                            text = "Cancel",
+                            text = stringResource(R.string.common_cancel),
                             fontSize = 12.5.sp,
                             color = Color(0xFF9CA3AF)
                         )
@@ -291,7 +293,7 @@ fun ChoiceQuestionnaireCard(
                             modifier = Modifier.height(32.dp)
                         ) {
                             Text(
-                                text = "Skip",
+                                text = stringResource(R.string.common_skip),
                                 fontSize = 12.5.sp,
                                 color = Color(0xFF9CA3AF)
                             )
@@ -407,7 +409,7 @@ private fun QuestionBlockView(
                     modifier = Modifier.padding(start = 4.dp)
                 ) {
                     Text(
-                        text = "Multi-select",
+                        text = stringResource(R.string.component_multi_select),
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Medium,
                         color = Color(0xFF9CA3AF),
@@ -422,7 +424,7 @@ private fun QuestionBlockView(
                     modifier = Modifier.padding(start = 4.dp)
                 ) {
                     Text(
-                        text = "$questionNumber of $totalQuestions",
+                        text = stringResource(R.string.component_questionnumber_of_totalquestions, questionNumber, totalQuestions),
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Medium,
                         color = Color(0xFF9CA3AF),
@@ -466,7 +468,7 @@ private fun QuestionBlockView(
             val otherIndex = question.options.size + 1
             OptionRow(
                 index = otherIndex,
-                label = "Other (write your answer)",
+                label = stringResource(R.string.component_other_write_your_answer),
                 description = null,
                 isSelected = isOtherChecked,
                 isMultiSelect = question.isMultiSelect,
@@ -489,7 +491,7 @@ private fun QuestionBlockView(
                         onValueChange = onCustomTextChanged,
                         placeholder = {
                             Text(
-                                text = "Type your custom answer here...",
+                                text = stringResource(R.string.component_type_your_custom_answer_here),
                                 fontSize = 12.sp,
                                 color = Color(0xFF6B7280)
                             )
@@ -549,7 +551,7 @@ private fun OptionRow(
             ) {
                 Box(contentAlignment = Alignment.Center) {
                     Text(
-                        text = "$index",
+                        text = stringResource(R.string.component_index, index),
                         fontFamily = FontFamily.Monospace,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold,
@@ -728,7 +730,7 @@ private fun QuestionPanelStatusRow(toolCall: ToolCall, questionnaire: ChoiceQues
                 Text(title, fontSize = 13.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurface)
                 questionnaire.questions.take(3).forEach { q ->
                     Text(
-                        "• ${q.prompt}",
+                        stringResource(R.string.component_q_prompt, q.prompt),
                         fontSize = 12.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f),
                         maxLines = 2,
@@ -736,10 +738,10 @@ private fun QuestionPanelStatusRow(toolCall: ToolCall, questionnaire: ChoiceQues
                     )
                 }
                 if (questionnaire.questions.size > 3) {
-                    Text("+${questionnaire.questions.size - 3} more", fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
+                    Text(stringResource(R.string.component_questionnaire_questions_size_3_more, questionnaire.questions.size - 3), fontSize = 11.5.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
                 }
                 if (waiting) {
-                    Text("Answer in the panel above the message box.", fontSize = 11.5.sp, color = tint, modifier = Modifier.padding(top = 4.dp))
+                    Text(stringResource(R.string.component_answer_in_the_panel_above_the_message_bo), fontSize = 11.5.sp, color = tint, modifier = Modifier.padding(top = 4.dp))
                 }
             }
         }

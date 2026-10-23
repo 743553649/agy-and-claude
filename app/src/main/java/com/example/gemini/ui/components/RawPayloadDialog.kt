@@ -15,6 +15,7 @@ import androidx.compose.material.icons.automirrored.outlined.WrapText
 import androidx.compose.material.icons.outlined.ContentCopy
 import androidx.compose.material.icons.outlined.DataObject
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.gemini.theme.ClaudeTerracotta
+import com.example.gemini.R
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -88,7 +90,7 @@ fun RawPayloadDialog(
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
-                            text = "Raw Request Payload",
+                            text = stringResource(R.string.component_raw_request_payload),
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color.White
@@ -103,7 +105,7 @@ fun RawPayloadDialog(
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Outlined.WrapText,
-                                contentDescription = "Toggle Wrap",
+                                contentDescription = stringResource(R.string.component_toggle_wrap),
                                 modifier = Modifier.size(14.dp)
                             )
                         },
@@ -120,7 +122,7 @@ fun RawPayloadDialog(
 
                 Spacer(modifier = Modifier.height(6.dp))
                 Text(
-                    text = "Formatted JSON payload transmitted to Google CloudCode API:",
+                    text = stringResource(R.string.component_formatted_json_payload_transmitted_to_go),
                     fontSize = 11.5.sp,
                     color = Color.White.copy(alpha = 0.6f)
                 )
@@ -173,19 +175,19 @@ fun RawPayloadDialog(
                         onClick = {
                             val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                             clipboard.setPrimaryClip(ClipData.newPlainText("Raw Payload JSON", prettyJson))
-                            Toast.makeText(context, "Formatted JSON copied to clipboard!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.component_toast_formatted_json_copied_to_clipboard), Toast.LENGTH_SHORT).show()
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1E202E)),
                         shape = RoundedCornerShape(8.dp)
                     ) {
                         Icon(
                             imageVector = Icons.Outlined.ContentCopy,
-                            contentDescription = "Copy",
+                            contentDescription = stringResource(R.string.component_copy),
                             tint = Color.White,
                             modifier = Modifier.size(16.dp)
                         )
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Copy JSON", fontSize = 12.5.sp, color = Color.White)
+                        Text(stringResource(R.string.component_copy_json), fontSize = 12.5.sp, color = Color.White)
                     }
 
                     Button(
@@ -193,7 +195,7 @@ fun RawPayloadDialog(
                         colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta),
                         shape = RoundedCornerShape(8.dp)
                     ) {
-                        Text("Close", fontSize = 13.sp, color = Color.White)
+                        Text(stringResource(R.string.common_close), fontSize = 13.sp, color = Color.White)
                     }
                 }
             }

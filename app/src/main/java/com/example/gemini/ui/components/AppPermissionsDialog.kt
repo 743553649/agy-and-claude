@@ -45,6 +45,8 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.example.gemini.theme.*
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 object PermissionUtils {
 
@@ -213,7 +215,7 @@ fun AppPermissionsDialog(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    text = "Welcome to AntiGem",
+                    text = stringResource(R.string.component_welcome_to_antigem),
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
                     color = textPrimary,
@@ -223,7 +225,7 @@ fun AppPermissionsDialog(
                 Spacer(modifier = Modifier.height(6.dp))
 
                 Text(
-                    text = "Configure your permissions to enable background execution, terminal tools, and local project storage.",
+                    text = stringResource(R.string.component_configure_your_permissions_to_enable_bac),
                     fontSize = 13.5.sp,
                     lineHeight = 19.sp,
                     color = textSecondary,
@@ -243,11 +245,11 @@ fun AppPermissionsDialog(
                 PermissionCard(
                     isDark = isDark,
                     icon = Icons.Outlined.NotificationsActive,
-                    title = "Notifications & Service",
-                    badgeText = "Required",
+                    title = stringResource(R.string.component_notifications_service),
+                    badgeText = stringResource(R.string.component_badge_required),
                     badgeColor = ClaudeTerracotta,
                     accentColor = ClaudeTerracotta,
-                    description = "Required for persistent background terminal service, live status alerts, updates, and rootfs package installer progress.",
+                    description = stringResource(R.string.component_perm_notifications_desc),
                     isGranted = hasNotification,
                     onGrantClick = {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -262,11 +264,11 @@ fun AppPermissionsDialog(
                 PermissionCard(
                     isDark = isDark,
                     icon = Icons.Outlined.Folder,
-                    title = "Storage & /sdcard",
-                    badgeText = "Optional",
+                    title = stringResource(R.string.component_storage_sdcard),
+                    badgeText = stringResource(R.string.component_badge_optional),
                     badgeColor = GeminiBlue,
                     accentColor = GeminiBlue,
-                    description = "Allows AntiGem to access /sdcard to import local bootstrap packages, inspect files, and manage external code workspaces.",
+                    description = stringResource(R.string.component_perm_storage_desc),
                     isGranted = hasStorage,
                     onGrantClick = { requestStorage() }
                 )
@@ -275,11 +277,11 @@ fun AppPermissionsDialog(
                 PermissionCard(
                     isDark = isDark,
                     icon = Icons.Outlined.Mic,
-                    title = "Microphone & Voice",
-                    badgeText = "Optional",
+                    title = stringResource(R.string.component_microphone_voice),
+                    badgeText = stringResource(R.string.component_badge_optional),
                     badgeColor = GeminiPurple,
                     accentColor = GeminiPurple,
-                    description = "Enables voice-to-text dictation and voice commands directly in chat.",
+                    description = stringResource(R.string.component_perm_microphone_desc),
                     isGranted = hasAudio,
                     onGrantClick = { audioLauncher.launch(Manifest.permission.RECORD_AUDIO) }
                 )
@@ -296,7 +298,7 @@ fun AppPermissionsDialog(
             ) {
                 if (!hasNotification) {
                     Text(
-                        text = "👉 Please enable Notifications above to proceed",
+                        text = stringResource(R.string.component_please_enable_notifications_above_to_pro),
                         fontSize = 12.5.sp,
                         color = Color(0xFFEF4444),
                         fontWeight = FontWeight.Medium
@@ -449,7 +451,7 @@ private fun PermissionCard(
                             modifier = Modifier.size(16.dp)
                         )
                         Text(
-                            text = "Permission active",
+                            text = stringResource(R.string.component_permission_active),
                             fontSize = 11.5.sp,
                             color = Color(0xFF22C55E),
                             fontWeight = FontWeight.Medium
@@ -467,7 +469,7 @@ private fun PermissionCard(
                         modifier = Modifier.height(32.dp)
                     ) {
                         Text(
-                            text = "Grant Access",
+                            text = stringResource(R.string.component_grant_access),
                             fontSize = 12.sp,
                             fontWeight = FontWeight.SemiBold
                         )

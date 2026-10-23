@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  由 scripts/i18n 生成，请勿手工调整条目顺序。
+  译法基准见 docs/i18n/GLOSSARY.md
+-->
+<resources>
+
+    <!-- 原文: Git Author Setup -->
+    <string name="git_author_setup">Git 作者设置</string>
+    <!-- 原文: Git Configuration -->
+    <string name="git_configuration">Git 配置</string>
+    <!-- 原文: Stash applied! -->
+    <string name="git_stash_applied">已应用贮藏！</string>
+    <!-- 原文: Stash pop failed -->
+    <string name="git_stash_pop_failed">恢复贮藏失败</string>
+    <!-- 原文: Aa -->
+    <string name="ide_aa">Aa</string>
+    <!-- 原文: Add Run Configuration... -->
+    <string name="ide_add_run_configuration">添加运行配置……</string>
+    <!-- 原文: Add Run Configuration -->
+    <string name="ide_add_run_configuration_2">添加运行配置</string>
+    <!-- 原文: +%1$s -->
+    <string name="ide_additionscount">+%1$s</string>
+    <!-- 原文: Applies across all repositories in Termux -->
+    <string name="ide_applies_across_all_repositories_in_termu">对 Termux 中的所有仓库生效</string>
+    <!-- 原文: Preparing file share... -->
+    <string name="ide_apptoast_preparing_file_share">正在准备文件共享……</string>
+    <!-- 原文: Are you sure you want to commit staged changes with the following message? -->
+    <string name="ide_are_you_sure_you_want_to_commit_staged_c">确定要用以下说明提交已暂存的更改吗？</string>
+    <!-- 原文: Are you sure you want to delete all untracked files? This action cannot be undone. -->
+    <string name="ide_are_you_sure_you_want_to_delete_all_untr">确定要删除所有未跟踪的文件吗？此操作无法撤销。</string>
+    <!-- 原文: Are you sure you want to discard all changes in '%1$s'? This action cannot be undone. -->
+    <string name="ide_are_you_sure_you_want_to_discard_all_cha">确定要放弃「%1$s」中的所有更改吗？此操作无法撤销。</string>
+    <!-- 原文: Are you sure you want to discard all unstaged changes? All uncommitted edits will be lost permanently. -->
+    <string name="ide_are_you_sure_you_want_to_discard_all_uns">确定要放弃所有未暂存的更改吗？所有未提交的编辑都会永久丢失。</string>
+    <!-- 原文: Are you sure you want to permanently delete \"%1$s\"? This action cannot be undone. -->
+    <string name="ide_are_you_sure_you_want_to_permanently_del">确定要永久删除「%1$s」吗？此操作无法撤销。</string>
+    <!-- 原文: Are you sure you want to unstage all files from the staging area? -->
+    <string name="ide_are_you_sure_you_want_to_unstage_all_fil">确定要把所有文件移出暂存区吗？</string>
+    <!-- 原文: Author Email (user.email) -->
+    <string name="ide_author_email_user_email">作者邮箱（user.email）</string>
+    <!-- 原文: Author Name (user.name) -->
+    <string name="ide_author_name_user_name">作者名称（user.name）</string>
+    <!-- 原文: Auto: Run Active File -->
+    <string name="ide_auto_run_active_file">自动：运行当前文件</string>
+    <!-- 原文: Available Projects -->
+    <string name="ide_available_projects">可用项目</string>
+    <!-- 原文: Branch name (e.g. feature/login) -->
+    <string name="ide_branch_name_e_g_feature_login">分支名称（例如 feature/login）</string>
+    <!-- 原文: Browse / File Manager... -->
+    <string name="ide_browse_file_manager">浏览 / 文件管理器……</string>
+    <!-- 原文: CHANGED FILES (%1$s) -->
+    <string name="ide_changed_files_details_changedfiles_size">已更改的文件（%1$s）</string>
+    <!-- 原文: CHANGES -->
+    <string name="ide_changes">更改</string>
+    <!-- 原文: Checking %1$s (auto-retrying) -->
+    <string name="ide_checking_ep_auto_retrying">正在检查 %1$s（自动重试中）</string>
+    <!-- 原文: Choose Template -->
+    <string name="ide_choose_template">选择模板</string>
+    <!-- 原文: Choose whether to overwrite the disk version with your editor changes or reload the version from disk. -->
+    <string name="ide_choose_whether_to_overwrite_the_disk_ver">选择用编辑器中的改动覆盖磁盘版本，还是从磁盘重新加载版本。</string>
+    <!-- 原文: Share %1$s -->
+    <string name="ide_chooser_share_filename">共享 %1$s</string>
+    <!-- 原文: Close Diff -->
+    <string name="ide_close_diff">关闭差异</string>
+    <!-- 原文: Close Find -->
+    <string name="ide_close_find">关闭查找</string>
+    <!-- 原文: Command to Execute -->
+    <string name="ide_command_to_execute">要执行的命令</string>
+    <!-- 原文: Commit -->
+    <string name="ide_commit">提交</string>
+    <!-- 原文: COMMIT HISTORY -->
+    <string name="ide_commit_history">提交历史</string>
+    <!-- 原文: Commit message... -->
+    <string name="ide_commit_message">提交说明……</string>
+    <!-- 原文: Confirm Commit -->
+    <string name="ide_confirm_commit">确认提交</string>
+    <!-- 原文: Could not preview image asset -->
+    <string name="ide_could_not_preview_image_asset">无法预览图片资源</string>
+    <!-- 原文: Create & Checkout Branch -->
+    <string name="ide_create_checkout_branch">创建并检出分支</string>
+    <!-- 原文: Create File -->
+    <string name="ide_create_file">新建文件</string>
+    <!-- 原文: Create Folder -->
+    <string name="ide_create_folder">新建文件夹</string>
+    <!-- 原文: + Create New Branch -->
+    <string name="ide_create_new_branch">+ 创建新分支</string>
+    <!-- 原文: Create New Project -->
+    <string name="ide_create_new_project">创建新项目</string>
+    <!-- 原文: Delete %1$s? -->
+    <string name="ide_delete_if_node_isdir_folder_else_file">删除%1$s？</string>
+    <!-- 原文: -%1$s -->
+    <string name="ide_deletionscount">-%1$s</string>
+    <!-- 原文: %1$s%2$s%3$s -->
+    <string name="ide_dimtext_sizetext_zoomtext">%1$s%2$s%3$s</string>
+    <!-- 原文: Discard -->
+    <string name="ide_discard">放弃</string>
+    <!-- 原文: Discard All -->
+    <string name="ide_discard_all">放弃全部</string>
+    <!-- 原文: Discard All Changes -->
+    <string name="ide_discard_all_changes">放弃所有更改</string>
+    <!-- 原文: Discard All Untracked -->
+    <string name="ide_discard_all_untracked">放弃所有未跟踪文件</string>
+    <!-- 原文: Discard Untracked -->
+    <string name="ide_discard_untracked">放弃未跟踪文件</string>
+    <!-- 原文: Discard Untracked Files -->
+    <string name="ide_discard_untracked_files">放弃未跟踪文件</string>
+    <!-- 原文: Do you want to save the changes made to '%1$s' before closing? -->
+    <string name="ide_do_you_want_to_save_the_changes_made_to">关闭前要保存对「%1$s」的更改吗？</string>
+    <!-- 原文: Don't Save -->
+    <string name="ide_don_t_save">不保存</string>
+    <!-- 原文: e.g. John Doe -->
+    <string name="ide_e_g_john_doe">例如 John Doe</string>
+    <!-- 原文: e.g. john@example.com -->
+    <string name="ide_e_g_john_example_com">例如 john@example.com</string>
+    <!-- 原文: Edit launch.json in Editor -->
+    <string name="ide_edit_launch_json_in_editor">在编辑器中编辑 launch.json</string>
+    <!-- 原文: Edit SVG XML Source -->
+    <string name="ide_edit_svg_source">编辑 SVG XML 源码</string>
+    <!-- 原文: Explorer -->
+    <string name="ide_explorer">资源管理器</string>
+    <!-- 原文: File Conflict Detected -->
+    <string name="ide_file_conflict_detected">检测到文件冲突</string>
+    <!-- 原文: File Manager -->
+    <string name="ide_file_manager">文件管理器</string>
+    <!-- 原文: File modified on disk externally -->
+    <string name="ide_file_modified_on_disk_externally">文件已被外部修改</string>
+    <!-- 原文: File Name -->
+    <string name="ide_file_name">文件名称</string>
+    <!-- 原文: FILES -->
+    <string name="ide_files">文件</string>
+    <!-- 原文: Find in file... -->
+    <string name="ide_find_in_file">在文件中查找……</string>
+    <!-- 原文: Find in File -->
+    <string name="ide_find_in_file_2">在文件中查找</string>
+    <!-- 原文: Git -->
+    <string name="ide_git">Git</string>
+    <!-- 原文: Git Config -->
+    <string name="ide_git_config">Git 配置</string>
+    <!-- 原文: Git Control -->
+    <string name="ide_git_control">Git 控制</string>
+    <!-- 原文: Git Pull -->
+    <string name="ide_git_pull">Git 拉取</string>
+    <!-- 原文: Git Push -->
+    <string name="ide_git_push">Git 推送</string>
+    <!-- 原文: Go Daemon Status & Logs -->
+    <string name="ide_go_daemon_status_logs">Go 守护进程状态与日志</string>
+    <!-- 原文: Historical Revision • Read-Only -->
+    <string name="ide_historical_revision_read_only">历史版本 • 只读</string>
+    <!-- 原文: IDE Server Offline -->
+    <string name="ide_ide_server_offline">IDE 服务器离线</string>
+    <!-- 原文: Initialize Git Repository -->
+    <string name="ide_initialize_git_repository">初始化 Git 仓库</string>
+    <!-- 原文: Initialize this workspace to track changes, create commits, and sync with remote repositories. -->
+    <string name="ide_initialize_this_workspace_to_track_chang">初始化此工作区，以跟踪更改、创建提交并与远程仓库同步。</string>
+    <!-- 原文: Live Log Output: -->
+    <string name="ide_live_log_output">实时日志输出：</string>
+    <!-- 原文: Merge / Default (false) -->
+    <string name="ide_merge_default_false">合并 / 默认（false）</string>
+    <!-- 原文: More editor options -->
+    <string name="ide_more_editor_options">更多编辑器选项</string>
+    <!-- 原文: + New Project -->
+    <string name="ide_new_project">+ 新建项目</string>
+    <!-- 原文: Next Match -->
+    <string name="ide_next_match">下一个匹配</string>
+    <!-- 原文: No changed files in this commit -->
+    <string name="ide_no_changed_files_in_this_commit">此提交中没有更改的文件</string>
+    <!-- 原文: No changes detected or binary file. -->
+    <string name="ide_no_changes_detected_or_binary_file">未检测到更改，或为二进制文件。</string>
+    <!-- 原文: No custom profiles configured -->
+    <string name="ide_no_custom_profiles_configured">没有配置任何自定义项</string>
+    <!-- 原文: (No file open) -->
+    <string name="ide_no_file_open">（未打开文件）</string>
+    <!-- 原文: No log entries yet -->
+    <string name="ide_no_log_entries_yet">还没有日志记录</string>
+    <!-- 原文: No projects found in Termux -->
+    <string name="ide_no_projects_found_in_termux">Termux 中没有找到项目</string>
+    <!-- 原文: Non-Text File Warning -->
+    <string name="ide_non_text_file_warning">非文本文件警告</string>
+    <!-- 原文: Not a Git Repository -->
+    <string name="ide_not_a_git_repository">不是 Git 仓库</string>
+    <!-- 原文: Not pushed -->
+    <string name="ide_not_pushed">未推送</string>
+    <!-- 原文: Open Anyway -->
+    <string name="ide_open_anyway">仍然打开</string>
+    <!-- 原文: Open Current File (Editable) -->
+    <string name="ide_open_current_file_editable">打开当前文件（可编辑）</string>
+    <!-- 原文: Open Revision File (Read-Only) -->
+    <string name="ide_open_revision_file_read_only">打开版本文件（只读）</string>
+    <!-- 原文: Opening it in the text editor may display garbled characters, cause lag, or corrupt the file if saved. -->
+    <string name="ide_opening_it_in_the_text_editor_may_displa">用文本编辑器打开可能显示乱码、卡顿，或在保存时损坏文件。</string>
+    <!-- 原文: Overwrite Disk (Keep Mine) -->
+    <string name="ide_overwrite_disk_keep_mine">覆盖磁盘（保留我的）</string>
+    <!-- 原文: 📤 Pop Stash (Apply & Drop) -->
+    <string name="ide_pop_stash_apply_drop">📤 弹出储藏（应用并丢弃）</string>
+    <!-- 原文: Preserve merges (merges) -->
+    <string name="ide_preserve_merges_merges">保留合并（merges）</string>
+    <!-- 原文: Preview SVG Graphic -->
+    <string name="ide_preview_svg">预览 SVG 图形</string>
+    <!-- 原文: Previous Match -->
+    <string name="ide_previous_match">上一个匹配</string>
+    <!-- 原文: Profile Name -->
+    <string name="ide_profile_name">配置名称</string>
+    <!-- 原文: Project Name (e.g. my-awesome-app) -->
+    <string name="ide_project_name_e_g_my_awesome_app">项目名称（例如 my-awesome-app）</string>
+    <!-- 原文: PROJECT PROFILES (CUSTOM MODE) -->
+    <string name="ide_project_profiles_custom_mode">项目配置（自定义模式）</string>
+    <!-- 原文: Pull -->
+    <string name="ide_pull">拉取</string>
+    <!-- 原文: Pull latest changes from the remote repository? -->
+    <string name="ide_pull_latest_changes_from_the_remote_repo">从远程仓库拉取最新更改？</string>
+    <!-- 原文: Pull Rebase Strategy (pull.rebase) -->
+    <string name="ide_pull_rebase_strategy_pull_rebase">拉取变基策略（pull.rebase）</string>
+    <!-- 原文: Push -->
+    <string name="ide_push">推送</string>
+    <!-- 原文: Push committed changes on branch '%1$s' to the remote repository? -->
+    <string name="ide_push_committed_changes_on_branch_status_2">要把分支「%1$s」上已提交的改动推送到远程仓库吗？</string>
+    <!-- 原文: Push %1$s unpushed commit%2$s on branch '%3$s' to the remote repository? -->
+    <string name="ide_push_unpushedcount_unpushed_commit_if_un_2">要把分支「%3$s」上 %1$s 个未推送的提交推送到远程仓库吗？</string>
+    <!-- 原文: Push (%1$s) -->
+    <string name="ide_push_with_count">推送（%1$s）</string>
+    <!-- 原文: Quick Presets: -->
+    <string name="ide_quick_presets">快捷预设：</string>
+    <!-- 原文: Read-Only -->
+    <string name="ide_read_only">只读</string>
+    <!-- 原文: Rebase (true) -->
+    <string name="ide_rebase_true">变基（true）</string>
+    <!-- 原文: Redo -->
+    <string name="ide_redo">重做</string>
+    <!-- 原文: Remote Origin URL -->
+    <string name="ide_remote_origin_url">远程源地址</string>
+    <!-- 原文: Remove project -->
+    <string name="ide_remove_project">移除项目</string>
+    <!-- 原文: Rename %1$s -->
+    <string name="ide_rename_if_node_isdir_folder_else_file">重命名%1$s</string>
+    <!-- 原文: Resolve -->
+    <string name="ide_resolve">解决</string>
+    <!-- 原文: Restart -->
+    <string name="ide_restart">重启</string>
+    <!-- 原文: Retry Now -->
+    <string name="ide_retry_now">立即重试</string>
+    <!-- 原文: Revert to Disk -->
+    <string name="ide_revert_to_disk">恢复到磁盘版本</string>
+    <!-- 原文: Run Active File -->
+    <string name="ide_run_active_file">运行当前文件</string>
+    <!-- 原文: Run Configurations -->
+    <string name="ide_run_configurations">运行配置</string>
+    <!-- 原文: Run Profile: %1$s -->
+    <string name="ide_run_profile">运行配置：%1$s</string>
+    <!-- 原文: Save As... -->
+    <string name="ide_save_as">另存为……</string>
+    <!-- 原文: Save as Global Config (- -global) -->
+    <string name="ide_save_as_global_config_global">保存为全局配置（--global）</string>
+    <!-- 原文: Save & Close -->
+    <string name="ide_save_close">保存并关闭</string>
+    <!-- 原文: Save File -->
+    <string name="ide_save_file">保存文件</string>
+    <!-- 原文: Save Profile -->
+    <string name="ide_save_profile">保存配置</string>
+    <!-- 原文: Saved into .ide/launch.json in your workspace root. -->
+    <string name="ide_saved_into_ide_launch_json_in_your_works">已保存到工作区根目录的 .ide/launch.json。</string>
+    <!-- 原文: Select a file from the sidebar to start editing -->
+    <string name="ide_select_a_file_from_the_sidebar_to_start">从侧边栏选择一个文件开始编辑</string>
+    <!-- 原文: Set as default run profile -->
+    <string name="ide_set_as_default_run_profile">设为默认运行配置</string>
+    <!-- 原文: Project is empty -->
+    <string name="ide_sidebar_empty_project">项目为空</string>
+    <!-- 原文: Open or create a project to view files -->
+    <string name="ide_sidebar_no_project">打开或新建一个项目以查看文件</string>
+    <!-- 原文: Stage All -->
+    <string name="ide_stage_all">暂存全部</string>
+    <!-- 原文: Stage All Untracked -->
+    <string name="ide_stage_all_untracked">暂存所有未跟踪文件</string>
+    <!-- 原文: STAGED CHANGES -->
+    <string name="ide_staged_changes">已暂存的更改</string>
+    <!-- 原文: Stash -->
+    <string name="ide_stash">储藏</string>
+    <!-- 原文: 📦 Stash Changes... -->
+    <string name="ide_stash_changes">📦 储藏更改……</string>
+    <!-- 原文: Stash Changes -->
+    <string name="ide_stash_changes_2">储藏更改</string>
+    <!-- 原文: Stash message (optional) -->
+    <string name="ide_stash_message_optional">储藏说明（可选）</string>
+    <!-- 原文: Supported Variables: -->
+    <string name="ide_supported_variables">支持的变量：</string>
+    <!-- 原文: TAB -->
+    <string name="ide_tab">TAB</string>
+    <!-- 原文: \"%1$s\" appears to be a non-text / binary file (%2$s). -->
+    <string name="ide_tabinfo_name_appears_to_be_a_non_text_bi">「%1$s」看起来是二进制文件而不是文本文件（%2$s）。</string>
+    <!-- 原文: The file '%1$s' has been modified on disk or by AI. -->
+    <string name="ide_the_file_conflictingtarget_name_has_been">文件「%1$s」已在磁盘上被修改，或被 AI 修改。</string>
+    <!-- 原文: Added run configuration: %1$s -->
+    <string name="ide_toast_added_run_configuration_newprofile_name">已添加运行配置：%1$s</string>
+    <!-- 原文: Author name and email cannot be empty -->
+    <string name="ide_toast_author_name_and_email_cannot_be_empty">作者名和邮箱不能为空</string>
+    <!-- 原文: Branch %1$s created & active -->
+    <string name="ide_toast_branch_name_created_active">已创建并切换到分支 %1$s</string>
+    <!-- 原文: Cannot open '%1$s'. IDE Bridge is offline or file is unreachable. -->
+    <string name="ide_toast_cannot_open_name_ide_bridge_is_offline_o">无法打开 %1$s。IDE 桥接服务离线或文件不可达。</string>
+    <!-- 原文: Cannot open '%1$s'. IDE Bridge is offline or file is unreachable. -->
+    <string name="ide_toast_cannot_open_node_name_ide_bridge_is_offl">无法打开 %1$s。IDE 桥接服务离线或文件不可达。</string>
+    <!-- 原文: Changes stashed! -->
+    <string name="ide_toast_changes_stashed">改动已暂存。</string>
+    <!-- 原文: Committed successfully! -->
+    <string name="ide_toast_committed_successfully">提交成功。</string>
+    <!-- 原文: Created %1$s '%2$s' -->
+    <string name="ide_toast_created_if_isdir_folder_else_file_name">已创建%1$s「%2$s」</string>
+    <!-- 原文: Deleted -->
+    <string name="ide_toast_deleted">已删除</string>
+    <!-- 原文: Failed to create branch -->
+    <string name="ide_toast_failed_to_create_branch">创建分支失败</string>
+    <!-- 原文: Failed to create %1$s -->
+    <string name="ide_toast_failed_to_create_if_isdir_folder_else_fi">创建%1$s失败</string>
+    <!-- 原文: Failed to delete -->
+    <string name="ide_toast_failed_to_delete">删除失败</string>
+    <!-- 原文: Failed to overwrite disk -->
+    <string name="ide_toast_failed_to_overwrite_disk">覆盖磁盘文件失败</string>
+    <!-- 原文: Failed to rename -->
+    <string name="ide_toast_failed_to_rename">重命名失败</string>
+    <!-- 原文: Failed to save file -->
+    <string name="ide_toast_failed_to_save_file">保存文件失败</string>
+    <!-- 原文: Failed to switch branch -->
+    <string name="ide_toast_failed_to_switch_branch">切换分支失败</string>
+    <!-- 原文: Git configuration saved! -->
+    <string name="ide_toast_git_configuration_saved">Git 配置已保存。</string>
+    <!-- 原文: Git Pull Successful -->
+    <string name="ide_toast_git_pull_successful">Git 拉取成功</string>
+    <!-- 原文: Git Push Successful -->
+    <string name="ide_toast_git_push_successful">Git 推送成功</string>
+    <!-- 原文: Git repository initialized! -->
+    <string name="ide_toast_git_repository_initialized">Git 仓库已初始化。</string>
+    <!-- 原文: No default runner for '.%1$s'. Configure a run profile. -->
+    <string name="ide_toast_no_default_runner_for_ext_configure_a_ru">没有针对 \'.%1$s\' 的默认运行器，请先配置运行配置。</string>
+    <!-- 原文: Open a file or select a project run profile -->
+    <string name="ide_toast_open_a_file_or_select_a_project_run_prof">请打开文件或选择项目运行配置</string>
+    <!-- 原文: Open a file to run -->
+    <string name="ide_toast_open_a_file_to_run">请打开要运行的文件</string>
+    <!-- 原文: Open a project folder first -->
+    <string name="ide_toast_open_a_project_folder_first">请先打开项目文件夹</string>
+    <!-- 原文: Please enter a commit message -->
+    <string name="ide_toast_please_enter_a_commit_message">请输入提交信息</string>
+    <!-- 原文: Renamed to '%1$s' -->
+    <string name="ide_toast_renamed_to_newname">已重命名为 %1$s</string>
+    <!-- 原文: Reverted to disk version -->
+    <string name="ide_toast_reverted_to_disk_version">已恢复为磁盘版本</string>
+    <!-- 原文: Save Error: %1$s -->
+    <string name="ide_toast_save_error_res_message">保存出错：%1$s</string>
+    <!-- 原文: Save Error: %1$s -->
+    <string name="ide_toast_save_error_result_message">保存出错：%1$s</string>
+    <!-- 原文: Saved -->
+    <string name="ide_toast_saved">已保存</string>
+    <!-- 原文: Saved and closed -->
+    <string name="ide_toast_saved_and_closed">已保存并关闭</string>
+    <!-- 原文: Saved (Overwritten) -->
+    <string name="ide_toast_saved_overwritten">已保存（覆盖）</string>
+    <!-- 原文: Saved to %1$s -->
+    <string name="ide_toast_saved_to_fullpath">已保存到 %1$s</string>
+    <!-- 原文: Stash failed -->
+    <string name="ide_toast_stash_failed">暂存失败</string>
+    <!-- 原文: Switched to %1$s -->
+    <string name="ide_toast_switched_to_b_name">已切换到 %1$s</string>
+    <!-- 原文: Toggle Background -->
+    <string name="ide_toggle_background">切换背景</string>
+    <!-- 原文: Toggle Sidebar -->
+    <string name="ide_toggle_sidebar">切换侧边栏</string>
+    <!-- 原文: Unsaved Changes -->
+    <string name="ide_unsaved_changes">未保存的更改</string>
+    <!-- 原文: Unstage All -->
+    <string name="ide_unstage_all">取消暂存全部</string>
+    <!-- 原文: Unstage All Changes -->
+    <string name="ide_unstage_all_changes">取消暂存所有更改</string>
+    <!-- 原文: UNTRACKED -->
+    <string name="ide_untracked">未跟踪</string>
+    <!-- 原文: View SVG XML Source -->
+    <string name="ide_view_svg_xml_source">查看 SVG XML 源码</string>
+    <!-- 原文: Word Wrap -->
+    <string name="ide_word_wrap">自动换行</string>
+    <!-- 原文: Working Directory (CWD) -->
+    <string name="ide_working_directory_cwd">工作目录（CWD）</string>
+    <!-- 原文: Working tree is clean -->
+    <string name="ide_working_tree_is_clean">工作区干净</string>
+</resources>

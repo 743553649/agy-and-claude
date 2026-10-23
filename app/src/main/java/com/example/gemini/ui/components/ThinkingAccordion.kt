@@ -25,6 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.style.TextOverflow
 import com.example.gemini.theme.ClaudeTerracotta
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 @Composable
 fun ThinkingAccordion(
@@ -86,7 +88,7 @@ fun ThinkingAccordion(
 
             Icon(
                 imageVector = Icons.Outlined.Psychology,
-                contentDescription = "Thinking",
+                contentDescription = stringResource(R.string.common_thinking),
                 tint = ClaudeTerracotta.copy(alpha = 0.85f),
                 modifier = Modifier.size(15.dp)
             )
@@ -102,7 +104,7 @@ fun ThinkingAccordion(
                 )
                 Spacer(modifier = Modifier.width(5.dp))
                 Text(
-                    text = "Thinking...",
+                    text = stringResource(R.string.component_thinking),
                     fontSize = 12.5.sp,
                     fontWeight = FontWeight.Medium,
                     color = ClaudeTerracotta
@@ -171,7 +173,7 @@ fun ThinkingAccordion(
                     if (!isStreaming && durationMs != null && durationMs > 0) {
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "⏱️ Thought for ${formatDuration(durationMs)}",
+                            text = stringResource(R.string.component_thought_for_formatduration_durationms, formatDuration(durationMs)),
                             fontSize = 11.5.sp,
                             fontFamily = FontFamily.Monospace,
                             fontWeight = FontWeight.Medium,

@@ -12,6 +12,7 @@ import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material.icons.outlined.Psychology
 import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,6 +22,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.theme.isAppInDarkTheme
+import com.example.gemini.R
 import androidx.compose.ui.graphics.Color
 import com.example.gemini.domain.model.ThinkingLevel
 import com.example.gemini.domain.model.ThinkingPreference
@@ -64,13 +66,13 @@ fun ThinkingSelectorBottomSheet(
                 Spacer(modifier = Modifier.width(10.dp))
                 Column {
                     Text(
-                        text = "Thinking & Reasoning Level",
+                        text = stringResource(R.string.ui_thinking_reasoning_level),
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Text(
-                        text = "Configure reasoning depth and token budget",
+                        text = stringResource(R.string.ui_configure_reasoning_depth_and_token_budg),
                         fontSize = 13.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                     )
@@ -128,7 +130,7 @@ fun ThinkingSelectorBottomSheet(
                                         .padding(horizontal = 6.dp, vertical = 2.dp)
                                 ) {
                                     Text(
-                                        text = "DEFAULT",
+                                        text = stringResource(R.string.ui_default),
                                         fontSize = 10.sp,
                                         fontWeight = FontWeight.Bold,
                                         color = ClaudeTerracotta
@@ -141,7 +143,7 @@ fun ThinkingSelectorBottomSheet(
                             if (isSelected) {
                                 Icon(
                                     imageVector = Icons.Outlined.Check,
-                                    contentDescription = "Selected",
+                                    contentDescription = stringResource(R.string.common_selected),
                                     tint = ClaudeTerracotta,
                                     modifier = Modifier.size(20.dp)
                                 )
@@ -162,15 +164,15 @@ fun ThinkingSelectorBottomSheet(
                             OutlinedTextField(
                                 value = customTokensText,
                                 onValueChange = { customTokensText = it.filter { char -> char.isDigit() } },
-                                label = { Text("Token Budget (1 - 32,768)") },
-                                placeholder = { Text("e.g. 2048") },
+                                label = { Text(stringResource(R.string.ui_token_budget_1_32_768)) },
+                                placeholder = { Text(stringResource(R.string.settings_thinking_budget_placeholder)) },
                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                                 singleLine = true,
                                 modifier = Modifier.fillMaxWidth(),
                                 supportingText = {
                                     val tokens = customTokensText.toIntOrNull() ?: 0
                                     val chars = tokens * 4
-                                    Text("Allocates ~$chars characters of reasoning capacity")
+                                    Text(stringResource(R.string.ui_allocates_chars_characters_of_reasoning, chars))
                                 }
                             )
 
@@ -186,7 +188,7 @@ fun ThinkingSelectorBottomSheet(
                                 colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta),
                                 shape = RoundedCornerShape(10.dp)
                             ) {
-                                Text("Apply Custom Budget", fontWeight = FontWeight.Bold)
+                                Text(stringResource(R.string.ui_apply_custom_budget), fontWeight = FontWeight.Bold)
                             }
                         }
                     }

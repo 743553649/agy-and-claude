@@ -22,6 +22,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,6 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.TermuxActivity
+import com.example.gemini.R
 import com.example.gemini.data.local.BootstrapSource
 import com.example.gemini.data.local.LocalEnvironmentManager
 import com.example.gemini.data.local.LocalInstallerState
@@ -103,13 +105,13 @@ fun FullScreenLocalToolsInstaller(
                 title = {
                     Column {
                         Text(
-                            text = "AntiGem Environment",
+                            text = stringResource(R.string.settings_antigem_environment),
                             fontSize = 17.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = "Local Linux & Terminal Setup",
+                            text = stringResource(R.string.settings_local_linux_terminal_setup),
                             fontSize = 12.sp,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -121,7 +123,7 @@ fun FullScreenLocalToolsInstaller(
                             onClick = onSkip,
                             colors = ButtonDefaults.textButtonColors(contentColor = ClaudeTerracotta)
                         ) {
-                            Text("Skip for Now", fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
+                            Text(stringResource(R.string.settings_skip_for_now), fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
                             Spacer(modifier = Modifier.width(4.dp))
                             Icon(imageVector = Icons.Default.ArrowForward, contentDescription = null, modifier = Modifier.size(16.dp))
                         }
@@ -180,15 +182,15 @@ fun FullScreenLocalToolsInstaller(
 
             Text(
                 text = when (installerState) {
-                    is LocalInstallerState.Success -> if (isTermux) "Local Linux Tools Ready!" else "Ubuntu Container Ready!"
-                    is LocalInstallerState.Error -> "Setup Encountered an Issue"
-                    is LocalInstallerState.Idle -> if (isTermux) "Initialize Linux Environment" else "Install Ubuntu Container (ARM64)"
-                    is LocalInstallerState.Discovering -> if (isTermux) "Locating Latest Bootstrap..." else "Locating Ubuntu Rootfs..."
-                    is LocalInstallerState.AwaitingConfirmation -> if (isTermux) "Confirm Bootstrap Installation" else "Confirm Ubuntu Installation"
-                    is LocalInstallerState.Downloading -> "Downloading Toolchain..."
-                    is LocalInstallerState.Extracting -> "Extracting & Linking Files..."
-                    is LocalInstallerState.Configuring -> "Finalizing Permissions..."
-                    is LocalInstallerState.Verifying -> "Verifying Environment..."
+                    is LocalInstallerState.Success -> if (isTermux) stringResource(R.string.settings_ui_local_linux_tools_ready) else stringResource(R.string.settings_ui_ubuntu_container_ready)
+                    is LocalInstallerState.Error -> stringResource(R.string.settings_ui_setup_encountered_an_issue)
+                    is LocalInstallerState.Idle -> if (isTermux) stringResource(R.string.settings_ui_initialize_linux_environment) else stringResource(R.string.settings_ui_install_ubuntu_container_arm64)
+                    is LocalInstallerState.Discovering -> if (isTermux) stringResource(R.string.settings_ui_locating_latest_bootstrap) else stringResource(R.string.settings_ui_locating_ubuntu_rootfs)
+                    is LocalInstallerState.AwaitingConfirmation -> if (isTermux) stringResource(R.string.settings_ui_confirm_bootstrap_installation) else stringResource(R.string.settings_ui_confirm_ubuntu_installation)
+                    is LocalInstallerState.Downloading -> stringResource(R.string.settings_ui_downloading_toolchain)
+                    is LocalInstallerState.Extracting -> stringResource(R.string.settings_ui_extracting_linking_files)
+                    is LocalInstallerState.Configuring -> stringResource(R.string.settings_ui_finalizing_permissions)
+                    is LocalInstallerState.Verifying -> stringResource(R.string.settings_ui_verifying_environment)
                 },
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
@@ -197,15 +199,15 @@ fun FullScreenLocalToolsInstaller(
 
             Text(
                 text = when (installerState) {
-                    is LocalInstallerState.Success -> if (isTermux) "Termux-compatible shell, coreutils & AGY tools are installed and ready." else "Ubuntu ARM64 container, bash, glibc & AGY tools are ready."
-                    is LocalInstallerState.Error -> "Failed to unpack rootfs. You can retry or pick a local ZIP archive."
-                    is LocalInstallerState.Idle -> if (isTermux) "Select how you would like to set up the local Termux environment for AntiGem:" else "Select how you would like to set up the Ubuntu Linux container for AntiGem:"
-                    is LocalInstallerState.Discovering -> "Checking releases for the latest verified rootfs archive."
-                    is LocalInstallerState.AwaitingConfirmation -> "Review details below and confirm to begin installation."
-                    is LocalInstallerState.Downloading -> "Fetching rootfs archive into secure application storage."
-                    is LocalInstallerState.Extracting -> "Decompressing packages, setting Unix permissions, and mapping symlinks."
-                    is LocalInstallerState.Configuring -> "Configuring startup scripts, environment variables, and shell binaries."
-                    is LocalInstallerState.Verifying -> "Running verification checks on installed binaries and symlinks."
+                    is LocalInstallerState.Success -> if (isTermux) stringResource(R.string.settings_ui_termux_compatible_shell_coreutils_agy_to) else stringResource(R.string.settings_ui_ubuntu_arm64_container_bash_glibc_agy_to)
+                    is LocalInstallerState.Error -> stringResource(R.string.settings_ui_failed_to_unpack_rootfs_you_can_retry_or)
+                    is LocalInstallerState.Idle -> if (isTermux) stringResource(R.string.settings_ui_select_how_you_would_like_to_set_up_the) else stringResource(R.string.settings_ui_select_how_you_would_like_to_set_up_the_2)
+                    is LocalInstallerState.Discovering -> stringResource(R.string.settings_ui_checking_releases_for_the_latest_verifie)
+                    is LocalInstallerState.AwaitingConfirmation -> stringResource(R.string.settings_ui_review_details_below_and_confirm_to_begi)
+                    is LocalInstallerState.Downloading -> stringResource(R.string.settings_ui_fetching_rootfs_archive_into_secure_appl)
+                    is LocalInstallerState.Extracting -> stringResource(R.string.settings_ui_decompressing_packages_setting_unix_perm)
+                    is LocalInstallerState.Configuring -> stringResource(R.string.settings_ui_configuring_startup_scripts_environment)
+                    is LocalInstallerState.Verifying -> stringResource(R.string.settings_ui_running_verification_checks_on_installed)
                 },
                 fontSize = 13.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -239,7 +241,7 @@ fun FullScreenLocalToolsInstaller(
                         )
                         Spacer(modifier = Modifier.width(6.dp))
                         Text(
-                            text = "Device Hardware Capabilities",
+                            text = stringResource(R.string.settings_device_hardware_capabilities),
                             fontSize = 12.5.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
@@ -260,7 +262,7 @@ fun FullScreenLocalToolsInstaller(
                             contentAlignment = Alignment.Center
                         ) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Text("CPU Arch", fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Text(stringResource(R.string.settings_cpu_arch), fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Text(
                                     hardwareInfo.arch,
@@ -288,7 +290,7 @@ fun FullScreenLocalToolsInstaller(
                             contentAlignment = Alignment.Center
                         ) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Text("Address Space", fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Text(stringResource(R.string.settings_address_space), fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Text(
                                     when (hardwareInfo.vaBits) {
@@ -323,12 +325,12 @@ fun FullScreenLocalToolsInstaller(
                             contentAlignment = Alignment.Center
                         ) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Text("LSE Atomics", fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Text(stringResource(R.string.settings_lse_atomics), fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Text(
                                     when (hardwareInfo.hasAtomics) {
-                                        true -> "Supported"
-                                        false -> "Not Supported"
+                                        true -> stringResource(R.string.settings_ui_supported)
+                                        false -> stringResource(R.string.settings_ui_not_supported)
                                         else -> "N/A"
                                     },
                                     fontSize = 11.5.sp,
@@ -377,7 +379,7 @@ fun FullScreenLocalToolsInstaller(
                                 Column(modifier = Modifier.weight(1f)) {
                                     Row(verticalAlignment = Alignment.CenterVertically) {
                                         Text(
-                                            text = if (isTermux) "Auto Download from GitHub" else "Ubuntu ARM64 Base (Light)",
+                                            text = if (isTermux) stringResource(R.string.settings_ui_auto_download_from_github) else stringResource(R.string.settings_ui_ubuntu_arm64_base_light),
                                             fontSize = 14.sp,
                                             fontWeight = FontWeight.Bold,
                                             color = MaterialTheme.colorScheme.onSurface
@@ -389,15 +391,15 @@ fun FullScreenLocalToolsInstaller(
                                                 .background(QuotaGreen.copy(alpha = 0.15f))
                                                 .padding(horizontal = 5.dp, vertical = 1.dp)
                                         ) {
-                                            Text(if (isTermux) "Official" else "Recommended", fontSize = 9.5.sp, fontWeight = FontWeight.Bold, color = QuotaGreen)
+                                            Text(if (isTermux) stringResource(R.string.settings_ui_official) else stringResource(R.string.settings_ui_recommended), fontSize = 9.5.sp, fontWeight = FontWeight.Bold, color = QuotaGreen)
                                         }
                                     }
                                     Spacer(modifier = Modifier.height(2.dp))
                                     Text(
                                         text = if (isTermux) {
-                                            "Downloads verified Termux rootfs (~350MB) with preconfigured tools and environment."
+                                            stringResource(R.string.settings_ui_downloads_verified_termux_rootfs_350mb_w)
                                         } else {
-                                            "Downloads official minimal Ubuntu ARM64 rootfs container with glibc, bash, and development tools."
+                                            stringResource(R.string.settings_ui_downloads_official_minimal_ubuntu_arm64)
                                         },
                                         fontSize = 12.sp,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -428,16 +430,16 @@ fun FullScreenLocalToolsInstaller(
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Column(modifier = Modifier.weight(1f)) {
                                         Text(
-                                            text = if (isTermux) "Select Local ZIP Archive" else "Custom Ubuntu Rootfs (.zip)",
+                                            text = if (isTermux) stringResource(R.string.settings_ui_select_local_zip_archive) else stringResource(R.string.settings_ui_custom_ubuntu_rootfs_zip),
                                             fontSize = 14.sp,
                                             fontWeight = FontWeight.Bold,
                                             color = MaterialTheme.colorScheme.onSurface
                                         )
                                         Text(
                                             text = if (isTermux) {
-                                                "Pick an existing bootstrap backup or custom rootfs from phone storage."
+                                                stringResource(R.string.settings_ui_pick_an_existing_bootstrap_backup_or_cus)
                                             } else {
-                                                "Pick an existing container backup or custom rootfs (bootstraps.zip) from phone storage."
+                                                stringResource(R.string.settings_ui_pick_an_existing_container_backup_or_cus)
                                             },
                                             fontSize = 12.sp,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -454,13 +456,13 @@ fun FullScreenLocalToolsInstaller(
                                         Icon(imageVector = Icons.Outlined.FolderOpen, contentDescription = null, modifier = Modifier.size(16.dp))
                                         Spacer(modifier = Modifier.width(6.dp))
                                         Text(
-                                            text = if (selectedFileUri != null) "Change Selected ZIP" else "Browse & Select ZIP File",
+                                            text = if (selectedFileUri != null) stringResource(R.string.settings_ui_change_selected_zip) else stringResource(R.string.settings_ui_browse_select_zip_file),
                                             fontSize = 13.sp
                                         )
                                     }
                                     if (selectedFileUri != null) {
                                         Text(
-                                            text = "Selected: ${selectedFileUri.toString().substringAfterLast("/")}",
+                                            text = stringResource(R.string.settings_ui_selected_selectedfileuri_tostring_substr, selectedFileUri.toString().substringAfterLast("/")),
                                             fontSize = 11.sp,
                                             fontFamily = FontFamily.Monospace,
                                             color = QuotaGreen,
@@ -497,7 +499,7 @@ fun FullScreenLocalToolsInstaller(
                                     Column(modifier = Modifier.weight(1f)) {
                                         Row(verticalAlignment = Alignment.CenterVertically) {
                                             Text(
-                                                text = "Base Minimum Termux",
+                                                text = stringResource(R.string.settings_base_minimum_termux),
                                                 fontSize = 14.sp,
                                                 fontWeight = FontWeight.Bold,
                                                 color = MaterialTheme.colorScheme.onSurface
@@ -509,12 +511,12 @@ fun FullScreenLocalToolsInstaller(
                                                     .background(Color(0xFF6366F1).copy(alpha = 0.15f))
                                                     .padding(horizontal = 5.dp, vertical = 1.dp)
                                             ) {
-                                                Text("Minimal (~33MB)", fontSize = 9.5.sp, fontWeight = FontWeight.Bold, color = Color(0xFF6366F1))
+                                                Text(stringResource(R.string.settings_minimal_33mb), fontSize = 9.5.sp, fontWeight = FontWeight.Bold, color = Color(0xFF6366F1))
                                             }
                                         }
                                         Spacer(modifier = Modifier.height(2.dp))
                                         Text(
-                                            text = "Downloads clean official Termux base bootstrap for ${LocalEnvironmentManager.getBootstrapArch()} with core utilities and package manager.",
+                                            text = stringResource(R.string.settings_ui_downloads_clean_official_termux_base_boo, LocalEnvironmentManager.getBootstrapArch()),
                                             fontSize = 12.sp,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant
                                         )
@@ -561,21 +563,21 @@ fun FullScreenLocalToolsInstaller(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Text("Release Tag:", fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Text(stringResource(R.string.settings_release_tag), fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 Text(info.releaseTag, fontSize = 12.5.sp, fontFamily = FontFamily.Monospace, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurface)
                             }
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Text("Architecture:", fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Text(stringResource(R.string.settings_architecture), fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 Text(info.arch, fontSize = 12.5.sp, fontFamily = FontFamily.Monospace, fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
                             }
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Text("Archive Size:", fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Text(stringResource(R.string.settings_archive_size), fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 Text(info.sizeFormatted, fontSize = 12.5.sp, fontFamily = FontFamily.Monospace, fontWeight = FontWeight.Bold, color = QuotaGreen)
                             }
                             HorizontalDivider(
@@ -608,7 +610,7 @@ fun FullScreenLocalToolsInstaller(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Text("Downloading Bootstrap", fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
+                                Text(stringResource(R.string.settings_downloading_bootstrap), fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
                                 Text("$pct%", fontSize = 13.5.sp, fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
                             }
                             Spacer(modifier = Modifier.height(10.dp))
@@ -650,7 +652,7 @@ fun FullScreenLocalToolsInstaller(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Text("Unpacking & Extracting", fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
+                                Text(stringResource(R.string.settings_unpacking_extracting), fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
                                 Text("$pct%", fontSize = 13.5.sp, fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
                             }
                             Spacer(modifier = Modifier.height(10.dp))
@@ -691,7 +693,7 @@ fun FullScreenLocalToolsInstaller(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Text("Configuring Shell & Symlinks", fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
+                                Text(stringResource(R.string.settings_configuring_shell_symlinks), fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
                                 CircularProgressIndicator(modifier = Modifier.size(16.dp), color = ClaudeTerracotta, strokeWidth = 2.dp)
                             }
                             Spacer(modifier = Modifier.height(10.dp))
@@ -725,12 +727,12 @@ fun FullScreenLocalToolsInstaller(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Text("Verifying Installation", fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
+                                Text(stringResource(R.string.settings_verifying_installation), fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold)
                                 CircularProgressIndicator(modifier = Modifier.size(16.dp), color = ClaudeTerracotta, strokeWidth = 2.dp)
                             }
                             Spacer(modifier = Modifier.height(10.dp))
                             Text(
-                                text = "Running test: ${state.testName}",
+                                text = stringResource(R.string.settings_ui_running_test_state_testname, state.testName),
                                 fontSize = 11.5.sp,
                                 fontFamily = FontFamily.Monospace,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -751,13 +753,13 @@ fun FullScreenLocalToolsInstaller(
                             verticalArrangement = Arrangement.spacedBy(6.dp)
                         ) {
                             Text(
-                                text = "✓ Installation Complete",
+                                text = stringResource(R.string.settings_installation_complete),
                                 fontSize = 14.5.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = QuotaGreen
                             )
                             Text(
-                                text = "Bootstrap rootfs successfully configured. The interactive terminal, Go IDE backend, and AGY AI language server are now ready to run.",
+                                text = stringResource(R.string.settings_bootstrap_rootfs_successfully_configured),
                                 fontSize = 12.5.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 lineHeight = 17.sp
@@ -778,7 +780,7 @@ fun FullScreenLocalToolsInstaller(
                             verticalArrangement = Arrangement.spacedBy(6.dp)
                         ) {
                             Text(
-                                text = "⚠ Error Occurred",
+                                text = stringResource(R.string.settings_error_occurred),
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.error
@@ -813,7 +815,7 @@ fun FullScreenLocalToolsInstaller(
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(imageVector = Icons.Default.Terminal, contentDescription = null, modifier = Modifier.size(15.dp), tint = MaterialTheme.colorScheme.onSurfaceVariant)
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text("Installation Log Output", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            Text(stringResource(R.string.settings_installation_log_output), fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         }
                         Icon(
                             imageVector = if (showLogs) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
@@ -886,9 +888,9 @@ fun FullScreenLocalToolsInstaller(
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
                             text = when (selectedSourceType) {
-                                0 -> if (isTermux) "Download & Install AntiGem (~350MB)" else "Download & Install Ubuntu Base"
-                                1 -> "Download Base Termux (~33MB)"
-                                else -> if (selectedFileUri != null) "Install Local ZIP" else "Choose ZIP File"
+                                0 -> if (isTermux) stringResource(R.string.settings_ui_download_install_antigem_350mb) else stringResource(R.string.settings_ui_download_install_ubuntu_base)
+                                1 -> stringResource(R.string.settings_ui_download_base_termux_33mb)
+                                else -> if (selectedFileUri != null) stringResource(R.string.settings_ui_install_local_zip) else stringResource(R.string.settings_ui_choose_zip_file)
                             },
                             fontSize = 15.sp,
                             fontWeight = FontWeight.Bold,
@@ -905,7 +907,7 @@ fun FullScreenLocalToolsInstaller(
                             .height(46.dp),
                         shape = RoundedCornerShape(12.dp)
                     ) {
-                        Text("Skip Setup & Open AntiGem Chat", fontSize = 14.sp)
+                        Text(stringResource(R.string.settings_skip_setup_open_antigem_chat), fontSize = 14.sp)
                     }
                 }
 
@@ -930,7 +932,7 @@ fun FullScreenLocalToolsInstaller(
                         ) {
                             Icon(imageVector = Icons.Default.Download, contentDescription = null, modifier = Modifier.size(18.dp))
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text("Confirm & Install", fontWeight = FontWeight.Bold, color = Color.White)
+                            Text(stringResource(R.string.settings_confirm_install), fontWeight = FontWeight.Bold, color = Color.White)
                         }
 
                         OutlinedButton(
@@ -940,7 +942,7 @@ fun FullScreenLocalToolsInstaller(
                                 .height(48.dp),
                             shape = RoundedCornerShape(12.dp)
                         ) {
-                            Text("Change")
+                            Text(stringResource(R.string.settings_change))
                         }
                     }
                 }
@@ -953,7 +955,7 @@ fun FullScreenLocalToolsInstaller(
                             .height(48.dp),
                         shape = RoundedCornerShape(12.dp)
                     ) {
-                        Text("Cancel Search")
+                        Text(stringResource(R.string.settings_cancel_search))
                     }
                 }
 
@@ -968,7 +970,7 @@ fun FullScreenLocalToolsInstaller(
                             .height(48.dp),
                         shape = RoundedCornerShape(12.dp)
                     ) {
-                        Text("Run in Background & Open AntiGem")
+                        Text(stringResource(R.string.settings_run_in_background_open_antigem))
                     }
                 }
 
@@ -983,7 +985,7 @@ fun FullScreenLocalToolsInstaller(
                     ) {
                         Icon(imageVector = Icons.Default.Check, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Get Started", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                        Text(stringResource(R.string.settings_get_started), fontSize = 15.sp, fontWeight = FontWeight.Bold, color = Color.White)
                     }
                 }
 
@@ -1011,7 +1013,7 @@ fun FullScreenLocalToolsInstaller(
                         ) {
                             Icon(imageVector = Icons.Default.Refresh, contentDescription = null, modifier = Modifier.size(18.dp))
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text("Retry Installation", fontWeight = FontWeight.Bold, color = Color.White)
+                            Text(stringResource(R.string.settings_retry_installation), fontWeight = FontWeight.Bold, color = Color.White)
                         }
 
                         Row(
@@ -1025,7 +1027,7 @@ fun FullScreenLocalToolsInstaller(
                                     .height(44.dp),
                                 shape = RoundedCornerShape(12.dp)
                             ) {
-                                Text("Change Source")
+                                Text(stringResource(R.string.settings_change_source))
                             }
 
                             OutlinedButton(
@@ -1035,7 +1037,7 @@ fun FullScreenLocalToolsInstaller(
                                     .height(44.dp),
                                 shape = RoundedCornerShape(12.dp)
                             ) {
-                                Text("Skip")
+                                Text(stringResource(R.string.common_skip))
                             }
                         }
                     }
@@ -1049,7 +1051,7 @@ fun FullScreenLocalToolsInstaller(
                             .height(46.dp),
                         shape = RoundedCornerShape(12.dp)
                     ) {
-                        Text("Run in Background & Open Chat", color = MaterialTheme.colorScheme.onSurface)
+                        Text(stringResource(R.string.settings_run_in_background_open_chat), color = MaterialTheme.colorScheme.onSurface)
                     }
                 }
             }

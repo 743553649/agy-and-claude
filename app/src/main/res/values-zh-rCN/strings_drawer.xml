@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  由 scripts/i18n 生成，请勿手工调整条目顺序。
+  译法基准见 docs/i18n/GLOSSARY.md
+-->
+<resources>
+
+    <!-- 原文: A live Antigravity CLI process is running in the background for this chat: -->
+    <string name="drawer_a_live_antigravity_cli_process_is_runnin">此对话有一个 Antigravity CLI 进程正在后台运行：</string>
+    <!-- 原文: A sign-in request is currently pending. If you already completed authentication in your browser, tap 'Check Status'. You can also restart sign-in if needed. -->
+    <string name="drawer_a_sign_in_request_is_currently_pending_i">当前有一个登录请求正在等待中。如果你已在浏览器里完成验证，请点「检查状态」。如有需要，也可以重新发起登录。</string>
+    <!-- 原文: Account Email -->
+    <string name="drawer_account_email">账号邮箱</string>
+    <!-- 原文: Active CLI Process -->
+    <string name="drawer_active_cli_process">活跃 CLI 进程</string>
+    <!-- 原文: Advanced Search › -->
+    <string name="drawer_advanced_search">高级搜索 ›</string>
+    <!-- 原文: Advanced Search -->
+    <string name="drawer_advanced_search_2">高级搜索</string>
+    <!-- 原文: Conversation ID copied -->
+    <string name="drawer_apptoast_conversation_id_copied">会话 ID 已复制</string>
+    <!-- 原文: Exporting HTML... -->
+    <string name="drawer_apptoast_exporting_html">正在导出 HTML……</string>
+    <!-- 原文: Exporting Markdown... -->
+    <string name="drawer_apptoast_exporting_markdown">正在导出 Markdown……</string>
+    <!-- 原文: Preparing .antigem share... -->
+    <string name="drawer_apptoast_preparing_antigem_share">正在准备 .antigem 共享包……</string>
+    <!-- 原文: Are you sure you want to delete \"%1$s\"? This will permanently remove all messages and trajectory data. -->
+    <string name="drawer_are_you_sure_you_want_to_delete_targetco_2">确定要删除「%1$s」吗？这会永久移除所有消息和执行轨迹数据。</string>
+    <!-- 原文: Artifacts -->
+    <string name="drawer_artifacts">产物</string>
+    <!-- 原文: %1$s -->
+    <string name="drawer_artifacts_size">%1$s</string>
+    <!-- 原文: %1$s Available -->
+    <string name="drawer_authinfo_availableflowcredits_available">可用 %1$s</string>
+    <!-- 原文: %1$s Available -->
+    <string name="drawer_authinfo_availablepromptcredits_availabl">可用 %1$s</string>
+    <!-- 原文: •  %1$s -->
+    <string name="drawer_authinfo_planname">•  %1$s</string>
+    <!-- 原文: Chat: %1$s -->
+    <string name="drawer_chat_title">对话：%1$s</string>
+    <!-- 原文: %1$s -->
+    <string name="drawer_chats_size">%1$s</string>
+    <!-- 原文: Check Status -->
+    <string name="drawer_check_status">检查状态</string>
+    <!-- 原文: Collapse subagents -->
+    <string name="drawer_collapse_subagents">收起子智能体</string>
+    <!-- 原文: %1$s turns -->
+    <string name="drawer_conv_stepcount_turns">%1$s 轮</string>
+    <!-- 原文: %1$s total chats indexed -->
+    <string name="drawer_conversations_size_total_chats_indexed">已索引 %1$s 个对话</string>
+    <!-- 原文: Copy Conversation ID -->
+    <string name="drawer_copy_conversation_id">复制会话 ID</string>
+    <!-- 原文: Delete Conversation? -->
+    <string name="drawer_delete_conversation">删除对话？</string>
+    <!-- 原文: Delete Conversation -->
+    <string name="drawer_delete_conversation_2">删除对话</string>
+    <!-- 原文: Disable Workspace Grouping -->
+    <string name="drawer_disable_workspace_grouping">取消按工作区分组</string>
+    <!-- 原文: Do you want to exit the app? This will stop all active background services, servers, and terminals. -->
+    <string name="drawer_do_you_want_to_exit_the_app_this_will_st">要退出 App 吗？这会停止所有正在运行的后台服务、服务器和终端。</string>
+    <!-- 原文: Download to Downloads/AntiGem -->
+    <string name="drawer_download_to_downloads_antigem">下载到 Downloads/AntiGem</string>
+    <!-- 原文: Email -->
+    <string name="drawer_email">邮箱</string>
+    <!-- 原文: Exit AntiGem? -->
+    <string name="drawer_exit_antigem">退出 AntiGem？</string>
+    <!-- 原文: Exit App -->
+    <string name="drawer_exit_app">退出 App</string>
+    <!-- 原文: Expand subagents -->
+    <string name="drawer_expand_subagents">展开子智能体</string>
+    <!-- 原文: Export Markdown (.md) -->
+    <string name="drawer_export_markdown_md">导出 Markdown（.md）</string>
+    <!-- 原文: Export Standalone HTML -->
+    <string name="drawer_export_standalone_html">导出独立 HTML</string>
+    <!-- 原文: Past 30d -->
+    <string name="drawer_filter_past_30d">近 30 天</string>
+    <!-- 原文: Past 7d -->
+    <string name="drawer_filter_past_7d">近 7 天</string>
+    <!-- 原文: Today -->
+    <string name="drawer_filter_today">今天</string>
+    <!-- 原文: %1$s chat%2$s found -->
+    <string name="drawer_filtered_size_chat_if_filtered_size_1_s">找到 %1$s 个对话</string>
+    <!-- 原文: Flow Credits -->
+    <string name="drawer_flow_credits">Flow 额度</string>
+    <!-- 原文: Fork Conversation -->
+    <string name="drawer_fork_conversation">分叉对话</string>
+    <!-- 原文: Generated files, plans & media -->
+    <string name="drawer_generated_files_plans_media">生成的文件、计划与媒体</string>
+    <!-- 原文: Group by Workspace -->
+    <string name="drawer_group_by_workspace">按工作区分组</string>
+    <!-- 原文: Keep Running -->
+    <string name="drawer_keep_running">保持运行</string>
+    <!-- 原文: Model: %1$s -->
+    <string name="drawer_model_inst_model">模型：%1$s</string>
+    <!-- 原文: No artifacts generated yet -->
+    <string name="drawer_no_artifacts_generated_yet">还没有生成任何产物</string>
+    <!-- 原文: No chats in this category. -->
+    <string name="drawer_no_chats_category">此分类下暂无会话。</string>
+    <!-- 原文: No chats match "%1$s". Try different keywords or reset filters. -->
+    <string name="drawer_no_chats_match">没有会话匹配「%1$s」。换个关键词或重置筛选试试。</string>
+    <!-- 原文: No conversations found -->
+    <string name="drawer_no_conversations_found">没有找到对话</string>
+    <!-- 原文: Plans, walkthroughs, and generated images will appear here. -->
+    <string name="drawer_plans_walkthroughs_and_generated_images">计划、演练记录和生成的图片会显示在这里。</string>
+    <!-- 原文: Profile Picture -->
+    <string name="drawer_profile_picture">头像</string>
+    <!-- 原文: Prompt Credits -->
+    <string name="drawer_prompt_credits">提示词额度</string>
+    <!-- 原文: Rename chat -->
+    <string name="drawer_rename_chat">重命名对话</string>
+    <!-- 原文: %1$s match%2$s -->
+    <string name="drawer_results_size_match_if_results_size_1_es">找到 %1$s 个匹配</string>
+    <!-- 原文: RUNNING -->
+    <string name="drawer_running">运行中</string>
+    <!-- 原文: Search by title, topic, or model... -->
+    <string name="drawer_search_by_title_topic_or_model">按标题、话题或模型搜索……</string>
+    <!-- 原文: Search chat titles... -->
+    <string name="drawer_search_chat_titles">搜索对话标题……</string>
+    <!-- 原文: Search Conversations -->
+    <string name="drawer_search_conversations">搜索对话</string>
+    <!-- 原文: Settings -->
+    <string name="drawer_settings">设置</string>
+    <!-- 原文: Show less -->
+    <string name="drawer_show_less">收起</string>
+    <!-- 原文: Show %1$s more -->
+    <string name="drawer_show_more">再显示 %1$s 个</string>
+    <!-- 原文: Sign In Again -->
+    <string name="drawer_sign_in_again">重新登录</string>
+    <!-- 原文: Sign-In in Progress -->
+    <string name="drawer_sign_in_in_progress">正在登录</string>
+    <!-- 原文: Sign Out -->
+    <string name="drawer_sign_out">退出登录</string>
+    <!-- 原文: Signing In... -->
+    <string name="drawer_signing_in">正在登录……</string>
+    <!-- 原文: Status -->
+    <string name="drawer_status">状态</string>
+    <!-- 原文: Subagent -->
+    <string name="drawer_subagent">子智能体</string>
+    <!-- 原文: %1$s -->
+    <string name="drawer_subagents_size">%1$s</string>
+    <!-- 原文: Subscription -->
+    <string name="drawer_subscription">订阅</string>
+    <!-- 原文: Terminate & Free RAM -->
+    <string name="drawer_terminate_free_ram">终止并释放内存</string>
+    <!-- 原文: Terminate this instance to immediately free RAM? -->
+    <string name="drawer_terminate_this_instance_to_immediately_f">要终止此实例以立即释放内存吗？</string>
+    <!-- 原文: Unable to load chats -->
+    <string name="drawer_unable_to_load_chats">无法加载对话</string>
+    <!-- 原文: Upgrade -->
+    <string name="drawer_upgrade">升级</string>
+    <!-- 原文: Uptime: %1$ss -->
+    <string name="drawer_uptime_inst_uptimeseconds_s">运行时长：%1$s 秒</string>
+</resources>

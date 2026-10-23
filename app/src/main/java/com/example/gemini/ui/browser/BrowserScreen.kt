@@ -41,6 +41,7 @@ import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -79,6 +80,7 @@ import androidx.core.view.WindowCompat
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.gemini.theme.ClaudeTerracotta
+import com.example.gemini.R
 import java.net.URLEncoder
 
 /**
@@ -148,7 +150,7 @@ fun BrowserScreen(
     // Ensure at least one tab exists when opening browser
     LaunchedEffect(isVisible) {
         if (isVisible && sessionManager.tabs.isEmpty()) {
-            val newTab = sessionManager.addNewTab(url = "", title = "New Tab", activate = true)
+            val newTab = sessionManager.addNewTab(url = "", title = context.getString(R.string.common_new_tab), activate = true)
             activeTabId = newTab.id
         }
     }
@@ -355,7 +357,7 @@ fun BrowserScreen(
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.BugReport,
-                                contentDescription = "Inspect DevTools",
+                                contentDescription = stringResource(R.string.browser_inspect_devtools),
                                 tint = if (isDevToolsOn) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface.copy(alpha = if (hasActivePage) 0.85f else 0.4f),
                                 modifier = Modifier.size(20.dp)
                             )
@@ -371,7 +373,7 @@ fun BrowserScreen(
                         ) {
                             Icon(
                                 imageVector = if (isDesktopMode) Icons.Outlined.Laptop else Icons.Outlined.TouchApp,
-                                contentDescription = if (isDesktopMode) "Desktop mode enabled" else "Mobile mode enabled",
+                                contentDescription = if (isDesktopMode) stringResource(R.string.browser_desktop_mode_enabled) else stringResource(R.string.browser_mobile_mode_enabled),
                                 tint = if (isDesktopMode) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
                                 modifier = Modifier.size(20.dp)
                             )
@@ -465,7 +467,7 @@ fun BrowserScreen(
                                         Box(contentAlignment = Alignment.CenterStart) {
                                             if (textFieldValue.text.isEmpty() && !isAddressFocused) {
                                                 Text(
-                                                    text = "Search or type URL",
+                                                    text = stringResource(R.string.browser_search_or_type_url),
                                                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.55f),
                                                     fontSize = 13.5.sp
                                                 )
@@ -485,7 +487,7 @@ fun BrowserScreen(
                                     ) {
                                         Icon(
                                             imageVector = Icons.Default.Cancel,
-                                            contentDescription = "Clear",
+                                            contentDescription = stringResource(R.string.common_clear),
                                             tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
                                             modifier = Modifier.size(16.dp)
                                         )
@@ -523,7 +525,7 @@ fun BrowserScreen(
                             // same "go to chat" icon as the IDE's top bar: a cross would read as "close the browser"
                             Icon(
                                 imageVector = Icons.Default.AutoAwesome,
-                                contentDescription = "AI Chat",
+                                contentDescription = stringResource(R.string.common_ai_chat),
                                 tint = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.size(20.dp)
                             )
@@ -569,7 +571,7 @@ fun BrowserScreen(
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back",
+                            contentDescription = stringResource(R.string.common_back),
                             tint = if (canGoBack) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
                             modifier = Modifier.size(22.dp)
                         )
@@ -587,7 +589,7 @@ fun BrowserScreen(
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                            contentDescription = "Forward",
+                            contentDescription = stringResource(R.string.browser_forward),
                             tint = if (canGoForward) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
                             modifier = Modifier.size(22.dp)
                         )
@@ -603,7 +605,7 @@ fun BrowserScreen(
                     ) {
                         Icon(
                             imageVector = Icons.Outlined.Home,
-                            contentDescription = "Home",
+                            contentDescription = stringResource(R.string.browser_home),
                             tint = if (isHomePage) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface,
                             modifier = Modifier.size(24.dp)
                         )
@@ -627,7 +629,7 @@ fun BrowserScreen(
                         ) {
                             Box(contentAlignment = Alignment.Center) {
                                 Text(
-                                    text = "${tabs.size.coerceAtLeast(1)}",
+                                    text = stringResource(R.string.browser_tabs_size_coerceatleast_1, tabs.size.coerceAtLeast(1)),
                                     fontSize = 11.5.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -644,7 +646,7 @@ fun BrowserScreen(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.MoreVert,
-                                contentDescription = "More Options",
+                                contentDescription = stringResource(R.string.browser_more_options),
                                 tint = MaterialTheme.colorScheme.onSurface,
                                 modifier = Modifier.size(22.dp)
                             )
@@ -655,7 +657,7 @@ fun BrowserScreen(
                             onDismissRequest = { showMoreMenu = false }
                         ) {
                             DropdownMenuItem(
-                                text = { Text("New Tab") },
+                                text = { Text(stringResource(R.string.common_new_tab)) },
                                 leadingIcon = { Icon(Icons.Default.Add, contentDescription = null) },
                                 onClick = {
                                     showMoreMenu = false
@@ -663,7 +665,7 @@ fun BrowserScreen(
                                 }
                             )
                             DropdownMenuItem(
-                                text = { Text(if (activeTab?.isDesktopMode == true) "Mobile Site" else "Desktop Site") },
+                                text = { Text(if (activeTab?.isDesktopMode == true) stringResource(R.string.browser_mobile_site) else stringResource(R.string.browser_desktop_site)) },
                                 leadingIcon = { Icon(Icons.Default.DesktopWindows, contentDescription = null) },
                                 onClick = {
                                     showMoreMenu = false
@@ -671,7 +673,7 @@ fun BrowserScreen(
                                 }
                             )
                             DropdownMenuItem(
-                                text = { Text("DevTools Inspector") },
+                                text = { Text(stringResource(R.string.browser_devtools_inspector)) },
                                 leadingIcon = { Icon(Icons.Outlined.Code, contentDescription = null) },
                                 onClick = {
                                     showMoreMenu = false
@@ -687,7 +689,7 @@ fun BrowserScreen(
                                 }
                             )
                             DropdownMenuItem(
-                                text = { Text("Clear Tab Cache") },
+                                text = { Text(stringResource(R.string.browser_clear_tab_cache)) },
                                 leadingIcon = { Icon(Icons.Outlined.DeleteOutline, contentDescription = null) },
                                 onClick = {
                                     showMoreMenu = false
@@ -696,7 +698,7 @@ fun BrowserScreen(
                             )
                             HorizontalDivider()
                             DropdownMenuItem(
-                                text = { Text("Close Browser", color = MaterialTheme.colorScheme.error) },
+                                text = { Text(stringResource(R.string.browser_close_browser), color = MaterialTheme.colorScheme.error) },
                                 leadingIcon = { Icon(Icons.Default.Close, contentDescription = null, tint = MaterialTheme.colorScheme.error) },
                                 onClick = {
                                     showMoreMenu = false
@@ -939,7 +941,7 @@ private fun SearchHistoryOverlay(
                         Spacer(modifier = Modifier.width(12.dp))
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = "Search Google for \"$trimmed\"",
+                                text = stringResource(R.string.browser_search_google_for_trimmed, trimmed),
                                 style = MaterialTheme.typography.bodyMedium,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onSurface,
@@ -949,7 +951,7 @@ private fun SearchHistoryOverlay(
                         }
                         Icon(
                             imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                            contentDescription = "Go",
+                            contentDescription = stringResource(R.string.browser_go),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
                             modifier = Modifier
                                 .size(16.dp)
@@ -968,7 +970,7 @@ private fun SearchHistoryOverlay(
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
-                                text = "No recent search history",
+                                text = stringResource(R.string.browser_no_recent_search_history),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
                             )
@@ -983,14 +985,14 @@ private fun SearchHistoryOverlay(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = if (trimmed.isBlank()) "Recent Searches" else "History Suggestions",
+                            text = if (trimmed.isBlank()) stringResource(R.string.browser_recent_searches) else stringResource(R.string.browser_history_suggestions),
                             style = MaterialTheme.typography.labelMedium,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f)
                         )
                         if (trimmed.isBlank() && historyItems.isNotEmpty()) {
                             Text(
-                                text = "Clear All",
+                                text = stringResource(R.string.common_clear_all),
                                 style = MaterialTheme.typography.labelSmall,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.error,
@@ -1051,7 +1053,7 @@ private fun SearchHistoryOverlay(
                                 ) {
                                     Icon(
                                         imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                                        contentDescription = "Insert",
+                                        contentDescription = stringResource(R.string.browser_insert),
                                         tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
                                         modifier = Modifier
                                             .size(14.dp)
@@ -1068,7 +1070,7 @@ private fun SearchHistoryOverlay(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.Close,
-                                        contentDescription = "Delete",
+                                        contentDescription = stringResource(R.string.common_delete),
                                         tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
                                         modifier = Modifier.size(14.dp)
                                     )
@@ -1146,21 +1148,21 @@ private fun SpeedDialHomeView(
 
         AlertDialog(
             onDismissRequest = { showAddDialog = false },
-            title = { Text("Add Shortcut", fontWeight = FontWeight.Bold) },
+            title = { Text(stringResource(R.string.browser_add_shortcut), fontWeight = FontWeight.Bold) },
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     OutlinedTextField(
                         value = newTitle,
                         onValueChange = { newTitle = it },
-                        label = { Text("Name") },
-                        placeholder = { Text("e.g. GitHub") },
+                        label = { Text(stringResource(R.string.common_name)) },
+                        placeholder = { Text(stringResource(R.string.browser_e_g_github)) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth()
                     )
                     OutlinedTextField(
                         value = newUrl,
                         onValueChange = { newUrl = it },
-                        label = { Text("URL") },
+                        label = { Text(stringResource(R.string.common_url)) },
                         placeholder = { Text("https://github.com") },
                         singleLine = true,
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Uri),
@@ -1178,12 +1180,12 @@ private fun SpeedDialHomeView(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta)
                 ) {
-                    Text("Add")
+                    Text(stringResource(R.string.common_add))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showAddDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -1193,8 +1195,8 @@ private fun SpeedDialHomeView(
     shortcutToDelete?.let { sc ->
         AlertDialog(
             onDismissRequest = { shortcutToDelete = null },
-            title = { Text("Remove Shortcut") },
-            text = { Text("Remove '${sc.title}' from your home shortcuts?") },
+            title = { Text(stringResource(R.string.browser_remove_shortcut)) },
+            text = { Text(stringResource(R.string.browser_remove_sc_title_from_your_home_shortcuts, sc.title)) },
             confirmButton = {
                 Button(
                     onClick = {
@@ -1203,12 +1205,12 @@ private fun SpeedDialHomeView(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
                 ) {
-                    Text("Remove")
+                    Text(stringResource(R.string.common_remove))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { shortcutToDelete = null }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -1321,7 +1323,7 @@ private fun AddShortcutItemView(
         ) {
             Icon(
                 imageVector = Icons.Default.Add,
-                contentDescription = "Add shortcut",
+                contentDescription = stringResource(R.string.browser_add_shortcut_2),
                 tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.75f),
                 modifier = Modifier.size(22.dp)
             )
@@ -1330,7 +1332,7 @@ private fun AddShortcutItemView(
         Spacer(modifier = Modifier.height(5.dp))
 
         Text(
-            text = "Add",
+            text = stringResource(R.string.common_add),
             style = MaterialTheme.typography.labelSmall,
             fontWeight = FontWeight.Normal,
             fontSize = 11.5.sp,
@@ -1398,7 +1400,7 @@ private fun TabOverviewScreen(
                     IconButton(onClick = onCloseOverview) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back",
+                            contentDescription = stringResource(R.string.common_back),
                             tint = MaterialTheme.colorScheme.onSurface
                         )
                     }
@@ -1415,7 +1417,7 @@ private fun TabOverviewScreen(
                         ) {
                             Box(contentAlignment = Alignment.Center) {
                                 Text(
-                                    text = "${tabs.size}",
+                                    text = stringResource(R.string.browser_tabs_size, tabs.size),
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -1424,7 +1426,7 @@ private fun TabOverviewScreen(
                         }
 
                         Text(
-                            text = "Tabs (${tabs.size})",
+                            text = stringResource(R.string.browser_tabs_tabs_size, tabs.size),
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
@@ -1432,7 +1434,7 @@ private fun TabOverviewScreen(
                     }
 
                     TextButton(onClick = onCloseOverview) {
-                        Text("Done", fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
+                        Text(stringResource(R.string.common_done), fontWeight = FontWeight.Bold, color = ClaudeTerracotta)
                     }
                 }
             }
@@ -1462,7 +1464,7 @@ private fun TabOverviewScreen(
                     ) {
                         Icon(Icons.Default.DeleteOutline, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(4.dp))
-                        Text("Delete all", fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+                        Text(stringResource(R.string.browser_delete_all), fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
                     }
 
                     // "+" New Tab on bottom right
@@ -1477,7 +1479,7 @@ private fun TabOverviewScreen(
                     ) {
                         Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("New tab", fontSize = 13.5.sp, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.browser_new_tab), fontSize = 13.5.sp, fontWeight = FontWeight.Bold)
                     }
                 }
             }
@@ -1529,13 +1531,13 @@ private fun TabOverviewScreen(
                         horizontalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
                         Text(
-                            text = "Tab closed",
+                            text = stringResource(R.string.browser_tab_closed),
                             color = Color.White,
                             fontSize = 13.5.sp,
                             fontWeight = FontWeight.Medium
                         )
                         Text(
-                            text = "Undo",
+                            text = stringResource(R.string.common_undo),
                             color = ClaudeTerracotta,
                             fontSize = 13.5.sp,
                             fontWeight = FontWeight.Bold,
@@ -1565,8 +1567,8 @@ private fun TabOverviewScreen(
     if (showDeleteAllConfirm) {
         AlertDialog(
             onDismissRequest = { showDeleteAllConfirm = false },
-            title = { Text("Close All Tabs") },
-            text = { Text("Are you sure you want to close all open tabs and return to chat?") },
+            title = { Text(stringResource(R.string.browser_close_all_tabs)) },
+            text = { Text(stringResource(R.string.browser_are_you_sure_you_want_to_close_all_open)) },
             confirmButton = {
                 Button(
                     onClick = {
@@ -1575,12 +1577,12 @@ private fun TabOverviewScreen(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
                 ) {
-                    Text("Close All")
+                    Text(stringResource(R.string.browser_close_all))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showDeleteAllConfirm = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         )
@@ -1672,7 +1674,7 @@ private fun TabCardView(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = "Close tab",
+                        contentDescription = stringResource(R.string.browser_close_tab),
                         tint = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.size(15.dp)
                     )
@@ -1739,16 +1741,16 @@ fun BrowserDiagnosticOverlay(
     val targetUrl = lastErr?.url ?: tab.url
 
     val title = when {
-        isStalled -> "Page Loading Stalled"
-        lastErr?.description?.contains("SSL", ignoreCase = true) == true -> "SSL Security Warning"
-        lastErr?.errorCode == -1 -> "Renderer Process Crashed"
-        else -> "Unable to Load Page"
+        isStalled -> stringResource(R.string.browser_error_stalled_title)
+        lastErr?.description?.contains("SSL", ignoreCase = true) == true -> stringResource(R.string.browser_error_ssl_warning)
+        lastErr?.errorCode == -1 -> stringResource(R.string.browser_error_renderer_crashed)
+        else -> stringResource(R.string.browser_error_unable_to_load)
     }
 
     val description = when {
-        isStalled -> "The page is taking unusually long to respond (timeout > 15s). The local server or remote site might be unresponsive."
+        isStalled -> stringResource(R.string.browser_error_stalled_desc)
         !lastErr?.description.isNullOrBlank() -> lastErr?.description ?: "An unexpected network or connection error occurred."
-        else -> "Could not connect to the server or display the requested URL."
+        else -> stringResource(R.string.browser_error_connect_desc)
     }
 
     Box(
@@ -1859,7 +1861,7 @@ fun BrowserDiagnosticOverlay(
                             horizontalArrangement = Arrangement.Center
                         ) {
                             Text(
-                                text = if (showDetails) "Hide Diagnostic Logs" else "Show Diagnostic Logs (${recentLogs.size})",
+                                text = if (showDetails) stringResource(R.string.browser_hide_diagnostic_logs) else stringResource(R.string.browser_show_diagnostic_logs, recentLogs.size),
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.Medium,
                                 color = ClaudeTerracotta
@@ -1885,7 +1887,7 @@ fun BrowserDiagnosticOverlay(
                                 for (log in recentLogs) {
                                     val errColor = MaterialTheme.colorScheme.onSurfaceVariant
                                     Text(
-                                        text = "[${log.level}] ${log.message}",
+                                        text = stringResource(R.string.browser_log_level_log_message, log.level, log.message),
                                         style = TextStyle(
                                             fontFamily = FontFamily.Monospace,
                                             fontSize = 11.sp,
@@ -1919,7 +1921,7 @@ fun BrowserDiagnosticOverlay(
                     ) {
                         Icon(Icons.Default.Refresh, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Reload", fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                        Text(stringResource(R.string.common_reload), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                     }
 
                     OutlinedButton(
@@ -1930,7 +1932,7 @@ fun BrowserDiagnosticOverlay(
                     ) {
                         Icon(Icons.Default.Search, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Search", fontSize = 13.sp)
+                        Text(stringResource(R.string.common_search), fontSize = 13.sp)
                     }
                 }
 
@@ -1940,7 +1942,7 @@ fun BrowserDiagnosticOverlay(
                     onClick = onDismiss,
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("Dismiss", fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(stringResource(R.string.common_dismiss), fontSize = 12.5.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
         }
@@ -1991,7 +1993,7 @@ private fun BrowserAiLockOverlay(busy: Boolean, onUnlock: () -> Unit) {
                     Spacer(modifier = Modifier.width(8.dp))
                 }
                 Text(
-                    text = if (busy) "AI is working…" else "Controlled by AI",
+                    text = if (busy) stringResource(R.string.browser_ai_working) else stringResource(R.string.browser_controlled_by_ai),
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Medium,
                     color = Color.White
@@ -2003,7 +2005,7 @@ private fun BrowserAiLockOverlay(busy: Boolean, onUnlock: () -> Unit) {
                         contentPadding = PaddingValues(horizontal = 10.dp, vertical = 0.dp),
                         modifier = Modifier.height(28.dp)
                     ) {
-                        Text("Unlock", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = Color(0xFFFFB38A))
+                        Text(stringResource(R.string.browser_unlock), fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = Color(0xFFFFB38A))
                     }
                 }
             }

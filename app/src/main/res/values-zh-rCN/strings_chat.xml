@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  由 scripts/i18n 生成，请勿手工调整条目顺序。
+  译法基准见 docs/i18n/GLOSSARY.md
+-->
+<resources>
+
+    <!-- 原文: Also restore files Claude changed after this message -->
+    <string name="chat_also_restore_files_claude_changed_after">同时恢复 Claude 在此消息之后修改过的文件</string>
+    <!-- 原文: Antigravity Disconnected -->
+    <string name="chat_antigravity_disconnected">Antigravity 已断开</string>
+    <!-- 原文: Antigravity requires Google authentication to access Gemini models. -->
+    <string name="chat_antigravity_requires_google_authenticati">Antigravity 需要 Google 身份验证才能访问 Gemini 模型。</string>
+    <!-- 原文: %1$s is not available in Claude chats yet -->
+    <string name="chat_apptoast_action_is_not_available_in_claude_chats">Claude 对话暂不支持 %1$s</string>
+    <!-- 原文: Checking Claude Code… -->
+    <string name="chat_apptoast_checking_claude_code">正在检查 Claude Code……</string>
+    <!-- 原文: Claude can't read audio or video files. Remove them, or tap the mic to dictate instead. -->
+    <string name="chat_apptoast_claude_can_t_read_audio_or_video_files_r">Claude 无法读取音频或视频文件。请先移除这些文件，或点击麦克风改用语音输入。</string>
+    <!-- 原文: Failed to load markdown file -->
+    <string name="chat_apptoast_failed_to_load_markdown_file">加载 Markdown 文件失败</string>
+    <!-- 原文: Failed to load shared chat file -->
+    <string name="chat_apptoast_failed_to_load_shared_chat_file">加载共享会话文件失败</string>
+    <!-- 原文: Failed to open file in IDE -->
+    <string name="chat_apptoast_failed_to_open_file_in_ide">在 IDE 中打开文件失败</string>
+    <!-- 原文: Loaded shared chat: %1$s -->
+    <string name="chat_apptoast_loaded_shared_chat_parsed_title">已加载共享会话：%1$s</string>
+    <!-- 原文: Opened %1$s -->
+    <string name="chat_apptoast_opened_resolvedname">已打开 %1$s</string>
+    <!-- 原文: Opened %1$s in IDE -->
+    <string name="chat_apptoast_opened_resolvedname_in_ide">已在 IDE 中打开 %1$s</string>
+    <!-- 原文: Reconnecting to Antigravity… -->
+    <string name="chat_apptoast_reconnecting_to_antigravity">正在重新连接 Antigravity……</string>
+    <!-- 原文: Restarting the local server… -->
+    <string name="chat_apptoast_restarting_the_local_server">正在重启本地服务器……</string>
+    <!-- 原文: Restored chat: %1$s -->
+    <string name="chat_apptoast_restored_chat_restored_title">已恢复会话：%1$s</string>
+    <!-- 原文: Ask a question, brainstorm ideas, or start coding -->
+    <string name="chat_ask_a_question_brainstorm_ideas_or_start">提问、头脑风暴，或直接开始写代码</string>
+    <!-- 原文: Choose model -->
+    <string name="chat_choose_model">选择模型</string>
+    <!-- 原文: Claude Code is not installed. Set it up in Settings. -->
+    <string name="chat_claude_not_installed_hint">未安装 Claude Code，请在设置中完成配置。</string>
+    <!-- 原文: Restart the local server to use Claude Code. -->
+    <string name="chat_claude_restart_server_hint">重启本地服务器以使用 Claude Code。</string>
+    <!-- 原文: The local server is offline. Start it to send messages. -->
+    <string name="chat_claude_server_offline_hint">本地服务器离线，启动后才能发送消息。</string>
+    <!-- 原文: Code Editor IDE -->
+    <string name="chat_code_editor_ide">代码编辑器 IDE</string>
+    <!-- 原文: Command Terminated -->
+    <string name="chat_command_terminated">命令已终止</string>
+    <!-- 原文: Connecting to Antigravity... -->
+    <string name="chat_connecting_antigravity">正在连接 Antigravity……</string>
+    <!-- 原文: Listening... Speak now -->
+    <string name="chat_dictation_listening">正在聆听……请说话</string>
+    <!-- 原文: Dictation paused (tap resume to speak) -->
+    <string name="chat_dictation_paused">听写已暂停（点继续后说话）</string>
+    <!-- 原文: Stop Dictation -->
+    <string name="chat_dictation_stop">停止听写</string>
+    <!-- 原文: Do you want to open your browser to log in now? -->
+    <string name="chat_do_you_want_to_open_your_browser_to_log">要现在打开浏览器登录吗？</string>
+    <!-- 原文: Do you want to stop the model from outputting? The current generation will be stopped immediately. -->
+    <string name="chat_do_you_want_to_stop_the_model_from_outpu">要停止模型继续输出吗？当前生成会立即中断。</string>
+    <!-- 原文: e.g. It was taking too long, please use grep or find a faster way... -->
+    <string name="chat_e_g_it_was_taking_too_long_please_use_gr">例如：它跑得太久了，请改用 grep 或找更快的办法……</string>
+    <!-- 原文: Edit & Delete -->
+    <string name="chat_edit_and_delete">编辑并删除</string>
+    <!-- 原文: Edit Message? -->
+    <string name="chat_edit_message_title">编辑消息？</string>
+    <!-- 原文: Explain why or give new instructions to AI (optional): -->
+    <string name="chat_explain_why_or_give_new_instructions_to">说明原因，或给 AI 新的指令（可选）：</string>
+    <!-- 原文: How can I help you today? -->
+    <string name="chat_how_can_i_help_you_today">今天我能帮你做什么？</string>
+    <!-- 原文: Jump to Bottom -->
+    <string name="chat_jump_to_bottom">跳到底部</string>
+    <!-- 原文: Jump to Top -->
+    <string name="chat_jump_to_top">跳到顶部</string>
+    <!-- 原文: %1$s -->
+    <string name="chat_list_size">%1$s</string>
+    <!-- 原文: Minimize to Bubble -->
+    <string name="chat_minimize_to_bubble">最小化为气泡</string>
+    <!-- 原文: Loading models… -->
+    <string name="chat_models_loading">正在加载模型……</string>
+    <!-- 原文: Models unavailable -->
+    <string name="chat_models_unavailable">模型不可用</string>
+    <!-- 原文: Open Browser -->
+    <string name="chat_open_browser">打开浏览器</string>
+    <!-- 原文: Open Drawer -->
+    <string name="chat_open_drawer">打开抽屉</string>
+    <!-- 原文: Open Full Screen -->
+    <string name="chat_open_full_screen">打开全屏</string>
+    <!-- 原文: Outside -->
+    <string name="chat_project_outside">外部</string>
+    <!-- 原文: Record and transcribe -->
+    <string name="chat_record_and_transcribe">录音并转写</string>
+    <!-- 原文: Record voice note -->
+    <string name="chat_record_voice_note">录制语音</string>
+    <!-- 原文: Regenerate Response? -->
+    <string name="chat_regenerate_response_title">重新生成回复？</string>
+    <!-- 原文: Select Project -->
+    <string name="chat_select_project">选择项目</string>
+    <!-- 原文: Send to AI & Proceed -->
+    <string name="chat_send_to_ai_proceed">发送给 AI 并继续</string>
+    <!-- 原文: Sign In with Browser -->
+    <string name="chat_sign_in_with_browser">用浏览器登录</string>
+    <!-- 原文: Claude Code is starting… -->
+    <string name="chat_status_claude_starting">Claude Code 正在启动……</string>
+    <!-- 原文: Compacting the conversation… -->
+    <string name="chat_status_compacting">正在压缩会话……</string>
+    <!-- 原文: Starting Claude Code… -->
+    <string name="chat_status_starting_claude">正在启动 Claude Code……</string>
+    <!-- 原文: Stop Generation? -->
+    <string name="chat_stop_generation">停止生成？</string>
+    <!-- 原文: Stop Output -->
+    <string name="chat_stop_output">停止输出</string>
+    <!-- 原文: Stop Turn Here -->
+    <string name="chat_stop_turn_here">在此停止本轮</string>
+    <!-- 原文: This conversation doesn't exist -->
+    <string name="chat_toast_this_conversation_doesn_t_exist">该会话不存在</string>
+    <!-- 原文: $ %1$s -->
+    <string name="chat_toolcall_command">$ %1$s</string>
+    <!-- 原文: Unable to Load Chat -->
+    <string name="chat_unable_to_load_chat">无法加载对话</string>
+    <!-- 原文: Web Browser Preview -->
+    <string name="chat_web_browser_preview">网页浏览器预览</string>
+    <!-- 原文: Workspace -->
+    <string name="chat_workspace_fallback">工作区</string>
+    <!-- 原文: You stopped the running command: -->
+    <string name="chat_you_stopped_the_running_command">你停止了正在运行的命令：</string>
+</resources>

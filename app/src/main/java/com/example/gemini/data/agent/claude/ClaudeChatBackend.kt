@@ -7,6 +7,7 @@ import com.example.gemini.data.agent.AgentChatBackend
 import com.example.gemini.data.agent.ChatSessionStore
 import com.example.gemini.data.remote.SlashCommandItem
 import com.example.gemini.data.remote.dto.AskQuestionResponseItemDto
+import com.example.gemini.domain.i18n.AiLanguage
 import com.example.gemini.domain.model.AgentKind
 import com.example.gemini.domain.model.AiModel
 import com.example.gemini.domain.model.ChatAttachment
@@ -35,6 +36,7 @@ import kotlinx.serialization.json.contentOrNull
 import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.json.jsonPrimitive
 import java.util.UUID
+import com.example.gemini.R
 
 /**
  * Claude Code chat backend. The bridge runs one `claude` process per conversation; this class attaches to the
@@ -162,6 +164,8 @@ class ClaudeChatBackend(
     private var processLive = false
     private val outbox = ArrayDeque<String>()
     private val replies = HashMap<String, CompletableDeferred<ClaudeControlResponseInner>>()
+    // the chat the UI-language instruction was already sent for (cleared on detach)
+    @Volatile private var languageInstructionSentFor: String? = null
     // the permission mode was changed in this chat; untouched it is left to the user's settings.json default
     @Volatile private var modeTouched = false
     // model / effort / thinking were changed in this chat (a new chat otherwise follows the settings.json defaults)
@@ -217,7 +221,7 @@ class ClaudeChatBackend(
         val id = UUID.randomUUID().toString()
         val conv = Conversation(
             id = id,
-            title = "New Chat",
+            title = application.getString(R.string.common_new_chat),
             modelId = _selectedModelId.value,
             sessionId = id,
             workspaceUri = defaultWorkspaceUri(),
@@ -236,7 +240,7 @@ class ClaudeChatBackend(
 
     override fun selectConversation(id: String) {
         val conv = _conversations.value.find { it.id == id }
-            ?: Conversation(id = id, title = "Claude Chat", sessionId = id, agent = AgentKind.CLAUDE)
+            ?: Conversation(id = id, title = application.getString(R.string.data_claude_chat), sessionId = id, agent = AgentKind.CLAUDE)
         showConversation(conv, loading = true)
         backendScope.launch(worker) {
             detachLocked()
@@ -280,14 +284,24 @@ class ClaudeChatBackend(
                 startupNoticeJob?.cancel()
                 startupNoticeJob = backendScope.launch(worker) {
                     delay(STARTUP_NOTICE_DELAY_MS)
-                    if (awaitingProcess) _startupStatus.value = "Starting Claude Code…"
+                    if (awaitingProcess) _startupStatus.value = application.getString(R.string.chat_status_starting_claude)
                 }
             }
             emitNow()
             val frame = ClaudeJson.encodeToString(ClaudeUserMessage(uuid = uuid, message = ClaudeOutgoingMessage(buildBlocks(conv.id, text, atts))))
             ensureConnected(conv.id)
+            sendLanguageInstruction(conv.id)
             send(frame)
         }
+    }
+
+    /** Tells Claude Code to write prose in the UI language. Fire-and-forget: the CLI's reply is ignored. */
+    private fun sendLanguageInstruction(convId: String) {
+        if (languageInstructionSentFor == convId) return
+        // null means the UI is not Chinese: nothing to inject, and nothing to remember
+        val prompt = AiLanguage.appendSystemPromptOrNull() ?: return
+        languageInstructionSentFor = convId
+        sendControl(ClaudeControlRequestBody(subtype = "initialize", appendSystemPrompt = prompt))
     }
 
     override fun stopStreaming() {
@@ -315,7 +329,7 @@ class ClaudeChatBackend(
     override fun forkConversation(id: String) {
         val source = _conversations.value.find { it.id == id } ?: return
         val newId = UUID.randomUUID().toString()
-        val title = "${source.title} (fork)"
+        val title = application.getString(R.string.data_fork_title, source.title)
         backendScope.launch {
             client.fork(source.id, newId, title)
                 .mapCatching { if (!it.success) error(it.error ?: "the bridge refused") }
@@ -1021,7 +1035,7 @@ class ClaudeChatBackend(
                             transcript.permissionMode?.let { _permissionMode.value = it }
                             if (data["status"]?.jsonPrimitive?.contentOrNull == "compacting") {
                                 _isCompacting.value = true
-                                _startupStatus.value = "Compacting the conversation…"
+                                _startupStatus.value = application.getString(R.string.chat_status_compacting)
                             } else endCompactingNotice()
                         }
                         "compact_boundary" -> endCompactingNotice()
@@ -1052,7 +1066,7 @@ class ClaudeChatBackend(
                     }
                     "spawned" -> {
                         // only when the start-up notice is already shown (a slow start)
-                        if (awaitingProcess && _startupStatus.value != null) _startupStatus.value = "Claude Code is starting…"
+                        if (awaitingProcess && _startupStatus.value != null) _startupStatus.value = application.getString(R.string.chat_status_claude_starting)
                     }
                     "exited" -> {
                         awaitingProcess = false
@@ -1151,6 +1165,7 @@ class ClaudeChatBackend(
         replayUntilSeq = null
         replayDeadline?.cancel()
         replayDeadline = null
+        languageInstructionSentFor = null
     }
 
     private fun scheduleEmit() {

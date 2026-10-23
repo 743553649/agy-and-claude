@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.gemini.data.remote.dto.AvailableCascadePluginDto
+import com.example.gemini.R
 import com.example.gemini.domain.model.McpServerState
 import com.example.gemini.theme.*
 import com.example.gemini.ui.components.MarkdownContent
@@ -96,20 +98,20 @@ fun CascadeMcpCatalogDialog(
                         }
                         Column {
                             Text(
-                                text = "Cascade MCP Catalog",
+                                text = stringResource(R.string.settings_cascade_mcp_catalog),
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
-                                text = "1-Click Model Context Protocol integrations",
+                                text = stringResource(R.string.settings_1_click_model_context_protocol_integrati),
                                 fontSize = 12.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                             )
                         }
                     }
                     IconButton(onClick = onDismiss) {
-                        Icon(Icons.Default.Close, contentDescription = "Close")
+                        Icon(Icons.Default.Close, contentDescription = stringResource(R.string.common_close))
                     }
                 }
 
@@ -123,7 +125,7 @@ fun CascadeMcpCatalogDialog(
                         onSearch(it)
                     },
                     modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text("Search MCP packages (e.g. Firebase, BigQuery, Firestore)...", fontSize = 13.sp) },
+                    placeholder = { Text(stringResource(R.string.settings_search_mcp_packages_e_g_firebase_bigquer), fontSize = 13.sp) },
                     leadingIcon = {
                         Icon(Icons.Default.Search, contentDescription = null, modifier = Modifier.size(18.dp))
                     },
@@ -133,7 +135,7 @@ fun CascadeMcpCatalogDialog(
                                 searchQuery = ""
                                 onSearch("")
                             }) {
-                                Icon(Icons.Default.Clear, contentDescription = "Clear", modifier = Modifier.size(16.dp))
+                                Icon(Icons.Default.Clear, contentDescription = stringResource(R.string.common_clear), modifier = Modifier.size(16.dp))
                             }
                         }
                     },
@@ -148,12 +150,12 @@ fun CascadeMcpCatalogDialog(
                     Box(modifier = Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(10.dp)) {
                             CircularProgressIndicator(color = ClaudeTerracotta, modifier = Modifier.size(32.dp))
-                            Text("Loading available MCP catalog...", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                            Text(stringResource(R.string.settings_loading_available_mcp_catalog), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                         }
                     }
                 } else if (availablePlugins.isEmpty()) {
                     Box(modifier = Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
-                        Text("No MCP packages found matching '$searchQuery'", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                        Text(stringResource(R.string.settings_no_mcp_packages_found_matching_searchque, searchQuery), fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                     }
                 } else {
                     LazyColumn(
@@ -188,7 +190,7 @@ fun CascadeMcpCatalogDialog(
     // Readme viewer dialog
     selectedReadmeUrl?.let { (title, url) ->
         ReadmePreviewDialog(
-            title = "$title Documentation",
+            title = stringResource(R.string.settings_ui_plugin_documentation, title),
             readmeUrl = url,
             onDismiss = { selectedReadmeUrl = null }
         )
@@ -252,7 +254,7 @@ private fun CascadePluginCard(
                         }
                     }
                     Text(
-                        text = "ID: ${plugin.id}",
+                        text = stringResource(R.string.settings_id_plugin_id, plugin.id),
                         fontSize = 11.sp,
                         fontFamily = FontFamily.Monospace,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
@@ -274,7 +276,7 @@ private fun CascadePluginCard(
                             horizontalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
                             Icon(Icons.Default.Check, contentDescription = null, tint = QuotaGreen, modifier = Modifier.size(14.dp))
-                            Text("Installed", fontSize = 11.sp, fontWeight = FontWeight.SemiBold, color = QuotaGreen)
+                            Text(stringResource(R.string.common_installed), fontSize = 11.sp, fontWeight = FontWeight.SemiBold, color = QuotaGreen)
                         }
                     }
                 } else {
@@ -291,7 +293,7 @@ private fun CascadePluginCard(
                         } else {
                             Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(14.dp))
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("Install", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                            Text(stringResource(R.string.common_install), fontSize = 12.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }
@@ -313,7 +315,7 @@ private fun CascadePluginCard(
                 if (plugin.local != null && plugin.local.commands.isNotEmpty()) {
                     val cmd = plugin.local.commands.values.firstOrNull()?.template
                     Text(
-                        text = "⚡ Stdio: ${cmd?.command ?: "CLI"} ${(cmd?.args ?: emptyList()).take(2).joinToString(" ")}...",
+                        text = stringResource(R.string.settings_stdio_cmd_command_cli_cmd_args_emptylist, cmd?.command ?: "CLI", (cmd?.args ?: emptyList()).take(2).joinToString(" ")),
                         fontSize = 11.sp,
                         fontFamily = FontFamily.Monospace,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
@@ -323,7 +325,7 @@ private fun CascadePluginCard(
                     )
                 } else if (plugin.remote != null && plugin.remote.template != null) {
                     Text(
-                        text = "🌐 Remote: ${plugin.remote.template.serverUrl}",
+                        text = stringResource(R.string.settings_remote_plugin_remote_template_serverurl, plugin.remote.template.serverUrl),
                         fontSize = 11.sp,
                         fontFamily = FontFamily.Monospace,
                         color = GeminiBlue,
@@ -340,7 +342,7 @@ private fun CascadePluginCard(
                     ) {
                         Icon(Icons.Outlined.Description, contentDescription = null, modifier = Modifier.size(14.dp))
                         Spacer(modifier = Modifier.width(4.dp))
-                        Text("README", fontSize = 11.5.sp)
+                        Text(stringResource(R.string.settings_readme), fontSize = 11.5.sp)
                     }
                 }
             }
@@ -412,7 +414,7 @@ fun ReadmePreviewDialog(
                         modifier = Modifier.weight(1f)
                     )
                     IconButton(onClick = onDismiss) {
-                        Icon(Icons.Default.Close, contentDescription = "Close")
+                        Icon(Icons.Default.Close, contentDescription = stringResource(R.string.common_close))
                     }
                 }
 

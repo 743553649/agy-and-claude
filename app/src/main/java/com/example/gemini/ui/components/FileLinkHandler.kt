@@ -17,6 +17,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,6 +32,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.gemini.theme.ClaudeTerracotta
+import com.example.gemini.R
 import com.example.gemini.theme.GeminiBlue
 import java.io.File
 import java.text.SimpleDateFormat
@@ -154,7 +156,7 @@ fun FileDetailsDialog(
                 ) {
                     Column(modifier = Modifier.padding(10.dp)) {
                         Text(
-                            text = "Full Path:",
+                            text = stringResource(R.string.component_full_path),
                             fontSize = 11.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -176,7 +178,7 @@ fun FileDetailsDialog(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Column {
-                        Text("Size", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.component_size), fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         Text(
                             text = formatFileSize(details.sizeBytes),
                             fontSize = 13.sp,
@@ -185,16 +187,16 @@ fun FileDetailsDialog(
                     }
                     if (details.lineCount != null) {
                         Column {
-                            Text("Lines", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            Text(stringResource(R.string.component_lines), fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                             Text(
-                                text = "${details.lineCount} lines",
+                                text = stringResource(R.string.component_details_linecount_lines, details.lineCount),
                                 fontSize = 13.sp,
                                 fontWeight = FontWeight.Medium
                             )
                         }
                     }
                     Column {
-                        Text("Modified", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.component_modified), fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         Text(
                             text = details.lastModified.take(12),
                             fontSize = 13.sp,
@@ -210,12 +212,12 @@ fun FileDetailsDialog(
                     onClick = {
                         val cm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                         cm.setPrimaryClip(ClipData.newPlainText("File Path", details.fullPath))
-                        Toast.makeText(context, "Path copied to clipboard", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.component_toast_path_copied_to_clipboard), Toast.LENGTH_SHORT).show()
                     }
                 ) {
                     Icon(Icons.Outlined.ContentCopy, contentDescription = null, modifier = Modifier.size(16.dp))
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text("Copy Path")
+                    Text(stringResource(R.string.component_copy_path))
                 }
                 Spacer(modifier = Modifier.width(4.dp))
                 Button(
@@ -241,7 +243,7 @@ fun FileDetailsDialog(
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Close")
+                Text(stringResource(R.string.common_close))
             }
         }
     )
@@ -294,7 +296,7 @@ fun MarkdownDocViewerModal(
                     },
                     navigationIcon = {
                         IconButton(onClick = onDismiss) {
-                            Icon(Icons.Default.Close, contentDescription = "Close")
+                            Icon(Icons.Default.Close, contentDescription = stringResource(R.string.common_close))
                         }
                     },
                     actions = {
@@ -302,10 +304,10 @@ fun MarkdownDocViewerModal(
                             onClick = {
                                 val cm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                                 cm.setPrimaryClip(ClipData.newPlainText("Markdown Content", content))
-                                Toast.makeText(context, "Markdown content copied", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, context.getString(R.string.component_toast_markdown_content_copied), Toast.LENGTH_SHORT).show()
                             }
                         ) {
-                            Icon(Icons.Outlined.ContentCopy, contentDescription = "Copy Content")
+                            Icon(Icons.Outlined.ContentCopy, contentDescription = stringResource(R.string.component_copy_content))
                         }
                         IconButton(
                             onClick = {
@@ -315,7 +317,7 @@ fun MarkdownDocViewerModal(
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.Edit,
-                                contentDescription = "Edit in IDE",
+                                contentDescription = stringResource(R.string.component_edit_in_ide),
                                 tint = ClaudeTerracotta
                             )
                         }

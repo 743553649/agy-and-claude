@@ -3,6 +3,7 @@ package com.example.gemini.data.remote
 import android.os.Build
 import android.util.Log
 import com.example.gemini.data.remote.dto.*
+import com.example.gemini.domain.i18n.AiLanguage
 import com.example.gemini.domain.model.ChatMessage
 import com.example.gemini.domain.model.MessageRole
 import com.example.gemini.domain.model.ModelQuota
@@ -293,10 +294,12 @@ class AntigravityApiService(
         }
 
         val customPart = if (!customSystemPrompt.isNullOrBlank()) "\n\n$customSystemPrompt" else ""
+        // the UI-language instruction goes before the user's custom prompt, so it cannot be overridden
+        val sysBase = SYSTEM_INSTRUCTION + AiLanguage.suffix()
         val baseSysText = if (!toolInstruction.isNullOrBlank()) {
-            "$SYSTEM_INSTRUCTION$customPart\n\n$toolInstruction"
+            "$sysBase$customPart\n\n$toolInstruction"
         } else {
-            "$SYSTEM_INSTRUCTION$customPart"
+            "$sysBase$customPart"
         }
 
         val requestPayload = CloudCodeRequest(

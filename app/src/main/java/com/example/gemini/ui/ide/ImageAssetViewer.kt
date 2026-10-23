@@ -58,6 +58,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.net.URLEncoder
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 @Composable
 fun ImageAssetViewer(
@@ -187,13 +189,13 @@ fun ImageAssetViewer(
                     ) {
                         Icon(
                             imageVector = Icons.Default.BrokenImage,
-                            contentDescription = "Failed to load image",
+                            contentDescription = stringResource(R.string.common_failed_to_load_image),
                             tint = Color.Gray,
                             modifier = Modifier.size(48.dp)
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Could not preview image asset",
+                            text = stringResource(R.string.ide_could_not_preview_image_asset),
                             style = MaterialTheme.typography.bodySmall,
                             color = Color.LightGray
                         )
@@ -240,7 +242,7 @@ fun ImageAssetViewer(
                         val sizeText = fileSizeText?.let { " • $it" } ?: ""
                         val zoomText = " • ${(scale * 100).toInt()}%"
                         Text(
-                            text = "$dimText$sizeText$zoomText",
+                            text = stringResource(R.string.ide_dimtext_sizetext_zoomtext, dimText, sizeText, zoomText),
                             style = MaterialTheme.typography.labelSmall,
                             color = Color.LightGray,
                             fontSize = 11.sp
@@ -257,7 +259,7 @@ fun ImageAssetViewer(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Contrast,
-                            contentDescription = "Toggle Background",
+                            contentDescription = stringResource(R.string.ide_toggle_background),
                             tint = when (bgMode) {
                                 1 -> Color.White
                                 2 -> Color.DarkGray
@@ -272,7 +274,7 @@ fun ImageAssetViewer(
                     ) {
                         Icon(
                             imageVector = Icons.Default.ZoomOut,
-                            contentDescription = "Zoom Out",
+                            contentDescription = stringResource(R.string.common_zoom_out),
                             tint = Color.LightGray,
                             modifier = Modifier.size(18.dp)
                         )
@@ -298,7 +300,7 @@ fun ImageAssetViewer(
                     ) {
                         Icon(
                             imageVector = Icons.Default.ZoomIn,
-                            contentDescription = "Zoom In",
+                            contentDescription = stringResource(R.string.common_zoom_in),
                             tint = Color.LightGray,
                             modifier = Modifier.size(18.dp)
                         )
@@ -311,7 +313,7 @@ fun ImageAssetViewer(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Code,
-                                contentDescription = "View SVG XML Source",
+                                contentDescription = stringResource(R.string.ide_view_svg_xml_source),
                                 tint = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.size(18.dp)
                             )

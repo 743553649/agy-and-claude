@@ -39,6 +39,8 @@ import com.example.gemini.domain.model.ModelQuota
 import com.example.gemini.theme.*
 import kotlin.math.roundToInt
 import kotlinx.coroutines.launch
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 enum class CategoryType {
     GEMINI,
@@ -275,8 +277,8 @@ private fun MainCategoryListView(
         // Agent header (same as the Claude Code picker)
         com.example.gemini.ui.agents.AgentSheetHeader(
             agent = com.example.gemini.domain.model.AgentKind.AGY,
-            title = "Select model",
-            detail = if (availableModelsCount > 0) "$availableModelsCount models" else "no models loaded",
+            title = stringResource(R.string.ui_select_model),
+            detail = if (availableModelsCount > 0) stringResource(R.string.models_available_count, availableModelsCount) else stringResource(R.string.models_none_loaded),
             refreshing = isRefreshing,
             onRefresh = onRefresh
         )
@@ -291,14 +293,14 @@ private fun MainCategoryListView(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "No Models Loaded",
+                    text = stringResource(R.string.ui_no_models_loaded),
                     fontWeight = FontWeight.Bold,
                     fontSize = 15.sp,
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Connect your Google account in Settings or tap refresh to load your active models.",
+                    text = stringResource(R.string.ui_connect_your_google_account_in_settings),
                     fontSize = 12.5.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                     textAlign = TextAlign.Center
@@ -492,7 +494,7 @@ private fun CategoryModelsSubView(
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Back to categories",
+                    contentDescription = stringResource(R.string.ui_back_to_categories),
                     tint = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier.size(18.dp)
                 )
@@ -506,7 +508,7 @@ private fun CategoryModelsSubView(
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
-                    text = "${groupedModels.size} base models • ${models.size} variants",
+                    text = stringResource(R.string.ui_groupedmodels_size_base_models_models_si, groupedModels.size, models.size),
                     fontSize = 11.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
                 )
@@ -596,7 +598,7 @@ private fun TieredModelGroupCard(
                             .padding(horizontal = 6.dp, vertical = 2.dp)
                     ) {
                         Text(
-                            text = "Active",
+                            text = stringResource(R.string.common_active),
                             fontSize = 10.sp,
                             fontWeight = FontWeight.Bold,
                             color = brandColor
@@ -696,7 +698,7 @@ private fun CategoryNavigationTile(
                             .padding(horizontal = 6.dp, vertical = 1.5.dp)
                     ) {
                         Text(
-                            text = "$count",
+                            text = stringResource(R.string.ui_count, count),
                             fontSize = 10.5.sp,
                             fontWeight = FontWeight.Bold,
                             color = brandColor
@@ -712,7 +714,7 @@ private fun CategoryNavigationTile(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Check,
-                            contentDescription = "Active",
+                            contentDescription = stringResource(R.string.common_active),
                             tint = brandColor,
                             modifier = Modifier.size(13.dp)
                         )
@@ -728,7 +730,7 @@ private fun CategoryNavigationTile(
                     }
                 } else {
                     Text(
-                        text = "Tap to choose model",
+                        text = stringResource(R.string.ui_tap_to_choose_model),
                         fontSize = 12.5.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f)
                     )
@@ -755,7 +757,7 @@ private fun CategoryNavigationTile(
 
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowForwardIos,
-                contentDescription = "Open $title",
+                contentDescription = stringResource(R.string.ui_open_title, title),
                 tint = if (activeModelName != null) brandColor else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.35f),
                 modifier = Modifier.size(14.dp)
             )
@@ -814,13 +816,13 @@ private fun ModelRowItem(
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(
                             imageVector = Icons.Default.Check,
-                            contentDescription = "Selected",
+                            contentDescription = stringResource(R.string.common_selected),
                             tint = brandColor,
                             modifier = Modifier.size(12.dp)
                         )
                         Spacer(modifier = Modifier.width(3.dp))
                         Text(
-                            text = "Active",
+                            text = stringResource(R.string.common_active),
                             fontSize = 10.5.sp,
                             fontWeight = FontWeight.Bold,
                             color = brandColor

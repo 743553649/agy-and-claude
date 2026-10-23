@@ -87,7 +87,9 @@ data class ClaudeControlRequestBody(
     val cancel_queued: Boolean? = null,
     val settings: JsonObject? = null,
     val user_message_id: String? = null,
-    val dry_run: Boolean? = null
+    val dry_run: Boolean? = null,
+    /** `initialize` only: extra system prompt the CLI appends (used for the UI-language instruction). */
+    val appendSystemPrompt: String? = null
 )
 
 @Serializable

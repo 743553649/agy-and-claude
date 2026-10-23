@@ -27,6 +27,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.theme.ClaudeTerracotta
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 @Composable
 fun EngineWarmingUpView(
@@ -57,7 +59,7 @@ fun EngineWarmingUpView(
         Spacer(modifier = Modifier.height(20.dp))
 
         Text(
-            text = "Waking up Antigravity...",
+            text = stringResource(R.string.component_waking_up_antigravity),
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onSurface,
@@ -67,7 +69,7 @@ fun EngineWarmingUpView(
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = "The background AI engine is starting up. Your chats and workspace will be ready in a moment.",
+            text = stringResource(R.string.component_the_background_ai_engine_is_starting_up),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
             textAlign = TextAlign.Center,
@@ -105,7 +107,7 @@ fun DrawerEngineWarmingUpView(
         Spacer(modifier = Modifier.height(12.dp))
 
         Text(
-            text = "Waking up Antigravity...",
+            text = stringResource(R.string.component_waking_up_antigravity),
             style = MaterialTheme.typography.titleSmall,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colorScheme.onSurface,
@@ -115,7 +117,7 @@ fun DrawerEngineWarmingUpView(
         Spacer(modifier = Modifier.height(6.dp))
 
         Text(
-            text = "Your chats will appear as soon as the engine connects.",
+            text = stringResource(R.string.component_your_chats_will_appear_as_soon_as_the_en),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.75f),
             textAlign = TextAlign.Center,
@@ -380,7 +382,7 @@ fun NewChatSignInPromptCard(
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = "Sign in to Antigravity",
+            text = stringResource(R.string.component_sign_in_to_antigravity),
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colorScheme.onSurface,
@@ -390,7 +392,7 @@ fun NewChatSignInPromptCard(
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = "Please sign in to send messages, manage chat history, and interact with your workspace.",
+            text = stringResource(R.string.component_please_sign_in_to_send_messages_manage_c),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.75f),
             textAlign = TextAlign.Center,
@@ -415,7 +417,7 @@ fun NewChatSignInPromptCard(
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "Sign In",
+                text = stringResource(R.string.common_sign_in),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium
             )
@@ -461,14 +463,14 @@ fun NewChatOfflinePromptCard(
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "You seem to be offline",
+                    text = stringResource(R.string.component_you_seem_to_be_offline),
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
-                    text = "No internet connection detected. You can still type your prompt below.",
+                    text = stringResource(R.string.component_no_internet_connection_detected_you_can),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.75f)
                 )
@@ -509,7 +511,7 @@ fun NewChatCheckingAuthPromptCard(
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = "Checking account status...",
+            text = stringResource(R.string.component_checking_account_status),
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colorScheme.onSurface,
@@ -519,7 +521,7 @@ fun NewChatCheckingAuthPromptCard(
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = "Verifying your sign-in with Antigravity. You can start typing your message below anytime!",
+            text = stringResource(R.string.component_verifying_your_sign_in_with_antigravity),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.75f),
             textAlign = TextAlign.Center,
@@ -561,7 +563,7 @@ fun ServerStoppedPromptCard(
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = "Antigravity is stopped",
+            text = stringResource(R.string.component_antigravity_is_stopped),
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colorScheme.onSurface,
@@ -571,7 +573,7 @@ fun ServerStoppedPromptCard(
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = "The local AI engine is currently stopped. Tap the status dot in the top header to start, restart, or stop the server and inspect live logs.",
+            text = stringResource(R.string.component_the_local_ai_engine_is_currently_stopped),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.75f),
             textAlign = TextAlign.Center,

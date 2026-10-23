@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Terminal
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.data.daemon.DaemonStatus
+import com.example.gemini.R
 import com.example.gemini.data.daemon.TermuxDaemonManager
 import kotlinx.coroutines.launch
 
@@ -57,11 +59,11 @@ fun DaemonLogsDialog(
                         tint = MaterialTheme.colorScheme.primary
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("Go Daemon Status & Logs", style = MaterialTheme.typography.titleMedium)
+                    Text(stringResource(R.string.ide_go_daemon_status_logs), style = MaterialTheme.typography.titleMedium)
                 }
 
                 IconButton(onClick = onDismiss) {
-                    Icon(imageVector = Icons.Default.Close, contentDescription = "Close")
+                    Icon(imageVector = Icons.Default.Close, contentDescription = stringResource(R.string.common_close))
                 }
             }
         },
@@ -125,17 +127,17 @@ fun DaemonLogsDialog(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Refresh,
-                                contentDescription = "Retry",
+                                contentDescription = stringResource(R.string.common_retry),
                                 modifier = Modifier.size(16.dp)
                             )
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("Retry", fontSize = 12.sp)
+                            Text(stringResource(R.string.common_retry), fontSize = 12.sp)
                         }
                     }
                 }
 
                 Text(
-                    text = "Live Log Output:",
+                    text = stringResource(R.string.ide_live_log_output),
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(bottom = 4.dp)
@@ -151,8 +153,7 @@ fun DaemonLogsDialog(
                 ) {
                     if (logs.isEmpty()) {
                         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                            Text(
-                                "No log entries yet",
+                            Text(stringResource(R.string.ide_no_log_entries_yet),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = Color.Gray
                             )
@@ -187,7 +188,7 @@ fun DaemonLogsDialog(
         },
         confirmButton = {
             TextButton(onClick = onDismiss) {
-                Text("Close")
+                Text(stringResource(R.string.common_close))
             }
         }
     )

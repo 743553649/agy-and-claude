@@ -1,5 +1,6 @@
 package com.example.gemini.data.agent.claude
 
+import android.content.Context
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -14,11 +15,13 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import com.example.gemini.R
 
 /** Claude Code account: CLI/auth status, plan usage, OAuth sign-in and sign-out (all through the bridge). */
 class ClaudeAccountManager(
     private val scope: CoroutineScope,
-    private val client: ClaudeBridgeClient
+    private val client: ClaudeBridgeClient,
+    private val appContext: Context
 ) {
     private val _status = MutableStateFlow<ClaudeCliStatus?>(null)
     /** `claude --version` + `claude auth status --json`; null until the first check. */
@@ -86,7 +89,7 @@ class ClaudeAccountManager(
                 .onSuccess {
                     _status.value = it
                     _failure.value = null
-                    _statusError.value = it.auth_error?.let { e -> "Could not read the sign-in state: $e" }
+                    _statusError.value = it.auth_error?.let { e -> appContext.getString(R.string.data_err_read_sign_in_state, e) }
                     if (it.auth?.loggedIn == true) refreshUsage(false) else _usage.value = null
                 }
                 .onFailure {
@@ -94,8 +97,8 @@ class ClaudeAccountManager(
                     _failure.value = failure
                     _statusError.value = when (failure) {
                         ClaudeStatus.BRIDGE_OUTDATED -> it.message
-                        ClaudeStatus.BRIDGE_OFFLINE -> "Could not reach the bridge" + (it.message?.let { m -> " ($m)." } ?: ".")
-                        else -> it.message ?: "Status check failed"
+                        ClaudeStatus.BRIDGE_OFFLINE -> it.message?.let { m -> appContext.getString(R.string.data_err_could_not_reach_bridge_detail, m) } ?: appContext.getString(R.string.data_err_could_not_reach_bridge)
+                        else -> it.message ?: appContext.getString(R.string.data_err_status_check_failed)
                     }
                 }
             _checking.value = false
@@ -107,7 +110,7 @@ class ClaudeAccountManager(
         statusJob?.cancel()
         _checking.value = false
         _failure.value = ClaudeStatus.BRIDGE_OFFLINE
-        _statusError.value = "The bridge is not running."
+        _statusError.value = appContext.getString(R.string.data_err_bridge_not_running)
     }
 
     private fun classify(error: Throwable): ClaudeStatus = when {
@@ -137,9 +140,9 @@ class ClaudeAccountManager(
                         _usage.value = resp.usage
                         _usageError.value = null
                         _usageUpdatedAt.value = System.currentTimeMillis()
-                    } else _usageError.value = resp.error ?: "Claude Code did not return usage"
+                    } else _usageError.value = resp.error ?: appContext.getString(R.string.data_err_no_usage_returned)
                 }
-                .onFailure { _usageError.value = it.message ?: "Cannot reach the bridge" }
+                .onFailure { _usageError.value = it.message ?: appContext.getString(R.string.data_err_cannot_reach_bridge) }
             _isRefreshingUsage.value = false
         }
     }
@@ -156,12 +159,12 @@ class ClaudeAccountManager(
                         _login.value = st
                         pollLogin(st.login_id)
                     } else {
-                        _messages.tryEmit("Sign-in could not start: ${resp.error ?: "unknown error"}")
+                        _messages.tryEmit(appContext.getString(R.string.data_err_sign_in_could_not_start, resp.error ?: appContext.getString(R.string.data_err_unknown_error)))
                         _isBusy.value = false
                     }
                 }
                 .onFailure {
-                    _messages.tryEmit("Sign-in could not start: ${it.message}")
+                    _messages.tryEmit(appContext.getString(R.string.data_err_sign_in_could_not_start, it.message.orEmpty()))
                     _isBusy.value = false
                 }
         }
@@ -172,8 +175,8 @@ class ClaudeAccountManager(
         val id = _login.value?.login_id ?: return
         scope.launch {
             client.submitLoginCode(id, code)
-                .onSuccess { if (!it.success) _messages.tryEmit("Code rejected: ${it.error}") }
-                .onFailure { _messages.tryEmit("Could not send code: ${it.message}") }
+                .onSuccess { if (!it.success) _messages.tryEmit(appContext.getString(R.string.data_err_code_rejected, it.error.orEmpty())) }
+                .onFailure { _messages.tryEmit(appContext.getString(R.string.data_err_send_code_failed, it.message.orEmpty())) }
         }
     }
 
@@ -190,9 +193,9 @@ class ClaudeAccountManager(
             _isBusy.value = true
             client.logout()
                 .onSuccess {
-                    if (it.success) _messages.tryEmit("Signed out of Claude") else _messages.tryEmit("Sign-out failed: ${it.error}")
+                    if (it.success) _messages.tryEmit(appContext.getString(R.string.data_status_signed_out_claude)) else _messages.tryEmit(appContext.getString(R.string.data_err_sign_out_failed, it.error.orEmpty()))
                 }
-                .onFailure { _messages.tryEmit("Sign-out failed: ${it.message}") }
+                .onFailure { _messages.tryEmit(appContext.getString(R.string.data_err_sign_out_failed, it.message.orEmpty())) }
             _isBusy.value = false
             _usage.value = null
             refreshStatus()
@@ -209,12 +212,12 @@ class ClaudeAccountManager(
                 _login.value = st
                 when (st.state) {
                     "success" -> {
-                        _messages.tryEmit("Signed in to Claude")
+                        _messages.tryEmit(appContext.getString(R.string.data_status_signed_in_claude))
                         finishLogin()
                         return@launch
                     }
                     "error", "cancelled" -> {
-                        _messages.tryEmit("Sign-in failed: ${st.error ?: st.state}")
+                        _messages.tryEmit(appContext.getString(R.string.data_err_sign_in_failed, st.error ?: st.state))
                         _login.value = null
                         _isBusy.value = false
                         return@launch

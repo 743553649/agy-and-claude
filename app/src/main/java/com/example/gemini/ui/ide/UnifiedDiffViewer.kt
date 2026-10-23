@@ -22,6 +22,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gemini.theme.ClaudeTerracotta
 import java.io.File
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 sealed class DiffLineType {
     object HunkHeader : DiffLineType()
@@ -145,9 +147,9 @@ fun UnifiedDiffViewer(
                         .background(Color(0xFF1E1E1E), RoundedCornerShape(4.dp))
                         .padding(horizontal = 6.dp, vertical = 2.dp)
                 ) {
-                    Text(text = "+$additionsCount", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = Color(0xFF4CAF50))
+                    Text(text = stringResource(R.string.ide_additionscount, additionsCount), fontSize = 12.sp, fontWeight = FontWeight.Bold, color = Color(0xFF4CAF50))
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text(text = "-$deletionsCount", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = Color(0xFFF44336))
+                    Text(text = stringResource(R.string.ide_deletionscount, deletionsCount), fontSize = 12.sp, fontWeight = FontWeight.Bold, color = Color(0xFFF44336))
                 }
 
                 Spacer(modifier = Modifier.width(6.dp))
@@ -159,7 +161,7 @@ fun UnifiedDiffViewer(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Edit,
-                        contentDescription = "Open Current File (Editable)",
+                        contentDescription = stringResource(R.string.ide_open_current_file_editable),
                         tint = Color(0xFF81C784),
                         modifier = Modifier.size(17.dp)
                     )
@@ -172,7 +174,7 @@ fun UnifiedDiffViewer(
                 ) {
                     Icon(
                         imageVector = Icons.Default.History,
-                        contentDescription = "Open Revision File (Read-Only)",
+                        contentDescription = stringResource(R.string.ide_open_revision_file_read_only),
                         tint = ClaudeTerracotta,
                         modifier = Modifier.size(18.dp)
                     )
@@ -185,7 +187,7 @@ fun UnifiedDiffViewer(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = "Close Diff",
+                        contentDescription = stringResource(R.string.ide_close_diff),
                         tint = Color(0xFF888888),
                         modifier = Modifier.size(18.dp)
                     )
@@ -203,7 +205,7 @@ fun UnifiedDiffViewer(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "No changes detected or binary file.",
+                    text = stringResource(R.string.ide_no_changes_detected_or_binary_file),
                     color = Color.Gray,
                     fontSize = 14.sp
                 )

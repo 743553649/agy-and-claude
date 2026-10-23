@@ -1,6 +1,7 @@
 package com.example.gemini.ui.drawer
 
 import com.example.gemini.ui.components.accent
+import com.example.gemini.R
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import androidx.compose.animation.AnimatedVisibility
@@ -43,6 +44,7 @@ import android.widget.Toast
 import androidx.compose.material.icons.outlined.ContentCopy
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -294,11 +296,11 @@ fun ChatHistoryDrawer(
         val (inst, title) = instanceToTerminate!!
         AlertDialog(
             onDismissRequest = { instanceToTerminate = null },
-            title = { Text("Active CLI Process", fontWeight = FontWeight.Bold, fontSize = 16.sp) },
+            title = { Text(stringResource(R.string.drawer_active_cli_process), fontWeight = FontWeight.Bold, fontSize = 16.sp) },
             text = {
                 Column {
                     Text(
-                        text = "A live Antigravity CLI process is running in the background for this chat:",
+                        text = stringResource(R.string.drawer_a_live_antigravity_cli_process_is_runnin),
                         fontSize = 13.5.sp,
                         color = MaterialTheme.colorScheme.onSurface
                     )
@@ -309,17 +311,17 @@ fun ChatHistoryDrawer(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Column(modifier = Modifier.padding(10.dp)) {
-                            Text("Chat: $title", fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
-                            Text("Model: ${inst.model}", fontSize = 12.sp)
-                            Text("Uptime: ${inst.uptimeSeconds}s", fontSize = 12.sp)
+                            Text(stringResource(R.string.drawer_chat_title, title), fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+                            Text(stringResource(R.string.drawer_model_inst_model, inst.model), fontSize = 12.sp)
+                            Text(stringResource(R.string.drawer_uptime_inst_uptimeseconds_s, inst.uptimeSeconds), fontSize = 12.sp)
                             if (inst.pid > 0) {
-                                Text("PID: ${inst.pid}", fontSize = 12.sp)
+                                Text(stringResource(R.string.common_pid_inst_pid, inst.pid), fontSize = 12.sp)
                             }
                         }
                     }
                     Spacer(modifier = Modifier.height(10.dp))
                     Text(
-                        text = "Terminate this instance to immediately free RAM?",
+                        text = stringResource(R.string.drawer_terminate_this_instance_to_immediately_f),
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Medium,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
@@ -334,12 +336,12 @@ fun ChatHistoryDrawer(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
                 ) {
-                    Text("Terminate & Free RAM", fontSize = 13.sp)
+                    Text(stringResource(R.string.drawer_terminate_free_ram), fontSize = 13.sp)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { instanceToTerminate = null }) {
-                    Text("Keep Running", fontSize = 13.sp)
+                    Text(stringResource(R.string.drawer_keep_running), fontSize = 13.sp)
                 }
             }
         )
@@ -350,14 +352,14 @@ fun ChatHistoryDrawer(
             onDismissRequest = { showSigningInProgressDialog = false },
             title = {
                 Text(
-                    text = "Sign-In in Progress",
+                    text = stringResource(R.string.drawer_sign_in_in_progress),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold
                 )
             },
             text = {
                 Text(
-                    text = "A sign-in request is currently pending. If you already completed authentication in your browser, tap 'Check Status'. You can also restart sign-in if needed.",
+                    text = stringResource(R.string.drawer_a_sign_in_request_is_currently_pending_i),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -372,7 +374,7 @@ fun ChatHistoryDrawer(
                             onCheckAuth()
                         }
                     ) {
-                        Text("Check Status")
+                        Text(stringResource(R.string.drawer_check_status))
                     }
                     Button(
                         onClick = {
@@ -380,7 +382,7 @@ fun ChatHistoryDrawer(
                             onLogin()
                         }
                     ) {
-                        Text("Sign In Again")
+                        Text(stringResource(R.string.drawer_sign_in_again))
                     }
                 }
             },
@@ -394,10 +396,10 @@ fun ChatHistoryDrawer(
                             onCancelLogin()
                         }
                     ) {
-                        Text("Later")
+                        Text(stringResource(R.string.common_later))
                     }
                     TextButton(onClick = { showSigningInProgressDialog = false }) {
-                        Text("Cancel")
+                        Text(stringResource(R.string.common_cancel))
                     }
                 }
             }
@@ -425,7 +427,7 @@ fun ChatHistoryDrawer(
             },
             title = {
                 Text(
-                    text = "Exit AntiGem?",
+                    text = stringResource(R.string.drawer_exit_antigem),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
@@ -433,7 +435,7 @@ fun ChatHistoryDrawer(
             },
             text = {
                 Text(
-                    text = "Do you want to exit the app? This will stop all active background services, servers, and terminals.",
+                    text = stringResource(R.string.drawer_do_you_want_to_exit_the_app_this_will_st),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     lineHeight = 20.sp
@@ -477,7 +479,7 @@ fun ChatHistoryDrawer(
                         modifier = Modifier.size(16.dp)
                     )
                     Spacer(modifier = Modifier.width(6.dp))
-                    Text("Exit App", fontWeight = FontWeight.SemiBold, fontSize = 13.5.sp)
+                    Text(stringResource(R.string.drawer_exit_app), fontWeight = FontWeight.SemiBold, fontSize = 13.5.sp)
                 }
             },
             dismissButton = {
@@ -485,7 +487,7 @@ fun ChatHistoryDrawer(
                     onClick = { showExitConfirmDialog = false },
                     shape = RoundedCornerShape(10.dp)
                 ) {
-                    Text("Cancel", fontSize = 13.5.sp)
+                    Text(stringResource(R.string.common_cancel), fontSize = 13.5.sp)
                 }
             },
             containerColor = MaterialTheme.colorScheme.surface,
@@ -515,7 +517,7 @@ fun ChatHistoryDrawer(
             },
             title = {
                 Text(
-                    text = "Delete Conversation?",
+                    text = stringResource(R.string.drawer_delete_conversation),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
@@ -523,7 +525,7 @@ fun ChatHistoryDrawer(
             },
             text = {
                 Text(
-                    text = "Are you sure you want to delete \"${targetConv.title.ifBlank { "this conversation" }}\"? This will permanently remove all messages and trajectory data.",
+                    text = stringResource(R.string.drawer_are_you_sure_you_want_to_delete_targetco_2, targetConv.title.ifBlank { "this conversation" }),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     lineHeight = 20.sp
@@ -548,7 +550,7 @@ fun ChatHistoryDrawer(
                         modifier = Modifier.size(16.dp)
                     )
                     Spacer(modifier = Modifier.width(6.dp))
-                    Text("Delete", fontWeight = FontWeight.SemiBold, fontSize = 13.5.sp)
+                    Text(stringResource(R.string.common_delete), fontWeight = FontWeight.SemiBold, fontSize = 13.5.sp)
                 }
             },
             dismissButton = {
@@ -556,7 +558,7 @@ fun ChatHistoryDrawer(
                     onClick = { conversationToDelete = null },
                     shape = RoundedCornerShape(10.dp)
                 ) {
-                    Text("Cancel", fontSize = 13.5.sp)
+                    Text(stringResource(R.string.common_cancel), fontSize = 13.5.sp)
                 }
             },
             containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
@@ -606,13 +608,13 @@ fun ChatHistoryDrawer(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Add,
-                        contentDescription = "New Chat",
+                        contentDescription = stringResource(R.string.common_new_chat),
                         tint = Color.White,
                         modifier = Modifier.size(16.dp)
                     )
                     Spacer(modifier = Modifier.width(5.dp))
                     Text(
-                        text = "New Chat",
+                        text = stringResource(R.string.common_new_chat),
                         fontWeight = FontWeight.SemiBold,
                         color = Color.White,
                         fontSize = 13.5.sp
@@ -633,7 +635,7 @@ fun ChatHistoryDrawer(
                     Box(contentAlignment = Alignment.Center) {
                         Icon(
                             imageVector = Icons.Default.PowerSettingsNew,
-                            contentDescription = "Exit App",
+                            contentDescription = stringResource(R.string.drawer_exit_app),
                             tint = MaterialTheme.colorScheme.error.copy(alpha = 0.85f),
                             modifier = Modifier.size(17.dp)
                         )
@@ -657,7 +659,7 @@ fun ChatHistoryDrawer(
                     Box(contentAlignment = Alignment.Center) {
                         Icon(
                             imageVector = Icons.Default.Folder,
-                            contentDescription = if (groupByWorkspace) "Disable Workspace Grouping" else "Group by Workspace",
+                            contentDescription = if (groupByWorkspace) stringResource(R.string.drawer_disable_workspace_grouping) else stringResource(R.string.drawer_group_by_workspace),
                             tint = if (groupByWorkspace) ClaudeTerracotta else MaterialTheme.colorScheme.onSurfaceVariant.copy(
                                 alpha = 0.8f
                             ),
@@ -689,7 +691,7 @@ fun ChatHistoryDrawer(
                     Box(contentAlignment = Alignment.Center) {
                         Icon(
                             imageVector = Icons.Default.Search,
-                            contentDescription = "Search",
+                            contentDescription = stringResource(R.string.common_search),
                             tint = if (isSearchActive || searchQuery.isNotBlank()) ClaudeTerracotta else MaterialTheme.colorScheme.onSurfaceVariant.copy(
                                 alpha = 0.8f
                             ),
@@ -753,7 +755,7 @@ fun ChatHistoryDrawer(
                                 decorationBox = { innerTextField ->
                                     if (searchQuery.isEmpty()) {
                                         Text(
-                                            text = "Search chat titles...",
+                                            text = stringResource(R.string.drawer_search_chat_titles),
                                             fontSize = 13.sp,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
                                         )
@@ -771,7 +773,7 @@ fun ChatHistoryDrawer(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.Close,
-                                        contentDescription = "Clear",
+                                        contentDescription = stringResource(R.string.common_clear),
                                         tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
                                         modifier = Modifier.size(14.dp)
                                     )
@@ -784,7 +786,7 @@ fun ChatHistoryDrawer(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Tune,
-                                    contentDescription = "Advanced Search",
+                                    contentDescription = stringResource(R.string.drawer_advanced_search_2),
                                     tint = ClaudeTerracotta,
                                     modifier = Modifier.size(16.dp)
                                 )
@@ -801,12 +803,12 @@ fun ChatHistoryDrawer(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "${filtered.size} chat${if (filtered.size != 1) "s" else ""} found",
+                                text = stringResource(R.string.drawer_filtered_size_chat_if_filtered_size_1_s, filtered.size, if (filtered.size != 1) "s" else ""),
                                 fontSize = 11.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                             )
                             Text(
-                                text = "Advanced Search ›",
+                                text = stringResource(R.string.drawer_advanced_search),
                                 fontSize = 11.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = ClaudeTerracotta,
@@ -886,7 +888,7 @@ fun ChatHistoryDrawer(
                             verticalArrangement = Arrangement.Center
                         ) {
                             Text(
-                                text = "Unable to load chats",
+                                text = stringResource(R.string.drawer_unable_to_load_chats),
                                 style = MaterialTheme.typography.titleSmall,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -905,7 +907,7 @@ fun ChatHistoryDrawer(
                                 shape = RoundedCornerShape(8.dp),
                                 contentPadding = PaddingValues(horizontal = 14.dp, vertical = 6.dp)
                             ) {
-                                Text("Retry", fontSize = 12.5.sp)
+                                Text(stringResource(R.string.common_retry), fontSize = 12.5.sp)
                             }
                         }
                     }
@@ -1021,7 +1023,7 @@ fun ChatHistoryDrawer(
                                                 color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
                                             ) {
                                                 Text(
-                                                    text = "${chats.size}",
+                                                    text = stringResource(R.string.drawer_chats_size, chats.size),
                                                     fontSize = 10.5.sp,
                                                     fontWeight = FontWeight.Medium,
                                                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
@@ -1100,7 +1102,7 @@ fun ChatHistoryDrawer(
                                                     .padding(horizontal = 4.dp, vertical = 2.dp)
                                             ) {
                                                 Text(
-                                                    text = if (isExpanded) "Show less" else "Show ${chats.size - 5} more",
+                                                    text = if (isExpanded) stringResource(R.string.drawer_show_less) else stringResource(R.string.drawer_show_more, chats.size - 5),
                                                     fontSize = 11.5.sp,
                                                     fontWeight = FontWeight.Medium,
                                                     color = ClaudeTerracotta
@@ -1148,13 +1150,13 @@ fun ChatHistoryDrawer(
                     ) {
                         Icon(
                             imageVector = Icons.Outlined.Settings,
-                            contentDescription = "Settings",
+                            contentDescription = stringResource(R.string.drawer_settings),
                             tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
                             modifier = Modifier.size(20.dp)
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
-                            text = "Settings",
+                            text = stringResource(R.string.drawer_settings),
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Medium,
                             color = MaterialTheme.colorScheme.onSurface
@@ -1183,7 +1185,7 @@ fun ChatHistoryDrawer(
                             )
                             Spacer(modifier = Modifier.width(5.dp))
                             Text(
-                                text = "Signing In...",
+                                text = stringResource(R.string.drawer_signing_in),
                                 fontSize = 11.5.sp,
                                 fontWeight = FontWeight.Medium,
                                 color = ClaudeTerracotta
@@ -1212,7 +1214,7 @@ fun ChatHistoryDrawer(
                                             .data(parseProfileAvatarModel(authInfo.profilePictureUrl))
                                             .crossfade(true)
                                             .build(),
-                                        contentDescription = "Profile Picture",
+                                        contentDescription = stringResource(R.string.drawer_profile_picture),
                                         modifier = Modifier
                                             .size(24.dp)
                                             .clip(CircleShape),
@@ -1283,12 +1285,12 @@ fun ChatHistoryDrawer(
                             ) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Outlined.Login,
-                                    contentDescription = "Sign In",
+                                    contentDescription = stringResource(R.string.common_sign_in),
                                     modifier = Modifier.size(15.dp)
                                 )
                                 Spacer(modifier = Modifier.width(4.dp))
                                 Text(
-                                    text = "Sign In",
+                                    text = stringResource(R.string.common_sign_in),
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.SemiBold
                                 )
@@ -1459,7 +1461,7 @@ private fun ChatHistoryItemRow(
             Box(contentAlignment = Alignment.Center) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.CallSplit,
-                    contentDescription = "Subagent",
+                    contentDescription = stringResource(R.string.drawer_subagent),
                     tint = if (isSelected) ClaudeTerracotta else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
                     modifier = Modifier.size(15.dp)
                 )
@@ -1536,7 +1538,7 @@ private fun ChatHistoryItemRow(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "${subagents.size}",
+                                text = stringResource(R.string.drawer_subagents_size, subagents.size),
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = if (isSubagentsExpanded) ClaudeTerracotta else MaterialTheme.colorScheme.onSurfaceVariant
@@ -1544,7 +1546,7 @@ private fun ChatHistoryItemRow(
                             Spacer(modifier = Modifier.width(2.dp))
                             Icon(
                                 imageVector = if (isSubagentsExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
-                                contentDescription = if (isSubagentsExpanded) "Collapse subagents" else "Expand subagents",
+                                contentDescription = if (isSubagentsExpanded) stringResource(R.string.drawer_collapse_subagents) else stringResource(R.string.drawer_expand_subagents),
                                 tint = if (isSubagentsExpanded) ClaudeTerracotta else MaterialTheme.colorScheme.onSurfaceVariant,
                                 modifier = Modifier.size(13.dp)
                             )
@@ -1587,7 +1589,7 @@ private fun ChatHistoryItemRow(
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
-                        text = "RUNNING",
+                        text = stringResource(R.string.drawer_running),
                         fontSize = 9.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFF2E7D32)
@@ -1618,7 +1620,7 @@ private fun ChatHistoryItemRow(
             var newTitle by remember { mutableStateOf(conv.title) }
             AlertDialog(
                 onDismissRequest = { showRename = false },
-                title = { Text("Rename chat", fontWeight = FontWeight.Bold) },
+                title = { Text(stringResource(R.string.drawer_rename_chat), fontWeight = FontWeight.Bold) },
                 text = {
                     OutlinedTextField(value = newTitle, onValueChange = { newTitle = it }, singleLine = true, modifier = Modifier.fillMaxWidth())
                 },
@@ -1626,9 +1628,9 @@ private fun ChatHistoryItemRow(
                     TextButton(onClick = {
                         claudeActions.rename(conv.id, newTitle)
                         showRename = false
-                    }, enabled = newTitle.isNotBlank()) { Text("Save") }
+                    }, enabled = newTitle.isNotBlank()) { Text(stringResource(R.string.common_save)) }
                 },
-                dismissButton = { TextButton(onClick = { showRename = false }) { Text("Cancel") } }
+                dismissButton = { TextButton(onClick = { showRename = false }) { Text(stringResource(R.string.common_cancel)) } }
             )
         }
 
@@ -1639,7 +1641,7 @@ private fun ChatHistoryItemRow(
             ) {
                 Icon(
                     imageVector = Icons.Default.MoreVert,
-                    contentDescription = "Options",
+                    contentDescription = stringResource(R.string.common_options),
                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                     modifier = Modifier.size(17.dp)
                 )
@@ -1654,7 +1656,7 @@ private fun ChatHistoryItemRow(
                 modifier = Modifier.widthIn(min = 210.dp)
             ) {
                 DropdownMenuItem(
-                    text = { Text("Copy Conversation ID", fontSize = 13.5.sp) },
+                    text = { Text(stringResource(R.string.drawer_copy_conversation_id), fontSize = 13.5.sp) },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Outlined.ContentCopy,
@@ -1666,11 +1668,11 @@ private fun ChatHistoryItemRow(
                     onClick = {
                         menuExpanded = false
                         clipboardManager.setText(AnnotatedString(conv.id))
-                        AppToastHelper.showToast("Conversation ID copied", ChatToastType.SUCCESS)
+                        AppToastHelper.showToast(context.getString(R.string.drawer_apptoast_conversation_id_copied), ChatToastType.SUCCESS)
                     }
                 )
                 DropdownMenuItem(
-                    text = { Text("Fork Conversation", fontSize = 13.5.sp) },
+                    text = { Text(stringResource(R.string.drawer_fork_conversation), fontSize = 13.5.sp) },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.CallSplit,
@@ -1686,7 +1688,7 @@ private fun ChatHistoryItemRow(
                 )
                 if (isClaudeConv && claudeActions != null) {
                     DropdownMenuItem(
-                        text = { Text("Rename", fontSize = 13.5.sp) },
+                        text = { Text(stringResource(R.string.common_rename), fontSize = 13.5.sp) },
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.Outlined.Edit,
@@ -1706,7 +1708,7 @@ private fun ChatHistoryItemRow(
                     modifier = Modifier.padding(vertical = 4.dp)
                 )
                 DropdownMenuItem(
-                    text = { Text("Export Markdown (.md)", fontSize = 13.5.sp) },
+                    text = { Text(stringResource(R.string.drawer_export_markdown_md), fontSize = 13.5.sp) },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Outlined.Description,
@@ -1717,7 +1719,7 @@ private fun ChatHistoryItemRow(
                     },
                     onClick = {
                         menuExpanded = false
-                        com.example.gemini.ui.components.AppToastHelper.showToast("Exporting Markdown...", com.example.gemini.ui.components.ChatToastType.INFO)
+                        com.example.gemini.ui.components.AppToastHelper.showToast(context.getString(R.string.drawer_apptoast_exporting_markdown), com.example.gemini.ui.components.ChatToastType.INFO)
                         scope.launch(Dispatchers.IO) {
                             ConversationExportHelper.exportConversation(
                                 context = context,
@@ -1731,7 +1733,7 @@ private fun ChatHistoryItemRow(
                     }
                 )
                 DropdownMenuItem(
-                    text = { Text("Export Standalone HTML", fontSize = 13.5.sp) },
+                    text = { Text(stringResource(R.string.drawer_export_standalone_html), fontSize = 13.5.sp) },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Outlined.Code,
@@ -1742,7 +1744,7 @@ private fun ChatHistoryItemRow(
                     },
                     onClick = {
                         menuExpanded = false
-                        com.example.gemini.ui.components.AppToastHelper.showToast("Exporting HTML...", com.example.gemini.ui.components.ChatToastType.INFO)
+                        com.example.gemini.ui.components.AppToastHelper.showToast(context.getString(R.string.drawer_apptoast_exporting_html), com.example.gemini.ui.components.ChatToastType.INFO)
                         scope.launch(Dispatchers.IO) {
                             ConversationExportHelper.exportConversation(
                                 context = context,
@@ -1756,7 +1758,7 @@ private fun ChatHistoryItemRow(
                     }
                 )
                 DropdownMenuItem(
-                    text = { Text("Share", fontSize = 13.5.sp) },
+                    text = { Text(stringResource(R.string.common_share), fontSize = 13.5.sp) },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Outlined.Share,
@@ -1767,7 +1769,7 @@ private fun ChatHistoryItemRow(
                     },
                     onClick = {
                         menuExpanded = false
-                        com.example.gemini.ui.components.AppToastHelper.showToast("Preparing .antigem share...", com.example.gemini.ui.components.ChatToastType.INFO)
+                        com.example.gemini.ui.components.AppToastHelper.showToast(context.getString(R.string.drawer_apptoast_preparing_antigem_share), com.example.gemini.ui.components.ChatToastType.INFO)
                         scope.launch(Dispatchers.IO) {
                             ConversationShareHelper.shareConversation(
                                 context = context,
@@ -1785,8 +1787,7 @@ private fun ChatHistoryItemRow(
                 )
                 DropdownMenuItem(
                     text = {
-                        Text(
-                            "Delete Conversation",
+                        Text(stringResource(R.string.drawer_delete_conversation_2),
                             fontSize = 13.5.sp,
                             color = MaterialTheme.colorScheme.error
                         )
@@ -1907,13 +1908,13 @@ fun SearchChatsDialog(
                         }
                         Column {
                             Text(
-                                text = "Search Conversations",
+                                text = stringResource(R.string.drawer_search_conversations),
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
-                                text = "${conversations.size} total chats indexed",
+                                text = stringResource(R.string.drawer_conversations_size_total_chats_indexed, conversations.size),
                                 fontSize = 11.5.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                             )
@@ -1926,7 +1927,7 @@ fun SearchChatsDialog(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Close,
-                            contentDescription = "Close",
+                            contentDescription = stringResource(R.string.common_close),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
                             modifier = Modifier.size(18.dp)
                         )
@@ -1976,7 +1977,7 @@ fun SearchChatsDialog(
                             decorationBox = { innerTextField ->
                                 if (query.isEmpty()) {
                                     Text(
-                                        text = "Search by title, topic, or model...",
+                                        text = stringResource(R.string.drawer_search_by_title_topic_or_model),
                                         fontSize = 13.5.sp,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
                                     )
@@ -1991,7 +1992,7 @@ fun SearchChatsDialog(
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Close,
-                                    contentDescription = "Clear",
+                                    contentDescription = stringResource(R.string.common_clear),
                                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                     modifier = Modifier.size(15.dp)
                                 )
@@ -2011,8 +2012,13 @@ fun SearchChatsDialog(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     // Time filters
-                    listOf("All", "Today", "Past 7d", "Past 30d").forEach { timeLabel ->
-                        val isSelected = selectedTimeFilter == timeLabel
+                    listOf(
+                        "All" to stringResource(R.string.settings_all),
+                        "Today" to stringResource(R.string.drawer_filter_today),
+                        "Past 7d" to stringResource(R.string.drawer_filter_past_7d),
+                        "Past 30d" to stringResource(R.string.drawer_filter_past_30d)
+                    ).forEach { (timeKey, timeLabel) ->
+                        val isSelected = selectedTimeFilter == timeKey
                         Surface(
                             shape = RoundedCornerShape(8.dp),
                             color = if (isSelected) ClaudeTerracotta.copy(alpha = 0.15f) else MaterialTheme.colorScheme.surfaceVariant.copy(
@@ -2026,7 +2032,7 @@ fun SearchChatsDialog(
                             ),
                             modifier = Modifier
                                 .clip(RoundedCornerShape(8.dp))
-                                .clickable { selectedTimeFilter = timeLabel }
+                                .clickable { selectedTimeFilter = timeKey }
                         ) {
                             Text(
                                 text = timeLabel,
@@ -2098,7 +2104,7 @@ fun SearchChatsDialog(
 
                 // Results count
                 Text(
-                    text = "${results.size} match${if (results.size != 1) "es" else ""}",
+                    text = stringResource(R.string.drawer_results_size_match_if_results_size_1_es, results.size, if (results.size != 1) "es" else ""),
                     fontSize = 12.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
@@ -2125,13 +2131,13 @@ fun SearchChatsDialog(
                                 modifier = Modifier.size(40.dp)
                             )
                             Text(
-                                text = "No conversations found",
+                                text = stringResource(R.string.drawer_no_conversations_found),
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
-                                text = if (query.isNotBlank()) "No chats match \"$query\". Try different keywords or reset filters." else "No chats in this category.",
+                                text = if (query.isNotBlank()) stringResource(R.string.drawer_no_chats_match, query) else stringResource(R.string.drawer_no_chats_category),
                                 fontSize = 12.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                                 textAlign = androidx.compose.ui.text.style.TextAlign.Center
@@ -2256,7 +2262,7 @@ fun SearchChatsDialog(
 
                                         if (conv.stepCount > 0) {
                                             Text(
-                                                text = "${conv.stepCount} turns",
+                                                text = stringResource(R.string.drawer_conv_stepcount_turns, conv.stepCount),
                                                 fontSize = 10.5.sp,
                                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f)
                                             )

@@ -5,10 +5,10 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,6 +27,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.example.gemini.AppViewMode
 import com.example.gemini.MainActivity
+import com.example.gemini.domain.i18n.AppLocaleController
 import com.example.gemini.theme.GeminiTheme
 import com.example.gemini.theme.isSystemInDarkThemeRobust
 import com.example.gemini.ui.browser.BrowserScreen
@@ -36,13 +37,15 @@ import com.example.gemini.ui.chat.ChatViewModelHolder
 import com.example.gemini.ui.components.LocalTerminalContent
 import com.example.gemini.ui.ide.IdeScreen
 
-class FloatingChatActivity : ComponentActivity() {
+class FloatingChatActivity : AppCompatActivity() {
 
     private val chatViewModel: ChatViewModel by lazy { ChatViewModelHolder.get(application) }
 
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // 界面语言回设必须在 setContent 之前（浮窗可能由通知冷启动进程）
+        AppLocaleController.apply(this)
         enableEdgeToEdge()
         overridePendingTransition(0, 0)
         window.clearFlags(android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND)

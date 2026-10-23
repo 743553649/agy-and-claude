@@ -16,6 +16,7 @@ import androidx.compose.material.icons.outlined.ContentCopy
 import androidx.compose.material.icons.outlined.Psychology
 import androidx.compose.material.icons.outlined.RestartAlt
 import androidx.compose.material3.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.gemini.data.preferences.AuthPreferences
+import com.example.gemini.R
 import com.example.gemini.theme.ClaudeTerracotta
 
 @Composable
@@ -169,7 +171,7 @@ Available slash commands: /goal, /schedule, /browser, /plan, /grill-me, /teamwor
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
-                            text = "Chat System Prompt",
+                            text = stringResource(R.string.component_chat_system_prompt),
                             fontSize = 17.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
@@ -182,13 +184,13 @@ Available slash commands: /goal, /schedule, /browser, /plan, /grill-me, /teamwor
                                 val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                                 val clip = ClipData.newPlainText("Antigravity System Prompt", defaultSystemPrompt)
                                 clipboard.setPrimaryClip(clip)
-                                Toast.makeText(context, "System prompt copied to clipboard", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, context.getString(R.string.component_toast_system_prompt_copied_to_clipboard), Toast.LENGTH_SHORT).show()
                             },
                             modifier = Modifier.size(32.dp)
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.ContentCopy,
-                                contentDescription = "Copy Prompt",
+                                contentDescription = stringResource(R.string.component_copy_prompt),
                                 tint = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.size(18.dp)
                             )
@@ -209,7 +211,7 @@ Available slash commands: /goal, /schedule, /browser, /plan, /grill-me, /teamwor
                         onClick = { selectedTab = 0 },
                         text = {
                             Text(
-                                text = "🧠 Active Prompt",
+                                text = stringResource(R.string.component_active_prompt),
                                 fontSize = 12.5.sp,
                                 fontWeight = if (selectedTab == 0) FontWeight.Bold else FontWeight.Normal
                             )
@@ -220,7 +222,7 @@ Available slash commands: /goal, /schedule, /browser, /plan, /grill-me, /teamwor
                         onClick = { selectedTab = 1 },
                         text = {
                             Text(
-                                text = "✍️ Custom Override",
+                                text = stringResource(R.string.component_custom_override),
                                 fontSize = 12.5.sp,
                                 fontWeight = if (selectedTab == 1) FontWeight.Bold else FontWeight.Normal
                             )
@@ -264,7 +266,7 @@ Available slash commands: /goal, /schedule, /browser, /plan, /grill-me, /teamwor
                         onValueChange = { promptText = it },
                         placeholder = {
                             Text(
-                                text = "e.g. You are an expert Android Kotlin engineer. Write clean Compose code with 0 bugs...",
+                                text = stringResource(R.string.component_e_g_you_are_an_expert_android_kotlin_eng),
                                 fontSize = 12.5.sp,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f)
                             )
@@ -296,12 +298,12 @@ Available slash commands: /goal, /schedule, /browser, /plan, /grill-me, /teamwor
                         TextButton(onClick = { promptText = "" }) {
                             Icon(
                                 imageVector = Icons.Outlined.RestartAlt,
-                                contentDescription = "Clear",
+                                contentDescription = stringResource(R.string.common_clear),
                                 modifier = Modifier.size(16.dp),
                                 tint = MaterialTheme.colorScheme.error
                             )
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("Reset", fontSize = 12.5.sp, color = MaterialTheme.colorScheme.error)
+                            Text(stringResource(R.string.component_reset), fontSize = 12.5.sp, color = MaterialTheme.colorScheme.error)
                         }
                     } else {
                         Spacer(modifier = Modifier.width(8.dp))
@@ -309,7 +311,7 @@ Available slash commands: /goal, /schedule, /browser, /plan, /grill-me, /teamwor
 
                     Row {
                         TextButton(onClick = onDismiss) {
-                            Text("Close", fontSize = 13.sp)
+                            Text(stringResource(R.string.common_close), fontSize = 13.sp)
                         }
                         if (selectedTab == 1) {
                             Spacer(modifier = Modifier.width(6.dp))
@@ -321,7 +323,7 @@ Available slash commands: /goal, /schedule, /browser, /plan, /grill-me, /teamwor
                                 colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta),
                                 shape = RoundedCornerShape(8.dp)
                             ) {
-                                Text("Save Prompt", fontSize = 13.sp, color = Color.White)
+                                Text(stringResource(R.string.component_save_prompt), fontSize = 13.sp, color = Color.White)
                             }
                         }
                     }

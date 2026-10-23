@@ -57,6 +57,8 @@ import androidx.compose.ui.window.DialogProperties
 import com.example.gemini.theme.*
 import kotlinx.coroutines.delay
 import java.util.regex.Pattern
+import androidx.compose.ui.res.stringResource
+import com.example.gemini.R
 
 // Syntax theme colors (One Dark / VS Code inspired)
 private val SynKeyword = Color(0xFFC678DD)      // Magenta / Purple
@@ -227,7 +229,7 @@ fun CodeBlock(
                 )
                 if (lineCount > 1) {
                     Text(
-                        text = "•  $lineCount lines",
+                        text = stringResource(R.string.component_linecount_lines, lineCount),
                         fontSize = 10.5.sp,
                         color = TextPrimaryDark.copy(alpha = 0.5f)
                     )
@@ -262,7 +264,7 @@ fun CodeBlock(
                             )
                             Spacer(modifier = Modifier.width(3.dp))
                             Text(
-                                text = "Code",
+                                text = stringResource(R.string.component_code),
                                 fontSize = 11.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = if (selectedTab == 0) Color.White else TextPrimaryDark.copy(alpha = 0.6f)
@@ -287,7 +289,7 @@ fun CodeBlock(
                             )
                             Spacer(modifier = Modifier.width(3.dp))
                             Text(
-                                text = "Preview",
+                                text = stringResource(R.string.component_preview),
                                 fontSize = 11.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = if (selectedTab == 1) Color.White else TextPrimaryDark.copy(alpha = 0.6f)
@@ -306,7 +308,7 @@ fun CodeBlock(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Refresh,
-                            contentDescription = "Reload preview",
+                            contentDescription = stringResource(R.string.component_reload_preview),
                             tint = TextPrimaryDark.copy(alpha = 0.7f),
                             modifier = Modifier.size(15.dp)
                         )
@@ -321,7 +323,7 @@ fun CodeBlock(
             ) {
                 Icon(
                     imageVector = Icons.Outlined.OpenInFull,
-                    contentDescription = "Fullscreen",
+                    contentDescription = stringResource(R.string.component_fullscreen),
                     tint = TextPrimaryDark.copy(alpha = 0.7f),
                     modifier = Modifier.size(14.dp)
                 )
@@ -335,7 +337,7 @@ fun CodeBlock(
                 ) {
                     Icon(
                         imageVector = if (isExpanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                        contentDescription = if (isExpanded) "Collapse code block" else "Expand full height",
+                        contentDescription = if (isExpanded) stringResource(R.string.component_code_collapse) else stringResource(R.string.component_code_expand),
                         tint = if (isExpanded) ClaudeTerracotta else TextPrimaryDark.copy(alpha = 0.7f),
                         modifier = Modifier.size(17.dp)
                     )
@@ -349,21 +351,21 @@ fun CodeBlock(
                     val clip = ClipData.newPlainText("Copied Code", code)
                     clipboard.setPrimaryClip(clip)
                     isCopied = true
-                    Toast.makeText(context, "Code copied to clipboard", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.component_toast_code_copied_to_clipboard), Toast.LENGTH_SHORT).show()
                 },
                 modifier = Modifier.size(28.dp)
             ) {
                 if (isCopied) {
                     Icon(
                         imageVector = Icons.Default.Check,
-                        contentDescription = "Copied",
+                        contentDescription = stringResource(R.string.component_copied),
                         tint = QuotaGreen,
                         modifier = Modifier.size(16.dp)
                     )
                 } else {
                     Icon(
                         imageVector = Icons.Outlined.ContentCopy,
-                        contentDescription = "Copy code",
+                        contentDescription = stringResource(R.string.component_copy_code),
                         tint = TextPrimaryDark.copy(alpha = 0.7f),
                         modifier = Modifier.size(15.dp)
                     )
@@ -443,7 +445,7 @@ fun CodeBlock(
                     ) {
                         val hiddenLines = (lineCount - CODE_PREVIEW_LINES).coerceAtLeast(1)
                         Text(
-                            text = if (isExpanded) "Collapse code block ▲" else "Show all $lineCount lines ($hiddenLines more) ▼",
+                            text = if (isExpanded) stringResource(R.string.component_code_collapse_arrow) else stringResource(R.string.component_code_show_all, lineCount, hiddenLines),
                             fontSize = 11.5.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = ClaudeTerracotta
@@ -479,14 +481,14 @@ fun CodeBlock(
                         title = {
                             Column {
                                 Text(
-                                    text = if (selectedTab == 1 && isPreviewable) "Preview: ${language.uppercase()}" else language.ifEmpty { "Code" }.uppercase(),
+                                    text = if (selectedTab == 1 && isPreviewable) stringResource(R.string.component_code_preview, language.uppercase()) else language.ifEmpty { stringResource(R.string.component_code) }.uppercase(),
                                     style = MaterialTheme.typography.titleMedium,
                                     fontWeight = FontWeight.Bold,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
                                 )
                                 Text(
-                                    text = if (selectedTab == 1 && isPreviewable) "Interactive Artifact" else "$lineCount lines",
+                                    text = if (selectedTab == 1 && isPreviewable) stringResource(R.string.component_code_interactive_artifact) else stringResource(R.string.component_code_line_count, lineCount),
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     maxLines = 1,
@@ -496,7 +498,7 @@ fun CodeBlock(
                         },
                         navigationIcon = {
                             IconButton(onClick = { isFullscreen = false }) {
-                                Icon(Icons.Default.Close, contentDescription = "Close")
+                                Icon(Icons.Default.Close, contentDescription = stringResource(R.string.common_close))
                             }
                         },
                         actions = {
@@ -516,7 +518,7 @@ fun CodeBlock(
                                             .padding(horizontal = 8.dp, vertical = 3.dp)
                                     ) {
                                         Text(
-                                            text = "Code",
+                                            text = stringResource(R.string.component_code),
                                             fontSize = 11.sp,
                                             fontWeight = FontWeight.SemiBold,
                                             color = if (selectedTab == 0) Color.White else MaterialTheme.colorScheme.onSurfaceVariant
@@ -530,7 +532,7 @@ fun CodeBlock(
                                             .padding(horizontal = 8.dp, vertical = 3.dp)
                                     ) {
                                         Text(
-                                            text = "Preview",
+                                            text = stringResource(R.string.component_preview),
                                             fontSize = 11.sp,
                                             fontWeight = FontWeight.SemiBold,
                                             color = if (selectedTab == 1) Color.White else MaterialTheme.colorScheme.onSurfaceVariant
@@ -540,7 +542,7 @@ fun CodeBlock(
 
                                 if (selectedTab == 1) {
                                     IconButton(onClick = { reloadKey++ }) {
-                                        Icon(Icons.Default.Refresh, contentDescription = "Reload")
+                                        Icon(Icons.Default.Refresh, contentDescription = stringResource(R.string.common_reload))
                                     }
                                 }
                             }
@@ -559,12 +561,12 @@ fun CodeBlock(
                                     val clip = ClipData.newPlainText("Copied Code", code)
                                     clipboard.setPrimaryClip(clip)
                                     modalCopied = true
-                                    Toast.makeText(context, "Code copied to clipboard", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, context.getString(R.string.component_toast_code_copied_to_clipboard), Toast.LENGTH_SHORT).show()
                                 }
                             ) {
                                 Icon(
                                     imageVector = if (modalCopied) Icons.Default.Check else Icons.Outlined.ContentCopy,
-                                    contentDescription = "Copy code",
+                                    contentDescription = stringResource(R.string.component_copy_code),
                                     tint = if (modalCopied) QuotaGreen else MaterialTheme.colorScheme.onSurface
                                 )
                             }
