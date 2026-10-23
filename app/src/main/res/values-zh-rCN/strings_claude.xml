@@ -13,6 +13,16 @@
     <string name="claude_account_badge_signed_in">已登录</string>
     <!-- 原文: Signed out -->
     <string name="claude_account_badge_signed_out">未登录</string>
+    <!-- 原文: disable -->
+    <string name="claude_action_disable">禁用</string>
+    <!-- 原文: enable -->
+    <string name="claude_action_enable">启用</string>
+    <!-- 原文: install -->
+    <string name="claude_action_install">安装</string>
+    <!-- 原文: uninstall -->
+    <string name="claude_action_uninstall">卸载</string>
+    <!-- 原文: update -->
+    <string name="claude_action_update">更新</string>
     <!-- 原文: After approving, Claude shows a code. Paste it here: -->
     <string name="claude_after_approving_claude_shows_a_code_past">批准之后，Claude 会显示一个验证码。粘贴到这里：</string>
     <!-- 原文: Allow access to %1$s %2$s -->
@@ -185,6 +195,50 @@
     <string name="claude_mode_plan">计划</string>
     <!-- 原文: Explore and propose a plan, no changes -->
     <string name="claude_mode_plan_desc">只探索并给出计划，不做修改</string>
+    <!-- 原文: %1$s failed: %2$s -->
+    <string name="claude_msg_action_detail">%1$s失败：%2$s</string>
+    <!-- 原文: %1$s failed -->
+    <string name="claude_msg_action_failed">%1$s失败</string>
+    <!-- 原文: %1$s: %2$s failed: %3$s -->
+    <string name="claude_msg_action_failed_detail">%1$s：%2$s失败：%3$s</string>
+    <!-- 原文: %1$s failed to start -->
+    <string name="claude_msg_action_failed_start">%1$s失败，无法启动</string>
+    <!-- 原文: Could not add '%1$s': %2$s -->
+    <string name="claude_msg_add_failed">无法添加「%1$s」：%2$s</string>
+    <!-- 原文: Added '%1$s' -->
+    <string name="claude_msg_added">已添加「%1$s」</string>
+    <!-- 原文: '%1$s' was added but failed to connect -->
+    <string name="claude_msg_added_no_connect">「%1$s」已添加，但连接失败</string>
+    <!-- 原文: Claude Code %1$s failed (exit %2$s) -->
+    <string name="claude_msg_cli_failed">Claude Code %1$s失败（退出码：%2$s）</string>
+    <!-- 原文: Claude Code %1$s finished -->
+    <string name="claude_msg_cli_finished">Claude Code %1$s已完成</string>
+    <!-- 原文: '%1$s' connected · %2$s tools -->
+    <string name="claude_msg_connected_tools">「%1$s」已连接 · %2$s 个工具</string>
+    <!-- 原文: Delete failed: %1$s -->
+    <string name="claude_msg_delete_failed">删除失败：%1$s</string>
+    <!-- 原文: Deleted %1$s -->
+    <string name="claude_msg_deleted">已删除 %1$s</string>
+    <!-- 原文: %1$s: %2$s -->
+    <string name="claude_msg_label_detail">%1$s：%2$s</string>
+    <!-- 原文: MCP status failed: %1$s -->
+    <string name="claude_msg_mcp_status_failed">获取 MCP 状态失败：%1$s</string>
+    <!-- 原文: CLAUDE.md saved -->
+    <string name="claude_msg_md_saved">已保存 CLAUDE.md</string>
+    <!-- 原文: %1$s %2$s -->
+    <string name="claude_msg_plugin_done">%1$s %2$s</string>
+    <!-- 原文: Plugin list failed: %1$s -->
+    <string name="claude_msg_plugin_list_failed">获取插件列表失败：%1$s</string>
+    <!-- 原文: Could not read CLAUDE.md: %1$s -->
+    <string name="claude_msg_read_md_failed">读取 CLAUDE.md 失败：%1$s</string>
+    <!-- 原文: Remove failed -->
+    <string name="claude_msg_remove_failed">移除失败</string>
+    <!-- 原文: Remove failed: %1$s -->
+    <string name="claude_msg_remove_failed_detail">移除失败：%1$s</string>
+    <!-- 原文: Removed '%1$s' -->
+    <string name="claude_msg_removed">已移除「%1$s」</string>
+    <!-- 原文: Save failed: %1$s -->
+    <string name="claude_msg_save_failed">保存失败：%1$s</string>
     <!-- 原文: No MCP servers yet -->
     <string name="claude_no_mcp_servers_yet">还没有 MCP 服务器</string>
     <!-- 原文: No models loaded -->
@@ -237,6 +291,20 @@
     <string name="claude_plan_usage_is_not_available_right_now">套餐用量当前不可用。</string>
     <!-- 原文: %1$s plugin(s) -->
     <string name="claude_plugin_count">%1$s 个插件</string>
+    <!-- 原文: Enabled -->
+    <string name="claude_plugin_done_enabled">已启用</string>
+    <!-- 原文: Added marketplace -->
+    <string name="claude_plugin_done_market_added">已添加插件市场</string>
+    <!-- 原文: Removed marketplace -->
+    <string name="claude_plugin_done_market_removed">已移除插件市场</string>
+    <!-- 原文: Updated marketplace -->
+    <string name="claude_plugin_done_market_updated">已更新插件市场</string>
+    <!-- 原文: Done: -->
+    <string name="claude_plugin_done_other">完成：</string>
+    <!-- 原文: Uninstalled -->
+    <string name="claude_plugin_done_uninstalled">已卸载</string>
+    <!-- 原文: Updated -->
+    <string name="claude_plugin_done_updated">已更新</string>
     <!-- 原文: Searching… -->
     <string name="claude_plugin_searching">正在搜索……</string>
     <!-- 原文: Prompt cache -->

@@ -1,5 +1,6 @@
 package com.example.gemini.data.agent.claude
 
+import android.content.Context
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -15,6 +16,7 @@ import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.contentOrNull
+import com.example.gemini.R
 
 /**
  * Claude Code configuration through the bridge: `~/.claude/settings.json` (defaults, permission rules, everything
@@ -22,7 +24,8 @@ import kotlinx.serialization.json.contentOrNull
  */
 class ClaudeConfigManager(
     private val scope: CoroutineScope,
-    private val client: ClaudeBridgeClient
+    private val client: ClaudeBridgeClient,
+    private val appContext: Context
 ) {
     private val _messages = MutableSharedFlow<String>(extraBufferCapacity = 4)
     val messages: SharedFlow<String> = _messages.asSharedFlow()
@@ -88,9 +91,9 @@ class ClaudeConfigManager(
                         _settingsError.value = null
                         _messages.tryEmit(feedback)
                         onSettingsChanged()
-                    } else _messages.tryEmit("Save failed: ${it.error}")
+                    } else _messages.tryEmit(appContext.getString(R.string.claude_msg_save_failed, it.error))
                 }
-                .onFailure { _messages.tryEmit("Save failed: ${it.message}") }
+                .onFailure { _messages.tryEmit(appContext.getString(R.string.claude_msg_save_failed, it.message)) }
         }
     }
 
@@ -153,7 +156,7 @@ class ClaudeConfigManager(
             _memory.value = null
             client.memory(scopeName, cwd)
                 .onSuccess { _memory.value = it }
-                .onFailure { _messages.tryEmit("Could not read CLAUDE.md: ${it.message}") }
+                .onFailure { _messages.tryEmit(appContext.getString(R.string.claude_msg_read_md_failed, it.message)) }
         }
     }
 
@@ -162,11 +165,11 @@ class ClaudeConfigManager(
             client.saveMemory(scopeName, cwd, content)
                 .onSuccess {
                     if (it.success) {
-                        _messages.tryEmit("CLAUDE.md saved")
+                        _messages.tryEmit(appContext.getString(R.string.claude_msg_md_saved))
                         _memory.value = _memory.value?.copy(content = content, exists = true)
-                    } else _messages.tryEmit("Save failed: ${it.error}")
+                    } else _messages.tryEmit(appContext.getString(R.string.claude_msg_save_failed, it.error))
                 }
-                .onFailure { _messages.tryEmit("Save failed: ${it.message}") }
+                .onFailure { _messages.tryEmit(appContext.getString(R.string.claude_msg_save_failed, it.message)) }
         }
     }
 
@@ -188,11 +191,11 @@ class ClaudeConfigManager(
             client.deleteAutoMemory(cwd, name)
                 .onSuccess {
                     if (it.success) {
-                        _messages.tryEmit("Deleted $name")
+                        _messages.tryEmit(appContext.getString(R.string.claude_msg_deleted, name))
                         _autoMemory.value = _autoMemory.value?.let { m -> m.copy(files = m.files.filter { f -> f.name != name }) }
-                    } else _messages.tryEmit("Delete failed: ${it.error}")
+                    } else _messages.tryEmit(appContext.getString(R.string.claude_msg_delete_failed, it.error))
                 }
-                .onFailure { _messages.tryEmit("Delete failed: ${it.message}") }
+                .onFailure { _messages.tryEmit(appContext.getString(R.string.claude_msg_delete_failed, it.message)) }
         }
     }
 
@@ -231,7 +234,7 @@ class ClaudeConfigManager(
             if (error != null) {
                 setMcpOp(req.name, null)
                 _mcpAddError.value = req.name to error
-                _messages.tryEmit("Could not add '${req.name}': $error")
+                _messages.tryEmit(appContext.getString(R.string.claude_msg_add_failed, req.name, error))
                 return@launch
             }
             // added: the status check connects to it (can take a few seconds)
@@ -241,9 +244,9 @@ class ClaudeConfigManager(
             val added = _mcpServers.value.find { it.name == req.name }
             _messages.tryEmit(
                 when (added?.status) {
-                    "connected" -> "'${req.name}' connected · ${added.tools.size} tools"
-                    "failed" -> "'${req.name}' was added but failed to connect"
-                    else -> "Added '${req.name}'"
+                    "connected" -> appContext.getString(R.string.claude_msg_connected_tools, req.name, added.tools.size)
+                    "failed" -> appContext.getString(R.string.claude_msg_added_no_connect, req.name)
+                    else -> appContext.getString(R.string.claude_msg_added, req.name)
                 }
             )
         }
@@ -255,11 +258,11 @@ class ClaudeConfigManager(
             client.removeMcpServer(name, scopeName, cwd)
                 .onSuccess {
                     if (it.success) {
-                        _messages.tryEmit("Removed '$name'")
+                        _messages.tryEmit(appContext.getString(R.string.claude_msg_removed, name))
                         _mcpServers.value = _mcpServers.value.filter { s -> s.name != name }
-                    } else _messages.tryEmit(it.error ?: "Remove failed")
+                    } else _messages.tryEmit(it.error ?: appContext.getString(R.string.claude_msg_remove_failed))
                 }
-                .onFailure { _messages.tryEmit("Remove failed: ${it.message}") }
+                .onFailure { _messages.tryEmit(appContext.getString(R.string.claude_msg_remove_failed_detail, it.message)) }
             setMcpOp(name, null)
             loadMcpNow(cwd)
         }
@@ -268,8 +271,8 @@ class ClaudeConfigManager(
     private suspend fun loadMcpNow(cwd: String?) {
         _mcpLoading.value = true
         client.mcpServers(cwd)
-            .onSuccess { if (it.success) _mcpServers.value = it.servers else _messages.tryEmit("MCP status failed: ${it.error}") }
-            .onFailure { _messages.tryEmit("MCP status failed: ${it.message}") }
+            .onSuccess { if (it.success) _mcpServers.value = it.servers else _messages.tryEmit(appContext.getString(R.string.claude_msg_mcp_status_failed, it.error)) }
+            .onFailure { _messages.tryEmit(appContext.getString(R.string.claude_msg_mcp_status_failed, it.message)) }
         _mcpLoading.value = false
     }
 
@@ -289,7 +292,7 @@ class ClaudeConfigManager(
         scope.launch {
             client.plugins()
                 .onSuccess { _plugins.value = it }
-                .onFailure { _messages.tryEmit("Plugin list failed: ${it.message}") }
+                .onFailure { _messages.tryEmit(appContext.getString(R.string.claude_msg_plugin_list_failed, it.message)) }
         }
     }
 
@@ -303,10 +306,10 @@ class ClaudeConfigManager(
             pluginMutex.withLock {
                 client.pluginAction(action, body)
                     .onSuccess {
-                        if (it.success) _messages.tryEmit("${pluginActionDone(action)} $label")
-                        else _messages.tryEmit("$label: " + (it.error?.lines()?.lastOrNull { l -> l.isNotBlank() } ?: "$action failed"))
+                        if (it.success) _messages.tryEmit(appContext.getString(R.string.claude_msg_plugin_done, pluginActionDone(action), label))
+                        else _messages.tryEmit(appContext.getString(R.string.claude_msg_label_detail, label, it.error?.lines()?.lastOrNull { l -> l.isNotBlank() } ?: appContext.getString(R.string.claude_msg_action_failed, actionLabel(action))))
                     }
-                    .onFailure { _messages.tryEmit("$label: $action failed: ${it.message}") }
+                    .onFailure { _messages.tryEmit(appContext.getString(R.string.claude_msg_action_failed_detail, label, actionLabel(action), it.message)) }
                 client.plugins().onSuccess { _plugins.value = it }
             }
             _pluginOps.value = _pluginOps.value - key
@@ -314,15 +317,25 @@ class ClaudeConfigManager(
     }
 
     private fun pluginActionDone(action: String) = when (action) {
-        "install" -> "Installed"
-        "uninstall" -> "Uninstalled"
-        "enable" -> "Enabled"
-        "disable" -> "Disabled"
-        "update" -> "Updated"
-        "marketplace-add" -> "Added marketplace"
-        "marketplace-remove" -> "Removed marketplace"
-        "marketplace-update" -> "Updated marketplace"
-        else -> "Done:"
+        "install" -> appContext.getString(R.string.common_installed)
+        "uninstall" -> appContext.getString(R.string.claude_plugin_done_uninstalled)
+        "enable" -> appContext.getString(R.string.claude_plugin_done_enabled)
+        "disable" -> appContext.getString(R.string.settings_ui_disabled)
+        "update" -> appContext.getString(R.string.claude_plugin_done_updated)
+        "marketplace-add" -> appContext.getString(R.string.claude_plugin_done_market_added)
+        "marketplace-remove" -> appContext.getString(R.string.claude_plugin_done_market_removed)
+        "marketplace-update" -> appContext.getString(R.string.claude_plugin_done_market_updated)
+        else -> appContext.getString(R.string.claude_plugin_done_other)
+    }
+
+    /** 协议动作名 -> 中文动词；未识别的原样返回（技术值）。 */
+    private fun actionLabel(action: String) = when (action) {
+        "install" -> appContext.getString(R.string.claude_action_install)
+        "uninstall" -> appContext.getString(R.string.claude_action_uninstall)
+        "update" -> appContext.getString(R.string.claude_action_update)
+        "enable" -> appContext.getString(R.string.claude_action_enable)
+        "disable" -> appContext.getString(R.string.claude_action_disable)
+        else -> action
     }
 
     // ---------------------------------------------------------------- CLI install / update
@@ -338,7 +351,7 @@ class ClaudeConfigManager(
             client.startCliJob(action)
                 .onSuccess { resp ->
                     if (!resp.success) {
-                        _messages.tryEmit(resp.error ?: "$action failed to start")
+                        _messages.tryEmit(resp.error ?: appContext.getString(R.string.claude_msg_action_failed_start, actionLabel(action)))
                         return@onSuccess
                     }
                     _cliJob.value = resp.job
@@ -347,13 +360,13 @@ class ClaudeConfigManager(
                         val job = client.cliJob().getOrNull()?.job ?: break
                         _cliJob.value = job
                         if (!job.running) {
-                            _messages.tryEmit(if (job.exit_code == 0) "Claude Code $action finished" else "Claude Code $action failed (exit ${job.exit_code})")
+                            _messages.tryEmit(if (job.exit_code == 0) appContext.getString(R.string.claude_msg_cli_finished, actionLabel(action)) else appContext.getString(R.string.claude_msg_cli_failed, actionLabel(action), job.exit_code))
                             onCliChanged()
                             break
                         }
                     }
                 }
-                .onFailure { _messages.tryEmit("$action failed: ${it.message}") }
+                .onFailure { _messages.tryEmit(appContext.getString(R.string.claude_msg_action_detail, actionLabel(action), it.message)) }
         }
     }
 }

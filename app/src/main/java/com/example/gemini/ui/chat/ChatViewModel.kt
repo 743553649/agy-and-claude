@@ -70,7 +70,7 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
     /** Claude account: sign-in state, plan usage, login / logout. */
     val claudeAccount = com.example.gemini.data.agent.claude.ClaudeAccountManager(viewModelScope, claudeClient, application)
     /** Claude configuration: settings.json, permission rules, MCP, plugins, memory, CLI install. */
-    val claudeConfig = com.example.gemini.data.agent.claude.ClaudeConfigManager(viewModelScope, claudeClient)
+    val claudeConfig = com.example.gemini.data.agent.claude.ClaudeConfigManager(viewModelScope, claudeClient, application)
     /** Dictation for Claude chats (Claude's speech-to-text through the bridge). */
     val claudeVoice = com.example.gemini.data.agent.claude.ClaudeVoiceTranscriber(claudeClient) { claudePrefs.voiceLanguage.value }
 
