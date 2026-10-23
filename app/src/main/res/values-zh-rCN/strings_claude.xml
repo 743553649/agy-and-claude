@@ -9,6 +9,10 @@
     <string name="claude_5h_w_utilization_100_toint">5 小时 %1$s%%</string>
     <!-- 原文: Account -->
     <string name="claude_account">账号</string>
+    <!-- 原文: Signed in -->
+    <string name="claude_account_badge_signed_in">已登录</string>
+    <!-- 原文: Signed out -->
+    <string name="claude_account_badge_signed_out">未登录</string>
     <!-- 原文: After approving, Claude shows a code. Paste it here: -->
     <string name="claude_after_approving_claude_shows_a_code_past">批准之后，Claude 会显示一个验证码。粘贴到这里：</string>
     <!-- 原文: Allow access to %1$s %2$s -->
@@ -109,6 +113,24 @@
     <string name="claude_loading_claude_s_models">正在加载 Claude 的模型……</string>
     <!-- 原文: Loading plan usage… -->
     <string name="claude_loading_plan_usage">正在加载套餐用量……</string>
+    <!-- 原文: Add %1$s -->
+    <string name="claude_mcp_add_named">添加 %1$s</string>
+    <!-- 原文: Add MCP server -->
+    <string name="claude_mcp_add_title">添加 MCP 服务器</string>
+    <!-- 原文: Added · checking that it starts and listing its tools… -->
+    <string name="claude_mcp_added_checking">已添加 · 正在确认能否启动并列出工具……</string>
+    <!-- 原文: Includes servers of the open project (%1$s). -->
+    <string name="claude_mcp_includes_project">包含当前打开项目（%1$s）的服务器。</string>
+    <!-- 原文: Open a project to also see its project-scoped servers. -->
+    <string name="claude_mcp_open_project_hint">打开一个项目即可看到它作用域内的服务器。</string>
+    <!-- 原文: URL: %1$s -->
+    <string name="claude_mcp_server_url">URL：%1$s</string>
+    <!-- 原文: (created when you save) -->
+    <string name="claude_memory_created_on_save">（保存时创建）</string>
+    <!-- 原文: Used in every project -->
+    <string name="claude_memory_scope_every">在所有项目中使用</string>
+    <!-- 原文: Used only in %1$s -->
+    <string name="claude_memory_scope_project">仅在 %1$s 中使用</string>
     <!-- 原文: Accept edits -->
     <string name="claude_mode_accept_edits">接受修改</string>
     <!-- 原文: Apply file edits without asking -->
@@ -183,6 +205,10 @@
     <string name="claude_plan_usage">套餐用量</string>
     <!-- 原文: Plan usage is not available right now. -->
     <string name="claude_plan_usage_is_not_available_right_now">套餐用量当前不可用。</string>
+    <!-- 原文: %1$s plugin(s) -->
+    <string name="claude_plugin_count">%1$s 个插件</string>
+    <!-- 原文: Searching… -->
+    <string name="claude_plugin_searching">正在搜索……</string>
     <!-- 原文: Prompt cache -->
     <string name="claude_prompt_cache">提示词缓存</string>
     <!-- 原文: Quick presets -->
@@ -193,6 +219,12 @@
     <string name="claude_remove_server_title">移除 %1$s？</string>
     <!-- 原文: Review the plan -->
     <string name="claude_review_the_plan">审阅计划</string>
+    <!-- 原文: Checking whether the sandbox can run on this device… -->
+    <string name="claude_sandbox_checking">正在检查此设备能否运行沙箱……</string>
+    <!-- 原文: Not available here: %1$s. Auto mode already asks rarely. -->
+    <string name="claude_sandbox_unavailable">此设备不可用：%1$s。自动模式本来就很少询问。</string>
+    <!-- 原文: unknown reason -->
+    <string name="claude_sandbox_unknown_reason">原因未知</string>
     <!-- 原文: for this session -->
     <string name="claude_scope_for_session">仅本次会话</string>
     <!-- 原文: in this project (only me) -->
@@ -211,6 +243,8 @@
     <string name="claude_sign_in_to_claude_code">登录 Claude Code</string>
     <!-- 原文: Sign out -->
     <string name="claude_sign_out">退出登录</string>
+    <!-- 原文: Signing in… -->
+    <string name="claude_signing_in_short">正在登录……</string>
     <!-- 原文: Starting… -->
     <string name="claude_starting">正在启动……</string>
     <!-- 原文: Check again -->

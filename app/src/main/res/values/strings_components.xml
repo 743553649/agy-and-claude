@@ -186,6 +186,8 @@
     <string name="component_logs_size">%1$s</string>
     <string name="component_logs_size_calls_recorded_activestreams_a_2">%1$s calls recorded · %2$s active stream</string>
     <string name="component_long_press_to_force_bash_shell">Long-press to force Bash shell</string>
+    <string name="component_md_hide_error_details">Hide Error Details &amp; Stack Trace</string>
+    <string name="component_md_view_error_details">View Error Details &amp; Stack Trace</string>
     <string name="component_mermaid_diagram">MERMAID DIAGRAM</string>
     <string name="component_mermaid_diagram_2">Mermaid Diagram</string>
     <string name="component_microphone_voice">Microphone &amp; Voice</string>

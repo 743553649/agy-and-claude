@@ -7,6 +7,8 @@
 
     <string name="claude_5h_w_utilization_100_toint">5h %1$s%%</string>
     <string name="claude_account">Account</string>
+    <string name="claude_account_badge_signed_in">Signed in</string>
+    <string name="claude_account_badge_signed_out">Signed out</string>
     <string name="claude_after_approving_claude_shows_a_code_past">After approving, Claude shows a code. Paste it here:</string>
     <string name="claude_allow_access_to">Allow access to %1$s %2$s</string>
     <string name="claude_always_allow_rules">Always allow %1$s %2$s</string>
@@ -57,6 +59,15 @@
     <string name="claude_keep_planning">Keep planning</string>
     <string name="claude_loading_claude_s_models">Loading Claude\'s models…</string>
     <string name="claude_loading_plan_usage">Loading plan usage…</string>
+    <string name="claude_mcp_add_named">Add %1$s</string>
+    <string name="claude_mcp_add_title">Add MCP server</string>
+    <string name="claude_mcp_added_checking">Added · checking that it starts and listing its tools…</string>
+    <string name="claude_mcp_includes_project">Includes servers of the open project (%1$s).</string>
+    <string name="claude_mcp_open_project_hint">Open a project to also see its project-scoped servers.</string>
+    <string name="claude_mcp_server_url">URL: %1$s</string>
+    <string name="claude_memory_created_on_save">(created when you save)</string>
+    <string name="claude_memory_scope_every">Used in every project</string>
+    <string name="claude_memory_scope_project">Used only in %1$s</string>
     <string name="claude_mode_accept_edits">Accept edits</string>
     <string name="claude_mode_accept_edits_desc">Apply file edits without asking</string>
     <string name="claude_mode_auto">Auto</string>
@@ -94,11 +105,16 @@
     <string name="claude_plan_mode">Plan mode</string>
     <string name="claude_plan_usage">Plan usage</string>
     <string name="claude_plan_usage_is_not_available_right_now">Plan usage is not available right now.</string>
+    <string name="claude_plugin_count">%1$s plugin(s)</string>
+    <string name="claude_plugin_searching">Searching…</string>
     <string name="claude_prompt_cache">Prompt cache</string>
     <string name="claude_quick_presets">Quick presets</string>
     <string name="claude_reason_before_answering_shown_as_a_summa">Reason before answering (shown as a summary)</string>
     <string name="claude_remove_server_title">Remove %1$s?</string>
     <string name="claude_review_the_plan">Review the plan</string>
+    <string name="claude_sandbox_checking">Checking whether the sandbox can run on this device…</string>
+    <string name="claude_sandbox_unavailable">Not available here: %1$s. Auto mode already asks rarely.</string>
+    <string name="claude_sandbox_unknown_reason">unknown reason</string>
     <string name="claude_scope_for_session">for this session</string>
     <string name="claude_scope_local_settings">in this project (only me)</string>
     <string name="claude_scope_project_settings">in this project (shared)</string>
@@ -108,6 +124,7 @@
     <string name="claude_send_fast_in_the_chat_to_toggle">Send /fast in the chat to toggle</string>
     <string name="claude_sign_in_to_claude_code">Sign in to Claude Code</string>
     <string name="claude_sign_out">Sign out</string>
+    <string name="claude_signing_in_short">Signing in…</string>
     <string name="claude_starting">Starting…</string>
     <string name="claude_status_action_check_again">Check again</string>
     <string name="claude_status_action_open_sign_in">Open sign-in</string>

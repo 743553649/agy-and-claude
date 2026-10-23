@@ -367,6 +367,10 @@
     <string name="component_logs_size_calls_recorded_activestreams_a_2">已记录 %1$s 次调用 · %2$s 个活跃流</string>
     <!-- 原文: Long-press to force Bash shell -->
     <string name="component_long_press_to_force_bash_shell">长按强制使用 Bash shell</string>
+    <!-- 原文: Hide Error Details & Stack Trace -->
+    <string name="component_md_hide_error_details">收起错误详情与堆栈</string>
+    <!-- 原文: View Error Details & Stack Trace -->
+    <string name="component_md_view_error_details">查看错误详情与堆栈</string>
     <!-- 原文: MERMAID DIAGRAM -->
     <string name="component_mermaid_diagram">MERMAID 图表</string>
     <!-- 原文: Mermaid Diagram -->

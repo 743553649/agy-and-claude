@@ -1463,7 +1463,7 @@ fun AgentErrorCard(
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
-                        text = if (isExpanded) "Hide Error Details & Stack Trace" else "View Error Details & Stack Trace",
+                        text = if (isExpanded) stringResource(R.string.component_md_hide_error_details) else stringResource(R.string.component_md_view_error_details),
                         fontSize = 11.5.sp,
                         fontWeight = FontWeight.Medium,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
