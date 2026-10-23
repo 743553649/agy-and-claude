@@ -99,6 +99,22 @@ def main():
             if "stringResource(" in body:
                 print(f"{os.path.relpath(path, ROOT)}:{idx + 1}  非 @Composable 函数内用了 stringResource → {lines[idx].strip()[:90]}")
                 globals()['HITS'] = globals().get('HITS', 0) + 1
+
+    # 规则三：onClick 等普通回调 lambda 里调用 stringResource（这些形参不是 @Composable）
+    CB = re.compile(r'\b(onClick|onLongClick|onDismissRequest|onValueChange|onCheckedChange|onActionClick|onRefresh)\s*=\s*\{')
+    for path in files:
+        text = open(path, encoding="utf-8").read()
+        for m in CB.finditer(text):
+            brace = text.index("{", m.end() - 1)
+            end = block_end(text, brace)
+            if end < 0:
+                continue
+            body = text[brace:end + 1]
+            if "stringResource(" in body:
+                line = text.count("\n", 0, m.start()) + 1
+                inner = next((l.strip() for l in body.split("\n") if "stringResource(" in l), "")
+                print(f"{os.path.relpath(path, ROOT)}:{line}  {m.group(1)} 回调内用了 stringResource → {inner[:100]}")
+                globals()['HITS'] = globals().get('HITS', 0) + 1
     print(f"\n可疑处 {hits + globals().get('HITS', 0)} 个")
     return 1 if hits else 0
 

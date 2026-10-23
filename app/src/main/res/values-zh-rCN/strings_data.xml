@@ -257,6 +257,22 @@
     <string name="data_install_verifying_linux_environment_and_shell_ex">正在校验 Linux 环境与 shell 执行……</string>
     <!-- 原文: Shows playback controls for videos in chat -->
     <string name="data_media_session_description">在对话中显示视频播放控件</string>
+    <!-- 原文: Exit -->
+    <string name="data_service_action_exit">退出</string>
+    <!-- 原文: Float -->
+    <string name="data_service_action_float">浮窗</string>
+    <!-- 原文: Terminal sessions and background execution -->
+    <string name="data_service_channel_desc">终端会话与后台执行</string>
+    <!-- 原文: AntiGem Terminal & Execution Service -->
+    <string name="data_service_channel_name">AntiGem 终端与执行服务</string>
+    <!-- 原文: %1$s session(s) -->
+    <string name="data_service_session_count">%1$s 个会话</string>
+    <!-- 原文: Acquire wakelock -->
+    <string name="data_service_wakelock_acquire">获取唤醒锁</string>
+    <!-- 原文: %1$s (wake lock held) -->
+    <string name="data_service_wakelock_held">%1$s（已持有唤醒锁）</string>
+    <!-- 原文: Release wakelock -->
+    <string name="data_service_wakelock_release">释放唤醒锁</string>
     <!-- 原文: %1$s (fork) -->
     <string name="data_source_title_fork">%1$s（分叉）</string>
     <!-- 原文: Acquiring security token. Please wait... -->

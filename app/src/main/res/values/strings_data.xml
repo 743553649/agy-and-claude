@@ -131,6 +131,14 @@
     <string name="data_install_verifying_installation_95">Verifying Installation (95%)</string>
     <string name="data_install_verifying_linux_environment_and_shell_ex">Verifying Linux environment and shell execution...</string>
     <string name="data_media_session_description">Shows playback controls for videos in chat</string>
+    <string name="data_service_action_exit">Exit</string>
+    <string name="data_service_action_float">Float</string>
+    <string name="data_service_channel_desc">Terminal sessions and background execution</string>
+    <string name="data_service_channel_name">AntiGem Terminal &amp; Execution Service</string>
+    <string name="data_service_session_count">%1$s session(s)</string>
+    <string name="data_service_wakelock_acquire">Acquire wakelock</string>
+    <string name="data_service_wakelock_held">%1$s (wake lock held)</string>
+    <string name="data_service_wakelock_release">Release wakelock</string>
     <string name="data_source_title_fork">%1$s (fork)</string>
     <string name="data_status_acquiring_token">Acquiring security token. Please wait...</string>
     <string name="data_status_plugin_installed">Installed and activated \'%1$s\' MCP server</string>

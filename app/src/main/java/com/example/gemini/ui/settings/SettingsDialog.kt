@@ -2449,7 +2449,7 @@ private fun ServersSubScreen(
                     authPrefs.saveAgyBinaryPath(agyBinPath.trim().ifBlank { authPrefs.getDefaultAgyBinaryPath() })
                     authPrefs.saveClaudeBinaryPath(claudeBinPath.trim().ifBlank { authPrefs.getDefaultClaudeBinaryPath() })
                 }
-                saveFeedback = "✓ Server, Binaries and Security settings saved!"
+                saveFeedback = "✓ " + context.getString(R.string.settings_saved_server_binaries)
                 showRestartDialog = true
             },
             modifier = Modifier.fillMaxWidth(),
@@ -4104,7 +4104,7 @@ private fun TerminalSubScreen(
                         onClick = {
                             val p = portState.toIntOrNull() ?: sshPort
                             onSaveSshSettings(hostState.trim(), p, userState.trim(), passState)
-                            sshSaveFeedback = "✓ SSH settings saved successfully!"
+                            sshSaveFeedback = "✓ " + context.getString(R.string.settings_saved_ssh)
                         },
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(8.dp),
@@ -6905,24 +6905,24 @@ private fun CommandsSubScreen(
         val presets = listOf(
             Triple(
                 "DEFAULT",
-                "🛡️ Default Mode",
-                "Terminal commands require confirmation. Files outside workspace require confirmation."
-            ) to ("Recommended" to Color(0xFF00ACC1)),
+                stringResource(R.string.settings_preset_default_title),
+                stringResource(R.string.settings_preset_default_desc)
+            ) to (stringResource(R.string.settings_ui_recommended) to Color(0xFF00ACC1)),
             Triple(
                 "FULL_MACHINE",
-                "💻 Full Machine Mode",
-                "Terminal commands require confirmation. Full read/write access to all files on device."
-            ) to ("Open Files" to Color(0xFFF59E0B)),
+                stringResource(R.string.settings_preset_full_title),
+                stringResource(R.string.settings_preset_full_desc)
+            ) to (stringResource(R.string.settings_preset_full_badge) to Color(0xFFF59E0B)),
             Triple(
                 "TURBO",
-                "⚡ Turbo Mode",
-                "Full auto-run: terminal commands execute immediately and all files can be accessed."
-            ) to ("Full Auto" to QuotaGreen),
+                stringResource(R.string.settings_preset_turbo_title),
+                stringResource(R.string.settings_preset_turbo_desc)
+            ) to (stringResource(R.string.settings_preset_turbo_badge) to QuotaGreen),
             Triple(
                 "CUSTOM",
-                "⚙️ Custom Granular Mode",
-                "Configure terminal command execution and external filesystem permissions separately."
-            ) to ("Custom" to Color(0xFF8B5CF6))
+                stringResource(R.string.settings_preset_custom_title),
+                stringResource(R.string.settings_preset_custom_desc)
+            ) to (stringResource(R.string.settings_preset_custom_badge) to Color(0xFF8B5CF6))
         )
 
         presets.forEach { (presetInfo, badgeInfo) ->
@@ -7252,11 +7252,11 @@ private fun CommandsSubScreen(
                 horizontalArrangement = Arrangement.spacedBy(6.dp)
             ) {
                 val filters = listOf(
-                    "ALL" to "All (${allRules.size})",
-                    "command" to "⌨️ Command (${allRules.count { it.action.equals("command", ignoreCase = true) }})",
-                    "mcp" to "🔌 MCP (${allRules.count { it.action.equals("mcp", ignoreCase = true) }})",
-                    "read_file" to "📖 Read (${allRules.count { it.action.equals("read_file", ignoreCase = true) }})",
-                    "write_file" to "✏️ Write (${allRules.count { it.action.equals("write_file", ignoreCase = true) }})"
+                    "ALL" to stringResource(R.string.settings_filter_all, allRules.size),
+                    "command" to stringResource(R.string.settings_filter_command, allRules.count { it.action.equals("command", ignoreCase = true) }),
+                    "mcp" to stringResource(R.string.settings_filter_mcp, allRules.count { it.action.equals("mcp", ignoreCase = true) }),
+                    "read_file" to stringResource(R.string.settings_filter_read, allRules.count { it.action.equals("read_file", ignoreCase = true) }),
+                    "write_file" to stringResource(R.string.settings_filter_write, allRules.count { it.action.equals("write_file", ignoreCase = true) })
                 )
 
                 filters.forEach { (key, label) ->
@@ -7362,9 +7362,9 @@ private fun CommandsSubScreen(
                                 horizontalArrangement = Arrangement.spacedBy(6.dp)
                             ) {
                                 val decisions = listOf(
-                                    Triple("ALLOW", "✅ Allow", QuotaGreen),
-                                    Triple("DENY", "🚫 Deny", MaterialTheme.colorScheme.error),
-                                    Triple("ASK", "❓ Ask", Color(0xFFF59E0B))
+                                    Triple("ALLOW", stringResource(R.string.settings_allow), QuotaGreen),
+                                    Triple("DENY", stringResource(R.string.settings_deny), MaterialTheme.colorScheme.error),
+                                    Triple("ASK", stringResource(R.string.settings_rule_dec_ask), Color(0xFFF59E0B))
                                 )
 
                                 decisions.forEach { (decKey, decLabel, decColor) ->
@@ -7618,9 +7618,9 @@ private fun CommandsSubScreen(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             val scopes = listOf(
-                Triple("PERMISSION_SCOPE_ONCE", "Run Once", "Single call"),
-                Triple("PERMISSION_SCOPE_CONVERSATION", "This Chat", "Current session"),
-                Triple("PERMISSION_SCOPE_WORKSPACE", "Workspace", "Always")
+                Triple("PERMISSION_SCOPE_ONCE", stringResource(R.string.settings_scope_once), stringResource(R.string.settings_scope_once_sub)),
+                Triple("PERMISSION_SCOPE_CONVERSATION", stringResource(R.string.settings_scope_chat), stringResource(R.string.settings_scope_chat_sub)),
+                Triple("PERMISSION_SCOPE_WORKSPACE", stringResource(R.string.chat_workspace_fallback), stringResource(R.string.settings_scope_workspace_sub))
             )
 
             scopes.forEach { (scopeKey, title, subtitle) ->

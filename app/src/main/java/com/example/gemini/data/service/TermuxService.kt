@@ -164,8 +164,8 @@ open class TermuxService : Service(), LifecycleOwner, ViewModelStoreOwner, Saved
 
     private fun setupNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "AntiGem Terminal & Execution Service"
-            val descriptionText = "Terminal sessions and background execution"
+            val name = getString(R.string.data_service_channel_name)
+            val descriptionText = getString(R.string.data_service_channel_desc)
             val importance = NotificationManager.IMPORTANCE_LOW
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText
@@ -184,8 +184,8 @@ open class TermuxService : Service(), LifecycleOwner, ViewModelStoreOwner, Saved
     private fun buildNotification(): Notification {
         val wakeLockHeld = wakeLock != null
 
-        val sessionText = "$currentSessionCount " + if (currentSessionCount == 1) "session" else "sessions"
-        val notificationText = if (wakeLockHeld) "$sessionText (wake lock held)" else sessionText
+        val sessionText = getString(R.string.data_service_session_count, currentSessionCount)
+        val notificationText = if (wakeLockHeld) getString(R.string.data_service_wakelock_held, sessionText) else sessionText
 
         val launchIntent = Intent(this, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -221,7 +221,7 @@ open class TermuxService : Service(), LifecycleOwner, ViewModelStoreOwner, Saved
             this, 2, toggleWakeLockIntent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
-        val wakeActionTitle = if (wakeLockHeld) "Release wakelock" else "Acquire wakelock"
+        val wakeActionTitle = if (wakeLockHeld) getString(R.string.data_service_wakelock_release) else getString(R.string.data_service_wakelock_acquire)
         val wakeActionIcon = if (wakeLockHeld) android.R.drawable.ic_lock_idle_lock else android.R.drawable.ic_lock_lock
 
         val priority = if (wakeLockHeld) NotificationCompat.PRIORITY_HIGH else NotificationCompat.PRIORITY_LOW
@@ -234,9 +234,9 @@ open class TermuxService : Service(), LifecycleOwner, ViewModelStoreOwner, Saved
             .setOngoing(true)
             .setShowWhen(false)
             .setPriority(priority)
-            .addAction(android.R.drawable.ic_menu_close_clear_cancel, "Exit", exitPendingIntent)
+            .addAction(android.R.drawable.ic_menu_close_clear_cancel, getString(R.string.data_service_action_exit), exitPendingIntent)
             .addAction(wakeActionIcon, wakeActionTitle, wakePendingIntent)
-            .addAction(android.R.drawable.ic_menu_view, "Float", floatPendingIntent)
+            .addAction(android.R.drawable.ic_menu_view, getString(R.string.data_service_action_float), floatPendingIntent)
             .build()
     }
 

@@ -379,6 +379,16 @@
     <string name="settings_factory_reset_in_progress">正在恢复出厂设置</string>
     <!-- 原文: Files Outside Workspace: -->
     <string name="settings_files_outside_workspace">工作区外的文件：</string>
+    <!-- 原文: All (%1$s) -->
+    <string name="settings_filter_all">全部（%1$s）</string>
+    <!-- 原文: ⌨️ Command (%1$s) -->
+    <string name="settings_filter_command">⌨️ 命令（%1$s）</string>
+    <!-- 原文: 🔌 MCP (%1$s) -->
+    <string name="settings_filter_mcp">🔌 MCP（%1$s）</string>
+    <!-- 原文: 📖 Read (%1$s) -->
+    <string name="settings_filter_read">📖 读（%1$s）</string>
+    <!-- 原文: ✏️ Write (%1$s) -->
+    <string name="settings_filter_write">✏️ 写（%1$s）</string>
     <!-- 原文: Floating App Switcher -->
     <string name="settings_floating_app_switcher">悬浮应用切换器</string>
     <!-- 原文: Floating Diagnostics HUD -->
@@ -607,6 +617,28 @@
     <string name="settings_port">端口</string>
     <!-- 原文: Preserves existing code in a backup folder before extracting -->
     <string name="settings_preserves_existing_code_in_a_backup_fold">解压前把现有代码保留在备份文件夹中</string>
+    <!-- 原文: Custom -->
+    <string name="settings_preset_custom_badge">自定义</string>
+    <!-- 原文: Configure terminal command execution and external filesystem permissions separately. -->
+    <string name="settings_preset_custom_desc">分别配置终端命令的执行策略与外部文件系统权限。</string>
+    <!-- 原文: ⚙️ Custom Granular Mode -->
+    <string name="settings_preset_custom_title">⚙️ 自定义细粒度模式</string>
+    <!-- 原文: Terminal commands require confirmation. Files outside workspace require confirmation. -->
+    <string name="settings_preset_default_desc">终端命令需要确认，工作区外的文件也需要确认。</string>
+    <!-- 原文: 🛡️ Default Mode -->
+    <string name="settings_preset_default_title">🛡️ 默认模式</string>
+    <!-- 原文: Open Files -->
+    <string name="settings_preset_full_badge">开放文件</string>
+    <!-- 原文: Terminal commands require confirmation. Full read/write access to all files on device. -->
+    <string name="settings_preset_full_desc">终端命令需要确认，可读写设备上的所有文件。</string>
+    <!-- 原文: 💻 Full Machine Mode -->
+    <string name="settings_preset_full_title">💻 整机模式</string>
+    <!-- 原文: Full Auto -->
+    <string name="settings_preset_turbo_badge">全自动</string>
+    <!-- 原文: Full auto-run: terminal commands execute immediately and all files can be accessed. -->
+    <string name="settings_preset_turbo_desc">全自动：终端命令直接执行，所有文件均可访问。</string>
+    <!-- 原文: ⚡ Turbo Mode -->
+    <string name="settings_preset_turbo_title">⚡ 极速模式</string>
     <!-- 原文: Proceed to Confirmation -->
     <string name="settings_proceed_to_confirmation">前往确认</string>
     <!-- 原文: Project Overrides & Inheritance -->
@@ -703,6 +735,8 @@
     <string name="settings_rule_action_write_file">写文件</string>
     <!-- 原文: %1$s %2$s -->
     <string name="settings_rule_actionicon_rule_actionlabel">%1$s %2$s</string>
+    <!-- 原文: ❓ Ask -->
+    <string name="settings_rule_dec_ask">❓ 询问</string>
     <!-- 原文: ⚠️ Custom Override -->
     <string name="settings_rules_custom_override">⚠️ 自定义覆盖</string>
     <!-- 原文: 🌐 Inherits Global -->
@@ -737,12 +771,26 @@
     <string name="settings_save_server_security_settings">保存服务器与安全设置</string>
     <!-- 原文: Save SSH Settings -->
     <string name="settings_save_ssh_settings">保存 SSH 设置</string>
+    <!-- 原文: Server, Binaries and Security settings saved! -->
+    <string name="settings_saved_server_binaries">服务器、二进制与安全设置已保存！</string>
+    <!-- 原文: SSH settings saved successfully! -->
+    <string name="settings_saved_ssh">SSH 设置已保存！</string>
     <!-- 原文: Saves to: /sdcard/Download/Antigem/backups/agy_chats_backup_<timestamp>.zip -->
     <string name="settings_saves_to_sdcard_download_antigem_backups">保存到：/sdcard/Download/Antigem/backups/agy_chats_backup_&lt;timestamp&gt;.zip</string>
     <!-- 原文: Saves to: /sdcard/Download/Antigem/backups/bootrapz_<timestamp>.zip -->
     <string name="settings_saves_to_sdcard_download_antigem_backups_2">保存到：/sdcard/Download/Antigem/backups/bootrapz_&lt;timestamp&gt;.zip</string>
     <!-- 原文: Scales messages, markdown, and code blocks -->
     <string name="settings_scales_messages_markdown_and_code_blocks">缩放消息、Markdown 与代码块</string>
+    <!-- 原文: This Chat -->
+    <string name="settings_scope_chat">本会话</string>
+    <!-- 原文: Current session -->
+    <string name="settings_scope_chat_sub">当前会话</string>
+    <!-- 原文: Run Once -->
+    <string name="settings_scope_once">仅一次</string>
+    <!-- 原文: Single call -->
+    <string name="settings_scope_once_sub">单次调用</string>
+    <!-- 原文: Always -->
+    <string name="settings_scope_workspace_sub">始终</string>
     <!-- 原文: Scrollback Buffer -->
     <string name="settings_scrollback_buffer">回滚缓冲区</string>
     <!-- 原文: Search MCP packages (e.g. Firebase, BigQuery, Firestore)... -->
