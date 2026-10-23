@@ -2,13 +2,69 @@
 
 > 本文档写给接手的人（或 AI）。读完它不需要询问上一轮对话的任何上下文。
 
+## 0. 完结状态（2026-10-23）
+
+**结论：代码侧的可见文案已归零，工程完结。** 剩余英文都是按判据刻意保留的技术值 / 协议值 / 产品名。
+
+### 最终数字
+
+| 指标 | 汉化前 | 完结时 |
+|---|---|---|
+| `values` | 1546 | **2058** |
+| `values-zh-rCN` | 1542 | **2054** |
+| 源码引用 key | 1513 | **2025** |
+
+`values` 比 `values-zh-rCN` 多 4 条，是**设计如此**：`app_name` / `anti_term_name` / `termux_name`
+（产品名）与 `accessibility_service_name`（`AntiGem AI Automation`，系统无障碍设置里的服务名）。
+`values-zh-rCN/strings.xml` 文件头已写明「产品名按 `GLOSSARY.md` 白名单保持英文原文，不在此重复定义」。
+
+### 落地情况
+
+- 全部改动经 **PR #1** 合并进 `master`（合并提交 `9d59843`），**默认分支现在就是中文界面 + 中文 README**；
+- 每批推送都单独跑 CI（构建 + `verify.py` + APK 签名校验），最终 master 构建：
+  `values: 2058 / 2054 / 2025`、`BUILD SUCCESSFUL`、`OK: 签名与标准指纹一致，可以覆盖安装`；
+- 最终提交：`3e678ce`（补 rootfs 备份说明与媒体通知两处漏翻 + 修正 `AiLanguage` 注释）。
+
+### 完结时的四个扫描器终值（可随时复跑）
+
+```bash
+python3 scripts/i18n/verify.py                    # 校验通过（资源完整性 / 占位符 / R 导入）
+python3 scripts/i18n/check_composable_scope.py    # 可疑处 0 个（remember / 非组合函数 / onClick 回调）
+python3 scripts/i18n/kotlin_scan.py               # 60 条，全为白名单
+python3 scripts/i18n/find_untranslated_args.py    # 40 条，全为白名单
+```
+
+两类 100 条候选的白名单构成：产品名 17、终端按键 11、动画 label 12、代码标识符 8、
+路径与变量 7、**提示词 5（要发给模型，翻了会污染模型输入）**、剪贴板元数据标签 17、
+协议键与示例串。
+
+### 真机验证（已完成）
+
+- ✅ 通知文案跟随应用内语言（①，见第 4 节）；
+- ✅ 静态 `Locale.getDefault()` 跟随应用内语言（②，见第 4 节；两个结论都与坑 18 的字节码推导相反，
+  原推导已标注「被实测推翻」，机制待查证）；
+- ✅ 用户逐屏走查：设置页、对话页、Claude 页、浏览器、IDE、通知弹窗，均无英文残留。
+
+### 遗留的判断项（不是漏翻，等一句话）
+
+`accessibility_service_name = "AntiGem AI Automation"`：系统无障碍设置里显示的服务名。
+现按「产品名白名单」保持英文；若希望与中文界面更一致，可在 `values-zh-rCN/strings.xml`
+加一条译为「AntiGem AI 自动化」。**改动极小，未擅自改。**
+
+### 分支现状
+
+- `master`：已包含全部汉化，**这是后续工作的基准**；
+- `feat/zh-cn-i18n`：内容已全部并入 master，远端仍指向合并前的 `56a412e`（陈旧但无害）。
+  确认后可用 `git push origin --delete feat/zh-cn-i18n` 删除。
+
 ## 1. 任务目标
 
 把 `agy-and-claude`（AntiGem，Android 应用，Kotlin + Compose）的英文界面汉化成简体中文，**中英双语**（不是替换成纯中文），AI 回复语言跟随界面语言。
 
 - 仓库：`/sdcard/汉化/agy-and-claude`
 - 远端：`git@github.com:743553649/agy-and-claude.git`（SSH，已授权，`gh` 已登录同账号）
-- 分支：`feat/zh-cn-i18n`（从 `origin/master` 切出，**未开 PR**）
+- 分支：汉化经 **PR #1 合并进 `master`**（2026-10-23），现在 `master` 就是中文版基线；
+  `feat/zh-cn-i18n` 是已并入的旧分支
 - 上游是国外开发者项目，`origin/master` 仍在跟进
 
 ## 2. 用户明确要求的硬性约束（务必遵守）
@@ -30,7 +86,8 @@
 
 ## 3. 已完成的工作
 
-分支相对 `origin/master` 共 **28** 个提交。下表只列早期批次，后续批次（P3 / P3.5 / P3.6 / P3.7）见第 4 节：
+汉化工作共分 **30+ 个批次**推进（每批单独 push、单独等 CI 绿）。下表只列最早期的批次，
+后续批次（P3 / P3.5 / P3.6 / P3.7 以及真机反馈后的补漏批次）见第 4 节与第 0 节：
 
 | 提交 | 内容 |
 | --- | --- |
