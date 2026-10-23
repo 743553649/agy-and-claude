@@ -474,6 +474,29 @@ run 39764130892 **失败**：`ClaudeSettingsScreen.DefaultsPage` 没有 `context
 以及非 `@Composable` 函数体内调用 `stringResource`）。先用构造样本验证过会报，
 再对全仓跑——当前 0 处可疑。**每次改完 UI 文案先跑它，再推**，能省一整轮 CI。
 
+### 真机反馈的漏翻根因（重要，写在这里免得再犯）
+
+用户在真机上指出设置页仍有英文（安全预设、默认批准范围、权限规则、MCP 空态、
+记忆、高级、插件三页签、通知弹窗的 Exit/Float…）。**根因是扫描器的形态盲区**：
+
+- 之前的扫描按**语句**匹配（`text = "…"`、`-> "…"`、`?: "…"`），
+  而漏掉的都写在**调用实参**里：`Hint("…")`、`SectionTitle("…")`、`UsageBar("…")`、
+  `DetailRow("…")`、`ControlChip("…")`、`listOf("a" to "b")`、`Triple("k", "t", "d")`、
+  `Icon(…, "contentDesc")`；
+- 另一类是**文件级普通函数**（`scopeLabel`、`effortDescription`）与 **onClick 回调**
+  （`saveFeedback`），它们不是组合作用域。
+
+为此新增两个工具，以后**改 UI 文案前先跑这三个**：
+
+| 工具 | 查什么 |
+|---|---|
+| `find_untranslated_args.py` | 调用实参里的英文（本次漏翻主因） |
+| `check_composable_scope.py` | 三条规则：`remember`/`LaunchedEffect` 块内、非 `@Composable` 函数体内、`onClick` 等回调内 误用 `stringResource` |
+| `verify.py` | 资源完整性、占位符、`%` 转义、R 导入 |
+
+三个都先用构造样本验证「会报」，再对全仓跑到 0。**检查器不报警 ≠ 没有漏翻**，
+它只覆盖已知形态；用户实机眼睛仍是最强的一环。
+
 ### 仍保持英文的部分（按判据分类，不是漏翻）
 
 | 类别 | 例子 | 理由 |
