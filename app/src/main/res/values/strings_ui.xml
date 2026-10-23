@@ -5,6 +5,8 @@
 -->
 <resources>
 
+    <string name="models_available_count">%1$s models</string>
+    <string name="models_none_loaded">no models loaded</string>
     <string name="ui_ai_assistant_bubble">AI Assistant Bubble</string>
     <string name="ui_allocates_chars_characters_of_reasoning">Allocates ~%1$s characters of reasoning capacity</string>
     <string name="ui_anthropic_claude">Anthropic Claude</string>

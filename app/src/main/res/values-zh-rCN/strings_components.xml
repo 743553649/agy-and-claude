@@ -123,8 +123,22 @@
     <string name="component_close_tab">关闭标签页？</string>
     <!-- 原文: Code -->
     <string name="component_code">代码</string>
+    <!-- 原文: Collapse code block -->
+    <string name="component_code_collapse">收起代码块</string>
+    <!-- 原文: Collapse code block ▲ -->
+    <string name="component_code_collapse_arrow">收起代码块 ▲</string>
     <!-- 原文: Code: %1$s -->
     <string name="component_code_error_errorcode">代码：%1$s</string>
+    <!-- 原文: Expand full height -->
+    <string name="component_code_expand">展开为完整高度</string>
+    <!-- 原文: Interactive Artifact -->
+    <string name="component_code_interactive_artifact">可交互产物</string>
+    <!-- 原文: %1$s lines -->
+    <string name="component_code_line_count">%1$s 行</string>
+    <!-- 原文: Preview: %1$s -->
+    <string name="component_code_preview">预览：%1$s</string>
+    <!-- 原文: Show all %1$s lines (%2$s more) ▼ -->
+    <string name="component_code_show_all">展开全部 %1$s 行（还有 %2$s 行）▼</string>
     <!-- 原文: Collapse -->
     <string name="component_collapse">收起</string>
     <!-- 原文: Collapse Switcher -->
@@ -385,8 +399,20 @@
     <string name="component_modify_or_add_custom_notes_to_this_execu">修改或添加这份执行摘要的自定义备注。AI 会把它作为永久上下文使用。</string>
     <!-- 原文: Multi-select -->
     <string name="component_multi_select">多选</string>
+    <!-- 原文: Connected / Streaming -->
+    <string name="component_network_connected_streaming">已连接 / 流式传输中</string>
+    <!-- 原文: HTTP Status -->
+    <string name="component_network_http_status">HTTP 状态</string>
     <!-- 原文: Network Inspector -->
     <string name="component_network_inspector">网络检查器</string>
+    <!-- 原文: Live Stream -->
+    <string name="component_network_live_stream">实时流</string>
+    <!-- 原文: No network calls captured yet -->
+    <string name="component_network_no_calls">尚未捕获任何网络请求</string>
+    <!-- 原文: No matching calls found -->
+    <string name="component_network_no_match">没有匹配的请求</string>
+    <!-- 原文: Pending -->
+    <string name="component_network_pending">等待中</string>
     <!-- 原文: Never for this session -->
     <string name="component_never_for_this_session">本次会话内不再询问</string>
     <!-- 原文: New Session -->

@@ -26,6 +26,15 @@
     <string name="claude_banner_signing_in">Finishing Claude sign-in…</string>
     <string name="claude_bash_npm_run_test">Bash(npm run test *)</string>
     <string name="claude_browser_can_t_return_to_the_app_sign_in">Browser can\'t return to the app? Sign in with a code</string>
+    <string name="claude_cache_cold">Cache cold</string>
+    <string name="claude_cache_compacted">The conversation was compacted, so your next message will re-cache it.</string>
+    <string name="claude_cache_expired">The prompt cache has likely expired, so your next message will re-cache about %1$s tokens.</string>
+    <string name="claude_cache_no_info">No cache information yet.</string>
+    <string name="claude_cache_ttl_five_min">5-minute</string>
+    <string name="claude_cache_ttl_one_hour">1-hour</string>
+    <string name="claude_cache_warm">Cache warm, about %1$s min left (%2$s cache).</string>
+    <string name="claude_cache_warm_note">Messages sent before it expires reuse it and cost less.</string>
+    <string name="claude_cache_warm_short">Cache %1$s m</string>
     <string name="claude_check_for_updates">Check for updates</string>
     <string name="claude_checking">Checking…</string>
     <string name="claude_checking_mcp_servers">Checking MCP servers…</string>
@@ -150,6 +159,7 @@
     <string name="claude_submit_code">Submit code</string>
     <string name="claude_switch_to_mode">Switch to %1$s %2$s</string>
     <string name="claude_the_first_message_of_a_chat_starts_claud">The first message of a chat starts Claude Code, which can take a little while on a phone.</string>
+    <string name="claude_thinking_off">No thinking</string>
     <string name="claude_this_chat">This chat</string>
     <string name="claude_this_chat_is_running_it">This chat is running %1$s</string>
     <string name="claude_tools_claude_can_call">Tools Claude can call</string>

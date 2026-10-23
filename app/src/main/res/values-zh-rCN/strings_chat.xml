@@ -51,6 +51,12 @@
     <string name="chat_command_terminated">命令已终止</string>
     <!-- 原文: Connecting to Antigravity... -->
     <string name="chat_connecting_antigravity">正在连接 Antigravity……</string>
+    <!-- 原文: Listening... Speak now -->
+    <string name="chat_dictation_listening">正在聆听……请说话</string>
+    <!-- 原文: Dictation paused (tap resume to speak) -->
+    <string name="chat_dictation_paused">听写已暂停（点继续后说话）</string>
+    <!-- 原文: Stop Dictation -->
+    <string name="chat_dictation_stop">停止听写</string>
     <!-- 原文: Do you want to open your browser to log in now? -->
     <string name="chat_do_you_want_to_open_your_browser_to_log">要现在打开浏览器登录吗？</string>
     <!-- 原文: Do you want to stop the model from outputting? The current generation will be stopped immediately. -->
@@ -85,6 +91,10 @@
     <string name="chat_open_full_screen">打开全屏</string>
     <!-- 原文: Outside -->
     <string name="chat_project_outside">外部</string>
+    <!-- 原文: Record and transcribe -->
+    <string name="chat_record_and_transcribe">录音并转写</string>
+    <!-- 原文: Record voice note -->
+    <string name="chat_record_voice_note">录制语音</string>
     <!-- 原文: Regenerate Response? -->
     <string name="chat_regenerate_response_title">重新生成回复？</string>
     <!-- 原文: Select Project -->
@@ -113,6 +123,8 @@
     <string name="chat_unable_to_load_chat">无法加载对话</string>
     <!-- 原文: Web Browser Preview -->
     <string name="chat_web_browser_preview">网页浏览器预览</string>
+    <!-- 原文: Workspace -->
+    <string name="chat_workspace_fallback">工作区</string>
     <!-- 原文: You stopped the running command: -->
     <string name="chat_you_stopped_the_running_command">你停止了正在运行的命令：</string>
 </resources>

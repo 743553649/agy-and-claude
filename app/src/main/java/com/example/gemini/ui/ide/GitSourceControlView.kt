@@ -314,7 +314,7 @@ fun GitSourceControlView(
                                             isOperating = true
                                             val ok = GitApiClient.stashPop(projPath)
                                             refreshGitData()
-                                            Toast.makeText(context, if (ok) "Stash applied!" else "Stash pop failed", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(context, if (ok) context.getString(R.string.git_stash_applied) else context.getString(R.string.git_stash_pop_failed), Toast.LENGTH_SHORT).show()
                                             isOperating = false
                                         }
                                     }
@@ -768,7 +768,7 @@ fun GitSourceControlView(
             icon = { Icon(Icons.Default.Tune, contentDescription = null, tint = ClaudeTerracotta) },
             title = {
                 Text(
-                    text = if (configPromptReason != null) "Git Author Setup" else "Git Configuration",
+                    text = if (configPromptReason != null) stringResource(R.string.git_author_setup) else stringResource(R.string.git_configuration),
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp
                 )
@@ -849,10 +849,10 @@ fun GitSourceControlView(
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     val label = when (configPullRebase) {
-                                        "true" -> "Rebase (true)"
-                                        "merges" -> "Preserve merges (merges)"
-                                        "false" -> "Merge / Default (false)"
-                                        else -> if (configPullRebase.isNotBlank()) configPullRebase else "Merge / Default (false)"
+                                        "true" -> stringResource(R.string.ide_rebase_true)
+                                        "merges" -> stringResource(R.string.ide_preserve_merges_merges)
+                                        "false" -> stringResource(R.string.ide_merge_default_false)
+                                        else -> if (configPullRebase.isNotBlank()) configPullRebase else stringResource(R.string.ide_merge_default_false)
                                     }
                                     Text(label, fontSize = 13.sp)
                                     Icon(Icons.Default.ArrowDropDown, contentDescription = null, modifier = Modifier.size(18.dp))
@@ -957,7 +957,7 @@ fun GitSourceControlView(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta)
                 ) {
-                    Text(if (configPromptReason != null) "Save & Continue" else "Save")
+                    Text(if (configPromptReason != null) stringResource(R.string.ui_save_continue) else stringResource(R.string.common_save))
                 }
             },
             dismissButton = {
@@ -1355,7 +1355,7 @@ fun GitSourceControlView(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = ClaudeTerracotta)
                 ) {
-                    Text(if (unpushedCount > 0) "Push ($unpushedCount)" else "Push")
+                    Text(if (unpushedCount > 0) stringResource(R.string.ide_push_with_count, unpushedCount) else stringResource(R.string.ide_push))
                 }
             },
             dismissButton = {

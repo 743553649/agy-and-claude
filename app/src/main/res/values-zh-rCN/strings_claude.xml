@@ -47,6 +47,24 @@
     <string name="claude_bash_npm_run_test">Bash(npm run test *)</string>
     <!-- 原文: Browser can't return to the app? Sign in with a code -->
     <string name="claude_browser_can_t_return_to_the_app_sign_in">浏览器无法返回 App？用验证码登录</string>
+    <!-- 原文: Cache cold -->
+    <string name="claude_cache_cold">缓存已冷</string>
+    <!-- 原文: The conversation was compacted, so your next message will re-cache it. -->
+    <string name="claude_cache_compacted">会话已被压缩，因此你的下一条消息会重新建立缓存。</string>
+    <!-- 原文: The prompt cache has likely expired, so your next message will re-cache about %1$s tokens. -->
+    <string name="claude_cache_expired">提示缓存很可能已过期，你的下一条消息将重建约 %1$s 个 token 的缓存。</string>
+    <!-- 原文: No cache information yet. -->
+    <string name="claude_cache_no_info">暂无缓存信息。</string>
+    <!-- 原文: 5-minute -->
+    <string name="claude_cache_ttl_five_min">5 分钟</string>
+    <!-- 原文: 1-hour -->
+    <string name="claude_cache_ttl_one_hour">1 小时</string>
+    <!-- 原文: Cache warm, about %1$s min left (%2$s cache). -->
+    <string name="claude_cache_warm">缓存仍是热的，还剩约 %1$s 分钟（%2$s 缓存）。</string>
+    <!-- 原文: Messages sent before it expires reuse it and cost less. -->
+    <string name="claude_cache_warm_note">在过期前发送的消息会复用它，成本更低。</string>
+    <!-- 原文: Cache %1$s m -->
+    <string name="claude_cache_warm_short">缓存 %1$s 分</string>
     <!-- 原文: Check for updates -->
     <string name="claude_check_for_updates">检查更新</string>
     <!-- 原文: Checking… -->
@@ -295,6 +313,8 @@
     <string name="claude_switch_to_mode">切换到 %1$s %2$s</string>
     <!-- 原文: The first message of a chat starts Claude Code, which can take a little while on a phone. -->
     <string name="claude_the_first_message_of_a_chat_starts_claud">对话的第一条消息会启动 Claude Code，在手机上可能需要等一会儿。</string>
+    <!-- 原文: No thinking -->
+    <string name="claude_thinking_off">不思考</string>
     <!-- 原文: This chat -->
     <string name="claude_this_chat">本次对话</string>
     <!-- 原文: This chat is running %1$s -->

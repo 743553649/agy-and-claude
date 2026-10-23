@@ -278,7 +278,7 @@ private fun MainCategoryListView(
         com.example.gemini.ui.agents.AgentSheetHeader(
             agent = com.example.gemini.domain.model.AgentKind.AGY,
             title = stringResource(R.string.ui_select_model),
-            detail = if (availableModelsCount > 0) "$availableModelsCount models" else "no models loaded",
+            detail = if (availableModelsCount > 0) stringResource(R.string.models_available_count, availableModelsCount) else stringResource(R.string.models_none_loaded),
             refreshing = isRefreshing,
             onRefresh = onRefresh
         )

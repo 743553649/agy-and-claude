@@ -5,6 +5,10 @@
 -->
 <resources>
 
+    <string name="git_author_setup">Git Author Setup</string>
+    <string name="git_configuration">Git Configuration</string>
+    <string name="git_stash_applied">Stash applied!</string>
+    <string name="git_stash_pop_failed">Stash pop failed</string>
     <string name="ide_aa">Aa</string>
     <string name="ide_add_run_configuration">Add Run Configuration...</string>
     <string name="ide_add_run_configuration_2">Add Run Configuration</string>
@@ -101,6 +105,7 @@
     <string name="ide_push">Push</string>
     <string name="ide_push_committed_changes_on_branch_status_2">Push committed changes on branch \'%1$s\' to the remote repository?</string>
     <string name="ide_push_unpushedcount_unpushed_commit_if_un_2">Push %1$s unpushed commit%2$s on branch \'%3$s\' to the remote repository?</string>
+    <string name="ide_push_with_count">Push (%1$s)</string>
     <string name="ide_quick_presets">Quick Presets:</string>
     <string name="ide_read_only">Read-Only</string>
     <string name="ide_rebase_true">Rebase (true)</string>

@@ -337,7 +337,7 @@ fun CodeBlock(
                 ) {
                     Icon(
                         imageVector = if (isExpanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                        contentDescription = if (isExpanded) "Collapse code block" else "Expand full height",
+                        contentDescription = if (isExpanded) stringResource(R.string.component_code_collapse) else stringResource(R.string.component_code_expand),
                         tint = if (isExpanded) ClaudeTerracotta else TextPrimaryDark.copy(alpha = 0.7f),
                         modifier = Modifier.size(17.dp)
                     )
@@ -445,7 +445,7 @@ fun CodeBlock(
                     ) {
                         val hiddenLines = (lineCount - CODE_PREVIEW_LINES).coerceAtLeast(1)
                         Text(
-                            text = if (isExpanded) "Collapse code block ▲" else "Show all $lineCount lines ($hiddenLines more) ▼",
+                            text = if (isExpanded) stringResource(R.string.component_code_collapse_arrow) else stringResource(R.string.component_code_show_all, lineCount, hiddenLines),
                             fontSize = 11.5.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = ClaudeTerracotta
@@ -481,14 +481,14 @@ fun CodeBlock(
                         title = {
                             Column {
                                 Text(
-                                    text = if (selectedTab == 1 && isPreviewable) "Preview: ${language.uppercase()}" else language.ifEmpty { "Code" }.uppercase(),
+                                    text = if (selectedTab == 1 && isPreviewable) stringResource(R.string.component_code_preview, language.uppercase()) else language.ifEmpty { stringResource(R.string.component_code) }.uppercase(),
                                     style = MaterialTheme.typography.titleMedium,
                                     fontWeight = FontWeight.Bold,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
                                 )
                                 Text(
-                                    text = if (selectedTab == 1 && isPreviewable) "Interactive Artifact" else "$lineCount lines",
+                                    text = if (selectedTab == 1 && isPreviewable) stringResource(R.string.component_code_interactive_artifact) else stringResource(R.string.component_code_line_count, lineCount),
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     maxLines = 1,

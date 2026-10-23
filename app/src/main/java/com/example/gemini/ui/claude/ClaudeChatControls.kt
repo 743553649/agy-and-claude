@@ -149,7 +149,7 @@ fun ClaudeControlsStrip(
 
         // thinking
         ControlChip(
-            text = if (thinking) "Thinking" else "No thinking",
+            text = if (thinking) stringResource(R.string.common_thinking) else stringResource(R.string.claude_thinking_off),
             icon = Icons.Outlined.Lightbulb,
             color = if (thinking) ClaudeAccent else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
             highlighted = thinking,
@@ -161,7 +161,7 @@ fun ClaudeControlsStrip(
             val left = c.anchorMs + c.ttlMs - now
             val warm = !c.compacted && c.ttlMs > 0 && left > 0
             ControlChip(
-                text = if (warm) "Cache ${((left + 59_999) / 60_000)}m" else "Cache cold",
+                text = if (warm) stringResource(R.string.claude_cache_warm_short, (left + 59_999) / 60_000) else stringResource(R.string.claude_cache_cold),
                 icon = Icons.Outlined.Timer,
                 color = if (warm) QuotaGreen else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
                 onClick = { showCache = true }
@@ -219,11 +219,11 @@ fun ClaudeControlsStrip(
                 val left = c?.let { it.anchorMs + it.ttlMs - now } ?: 0
                 Text(
                     when {
-                        c == null -> "No cache information yet."
-                        c.compacted -> "The conversation was compacted, so your next message will re-cache it."
-                        left > 0 -> "Cache warm, about ${(left + 59_999) / 60_000} min left (${if (c.ttlMs >= 3_600_000) "1-hour" else "5-minute"} cache). " +
-                            "Messages sent before it expires reuse it and cost less."
-                        else -> "The prompt cache has likely expired, so your next message will re-cache about ${compactTokens(c.recacheTokens)} tokens."
+                        c == null -> stringResource(R.string.claude_cache_no_info)
+                        c.compacted -> stringResource(R.string.claude_cache_compacted)
+                        left > 0 -> stringResource(R.string.claude_cache_warm, (left + 59_999) / 60_000, stringResource(if (c.ttlMs >= 3_600_000) R.string.claude_cache_ttl_one_hour else R.string.claude_cache_ttl_five_min)) + " " +
+                            stringResource(R.string.claude_cache_warm_note)
+                        else -> stringResource(R.string.claude_cache_expired, compactTokens(c.recacheTokens))
                     },
                     fontSize = 13.5.sp
                 )
@@ -272,7 +272,7 @@ fun ClaudeModelSheet(
                 AgentKind.CLAUDE,
                 "Select model",
                 when {
-                    rows.isNotEmpty() -> "${rows.size} models"
+                    rows.isNotEmpty() -> stringResource(R.string.models_available_count, rows.size)
                     refreshing -> "loading models…"
                     else -> "no models loaded"
                 },

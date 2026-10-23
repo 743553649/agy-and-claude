@@ -1094,15 +1094,18 @@ fun ChatScreen(
                             Spacer(modifier = Modifier.height(2.dp))
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 val isChatStarted = messages.isNotEmpty()
-                                val displayedProjectName = remember(currentConv?.workspaceUri, isChatStarted) {
+                                // 只 remember URI 解析结果：标签文案放到组合作用域取，
+                                // 否则 remember 的键里没有语言，切语言后标签不会刷新（坑 1 变体）。
+                                val projectNameFromUri = remember(currentConv?.workspaceUri) {
                                     val convUri = currentConv?.workspaceUri
                                     if (!convUri.isNullOrBlank()) {
                                         val clean = convUri.removePrefix("file://").trimEnd('/')
-                                        File(clean).name.ifBlank { "Workspace" }
-                                    } else {
-                                        if (isChatStarted) stringResource(R.string.chat_project_outside) else stringResource(R.string.chat_select_project)
-                                    }
+                                        File(clean).name
+                                    } else null
                                 }
+                                val displayedProjectName = projectNameFromUri?.let { name ->
+                                    if (name.isBlank()) stringResource(R.string.chat_workspace_fallback) else name
+                                } ?: if (isChatStarted) stringResource(R.string.chat_project_outside) else stringResource(R.string.chat_select_project)
 
                                 Surface(
                                     shape = RoundedCornerShape(4.dp),

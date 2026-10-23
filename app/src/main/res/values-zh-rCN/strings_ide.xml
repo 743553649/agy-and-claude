@@ -5,6 +5,14 @@
 -->
 <resources>
 
+    <!-- 原文: Git Author Setup -->
+    <string name="git_author_setup">Git 作者设置</string>
+    <!-- 原文: Git Configuration -->
+    <string name="git_configuration">Git 配置</string>
+    <!-- 原文: Stash applied! -->
+    <string name="git_stash_applied">已应用贮藏！</string>
+    <!-- 原文: Stash pop failed -->
+    <string name="git_stash_pop_failed">恢复贮藏失败</string>
     <!-- 原文: Aa -->
     <string name="ide_aa">Aa</string>
     <!-- 原文: Add Run Configuration... -->
@@ -197,6 +205,8 @@
     <string name="ide_push_committed_changes_on_branch_status_2">要把分支「%1$s」上已提交的改动推送到远程仓库吗？</string>
     <!-- 原文: Push %1$s unpushed commit%2$s on branch '%3$s' to the remote repository? -->
     <string name="ide_push_unpushedcount_unpushed_commit_if_un_2">要把分支「%3$s」上 %1$s 个未推送的提交推送到远程仓库吗？</string>
+    <!-- 原文: Push (%1$s) -->
+    <string name="ide_push_with_count">推送（%1$s）</string>
     <!-- 原文: Quick Presets: -->
     <string name="ide_quick_presets">快捷预设：</string>
     <!-- 原文: Read-Only -->

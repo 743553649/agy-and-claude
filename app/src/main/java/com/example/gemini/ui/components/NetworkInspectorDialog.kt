@@ -236,7 +236,7 @@ fun NetworkInspectorDialog(
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             Text(
-                                text = if (logs.isEmpty()) "No network calls captured yet" else "No matching calls found",
+                                text = if (logs.isEmpty()) stringResource(R.string.component_network_no_calls) else stringResource(R.string.component_network_no_match),
                                 fontSize = 13.5.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
                             )
@@ -398,7 +398,7 @@ private fun NetworkLogItemRow(
             ) {
                 Text(
                     text = when {
-                        isConnected && elapsed >= 2000L -> "Live Stream"
+                        isConnected && elapsed >= 2000L -> stringResource(R.string.component_network_live_stream)
                         isConnected -> "Connected"
                         entry.error != null -> "Err"
                         entry.grpcStatus != null && entry.grpcStatus != "0" -> "gRPC ${entry.grpcStatus}"
@@ -552,7 +552,7 @@ private fun OverviewTab(
         DetailRow("Service Target", entry.serviceType)
         DetailRow("Timestamp", entry.formattedTime)
         DetailRow("Duration", durationStr)
-        DetailRow("HTTP Status", if (entry.statusCode > 0) "${entry.statusCode}" else if (isConnected) "Connected / Streaming" else "Pending")
+        DetailRow(stringResource(R.string.component_network_http_status), if (entry.statusCode > 0) "${entry.statusCode}" else if (isConnected) stringResource(R.string.component_network_connected_streaming) else stringResource(R.string.component_network_pending))
         if (entry.grpcStatus != null) {
             DetailRow("gRPC Status", entry.grpcStatus)
         }

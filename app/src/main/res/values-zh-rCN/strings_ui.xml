@@ -5,6 +5,10 @@
 -->
 <resources>
 
+    <!-- 原文: %1$s models -->
+    <string name="models_available_count">%1$s 个模型</string>
+    <!-- 原文: no models loaded -->
+    <string name="models_none_loaded">未加载模型</string>
     <!-- 原文: AI Assistant Bubble -->
     <string name="ui_ai_assistant_bubble">AI 助手气泡</string>
     <!-- 原文: Allocates ~%1$s characters of reasoning capacity -->

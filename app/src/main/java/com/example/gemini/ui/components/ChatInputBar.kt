@@ -794,7 +794,7 @@ fun ChatInputBar(
                                     )
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Text(
-                                        text = if (isDictationPaused) "Dictation paused (tap resume to speak)" else "Listening... Speak now",
+                                        text = if (isDictationPaused) stringResource(R.string.chat_dictation_paused) else stringResource(R.string.chat_dictation_listening),
                                         fontSize = 12.sp,
                                         fontWeight = FontWeight.Medium,
                                         color = MaterialTheme.colorScheme.onSurface,
@@ -1196,7 +1196,7 @@ fun ChatInputBar(
                                 Box(contentAlignment = Alignment.Center) {
                                     Icon(
                                         imageVector = Icons.Rounded.GraphicEq,
-                                        contentDescription = if (isLiveDictating) "Stop Dictation" else "Live Dictation",
+                                        contentDescription = if (isLiveDictating) stringResource(R.string.chat_dictation_stop) else stringResource(R.string.component_live_dictation),
                                         tint = if (isLiveDictating) GeminiBlue else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
                                         modifier = Modifier.size(18.dp)
                                     )
@@ -1276,7 +1276,7 @@ fun ChatInputBar(
                                 Box(contentAlignment = Alignment.Center) {
                                     Icon(
                                         imageVector = Icons.Rounded.Mic,
-                                        contentDescription = if (voiceNotesAsText) "Record and transcribe" else "Record voice note",
+                                        contentDescription = if (voiceNotesAsText) stringResource(R.string.chat_record_and_transcribe) else stringResource(R.string.chat_record_voice_note),
                                         tint = voiceIconColor,
                                         modifier = Modifier.size(20.dp)
                                     )

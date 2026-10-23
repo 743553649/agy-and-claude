@@ -28,6 +28,9 @@
     <string name="chat_code_editor_ide">Code Editor IDE</string>
     <string name="chat_command_terminated">Command Terminated</string>
     <string name="chat_connecting_antigravity">Connecting to Antigravity...</string>
+    <string name="chat_dictation_listening">Listening... Speak now</string>
+    <string name="chat_dictation_paused">Dictation paused (tap resume to speak)</string>
+    <string name="chat_dictation_stop">Stop Dictation</string>
     <string name="chat_do_you_want_to_open_your_browser_to_log">Do you want to open your browser to log in now?</string>
     <string name="chat_do_you_want_to_stop_the_model_from_outpu">Do you want to stop the model from outputting? The current generation will be stopped immediately.</string>
     <string name="chat_e_g_it_was_taking_too_long_please_use_gr">e.g. It was taking too long, please use grep or find a faster way...</string>
@@ -45,6 +48,8 @@
     <string name="chat_open_drawer">Open Drawer</string>
     <string name="chat_open_full_screen">Open Full Screen</string>
     <string name="chat_project_outside">Outside</string>
+    <string name="chat_record_and_transcribe">Record and transcribe</string>
+    <string name="chat_record_voice_note">Record voice note</string>
     <string name="chat_regenerate_response_title">Regenerate Response?</string>
     <string name="chat_select_project">Select Project</string>
     <string name="chat_send_to_ai_proceed">Send to AI &amp; Proceed</string>
@@ -59,5 +64,6 @@
     <string name="chat_toolcall_command">$ %1$s</string>
     <string name="chat_unable_to_load_chat">Unable to Load Chat</string>
     <string name="chat_web_browser_preview">Web Browser Preview</string>
+    <string name="chat_workspace_fallback">Workspace</string>
     <string name="chat_you_stopped_the_running_command">You stopped the running command:</string>
 </resources>
