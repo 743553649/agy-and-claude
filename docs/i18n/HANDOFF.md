@@ -11,18 +11,20 @@
 | 指标 | 汉化前 | 完结时 |
 |---|---|---|
 | `values` | 1546 | **2058** |
-| `values-zh-rCN` | 1542 | **2054** |
+| `values-zh-rCN` | 1542 | **2055** |
 | 源码引用 key | 1513 | **2025** |
 
-`values` 比 `values-zh-rCN` 多 4 条，是**设计如此**：`app_name` / `anti_term_name` / `termux_name`
-（产品名）与 `accessibility_service_name`（`AntiGem AI Automation`，系统无障碍设置里的服务名）。
-`values-zh-rCN/strings.xml` 文件头已写明「产品名按 `GLOSSARY.md` 白名单保持英文原文，不在此重复定义」。
+`values` 比 `values-zh-rCN` 多 3 条，是**设计如此**：`app_name` / `anti_term_name` / `termux_name`
+（纯产品名，翻了等于改应用名）。`values-zh-rCN/strings.xml` 文件头已写明
+「产品名按 `GLOSSARY.md` 白名单保持英文原文，不在此重复定义」。
+`accessibility_service_name` 已按用户要求从 `AntiGem AI Automation` 译为「AntiGem AI 自动化」
+（品牌保留、描述部分翻译），因此不再计入这 3 条差额。
 
 ### 落地情况
 
 - 全部改动经 **PR #1** 合并进 `master`（合并提交 `9d59843`），**默认分支现在就是中文界面 + 中文 README**；
 - 每批推送都单独跑 CI（构建 + `verify.py` + APK 签名校验），最终 master 构建：
-  `values: 2058 / 2054 / 2025`、`BUILD SUCCESSFUL`、`OK: 签名与标准指纹一致，可以覆盖安装`；
+  `values: 2058 / 2055 / 2025`、`BUILD SUCCESSFUL`、`OK: 签名与标准指纹一致，可以覆盖安装`；
 - 最终提交：`3e678ce`（补 rootfs 备份说明与媒体通知两处漏翻 + 修正 `AiLanguage` 注释）。
 
 ### 完结时的四个扫描器终值（可随时复跑）
@@ -45,17 +47,17 @@ python3 scripts/i18n/find_untranslated_args.py    # 40 条，全为白名单
   原推导已标注「被实测推翻」，机制待查证）；
 - ✅ 用户逐屏走查：设置页、对话页、Claude 页、浏览器、IDE、通知弹窗，均无英文残留。
 
-### 遗留的判断项（不是漏翻，等一句话）
+### 已收口的判断项
 
-`accessibility_service_name = "AntiGem AI Automation"`：系统无障碍设置里显示的服务名。
-现按「产品名白名单」保持英文；若希望与中文界面更一致，可在 `values-zh-rCN/strings.xml`
-加一条译为「AntiGem AI 自动化」。**改动极小，未擅自改。**
+`accessibility_service_name`（系统无障碍设置里显示的服务名）原先按产品名白名单保留英文；
+2026-10-23 用户确认译为「**AntiGem AI 自动化**」，已加到 `values-zh-rCN/strings.xml`
+（这是手工维护文件，不经 `gen_resources` 流水线，故直接改）。
 
 ### 分支现状
 
-- `master`：已包含全部汉化，**这是后续工作的基准**；
-- `feat/zh-cn-i18n`：内容已全部并入 master，远端仍指向合并前的 `56a412e`（陈旧但无害）。
-  确认后可用 `git push origin --delete feat/zh-cn-i18n` 删除。
+- `master`：已包含全部汉化，**这是唯一的工作基准**；
+- `feat/zh-cn-i18n`：已并入 master，2026-10-23 经用户确认**已删除**（远端与本地都已删）。
+  需要找回旧提交时用 `git log` 或 GitHub 的 PR #1 页面，提交对象不会因为删分支而丢失。
 
 ## 1. 任务目标
 

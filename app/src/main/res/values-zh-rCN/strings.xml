@@ -5,6 +5,9 @@
 -->
 <resources>
 
+    <!-- 原文: AntiGem AI Automation -->
+    <string name="accessibility_service_name">AntiGem AI 自动化</string>
+
     <!-- 原文: Enables AntiGem AI Assistant to inspect the screen, tap buttons, scroll, input text, and automate tasks natively on your device. -->
     <string name="accessibility_service_description">让 AntiGem AI 助手能够查看屏幕、点击按钮、滚动页面、输入文字，并在你的设备上原生地自动执行任务。</string>
 
