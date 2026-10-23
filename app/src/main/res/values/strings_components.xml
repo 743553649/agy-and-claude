@@ -35,10 +35,13 @@
     <string name="component_attach_image_desc">Attach an image for multimodal vision &amp; analysis</string>
     <string name="component_attachment_preview">Attachment Preview</string>
     <string name="component_auto_transcribe">Auto Transcribe</string>
+    <string name="component_badge_directory">DIRECTORY</string>
+    <string name="component_badge_file">FILE</string>
     <string name="component_badge_optional">Optional</string>
     <string name="component_badge_required">Required</string>
     <string name="component_block_number">%1$s </string>
     <string name="component_blocked_socket_reads">Blocked Socket Reads:</string>
+    <string name="component_bridge_managed_access">Read/Write Access (Bridge Managed)</string>
     <string name="component_bridge_status">Bridge Status</string>
     <string name="component_browse_folders">Browse Folders</string>
     <string name="component_browse_or_open_other_folder">Browse or Open Other Folder...</string>
@@ -48,6 +51,7 @@
     <string name="component_chat_system_prompt">Chat System Prompt</string>
     <string name="component_chat_without_attaching_to_a_directory">Chat without attaching to a directory</string>
     <string name="component_checking_account_status">Checking account status...</string>
+    <string name="component_child_items">%1$s items</string>
     <string name="component_choose_this_folder">Choose This Folder</string>
     <string name="component_chooser_open_att_name">Open %1$s</string>
     <string name="component_chooser_open_attachment_name">Open %1$s</string>
@@ -91,6 +95,7 @@
     <string name="component_delete_summary">Delete Summary</string>
     <string name="component_details_linecount_lines">%1$s lines</string>
     <string name="component_diagram">Diagram</string>
+    <string name="component_dir_label">Directory</string>
     <string name="component_directory_not_accessible">Directory Not Accessible</string>
     <string name="component_document_file">Document / File</string>
     <string name="component_don_t_open">Don\'t Open</string>
@@ -119,6 +124,28 @@
     <string name="component_file">+ File</string>
     <string name="component_file_name_e_g_main_kt_script_py">File Name (e.g. main.kt, script.py)</string>
     <string name="component_file_name_to_save">File Name to Save</string>
+    <string name="component_file_type_archive">Archive File (.%1$s)</string>
+    <string name="component_file_type_c">C/C++ Source (.%1$s)</string>
+    <string name="component_file_type_css">Stylesheet (.%1$s)</string>
+    <string name="component_file_type_folder">Folder (Directory)</string>
+    <string name="component_file_type_go">Go Source File (.go)</string>
+    <string name="component_file_type_html">HTML Document (.%1$s)</string>
+    <string name="component_file_type_image">Image Asset (.%1$s)</string>
+    <string name="component_file_type_java">Java Source File (.java)</string>
+    <string name="component_file_type_js">JavaScript File (.js)</string>
+    <string name="component_file_type_json">JSON Data (.json)</string>
+    <string name="component_file_type_kt">Kotlin Source File (.%1$s)</string>
+    <string name="component_file_type_md">Markdown Document (.%1$s)</string>
+    <string name="component_file_type_other">%1$s File (.%2$s)</string>
+    <string name="component_file_type_py">Python Script (.py)</string>
+    <string name="component_file_type_react">React Component (.%1$s)</string>
+    <string name="component_file_type_rs">Rust Source File (.rs)</string>
+    <string name="component_file_type_shell">Shell Script (.%1$s)</string>
+    <string name="component_file_type_toml">TOML Configuration (.toml)</string>
+    <string name="component_file_type_ts">TypeScript File (.ts)</string>
+    <string name="component_file_type_txt">Text Document (.%1$s)</string>
+    <string name="component_file_type_xml">XML Document (.xml)</string>
+    <string name="component_file_type_yaml">YAML Configuration (.%1$s)</string>
     <string name="component_filename_saved_to_downloads_antigem">%1$s saved to Downloads/AntiGem</string>
     <string name="component_filter_by_endpoint_route_or_status">Filter by endpoint, route, or status...</string>
     <string name="component_folder">+ Folder</string>
@@ -169,6 +196,7 @@
     <string name="component_network_inspector">Network Inspector</string>
     <string name="component_never_for_this_session">Never for this session</string>
     <string name="component_new_session">New Session</string>
+    <string name="component_no">No</string>
     <string name="component_no_active_warm_processes_in_ram">No active warm processes in RAM.</string>
     <string name="component_no_bridge_process_running_ntap_restart_a">No bridge process running.\nTap \'Restart\' above to run agy_ide_bridge</string>
     <string name="component_no_internet_connection_detected_you_can">No internet connection detected. You can still type your prompt below.</string>
@@ -194,6 +222,7 @@
     <string name="component_perm_storage_desc">Allows AntiGem to access /sdcard to import local bootstrap packages, inspect files, and manage external code workspaces.</string>
     <string name="component_permission_active">Permission active</string>
     <string name="component_permissions">Permissions</string>
+    <string name="component_permissions_line">%1$s%2$s%3$s (Read: %4$s, Write: %5$s, Exec: %6$s)</string>
     <string name="component_pgdn">PGDN</string>
     <string name="component_pgup">PGUP</string>
     <string name="component_photo_image">Photo / Image</string>
@@ -251,6 +280,9 @@
     <string name="component_shared_conversation">Shared Conversation</string>
     <string name="component_sign_in_to_antigravity">Sign in to Antigravity</string>
     <string name="component_size">Size</string>
+    <string name="component_size_bytes">%1$s bytes</string>
+    <string name="component_size_with_raw">%1$s (%2$s bytes)</string>
+    <string name="component_size_zero">0 B (0 bytes)</string>
     <string name="component_snapshot_activejvmthreads">🧵 %1$s</string>
     <string name="component_snapshot_agyconns_snapshot_ideconns_c">🔌%1$sc</string>
     <string name="component_snapshot_agyqueued_snapshot_idequeued_q">⏳%1$sq</string>
@@ -378,6 +410,7 @@
     <string name="component_view_raw_request_payload">View Raw Request Payload</string>
     <string name="component_waking_up_antigravity">Waking up Antigravity...</string>
     <string name="component_welcome_to_antigem">Welcome to AntiGem</string>
+    <string name="component_yes">Yes</string>
     <string name="component_you_seem_to_be_offline">You seem to be offline</string>
     <string name="component_your_chats_will_appear_as_soon_as_the_en">Your chats will appear as soon as the engine connects.</string>
 </resources>

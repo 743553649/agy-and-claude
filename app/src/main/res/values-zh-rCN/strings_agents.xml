@@ -61,6 +61,8 @@
     <string name="agents_question_agent_label_has_if_questions_si_2">%1$s，共 %2$s</string>
     <!-- 原文: Restart app -->
     <string name="agents_restart_app">重启应用</string>
+    <!-- 原文: The local server stops and the app restarts with the new agents, so nothing of a turned-off agent keeps running. Replies in progress stop, and a chat of a turned-off agent is closed. -->
+    <string name="agents_restart_apply_desc">本地服务器会停止，应用会带着新的智能体重启，因此已关闭的智能体不会有任何进程残留。正在进行的回复会中断，已关闭智能体的对话会被关闭。</string>
     <!-- 原文: Restart to apply? -->
     <string name="agents_restart_to_apply">重启以生效？</string>
     <!-- 原文: Restarting… -->

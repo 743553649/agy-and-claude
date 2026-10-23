@@ -1,5 +1,6 @@
 package com.example.gemini.ui.components
 
+import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -71,46 +72,44 @@ fun FileDetailsDialog(
                 val r = if (localFile.canRead()) "r" else "-"
                 val w = if (localFile.canWrite()) "w" else "-"
                 val x = if (localFile.canExecute()) "x" else "-"
-                val readStr = if (localFile.canRead()) "Yes" else "No"
-                val writeStr = if (localFile.canWrite()) "Yes" else "No"
-                val execStr = if (localFile.canExecute()) "Yes" else "No"
-                "$r$w$x (Read: $readStr, Write: $writeStr, Exec: $execStr)"
+                val readStr = if (localFile.canRead()) context.getString(R.string.component_yes) else context.getString(R.string.component_no)
+                val writeStr = if (localFile.canWrite()) context.getString(R.string.component_yes) else context.getString(R.string.component_no)
+                val execStr = if (localFile.canExecute()) context.getString(R.string.component_yes) else context.getString(R.string.component_no)
+                context.getString(R.string.component_permissions_line, r, w, x, readStr, writeStr, execStr)
             } catch (_: Exception) {
-                "Read/Write Access (Bridge Managed)"
+                context.getString(R.string.component_bridge_managed_access)
             }
         } else {
-            "Read/Write Access (Bridge Managed)"
+            context.getString(R.string.component_bridge_managed_access)
         }
     }
 
     val ext = remember(name) { name.substringAfterLast('.', "").lowercase() }
-    val typeName = remember(isDir, ext) {
-        if (isDir) "Folder (Directory)"
+    val typeName = if (isDir) stringResource(R.string.component_file_type_folder)
         else when (ext) {
-            "kt", "kts" -> "Kotlin Source File (.${ext})"
-            "java" -> "Java Source File (.java)"
-            "py" -> "Python Script (.py)"
-            "js" -> "JavaScript File (.js)"
-            "ts" -> "TypeScript File (.ts)"
-            "jsx", "tsx" -> "React Component (.${ext})"
-            "html", "htm" -> "HTML Document (.${ext})"
-            "css", "scss", "sass" -> "Stylesheet (.${ext})"
-            "json" -> "JSON Data (.json)"
-            "xml" -> "XML Document (.xml)"
-            "yaml", "yml" -> "YAML Configuration (.${ext})"
-            "toml" -> "TOML Configuration (.toml)"
-            "md", "markdown" -> "Markdown Document (.${ext})"
-            "txt", "log" -> "Text Document (.${ext})"
-            "sh", "bash", "zsh" -> "Shell Script (.${ext})"
-            "c", "cpp", "h", "hpp" -> "C/C++ Source (.${ext})"
-            "go" -> "Go Source File (.go)"
-            "rs" -> "Rust Source File (.rs)"
-            "png", "jpg", "jpeg", "webp", "gif", "svg" -> "Image Asset (.${ext})"
-            "zip", "tar", "gz", "rar" -> "Archive File (.${ext})"
-            "" -> "File"
-            else -> "${ext.uppercase()} File (.$ext)"
+            "kt", "kts" -> stringResource(R.string.component_file_type_kt, ext)
+            "java" -> stringResource(R.string.component_file_type_java)
+            "py" -> stringResource(R.string.component_file_type_py)
+            "js" -> stringResource(R.string.component_file_type_js)
+            "ts" -> stringResource(R.string.component_file_type_ts)
+            "jsx", "tsx" -> stringResource(R.string.component_file_type_react, ext)
+            "html", "htm" -> stringResource(R.string.component_file_type_html, ext)
+            "css", "scss", "sass" -> stringResource(R.string.component_file_type_css, ext)
+            "json" -> stringResource(R.string.component_file_type_json)
+            "xml" -> stringResource(R.string.component_file_type_xml)
+            "yaml", "yml" -> stringResource(R.string.component_file_type_yaml, ext)
+            "toml" -> stringResource(R.string.component_file_type_toml)
+            "md", "markdown" -> stringResource(R.string.component_file_type_md, ext)
+            "txt", "log" -> stringResource(R.string.component_file_type_txt, ext)
+            "sh", "bash", "zsh" -> stringResource(R.string.component_file_type_shell, ext)
+            "c", "cpp", "h", "hpp" -> stringResource(R.string.component_file_type_c, ext)
+            "go" -> stringResource(R.string.component_file_type_go)
+            "rs" -> stringResource(R.string.component_file_type_rs)
+            "png", "jpg", "jpeg", "webp", "gif", "svg" -> stringResource(R.string.component_file_type_image, ext)
+            "zip", "tar", "gz", "rar" -> stringResource(R.string.component_file_type_archive, ext)
+            "" -> stringResource(R.string.common_file)
+            else -> stringResource(R.string.component_file_type_other, ext.uppercase(), ext)
         }
-    }
 
     Dialog(onDismissRequest = onDismiss) {
         Surface(
@@ -166,7 +165,7 @@ fun FileDetailsDialog(
                             color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
                         ) {
                             Text(
-                                text = if (isDir) "DIRECTORY" else "FILE",
+                                text = if (isDir) stringResource(R.string.component_badge_directory) else stringResource(R.string.component_badge_file),
                                 style = MaterialTheme.typography.labelSmall,
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.SemiBold,
@@ -196,7 +195,7 @@ fun FileDetailsDialog(
                     value = path,
                     isMonospace = true,
                     actionIcon = Icons.Default.ContentCopy,
-                    actionDescription = "Copy Path",
+                    actionDescription = stringResource(R.string.component_copy_path),
                     onActionClick = {
                         clipboardManager.setText(AnnotatedString(path))
                         Toast.makeText(context, context.getString(R.string.component_toast_path_copied_to_clipboard), Toast.LENGTH_SHORT).show()
@@ -217,11 +216,11 @@ fun FileDetailsDialog(
 
                 val sizeText = remember(isDir, resolvedSize, childCount) {
                     if (isDir) {
-                        if (childCount != null) "$childCount items"
-                        else if (resolvedSize > 0) formatDetailedFileSize(resolvedSize)
-                        else "Directory"
+                        if (childCount != null) context.getString(R.string.component_child_items, childCount)
+                        else if (resolvedSize > 0) formatDetailedFileSize(context, resolvedSize)
+                        else context.getString(R.string.component_dir_label)
                     } else {
-                        formatDetailedFileSize(resolvedSize)
+                        formatDetailedFileSize(context, resolvedSize)
                     }
                 }
                 DetailRow(
@@ -330,11 +329,11 @@ private fun DetailRow(
     }
 }
 
-fun formatDetailedFileSize(size: Long): String {
-    if (size <= 0) return "0 B (0 bytes)"
+fun formatDetailedFileSize(context: Context, size: Long): String {
+    if (size <= 0) return context.getString(R.string.component_size_zero)
     val units = arrayOf("B", "KB", "MB", "GB", "TB")
     val digitGroups = (Math.log10(size.toDouble()) / Math.log10(1024.0)).toInt().coerceIn(0, units.size - 1)
     val formattedVal = DecimalFormat("#,##0.#").format(size / Math.pow(1024.0, digitGroups.toDouble()))
     val rawFormatted = NumberFormat.getNumberInstance(Locale.getDefault()).format(size)
-    return if (digitGroups == 0) "$rawFormatted bytes" else "$formattedVal ${units[digitGroups]} ($rawFormatted bytes)"
+    return if (digitGroups == 0) context.getString(R.string.component_size_bytes, rawFormatted) else context.getString(R.string.component_size_with_raw, "$formattedVal ${units[digitGroups]}", rawFormatted)
 }

@@ -197,8 +197,7 @@ fun AgentsSettingsPage(
             title = { Text(stringResource(R.string.agents_restart_to_apply), fontWeight = FontWeight.Bold) },
             text = {
                 Text(
-                    "The local server stops and the app restarts with the new agents, so nothing of a turned-off agent keeps running. " +
-                        "Replies in progress stop, and a chat of a turned-off agent is closed.",
+                    stringResource(R.string.agents_restart_apply_desc),
                     fontSize = 13.5.sp
                 )
             },

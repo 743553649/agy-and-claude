@@ -33,6 +33,7 @@
     <string name="agents_page_1_of_questions_size">%1$s of %2$s</string>
     <string name="agents_question_agent_label_has_if_questions_si_2">%1$s has %2$s</string>
     <string name="agents_restart_app">Restart app</string>
+    <string name="agents_restart_apply_desc">The local server stops and the app restarts with the new agents, so nothing of a turned-off agent keeps running. Replies in progress stop, and a chat of a turned-off agent is closed.</string>
     <string name="agents_restart_to_apply">Restart to apply?</string>
     <string name="agents_restarting">Restarting…</string>
     <string name="agents_scope_conversation">For this conversation</string>

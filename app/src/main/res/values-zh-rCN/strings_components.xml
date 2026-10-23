@@ -65,6 +65,10 @@
     <string name="component_attachment_preview">附件预览</string>
     <!-- 原文: Auto Transcribe -->
     <string name="component_auto_transcribe">自动转写</string>
+    <!-- 原文: DIRECTORY -->
+    <string name="component_badge_directory">目录</string>
+    <!-- 原文: FILE -->
+    <string name="component_badge_file">文件</string>
     <!-- 原文: Optional -->
     <string name="component_badge_optional">可选</string>
     <!-- 原文: Required -->
@@ -73,6 +77,8 @@
     <string name="component_block_number">%1$s</string>
     <!-- 原文: Blocked Socket Reads: -->
     <string name="component_blocked_socket_reads">被阻塞的套接字读取：</string>
+    <!-- 原文: Read/Write Access (Bridge Managed) -->
+    <string name="component_bridge_managed_access">读/写权限（由桥接管理）</string>
     <!-- 原文: Bridge Status -->
     <string name="component_bridge_status">桥接状态</string>
     <!-- 原文: Browse Folders -->
@@ -91,6 +97,8 @@
     <string name="component_chat_without_attaching_to_a_directory">不关联目录直接对话</string>
     <!-- 原文: Checking account status... -->
     <string name="component_checking_account_status">正在检查账号状态……</string>
+    <!-- 原文: %1$s items -->
+    <string name="component_child_items">%1$s 个项目</string>
     <!-- 原文: Choose This Folder -->
     <string name="component_choose_this_folder">选择此文件夹</string>
     <!-- 原文: Open %1$s -->
@@ -177,6 +185,8 @@
     <string name="component_details_linecount_lines">%1$s 行</string>
     <!-- 原文: Diagram -->
     <string name="component_diagram">图表</string>
+    <!-- 原文: Directory -->
+    <string name="component_dir_label">目录</string>
     <!-- 原文: Directory Not Accessible -->
     <string name="component_directory_not_accessible">目录不可访问</string>
     <!-- 原文: Document / File -->
@@ -233,6 +243,50 @@
     <string name="component_file_name_e_g_main_kt_script_py">文件名（例如 main.kt、script.py）</string>
     <!-- 原文: File Name to Save -->
     <string name="component_file_name_to_save">保存的文件名</string>
+    <!-- 原文: Archive File (.%1$s) -->
+    <string name="component_file_type_archive">压缩包（.%1$s）</string>
+    <!-- 原文: C/C++ Source (.%1$s) -->
+    <string name="component_file_type_c">C/C++ 源文件（.%1$s）</string>
+    <!-- 原文: Stylesheet (.%1$s) -->
+    <string name="component_file_type_css">样式表（.%1$s）</string>
+    <!-- 原文: Folder (Directory) -->
+    <string name="component_file_type_folder">文件夹（目录）</string>
+    <!-- 原文: Go Source File (.go) -->
+    <string name="component_file_type_go">Go 源文件（.go）</string>
+    <!-- 原文: HTML Document (.%1$s) -->
+    <string name="component_file_type_html">HTML 文档（.%1$s）</string>
+    <!-- 原文: Image Asset (.%1$s) -->
+    <string name="component_file_type_image">图片资源（.%1$s）</string>
+    <!-- 原文: Java Source File (.java) -->
+    <string name="component_file_type_java">Java 源文件（.java）</string>
+    <!-- 原文: JavaScript File (.js) -->
+    <string name="component_file_type_js">JavaScript 文件（.js）</string>
+    <!-- 原文: JSON Data (.json) -->
+    <string name="component_file_type_json">JSON 数据（.json）</string>
+    <!-- 原文: Kotlin Source File (.%1$s) -->
+    <string name="component_file_type_kt">Kotlin 源文件（.%1$s）</string>
+    <!-- 原文: Markdown Document (.%1$s) -->
+    <string name="component_file_type_md">Markdown 文档（.%1$s）</string>
+    <!-- 原文: %1$s File (.%2$s) -->
+    <string name="component_file_type_other">%1$s 文件（.%2$s）</string>
+    <!-- 原文: Python Script (.py) -->
+    <string name="component_file_type_py">Python 脚本（.py）</string>
+    <!-- 原文: React Component (.%1$s) -->
+    <string name="component_file_type_react">React 组件（.%1$s）</string>
+    <!-- 原文: Rust Source File (.rs) -->
+    <string name="component_file_type_rs">Rust 源文件（.rs）</string>
+    <!-- 原文: Shell Script (.%1$s) -->
+    <string name="component_file_type_shell">Shell 脚本（.%1$s）</string>
+    <!-- 原文: TOML Configuration (.toml) -->
+    <string name="component_file_type_toml">TOML 配置（.toml）</string>
+    <!-- 原文: TypeScript File (.ts) -->
+    <string name="component_file_type_ts">TypeScript 文件（.ts）</string>
+    <!-- 原文: Text Document (.%1$s) -->
+    <string name="component_file_type_txt">文本文档（.%1$s）</string>
+    <!-- 原文: XML Document (.xml) -->
+    <string name="component_file_type_xml">XML 文档（.xml）</string>
+    <!-- 原文: YAML Configuration (.%1$s) -->
+    <string name="component_file_type_yaml">YAML 配置（.%1$s）</string>
     <!-- 原文: %1$s saved to Downloads/AntiGem -->
     <string name="component_filename_saved_to_downloads_antigem">%1$s 已保存到 Downloads/AntiGem</string>
     <!-- 原文: Filter by endpoint, route, or status... -->
@@ -333,6 +387,8 @@
     <string name="component_never_for_this_session">本次会话内不再询问</string>
     <!-- 原文: New Session -->
     <string name="component_new_session">新建会话</string>
+    <!-- 原文: No -->
+    <string name="component_no">否</string>
     <!-- 原文: No active warm processes in RAM. -->
     <string name="component_no_active_warm_processes_in_ram">内存中没有活跃的热进程。</string>
     <!-- 原文: No bridge process running.\nTap 'Restart' above to run agy_ide_bridge -->
@@ -383,6 +439,8 @@
     <string name="component_permission_active">权限已启用</string>
     <!-- 原文: Permissions -->
     <string name="component_permissions">权限</string>
+    <!-- 原文: %1$s%2$s%3$s (Read: %4$s, Write: %5$s, Exec: %6$s) -->
+    <string name="component_permissions_line">%1$s%2$s%3$s（读取：%4$s，写入：%5$s，执行：%6$s）</string>
     <!-- 原文: PGDN -->
     <string name="component_pgdn">PGDN</string>
     <!-- 原文: PGUP -->
@@ -497,6 +555,12 @@
     <string name="component_sign_in_to_antigravity">登录 Antigravity</string>
     <!-- 原文: Size -->
     <string name="component_size">大小</string>
+    <!-- 原文: %1$s bytes -->
+    <string name="component_size_bytes">%1$s 字节</string>
+    <!-- 原文: %1$s (%2$s bytes) -->
+    <string name="component_size_with_raw">%1$s（%2$s 字节）</string>
+    <!-- 原文: 0 B (0 bytes) -->
+    <string name="component_size_zero">0 B（0 字节）</string>
     <!-- 原文: 🧵 %1$s -->
     <string name="component_snapshot_activejvmthreads">🧵 %1$s</string>
     <!-- 原文: 🔌%1$sc -->
@@ -751,6 +815,8 @@
     <string name="component_waking_up_antigravity">正在唤醒 Antigravity……</string>
     <!-- 原文: Welcome to AntiGem -->
     <string name="component_welcome_to_antigem">欢迎使用 AntiGem</string>
+    <!-- 原文: Yes -->
+    <string name="component_yes">是</string>
     <!-- 原文: You seem to be offline -->
     <string name="component_you_seem_to_be_offline">你似乎处于离线状态</string>
     <!-- 原文: Your chats will appear as soon as the engine connects. -->
