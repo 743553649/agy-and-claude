@@ -5,6 +5,11 @@
 > **2026-10-23 裁剪版**：只保留四节——第 0 节（完结状态）、第 6 节（踩过的坑）、
 > 第 9 节（关键文件索引）、第 10 节（签名标准）。各批次进度、决策记录与验收细节
 > 不在本文，查 `COVERAGE.md` 与 `git log`。
+>
+> **⚠️ 已归档**：汉化工程结档，本文档与同目录的 `COVERAGE.md`、`GLOSSARY.md` 一起
+> 移入 `docs/i18n/archive/`，不再是活跃文档。**唯一仍在生效的是第 10 节「签名标准」**
+> ——它被 `ci.yml` 与 `scripts/verify_apk_signature.py` 引用，属于运维事实。
+> 汉化脚本的去向见 `scripts/i18n/archive/README.md`。
 
 ## 0. 完结状态（2026-10-23）
 
@@ -31,7 +36,7 @@
   `values: 2058 / 2055 / 2025`、`BUILD SUCCESSFUL`、`OK: 签名与标准指纹一致，可以覆盖安装`；
 - 最终提交：`3e678ce`（补 rootfs 备份说明与媒体通知两处漏翻 + 修正 `AiLanguage` 注释）。
 
-### 完结时的四个扫描器终值（可随时复跑）
+### 结档时的四个扫描器终值
 
 ```bash
 python3 scripts/i18n/verify.py                    # 校验通过（资源完整性 / 占位符 / R 导入）
@@ -39,6 +44,8 @@ python3 scripts/i18n/check_composable_scope.py    # 可疑处 0 个（remember /
 python3 scripts/i18n/kotlin_scan.py               # 60 条，全为白名单
 python3 scripts/i18n/find_untranslated_args.py    # 40 条，全为白名单
 ```
+
+> 结档后除 `verify.py` 外全部脚本已移入 `scripts/i18n/archive/`；上表为当时原位的路径记录。
 
 两类 100 条候选的白名单构成：产品名 17、终端按键 11、动画 label 12、代码标识符 8、
 路径与变量 7、**提示词 5（要发给模型，翻了会污染模型输入）**、剪贴板元数据标签 17、
@@ -221,12 +228,12 @@ P4 开工前文档写「文案在 `page-helpers.js` 注入的浮层里，约 40 
 
 | 路径 | 说明 |
 | --- | --- |
-| `docs/i18n/GLOSSARY.md` | 术语表、不翻白名单、占位符约定、AI 语言指令的唯一措辞 |
-| `docs/i18n/COVERAGE.md` | 按界面的覆盖清单（核对用） |
-| `docs/i18n/HANDOFF.md` | 本文档 |
+| `docs/i18n/archive/GLOSSARY.md` | 术语表、不翻白名单、占位符约定、AI 语言指令的唯一措辞 |
+| `docs/i18n/archive/COVERAGE.md` | 按界面的覆盖清单（核对用） |
+| `docs/i18n/archive/HANDOFF.md` | 本文档 |
 | `docs/i18n/archive/p1-language-switch-plan.md` | P1 方案 A 实施计划，**已落地并归档**（仅供追溯，不再是开工指南） |
 | `docs/i18n/archive/language-switch-options.html` | P1 三方案对比（A/B/C）与决策依据，含本机核实证据（**已归档**，仅供追溯） |
-| `scripts/i18n/` | 全部汉化工具 |
+| `scripts/i18n/` | 仅保留 `verify.py`（CI 使用）；其余工具见 `scripts/i18n/archive/` |
 | `.github/workflows/ci.yml` | 云端构建（termux flavor + verify） |
 | `.github/workflows/release.yml` | 上游发版流程，**不要动** |
 | `app/src/main/res/values*/strings_*.xml` | 资源文件 |
