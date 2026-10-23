@@ -79,6 +79,10 @@
     <string name="ide_could_not_preview_image_asset">无法预览图片资源</string>
     <!-- 原文: Create & Checkout Branch -->
     <string name="ide_create_checkout_branch">创建并检出分支</string>
+    <!-- 原文: Create File -->
+    <string name="ide_create_file">新建文件</string>
+    <!-- 原文: Create Folder -->
+    <string name="ide_create_folder">新建文件夹</string>
     <!-- 原文: + Create New Branch -->
     <string name="ide_create_new_branch">+ 创建新分支</string>
     <!-- 原文: Create New Project -->
@@ -121,6 +125,8 @@
     <string name="ide_file_manager">文件管理器</string>
     <!-- 原文: File modified on disk externally -->
     <string name="ide_file_modified_on_disk_externally">文件已被外部修改</string>
+    <!-- 原文: File Name -->
+    <string name="ide_file_name">文件名称</string>
     <!-- 原文: FILES -->
     <string name="ide_files">文件</string>
     <!-- 原文: Find in file... -->
@@ -257,6 +263,10 @@
     <string name="ide_select_a_file_from_the_sidebar_to_start">从侧边栏选择一个文件开始编辑</string>
     <!-- 原文: Set as default run profile -->
     <string name="ide_set_as_default_run_profile">设为默认运行配置</string>
+    <!-- 原文: Project is empty -->
+    <string name="ide_sidebar_empty_project">项目为空</string>
+    <!-- 原文: Open or create a project to view files -->
+    <string name="ide_sidebar_no_project">打开或新建一个项目以查看文件</string>
     <!-- 原文: Stage All -->
     <string name="ide_stage_all">暂存全部</string>
     <!-- 原文: Stage All Untracked -->

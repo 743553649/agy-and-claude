@@ -439,7 +439,7 @@ fun ProjectSidebar(
                         }
                     } else {
                         Text(
-                            text = if (activeProject == null) "Open or create a project to view files" else "Project is empty",
+                            text = if (activeProject == null) stringResource(R.string.ide_sidebar_no_project) else stringResource(R.string.ide_sidebar_empty_project),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -495,12 +495,12 @@ fun ProjectSidebar(
                     modifier = Modifier.size(28.dp)
                 )
             },
-            title = { Text(if (isNewFolderMode) "Create Folder" else "Create File", fontWeight = FontWeight.Bold) },
+            title = { Text(if (isNewFolderMode) stringResource(R.string.ide_create_folder) else stringResource(R.string.ide_create_file), fontWeight = FontWeight.Bold) },
             text = {
                 OutlinedTextField(
                     value = newItemName,
                     onValueChange = { newItemName = it },
-                    label = { Text(if (isNewFolderMode) "Folder Name" else "File Name") },
+                    label = { Text(if (isNewFolderMode) stringResource(R.string.component_folder_name) else stringResource(R.string.ide_file_name)) },
                     placeholder = { Text(if (isNewFolderMode) "e.g. components" else "e.g. utils.py") },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()

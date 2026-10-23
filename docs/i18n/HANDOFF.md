@@ -445,6 +445,46 @@ run 39764130892 **失败**：`ClaudeSettingsScreen.DefaultsPage` 没有 `context
 `TrajectoryParser/Engine`（45）、`AndroidLocalBridgeServer.kt`（23）等仍在。
 优先看「分支结果是否被 `Text(...)` 渲染或写进会被 `Text()` 的 state」。
 
+### 分支文案清扫（✅ 已落地，7 个批次）
+
+坑 11/19 的剩余部分基本清完，按文件分批推、每批等 CI 绿：
+
+| 批次 | 文件 | 站点/文案 |
+|---|---|---|
+| 5 | `FileDetailsDialog`、`AgentsSetupUi` | 40 处（文件类型名 22、权限串、徽标、尺寸） |
+| 6 | `SettingsDialog` | 21 处站点 / 42 条文案 |
+| 7 | `ClaudeSettingsScreen`、`MarkdownContent` | 14 处 |
+| 8 | `BrowserScreen`、`ChatScreen` | 22 处 |
+| 9 | 模型选择 / Git / Claude 控制条 / 代码块 / 网络面板 / 输入栏 | 26 处 |
+| 10 | 会话抽屉 / IDE 外壳 / Claude effort | 14 处 |
+| 11 | `ClaudeConfigManager` Toast | 26 处（含动作名映射） |
+| 12 | `ProjectSidebar` | 6 处 |
+
+**三个反复踩到的作用域陷阱**（都已固化进检查器）：
+
+1. `remember(key) { 文案 }` —— 键里没有语言，既不能调 `stringResource`，切语言也不刷新；
+   正确做法是只 remember 数据，标签在组合作用域求值（`ChatScreen` 的项目名、
+   `FileDetailsDialog` 的文件类型名）。
+2. `onClick`/协程回调里赋状态（`hubTestStatus` 等）—— 不是组合作用域，用
+   `context.getString`；这些组件本来就有 `val context = LocalContext.current`。
+3. 文件级普通函数（`effortDescription`）—— 必须标 `@Composable` 才能取资源。
+
+**新工具 `scripts/i18n/check_composable_scope.py`**：静态查上面第 1、3 两类
+（`remember`/`rememberSaveable`/`LaunchedEffect`/`DisposableEffect` 块内、
+以及非 `@Composable` 函数体内调用 `stringResource`）。先用构造样本验证过会报，
+再对全仓跑——当前 0 处可疑。**每次改完 UI 文案先跑它，再推**，能省一整轮 CI。
+
+### 仍保持英文的部分（按判据分类，不是漏翻）
+
+| 类别 | 例子 | 理由 |
+|---|---|---|
+| 轨迹/提示词拼装 | `<!-- tool_call:... -->`、`Generation Stopped by User`、`MCP: $serverName` | 既进模型输入又可能显示，翻一边会不一致（坑 10） |
+| HTTP/协议值 | `Bad Request`、`Not Found`、`PENDING_APPROVAL` | 协议字段 |
+| 单位/格式 | `3d 5h`、`%.1f s (Active)`、`/sdcard/...`、`${file}` | 技术值 |
+| 产品名 | `Google Gemini`、`Anthropic Claude`、`AntiGem`、`Termux` | 不译 |
+| 数据兼显示 | `Voice note`、`New Chat` | 参与 `cleanText ==` 比较或被当作数据键 |
+| 未证明渲染路径 | `ClaudeTranscript` 的 `errorTitle`（Sign-in Required 等 4 条）、`Models.kt` 的 `desc` 回退与 `displaySummary`（后者全仓无调用点，疑为死代码） | 坑 20：证明不了进 `Text`/Toast 就留英文 |
+
 ## 5. 工具链（`scripts/i18n/`）
 
 | 脚本 | 作用 |

@@ -42,6 +42,8 @@
     <string name="ide_confirm_commit">Confirm Commit</string>
     <string name="ide_could_not_preview_image_asset">Could not preview image asset</string>
     <string name="ide_create_checkout_branch">Create &amp; Checkout Branch</string>
+    <string name="ide_create_file">Create File</string>
+    <string name="ide_create_folder">Create Folder</string>
     <string name="ide_create_new_branch">+ Create New Branch</string>
     <string name="ide_create_new_project">Create New Project</string>
     <string name="ide_delete_if_node_isdir_folder_else_file">Delete %1$s?</string>
@@ -63,6 +65,7 @@
     <string name="ide_file_conflict_detected">File Conflict Detected</string>
     <string name="ide_file_manager">File Manager</string>
     <string name="ide_file_modified_on_disk_externally">File modified on disk externally</string>
+    <string name="ide_file_name">File Name</string>
     <string name="ide_files">FILES</string>
     <string name="ide_find_in_file">Find in file...</string>
     <string name="ide_find_in_file_2">Find in File</string>
@@ -131,6 +134,8 @@
     <string name="ide_saved_into_ide_launch_json_in_your_works">Saved into .ide/launch.json in your workspace root.</string>
     <string name="ide_select_a_file_from_the_sidebar_to_start">Select a file from the sidebar to start editing</string>
     <string name="ide_set_as_default_run_profile">Set as default run profile</string>
+    <string name="ide_sidebar_empty_project">Project is empty</string>
+    <string name="ide_sidebar_no_project">Open or create a project to view files</string>
     <string name="ide_stage_all">Stage All</string>
     <string name="ide_stage_all_untracked">Stage All Untracked</string>
     <string name="ide_staged_changes">STAGED CHANGES</string>

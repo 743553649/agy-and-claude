@@ -33,7 +33,7 @@ SITES = [
     (IDE, 'contentDescription = if (isExternal) "Save As..." else "Save File",',
      'contentDescription = if (isExternal) stringResource(R.string.ide_save_as) else stringResource(R.string.ide_save_file),', 1),
     (IDE, 'contentDescription = if (isCustomMode) "Run Profile: $selectedProfileName" else "Run Active File",',
-     'contentDescription = if (isCustomMode) stringResource(R.string.ide_run_profile, selectedProfileName) else stringResource(R.string.ide_run_active_file),', 1),
+     'contentDescription = if (isCustomMode) stringResource(R.string.ide_run_profile, selectedProfileName.orEmpty()) else stringResource(R.string.ide_run_active_file),', 1),
     (IDE, 'text = if (activeFile != null) activeFile.name else "(No file open)",',
      'text = if (activeFile != null) activeFile.name else stringResource(R.string.ide_no_file_open),', 1),
     # ---- Claude effort 说明 ----

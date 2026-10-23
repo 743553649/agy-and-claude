@@ -665,7 +665,7 @@ fun IdeScreen(
                                     ) {
                                         Icon(
                                             imageVector = Icons.Default.PlayArrow,
-                                            contentDescription = if (isCustomMode) stringResource(R.string.ide_run_profile, selectedProfileName) else stringResource(R.string.ide_run_active_file),
+                                            contentDescription = if (isCustomMode) stringResource(R.string.ide_run_profile, selectedProfileName.orEmpty()) else stringResource(R.string.ide_run_active_file),
                                             tint = if (isCustomMode) GeminiBlue else Color(0xFF4CAF50),
                                             modifier = Modifier.size(20.dp)
                                         )
