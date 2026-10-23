@@ -144,10 +144,15 @@
   全应用样式是否有回归**只能真机逐屏对照**（好消息：本仓库**没有任何 XML layout**，
   界面基本全是 Compose，AndroidView 里只有 WebView / Sora 编辑器 / TerminalView，
   都是代码构造、不走 AppCompat 的 inflater，理论上受影响面很小）。
-- **待验证①**：API<33 下通知文案（`LocalEnvironmentManager` 走 `applicationContext`）是否跟随
-  界面语言。appcompat 在低版本只包装 Activity，通知很可能仍是系统语言。
+- **✅ 已真机验证①**（2026-10-23，用户提供 API<33 设备）：**通知文案跟随应用内语言**——
+  把应用语言切成 English 后，通知文案也跟着变成英文。
+  ⚠️ 这个结果与坑 18 里「appcompat 只包装 Activity、`applicationContext.getString(...)`
+  不跟随」的字节码推导**相反**。两处都保留、没有互相覆盖：**以实测为准，机制解释待重新查证**
+  （可能 appcompat 1.7 在 `setApplicationLocales` 时也更新了应用级 Resources / Configuration）。
 - **待验证②**：API<33 下静态 `Locale.getDefault()` 是否随 appcompat 包装变化。
   `AiLanguage` 已改为读 appcompat 的应用语言来规避，但这条事实本身仍未在真机确认。
+  2026-10-23 用户在同一台设备上切 English 后**界面英文、功能正常，但没有专门查 Locale 值**，
+  因此只是间接证据，**仍不作为结论**。
 - 真机矩阵见计划第 7 节（API 33/34 走框架 `LocaleManager`；28/24 走 appcompat 资源包装）。
 - 已知行为：API 33+ 上若用户从**系统设置**里单独给本应用选语言，应用内设置页会把它显示为
   已选中（读的是框架值）；此时点「跟随系统」会清掉该选择。
@@ -387,8 +392,11 @@ run 39764130892 **失败**：`ClaudeSettingsScreen.DefaultsPage` 没有 `context
 
 **真机验证安排**：本轮开发机（Xiaomi 22041211AC / Android 14 / SDK 34）**只用于写代码**，
 用户明确要求不要在这台上安装（该机 `com.termux` 被 Play 版 Termux Ultra 118.3.50 占用，
-卸载会连带删掉它的数据）。因此 P4 的真机验证与 P1 的待验证①②一并移交用户另一台设备执行，
-**下面第 4 节 P1 的两条「待验证」保持待验证，未在真机确认前不得改写为结论**。
+卸载会连带删掉它的数据）。因此 P4 的真机验证与 P1 的待验证①②一并移交用户另一台设备执行。
+
+2026-10-23 更新（用户已在低版本设备上测完）：①通知文案跟随应用内语言——**已确认**（见第 4 节）；
+②静态 `Locale.getDefault()` **未专门验证**（只确认切 English 后界面与功能正常），
+因此仍保持「待验证」，未在真机确认前不得改写为结论。
 
 ### 数据层错误族：`AgyMcpManager` + `ClaudeAccountManager`（✅ 已落地）
 
@@ -684,8 +692,9 @@ null，`setApplicationLocales` 直接静默返回**（javap appcompat 1.7.0 已�
 的 `super.onCreate(...)` 之后。
 → 结论：语言回设**只能放在 Activity 的 `onCreate`（super 之后）**；放 `Application.onCreate`
 （本项目本来也没有自定义 Application）或任何没有 AppCompat Activity 的时机都会静默失效。
-另：API<33 时 appcompat 只包装 **Activity** 的资源，`applicationContext.getString(...)`
-（P3.7 的通知文案）不会跟随应用内语言——这就是待验证①。
+另：API<33 时按字节码看 appcompat 只包装 **Activity** 的资源，`applicationContext.getString(...)`
+（P3.7 的通知文案）理应不跟随应用内语言——但 **2026-10-23 真机实测推翻了这条**：切换应用语言到
+English 后通知文案也变英文。**以实测为准**，此处的机制推导待重新查证（见第 4 节「已真机验证①」）。
 
 ### 19. `title = / label =` 只是同族盲区里的一类：`subtitle = / badgeText = / description = / value =` 仍会漏
 P2 批次把 `title =` 与 `label =` 两类回写完了，但同一批组件还有四种「命名参数传字面量」：
