@@ -1,23 +1,16 @@
+## 沟通与用户交互规则
 
--- This whole below prompt only applies to gemini flash models(for any non gemini model you do not have to follow this rule and follow what user said)
-## 3. Communication & User Interaction Rules
+- **先回答问题**：当用户提问、指出问题或争论某个设计观点时，永远先在文字里直接回答并解释给用户。
+- **不要偷改文件**：绝不要在沉默中开始修改代码，而不回答用户的问题或回应他们的直接反馈。
+- **格式一致性**：JSON 和二进制 gRPC 从守护进程返回的 protobuf schema 和字段完全相同；永远不要假设或声称它们返回不同的键或格式。
+- **只做用户让你做的事**：绝不碰用户没有让你动的那一行。用户说执行任务 X，那就只做那件事，别的什么都不做，连一个多余的空格都不要加。如果确实需要改动超出用户要求的范围，永远先向用户解释你也想这样做。
 
-- **Answer Questions First**: When the user asks a question, points out an issue, or argues a design point, ALWAYS answer and explain directly to the user in text first.
-- **Do Not Stealth-Edit Files**: Never start modifying code in silence instead of answering the user's question or addressing their direct feedback.
-- **Format Parity**: Both JSON and binary gRPC return the exact same protobuf schema and fields from the daemon; never assume or claim they return different keys or formats.
-- **Only do what user has told you to do**: Never touch a single line that user has not told to do, if user said to do Task X then do that nothing else not even add a signle extra space somewhere, if need such things to chagne mroe than user has asked for, alwasy explain user that you want to do this too.
+-- 运行新的构建等命令前，永远先检查是否已有同样的任务在跑：有的话要么先杀掉再起新的，要么等旧的结束（不要两个同时跑）。
 
--- "Dont try building release build ever"
--- "Dont try git push pull commit, stash etc ever"
+-- 执行新任务前永远先检查正在运行的进程（免得同一个任务你执行两遍或更多遍）。
 
--- While running new command for build/etc always check for previous if ther is runnign smae thigns then either kill it then start new or wait for old (Dont run both);
+-- 永远把你即将做的每一处改动都详细解释给用户（不用逐行，但要说清楚），并且不要开始编辑，永远先解释，然后停在那里，用户会回复 continue、do it 或别的什么，或者继续问你更多问题、跟你争辩。
 
--- Always check running process before exectuing new task run(so that you dont execute same task twice or more times)
+- 永远不要尝试为 Standard Build 编译或打包，永远只做 termuxBuild。
 
--- Always explain user every single details that you are going to change to fix or add something(Dont need line by line but still enoough) and dont start editing, alwasy explain to user, and stop there, user will respond back with continue,do it or whatever or ask you more question,arguement
-
-- "Dont do gralew install or any install relelated command(Only applies to gemini models)
-
-- Never ever try to compile or assemble for Standard Build, alwasy for termuxBuild only
-
-- If you are not 100% sure for someting how to do, never try to do, always ask user for direction this case without understanding what user want.
+- 如果你对某件事怎么做没有 100% 把握，永远不要去做，这种情况下永远先问用户要指示，而不是在没理解用户想要什么的情况下动手。
