@@ -399,6 +399,24 @@
     <string name="component_modify_or_add_custom_notes_to_this_execu">修改或添加这份执行摘要的自定义备注。AI 会把它作为永久上下文使用。</string>
     <!-- 原文: Multi-select -->
     <string name="component_multi_select">多选</string>
+    <!-- 原文: Duration -->
+    <string name="component_net_duration">耗时</string>
+    <!-- 原文: Error Message -->
+    <string name="component_net_error_message">错误信息</string>
+    <!-- 原文: Full URL -->
+    <string name="component_net_full_url">完整 URL</string>
+    <!-- 原文: gRPC Status -->
+    <string name="component_net_grpc_status">gRPC 状态</string>
+    <!-- 原文: Method -->
+    <string name="component_net_method">方法</string>
+    <!-- 原文: Service Target -->
+    <string name="component_net_service_target">服务目标</string>
+    <!-- 原文: Headers -->
+    <string name="component_net_tab_headers">请求头</string>
+    <!-- 原文: Overview -->
+    <string name="component_net_tab_overview">概览</string>
+    <!-- 原文: Timestamp -->
+    <string name="component_net_timestamp">时间</string>
     <!-- 原文: Connected / Streaming -->
     <string name="component_network_connected_streaming">已连接 / 流式传输中</string>
     <!-- 原文: HTTP Status -->

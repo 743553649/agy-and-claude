@@ -274,8 +274,13 @@
     <string name="claude_usage">Usage</string>
     <string name="claude_usage_limits_unavailable">Plan limits are not available for this account (API billing has no 5-hour / weekly limits).</string>
     <string name="claude_usage_refresh">Refresh usage</string>
+    <string name="claude_usage_session_5h">Current session (5-hour)</string>
     <string name="claude_usage_updated_at">Updated %1$s</string>
     <string name="claude_usage_updating">Updating…</string>
+    <string name="claude_usage_used">Used</string>
+    <string name="claude_usage_week_all">This week (all models)</string>
+    <string name="claude_usage_week_opus">This week (Opus)</string>
+    <string name="claude_usage_week_sonnet">This week (Sonnet)</string>
     <string name="claude_usedfraction_100_toint_used">%1$s%% used</string>
     <string name="claude_validate_save">Validate &amp; save</string>
     <string name="claude_via_method">via %1$s</string>

@@ -426,7 +426,7 @@ fun ClaudeContextDialog(backend: ClaudeChatBackend, onDismiss: () -> Unit) {
                     Text(stringResource(R.string.claude_context_usage_shows_once_this_chat_has_s), fontSize = 13.sp)
                 } else {
                     Text(stringResource(R.string.claude_compacttokens_c_totaltokens_of_compactto, compactTokens(c.totalTokens), compactTokens(c.maxTokens), c.percentage.toInt()), fontSize = 13.sp)
-                    UsageBar("Used", c.percentage / 100.0, null)
+                    UsageBar(stringResource(R.string.claude_usage_used), c.percentage / 100.0, null)
                     HorizontalDivider(Modifier.padding(vertical = 4.dp))
                     c.categories.forEach { cat ->
                         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
@@ -483,10 +483,10 @@ fun ClaudeUsageDialog(account: ClaudeAccountManager, backend: ClaudeChatBackend,
                     ?: rl?.seven_day?.let { (it.utilization ?: 0.0) / 100.0 to formatReset(it.resets_at) }
                 when {
                     five != null || week != null -> {
-                        five?.let { UsageBar("Current session (5-hour)", it.first, it.second) }
-                        week?.let { UsageBar("This week (all models)", it.first, it.second) }
-                        rl?.seven_day_opus?.let { UsageBar("This week (Opus)", (it.utilization ?: 0.0) / 100.0, formatReset(it.resets_at)) }
-                        rl?.seven_day_sonnet?.let { UsageBar("This week (Sonnet)", (it.utilization ?: 0.0) / 100.0, formatReset(it.resets_at)) }
+                        five?.let { UsageBar(stringResource(R.string.claude_usage_session_5h), it.first, it.second) }
+                        week?.let { UsageBar(stringResource(R.string.claude_usage_week_all), it.first, it.second) }
+                        rl?.seven_day_opus?.let { UsageBar(stringResource(R.string.claude_usage_week_opus), (it.utilization ?: 0.0) / 100.0, formatReset(it.resets_at)) }
+                        rl?.seven_day_sonnet?.let { UsageBar(stringResource(R.string.claude_usage_week_sonnet), (it.utilization ?: 0.0) / 100.0, formatReset(it.resets_at)) }
                     }
                     loading -> Row(verticalAlignment = Alignment.CenterVertically) {
                         androidx.compose.material3.CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp, color = ClaudeAccent)

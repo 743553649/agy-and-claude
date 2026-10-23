@@ -39,6 +39,9 @@
     <string name="drawer_expand_subagents">Expand subagents</string>
     <string name="drawer_export_markdown_md">Export Markdown (.md)</string>
     <string name="drawer_export_standalone_html">Export Standalone HTML</string>
+    <string name="drawer_filter_past_30d">Past 30d</string>
+    <string name="drawer_filter_past_7d">Past 7d</string>
+    <string name="drawer_filter_today">Today</string>
     <string name="drawer_filtered_size_chat_if_filtered_size_1_s">%1$s chat%2$s found</string>
     <string name="drawer_flow_credits">Flow Credits</string>
     <string name="drawer_fork_conversation">Fork Conversation</string>

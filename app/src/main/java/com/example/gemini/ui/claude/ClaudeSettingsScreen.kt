@@ -1039,7 +1039,7 @@ private fun MemoryPage(deps: ClaudeSettingsDeps) {
         Hint(stringResource(R.string.claude_instructions_hint))
         Spacer(Modifier.height(8.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            ControlChip("All projects", highlighted = scope == "user", color = if (scope == "user") ClaudeAccent else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f), onClick = { scope = "user" })
+            ControlChip(stringResource(R.string.claude_scope_all_projects), highlighted = scope == "user", color = if (scope == "user") ClaudeAccent else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f), onClick = { scope = "user" })
             ControlChip(projectName, highlighted = scope == "project", color = if (scope == "project") ClaudeAccent else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f), onClick = { scope = "project" })
         }
         Spacer(Modifier.height(8.dp))

@@ -431,7 +431,7 @@ private fun NetworkLogDetailDialog(
     onDismiss: () -> Unit
 ) {
     var selectedTab by remember { mutableStateOf(0) }
-    val tabs = listOf("Overview", "Headers")
+    val tabs = listOf(stringResource(R.string.component_net_tab_overview), stringResource(R.string.component_net_tab_headers))
     val context = LocalContext.current
 
     fun copyToClipboard(label: String, text: String) {
@@ -547,17 +547,17 @@ private fun OverviewTab(
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        DetailRow("Full URL", entry.url, isCopyable = true, onCopy = onCopy)
-        DetailRow("Method", entry.method)
-        DetailRow("Service Target", entry.serviceType)
-        DetailRow("Timestamp", entry.formattedTime)
-        DetailRow("Duration", durationStr)
+        DetailRow(stringResource(R.string.component_net_full_url), entry.url, isCopyable = true, onCopy = onCopy)
+        DetailRow(stringResource(R.string.component_net_method), entry.method)
+        DetailRow(stringResource(R.string.component_net_service_target), entry.serviceType)
+        DetailRow(stringResource(R.string.component_net_timestamp), entry.formattedTime)
+        DetailRow(stringResource(R.string.component_net_duration), durationStr)
         DetailRow(stringResource(R.string.component_network_http_status), if (entry.statusCode > 0) "${entry.statusCode}" else if (isConnected) stringResource(R.string.component_network_connected_streaming) else stringResource(R.string.component_network_pending))
         if (entry.grpcStatus != null) {
-            DetailRow("gRPC Status", entry.grpcStatus)
+            DetailRow(stringResource(R.string.component_net_grpc_status), entry.grpcStatus)
         }
         if (entry.error != null) {
-            DetailRow("Error Message", entry.error, isError = true, isCopyable = true, onCopy = onCopy)
+            DetailRow(stringResource(R.string.component_net_error_message), entry.error, isError = true, isCopyable = true, onCopy = onCopy)
         }
     }
 }

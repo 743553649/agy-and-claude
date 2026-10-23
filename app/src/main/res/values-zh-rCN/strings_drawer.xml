@@ -73,6 +73,12 @@
     <string name="drawer_export_markdown_md">导出 Markdown（.md）</string>
     <!-- 原文: Export Standalone HTML -->
     <string name="drawer_export_standalone_html">导出独立 HTML</string>
+    <!-- 原文: Past 30d -->
+    <string name="drawer_filter_past_30d">近 30 天</string>
+    <!-- 原文: Past 7d -->
+    <string name="drawer_filter_past_7d">近 7 天</string>
+    <!-- 原文: Today -->
+    <string name="drawer_filter_today">今天</string>
     <!-- 原文: %1$s chat%2$s found -->
     <string name="drawer_filtered_size_chat_if_filtered_size_1_s">找到 %1$s 个对话</string>
     <!-- 原文: Flow Credits -->

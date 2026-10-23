@@ -2012,8 +2012,13 @@ fun SearchChatsDialog(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     // Time filters
-                    listOf("All", "Today", "Past 7d", "Past 30d").forEach { timeLabel ->
-                        val isSelected = selectedTimeFilter == timeLabel
+                    listOf(
+                        "All" to stringResource(R.string.settings_all),
+                        "Today" to stringResource(R.string.drawer_filter_today),
+                        "Past 7d" to stringResource(R.string.drawer_filter_past_7d),
+                        "Past 30d" to stringResource(R.string.drawer_filter_past_30d)
+                    ).forEach { (timeKey, timeLabel) ->
+                        val isSelected = selectedTimeFilter == timeKey
                         Surface(
                             shape = RoundedCornerShape(8.dp),
                             color = if (isSelected) ClaudeTerracotta.copy(alpha = 0.15f) else MaterialTheme.colorScheme.surfaceVariant.copy(
@@ -2027,7 +2032,7 @@ fun SearchChatsDialog(
                             ),
                             modifier = Modifier
                                 .clip(RoundedCornerShape(8.dp))
-                                .clickable { selectedTimeFilter = timeLabel }
+                                .clickable { selectedTimeFilter = timeKey }
                         ) {
                             Text(
                                 text = timeLabel,

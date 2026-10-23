@@ -543,10 +543,20 @@
     <string name="claude_usage_limits_unavailable">此账号没有套餐限额信息（按 API 计费没有 5 小时 / 每周限额）。</string>
     <!-- 原文: Refresh usage -->
     <string name="claude_usage_refresh">刷新用量</string>
+    <!-- 原文: Current session (5-hour) -->
+    <string name="claude_usage_session_5h">当前会话（5 小时）</string>
     <!-- 原文: Updated %1$s -->
     <string name="claude_usage_updated_at">更新于 %1$s</string>
     <!-- 原文: Updating… -->
     <string name="claude_usage_updating">正在更新……</string>
+    <!-- 原文: Used -->
+    <string name="claude_usage_used">已用</string>
+    <!-- 原文: This week (all models) -->
+    <string name="claude_usage_week_all">本周（全部模型）</string>
+    <!-- 原文: This week (Opus) -->
+    <string name="claude_usage_week_opus">本周（Opus）</string>
+    <!-- 原文: This week (Sonnet) -->
+    <string name="claude_usage_week_sonnet">本周（Sonnet）</string>
     <!-- 原文: %1$s% used -->
     <string name="claude_usedfraction_100_toint_used">已用 %1$s%%</string>
     <!-- 原文: Validate & save -->

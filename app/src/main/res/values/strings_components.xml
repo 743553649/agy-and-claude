@@ -202,6 +202,15 @@
     <string name="component_modified">Modified</string>
     <string name="component_modify_or_add_custom_notes_to_this_execu">Modify or add custom notes to this executive summary. The AI will use this as its permanent context.</string>
     <string name="component_multi_select">Multi-select</string>
+    <string name="component_net_duration">Duration</string>
+    <string name="component_net_error_message">Error Message</string>
+    <string name="component_net_full_url">Full URL</string>
+    <string name="component_net_grpc_status">gRPC Status</string>
+    <string name="component_net_method">Method</string>
+    <string name="component_net_service_target">Service Target</string>
+    <string name="component_net_tab_headers">Headers</string>
+    <string name="component_net_tab_overview">Overview</string>
+    <string name="component_net_timestamp">Timestamp</string>
     <string name="component_network_connected_streaming">Connected / Streaming</string>
     <string name="component_network_http_status">HTTP Status</string>
     <string name="component_network_inspector">Network Inspector</string>
