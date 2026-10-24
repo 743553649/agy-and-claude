@@ -107,29 +107,29 @@ private fun Modifier.frostedGlass(
     shape: Shape,
     spec: GlassSpec,
     opaque: Boolean,
-): Modifier = this
-    .shadow(
-        elevation = spec.shadowBlur / 2,
-        shape = shape,
-        clip = false,
-        ambientColor = Color.Black.copy(alpha = spec.shadowAlpha),
-        spotColor = Color.Black.copy(alpha = spec.shadowAlpha),
-    )
-    .clip(shape)
-    .drawWithCache {
-        val topAlpha = if (opaque) 0.96f else (spec.tint.alpha + 0.55f).coerceAtMost(0.92f)
-        val bottomAlpha = if (opaque) 0.92f else (spec.tint.alpha + 0.35f).coerceAtMost(0.88f)
-        val fill = Brush.verticalGradient(
-            colors = listOf(
-                spec.tint.copy(alpha = topAlpha),
-                spec.tint.copy(alpha = bottomAlpha),
+): Modifier {
+    val topAlpha = if (opaque) 0.96f else (spec.tint.alpha + 0.55f).coerceAtMost(0.92f)
+    val bottomAlpha = if (opaque) 0.92f else (spec.tint.alpha + 0.35f).coerceAtMost(0.88f)
+    return this
+        .shadow(
+            elevation = spec.shadowBlur / 2,
+            shape = shape,
+            clip = false,
+            ambientColor = Color.Black.copy(alpha = spec.shadowAlpha),
+            spotColor = Color.Black.copy(alpha = spec.shadowAlpha),
+        )
+        .clip(shape)
+        .background(
+            brush = Brush.verticalGradient(
+                colors = listOf(
+                    spec.tint.copy(alpha = topAlpha),
+                    spec.tint.copy(alpha = bottomAlpha),
+                )
             )
         )
-        val rim = Brush.verticalGradient(colors = listOf(spec.rimTop, spec.rimBottom))
-        val outline = shape.createOutline(size, layoutDirection, this)
-        val rimWidth = 1.dp.toPx()
-        onDrawBehind {
-            drawRect(fill)
-            drawOutline(outline, rim, style = Stroke(width = rimWidth))
-        }
-    }
+        .border(
+            width = 1.dp,
+            brush = Brush.verticalGradient(colors = listOf(spec.rimTop, spec.rimBottom)),
+            shape = shape,
+        )
+}
