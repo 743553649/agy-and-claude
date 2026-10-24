@@ -167,7 +167,7 @@ AntiGem 提供两个构建变体：
 ### 前置要求
 - **JDK 17+**
 - **Android SDK**（API Level 35，Build Tools 35.0.0+）
-- **Go 1.23+**（用于编译 `agy_ide_bridge`）
+- **Go 1.26.5+**（编译 `agy_ide_bridge`；最低要求来自 `agy_ide_bridge/go.mod` 的 `go 1.26.5`，更低版本 Go 会自动下载对应工具链）
 - **Gradle 8.11+**
 
 ### 构建命令

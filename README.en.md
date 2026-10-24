@@ -169,7 +169,7 @@ AntiGem comes in two build variants:
 ### Prerequisites
 - **JDK 17+**
 - **Android SDK** (API Level 35, Build Tools 35.0.0+)
-- **Go 1.23+** (for compiling `agy_ide_bridge`)
+- **Go 1.26.5+** (to compile `agy_ide_bridge`; the minimum comes from the `go 1.26.5` line in `agy_ide_bridge/go.mod` — older Go versions auto-download the required toolchain)
 - **Gradle 8.11+**
 
 ### Build Commands

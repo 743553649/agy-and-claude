@@ -28,7 +28,11 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.22'
+          # 不能低于 agy_ide_bridge/go.mod 的 `go 1.26.5`：低版本 Go 会先拒绝加载模块，
+          # 再靠 GOTOOLCHAIN=auto 现场下载 go1.26.5（每次多下约 50MB 且依赖 proxy 可用）。
+          # 这里写语言版本 1.26：拿到的是 1.26 最新 patch；万一该 patch <1.26.5，
+          # 仍会退回自动切换那条已被 CI 验证过的路径，所以不会比原来更差。
+          go-version: '1.26'
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
