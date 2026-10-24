@@ -11,16 +11,16 @@
 
 -- 永远把你即将做的每一处改动都详细解释给用户（不用逐行，但要说清楚），并且不要开始编辑，永远先解释，然后停在那里，用户会回复 continue、do it 或别的什么，或者继续问你更多问题、跟你争辩。
 
-- 永远不要尝试为 Standard Build 编译或打包，永远只做 termuxBuild。
+- 永远只为 termux flavor（`com.termux`）构建出包；`standard` flavor（`com.antigem`）不构建、不出包。这是变体约束，与在本地编还是云端 CI 编无关。
 
 - 如果你对某件事怎么做没有 100% 把握，永远不要去做，这种情况下永远先问用户要指示，而不是在没理解用户想要什么的情况下动手。
 
 ## 项目事实（扫描实测，2026-10-23，基线 d1e2a16）
 
-### 构建：只做 termux flavor
+### 构建：云端 CI 是唯一路径，只做 termux flavor
 
-- 只有两条构建命令：`./gradlew :app:assembleTermuxDebug`（没有 `app/release.jks` 时）、`./gradlew :app:assembleTermuxRelease`（有 keystore 时，CI 走这条）。`standard` flavor（`com.antigem`）不构建、不出包。
-- 上面两条会经 `preBuild` 自动带起 4 个生成任务：`buildAgyIdeBridge`（`GOOS=android GOARCH=arm64 CGO_ENABLED=0 go build`）、`copyScriptsToAssets`、`bundleBrowserExtensions`、`bundleExtensionDocs`，产物落在 `app/src/main/assets/bin/` 与 `build/generated/`。
+- **本地不跑 Gradle，构建一律推分支触发云端 CI**：`ci.yml` 的 `build-termux` job 产出 `antiGem-termux-v<版本>-<release|debug>-<短 sha>.apk` artifact。仓库配了 `RELEASE_KEYSTORE_BASE64` secret 就走 `:app:assembleTermuxRelease`，没配就走 `:app:assembleTermuxDebug`（debug 签名覆盖不了官方版本）。`standard` flavor（`com.antigem`）不在任何一条路径上出包。
+- 云端那两条命令同样会经 `preBuild` 自动带起 4 个生成任务：`buildAgyIdeBridge`（`GOOS=android GOARCH=arm64 CGO_ENABLED=0 go build`）、`copyScriptsToAssets`、`bundleBrowserExtensions`、`bundleExtensionDocs`，产物落在 `app/src/main/assets/bin/` 与 `build/generated/`。
 - 所以：改备份脚本 → 改 `scripts/*.sh`；改内置扩展 → 改 `extensions/`；改扩展文档 → 改 `extension_docs/`。**不要直接改 `app/src/main/assets/` 下的副本**，构建会覆盖。
 - 发版是 `release.yml` 的事（仅 `version.json` 变更触发），不要手工发版、不要手改 `version.json` 以外的版本来源。
 

@@ -2,8 +2,8 @@
 set -euo pipefail
 
 # -----------------------------------------------------------------------------
-# AntiGem Multi-Package APK Build & Output Packager
-# Builds standard (com.antigem) and termux (com.termux) flavors.
+# AntiGem APK Build & Output Packager
+# termux flavor (com.termux) only; the standard flavor (com.antigem) is disabled.
 # -----------------------------------------------------------------------------
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -45,14 +45,15 @@ if [[ "${MODE}" == "release" ]]; then
     #     cp "${ROOT_DIR}/app/src/main/assets/bin/agy_ide_bridge" "${OUTPUT_DIR}/agy_ide_bridge-v${VERSION_NAME}-android-arm64"
     # fi
 else
-    echo "🔨 Compiling Standard Debug (:app:assembleStandardDebug)..."
-    "${ROOT_DIR}/gradlew" -p "${ROOT_DIR}" :app:assembleStandardDebug
+    # standard flavor 已停用（只出 com.termux，见仓库根 AGENTS.md）
+    # echo "🔨 Compiling Standard Debug (:app:assembleStandardDebug)..."
+    # "${ROOT_DIR}/gradlew" -p "${ROOT_DIR}" :app:assembleStandardDebug
 
     echo "🔨 Compiling Termux Debug (:app:assembleTermuxDebug)..."
     "${ROOT_DIR}/gradlew" -p "${ROOT_DIR}" :app:assembleTermuxDebug
 
     APKS_SRC="${ROOT_DIR}/app/build/outputs/apk"
-    find "${APKS_SRC}/standard/debug" -name "*.apk" -exec cp {} "${OUTPUT_DIR}/antiGem-standard-v${VERSION_NAME}-debug.apk" \;
+    # find "${APKS_SRC}/standard/debug" -name "*.apk" -exec cp {} "${OUTPUT_DIR}/antiGem-standard-v${VERSION_NAME}-debug.apk" \;
     find "${APKS_SRC}/termux/debug" -name "*.apk" -exec cp {} "${OUTPUT_DIR}/antiGem-termux-v${VERSION_NAME}-debug.apk" \;
 
     if [[ -f "${ROOT_DIR}/app/src/main/assets/bin/agy_ide_bridge" ]]; then

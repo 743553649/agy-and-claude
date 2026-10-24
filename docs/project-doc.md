@@ -360,10 +360,10 @@ PY
 | `./gradlew :app:assembleTermuxDebug --stacktrace --no-daemon` | `ci.yml`（无 keystore 时） | 出 debug 包 |
 | `python3 scripts/i18n/verify.py` | `ci.yml`「Verify i18n resources」步 | 编译前静态校验 |
 | `python3 scripts/verify_apk_signature.py <apk>` | `ci.yml`「Verify APK signature」步 | 签名指纹校验 |
-| `./scripts/build_all_apks.sh --release` | `release.yml` | 发版出双 flavor 包 |
+| `./scripts/build_all_apks.sh --release` | `release.yml` | 发版只出 termux 包（standard 分支已停用） |
 | `python3 -c "import json;print(json.load(open('version.json'))['version_name'])"` | `ci.yml` | 取版本号 |
 
-**关于 build 变体的项目约束**：仓库根 `AGENTS.md` 明确「永远不要尝试为 Standard Build 编译或打包，永远只做 termuxBuild」，因此上表里的 `assembleTermux*` 是唯一应执行的构建目标；`standard` flavor 只应在显式要求或 CI 场景下构建。
+**关于 build 变体的项目约束**：仓库根 `AGENTS.md` 明确「只为 termux flavor（`com.termux`）构建出包，`standard` flavor 不构建、不出包」，因此上表里的 `assembleTermux*` 是唯一应执行的构建目标；且本项目实际只在云端 CI 里执行它（本地不跑 Gradle），`standard` flavor 不在任何一条出包路径上。
 
 ---
 
