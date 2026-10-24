@@ -1,12 +1,19 @@
 package com.example.gemini.ui.glass
 
+import android.graphics.Bitmap
 import androidx.compose.foundation.Canvas
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.ImageShader
+import androidx.compose.ui.graphics.ShaderBrush
+import androidx.compose.ui.graphics.TileMode
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import com.example.gemini.theme.isAppInDarkTheme
 
@@ -53,9 +60,37 @@ fun AmbientBackdrop(
     isDark: Boolean = isAppInDarkTheme(),
 ) {
     val palette = if (isDark) DarkAmbient else LightAmbient
+    // 一层很淡的颗粒：玻璃的模糊/折射需要有高频细节才看得出"玻璃"，纯渐变会被糊成一片均匀色。
+    val grain = remember(isDark) { buildGrainBitmap(isDark) }
     Canvas(modifier = modifier) {
         drawAmbient(palette)
+        drawRect(
+            brush = ShaderBrush(ImageShader(grain, TileMode.Repeated, TileMode.Repeated))
+        )
     }
+}
+
+/** 64×64 的可平铺颗粒：暗色用白点、亮色用黑点，透明度都很低。只生成一次。 */
+private fun buildGrainBitmap(isDark: Boolean): ImageBitmap {
+    val side = 64
+    val bitmap = Bitmap.createBitmap(side, side, Bitmap.Config.ARGB_8888)
+    var seed = 0x9E3779B9.toInt()
+    for (y in 0 until side) {
+        for (x in 0 until side) {
+            seed = seed * 1103515245 + 12345
+            val r = (seed ushr 16) and 0x7FFF
+            if (r % 9 == 0) {
+                val alpha = if (isDark) 8 + (r % 14) else 6 + (r % 10)
+                val color = if (isDark) {
+                    (alpha shl 24) or 0xFFFFFF
+                } else {
+                    (alpha shl 24) or 0x000000
+                }
+                bitmap.setPixel(x, y, color)
+            }
+        }
+    }
+    return bitmap.asImageBitmap()
 }
 
 private fun DrawScope.drawAmbient(p: AmbientPalette) {

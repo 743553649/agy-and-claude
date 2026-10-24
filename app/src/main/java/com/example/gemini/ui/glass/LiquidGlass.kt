@@ -82,7 +82,11 @@ private fun Modifier.glassWithBackdrop(
         }
     },
     highlight = {
-        Highlight(width = 1.dp, blurRadius = 0.5.dp, alpha = spec.highlightAlpha)
+        Highlight(
+            width = spec.highlightWidth,
+            blurRadius = spec.highlightWidth / 2,
+            alpha = spec.highlightAlpha,
+        )
     },
     shadow = {
         Shadow(
@@ -103,6 +107,19 @@ private fun Modifier.glassWithBackdrop(
             drawRect(Color.Black.copy(alpha = spec.shade))
         }
         drawRect(spec.tint)
+        // 静态顶部高光：不用手指也像一层「湿」的玻璃（上游靠 InteractiveHighlight 的常驻态）
+        if (spec.topSheen > 0f) {
+            drawRect(
+                Brush.verticalGradient(
+                    colors = listOf(
+                        Color.White.copy(alpha = spec.topSheen),
+                        Color.White.copy(alpha = spec.topSheen * 0.25f),
+                        Color.Transparent
+                    ),
+                    endY = size.height * 0.85f
+                )
+            )
+        }
     },
 )
 

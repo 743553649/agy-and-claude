@@ -72,6 +72,7 @@ import com.example.gemini.domain.model.ThinkingPreference
 import com.example.gemini.theme.*
 import com.example.gemini.ui.glass.GlassRole
 import com.example.gemini.ui.glass.liquidGlass
+import com.example.gemini.ui.glass.pressSheen
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -605,7 +606,9 @@ fun ChatInputBar(
             Surface(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .liquidGlass(GlassRole.Dock, RoundedCornerShape(24.dp)),
+                    .liquidGlass(GlassRole.Dock, RoundedCornerShape(24.dp))
+                    // pressSheen 放在玻璃之后（内层）：高光要画在玻璃表面之上，但被玻璃的圆角裁掉
+                    .pressSheen(),
                 shape = RoundedCornerShape(24.dp),
                 color = Color.Transparent
             ) {
