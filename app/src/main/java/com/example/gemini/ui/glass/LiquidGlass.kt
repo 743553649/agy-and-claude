@@ -70,7 +70,8 @@ private fun Modifier.glassWithBackdrop(
     backdrop = backdrop,
     shape = { shape },
     effects = {
-        colorControls(saturation = spec.saturation)
+        // 上游配方：vibrancy（提饱和）+ 小半径模糊 + 大比例折射。折射才是"液态"的来源。
+        colorControls(brightness = spec.brightness, saturation = spec.saturation)
         blur(spec.blur.toPx())
         if (spec.useLens && shape is CornerBasedShape) {
             lens(
@@ -98,6 +99,9 @@ private fun Modifier.glassWithBackdrop(
         )
     },
     onDrawSurface = {
+        if (spec.shade > 0f) {
+            drawRect(Color.Black.copy(alpha = spec.shade))
+        }
         drawRect(spec.tint)
     },
 )
@@ -107,8 +111,8 @@ private fun Modifier.frostedGlass(
     spec: GlassSpec,
     opaque: Boolean,
 ): Modifier {
-    val topAlpha = if (opaque) 0.96f else (spec.tint.alpha + 0.55f).coerceAtMost(0.92f)
-    val bottomAlpha = if (opaque) 0.92f else (spec.tint.alpha + 0.35f).coerceAtMost(0.88f)
+    val topAlpha = if (opaque) 0.96f else (spec.tint.alpha + 0.5f).coerceAtMost(0.9f)
+    val bottomAlpha = if (opaque) 0.92f else (spec.tint.alpha + 0.3f).coerceAtMost(0.86f)
     return this
         .shadow(
             elevation = spec.shadowBlur / 2,

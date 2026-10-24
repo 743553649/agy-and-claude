@@ -1073,10 +1073,16 @@ fun ChatScreen(
             snackbarHost = {},
             topBar = {
                 TopAppBar(
-                    modifier = Modifier.liquidGlass(
-                        role = GlassRole.Chrome,
-                        shape = androidx.compose.ui.graphics.RectangleShape
-                    ),
+                    // 悬浮玻璃条：四周留 8dp / 6dp，圆角 20dp，状态栏下面是世界底而不是玻璃。
+                    // 整条长方形只有上下两条边能折射，收成圆角条才看得到四周的「液态」折射边。
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp, vertical = 6.dp)
+                        .statusBarsPadding()
+                        .liquidGlass(
+                            role = GlassRole.Chrome,
+                            shape = RoundedCornerShape(20.dp)
+                        ),
+                    windowInsets = WindowInsets(0),
                     title = {
                         val displayedChatTitle = remember(currentConv?.title, conversations, currentConv?.id) {
                             val fromList = conversations.firstOrNull { it.id == currentConv?.id }
@@ -1252,6 +1258,8 @@ fun ChatScreen(
                 WindowInsets.statusBars.getTop(this).toDp()
             }
             val glassBottomBarHeight = with(glassDensity) { glassBottomBarHeightPx.toDp() }
+            // 顶栏是悬浮玻璃条：状态栏 + 6dp 外边距 + 64dp 栏高 + 8dp 间隙
+            val glassTopBarInset = glassStatusBarTop + 78.dp
             Box(modifier = Modifier.fillMaxSize()) {
                 com.example.gemini.ui.glass.GlassWorld(
                     modifier = Modifier.fillMaxSize()
@@ -1265,11 +1273,15 @@ fun ChatScreen(
                             .navigationBarsPadding()
                             .windowInsetsPadding(WindowInsets.imeAnimationTarget)
                     ) {
-                        Box(
+                        // BoxWithConstraints：算给 / 与 @ 浮层面板剩多少高度，别让它顶到顶栏
+                        BoxWithConstraints(
                             modifier = Modifier
                                 .weight(1f)
                                 .fillMaxWidth()
                         ) {
+                        val glassOverlayMaxHeight = (
+                            maxHeight - glassTopBarInset - glassBottomBarHeight - 24.dp
+                            ).coerceAtLeast(96.dp)
                     val sysStatus = systemConnectionState.status
                     val isServerInitializing = sysStatus == com.example.gemini.data.remote.SystemStatus.STARTING || sysStatus == com.example.gemini.data.remote.SystemStatus.ACQUIRING_CSRF || (sysStatus == com.example.gemini.data.remote.SystemStatus.OFFLINE && isInitialGracePeriod)
                     val isServerStopped = sysStatus == com.example.gemini.data.remote.SystemStatus.OFFLINE && !isInitialGracePeriod
@@ -1447,7 +1459,7 @@ fun ChatScreen(
                                     state = listState,
                                     modifier = Modifier.fillMaxSize(),
                                     contentPadding = PaddingValues(
-                                        top = glassStatusBarTop + 64.dp + 8.dp,
+                                        top = glassTopBarInset,
                                         bottom = glassBottomBarHeight + 12.dp
                                     )
                                 ) {
@@ -1704,6 +1716,7 @@ fun ChatScreen(
                             .padding(bottom = glassBottomBarHeight)
                     ) {
                         SlashCommandOverlay(
+                            listMaxHeight = glassOverlayMaxHeight.coerceAtMost(300.dp),
                             items = slashSuggestions,
                             query = slashQuery,
                             runsOnTap = slashRunsOnTap,
@@ -1773,7 +1786,7 @@ fun ChatScreen(
                             LazyColumn(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .heightIn(max = 220.dp)
+                                    .heightIn(max = glassOverlayMaxHeight.coerceAtMost(220.dp))
                                     .padding(vertical = 4.dp)
                             ) {
                                 items(fileSuggestions, key = { file -> file.path }) { file ->
@@ -1826,7 +1839,7 @@ fun ChatScreen(
                     enter = fadeIn() + expandVertically(),
                     exit = fadeOut() + shrinkVertically(),
                     // 列表铺到屏幕顶，这两条横幅要自己让开玻璃顶栏
-                    modifier = Modifier.padding(top = glassStatusBarTop + 64.dp + 8.dp)
+                    modifier = Modifier.padding(top = glassTopBarInset)
                 ) {
                     Surface(
                         modifier = Modifier
@@ -1862,7 +1875,7 @@ fun ChatScreen(
                     visible = !isClaudeChat && (isServerOnline == false || isReconnecting) && messages.isNotEmpty(),
                     enter = expandVertically() + fadeIn(),
                     exit = shrinkVertically() + fadeOut(),
-                    modifier = Modifier.padding(top = glassStatusBarTop + 64.dp + 8.dp)
+                    modifier = Modifier.padding(top = glassTopBarInset)
                 ) {
                     Surface(
                         modifier = Modifier

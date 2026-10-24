@@ -65,7 +65,9 @@ fun SlashCommandOverlay(
     query: String,
     runsOnTap: (SlashCommandItem) -> Boolean,
     onPick: (SlashCommandItem) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    /** 列表高度上限：由调用方按「顶栏到输入栏之间还剩多少」传进来，避免面板顶到顶栏。 */
+    listMaxHeight: androidx.compose.ui.unit.Dp = 300.dp
 ) {
     val order = listOf("app", "command")
     val grouped = items.groupBy { if (it.type in order) it.type else "skill" }
@@ -81,7 +83,7 @@ fun SlashCommandOverlay(
         tonalElevation = 2.dp
     ) {
         LazyColumn(
-            modifier = Modifier.fillMaxWidth().heightIn(max = 300.dp),
+            modifier = Modifier.fillMaxWidth().heightIn(max = listMaxHeight),
             contentPadding = PaddingValues(vertical = 6.dp)
         ) {
             grouped.forEach { (type, list) ->
