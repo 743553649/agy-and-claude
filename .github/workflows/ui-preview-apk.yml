@@ -1,0 +1,80 @@
+name: UI Preview APK (standard flavor)
+
+# 只给 UI 自测用：出 standard flavor（applicationId = com.antigem）的 debug 包。
+# 目的：它和已装的 Termux（com.termux）包名不同，可以共存，装进虚拟屏里做视觉/交互自测，
+# 不必覆盖用户机器上的正式版本。
+#
+# 约束（不要改）：
+#   - 只 build :app:assembleStandardDebug，绝不 build release，也不碰 version.json；
+#   - 正式交付仍然是 ci.yml 的 termux flavor（applicationId = com.termux）；
+#   - 这里的包不签 release key、不进任何发布流程。
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/ui-preview-apk.yml'
+
+concurrency:
+  group: ui-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-standard-debug:
+    name: Build standard debug APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      # preBuild 会跑 agy_ide_bridge 的 GOOS=android go build，需要与 ci.yml 相同的 Go 版本
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.26'
+          cache-dependency-path: agy_ide_bridge/go.sum
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Verify i18n resources
+        run: python3 scripts/i18n/verify.py
+
+      - name: Build standard debug APK
+        run: |
+          set -o pipefail
+          chmod +x gradlew
+          echo "==> :app:assembleStandardDebug (debug 签名，仅自测)"
+          ./gradlew :app:assembleStandardDebug --stacktrace --no-daemon
+
+      - name: Stage APK
+        run: |
+          set -euo pipefail
+          mkdir -p artifact
+          SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
+          APK=$(find app/build/outputs/apk/standard -name "*.apk" | head -n 1)
+          if [ -z "${APK}" ]; then echo "no standard APK produced"; exit 1; fi
+          OUT="artifact/antiGem-standard-debug-${SHORT_SHA}.apk"
+          cp "${APK}" "${OUT}"
+          ls -lh artifact
+          echo "### 产物（仅自测）" >> $GITHUB_STEP_SUMMARY
+          echo "- 文件：\`$(basename "$OUT")\`" >> $GITHUB_STEP_SUMMARY
+          echo "- 包名：\`com.antigem\`（standard flavor，与 com.termux 共存）" >> $GITHUB_STEP_SUMMARY
+          echo "- 签名：\`debug\`（不可覆盖任何 release 安装）" >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: antiGem-standard-debug-${{ github.sha }}
+          path: artifact/*.apk
+          retention-days: 7
+          if-no-files-found: error
