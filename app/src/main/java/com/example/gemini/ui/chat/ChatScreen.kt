@@ -1634,7 +1634,8 @@ fun ChatScreen(
                         exit = fadeOut() + scaleOut(targetScale = 0.8f),
                         modifier = Modifier
                             .align(Alignment.BottomEnd)
-                            .padding(end = 16.dp, bottom = 12.dp)
+                            // 列表现在铺到屏幕底，浮动按钮必须自己让开输入栏
+                            .padding(end = 16.dp, bottom = glassBottomBarHeight + 12.dp)
                     ) {
                         Surface(
                             modifier = Modifier
@@ -1700,6 +1701,7 @@ fun ChatScreen(
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
                             .padding(horizontal = 12.dp, vertical = 6.dp)
+                            .padding(bottom = glassBottomBarHeight)
                     ) {
                         SlashCommandOverlay(
                             items = slashSuggestions,
@@ -1758,6 +1760,7 @@ fun ChatScreen(
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
                             .padding(horizontal = 14.dp, vertical = 6.dp)
+                            .padding(bottom = glassBottomBarHeight)
                     ) {
                         Surface(
                             modifier = Modifier.fillMaxWidth(),
@@ -1821,7 +1824,9 @@ fun ChatScreen(
                 AnimatedVisibility(
                     visible = !isClaudeChat && !bridgeStatusMessage.isNullOrBlank(),
                     enter = fadeIn() + expandVertically(),
-                    exit = fadeOut() + shrinkVertically()
+                    exit = fadeOut() + shrinkVertically(),
+                    // 列表铺到屏幕顶，这两条横幅要自己让开玻璃顶栏
+                    modifier = Modifier.padding(top = glassStatusBarTop + 64.dp + 8.dp)
                 ) {
                     Surface(
                         modifier = Modifier
@@ -1856,7 +1861,8 @@ fun ChatScreen(
                 AnimatedVisibility(
                     visible = !isClaudeChat && (isServerOnline == false || isReconnecting) && messages.isNotEmpty(),
                     enter = expandVertically() + fadeIn(),
-                    exit = shrinkVertically() + fadeOut()
+                    exit = shrinkVertically() + fadeOut(),
+                    modifier = Modifier.padding(top = glassStatusBarTop + 64.dp + 8.dp)
                 ) {
                     Surface(
                         modifier = Modifier
