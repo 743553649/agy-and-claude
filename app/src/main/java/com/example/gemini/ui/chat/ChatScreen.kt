@@ -39,6 +39,9 @@ import androidx.compose.material3.*
 import androidx.compose.ui.res.stringResource
 import androidx.compose.runtime.*
 import com.example.gemini.data.preferences.AuthPreferences
+import com.example.gemini.ui.glass.GlassRole
+import com.example.gemini.ui.glass.liquidGlass
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -1070,6 +1073,10 @@ fun ChatScreen(
             snackbarHost = {},
             topBar = {
                 TopAppBar(
+                    modifier = Modifier.liquidGlass(
+                        role = GlassRole.Chrome,
+                        shape = androidx.compose.ui.graphics.RectangleShape
+                    ),
                     title = {
                         val displayedChatTitle = remember(currentConv?.title, conversations, currentConv?.id) {
                             val fromList = conversations.firstOrNull { it.id == currentConv?.id }
@@ -1228,26 +1235,41 @@ fun ChatScreen(
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.background
+                        containerColor = Color.Transparent
                     )
                 )
             },
-            containerColor = MaterialTheme.colorScheme.background,
+            containerColor = Color.Transparent,
             contentWindowInsets = WindowInsets.statusBars
-        ) { paddingValues ->
-            // Synchronized container that moves seamlessly with the IME keyboard
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues)
-                    .navigationBarsPadding()
-                    .windowInsetsPadding(WindowInsets.imeAnimationTarget)
-            ) {
-                Box(
-                    modifier = Modifier
-                        .weight(1f)
-                        .fillMaxWidth()
+        ) { _ ->
+            // 世界层（环境底 + 聊天内容）与玻璃的分工：
+            // GlassWorld 里的东西会被玻璃采样，挂着 liquidGlass 的顶栏 / 输入栏必须是它的**兄弟**，
+            // 否则玻璃会采样到正在录制的自己。这里故意不再用 paddingValues：让列表铺满整屏，
+            // 再靠 LazyColumn 的 contentPadding 把内容让开顶栏与输入栏，滚动时才看得见玻璃后面的位移。
+            var glassBottomBarHeightPx by remember { mutableIntStateOf(0) }
+            val glassDensity = LocalDensity.current
+            val glassStatusBarTop = with(glassDensity) {
+                WindowInsets.statusBars.getTop(this).toDp()
+            }
+            val glassBottomBarHeight = with(glassDensity) { glassBottomBarHeightPx.toDp() }
+            Box(modifier = Modifier.fillMaxSize()) {
+                com.example.gemini.ui.glass.GlassWorld(
+                    modifier = Modifier.fillMaxSize()
                 ) {
+                    com.example.gemini.ui.glass.AmbientBackdrop(
+                        modifier = Modifier.matchParentSize()
+                    )
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .navigationBarsPadding()
+                            .windowInsetsPadding(WindowInsets.imeAnimationTarget)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .fillMaxWidth()
+                        ) {
                     val sysStatus = systemConnectionState.status
                     val isServerInitializing = sysStatus == com.example.gemini.data.remote.SystemStatus.STARTING || sysStatus == com.example.gemini.data.remote.SystemStatus.ACQUIRING_CSRF || (sysStatus == com.example.gemini.data.remote.SystemStatus.OFFLINE && isInitialGracePeriod)
                     val isServerStopped = sysStatus == com.example.gemini.data.remote.SystemStatus.OFFLINE && !isInitialGracePeriod
@@ -1424,7 +1446,10 @@ fun ChatScreen(
                                 LazyColumn(
                                     state = listState,
                                     modifier = Modifier.fillMaxSize(),
-                                    contentPadding = PaddingValues(top = 8.dp, bottom = 12.dp)
+                                    contentPadding = PaddingValues(
+                                        top = glassStatusBarTop + 64.dp + 8.dp,
+                                        bottom = glassBottomBarHeight + 12.dp
+                                    )
                                 ) {
                                     items(
                                         items = feedItems,
@@ -1899,6 +1924,18 @@ fun ChatScreen(
                     }
                 }
 
+                    }
+                }
+                // 输入栏 + 面板：玻璃层，必须是 GlassWorld 的兄弟节点（在它外面画）
+                Column(
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth()
+                        .navigationBarsPadding()
+                        .windowInsetsPadding(WindowInsets.imeAnimationTarget)
+                        // 放在 insets 之后：量到的是输入栏本体高度，不含导航栏/键盘留白
+                        .onGloballyPositioned { glassBottomBarHeightPx = it.size.height }
+                ) {
                 // Agent prompts docked above the input (both agents): permission requests, then questions
                 val approvalItems = remember(pendingApprovals, claudePending, isClaudeChat) {
                     if (isClaudeChat) {
@@ -2046,6 +2083,7 @@ fun ChatScreen(
                     cascadeId = activeConversationKey,
                     focusRequester = chatInputFocusRequester
                 )
+                }
             }
         }
     }

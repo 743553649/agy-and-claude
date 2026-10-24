@@ -121,7 +121,8 @@ fun GeminiTheme(
         if (activity != null && activity !is com.example.gemini.ui.bubble.FloatingChatActivity) {
             SideEffect {
                 val window = activity.window
-                window.statusBarColor = colorScheme.background.toArgb()
+                // 透明状态栏：让顶栏玻璃一直铺到屏幕最上沿（各屏自身仍有底色，观感不变）
+                window.statusBarColor = Color.Transparent.toArgb()
                 window.navigationBarColor = colorScheme.background.toArgb()
                 val insetsController = WindowCompat.getInsetsController(window, view)
                 insetsController.isAppearanceLightStatusBars = !darkTheme
@@ -131,7 +132,10 @@ fun GeminiTheme(
     }
 
     CompositionLocalProvider(
-        LocalIsDarkTheme provides darkTheme
+        LocalIsDarkTheme provides darkTheme,
+        com.example.gemini.ui.glass.LocalGlassTokens provides
+            if (darkTheme) com.example.gemini.ui.glass.DarkGlassTokens
+            else com.example.gemini.ui.glass.LightGlassTokens
     ) {
         MaterialTheme(
             colorScheme = colorScheme,

@@ -70,6 +70,8 @@ import com.example.gemini.domain.model.ModelFamily
 import com.example.gemini.domain.model.ModelQuota
 import com.example.gemini.domain.model.ThinkingPreference
 import com.example.gemini.theme.*
+import com.example.gemini.ui.glass.GlassRole
+import com.example.gemini.ui.glass.liquidGlass
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -592,22 +594,20 @@ fun ChatInputBar(
 
     Surface(
         modifier = modifier.fillMaxWidth(),
-        color = MaterialTheme.colorScheme.background
+        color = Color.Transparent
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 14.dp, vertical = 6.dp)
         ) {
-            // Claude-style unified rounded input card
+            // Claude-style unified rounded input card —— 液态玻璃：直接采样它身后的聊天内容
             Surface(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .liquidGlass(GlassRole.Dock, RoundedCornerShape(24.dp)),
                 shape = RoundedCornerShape(24.dp),
-                color = if (isDark) Color(0xFF21211E) else Color.White,
-                border = BorderStroke(
-                    1.dp,
-                    if (isDark) Color.White.copy(alpha = 0.08f) else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f)
-                )
+                color = Color.Transparent
             ) {
                 if (isRecordingAudio) {
                     val infiniteTransition = rememberInfiniteTransition(label = "recPulse")

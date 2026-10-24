@@ -152,6 +152,9 @@ dependencies {
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.androidx.datastore.preferences)
 
+  // Liquid Glass（液态玻璃）: 采样一个已录制的层做模糊/折射/边缘高光
+  implementation(libs.kyant.backdrop)
+
   // Image Loading (Coil for Markdown Images and IDE Asset Viewer)
   implementation("io.coil-kt:coil-compose:2.7.0")
   implementation("io.coil-kt:coil-svg:2.7.0")

@@ -70,6 +70,8 @@ import androidx.compose.material.icons.outlined.Code
 import androidx.compose.material.icons.outlined.Description
 import com.example.gemini.theme.ClaudeTerracotta
 import com.example.gemini.theme.GeminiBlue
+import com.example.gemini.ui.glass.GlassRole
+import com.example.gemini.ui.glass.liquidGlass
 import androidx.compose.material.icons.outlined.Share
 import com.example.gemini.ui.components.ConversationExportHelper
 import com.example.gemini.ui.components.ConversationShareHelper
@@ -567,8 +569,14 @@ fun ChatHistoryDrawer(
     }
 
     ModalDrawerSheet(
-        modifier = modifier.fillMaxWidth(0.82f),
-        drawerContainerColor = MaterialTheme.colorScheme.surface,
+        modifier = modifier
+            .fillMaxWidth(0.82f)
+            // 液态玻璃：抽屉画在 GlassWorld 外面，采样的就是它身后面板没被遮住的内容
+            .liquidGlass(
+                role = GlassRole.Panel,
+                shape = RoundedCornerShape(topEnd = 16.dp, bottomEnd = 16.dp)
+            ),
+        drawerContainerColor = Color.Transparent,
         drawerTonalElevation = 0.dp
     ) {
         Column(

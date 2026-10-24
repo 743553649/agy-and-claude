@@ -18,6 +18,9 @@ okhttp = "4.12.0"
 kotlinxSerializationJson = "1.7.3"
 datastore = "1.1.1"
 wire = "7.0.4"
+# Liquid Glass（液态玻璃）效果库。锁 1.0.6：它是 kotlin 2.3.10 + androidx.compose 1.10.3 产物，
+# 与本项目的 kotlin 2.3.20 + Compose BOM 2026.03.01 同源；2.0.x 走 kotlin 2.4.10 + compose MPP 1.12，不要升。
+kyantBackdrop = "1.0.6"
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }
@@ -49,6 +52,7 @@ wire-grpc-client = { module = "com.squareup.wire:wire-grpc-client", version.ref 
 androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
 androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
 androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3" }
+kyant-backdrop = { module = "io.github.kyant0:backdrop", version.ref = "kyantBackdrop" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
