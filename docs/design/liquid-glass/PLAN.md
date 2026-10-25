@@ -9,9 +9,9 @@
 
 ## 0. 结论（先读这段）
 
-> **状态：P0–P1 已落地，交接见 [`HANDOFF.md`](HANDOFF.md)**（分支 `feat/liquid-glass`，HEAD `c12975b`）。
+> **状态：P0–P1 已落地，观感已定稿为 S「上游原味」，交接见 [`HANDOFF.md`](HANDOFF.md)**（分支 `feat/liquid-glass`，HEAD `4d7929d`）。
 > 本文档是当初的**计划**，进度、踩坑、代码地图与下一步都在 HANDOFF 里。
-> 未完成：参数定稿、P2 弹层伪玻璃、P3 其它四屏、P4 省电开关 / DESIGN.md / 性能与无障碍。
+> 未完成：P2 弹层伪玻璃、P3 其它四屏、P4 省电开关 / DESIGN.md / 性能与无障碍。
 
 
 1. **能落地，且不需要 fork 上游库**：上游 `backdrop` 已在 Maven Central，用法是「把一个容器录成 GraphicsLayer，玻璃组件再采样这一层做模糊/折射/高光」。
