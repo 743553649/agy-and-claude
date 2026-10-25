@@ -36,6 +36,10 @@ data class GlassSpec(
     val highlightWidth: Dp,
     /** 顶部静态高光强度（0..1）：不动手时也像一层"湿"的玻璃。 */
     val topSheen: Float,
+    /** 底部内反光强度（0..1）：水面从下往上反的那层光，让玻璃有"水感"。 */
+    val innerGlow: Float,
+    /** 折射边是否带色散（彩虹分离）；只有 API 33+ 生效，是「水灵」的主要来源之一。 */
+    val chromaticAberration: Boolean,
     val shadowBlur: Dp,
     val shadowOffsetY: Dp,
     val shadowAlpha: Float,
@@ -69,6 +73,8 @@ private fun spec(
     highlightAlpha: Float,
     highlightWidth: Dp,
     topSheen: Float,
+    innerGlow: Float = 0f,
+    chromaticAberration: Boolean = false,
     shadowBlur: Dp,
     shadowOffsetY: Dp,
     shadowAlpha: Float,
@@ -87,6 +93,8 @@ private fun spec(
     highlightAlpha = highlightAlpha,
     highlightWidth = highlightWidth,
     topSheen = topSheen,
+    innerGlow = innerGlow,
+    chromaticAberration = chromaticAberration,
     shadowBlur = shadowBlur,
     shadowOffsetY = shadowOffsetY,
     shadowAlpha = shadowAlpha,
@@ -100,38 +108,41 @@ private fun spec(
  * 三组观感预设。用于现场挑参数（长按顶栏切换），定稿后把选中的那组留下、
  * 其余删掉即可，其它代码只依赖 [GlassPresets.of]。
  *
- * - 0 [A 通透]：低染色 + 高折射，字能隐约透出，最"薄"
+ * - 0 [A 水灵]：低染色 + 强折射 + 边缘色散 + 顶部湿光，最"薄"最亮
  * - 1 [B 厚玻璃]（默认）：增厚折射边 + 强内阴影，最接近上游胶囊的观感
  * - 2 [C 磨砂]：高染色 + 大模糊，可读性优先，接近 iOS 的雾面
  */
 object GlassPresets {
 
-    val names: List<String> = listOf("A 通透", "B 厚玻璃", "C 磨砂")
+    val names: List<String> = listOf("A 水灵", "B 厚玻璃", "C 磨砂")
 
     /** 默认预设下标（B 厚玻璃）。 */
     const val DEFAULT = 1
 
     private val darkAA: GlassTokens = GlassTokens(
         chrome = spec(
-            blur = 8.dp, saturation = 1.6f, brightness = 0.02f, tint = Color(0x1AFFFFFF),
-            rimTop = Color(0xF2FFFFFF), rimBottom = Color(0x24FFFFFF),
-            highlightAlpha = 0.85f, highlightWidth = 1.2.dp, topSheen = 0.06f,
-            shadowBlur = 18.dp, shadowOffsetY = 8.dp, shadowAlpha = 0.40f, innerShadowAlpha = 0.14f,
-            refractionHeight = 16.dp, refractionAmount = 28.dp,
+            blur = 6.dp, saturation = 1.75f, brightness = 0.02f, tint = Color(0x12FFFFFF),
+            rimTop = Color(0xFFFFFFFF), rimBottom = Color(0x1FFFFFFF),
+            highlightAlpha = 1f, highlightWidth = 1.4.dp, topSheen = 0.16f,
+            innerGlow = 0.10f, chromaticAberration = true,
+            shadowBlur = 18.dp, shadowOffsetY = 8.dp, shadowAlpha = 0.40f, innerShadowAlpha = 0.12f,
+            refractionHeight = 14.dp, refractionAmount = 36.dp,
         ),
         dock = spec(
-            blur = 6.dp, saturation = 1.65f, brightness = 0.02f, tint = Color(0x1FFFFFFF),
+            blur = 5.dp, saturation = 1.8f, brightness = 0.02f, tint = Color(0x18FFFFFF),
             rimTop = Color(0xFFFFFFFF), rimBottom = Color(0x2EFFFFFF),
-            highlightAlpha = 0.9f, highlightWidth = 1.4.dp, topSheen = 0.08f,
+            highlightAlpha = 1f, highlightWidth = 1.6.dp, topSheen = 0.20f,
+            innerGlow = 0.12f, chromaticAberration = true,
             shadowBlur = 18.dp, shadowOffsetY = 8.dp, shadowAlpha = 0.38f, innerShadowAlpha = 0.12f,
-            refractionHeight = 20.dp, refractionAmount = 34.dp,
+            refractionHeight = 16.dp, refractionAmount = 42.dp,
         ),
         panel = spec(
-            blur = 12.dp, saturation = 1.45f, brightness = 0f, tint = Color(0x1AFFFFFF),
-            rimTop = Color(0xD9FFFFFF), rimBottom = Color(0x1FFFFFFF),
-            highlightAlpha = 0.75f, highlightWidth = 1.2.dp, topSheen = 0.06f,
+            blur = 10.dp, saturation = 1.5f, brightness = 0f, tint = Color(0x14FFFFFF),
+            rimTop = Color(0xE6FFFFFF), rimBottom = Color(0x1FFFFFFF),
+            highlightAlpha = 0.85f, highlightWidth = 1.2.dp, topSheen = 0.14f,
+            innerGlow = 0.08f, chromaticAberration = true,
             shadowBlur = 30.dp, shadowOffsetY = 12.dp, shadowAlpha = 0.42f, innerShadowAlpha = 0.16f,
-            refractionHeight = 16.dp, refractionAmount = 26.dp,
+            refractionHeight = 14.dp, refractionAmount = 30.dp,
         ),
     )
 
@@ -186,25 +197,28 @@ object GlassPresets {
     // 亮色不是暗色反相：白玻璃压浅底，必须靠冷调染色 + 暗边 + 更强的投影立起来
     private val lightAA: GlassTokens = GlassTokens(
         chrome = spec(
-            blur = 8.dp, saturation = 1.35f, brightness = 0.03f, tint = Color(0x38FFFFFF),
+            blur = 6.dp, saturation = 1.45f, brightness = 0.03f, tint = Color(0x2EEDF3FB),
             rimTop = Color(0xFFFFFFFF), rimBottom = Color(0x3DFFFFFF),
-            highlightAlpha = 0.9f, highlightWidth = 1.2.dp, topSheen = 0.10f,
-            shadowBlur = 14.dp, shadowOffsetY = 6.dp, shadowAlpha = 0.20f, innerShadowAlpha = 0.10f,
-            refractionHeight = 16.dp, refractionAmount = 28.dp,
+            highlightAlpha = 1f, highlightWidth = 1.4.dp, topSheen = 0.22f,
+            innerGlow = 0.14f, chromaticAberration = true,
+            shadowBlur = 14.dp, shadowOffsetY = 6.dp, shadowAlpha = 0.22f, innerShadowAlpha = 0.08f,
+            refractionHeight = 14.dp, refractionAmount = 36.dp,
         ),
         dock = spec(
-            blur = 6.dp, saturation = 1.35f, brightness = 0.03f, tint = Color(0x42FFFFFF),
+            blur = 5.dp, saturation = 1.5f, brightness = 0.03f, tint = Color(0x38E9F1FA),
             rimTop = Color(0xFFFFFFFF), rimBottom = Color(0x47FFFFFF),
-            highlightAlpha = 0.95f, highlightWidth = 1.4.dp, topSheen = 0.12f,
-            shadowBlur = 16.dp, shadowOffsetY = 6.dp, shadowAlpha = 0.22f, innerShadowAlpha = 0.08f,
-            refractionHeight = 20.dp, refractionAmount = 34.dp,
+            highlightAlpha = 1f, highlightWidth = 1.6.dp, topSheen = 0.26f,
+            innerGlow = 0.16f, chromaticAberration = true,
+            shadowBlur = 16.dp, shadowOffsetY = 6.dp, shadowAlpha = 0.24f, innerShadowAlpha = 0.08f,
+            refractionHeight = 16.dp, refractionAmount = 42.dp,
         ),
         panel = spec(
-            blur = 12.dp, saturation = 1.3f, brightness = 0f, tint = Color(0x3DFFFFFF),
+            blur = 10.dp, saturation = 1.35f, brightness = 0f, tint = Color(0x33EDF3FB),
             rimTop = Color(0xF2FFFFFF), rimBottom = Color(0x33FFFFFF),
-            highlightAlpha = 0.8f, highlightWidth = 1.2.dp, topSheen = 0.08f,
-            shadowBlur = 24.dp, shadowOffsetY = 10.dp, shadowAlpha = 0.20f, innerShadowAlpha = 0.10f,
-            refractionHeight = 16.dp, refractionAmount = 26.dp,
+            highlightAlpha = 0.9f, highlightWidth = 1.2.dp, topSheen = 0.20f,
+            innerGlow = 0.12f, chromaticAberration = true,
+            shadowBlur = 24.dp, shadowOffsetY = 10.dp, shadowAlpha = 0.22f, innerShadowAlpha = 0.10f,
+            refractionHeight = 14.dp, refractionAmount = 30.dp,
         ),
     )
 

@@ -90,6 +90,7 @@ private fun Modifier.glassWithBackdrop(
                 refractionHeight = spec.refractionHeight.toPx(),
                 refractionAmount = spec.refractionAmount.toPx(),
                 depthEffect = true,
+                chromaticAberration = spec.chromaticAberration,
             )
         }
     },
@@ -119,16 +120,30 @@ private fun Modifier.glassWithBackdrop(
             drawRect(Color.Black.copy(alpha = spec.shade))
         }
         drawRect(spec.tint)
-        // 静态顶部高光：不用手指也像一层「湿」的玻璃（上游靠 InteractiveHighlight 的常驻态）
+        // 顶部湿光：只占顶部 35%（铺满整片会变成"发雾"），像一层水膜的高光
         if (spec.topSheen > 0f) {
             drawRect(
                 Brush.verticalGradient(
                     colors = listOf(
                         Color.White.copy(alpha = spec.topSheen),
-                        Color.White.copy(alpha = spec.topSheen * 0.25f),
+                        Color.White.copy(alpha = spec.topSheen * 0.35f),
                         Color.Transparent
                     ),
-                    endY = size.height * 0.85f
+                    endY = size.height * 0.35f
+                )
+            )
+        }
+        // 底部内反光：水面从下往上反的光，玻璃才有"水感"而不是一块塑料
+        if (spec.innerGlow > 0f) {
+            drawRect(
+                Brush.verticalGradient(
+                    colors = listOf(
+                        Color.Transparent,
+                        Color.White.copy(alpha = spec.innerGlow * 0.5f),
+                        Color.White.copy(alpha = spec.innerGlow)
+                    ),
+                    startY = size.height * 0.70f,
+                    endY = size.height
                 )
             )
         }
