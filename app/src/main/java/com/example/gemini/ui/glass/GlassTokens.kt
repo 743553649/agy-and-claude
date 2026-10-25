@@ -111,10 +111,11 @@ private fun spec(
  * - 0 [A 水灵]：低染色 + 强折射 + 边缘色散 + 顶部湿光，最"薄"最亮
  * - 1 [B 厚玻璃]（默认）：增厚折射边 + 强内阴影，最接近上游胶囊的观感
  * - 2 [C 磨砂]：高染色 + 大模糊，可读性优先，接近 iOS 的雾面
+ * - 3 [S 上游原味]：照抄 AndroidLiquidGlass 的卡片配方（无模糊、无染色、0.5dp 边光）
  */
 object GlassPresets {
 
-    val names: List<String> = listOf("A 水灵", "B 厚玻璃", "C 磨砂")
+    val names: List<String> = listOf("A 水灵", "B 厚玻璃", "C 磨砂", "S 上游原味")
 
     /** 默认预设下标（B 厚玻璃）。 */
     const val DEFAULT = 1
@@ -272,8 +273,45 @@ object GlassPresets {
         ),
     )
 
-    val dark: List<GlassTokens> = listOf(darkAA, darkBB, darkCC)
-    val light: List<GlassTokens> = listOf(lightAA, lightBB, lightCC)
+    /**
+     * S 上游原味：逐项对齐 `AndroidLiquidGlass` 的 ScrollContainerContent 配方——
+     * effects 只有 `vibrancy()` + `lens(16.dp, 32.dp)`（**无模糊、无染色**），
+     * highlight 用库默认 `Highlight(0.5.dp, 0.25.dp, alpha=1)`，
+     * shadow 用库默认 `Shadow(24.dp, offsetY 4.dp, 黑 α0.10)`，**innerShadow = null**。
+     *
+     * 正因为没有染色和模糊，它只在「有颜色、有细节」的背景上成立（上游压的是壁纸），
+     * 这也是它比其它几组更"透"的原因。
+     */
+    private fun upstream(): GlassTokens {
+        fun spec(): GlassSpec = GlassSpec(
+            blur = 0.dp,
+            saturation = 1.5f,
+            brightness = 0f,
+            tint = Color.Transparent,
+            shade = 0f,
+            rimTop = Color(0xFFFFFFFF),
+            rimBottom = Color(0x26FFFFFF),
+            highlightAlpha = 1f,
+            highlightWidth = 0.5.dp,
+            topSheen = 0f,
+            innerGlow = 0f,
+            chromaticAberration = false,
+            shadowBlur = 24.dp,
+            shadowOffsetY = 4.dp,
+            shadowAlpha = 0.10f,
+            innerShadowAlpha = 0f,
+            useLens = true,
+            refractionHeight = 16.dp,
+            refractionAmount = 32.dp,
+        )
+        return GlassTokens(chrome = spec(), dock = spec(), panel = spec())
+    }
+
+    private val darkSS: GlassTokens = upstream()
+    private val lightSS: GlassTokens = upstream()
+
+    val dark: List<GlassTokens> = listOf(darkAA, darkBB, darkCC, darkSS)
+    val light: List<GlassTokens> = listOf(lightAA, lightBB, lightCC, lightSS)
 
     fun of(isDark: Boolean): List<GlassTokens> = if (isDark) dark else light
 }

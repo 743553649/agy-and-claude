@@ -154,6 +154,7 @@ dependencies {
 
   // Liquid Glass（液态玻璃）: 采样一个已录制的层做模糊/折射/边缘高光
   implementation(libs.kyant.backdrop)
+    implementation(libs.kyant.shapes)
 
   // Image Loading (Coil for Markdown Images and IDE Asset Viewer)
   implementation("io.coil-kt:coil-compose:2.7.0")

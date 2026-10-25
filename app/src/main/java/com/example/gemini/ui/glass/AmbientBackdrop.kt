@@ -36,22 +36,25 @@ private data class AmbientPalette(
     val vignette: Color,
 )
 
+// 参考上游壁纸的色相（蓝→青→紫）：纯折射的玻璃必须压在"有色、有细节"的背景上才成立，
+// 中性灰会把 lens 的效果吃掉。暗色这边保持低明度，白字仍然清楚。
 private val DarkAmbient = AmbientPalette(
-    base = Color(0xFF06070A),
-    glowTop = Color(0xB3323A4C),
-    glowRight = Color(0x8C16222E),
-    glowBottom = Color(0x662A2018),
-    streak = Color(0x1AFFFFFF),
+    base = Color(0xFF04060B),
+    glowTop = Color(0x9E2E6BFF),
+    glowRight = Color(0x6600D9C0),
+    glowBottom = Color(0x526D3BFF),
+    streak = Color(0x1FFFFFFF),
     vignette = Color(0x8C000000),
 )
 
+// 亮色用淡彩（冰蓝/薄荷/藕紫）：比纯灰更有色相可供折射，同时保持高明度，深色正文仍可读。
 private val LightAmbient = AmbientPalette(
-    base = Color(0xFFE7E9EE),
+    base = Color(0xFFEAF1F8),
     glowTop = Color(0xF2FFFFFF),
-    glowRight = Color(0xA6CFD7E2),
-    glowBottom = Color(0x8CE2D9CC),
-    streak = Color(0x33FFFFFF),
-    vignette = Color(0x1F000000),
+    glowRight = Color(0xBF8FCBF0),
+    glowBottom = Color(0x8CA8F0D4),
+    streak = Color(0x59FFFFFF),
+    vignette = Color(0x24000000),
 )
 
 @Composable

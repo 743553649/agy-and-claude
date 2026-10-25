@@ -606,10 +606,10 @@ fun ChatInputBar(
             Surface(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .liquidGlass(GlassRole.Dock, RoundedCornerShape(24.dp))
+                    .liquidGlass(GlassRole.Dock, com.kyant.shapes.RoundedRectangle(24.dp))
                     // pressSheen 放在玻璃之后（内层）：高光要画在玻璃表面之上，但被玻璃的圆角裁掉
                     .pressSheen(),
-                shape = RoundedCornerShape(24.dp),
+                shape = com.kyant.shapes.RoundedRectangle(24.dp),
                 color = Color.Transparent
             ) {
                 if (isRecordingAudio) {

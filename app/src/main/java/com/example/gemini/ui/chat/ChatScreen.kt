@@ -1107,7 +1107,8 @@ fun ChatScreen(
                         }
                         .liquidGlass(
                             role = GlassRole.Chrome,
-                            shape = RoundedCornerShape(20.dp)
+                            // 连续圆角（上游用的 RoundedRectangle），折射/边光都按它算
+                            shape = com.kyant.shapes.RoundedRectangle(20.dp)
                         ),
                     windowInsets = WindowInsets(0),
                     title = {

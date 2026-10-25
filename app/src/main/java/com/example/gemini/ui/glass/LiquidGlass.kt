@@ -21,6 +21,7 @@ import com.kyant.backdrop.effects.blur
 import com.kyant.backdrop.effects.colorControls
 import com.kyant.backdrop.effects.lens
 import com.kyant.backdrop.highlight.Highlight
+import com.kyant.shapes.RoundedRectangularShape
 import com.kyant.backdrop.shadow.InnerShadow
 import com.kyant.backdrop.shadow.Shadow
 
@@ -85,7 +86,9 @@ private fun Modifier.glassWithBackdrop(
         // 上游配方：vibrancy（提饱和）+ 小半径模糊 + 大比例折射。折射才是"液态"的来源。
         colorControls(brightness = spec.brightness, saturation = spec.saturation)
         blur(spec.blur.toPx())
-        if (spec.useLens && shape is CornerBasedShape) {
+        // 连续圆角（kyant shapes 的 RoundedRectangularShape）不是 CornerBasedShape，
+        // 但 1.0.6 的 lens() 同样支持它——上游 demo 用的就是这种形状。
+        if (spec.useLens && (shape is CornerBasedShape || shape is RoundedRectangularShape)) {
             lens(
                 refractionHeight = spec.refractionHeight.toPx(),
                 refractionAmount = spec.refractionAmount.toPx(),
@@ -108,18 +111,25 @@ private fun Modifier.glassWithBackdrop(
             color = Color.Black.copy(alpha = spec.shadowAlpha),
         )
     },
-    innerShadow = {
-        InnerShadow(
-            radius = spec.shadowBlur * 0.6f,
-            offset = DpOffset(0.dp, spec.shadowOffsetY * 0.5f),
-            color = Color.Black.copy(alpha = spec.innerShadowAlpha),
-        )
+    innerShadow = if (spec.innerShadowAlpha > 0f) {
+        {
+            InnerShadow(
+                radius = spec.shadowBlur * 0.6f,
+                offset = DpOffset(0.dp, spec.shadowOffsetY * 0.5f),
+                color = Color.Black.copy(alpha = spec.innerShadowAlpha),
+            )
+        }
+    } else {
+        // 上游卡片没有内阴影；alpha<=0 时连锁都不挂，省一次绘制
+        null
     },
     onDrawSurface = {
         if (spec.shade > 0f) {
             drawRect(Color.Black.copy(alpha = spec.shade))
         }
-        drawRect(spec.tint)
+        if (spec.tint.alpha > 0f) {
+            drawRect(spec.tint)
+        }
         // 顶部湿光：只占顶部 35%（铺满整片会变成"发雾"），像一层水膜的高光
         if (spec.topSheen > 0f) {
             drawRect(
