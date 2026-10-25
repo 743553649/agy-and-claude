@@ -1,7 +1,7 @@
 # 液态玻璃 UI 重构 · 交接文档
 
 > 面向「下一个接手的人/agent」。读完这一篇就能继续干，不需要翻对话记录。
-> 最后更新：分支 `feat/liquid-glass`，HEAD `f963f3e`，CI run `40198912016`（success）。**观感定稿 = 上游 demo 胶囊配方（40% 染色 + 8dp 模糊 + 24dp 折射），顶栏/输入栏/抽屉统一；按钮已加按压反馈（A 方案）；调试入口已删。**
+> 最后更新：分支 `feat/liquid-glass`，HEAD `c0bab8a`，CI run `40199763480`（success）。**观感定稿 = 上游 demo 胶囊配方（40% 染色 + 8dp 模糊 + 24dp 折射），顶栏/输入栏/抽屉统一；按钮不做玻璃，只做配色贴合；调试入口已删。**
 
 ## 0. 一页速览
 
@@ -26,7 +26,8 @@
 - 观感定稿 v1（`4d7929d`）：四组 A/B/C/S 里选 S「上游原味」→ 删 `GlassPresets` 与长按切换条。**但 S 照的是 `ScrollContainerContent`（列表容器），不是用户真正想要的胶囊**。
 - 中间态（`ffa15ad`）：抽屉单独走磨砂（blur 20dp + 白 12%/72%），救过一次「抽屉透明、与正文叠字」。
 - 观感定稿 v2（`f5539e4`，现行）：用户对着上游 demo 的 Tab 胶囊说「三个面都改成这个效果」→ 照 `LiquidBottomTabs.kt` 重写为 `demoSpecDark`/`demoSpecLight`（暗 `#121212`@40% / 亮 `#FAFAFA`@40% + blur 8dp + lens 24dp/24dp + `Shadow.Default`），三角色共用一份，只有 tint 分亮暗；磨砂例外随之删除（§4.2）。
-- 按钮按压反馈（`f963f3e`，「A 方案」）：`Modifier.pressFeedback()`（`PressFeedback.kt`）挂到**顶栏 8 个 + 输入栏 13 个**可点控件；按下放大 1.08、白高光 α0.18 跟手、spring(0.7/0.9) 与 `pressSheen` 同一套节奏。不消费指针事件、**不新增采样节点**（不挂 `drawBackdrop`），所以玻璃块数量不变。上游那种「按下折射变厚」仍**未做**（见 §7-4）。
+- 按钮不做玻璃（`3985a50` 撤回了 `f963f3e` 的按压反馈）：用户判断「按钮玻璃」性价比低 → 改为**纯配色贴合**（`c0bab8a`）：输入栏内部控件底色从实心 `background` 换成半透明填充 + 细边（暗色白 10% 填充 / 白 14% 边，亮色黑 6% / 黑 10%），在 40% 染色的玻璃上读作「玻璃里嵌一小块」。顶栏按钮本来就是无底色图标（只带语义色），不需要改。
+- **不要给按钮挂 `drawBackdrop`**：那会给每个按钮加一个采样节点，直接破掉「同屏 ≤6 块玻璃」的性能红线（§7-3）。
 - 用户实测结论（真机，release 包，**四组预设时期**的结论）：
   - ✅ 顶栏/输入栏背后的内容被模糊、四条圆角有折射、边缘有亮线、按下有高光跟随；
   - ✅ 抽屉玻璃里的聊天内容与身后页面的明暗一致；
@@ -70,7 +71,6 @@
 | `GlassTokens.kt` | `GlassSpec` L24、`demoSpecDark` L84、`demoSpecLight` L108、`DarkGlassTokens`/`LightGlassTokens` L111/118、`LocalGlassTokens` L124、`LocalGlassEnabled` L127 | 参数系统：定稿 = 上游 demo 胶囊配方，三角色共用，亮暗只差 tint |
 | `AmbientBackdrop.kt` | `AmbientBackdrop()` L65、图片分支 L71、`buildGrainBitmap()` L107、`drawAmbient()` L129 | 世界底：极光渐变 + 64×64 可平铺颗粒 + 用户自选图片 + 可读性罩 |
 | `GlassSheen.kt` | `Modifier.pressSheen()` L35 | 手指跟随的镜面高光（上游 `InteractiveHighlight` 的等价实现，1.0.6 没有 RuntimeShader API） |
-| `PressFeedback.kt` | `Modifier.pressFeedback()` L39 | 按钮级按压反馈：1.08 放大 + 跟手高光；**不消费事件、不新增采样节点**（A 方案） |
 
 改动（既有文件）：
 
@@ -176,7 +176,7 @@
 1. **拟玻璃兜底的黑板问题已随 v2 配方解决**（`f5539e4`）：v1 `tint = Color.Transparent` 时 `frostedGlass()` 的 `tint.copy(alpha + 0.5)` 等于半透明黑；现在 tint 是 40% 底色，兜底算出的 α0.9 是正常半透明卡、`opaque`（省电模式）α0.96 也成立。API<31 / P2 弹层 / P4 省电模式三处都不用再额外修补。
 2. **三个面都带 24dp 折射、都在采样**：PLAN §6 红线是「lens 只给 ≤96dp 高的小控件」，但用户明确要求抽屉也用同款胶囊效果，所以 `Panel` 是 82% 屏宽 + 全高的折射面板。**这是用户拍板的取舍**，代价是抽屉每次重绘重算一遍折射；性能数字仍未测（见下一条）。
 3. **每帧重录世界层**：`LayerBackdropNode.draw()` = `drawContent()` + `recordLayer(...)`，滚动时每帧重录全屏内容。这是当前最大性能开销，也是 P4「省电模式」的主要理由。量化未做（`docs/project-doc.md` §12 里没有帧率数据）。
-4. **按下折射仍未放大**：A 方案（`f963f3e`）只做了按钮级「放大 + 跟手高光」，因为做「折射变厚」必须给按钮挂独立 `drawBackdrop` 节点并采样 `combined(世界, 这一条 bar 的图层)`，那是 B 方案的成本；上游的 `pressProgress × lens` 等价物目前只存在于 `GlassSheen` 的高光里。
+4. **按钮只有配色、没有按压动画**（用户 2026-10-25 明确决定，理由：性价比低）：上游的 `pressProgress`（按下放大 + 折射变厚 + 手指跟随高光）**整体未实现**；`GlassSheen` 仍只作用于整条输入栏卡片。将来若要，必须走 B 方案（`rememberCombinedBackdrop` + 每按钮独立采样节点），并重新核算性能预算。
 5. **亮色主题**：现在有 40% `#FAFAFA` 染色托底，比 v1（无染色）稳；但白底照片 + 白染仍可能偏「平」。若仍嫌平，优先改**内容底色**，不要再加染色（会退回"瓷片"）。
 6. **弹层仍是伪玻璃**（P2）。
 7. **其它四屏未接入**（P3，`SettingsDialog` / IDE / Browser / Terminal 仍是既有样式）。
@@ -202,7 +202,7 @@
 
 **P4（打磨）**
 - 省电/流畅开关：`LocalGlassEnabled = false` 即退化为拟玻璃（`LiquidGlass.kt:44`），建议加设置项 + 2 个 i18n key；
-- 按下折射放大：A 方案（按钮级放大 + 高光）已完成（`f963f3e`）；B 方案（`pressProgress × lens` + `rememberCombinedBackdrop`，仅适合互斥选择器）未做；
+- 按下折射放大（`pressProgress × lens`）：**已决定不做**（见 §7-4）；若重启，只走 B 方案（`rememberCombinedBackdrop` + 独立采样节点，仅适合模型/语言这类互斥选择器）；
 - 无障碍：玻璃上的小字（chip 11sp、占位符）对比度检查；`pressSheen` 的 `pointerInput` 要有语义兜底。
 - 性能：世界层录制可以按"滑动中"降频（例如滚动时用低频快照），需先量数据。
 
@@ -238,7 +238,8 @@
 | 2026-10-25 | `4d7929d` | `40185134339` | success（**定稿 S「上游原味」** + 删除 A/B/C 组与长按预设切换条；真机已装，帧率主观通过） |
 | 2026-10-25 | `ffa15ad` | `40190873626` | success（抽屉改磨砂 + Panel 亮暗分岔） |
 | 2026-10-25 | `f5539e4` | `40191925831` | success（**玻璃改回上游 demo 胶囊配方**：40% 染色 + 8dp 模糊 + 24dp 折射，三面统一） |
-| 2026-10-25 | `f963f3e` | `40198912016` | success（**按钮按压反馈**：顶栏 8 + 输入栏 13；待装机复验手感） |
+| 2026-10-25 | `f963f3e` | `40198912016` | success，**已撤回**（`3985a50`）——按钮按压反馈被用户否掉 |
+| 2026-10-25 | `c0bab8a` | `40199763480` | success（**输入栏内部控件改玻璃贴合色** + 撤回按钮玻璃；待装机复验配色） |
 
 下载方式：`gh api repos/743553649/agy-and-claude/actions/runs/<run>/artifacts -q '.artifacts[].archive_download_url'`，或用运行页 Artifacts。
 安装前确认签名（`apksigner verify --print-certs`）与包名（`pm list packages com.termux`）。
