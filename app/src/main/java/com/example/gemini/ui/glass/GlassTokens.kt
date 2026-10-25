@@ -65,6 +65,7 @@ data class GlassTokens(
 
 /**
  * 定稿配方（2026-10-25，用户从 A/B/C/S 四组里选定 S「上游原味」）。
+ * **只给 `Chrome` / `Dock` 用**；`Panel`（抽屉/面板）走下面的磨砂例外。
  *
  * 逐项对齐 `AndroidLiquidGlass` 的 `ScrollContainerContent` 配方：
  * effects 只有 `vibrancy()` + `lens(16.dp, 32.dp)`（**无模糊、无染色**），
@@ -73,6 +74,7 @@ data class GlassTokens(
  *
  * 正因为没有染色和模糊，它只在「有颜色、有细节」的背景上成立（上游压的是壁纸），
  * 所以我们才需要 `AmbientBackdrop` 的颗粒层和用户自选底图——纯渐变会让 lens 白做。
+ * 也正因为如此，它**不能**用在抽屉这种「身后就压着大段文字」的大面积容器上（见 `frostedPanelDark`）。
  *
  * 与上游字面不同、刻意收窄的两处：
  * - `shadowBlur` 24dp/α0.10 → 16dp/α0.06：上游默认值压在浅底上是一圈灰晕；
@@ -100,18 +102,57 @@ private val upstreamSpec: GlassSpec = GlassSpec(
     refractionAmount = 20.dp,
 )
 
-/** 三个角色共用同一份配方：上游的常量配方不区分顶栏 / 输入栏 / 面板。 */
-private val upstreamTokens: GlassTokens = GlassTokens(
-    chrome = upstreamSpec,
-    dock = upstreamSpec,
-    panel = upstreamSpec,
+/**
+ * `Panel`（抽屉、面板）是定稿 S 的**唯一例外**：磨砂。
+ *
+ * 原因：S 组 `blur = 0` 且 `tint` 透明，而抽屉宽 82% 屏宽、身后就是聊天消息，原样透出来会和抽屉里的会话标题叠在一起
+ * （2026-10-25 用户真机反馈「和聊天页的消息字体重叠了看不清」）。所以 Panel 用「模糊 + 白染色」压掉身后的文字，
+ * 其余字段仍跟随 S：0.5dp 边光、16dp/α0.06 轻投影、无内阴影、无顶部湿光。
+ *
+ * `useLens = false`：大面板不做折射。PLAN §6 的红线是「`lens` 只给 ≤96dp 高的小控件」，8dp 折射带在 82% 屏宽上
+ * 本来就看不出来，纯花采样成本。
+ *
+ * 亮/暗只差染色：暗色染 12% 白（磨砂但保持暗），亮色染 72% 白（白底上必须压出足够亮度差，
+ * 否则深色正文贴在照片底上照样糊——这就是「亮磨砂」不能和暗色共用一份的原因）。
+ */
+private val frostedPanelDark: GlassSpec = GlassSpec(
+    blur = 20.dp,
+    saturation = 1.35f,
+    brightness = 0f,
+    tint = Color(0x1FFFFFFF),
+    shade = 0f,
+    rimTop = Color(0xFFFFFFFF),
+    rimBottom = Color(0x26FFFFFF),
+    highlightAlpha = 1f,
+    highlightWidth = 0.5.dp,
+    topSheen = 0f,
+    innerGlow = 0f,
+    chromaticAberration = false,
+    shadowBlur = 16.dp,
+    shadowOffsetY = 3.dp,
+    shadowAlpha = 0.06f,
+    innerShadowAlpha = 0f,
+    useLens = false,
+    refractionHeight = 0.dp,
+    refractionAmount = 0.dp,
 )
 
-/** 暗色定稿。 */
-val DarkGlassTokens: GlassTokens = upstreamTokens
+/** 亮色磨砂：只换染色（72% 白），其余同暗色。 */
+private val frostedPanelLight: GlassSpec = frostedPanelDark.copy(tint = Color(0xB8FFFFFF))
 
-/** 亮色定稿：上游配方不含染色，不随明暗反相，所以与暗色同一份。 */
-val LightGlassTokens: GlassTokens = upstreamTokens
+/** 暗色定稿：顶栏/输入栏 = S 原味，抽屉 = 磨砂。 */
+val DarkGlassTokens: GlassTokens = GlassTokens(
+    chrome = upstreamSpec,
+    dock = upstreamSpec,
+    panel = frostedPanelDark,
+)
+
+/** 亮色定稿：chrome/dock 与暗色同一份 S；只有抽屉的染色不同。 */
+val LightGlassTokens: GlassTokens = GlassTokens(
+    chrome = upstreamSpec,
+    dock = upstreamSpec,
+    panel = frostedPanelLight,
+)
 
 val LocalGlassTokens = staticCompositionLocalOf { DarkGlassTokens }
 
