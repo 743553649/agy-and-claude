@@ -73,6 +73,7 @@ import com.example.gemini.theme.*
 import com.example.gemini.ui.glass.GlassRole
 import com.example.gemini.ui.glass.liquidGlass
 import com.example.gemini.ui.glass.pressSheen
+import com.example.gemini.ui.glass.pressFeedback
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -700,7 +701,7 @@ fun ChatInputBar(
                             shape = CircleShape,
                             color = if (isRecordingPaused) Color(0xFFFFA000).copy(alpha = 0.15f) else MaterialTheme.colorScheme.background,
                             border = BorderStroke(1.dp, if (isRecordingPaused) Color(0xFFFFA000) else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
-                            modifier = Modifier.size(34.dp)
+                            modifier = Modifier.size(34.dp).pressFeedback()
                         ) {
                             Box(contentAlignment = Alignment.Center) {
                                 Icon(
@@ -717,7 +718,7 @@ fun ChatInputBar(
                         // 2. Cancel / Discard
                         IconButton(
                             onClick = { cancelAudioRecording() },
-                            modifier = Modifier.size(32.dp)
+                            modifier = Modifier.size(32.dp).pressFeedback()
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.Close,
@@ -735,7 +736,7 @@ fun ChatInputBar(
                             shape = CircleShape,
                             color = MaterialTheme.colorScheme.background,
                             border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
-                            modifier = Modifier.size(34.dp)
+                            modifier = Modifier.size(34.dp).pressFeedback()
                         ) {
                             Box(contentAlignment = Alignment.Center) {
                                 Icon(
@@ -754,7 +755,7 @@ fun ChatInputBar(
                             onClick = { stopAudioRecording(andSend = true) },
                             shape = CircleShape,
                             color = ClaudeTerracotta,
-                            modifier = Modifier.size(34.dp)
+                            modifier = Modifier.size(34.dp).pressFeedback()
                         ) {
                             Box(contentAlignment = Alignment.Center) {
                                 Icon(
@@ -817,7 +818,7 @@ fun ChatInputBar(
                                         },
                                         shape = CircleShape,
                                         color = if (isDictationPaused) Color(0xFFFFA000).copy(alpha = 0.18f) else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f),
-                                        modifier = Modifier.size(26.dp)
+                                        modifier = Modifier.size(26.dp).pressFeedback()
                                     ) {
                                         Box(contentAlignment = Alignment.Center) {
                                             Icon(
@@ -836,7 +837,7 @@ fun ChatInputBar(
                                         onClick = { stopLiveDictation() },
                                         shape = CircleShape,
                                         color = Color(0xFFE53935).copy(alpha = 0.12f),
-                                        modifier = Modifier.size(26.dp)
+                                        modifier = Modifier.size(26.dp).pressFeedback()
                                     ) {
                                         Box(contentAlignment = Alignment.Center) {
                                             Icon(
@@ -1067,7 +1068,7 @@ fun ChatInputBar(
                                         Spacer(modifier = Modifier.width(2.dp))
                                         IconButton(
                                             onClick = { onRemoveAttachment(att.id) },
-                                            modifier = Modifier.size(24.dp).padding(end = 4.dp)
+                                            modifier = Modifier.size(24.dp).padding(end = 4.dp).pressFeedback()
                                         ) {
                                             Icon(
                                                 imageVector = Icons.Outlined.Close,
@@ -1095,7 +1096,7 @@ fun ChatInputBar(
                             shape = CircleShape,
                             color = MaterialTheme.colorScheme.background,
                             border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f)),
-                            modifier = Modifier.size(34.dp)
+                            modifier = Modifier.size(34.dp).pressFeedback()
                         ) {
                             Box(contentAlignment = Alignment.Center) {
                                 Icon(
@@ -1121,6 +1122,7 @@ fun ChatInputBar(
                                     onOpenModelSelector()
                                 },
                                 shape = RoundedCornerShape(18.dp),
+                                modifier = Modifier.pressFeedback(),
                                 color = MaterialTheme.colorScheme.background,
                                 border = BorderStroke(
                                     1.dp,
@@ -1194,7 +1196,7 @@ fun ChatInputBar(
                                     1.dp,
                                     if (isLiveDictating) GeminiBlue.copy(alpha = 0.5f) else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f)
                                 ),
-                                modifier = Modifier.size(34.dp)
+                                modifier = Modifier.size(34.dp).pressFeedback()
                             ) {
                                 Box(contentAlignment = Alignment.Center) {
                                     Icon(
@@ -1214,7 +1216,7 @@ fun ChatInputBar(
                                 onClick = onStopStreaming,
                                 shape = CircleShape,
                                 color = ClaudeTerracotta,
-                                modifier = Modifier.size(36.dp)
+                                modifier = Modifier.size(36.dp).pressFeedback()
                             ) {
                                 Box(contentAlignment = Alignment.Center) {
                                     Icon(
@@ -1246,7 +1248,7 @@ fun ChatInputBar(
                                 },
                                 shape = CircleShape,
                                 color = sendBtnColor,
-                                modifier = Modifier.size(36.dp)
+                                modifier = Modifier.size(36.dp).pressFeedback()
                             ) {
                                 Box(contentAlignment = Alignment.Center) {
                                     Icon(
@@ -1274,7 +1276,7 @@ fun ChatInputBar(
                                 shape = CircleShape,
                                 color = voiceBgColor,
                                 shadowElevation = 1.dp,
-                                modifier = Modifier.size(36.dp)
+                                modifier = Modifier.size(36.dp).pressFeedback()
                             ) {
                                 Box(contentAlignment = Alignment.Center) {
                                     Icon(
