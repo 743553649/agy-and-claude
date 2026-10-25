@@ -1,14 +1,14 @@
 # 液态玻璃 UI 重构 · 交接文档
 
 > 面向「下一个接手的人/agent」。读完这一篇就能继续干，不需要翻对话记录。
-> 最后更新：分支 `feat/liquid-glass`，HEAD `4d7929d`，CI run `40185134339`（success）。**观感已定稿为 S「上游原味」，调试入口已删。**
+> 最后更新：分支 `feat/liquid-glass`，HEAD `ffa15ad`，CI run `40190873626`（success）。**观感定稿 S「上游原味」；抽屉（`Panel`）例外走磨砂；调试入口已删。**
 
 ## 0. 一页速览
 
 | 项 | 值 |
 | --- | --- |
 | 分支 | `feat/liquid-glass`（`master` 未被改动，未合并） |
-| 范围 | P0–P1 已完成：聊天主屏的顶栏 / 输入栏 / 抽屉 + 世界层 + 世界底图；观感定稿为 S「上游原味」 |
+| 范围 | P0–P1 已完成：聊天主屏的顶栏 / 输入栏 / 抽屉 + 世界层 + 世界底图；观感 = S「上游原味」，抽屉例外磨砂（§4.2.1） |
 | 构建 | **只能走云端 CI**：push 该分支 → `.github/workflows/ci.yml` → `:app:assembleTermuxRelease` → 下载 artifact |
 | 产物 | `antiGem-termux-v<版本>-release-<短sha>.apk`（release 签名，包名 `com.termux`） |
 | 未做 | P2 弹层伪玻璃（含拟玻璃兜底的黑色退化修复）、P3 其它四屏、P4 省电开关 / DESIGN.md / 性能与无障碍收口 |
@@ -19,18 +19,19 @@
 
 ## 1. 现状（实测，不是估计）
 
-- 提交：`master..HEAD` 共 19 个提交，`git diff --stat master..HEAD` = 19 文件 / +1422 / −38。
+- 提交：`master..HEAD` 共 21 个提交，`git diff --stat master..HEAD` = 19 文件 / +1476 / −38。
 - 新增 Kotlin 包：`com.example.gemini.ui.glass`（5 个文件，见 §3）。
 - 依赖：新增 `io.github.kyant0:backdrop:1.0.6`；显式声明 `io.github.kyant0:shapes:1.2.0`（backdrop 以 runtime 传递，runtime 不进编译类路径，必须显式）。**没有其它新依赖**（Coil 2.7.0 本来就在）。
 - i18n：`python3 scripts/i18n/verify.py` 通过，`values: 2063 / values-zh-rCN: 2060 / 源码引用: 2030`。
-- 观感定稿（2026-10-25，`4d7929d`）：A/B/C/S 四组 → **S「上游原味」**。`GlassPresets`、`names`、`DEFAULT` 与长按切换条一并删除，`GlassTokens.kt` 只剩一份 `upstreamSpec`（§4.2）。
+- 观感定稿（2026-10-25，`4d7929d`）：A/B/C/S 四组 → **S「上游原味」**。`GlassPresets`、`names`、`DEFAULT` 与长按切换条一并删除；`upstreamSpec` 现在只给 `Chrome`/`Dock` 用（§4.2）。
+- 抽屉改磨砂（2026-10-25，`ffa15ad`）：真机（另一台手机）反馈「抽屉是透明的，和聊天页的消息字体重叠看不清」→ 新增 `frostedPanelDark` / `frostedPanelLight` 两份 Panel spec（blur 20dp + 白染色 12%/72% + 关折射），见 §4.2.1。
 - 用户实测结论（真机，release 包，**四组预设时期**的结论）：
   - ✅ 顶栏/输入栏背后的内容被模糊、四条圆角有折射、边缘有亮线、按下有高光跟随；
   - ✅ 抽屉玻璃里的聊天内容与身后页面的明暗一致；
   - ✅ 滚动、键盘、抽屉、四屏、性能（D 组）通过；
   - ⚠️ 当时观感未定稿。**定稿 S 后 blur=0**，上面第一条的「被模糊」不再成立，现在是「纯折射 + 0.5dp 边光 + 极轻投影」。
 - 用户明确要求：**自选相册图作为世界底** —— 已实现（§5.2），实机效果待用户确认。
-- S 组定稿**尚未装机验收**：`4d7929d` 的包（CI `40185134339`）待用户安装确认。
+- 真机验收（另一台手机，不是本机 Termux 那台）：`4d7929d` 已装，用户确认**帧率很丝滑、不掉帧**；抽屉文字重叠问题已在本轮（`ffa15ad`）修，待复验。
 
 ## 2. 架构与三条硬规则（踩过坑，务必遵守）
 
@@ -104,7 +105,7 @@
 
 ### 4.2 定稿配方（S「上游原味」，`GlassTokens.kt:81`）
 
-只剩一份 `upstreamSpec`，三个角色共用（`upstreamTokens`，L104-108）；`DarkGlassTokens` / `LightGlassTokens`（L111/L114）指向同一份——上游配方不含染色，不随明暗反相。
+`upstreamSpec`（`GlassTokens.kt:83`）只给 `Chrome` / `Dock`；`DarkGlassTokens` / `LightGlassTokens` 的 chrome/dock 都指向它，**panel 另见 §4.2.1**。
 
 | 字段 | 定稿值 | 依据 |
 | --- | --- | --- |
@@ -121,6 +122,21 @@
 | `useLens` | true | 需 API 33+；形状必须是 `CornerBasedShape` 或 `RoundedRectangularShape` |
 
 删除记录（`4d7929d`）：A 水灵 / B 厚玻璃 / C 磨砂三组参数、`GlassPresets` object、`names`、`DEFAULT` 全部移除，亮色三套一并消失。
+
+### 4.2.1 Panel 磨砂例外（`ffa15ad`）
+
+抽屉宽 82% 屏宽、身后压着整片聊天消息，S 的「零模糊 + 零染色」会让两边的字叠在一起。所以**只有 `Panel` 走磨砂**，字段差异仅四处：
+
+| 字段 | Chrome / Dock（S） | Panel（磨砂） |
+| --- | --- | --- |
+| `blur` | 0dp | **20dp** |
+| `saturation` | 1.5 | 1.35 |
+| `tint` | 透明 | 暗 **白 α0.12**（`0x1FFFFFFF`）/ 亮 **白 α0.72**（`0xB8FFFFFF`） |
+| `useLens` | true（8dp / 20dp） | **false**（折射高度与强度均置 0） |
+
+其余（0.5dp 边光、16dp/3dp/α0.06 投影、无内阴影、无顶部湿光、无底部内反光）与 S 完全相同。`Panel` 是定稿 S 之后**唯一允许亮暗分岔**的角色（差的就是那一个 tint）。
+
+`useLens = false` 的理由：PLAN §6 红线「`lens` 只给 ≤96dp 高的小控件」，8dp 折射带在 82% 屏宽上肉眼看不出来，只剩采样成本。
 
 ### 4.3 调试入口（已删除）
 
@@ -168,7 +184,7 @@
 ## 7. 已知问题 / 技术债（按优先级）
 
 1. **拟玻璃兜底会把透明 tint 放大成半透明黑板**（2026-10-25 定稿后暴露，用户决定留到 P2）：`frostedGlass()` 用 `spec.tint.copy(alpha = tint.alpha + 0.5f)`，S 组 `tint = Color.Transparent`，RGB 是黑，于是兜底变成 0.5→0.3 的黑色渐变，`opaque = true`（省电模式）更是 α0.96 黑板。命中面：API<31 老设备、P2 弹层、P4 省电开关。SDK 34 真玻璃路径不受影响（所以定稿包装机看不出来）。修法见 §8 P2 首项。
-2. **S 定稿 = 顶栏/输入栏零模糊**：滚动内容会从顶栏标题、输入栏占位符后面直接穿过，可读性只能靠世界底的可读性罩（§5.1/§5.2）+ 列表 padding，不能靠玻璃本身。这是选 S 的已知取舍，别再试图用 tint 补（会退回"瓷片"）。
+2. **chrome 仍然零模糊**：顶栏/输入栏的内容会从标题、占位符后面穿过（抽屉已改磨砂，见 §4.2.1）。可读性靠世界底的可读性罩（§5.1/§5.2）+ 列表 padding，不要用 tint 补（会退回"瓷片"）。**这条判定要复用**：任何「身后压着大段文字」的大面积玻璃都走磨砂，小面积 chrome 才走上游原味。
 3. **每帧重录世界层**：`LayerBackdropNode.draw()` = `drawContent()` + `recordLayer(...)`，滚动时每帧重录全屏内容。这是当前最大性能开销，也是 P4「省电模式」的主要理由。量化未做（`docs/project-doc.md` §12 里没有帧率数据）。
 4. **`pressProgress` 未接**：上游按下时折射会放大，我们只有高光跟随。
 5. **亮色主题物理限制**：S 组没有 tint，白底上玻璃几乎只有 0.5dp 边光 + α0.06 投影立住；若仍嫌"平"，应当改**内容底色**（给消息区加淡色底），不要再加染色。
@@ -182,10 +198,10 @@
 **P0（收尾，剩 2 项）**
 1. ✅ 定稿观感 + 删调试入口（`4d7929d`，S「上游原味」）。
 2. 补 `DESIGN.md`（落点 `docs/design/DESIGN.md`：哪些面用玻璃、亮暗规则、对比度下限、性能红线、动效规则）。
-3. 量一次帧率（滚动长会话，`dumpsys gfxinfo <pkg> framestats`），把数字写进 `docs/project-doc.md` §12 的「实测」栏。
+3. 帧率：2026-10-25 用户在另一台真机主观验收「很丝滑、不掉帧」→ 已在 `docs/project-doc.md` §12 记为「主观通过 / 数字未测量」。**数字仍缺**（装机那台没接 adb）；能用 adb 时补 `dumpsys gfxinfo <pkg> framestats`（先 `--reset`，长会话滚 ≥10s）。
 
 **P2（弹层伪玻璃，独立可做）**
-- **先修兜底黑板**（§7-1），否则这一批弹层全是黑色渐变块：给 `frostedGlass()` 一个 base 底色（建议 `liquidGlass()` / `frostedGlassSurface()` 读 `MaterialTheme.colorScheme.surface` 传下去，`fill = if (spec.tint.alpha > 0f) spec.tint else base`），α 曲线保持不动。
+- **先修兜底黑板**（§7-1）：弹层统一用 `GlassRole.Panel`（推荐）时，有白染色，兜底是正常白卡；黑板问题只剩 `Chrome`/`Dock` 在 API<31 与省电模式两处。修法：给 `frostedGlass()` 一个 base 底色（建议 `liquidGlass()` / `frostedGlassSurface()` 读 `MaterialTheme.colorScheme.surface` 传下去，`fill = if (spec.tint.alpha > 0f) spec.tint else base`），α 曲线保持不动。
 - 落点：`ModelSelector` / `ThinkingSelector` / `AttachmentSelector` / `ClaudeModeSheets` / `FileManagerDialog` / `SettingsDialog`（都是 Dialog 或 Popup，在独立 Window）。
 - 做法：用 `Modifier.frostedGlassSurface(role = GlassRole.Panel, shape)`（`LiquidGlass.kt:70`），参数从 `LocalGlassTokens` 取，保持与主屏同一套观感；**不要**试图采样（采样不到）。
 - 验收：弹层观感与主屏玻璃一致、不是"纯色卡片"。
@@ -229,7 +245,8 @@
 | 2026-10-25 | `83ff5b4` | `40171387243` | success（A 组改水灵） |
 | 2026-10-25 | `ab1124f` | `40174017029` | success（S 上游原味） |
 | 2026-10-25 | `c12975b` | `40177252860` | success（世界底图 + S 组灰晕/描边修正） |
-| 2026-10-25 | `4d7929d` | `40185134339` | success（**定稿 S「上游原味」** + 删除 A/B/C 组与长按预设切换条；待装机验收） |
+| 2026-10-25 | `4d7929d` | `40185134339` | success（**定稿 S「上游原味」** + 删除 A/B/C 组与长按预设切换条；真机已装，帧率主观通过） |
+| 2026-10-25 | `ffa15ad` | `40190873626` | success（**抽屉改磨砂** + Panel 亮暗分岔；待复验文字重叠是否消失） |
 
 下载方式：`gh api repos/743553649/agy-and-claude/actions/runs/<run>/artifacts -q '.artifacts[].archive_download_url'`，或用运行页 Artifacts。
 安装前确认签名（`apksigner verify --print-certs`）与包名（`pm list packages com.termux`）。
