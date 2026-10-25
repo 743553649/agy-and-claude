@@ -61,9 +61,9 @@
 | 文件 | 关键锚点 | 职责 / 改这里做什么 |
 | --- | --- | --- |
 | `GlassWorld.kt` | `LocalGlassBackdrop` L36、`rememberGlassBackdrop()` L40、`GlassWorld()` L47 | 世界层的「建层 / 录制」两半；文件头注释写清了三条硬规则 |
-| `LiquidGlass.kt` | `Modifier.liquidGlass()` L39、`frostedGlassSurface()` L70、`glassWithBackdrop()` L76、`frostedGlass()` L160 | 唯一渲染入口；`effects`（vibrancy+blur+lens）、`highlight`、`shadow`、`innerShadow`（α≤0 时不挂）、`onDrawSurface`（shade/tint/topSheen/innerGlow） |
-| `GlassTokens.kt` | `GlassSpec` L17、`GlassPresets` L116、`names` L118、`DEFAULT` L121、`upstream()` L285 | 参数系统：字段语义 + 4 组预设 + 亮/暗两套 |
-| `AmbientBackdrop.kt` | `AmbientBackdrop()` L65、图片分支 L71、`buildGrainBitmap()` L约95 | 世界底：极光渐变 + 64×64 可平铺颗粒 + 用户自选图片 + 可读性罩 |
+| `LiquidGlass.kt` | `Modifier.liquidGlass()` L39、`frostedGlassSurface()` L70、`glassWithBackdrop()` L78、`frostedGlass()` L163 | 唯一渲染入口；`effects`（vibrancy+blur+lens）、`highlight`、`shadow`、`innerShadow`（α≤0 时不挂）、`onDrawSurface`（shade/tint/topSheen/innerGlow） |
+| `GlassTokens.kt` | `GlassSpec` L24、`GlassPresets` L116、`names` L118、`DEFAULT` L121、`upstream()` L285、`DarkGlassTokens`/`LightGlassTokens` L322/323 | 参数系统：字段语义 + 4 组预设 + 亮/暗两套 |
+| `AmbientBackdrop.kt` | `AmbientBackdrop()` L65、图片分支 L71、`buildGrainBitmap()` L107、`drawAmbient()` L129 | 世界底：极光渐变 + 64×64 可平铺颗粒 + 用户自选图片 + 可读性罩 |
 | `GlassSheen.kt` | `Modifier.pressSheen()` L35 | 手指跟随的镜面高光（上游 `InteractiveHighlight` 的等价实现，1.0.6 没有 RuntimeShader API） |
 
 改动（既有文件）：
@@ -82,7 +82,7 @@
 
 ## 4. 参数系统
 
-### 4.1 `GlassSpec` 字段语义（`GlassTokens.kt:17`）
+### 4.1 `GlassSpec` 字段语义（`GlassTokens.kt:24`）
 
 | 字段 | 含义 | 调它会发生什么 |
 | --- | --- | --- |
