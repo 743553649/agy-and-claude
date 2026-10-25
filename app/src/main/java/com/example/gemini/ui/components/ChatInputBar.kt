@@ -190,6 +190,12 @@ fun ChatInputBar(
     val coroutineScope = rememberCoroutineScope()
     val isDark = isAppInDarkTheme()
 
+    // 玻璃贴合色：内部控件不再用实心 background，改成"玻璃里嵌的一小块"——
+    // 暗色白 10% 填充 + 白 14% 细边（等价上游选中态 White/Black α0.1 的做法），亮色黑 6%/10%。
+    // 这样在 40% 染色的玻璃条上是分层，而不是贴在玻璃上的深色贴纸。
+    val glassChipFill = if (isDark) Color.White.copy(alpha = 0.10f) else Color.Black.copy(alpha = 0.06f)
+    val glassChipBorder = if (isDark) Color.White.copy(alpha = 0.14f) else Color.Black.copy(alpha = 0.10f)
+
     // Audio recording & Speech-to-Text state
     var recordMode by remember { mutableStateOf(AudioRecordMode.VOICE_NOTE) }
     var isLiveDictating by remember { mutableStateOf(false) }
@@ -698,8 +704,8 @@ fun ChatInputBar(
                         Surface(
                             onClick = { togglePauseAudioRecording() },
                             shape = CircleShape,
-                            color = if (isRecordingPaused) Color(0xFFFFA000).copy(alpha = 0.15f) else MaterialTheme.colorScheme.background,
-                            border = BorderStroke(1.dp, if (isRecordingPaused) Color(0xFFFFA000) else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
+                            color = if (isRecordingPaused) Color(0xFFFFA000).copy(alpha = 0.15f) else glassChipFill,
+                            border = BorderStroke(1.dp, if (isRecordingPaused) Color(0xFFFFA000) else glassChipBorder),
                             modifier = Modifier.size(34.dp)
                         ) {
                             Box(contentAlignment = Alignment.Center) {
@@ -733,8 +739,8 @@ fun ChatInputBar(
                         Surface(
                             onClick = { stopAudioRecording(andSend = false) },
                             shape = CircleShape,
-                            color = MaterialTheme.colorScheme.background,
-                            border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
+                            color = glassChipFill,
+                            border = BorderStroke(1.dp, glassChipBorder),
                             modifier = Modifier.size(34.dp)
                         ) {
                             Box(contentAlignment = Alignment.Center) {
@@ -927,8 +933,8 @@ fun ChatInputBar(
                             if (isUploadingAttachment) {
                                 Surface(
                                     shape = RoundedCornerShape(12.dp),
-                                    color = MaterialTheme.colorScheme.background,
-                                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f))
+                                    color = glassChipFill,
+                                    border = BorderStroke(1.dp, glassChipBorder)
                                 ) {
                                     Row(
                                         modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
@@ -965,8 +971,8 @@ fun ChatInputBar(
 
                                 Surface(
                                     shape = RoundedCornerShape(12.dp),
-                                    color = MaterialTheme.colorScheme.background,
-                                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f))
+                                    color = glassChipFill,
+                                    border = BorderStroke(1.dp, glassChipBorder)
                                 ) {
                                     Row(
                                         verticalAlignment = Alignment.CenterVertically
@@ -1093,8 +1099,8 @@ fun ChatInputBar(
                         Surface(
                             onClick = onAttachClick,
                             shape = CircleShape,
-                            color = MaterialTheme.colorScheme.background,
-                            border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f)),
+                            color = glassChipFill,
+                            border = BorderStroke(1.dp, glassChipBorder),
                             modifier = Modifier.size(34.dp)
                         ) {
                             Box(contentAlignment = Alignment.Center) {
@@ -1121,10 +1127,10 @@ fun ChatInputBar(
                                     onOpenModelSelector()
                                 },
                                 shape = RoundedCornerShape(18.dp),
-                                color = MaterialTheme.colorScheme.background,
+                                color = glassChipFill,
                                 border = BorderStroke(
                                     1.dp,
-                                    MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f)
+                                    glassChipBorder
                                 )
                             ) {
                                 Row(
@@ -1189,10 +1195,10 @@ fun ChatInputBar(
                                     }
                                 },
                                 shape = CircleShape,
-                                color = if (isLiveDictating) GeminiBlue.copy(alpha = 0.15f) else MaterialTheme.colorScheme.background,
+                                color = if (isLiveDictating) GeminiBlue.copy(alpha = 0.15f) else glassChipFill,
                                 border = BorderStroke(
                                     1.dp,
-                                    if (isLiveDictating) GeminiBlue.copy(alpha = 0.5f) else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f)
+                                    if (isLiveDictating) GeminiBlue.copy(alpha = 0.5f) else glassChipBorder
                                 ),
                                 modifier = Modifier.size(34.dp)
                             ) {
@@ -1259,8 +1265,8 @@ fun ChatInputBar(
                             }
                         } else {
                             // Claude-style Microphone Voice Recorder Button
-                            val voiceBgColor = if (isDark) Color(0xFFEDEDED) else Color(0xFF1F1F1F)
-                            val voiceIconColor = if (isDark) Color(0xFF1B1B1B) else Color.White
+                            val voiceBgColor = glassChipFill
+                            val voiceIconColor = MaterialTheme.colorScheme.onSurface
 
                             Surface(
                                 onClick = {
@@ -1273,6 +1279,7 @@ fun ChatInputBar(
                                 },
                                 shape = CircleShape,
                                 color = voiceBgColor,
+                                border = BorderStroke(1.dp, glassChipBorder),
                                 shadowElevation = 1.dp,
                                 modifier = Modifier.size(36.dp)
                             ) {
