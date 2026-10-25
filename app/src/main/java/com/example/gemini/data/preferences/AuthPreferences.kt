@@ -60,6 +60,8 @@ class AuthPreferences(private val context: Context) {
         val REQUIRE_APPROVAL_FOR_FILE_EDITS = androidx.datastore.preferences.core.booleanPreferencesKey("require_approval_for_file_edits")
         val DEFAULT_APPROVAL_SCOPE = stringPreferencesKey("default_approval_scope")
         val GROUP_CHATS_BY_WORKSPACE = androidx.datastore.preferences.core.booleanPreferencesKey("group_chats_by_workspace")
+        // 液态玻璃的"世界底图"：相册图片的持久化 content:// URI（空 = 用内置极光渐变）
+        val GLASS_WORLD_IMAGE_URI = androidx.datastore.preferences.core.stringPreferencesKey("glass_world_image_uri")
         val IS_FLOATING_BUBBLE_ENABLED = androidx.datastore.preferences.core.booleanPreferencesKey("is_floating_bubble_enabled")
         val AUTO_SHOW_FLOATING_BUBBLE_ON_MINIMIZE = androidx.datastore.preferences.core.booleanPreferencesKey("auto_show_floating_bubble_on_minimize")
         val IS_FLOATING_SWITCHER_ENABLED = androidx.datastore.preferences.core.booleanPreferencesKey("is_floating_switcher_enabled")
@@ -164,6 +166,8 @@ class AuthPreferences(private val context: Context) {
     }
 
     val groupChatsByWorkspace: Flow<Boolean> = context.dataStore.data.map { it[GROUP_CHATS_BY_WORKSPACE] ?: false }
+
+    val glassWorldImageUri: Flow<String?> = context.dataStore.data.map { it[GLASS_WORLD_IMAGE_URI] }
 
     val preferredModelId: Flow<String?> = context.dataStore.data.map { it[PREFERRED_MODEL_ID] }
     val preferredModelKey: Flow<String?> = context.dataStore.data.map { it[PREFERRED_MODEL_KEY] }
@@ -524,6 +528,16 @@ class AuthPreferences(private val context: Context) {
     suspend fun saveGroupChatsByWorkspace(enabled: Boolean) {
         context.dataStore.edit { prefs ->
             prefs[GROUP_CHATS_BY_WORKSPACE] = enabled
+        }
+    }
+
+    suspend fun saveGlassWorldImageUri(uri: String?) {
+        context.dataStore.edit { prefs ->
+            if (uri.isNullOrBlank()) {
+                prefs.remove(GLASS_WORLD_IMAGE_URI)
+            } else {
+                prefs[GLASS_WORLD_IMAGE_URI] = uri
+            }
         }
     }
 

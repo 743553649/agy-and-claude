@@ -2,6 +2,8 @@ package com.example.gemini.ui.glass
 
 import android.graphics.Bitmap
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
@@ -15,6 +17,8 @@ import androidx.compose.ui.graphics.ShaderBrush
 import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.layout.ContentScale
+import coil.compose.AsyncImage
 import com.example.gemini.theme.isAppInDarkTheme
 
 /**
@@ -61,7 +65,33 @@ private val LightAmbient = AmbientPalette(
 fun AmbientBackdrop(
     modifier: Modifier = Modifier,
     isDark: Boolean = isAppInDarkTheme(),
+    /** 用户自选的相册图片（content:// URI）；非空时用它当世界底，玻璃会折射这张图。 */
+    imageUri: String? = null,
 ) {
+    if (!imageUri.isNullOrBlank()) {
+        Box(modifier = modifier) {
+            AsyncImage(
+                model = imageUri,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+            // 可读性罩：底图是任意照片，必须把正文对比度拉回来（暗色压暗、亮色提亮）
+            Canvas(modifier = Modifier.fillMaxSize()) {
+                drawRect(
+                    Brush.verticalGradient(
+                        colors = if (isDark) {
+                            listOf(Color(0x66000000), Color(0x99000000))
+                        } else {
+                            listOf(Color(0x8CFFFFFF), Color(0xB3FFFFFF))
+                        }
+                    )
+                )
+            }
+        }
+        return
+    }
+
     val palette = if (isDark) DarkAmbient else LightAmbient
     // 一层很淡的颗粒：玻璃的模糊/折射需要有高频细节才看得出"玻璃"，纯渐变会被糊成一片均匀色。
     val grain = remember(isDark) { buildGrainBitmap(isDark) }

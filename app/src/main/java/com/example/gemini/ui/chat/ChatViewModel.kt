@@ -629,6 +629,10 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
     val groupChatsByWorkspace: StateFlow<Boolean> = authPrefs.groupChatsByWorkspace
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
 
+    /** 液态玻璃的世界底图（相册图片 URI）；null = 用内置极光渐变。 */
+    val glassWorldImageUri: StateFlow<String?> = authPrefs.glassWorldImageUri
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+
     val isFloatingBubbleEnabled: StateFlow<Boolean> = authPrefs.isFloatingBubbleEnabled
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), authPrefs.getFloatingBubbleEnabledSync())
 
@@ -697,6 +701,12 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
     fun setGroupChatsByWorkspace(enabled: Boolean) {
         viewModelScope.launch {
             authPrefs.saveGroupChatsByWorkspace(enabled)
+        }
+    }
+
+    fun setGlassWorldImageUri(uri: String?) {
+        viewModelScope.launch {
+            authPrefs.saveGlassWorldImageUri(uri)
         }
     }
 

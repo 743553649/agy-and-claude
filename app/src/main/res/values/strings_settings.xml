@@ -656,4 +656,9 @@
     <string name="settings_yes_continue">Yes, Continue</string>
     <string name="settings_you_have_unsaved_changes_in_server_conne">You have unsaved changes in Server &amp; Connectivity settings. Please save them manually using \'Save Server &amp; Security Settings\' below or discard your modifications.</string>
     <string name="settings_zero_overhead_architecture_when_disabled">Zero-overhead architecture: When disabled, OkHttp calls execute at 100% native speed with zero allocations or buffering.</string>
+    <string name="settings_world_image_title">World backdrop image</string>
+    <string name="settings_world_image_subtitle">Use a photo from your gallery as the liquid-glass backdrop</string>
+    <string name="settings_world_image_selected">Custom image selected</string>
+    <string name="settings_world_image_pick">Choose</string>
+    <string name="settings_world_image_clear">Clear</string>
 </resources>

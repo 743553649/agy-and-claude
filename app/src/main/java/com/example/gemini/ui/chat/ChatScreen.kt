@@ -225,6 +225,8 @@ fun ChatScreen(
     val sshUser by viewModel.termuxSshUser.collectAsState(initial = "root")
     val sshPass by viewModel.termuxSshPass.collectAsState(initial = "root")
     val themeMode by viewModel.themeMode.collectAsState(initial = viewModel.authPreferences.getThemeModeSync())
+    // 液态玻璃的世界底图（相册图片）；null = 内置极光渐变
+    val glassWorldImageUri by viewModel.glassWorldImageUri.collectAsState()
     val agyHubUrl by viewModel.agyHubUrl.collectAsState(initial = AuthPreferences.currentHubUrl)
     val agyBridgeHttpUrl by viewModel.agyBridgeHttpUrl.collectAsState(initial = AuthPreferences.currentBridgeHttpUrl)
     val terminalFontSize by viewModel.terminalFontSize.collectAsState(initial = 14)
@@ -1108,7 +1110,7 @@ fun ChatScreen(
                         .liquidGlass(
                             role = GlassRole.Chrome,
                             // 连续圆角（上游用的 RoundedRectangle），折射/边光都按它算
-                            shape = com.kyant.shapes.RoundedRectangle(20.dp)
+                            shape = com.kyant.shapes.RoundedRectangle(26.dp)
                         ),
                     windowInsets = WindowInsets(0),
                     title = {
@@ -1294,7 +1296,8 @@ fun ChatScreen(
                     modifier = Modifier.fillMaxSize()
                 ) {
                     com.example.gemini.ui.glass.AmbientBackdrop(
-                        modifier = Modifier.matchParentSize()
+                        modifier = Modifier.matchParentSize(),
+                        imageUri = glassWorldImageUri
                     )
                     Column(
                         modifier = Modifier
@@ -2228,6 +2231,9 @@ fun ChatScreen(
             summaryModelId = summaryModelIdPref,
             isDevModeEnabled = isDevModeEnabled,
             chatFontScale = chatFontScale,
+            worldImageUri = glassWorldImageUri,
+            onPickWorldImage = { viewModel.setGlassWorldImageUri(it) },
+            onClearWorldImage = { viewModel.setGlassWorldImageUri(null) },
             themeMode = themeMode,
             appLanguage = AppLocaleController.currentLanguageTag(),
             agyHubUrl = agyHubUrl,

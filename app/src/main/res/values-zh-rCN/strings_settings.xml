@@ -1307,4 +1307,9 @@
     <string name="settings_you_have_unsaved_changes_in_server_conne">服务器与连接设置中有未保存的更改。请使用下方的「保存服务器与安全设置」手动保存，或放弃修改。</string>
     <!-- 原文: Zero-overhead architecture: When disabled, OkHttp calls execute at 100% native speed with zero allocations or buffering. -->
     <string name="settings_zero_overhead_architecture_when_disabled">零开销架构：关闭时，OkHttp 调用以 100% 原生速度执行，无任何内存分配或缓冲。</string>
+    <string name="settings_world_image_title">世界底图</string>
+    <string name="settings_world_image_subtitle">用相册里的一张图作为液态玻璃的背景（玻璃会折射它）</string>
+    <string name="settings_world_image_selected">已选择自定义图片</string>
+    <string name="settings_world_image_pick">选择</string>
+    <string name="settings_world_image_clear">清除</string>
 </resources>

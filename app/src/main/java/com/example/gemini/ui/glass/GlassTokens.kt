@@ -296,13 +296,15 @@ object GlassPresets {
             topSheen = 0f,
             innerGlow = 0f,
             chromaticAberration = false,
-            shadowBlur = 24.dp,
-            shadowOffsetY = 4.dp,
-            shadowAlpha = 0.10f,
+            // 上游默认 Shadow(24dp, α0.10) 压在浅底上会变成一圈灰晕，这里降到 16dp/α0.06；
+            // 折射带 16dp 在大面积上会被看成"很粗的描边"，收到 8dp。
+            shadowBlur = 16.dp,
+            shadowOffsetY = 3.dp,
+            shadowAlpha = 0.06f,
             innerShadowAlpha = 0f,
             useLens = true,
-            refractionHeight = 16.dp,
-            refractionAmount = 32.dp,
+            refractionHeight = 8.dp,
+            refractionAmount = 20.dp,
         )
         return GlassTokens(chrome = spec(), dock = spec(), panel = spec())
     }

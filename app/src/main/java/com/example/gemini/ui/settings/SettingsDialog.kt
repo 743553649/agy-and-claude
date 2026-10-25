@@ -119,6 +119,9 @@ fun SettingsDialog(
     summaryModelId: String = "always_ask",
     isDevModeEnabled: Boolean = false,
     chatFontScale: Float = 1.0f,
+    worldImageUri: String? = null,
+    onPickWorldImage: (String) -> Unit = {},
+    onClearWorldImage: () -> Unit = {},
     themeMode: String = "SYSTEM",
     appLanguage: String = "system",
     agyHubUrl: String = com.example.gemini.data.preferences.AuthPreferences.currentHubUrl,
@@ -406,7 +409,10 @@ fun SettingsDialog(
                         onSetFloatingSwitcherOrientation = onSetFloatingSwitcherOrientation,
                         onSetFloatingSwitcherItems = onSetFloatingSwitcherItems,
                         onSetFloatingSwitcherAutoCollapseSec = onSetFloatingSwitcherAutoCollapseSec,
-                        onResetFloatingSwitcherPosition = onResetFloatingSwitcherPosition
+                        onResetFloatingSwitcherPosition = onResetFloatingSwitcherPosition,
+                        worldImageUri = worldImageUri,
+                        onPickWorldImage = onPickWorldImage,
+                        onClearWorldImage = onClearWorldImage
                     )
 
                     SettingsSection.SERVERS -> ServersSubScreen(
@@ -944,8 +950,27 @@ private fun AppearanceSubScreen(
     onSetFloatingSwitcherOrientation: (String) -> Unit,
     onSetFloatingSwitcherItems: (List<String>) -> Unit,
     onSetFloatingSwitcherAutoCollapseSec: (Int) -> Unit,
-    onResetFloatingSwitcherPosition: () -> Unit
+    onResetFloatingSwitcherPosition: () -> Unit,
+    worldImageUri: String? = null,
+    onPickWorldImage: (String) -> Unit = {},
+    onClearWorldImage: () -> Unit = {},
 ) {
+    // 选图：OpenDocument 才能拿持久化读权限（重启后世界底图仍可用）
+    val pickerContext = androidx.compose.ui.platform.LocalContext.current
+    val worldImagePicker = androidx.activity.compose.rememberLauncherForActivityResult(
+        contract = androidx.activity.result.contract.ActivityResultContracts.OpenDocument()
+    ) { uri ->
+        if (uri != null) {
+            runCatching {
+                pickerContext.contentResolver.takePersistableUriPermission(
+                    uri,
+                    android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+            }
+            onPickWorldImage(uri.toString())
+        }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -1109,6 +1134,61 @@ private fun AppearanceSubScreen(
                     contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp)
                 ) {
                     Text(stringResource(R.string.settings_reset_1_0x), fontSize = 12.sp, color = ClaudeTerracotta)
+                }
+            }
+        }
+
+        // 液态玻璃的世界底图：玻璃折射的是这张图
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(14.dp),
+            colors = CardDefaults.cardColors(containerColor = cardBg),
+            border = cardBorder
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 14.dp, vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = stringResource(R.string.settings_world_image_title),
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    Text(
+                        text = if (worldImageUri.isNullOrBlank()) {
+                            stringResource(R.string.settings_world_image_subtitle)
+                        } else {
+                            stringResource(R.string.settings_world_image_selected)
+                        },
+                        fontSize = 11.5.sp,
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+                    )
+                }
+                if (!worldImageUri.isNullOrBlank()) {
+                    TextButton(
+                        onClick = onClearWorldImage,
+                        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.settings_world_image_clear),
+                            fontSize = 12.sp,
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                        )
+                    }
+                }
+                TextButton(
+                    onClick = { worldImagePicker.launch(arrayOf("image/*")) },
+                    contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp)
+                ) {
+                    Text(
+                        text = stringResource(R.string.settings_world_image_pick),
+                        fontSize = 12.sp,
+                        color = ClaudeTerracotta
+                    )
                 }
             }
         }
