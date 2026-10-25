@@ -17,7 +17,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -43,7 +42,6 @@ import androidx.compose.runtime.*
 import com.example.gemini.data.preferences.AuthPreferences
 import com.example.gemini.ui.glass.GlassRole
 import com.example.gemini.ui.glass.liquidGlass
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -933,20 +931,11 @@ fun ChatScreen(
     // GlassWorld 的子树里。之前把它放在 GlassWorld 内部，这三处全部读不到 -> 走纯色兜底。
     val glassBackdrop = com.example.gemini.ui.glass.rememberGlassBackdrop()
 
-    // —— 临时：玻璃观感预设（长按顶栏切换，用于现场挑参数；定稿后连同 chip 条一起删）——
-    var glassPresetIndex by remember {
-        mutableIntStateOf(com.example.gemini.ui.glass.GlassPresets.DEFAULT)
-    }
-    var glassPresetPickerVisible by remember { mutableStateOf(false) }
-    val glassPresetTokens =
-        com.example.gemini.ui.glass.GlassPresets.of(isAppInDarkTheme())[glassPresetIndex]
-
     CompositionLocalProvider(
         LocalFileLinkHandler provides fileLinkHandler,
         androidx.compose.ui.platform.LocalUriHandler provides safeUriHandler,
         com.example.gemini.ui.components.LocalSnackbarHostState provides snackbarHostState,
-        com.example.gemini.ui.glass.LocalGlassBackdrop provides glassBackdrop,
-        com.example.gemini.ui.glass.LocalGlassTokens provides glassPresetTokens
+        com.example.gemini.ui.glass.LocalGlassBackdrop provides glassBackdrop
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             ModalNavigationDrawer(
@@ -1101,12 +1090,6 @@ fun ChatScreen(
                     modifier = Modifier
                         .padding(horizontal = 8.dp, vertical = 6.dp)
                         .statusBarsPadding()
-                        // 长按顶栏开/关玻璃预设选择条（临时调试入口）
-                        .pointerInput(Unit) {
-                            detectTapGestures(
-                                onLongPress = { glassPresetPickerVisible = !glassPresetPickerVisible }
-                            )
-                        }
                         .liquidGlass(
                             role = GlassRole.Chrome,
                             // 连续圆角（上游用的 RoundedRectangle），折射/边光都按它算
@@ -2001,33 +1984,6 @@ fun ChatScreen(
                         // 放在 insets 之后：量到的是输入栏本体高度，不含导航栏/键盘留白
                         .onGloballyPositioned { glassBottomBarHeightPx = it.size.height }
                 ) {
-                // 临时：玻璃预设选择条（长按顶栏开关）
-                if (glassPresetPickerVisible) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 14.dp, vertical = 4.dp),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        com.example.gemini.ui.glass.GlassPresets.names.forEachIndexed { index, name ->
-                            val selected = index == glassPresetIndex
-                            Surface(
-                                onClick = { glassPresetIndex = index },
-                                shape = RoundedCornerShape(14.dp),
-                                color = if (selected) MaterialTheme.colorScheme.primary
-                                else MaterialTheme.colorScheme.surfaceVariant,
-                                contentColor = if (selected) MaterialTheme.colorScheme.onPrimary
-                                else MaterialTheme.colorScheme.onSurfaceVariant
-                            ) {
-                                Text(
-                                    text = name,
-                                    fontSize = 12.sp,
-                                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
-                                )
-                            }
-                        }
-                    }
-                }
                 // Agent prompts docked above the input (both agents): permission requests, then questions
                 val approvalItems = remember(pendingApprovals, claudePending, isClaudeChat) {
                     if (isClaudeChat) {
