@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.WindowManager
 import androidx.compose.animation.*
 import androidx.compose.animation.core.FastOutLinearInEasing
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
@@ -931,6 +932,9 @@ fun ChatScreen(
         Box(modifier = Modifier.fillMaxSize()) {
             ModalNavigationDrawer(
                 drawerState = drawerState,
+                // scrim 改由 GlassWorld 内部绘制：抽屉玻璃采样不到 M3 这层 scrim，
+                // 否则玻璃会比身后的页面亮一档（见下面的 glassDrawerScrim）
+                scrimColor = Color.Transparent,
         drawerContent = {
             ChatHistoryDrawer(
                 conversations = conversations,
@@ -1943,6 +1947,20 @@ fun ChatScreen(
                     }
                 }
 
+                    }
+                    // 抽屉遮罩画在世界层内部：这样抽屉玻璃采样到的、和页面被看到的，是同一份像素，
+                    // 不再需要靠 GlassSpec.shade 猜一个压暗系数去凑。
+                    val glassDrawerScrim = animateFloatAsState(
+                        targetValue = if (drawerState.isOpen || drawerState.targetValue == DrawerValue.Open) 0.32f else 0f,
+                        animationSpec = tween(durationMillis = 260),
+                        label = "glassDrawerScrim"
+                    )
+                    if (glassDrawerScrim.value > 0.002f) {
+                        Box(
+                            modifier = Modifier
+                                .matchParentSize()
+                                .background(Color.Black.copy(alpha = glassDrawerScrim.value))
+                        )
                     }
                 }
                 // 输入栏 + 面板：玻璃层，必须是 GlassWorld 的兄弟节点（在它外面画）
