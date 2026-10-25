@@ -42,7 +42,6 @@ import androidx.compose.runtime.*
 import com.example.gemini.data.preferences.AuthPreferences
 import com.example.gemini.ui.glass.GlassRole
 import com.example.gemini.ui.glass.liquidGlass
-import com.example.gemini.ui.glass.pressFeedback
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -1173,7 +1172,7 @@ fun ChatScreen(
                     },
                     navigationIcon = {
                         if (conversationBackStack.isNotEmpty()) {
-                            IconButton(onClick = navigateBackConversation, modifier = Modifier.pressFeedback()) {
+                            IconButton(onClick = navigateBackConversation) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                     contentDescription = stringResource(R.string.common_back),
@@ -1181,7 +1180,7 @@ fun ChatScreen(
                                 )
                             }
                         } else {
-                            IconButton(onClick = { scope.launch { drawerState.open() } }, modifier = Modifier.pressFeedback()) {
+                            IconButton(onClick = { scope.launch { drawerState.open() } }) {
                                 Icon(
                                     imageVector = Icons.Default.Menu,
                                     contentDescription = stringResource(R.string.chat_open_drawer),
@@ -1192,14 +1191,14 @@ fun ChatScreen(
                     },
                     actions = {
                         if (isInFloatingWindow) {
-                            IconButton(onClick = onMinimizeWindow, modifier = Modifier.pressFeedback()) {
+                            IconButton(onClick = onMinimizeWindow) {
                                 Icon(
                                     imageVector = Icons.Default.Remove,
                                     contentDescription = stringResource(R.string.chat_minimize_to_bubble),
                                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f)
                                 )
                             }
-                            IconButton(onClick = onOpenFullScreen, modifier = Modifier.pressFeedback()) {
+                            IconButton(onClick = onOpenFullScreen) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Outlined.OpenInNew,
                                     contentDescription = stringResource(R.string.chat_open_full_screen),
@@ -1214,7 +1213,7 @@ fun ChatScreen(
                                 onOpenServerLogs = { showLocalServerOutputDialog = true }
                             )
                         }
-                        IconButton(onClick = onNavigateToBrowser, modifier = Modifier.pressFeedback()) {
+                        IconButton(onClick = onNavigateToBrowser) {
                             Icon(
                                 imageVector = Icons.Outlined.Language,
                                 contentDescription = stringResource(R.string.chat_web_browser_preview),
@@ -1230,14 +1229,14 @@ fun ChatScreen(
                             } else {
                                 showLocalToolsInstallDialog = true
                             }
-                        }, modifier = Modifier.pressFeedback()) {
+                        }) {
                             Icon(
                                 imageVector = Icons.Outlined.Terminal,
                                 contentDescription = stringResource(R.string.common_terminal),
                                 tint = if (useSshTerminal || (isLocalToolsInstalled && isLocalToolsEnabled)) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f)
                             )
                         }
-                        IconButton(onClick = onNavigateToIde, modifier = Modifier.pressFeedback()) {
+                        IconButton(onClick = onNavigateToIde) {
                             Icon(
                                 imageVector = Icons.Default.Code,
                                 contentDescription = stringResource(R.string.chat_code_editor_ide),
@@ -1245,7 +1244,7 @@ fun ChatScreen(
                             )
                         }
                         if (isDevModeEnabled) {
-                            IconButton(onClick = { showChatTelemetryDialog = true }, modifier = Modifier.pressFeedback()) {
+                            IconButton(onClick = { showChatTelemetryDialog = true }) {
                                 Icon(
                                     imageVector = Icons.Outlined.Analytics,
                                     contentDescription = stringResource(R.string.common_chat_telemetry_tokens),
