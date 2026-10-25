@@ -1280,15 +1280,14 @@ fun ChatInputBar(
                                 shape = CircleShape,
                                 color = voiceBgColor,
                                 border = BorderStroke(1.dp, glassChipBorder),
-                                shadowElevation = 1.dp,
-                                modifier = Modifier.size(36.dp)
+                                modifier = Modifier.size(34.dp)
                             ) {
                                 Box(contentAlignment = Alignment.Center) {
                                     Icon(
                                         imageVector = Icons.Rounded.Mic,
                                         contentDescription = if (voiceNotesAsText) stringResource(R.string.chat_record_and_transcribe) else stringResource(R.string.chat_record_voice_note),
                                         tint = voiceIconColor,
-                                        modifier = Modifier.size(20.dp)
+                                        modifier = Modifier.size(18.dp)
                                     )
                                 }
                             }

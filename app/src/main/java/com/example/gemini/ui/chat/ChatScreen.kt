@@ -1233,14 +1233,15 @@ fun ChatScreen(
                             Icon(
                                 imageVector = Icons.Outlined.Terminal,
                                 contentDescription = stringResource(R.string.common_terminal),
-                                tint = if (useSshTerminal || (isLocalToolsInstalled && isLocalToolsEnabled)) ClaudeTerracotta else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f)
+                                // 与浏览器按钮同色：顶栏四个动作按钮统一中性色，状态不再靠颜色区分
+                                tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f)
                             )
                         }
                         IconButton(onClick = onNavigateToIde) {
                             Icon(
                                 imageVector = Icons.Default.Code,
                                 contentDescription = stringResource(R.string.chat_code_editor_ide),
-                                tint = MaterialTheme.colorScheme.primary
+                                tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f)
                             )
                         }
                         if (isDevModeEnabled) {

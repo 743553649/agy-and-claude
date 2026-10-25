@@ -41,7 +41,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -281,7 +283,19 @@ fun AgentStatusIndicator(
     val top = agy?.color ?: claude?.color ?: SystemStatus.OFFLINE.dotColor
     val bottom = if (agy != null) claude?.color else null
     Box(
-        modifier = modifier.size(36.dp).clip(CircleShape).clickable { open = true },
+        modifier = modifier
+            .size(36.dp)
+            .clip(CircleShape)
+            .clickable { open = true }
+            .drawBehind {
+                // 状态环：裸圆点放在玻璃顶栏上像一个游离的绿点；加一圈同色淡环才读得出是"状态灯"。
+                // 环半径固定（不随上下半球变色），颜色取当前主状态，α 0.22 只在浅玻璃上做提示。
+                drawCircle(
+                    color = top.copy(alpha = 0.22f),
+                    radius = 9.dp.toPx(),
+                    style = Stroke(width = 1.2.dp.toPx())
+                )
+            },
         contentAlignment = Alignment.Center
     ) {
         AgentStatusDot(

@@ -217,7 +217,8 @@ fun FloatingSwitcherWidget(
                         Icon(
                             imageVector = expandArrowIcon,
                             contentDescription = stringResource(R.string.component_expand_switcher),
-                            tint = ClaudeTerracotta,
+                            // 与顶栏浏览器按钮同色（原来是陶土橙，在玻璃底上像"警示"）
+                            tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f),
                             modifier = Modifier.size(20.dp)
                         )
                     }
