@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
@@ -41,6 +42,17 @@ fun Modifier.liquidGlass(
 ): Modifier {
     val backdrop = LocalGlassBackdrop.current
     val spec = LocalGlassTokens.current.specFor(role)
+    // 兜底分支很安静：只有一块半透明色块，和"参数没调好"长得一模一样（踩过一次）。
+    // 这里在每个玻璃节点上打一次日志，方便一眼看出是谁没拿到世界层。
+    remember(role, backdrop) {
+        if (backdrop == null) {
+            android.util.Log.w(
+                "LiquidGlass",
+                "LocalGlassBackdrop 为 null，$role 退化为拟玻璃（没有采样/模糊/折射）——provider 没包住这个节点"
+            )
+        }
+        Unit
+    }
     return when {
         !enabled -> frostedGlass(shape, spec, opaque = true)
         backdrop != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ->

@@ -64,52 +64,50 @@ data class GlassTokens(
  * 参照上游 LiquidBottomTabs（栏）与 ScrollContainerContent（面板）的配方配平。
  */
 val DarkGlassTokens = GlassTokens(
-    // DIAG：临时诊断值（blur 48dp / 无染色 / 折射 40-60dp）。字若仍清晰=renderEffect 未生效。
     chrome = GlassSpec(
-        blur = 48.dp,
+        blur = 12.dp,
         saturation = 1.5f,
         brightness = 0.02f,
-        tint = Color.Transparent,
+        tint = Color(0x24FFFFFF),
         shade = 0f,
         rimTop = Color(0xF2FFFFFF),
         rimBottom = Color(0x26FFFFFF),
         highlightAlpha = 0.9f,
         highlightWidth = 1.5.dp,
-        topSheen = 0f,
+        topSheen = 0.10f,
         shadowBlur = 22.dp,
         shadowOffsetY = 8.dp,
         shadowAlpha = 0.5f,
         innerShadowAlpha = 0.22f,
         useLens = true,
-        refractionHeight = 40.dp,
-        refractionAmount = 60.dp,
+        refractionHeight = 14.dp,
+        refractionAmount = 26.dp,
     ),
-    // DIAG：同上
     dock = GlassSpec(
-        blur = 48.dp,
+        blur = 10.dp,
         saturation = 1.55f,
         brightness = 0.02f,
-        tint = Color.Transparent,
+        tint = Color(0x29FFFFFF),
         shade = 0f,
         rimTop = Color(0xFFFFFFFF),
         rimBottom = Color(0x2EFFFFFF),
         highlightAlpha = 0.95f,
         highlightWidth = 1.6.dp,
-        topSheen = 0f,
+        topSheen = 0.15f,
         shadowBlur = 20.dp,
         shadowOffsetY = 8.dp,
         shadowAlpha = 0.45f,
         innerShadowAlpha = 0.16f,
         useLens = true,
-        refractionHeight = 40.dp,
-        refractionAmount = 60.dp,
+        refractionHeight = 18.dp,
+        refractionAmount = 34.dp,
     ),
     panel = GlassSpec(
         blur = 16.dp,
         saturation = 1.4f,
         brightness = 0f,
         tint = Color(0x1FFFFFFF),
-        // scrim 已挪进世界层（ChatScreen.glassDrawerScrim），采样到的内容本身就是压暗的，不再需要 shade
+        // scrim 已画在世界层内部（ChatScreen.glassDrawerScrim），采样到的内容本身就是压暗的
         shade = 0f,
         rimTop = Color(0xCCFFFFFF),
         rimBottom = Color(0x1FFFFFFF),
@@ -131,12 +129,11 @@ val DarkGlassTokens = GlassTokens(
  * 靠边缘高光 + 阴影把玻璃立起来；不是把暗色反相。
  */
 val LightGlassTokens = GlassTokens(
-    // DIAG：亮色同样临时诊断值
     chrome = GlassSpec(
-        blur = 48.dp,
+        blur = 12.dp,
         saturation = 1.3f,
         brightness = 0.03f,
-        tint = Color.Transparent,
+        tint = Color(0x57FFFFFF),
         shade = 0f,
         rimTop = Color(0xFFFFFFFF),
         rimBottom = Color(0x3DFFFFFF),
@@ -151,12 +148,11 @@ val LightGlassTokens = GlassTokens(
         refractionHeight = 14.dp,
         refractionAmount = 26.dp,
     ),
-    // DIAG
     dock = GlassSpec(
-        blur = 48.dp,
+        blur = 10.dp,
         saturation = 1.35f,
         brightness = 0.03f,
-        tint = Color.Transparent,
+        tint = Color(0x66FFFFFF),
         shade = 0f,
         rimTop = Color(0xFFFFFFFF),
         rimBottom = Color(0x47FFFFFF),

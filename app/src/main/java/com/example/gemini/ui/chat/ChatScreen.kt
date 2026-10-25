@@ -924,10 +924,16 @@ fun ChatScreen(
 
     val snackbarHostState = remember { SnackbarHostState() }
 
+    // 玻璃采样层必须在最外层提供：CompositionLocal 只向下生效，而顶栏（Scaffold.topBar）、
+    // 抽屉（ModalNavigationDrawer.drawerContent）、输入栏（GlassWorld 的兄弟）都不在
+    // GlassWorld 的子树里。之前把它放在 GlassWorld 内部，这三处全部读不到 -> 走纯色兜底。
+    val glassBackdrop = com.example.gemini.ui.glass.rememberGlassBackdrop()
+
     CompositionLocalProvider(
         LocalFileLinkHandler provides fileLinkHandler,
         androidx.compose.ui.platform.LocalUriHandler provides safeUriHandler,
-        com.example.gemini.ui.components.LocalSnackbarHostState provides snackbarHostState
+        com.example.gemini.ui.components.LocalSnackbarHostState provides snackbarHostState,
+        com.example.gemini.ui.glass.LocalGlassBackdrop provides glassBackdrop
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             ModalNavigationDrawer(
@@ -1266,6 +1272,7 @@ fun ChatScreen(
             val glassTopBarInset = glassStatusBarTop + 78.dp
             Box(modifier = Modifier.fillMaxSize()) {
                 com.example.gemini.ui.glass.GlassWorld(
+                    backdrop = glassBackdrop,
                     modifier = Modifier.fillMaxSize()
                 ) {
                     com.example.gemini.ui.glass.AmbientBackdrop(
