@@ -1,14 +1,14 @@
 # 液态玻璃 UI 重构 · 交接文档
 
 > 面向「下一个接手的人/agent」。读完这一篇就能继续干，不需要翻对话记录。
-> 最后更新：分支 `feat/liquid-glass`，HEAD `ffa15ad`，CI run `40190873626`（success）。**观感定稿 S「上游原味」；抽屉（`Panel`）例外走磨砂；调试入口已删。**
+> 最后更新：分支 `feat/liquid-glass`，HEAD `f5539e4`，CI run `40191925831`（success）。**观感定稿 = 上游 demo 胶囊配方（40% 染色 + 8dp 模糊 + 24dp 折射），顶栏/输入栏/抽屉统一；调试入口已删。**
 
 ## 0. 一页速览
 
 | 项 | 值 |
 | --- | --- |
 | 分支 | `feat/liquid-glass`（`master` 未被改动，未合并） |
-| 范围 | P0–P1 已完成：聊天主屏的顶栏 / 输入栏 / 抽屉 + 世界层 + 世界底图；观感 = S「上游原味」，抽屉例外磨砂（§4.2.1） |
+| 范围 | P0–P1 已完成：聊天主屏的顶栏 / 输入栏 / 抽屉 + 世界层 + 世界底图；观感 = 上游 demo 胶囊配方，三个面统一（§4.2） |
 | 构建 | **只能走云端 CI**：push 该分支 → `.github/workflows/ci.yml` → `:app:assembleTermuxRelease` → 下载 artifact |
 | 产物 | `antiGem-termux-v<版本>-release-<短sha>.apk`（release 签名，包名 `com.termux`） |
 | 未做 | P2 弹层伪玻璃（含拟玻璃兜底的黑色退化修复）、P3 其它四屏、P4 省电开关 / DESIGN.md / 性能与无障碍收口 |
@@ -19,19 +19,20 @@
 
 ## 1. 现状（实测，不是估计）
 
-- 提交：`master..HEAD` 共 21 个提交，`git diff --stat master..HEAD` = 19 文件 / +1476 / −38。
+- 提交：`master..HEAD` 共 23 个提交（截至 `f5539e4`，文档提交另计），`git diff --stat master..HEAD` = 20 文件 / +1461 / −38。
 - 新增 Kotlin 包：`com.example.gemini.ui.glass`（5 个文件，见 §3）。
 - 依赖：新增 `io.github.kyant0:backdrop:1.0.6`；显式声明 `io.github.kyant0:shapes:1.2.0`（backdrop 以 runtime 传递，runtime 不进编译类路径，必须显式）。**没有其它新依赖**（Coil 2.7.0 本来就在）。
 - i18n：`python3 scripts/i18n/verify.py` 通过，`values: 2063 / values-zh-rCN: 2060 / 源码引用: 2030`。
-- 观感定稿（2026-10-25，`4d7929d`）：A/B/C/S 四组 → **S「上游原味」**。`GlassPresets`、`names`、`DEFAULT` 与长按切换条一并删除；`upstreamSpec` 现在只给 `Chrome`/`Dock` 用（§4.2）。
-- 抽屉改磨砂（2026-10-25，`ffa15ad`）：真机（另一台手机）反馈「抽屉是透明的，和聊天页的消息字体重叠看不清」→ 新增 `frostedPanelDark` / `frostedPanelLight` 两份 Panel spec（blur 20dp + 白染色 12%/72% + 关折射），见 §4.2.1。
+- 观感定稿 v1（`4d7929d`）：四组 A/B/C/S 里选 S「上游原味」→ 删 `GlassPresets` 与长按切换条。**但 S 照的是 `ScrollContainerContent`（列表容器），不是用户真正想要的胶囊**。
+- 中间态（`ffa15ad`）：抽屉单独走磨砂（blur 20dp + 白 12%/72%），救过一次「抽屉透明、与正文叠字」。
+- 观感定稿 v2（`f5539e4`，现行）：用户对着上游 demo 的 Tab 胶囊说「三个面都改成这个效果」→ 照 `LiquidBottomTabs.kt` 重写为 `demoSpecDark`/`demoSpecLight`（暗 `#121212`@40% / 亮 `#FAFAFA`@40% + blur 8dp + lens 24dp/24dp + `Shadow.Default`），三角色共用一份，只有 tint 分亮暗；磨砂例外随之删除（§4.2）。
 - 用户实测结论（真机，release 包，**四组预设时期**的结论）：
   - ✅ 顶栏/输入栏背后的内容被模糊、四条圆角有折射、边缘有亮线、按下有高光跟随；
   - ✅ 抽屉玻璃里的聊天内容与身后页面的明暗一致；
   - ✅ 滚动、键盘、抽屉、四屏、性能（D 组）通过；
-  - ⚠️ 当时观感未定稿。**定稿 S 后 blur=0**，上面第一条的「被模糊」不再成立，现在是「纯折射 + 0.5dp 边光 + 极轻投影」。
+  - ⚠️ 那轮之后暴露了两个问题：S 的零模糊零染色让抽屉和正文叠字（`ffa15ad` 用磨砂救过）；三个面也都不像 demo 胶囊（`f5539e4` 补齐 40% 染色 + 8dp 模糊 + 24dp 折射后解决）。
 - 用户明确要求：**自选相册图作为世界底** —— 已实现（§5.2），实机效果待用户确认。
-- 真机验收（另一台手机，不是本机 Termux 那台）：`4d7929d` 已装，用户确认**帧率很丝滑、不掉帧**；抽屉文字重叠问题已在本轮（`ffa15ad`）修，待复验。
+- 真机验收（另一台手机，不是本机 Termux 那台）：`4d7929d` 已装，用户确认**帧率很丝滑、不掉帧**；`ffa15ad`（抽屉磨砂）与 `f5539e4`（demo 胶囊配方）**均待复验**。
 
 ## 2. 架构与三条硬规则（踩过坑，务必遵守）
 
@@ -65,7 +66,7 @@
 | --- | --- | --- |
 | `GlassWorld.kt` | `LocalGlassBackdrop` L36、`rememberGlassBackdrop()` L40、`GlassWorld()` L47 | 世界层的「建层 / 录制」两半；文件头注释写清了三条硬规则 |
 | `LiquidGlass.kt` | `Modifier.liquidGlass()` L39、`frostedGlassSurface()` L70、`glassWithBackdrop()` L78、`frostedGlass()` L163 | 唯一渲染入口；`effects`（vibrancy+blur+lens）、`highlight`、`shadow`、`innerShadow`（α≤0 时不挂）、`onDrawSurface`（shade/tint/topSheen/innerGlow） |
-| `GlassTokens.kt` | `GlassSpec` L24、`upstreamSpec` L81、`upstreamTokens` L104、`DarkGlassTokens`/`LightGlassTokens` L111/114、`LocalGlassTokens` L116、`LocalGlassEnabled` L119 | 参数系统：定稿后只剩一份 S 配方 + 亮暗两个名字 |
+| `GlassTokens.kt` | `GlassSpec` L24、`demoSpecDark` L84、`demoSpecLight` L108、`DarkGlassTokens`/`LightGlassTokens` L111/118、`LocalGlassTokens` L124、`LocalGlassEnabled` L127 | 参数系统：定稿 = 上游 demo 胶囊配方，三角色共用，亮暗只差 tint |
 | `AmbientBackdrop.kt` | `AmbientBackdrop()` L65、图片分支 L71、`buildGrainBitmap()` L107、`drawAmbient()` L129 | 世界底：极光渐变 + 64×64 可平铺颗粒 + 用户自选图片 + 可读性罩 |
 | `GlassSheen.kt` | `Modifier.pressSheen()` L35 | 手指跟随的镜面高光（上游 `InteractiveHighlight` 的等价实现，1.0.6 没有 RuntimeShader API） |
 
@@ -103,46 +104,31 @@
 | `useLens` / `refractionHeight` / `refractionAmount` | 折射 | 高度是**边缘带宽度**，大面积 >12dp 会被看成粗描边 |
 | `chromaticAberration` | 折射边色散（API 33+） | 定稿**关闭**（上游不开）；开了会偏"水灵"，但偏离上游配方 |
 
-### 4.2 定稿配方（S「上游原味」，`GlassTokens.kt:81`）
+### 4.2 定稿配方（上游 demo 胶囊，`GlassTokens.kt:83`）
 
-`upstreamSpec`（`GlassTokens.kt:83`）只给 `Chrome` / `Dock`；`DarkGlassTokens` / `LightGlassTokens` 的 chrome/dock 都指向它，**panel 另见 §4.2.1**。
+2026-10-25 用户指着上游 demo 的 Tab 胶囊说「顶栏 / 输入栏 / 抽屉都用这个效果」→ 照 `app/src/commonMain/.../components/LiquidBottomTabs.kt` 逐项抄，**三个角色共用一份** `demoSpecDark` / `demoSpecLight`（只差 tint）。
 
-| 字段 | 定稿值 | 依据 |
+| 字段 | 定稿值 | 上游依据 |
 | --- | --- | --- |
-| `blur` | **0dp** | 上游 `ScrollContainerContent` 不调 `blur()` |
-| `saturation` | 1.5 | 上游 `vibrancy()` 的等价物 |
-| `brightness` | 0 | 上游不调 `colorControls` |
-| `tint` | 透明 | 上游不染色 |
-| `highlightWidth` / `highlightAlpha` | 0.5dp / 1.0 | 库 `Highlight.Default`（blurRadius 自动取 width/2） |
-| `topSheen` / `innerGlow` | 0 / 0 | 上游没有这两层 |
-| `chromaticAberration` | false | 上游不开色散 |
-| `shadowBlur` / `shadowOffsetY` / `shadowAlpha` | 16dp / 3dp / 0.06 | **偏离上游**：上游 24dp/4dp/0.10 在浅底上是一圈灰晕 |
-| `innerShadowAlpha` | 0 | 上游 `innerShadow = null`（α≤0 时连锁都不挂，`LiquidGlass.kt:114-125`） |
-| `refractionHeight` / `refractionAmount` | 8dp / 20dp | **偏离上游**：上游 16dp/32dp 在小控件上是粗描边 |
-| `useLens` | true | 需 API 33+；形状必须是 `CornerBasedShape` 或 `RoundedRectangularShape` |
+| `blur` | **8dp** | `blur(8.dp)` |
+| `saturation` | 1.5 | `vibrancy()` = `colorControls(saturation = 1.5f)` |
+| `brightness` | 0 | `vibrancy()` 不调亮度 |
+| `tint` | 暗 **`#121212`@40%**（`0x66121212`）/ 亮 **`#FAFAFA`@40%**（`0x66FAFAFA`） | `onDrawSurface = { drawRect(containerColor) }` |
+| `refractionHeight` / `refractionAmount` | **24dp / 24dp** | `lens(24.dp, 24.dp)` |
+| `highlightWidth` / `highlightAlpha` | 0.5dp / 1.0（blur 自动 0.25dp） | `Highlight.Default` |
+| `shadowBlur` / `shadowOffsetY` / `shadowAlpha` | 24dp / 4dp / 0.10 | `Shadow.Default`（offsetY = radius/6） |
+| `innerShadowAlpha` | 0 | `innerShadow = null` |
+| `topSheen` / `innerGlow` / `chromaticAberration` | 0 / 0 / false | 主胶囊没有这三层（色散只出现在选中指示器上） |
 
-删除记录（`4d7929d`）：A 水灵 / B 厚玻璃 / C 磨砂三组参数、`GlassPresets` object、`names`、`DEFAULT` 全部移除，亮色三套一并消失。
+**为什么 v1「不像」**：S 照的是 `ScrollContainerContent`（同仓库的列表容器）——`vibrancy() + lens(16dp, 32dp)`、无模糊无染色，折射还被我们自己收窄到 8dp。截图那块胶囊是 `LiquidBottomTabs`，靠 **40% 染色 + 8dp 模糊**把身后内容压成色块，再叠 **24dp 厚折射边**，所以「厚、润、有颜色」。只抄前者，chrome 就是一片几乎看不见的透明片。
 
-### 4.2.1 Panel 磨砂例外（`ffa15ad`）
-
-抽屉宽 82% 屏宽、身后压着整片聊天消息，S 的「零模糊 + 零染色」会让两边的字叠在一起。所以**只有 `Panel` 走磨砂**，字段差异仅四处：
-
-| 字段 | Chrome / Dock（S） | Panel（磨砂） |
-| --- | --- | --- |
-| `blur` | 0dp | **20dp** |
-| `saturation` | 1.5 | 1.35 |
-| `tint` | 透明 | 暗 **白 α0.12**（`0x1FFFFFFF`）/ 亮 **白 α0.72**（`0xB8FFFFFF`） |
-| `useLens` | true（8dp / 20dp） | **false**（折射高度与强度均置 0） |
-
-其余（0.5dp 边光、16dp/3dp/α0.06 投影、无内阴影、无顶部湿光、无底部内反光）与 S 完全相同。`Panel` 是定稿 S 之后**唯一允许亮暗分岔**的角色（差的就是那一个 tint）。
-
-`useLens = false` 的理由：PLAN §6 红线「`lens` 只给 ≤96dp 高的小控件」，8dp 折射带在 82% 屏宽上肉眼看不出来，只剩采样成本。
+附带效果：抽屉不再与聊天正文叠字（40% 染色 + 8dp 模糊）；拟玻璃兜底也不再是黑板（tint 不再透明，见 §7-1）。
 
 ### 4.3 调试入口（已删除）
 
 原「长按顶栏 → chip 条切 4 组」已随定稿删除（`4d7929d`）。删除项：`glassPresetIndex` / `glassPresetPickerVisible` / 屏幕内 `LocalGlassTokens provides glassPresetTokens` / 长按 `pointerInput` / chip 条 / `GlassPresets` 全组；顺带清掉两个不再使用的 import（`detectTapGestures`、`pointerInput`）。
 
-现在 `Theme.kt:136-138` 是 **唯一** tokens provider，屏幕内不再覆盖。要改观感只改 `upstreamSpec` 一处（三个角色共用）；要分角色差异化时才把 `upstreamTokens` 拆成明确的三个 spec。
+现在 `Theme.kt:136-138` 是 **唯一** tokens provider，屏幕内不再覆盖。要改观感只改 `demoSpecDark` 一处（`demoSpecLight` 用 `copy()` 只换 tint）；真要按角色差异化，才在 `GlassTokens(...)` 构造里给三个角色传不同 spec。
 
 ## 5. 世界层
 
@@ -173,7 +159,9 @@
 | 手指跟随高光 | **demo 纯代码** | `app/.../utils/InteractiveHighlight.kt`（用 2.0.x 才公开的 `RuntimeShader`，1.0.6 没有 → 我们改用 `RadialGradient + BlendMode.Plus`，`GlassSheen.kt`） |
 | 按下放大折射 | **demo 纯代码** | `DampedDragAnimation.pressProgress` 乘进 `lens(...)`（我们**未实现**，见 §8） |
 | 背景 | demo 资源 | `wallpaper_light.webp`（未采用，版权来源不确定；改走用户自选图） |
-| 参考配方 | `ScrollContainerContent.kt` | `shape = RoundedRectangle(32.dp)`, `effects = { vibrancy(); lens(16.dp, 32.dp) }`，其余全用默认 |
+| 胶囊配方（**现行定稿**） | `components/LiquidBottomTabs.kt` | 主胶囊：`vibrancy(); blur(8.dp); lens(24.dp, 24.dp)`；`onDrawSurface = drawRect(containerColor)`（亮 `#FAFAFA`@0.4 / 暗 `#121212`@0.4）；highlight / shadow 用库默认，`innerShadow = null` |
+| 选中指示器（未采用） | 同文件第二段 | `lens(10dp×pressProgress, 14dp×pressProgress, chromaticAberration=true)` + 白/黑 10% + `InnerShadow(8dp×progress)`；我们的类比物是 `pressSheen` |
+| 参考配方（**不是**截图那块） | `ScrollContainerContent.kt` | `RoundedRectangle(32.dp)` + `vibrancy(); lens(16.dp, 32.dp)`、无模糊无染色——列表容器，当 chrome 用会得到几乎看不见的透明片 |
 
 其它实测结论：
 
@@ -183,11 +171,11 @@
 
 ## 7. 已知问题 / 技术债（按优先级）
 
-1. **拟玻璃兜底会把透明 tint 放大成半透明黑板**（2026-10-25 定稿后暴露，用户决定留到 P2）：`frostedGlass()` 用 `spec.tint.copy(alpha = tint.alpha + 0.5f)`，S 组 `tint = Color.Transparent`，RGB 是黑，于是兜底变成 0.5→0.3 的黑色渐变，`opaque = true`（省电模式）更是 α0.96 黑板。命中面：API<31 老设备、P2 弹层、P4 省电开关。SDK 34 真玻璃路径不受影响（所以定稿包装机看不出来）。修法见 §8 P2 首项。
-2. **chrome 仍然零模糊**：顶栏/输入栏的内容会从标题、占位符后面穿过（抽屉已改磨砂，见 §4.2.1）。可读性靠世界底的可读性罩（§5.1/§5.2）+ 列表 padding，不要用 tint 补（会退回"瓷片"）。**这条判定要复用**：任何「身后压着大段文字」的大面积玻璃都走磨砂，小面积 chrome 才走上游原味。
+1. **拟玻璃兜底的黑板问题已随 v2 配方解决**（`f5539e4`）：v1 `tint = Color.Transparent` 时 `frostedGlass()` 的 `tint.copy(alpha + 0.5)` 等于半透明黑；现在 tint 是 40% 底色，兜底算出的 α0.9 是正常半透明卡、`opaque`（省电模式）α0.96 也成立。API<31 / P2 弹层 / P4 省电模式三处都不用再额外修补。
+2. **三个面都带 24dp 折射、都在采样**：PLAN §6 红线是「lens 只给 ≤96dp 高的小控件」，但用户明确要求抽屉也用同款胶囊效果，所以 `Panel` 是 82% 屏宽 + 全高的折射面板。**这是用户拍板的取舍**，代价是抽屉每次重绘重算一遍折射；性能数字仍未测（见下一条）。
 3. **每帧重录世界层**：`LayerBackdropNode.draw()` = `drawContent()` + `recordLayer(...)`，滚动时每帧重录全屏内容。这是当前最大性能开销，也是 P4「省电模式」的主要理由。量化未做（`docs/project-doc.md` §12 里没有帧率数据）。
 4. **`pressProgress` 未接**：上游按下时折射会放大，我们只有高光跟随。
-5. **亮色主题物理限制**：S 组没有 tint，白底上玻璃几乎只有 0.5dp 边光 + α0.06 投影立住；若仍嫌"平"，应当改**内容底色**（给消息区加淡色底），不要再加染色。
+5. **亮色主题**：现在有 40% `#FAFAFA` 染色托底，比 v1（无染色）稳；但白底照片 + 白染仍可能偏「平」。若仍嫌平，优先改**内容底色**，不要再加染色（会退回"瓷片"）。
 6. **弹层仍是伪玻璃**（P2）。
 7. **其它四屏未接入**（P3，`SettingsDialog` / IDE / Browser / Terminal 仍是既有样式）。
 8. **`ui-preview/` 仍是未跟踪文件**（早期 HTML 原型，刻意不入库）。
@@ -196,12 +184,12 @@
 ## 8. 下一步（建议顺序）
 
 **P0（收尾，剩 2 项）**
-1. ✅ 定稿观感 + 删调试入口（`4d7929d`，S「上游原味」）。
+1. ✅ 定稿观感 + 删调试入口（`4d7929d` 删入口；观感在 `f5539e4` 定为**上游 demo 胶囊配方**）。
 2. 补 `DESIGN.md`（落点 `docs/design/DESIGN.md`：哪些面用玻璃、亮暗规则、对比度下限、性能红线、动效规则）。
 3. 帧率：2026-10-25 用户在另一台真机主观验收「很丝滑、不掉帧」→ 已在 `docs/project-doc.md` §12 记为「主观通过 / 数字未测量」。**数字仍缺**（装机那台没接 adb）；能用 adb 时补 `dumpsys gfxinfo <pkg> framestats`（先 `--reset`，长会话滚 ≥10s）。
 
 **P2（弹层伪玻璃，独立可做）**
-- **先修兜底黑板**（§7-1）：弹层统一用 `GlassRole.Panel`（推荐）时，有白染色，兜底是正常白卡；黑板问题只剩 `Chrome`/`Dock` 在 API<31 与省电模式两处。修法：给 `frostedGlass()` 一个 base 底色（建议 `liquidGlass()` / `frostedGlassSurface()` 读 `MaterialTheme.colorScheme.surface` 传下去，`fill = if (spec.tint.alpha > 0f) spec.tint else base`），α 曲线保持不动。
+- 兜底黑板问题已被 v2 配方顺带解决（§7-1）：弹层直接用 `Modifier.frostedGlassSurface(GlassRole.Panel, shape)`，不用改 `LiquidGlass.kt`。
 - 落点：`ModelSelector` / `ThinkingSelector` / `AttachmentSelector` / `ClaudeModeSheets` / `FileManagerDialog` / `SettingsDialog`（都是 Dialog 或 Popup，在独立 Window）。
 - 做法：用 `Modifier.frostedGlassSurface(role = GlassRole.Panel, shape)`（`LiquidGlass.kt:70`），参数从 `LocalGlassTokens` 取，保持与主屏同一套观感；**不要**试图采样（采样不到）。
 - 验收：弹层观感与主屏玻璃一致、不是"纯色卡片"。
@@ -246,7 +234,8 @@
 | 2026-10-25 | `ab1124f` | `40174017029` | success（S 上游原味） |
 | 2026-10-25 | `c12975b` | `40177252860` | success（世界底图 + S 组灰晕/描边修正） |
 | 2026-10-25 | `4d7929d` | `40185134339` | success（**定稿 S「上游原味」** + 删除 A/B/C 组与长按预设切换条；真机已装，帧率主观通过） |
-| 2026-10-25 | `ffa15ad` | `40190873626` | success（**抽屉改磨砂** + Panel 亮暗分岔；待复验文字重叠是否消失） |
+| 2026-10-25 | `ffa15ad` | `40190873626` | success（抽屉改磨砂 + Panel 亮暗分岔） |
+| 2026-10-25 | `f5539e4` | `40191925831` | success（**玻璃改回上游 demo 胶囊配方**：40% 染色 + 8dp 模糊 + 24dp 折射，三面统一；待装机复验） |
 
 下载方式：`gh api repos/743553649/agy-and-claude/actions/runs/<run>/artifacts -q '.artifacts[].archive_download_url'`，或用运行页 Artifacts。
 安装前确认签名（`apksigner verify --print-certs`）与包名（`pm list packages com.termux`）。

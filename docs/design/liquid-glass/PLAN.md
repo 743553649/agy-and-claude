@@ -9,7 +9,7 @@
 
 ## 0. 结论（先读这段）
 
-> **状态：P0–P1 已落地，观感已定稿为 S「上游原味」，交接见 [`HANDOFF.md`](HANDOFF.md)**（分支 `feat/liquid-glass`，HEAD `4d7929d`）。
+> **状态：P0–P1 已落地，观感已定稿为上游 demo 胶囊配方（40% 染色 + 8dp 模糊 + 24dp 折射），交接见 [`HANDOFF.md`](HANDOFF.md)**（分支 `feat/liquid-glass`，HEAD `f5539e4`）。
 > 本文档是当初的**计划**，进度、踩坑、代码地图与下一步都在 HANDOFF 里。
 > 未完成：P2 弹层伪玻璃、P3 其它四屏、P4 省电开关 / DESIGN.md / 性能与无障碍。
 
