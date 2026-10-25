@@ -64,27 +64,29 @@ data class GlassTokens(
 }
 
 /**
- * 定稿配方（2026-10-25，用户从 A/B/C/S 四组里选定 S「上游原味」）。
- * **只给 `Chrome` / `Dock` 用**；`Panel`（抽屉/面板）走下面的磨砂例外。
+ * 定稿配方（2026-10-25 v2，用户指着上游 demo 的胶囊说「就用这个效果，三个面都改过来」）。
  *
- * 逐项对齐 `AndroidLiquidGlass` 的 `ScrollContainerContent` 配方：
- * effects 只有 `vibrancy()` + `lens(16.dp, 32.dp)`（**无模糊、无染色**），
- * highlight 用库默认 `Highlight(0.5.dp, 0.25.dp, α=1)`，
- * shadow 用库默认 `Shadow(24.dp, offsetY 4.dp, 黑 α0.10)`，**innerShadow = null**。
+ * 依据是上游 `kmp` 分支的 `app/src/commonMain/.../components/LiquidBottomTabs.kt`（截图里那两个胶囊），逐项抄：
+ * - `effects = { vibrancy(); blur(8.dp); lens(24.dp, 24.dp) }`
+ * - `highlight = Highlight.Default`（0.5dp / blur 0.25dp / α1）
+ * - `shadow = Shadow.Default`（24dp / offsetY 4dp / 黑 α0.10）
+ * - `innerShadow = null`
+ * - `onDrawSurface = { drawRect(containerColor) }`：亮 `#FAFAFA`@0.40、暗 `#121212`@0.40
  *
- * 正因为没有染色和模糊，它只在「有颜色、有细节」的背景上成立（上游压的是壁纸），
- * 所以我们才需要 `AmbientBackdrop` 的颗粒层和用户自选底图——纯渐变会让 lens 白做。
- * 也正因为如此，它**不能**用在抽屉这种「身后就压着大段文字」的大面积容器上（见 `frostedPanelDark`）。
+ * **关键认知**：demo 的玻璃不是「零模糊零染色」。它靠 **40% 染色 + 8dp 模糊** 把身后内容压成色块，
+ * 再叠 **24dp 厚折射边**，所以看起来厚、润、有颜色。之前照 `ScrollContainerContent`（同仓库的列表容器）
+ * 收出来的「0 模糊 / 0 染色 / 8dp 折射」是另一个组件的配方，不是这张截图里的胶囊。
  *
- * 与上游字面不同、刻意收窄的两处：
- * - `shadowBlur` 24dp/α0.10 → 16dp/α0.06：上游默认值压在浅底上是一圈灰晕；
- * - `refractionHeight` 16dp → 8dp：16dp 在小面积（顶栏高度 64dp）上会被看成粗描边。
+ * 三个角色共用同一份配方（用户明确要求顶栏/输入栏/抽屉统一），亮暗只差 tint。
+ * 附带解决两件事：① 40% 染色 + 8dp 模糊让抽屉不再和身后聊天正文糊在一起；② tint 不再透明，
+ * 拟玻璃兜底（`tint.copy(alpha = tint.alpha + 0.5f)`）不会再退化成半透明黑板。
  */
-private val upstreamSpec: GlassSpec = GlassSpec(
-    blur = 0.dp,
+private val demoSpecDark: GlassSpec = GlassSpec(
+    blur = 8.dp,
     saturation = 1.5f,
     brightness = 0f,
-    tint = Color.Transparent,
+    // #121212 @ 40%
+    tint = Color(0x66121212),
     shade = 0f,
     rimTop = Color(0xFFFFFFFF),
     rimBottom = Color(0x26FFFFFF),
@@ -93,65 +95,30 @@ private val upstreamSpec: GlassSpec = GlassSpec(
     topSheen = 0f,
     innerGlow = 0f,
     chromaticAberration = false,
-    shadowBlur = 16.dp,
-    shadowOffsetY = 3.dp,
-    shadowAlpha = 0.06f,
+    shadowBlur = 24.dp,
+    shadowOffsetY = 4.dp,
+    shadowAlpha = 0.10f,
     innerShadowAlpha = 0f,
     useLens = true,
-    refractionHeight = 8.dp,
-    refractionAmount = 20.dp,
+    refractionHeight = 24.dp,
+    refractionAmount = 24.dp,
 )
 
-/**
- * `Panel`（抽屉、面板）是定稿 S 的**唯一例外**：磨砂。
- *
- * 原因：S 组 `blur = 0` 且 `tint` 透明，而抽屉宽 82% 屏宽、身后就是聊天消息，原样透出来会和抽屉里的会话标题叠在一起
- * （2026-10-25 用户真机反馈「和聊天页的消息字体重叠了看不清」）。所以 Panel 用「模糊 + 白染色」压掉身后的文字，
- * 其余字段仍跟随 S：0.5dp 边光、16dp/α0.06 轻投影、无内阴影、无顶部湿光。
- *
- * `useLens = false`：大面板不做折射。PLAN §6 的红线是「`lens` 只给 ≤96dp 高的小控件」，8dp 折射带在 82% 屏宽上
- * 本来就看不出来，纯花采样成本。
- *
- * 亮/暗只差染色：暗色染 12% 白（磨砂但保持暗），亮色染 72% 白（白底上必须压出足够亮度差，
- * 否则深色正文贴在照片底上照样糊——这就是「亮磨砂」不能和暗色共用一份的原因）。
- */
-private val frostedPanelDark: GlassSpec = GlassSpec(
-    blur = 20.dp,
-    saturation = 1.35f,
-    brightness = 0f,
-    tint = Color(0x1FFFFFFF),
-    shade = 0f,
-    rimTop = Color(0xFFFFFFFF),
-    rimBottom = Color(0x26FFFFFF),
-    highlightAlpha = 1f,
-    highlightWidth = 0.5.dp,
-    topSheen = 0f,
-    innerGlow = 0f,
-    chromaticAberration = false,
-    shadowBlur = 16.dp,
-    shadowOffsetY = 3.dp,
-    shadowAlpha = 0.06f,
-    innerShadowAlpha = 0f,
-    useLens = false,
-    refractionHeight = 0.dp,
-    refractionAmount = 0.dp,
-)
+/** 亮色：只换染色（`#FAFAFA` @ 40%），其余与暗色相同。 */
+private val demoSpecLight: GlassSpec = demoSpecDark.copy(tint = Color(0x66FAFAFA))
 
-/** 亮色磨砂：只换染色（72% 白），其余同暗色。 */
-private val frostedPanelLight: GlassSpec = frostedPanelDark.copy(tint = Color(0xB8FFFFFF))
-
-/** 暗色定稿：顶栏/输入栏 = S 原味，抽屉 = 磨砂。 */
+/** 暗色定稿：顶栏 / 输入栏 / 抽屉同一份配方。 */
 val DarkGlassTokens: GlassTokens = GlassTokens(
-    chrome = upstreamSpec,
-    dock = upstreamSpec,
-    panel = frostedPanelDark,
+    chrome = demoSpecDark,
+    dock = demoSpecDark,
+    panel = demoSpecDark,
 )
 
-/** 亮色定稿：chrome/dock 与暗色同一份 S；只有抽屉的染色不同。 */
+/** 亮色定稿：与暗色只差 tint。 */
 val LightGlassTokens: GlassTokens = GlassTokens(
-    chrome = upstreamSpec,
-    dock = upstreamSpec,
-    panel = frostedPanelLight,
+    chrome = demoSpecLight,
+    dock = demoSpecLight,
+    panel = demoSpecLight,
 )
 
 val LocalGlassTokens = staticCompositionLocalOf { DarkGlassTokens }
